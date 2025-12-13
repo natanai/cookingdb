@@ -342,10 +342,10 @@
         "options": [
           {
             "option": "",
-            "display": "full-fat coconut milk (room temperature",
-            "ratio": " fully mixed)",
-            "unit": "10",
-            "ingredient_id": "tbsp"
+            "display": "full-fat coconut milk (room temperature, fully mixed)",
+            "ratio": "10",
+            "unit": "tbsp",
+            "ingredient_id": "coconut-milk"
           }
         ],
         "isChoice": false
@@ -470,9 +470,9 @@
       }
     },
     "compatibility_possible": {
-      "gluten_free": false,
-      "egg_free": false,
-      "dairy_free": false
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
     }
   }
 ]

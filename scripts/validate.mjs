@@ -76,6 +76,11 @@ function ensure(condition, message) {
 export async function validateAll() {
   const recipesDir = path.join(process.cwd(), 'recipes');
   const recipeDirs = fs.readdirSync(recipesDir, { withFileTypes: true }).filter((ent) => ent.isDirectory());
+  const ingredientCatalogPath = path.join(process.cwd(), 'data', 'ingredient_catalog.csv');
+  ensure(fs.existsSync(ingredientCatalogPath), 'Missing ingredient_catalog.csv');
+  const ingredientCatalogRows = await parseCSVFile(ingredientCatalogPath);
+  const ingredientCatalog = new Set(ingredientCatalogRows.map((row) => row.ingredient_id));
+  const ratioPattern = /^\d+(?: \d+\/\d+|\/\d+)?$/;
 
   for (const dirEnt of recipeDirs) {
     const recipeId = dirEnt.name;
@@ -99,7 +104,17 @@ export async function validateAll() {
 
     const tokenOptions = new Map();
     for (const row of ingredientRows) {
+      const requiredFields = ['token', 'display', 'ingredient_id'];
+      for (const field of requiredFields) {
+        ensure(row[field], `${recipeId}: ingredient row missing ${field}: ${JSON.stringify(row)}`);
+      }
       const token = row.token;
+      const ratio = (row.ratio || '').trim();
+      ensure(!ratio || ratioPattern.test(ratio), `${recipeId}: invalid ratio for ${token}: ${row.ratio} | Row: ${JSON.stringify(row)}`);
+      ensure(
+        ingredientCatalog.has(row.ingredient_id),
+        `${recipeId}: unknown ingredient_id ${row.ingredient_id} for token ${token} | Row: ${JSON.stringify(row)}`,
+      );
       ensure(token, `${recipeId}: ingredient row missing token`);
       if (!tokenOptions.has(token)) {
         tokenOptions.set(token, new Set());
