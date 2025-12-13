@@ -144,12 +144,18 @@ async function build() {
       if (!ingredients[row.token]) {
         ingredients[row.token] = { token: row.token, options: [], isChoice: false };
       }
+      const flags = catalog.get(row.ingredient_id);
       const optionEntry = {
         option: row.option,
         display: row.display,
         ratio: row.ratio,
         unit: row.unit,
         ingredient_id: row.ingredient_id,
+        dietary: {
+          gluten_free: ingredientCompatible(flags, 'gluten_free'),
+          egg_free: ingredientCompatible(flags, 'egg_free'),
+          dairy_free: ingredientCompatible(flags, 'dairy_free'),
+        },
       };
       ingredients[row.token].options.push(optionEntry);
     }

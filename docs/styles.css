@@ -241,6 +241,30 @@ main {
   box-shadow: var(--shadow);
 }
 
+.dietary-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem 0.75rem;
+  border-radius: 10px;
+  background: #fff9f0;
+  min-width: 240px;
+}
+
+.dietary-controls legend {
+  padding: 0 0.25rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.dietary-controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
 .controls input[type='number'],
 .controls select,
 .button {

@@ -19,6 +19,14 @@ function createTag(label, value) {
   return pill;
 }
 
+function buildRecipeLink(recipeId, filters) {
+  const params = new URLSearchParams({ id: recipeId });
+  if (filters.gluten) params.set('gluten_free', '1');
+  if (filters.egg) params.set('egg_free', '1');
+  if (filters.dairy) params.set('dairy_free', '1');
+  return `recipe.html?${params.toString()}`;
+}
+
 function renderRecipes(recipes) {
   const listEl = document.getElementById('recipe-list');
   const filters = {
@@ -40,7 +48,7 @@ function renderRecipes(recipes) {
     const li = document.createElement('li');
     li.className = 'recipe-card';
     const link = document.createElement('a');
-    link.href = `recipe.html?id=${encodeURIComponent(recipe.id)}`;
+    link.href = buildRecipeLink(recipe.id, filters);
     link.textContent = recipe.title;
     li.appendChild(link);
     const tags = document.createElement('div');
