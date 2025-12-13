@@ -145,6 +145,95 @@
       "gluten_free": true,
       "egg_free": true,
       "dairy_free": true
+    },
+    "uses_pan": false,
+    "default_pan_id": null,
+    "pan_scale_method": "none",
+    "default_pan": null
+  },
+  {
+    "meta": {
+      "id": "pan-demo",
+      "title": "Pan Demo Cake",
+      "base_kind": "multiplier",
+      "default_base": "1",
+      "categories": [
+        "Dessert"
+      ],
+      "notes": "Simple pan-scaling demo.",
+      "uses_pan": "true",
+      "default_pan_id": "square-8",
+      "pan_scale_method": "area"
+    },
+    "steps": [
+      "1. Grease and line the pan with a little {{butter}} (pan selector adjusts amounts).",
+      "2. Cream {{butter}} and {{sugar}} until fluffy.",
+      "3. Beat in {{eggs}} one at a time, then fold in {{flour}}.",
+      "4. Stir in {{milk}} to loosen the batter, then spread into the prepared pan.",
+      "5. Bake until golden and a tester comes out clean."
+    ],
+    "ingredients": [
+      {
+        "token": "flour",
+        "option": "",
+        "display": "flour",
+        "ratio": "1",
+        "unit": "cup",
+        "ingredient_id": "wheat-flour"
+      },
+      {
+        "token": "sugar",
+        "option": "",
+        "display": "sugar",
+        "ratio": "3/4",
+        "unit": "cup",
+        "ingredient_id": "sugar"
+      },
+      {
+        "token": "butter",
+        "option": "",
+        "display": "softened butter",
+        "ratio": "1/2",
+        "unit": "cup",
+        "ingredient_id": "butter"
+      },
+      {
+        "token": "eggs",
+        "option": "",
+        "display": "eggs",
+        "ratio": "2",
+        "unit": "count",
+        "ingredient_id": "egg"
+      },
+      {
+        "token": "milk",
+        "option": "",
+        "display": "milk",
+        "ratio": "1/2",
+        "unit": "cup",
+        "ingredient_id": "milk"
+      }
+    ],
+    "choices": [],
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": false
+    },
+    "uses_pan": true,
+    "default_pan_id": "square-8",
+    "pan_scale_method": "area",
+    "default_pan": {
+      "pan_id": "square-8",
+      "label": "8x8 square pan",
+      "shape": "rect",
+      "width_in": 8,
+      "length_in": 8,
+      "diameter_in": null,
+      "depth_in": null,
+      "notes": "",
+      "area_in2": 64,
+      "volume_in3": null
     }
   }
 ]

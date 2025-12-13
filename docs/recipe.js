@@ -79,9 +79,56 @@ function selectionFromChoice(choice, options) {
   return options.values().next().value;
 }
 
-function buildControls(recipe, state, onChange) {
+function storageKeyForPan(recipe) {
+  return `cookingdb.recipePan.${recipe.meta.id}`;
+}
+
+function computePanFactor(recipe, selectedPan) {
+  if (!recipe.uses_pan) {
+    return { factor: 1, warning: null };
+  }
+
+  const method = recipe.pan_scale_method || 'none';
+  if (method === 'none') {
+    return { factor: 1, warning: null };
+  }
+
+  const basePan = recipe.default_pan;
+  if (!selectedPan || !basePan) {
+    return { factor: 1, warning: 'Pan sizing unavailable; using recipe default amounts.' };
+  }
+
+  const areaFactor =
+    selectedPan.area_in2 && basePan.area_in2 ? selectedPan.area_in2 / basePan.area_in2 : null;
+  const volumeFactor =
+    selectedPan.volume_in3 && basePan.volume_in3 ? selectedPan.volume_in3 / basePan.volume_in3 : null;
+
+  if (method === 'area') {
+    if (areaFactor) {
+      return { factor: areaFactor, warning: null };
+    }
+    return { factor: 1, warning: 'Pan areas unknown; skipping pan scaling.' };
+  }
+
+  if (method === 'volume') {
+    if (volumeFactor) {
+      return { factor: volumeFactor, warning: null };
+    }
+    if (areaFactor) {
+      return { factor: areaFactor, warning: 'Using area-based scaling (volume unavailable).' };
+    }
+    return { factor: 1, warning: 'Pan volumes unknown; skipping pan scaling.' };
+  }
+
+  return { factor: 1, warning: null };
+}
+
+function buildControls(recipe, state, pans, onChange) {
   const container = document.getElementById('recipe-actions');
   container.innerHTML = '';
+
+  const mainRow = document.createElement('div');
+  mainRow.className = 'controlRow';
 
   const multiplierLabel = document.createElement('label');
   multiplierLabel.className = 'inline-control';
@@ -97,7 +144,7 @@ function buildControls(recipe, state, onChange) {
     onChange();
   });
   multiplierLabel.appendChild(multiplierInput);
-  container.append(multiplierLabel);
+  mainRow.append(multiplierLabel);
 
   recipe.choices.forEach((choice) => {
     const label = document.createElement('label');
@@ -119,7 +166,7 @@ function buildControls(recipe, state, onChange) {
       onChange();
     });
     label.appendChild(select);
-    container.append(label);
+    mainRow.append(label);
   });
 
   const printBtn = document.createElement('button');
@@ -127,7 +174,42 @@ function buildControls(recipe, state, onChange) {
   printBtn.className = 'button-link';
   printBtn.textContent = 'Print';
   printBtn.addEventListener('click', () => window.print());
-  container.append(printBtn);
+  mainRow.append(printBtn);
+
+  container.append(mainRow);
+
+  if (recipe.uses_pan) {
+    const panRow = document.createElement('div');
+    panRow.id = 'panRow';
+    panRow.className = 'controlRow';
+
+    const label = document.createElement('label');
+    label.className = 'inline-control';
+    const title = document.createElement('span');
+    title.className = 'pan-label';
+    title.textContent = 'Pan';
+    const select = document.createElement('select');
+    pans.forEach((pan) => {
+      const optionEl = document.createElement('option');
+      optionEl.value = pan.pan_id;
+      optionEl.textContent = pan.label;
+      select.appendChild(optionEl);
+    });
+    if (state.selectedPanId) {
+      select.value = state.selectedPanId;
+    }
+    select.addEventListener('change', () => {
+      state.selectedPanId = select.value;
+      localStorage.setItem(storageKeyForPan(recipe), state.selectedPanId);
+      onChange();
+    });
+
+    label.appendChild(title);
+    label.appendChild(select);
+    panRow.append(label);
+    panRow.hidden = false;
+    container.append(panRow);
+  }
 }
 
 function selectedRowForToken(recipe, token, selection) {
@@ -149,7 +231,7 @@ function orderTokensBySteps(steps) {
   return ordered;
 }
 
-function renderIngredients(recipe, state) {
+function renderIngredients(recipe, state, totalScale) {
   const list = document.getElementById('ingredient-list');
   list.innerHTML = '';
   const orderedTokens = orderTokensBySteps(recipe.steps);
@@ -157,38 +239,75 @@ function renderIngredients(recipe, state) {
     const row = selectedRowForToken(recipe, token, state.selections[token]);
     if (!row) return;
     const li = document.createElement('li');
-    li.textContent = formatIngredient(row, state.multiplier);
+    li.textContent = formatIngredient(row, totalScale);
     list.appendChild(li);
   });
 }
 
-function replaceTokens(step, recipe, state) {
+function replaceTokens(step, recipe, state, totalScale) {
   return step.replace(/{{\s*([a-zA-Z0-9_-]+)\s*}}/g, (_, token) => {
     const row = selectedRowForToken(recipe, token, state.selections[token]);
     if (!row) return token;
-    return formatIngredient(row, state.multiplier);
+    return formatIngredient(row, totalScale);
   });
 }
 
-function renderSteps(recipe, state) {
+function renderSteps(recipe, state, totalScale) {
   const container = document.getElementById('steps');
   container.innerHTML = '';
   recipe.steps.forEach((step) => {
     const li = document.createElement('li');
-    li.textContent = replaceTokens(step, recipe, state);
+    li.textContent = replaceTokens(step, recipe, state, totalScale);
     container.appendChild(li);
   });
 }
 
-function initState(recipe) {
+function renderPanSummary(recipe, state) {
+  const summary = document.getElementById('pan-summary');
+  if (!recipe.uses_pan) {
+    summary.hidden = true;
+    return;
+  }
+
+  summary.hidden = false;
+  summary.innerHTML = '';
+  const title = document.createElement('p');
+  title.className = 'pan-title';
+  title.textContent = `Pan: ${state.activePan ? state.activePan.label : 'Recipe default'}`;
+  summary.appendChild(title);
+
+  if (state.panWarning) {
+    const note = document.createElement('p');
+    note.className = 'pan-note';
+    note.textContent = state.panWarning;
+    summary.appendChild(note);
+  } else if (state.panFactor && Math.abs(state.panFactor - 1) > 0.01) {
+    const note = document.createElement('p');
+    note.className = 'pan-note';
+    note.textContent = `Scaled for pan size (×${state.panFactor.toFixed(2)})`;
+    summary.appendChild(note);
+  }
+}
+
+function initState(recipe, pans) {
   const multiplier = Number(recipe.meta.default_base) || 1;
-  return { multiplier, selections: determineSelections(recipe) };
+  const selectedPanId = recipe.uses_pan
+    ? localStorage.getItem(storageKeyForPan(recipe)) ||
+      recipe.default_pan_id ||
+      (pans[0] ? pans[0].pan_id : null)
+    : null;
+  return { multiplier, selections: determineSelections(recipe), selectedPanId, panFactor: 1, panWarning: null, activePan: null };
 }
 
 async function init() {
   const id = getQueryId();
-  const res = await fetch('./built/recipes.json');
-  const recipes = await res.json();
+  const [recipeRes, pansRes] = await Promise.all([
+    fetch('./built/recipes.json'),
+    fetch('./built/pans.json')
+  ]);
+  const recipes = await recipeRes.json();
+  const pans = await pansRes.json();
+  const pansMap = new Map(pans.map((p) => [p.pan_id, p]));
   const recipe = recipes.find((r) => r.meta.id === id);
   if (!recipe) {
     document.getElementById('recipe-title').textContent = 'Recipe not found';
@@ -196,14 +315,35 @@ async function init() {
   }
 
   document.getElementById('recipe-title').textContent = recipe.meta.title;
-  const state = initState(recipe);
+  const state = initState(recipe, pans);
 
-  const rerender = () => {
-    renderIngredients(recipe, state);
-    renderSteps(recipe, state);
+  const syncPan = () => {
+    if (!recipe.uses_pan) return;
+    const storedPan = state.selectedPanId ? pansMap.get(state.selectedPanId) : null;
+    const fallbackPan = recipe.default_pan_id ? pansMap.get(recipe.default_pan_id) : null;
+    const firstPan = pans[0] || null;
+    const chosenPan = storedPan || fallbackPan || firstPan;
+    state.selectedPanId = chosenPan ? chosenPan.pan_id : null;
+    const { factor, warning } = computePanFactor(recipe, chosenPan);
+    state.panFactor = factor;
+    state.panWarning = warning;
+    state.activePan = chosenPan;
+    if (state.selectedPanId) {
+      localStorage.setItem(storageKeyForPan(recipe), state.selectedPanId);
+    }
   };
 
-  buildControls(recipe, state, rerender);
+  syncPan();
+
+  const rerender = () => {
+    syncPan();
+    const totalScale = state.multiplier * (state.panFactor || 1);
+    renderPanSummary(recipe, state);
+    renderIngredients(recipe, state, totalScale);
+    renderSteps(recipe, state, totalScale);
+  };
+
+  buildControls(recipe, state, pans, rerender);
   rerender();
 }
 

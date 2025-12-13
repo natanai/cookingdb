@@ -5,10 +5,15 @@ import { parse } from 'papaparse';
 
 const RECIPES_DIR = path.resolve('recipes');
 const CATALOG_PATH = path.resolve('data/ingredient_catalog.csv');
+const PANS_PATH = path.resolve('data/pans.csv');
 
 function parseCsv(content, { header = false } = {}) {
   const result = parse(content, { header, skipEmptyLines: true });
   return result;
+}
+
+function toBoolean(value) {
+  return String(value).toLowerCase() === 'true';
 }
 
 async function loadCatalog() {
@@ -41,6 +46,36 @@ async function loadCatalog() {
   return data;
 }
 
+async function loadPans() {
+  const content = await fs.readFile(PANS_PATH, 'utf8');
+  const { data, meta } = parseCsv(content, { header: true });
+  const requiredHeaders = [
+    'pan_id',
+    'label',
+    'shape',
+    'width_in',
+    'length_in',
+    'diameter_in',
+    'depth_in',
+    'notes'
+  ];
+  const fields = meta.fields || [];
+
+  for (const header of requiredHeaders) {
+    if (!fields.includes(header)) {
+      throw new Error(`pans.csv missing required header: ${header}`);
+    }
+  }
+
+  const map = new Map();
+  data.forEach((row) => {
+    if (row.pan_id) {
+      map.set(row.pan_id, row);
+    }
+  });
+  return map;
+}
+
 function extractTokensFromSteps(stepContent) {
   const tokens = [];
   const regex = /{{\s*([a-zA-Z0-9_-]+)\s*}}/g;
@@ -64,7 +99,7 @@ function groupIngredients(rows) {
   return map;
 }
 
-async function validateRecipe(recipeDir, errors) {
+async function validateRecipe(recipeDir, errors, pansMap) {
   const metaPath = path.join(recipeDir, 'meta.csv');
   const ingredientsPath = path.join(recipeDir, 'ingredients.csv');
   const stepsPath = path.join(recipeDir, 'steps.md');
@@ -83,6 +118,37 @@ async function validateRecipe(recipeDir, errors) {
   const { data: ingredientRows } = parseCsv(ingredientsContent, { header: true });
   const ingredientMap = groupIngredients(ingredientRows);
 
+  const metaContent = await fs.readFile(metaPath, 'utf8');
+  const parsedMeta = parseCsv(metaContent, { header: true });
+  const metaFields = parsedMeta.meta.fields || [];
+  const oldMetaHeader = ['id', 'title', 'base_kind', 'default_base', 'categories', 'notes'];
+  const newMetaHeader = [
+    'id',
+    'title',
+    'base_kind',
+    'default_base',
+    'categories',
+    'notes',
+    'uses_pan',
+    'default_pan_id',
+    'pan_scale_method'
+  ];
+
+  const matchesOldHeader =
+    metaFields.length === oldMetaHeader.length &&
+    oldMetaHeader.every((h, idx) => metaFields[idx] === h);
+  const matchesNewHeader =
+    metaFields.length === newMetaHeader.length &&
+    newMetaHeader.every((h, idx) => metaFields[idx] === h);
+
+  if (!matchesOldHeader && !matchesNewHeader) {
+    errors.push(
+      `${recipeDir}: meta.csv header must match either ${oldMetaHeader.join(',')} or ${newMetaHeader.join(',')}`
+    );
+  }
+
+  const metaRow = parsedMeta.data[0] || {};
+
   const stepsContent = await fs.readFile(stepsPath, 'utf8');
   const stepTokens = extractTokensFromSteps(stepsContent);
   const ingredientTokens = Array.from(ingredientMap.keys());
@@ -96,6 +162,24 @@ async function validateRecipe(recipeDir, errors) {
   for (const token of stepTokens) {
     if (!ingredientMap.has(token)) {
       errors.push(`${recipeDir}: steps reference token ${token} not found in ingredients.csv`);
+    }
+  }
+
+  if (metaFields.length === newMetaHeader.length) {
+    const usesPan = toBoolean(metaRow.uses_pan || '');
+    if (usesPan) {
+      const defaultPanId = metaRow.default_pan_id;
+      const panScaleMethod = (metaRow.pan_scale_method || 'none').toLowerCase();
+      if (!defaultPanId) {
+        errors.push(`${recipeDir}: uses_pan=true but default_pan_id is missing`);
+      } else if (!pansMap.has(defaultPanId)) {
+        errors.push(`${recipeDir}: default_pan_id ${defaultPanId} not found in pans.csv`);
+      }
+
+      const allowedMethods = new Set(['area', 'volume', 'none']);
+      if (!allowedMethods.has(panScaleMethod)) {
+        errors.push(`${recipeDir}: pan_scale_method must be one of area, volume, none`);
+      }
     }
   }
 
@@ -150,6 +234,7 @@ async function validateRecipe(recipeDir, errors) {
 export async function validateAll() {
   const errors = [];
   await loadCatalog();
+  const pansMap = await loadPans();
 
   let entries;
   try {
@@ -161,7 +246,7 @@ export async function validateAll() {
   const recipeDirs = entries.filter((e) => e.isDirectory()).map((e) => path.join(RECIPES_DIR, e.name));
 
   for (const recipeDir of recipeDirs) {
-    await validateRecipe(recipeDir, errors);
+    await validateRecipe(recipeDir, errors, pansMap);
   }
 
   if (errors.length > 0) {

@@ -5,7 +5,7 @@
   ],
   "category_counts": {
     "Breakfast": 1,
-    "Dessert": 1
+    "Dessert": 2
   },
   "recipes": [
     {
@@ -19,7 +19,21 @@
         "gluten_free": true,
         "egg_free": true,
         "dairy_free": true
-      }
+      },
+      "uses_pan": false
+    },
+    {
+      "id": "pan-demo",
+      "title": "Pan Demo Cake",
+      "categories": [
+        "Dessert"
+      ],
+      "compatibility_possible": {
+        "gluten_free": false,
+        "egg_free": false,
+        "dairy_free": false
+      },
+      "uses_pan": true
     }
   ]
 }

@@ -1,0 +1,9 @@
+pan_id,label,shape,width_in,length_in,diameter_in,depth_in,notes
+square-8,8x8 square pan,rect,8,8,,,""
+square-9,9x9 square pan,rect,9,9,,,""
+rect-9x13,9x13 pan,rect,9,13,,,""
+round-8,8-inch round pan,round,,,8,,""
+round-9,9-inch round pan,round,,,9,,""
+loaf-9x5,9x5 loaf pan,rect,5,9,,,""
+muffin-12,12-cup muffin tin,other,,,,,"Treat scaling as none unless recipe provides its own base."
+sheet-half,Half sheet pan,rect,13,18,,,""

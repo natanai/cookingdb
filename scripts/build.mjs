@@ -6,6 +6,7 @@ import { parse } from 'papaparse';
 const RECIPES_DIR = path.resolve('recipes');
 const OUTPUT_DIR = path.resolve('docs/built');
 const CATALOG_PATH = path.resolve('data/ingredient_catalog.csv');
+const PANS_PATH = path.resolve('data/pans.csv');
 
 function parseCsv(content, { header = false } = {}) {
   return parse(content, { header, skipEmptyLines: true });
@@ -29,6 +30,57 @@ async function loadCatalog() {
     });
   }
   return map;
+}
+
+function numberOrNull(value) {
+  if (value === undefined || value === null || String(value).trim() === '') return null;
+  const num = Number(value);
+  return Number.isFinite(num) ? num : null;
+}
+
+function computePanStats(pan) {
+  let area = null;
+  if (pan.shape === 'rect') {
+    if (pan.width_in !== null && pan.length_in !== null) {
+      area = pan.width_in * pan.length_in;
+    }
+  } else if (pan.shape === 'round') {
+    if (pan.diameter_in !== null) {
+      const radius = pan.diameter_in / 2;
+      area = Math.PI * radius * radius;
+    }
+  }
+
+  let volume = null;
+  if (area !== null && pan.depth_in !== null) {
+    volume = area * pan.depth_in;
+  }
+
+  return { area_in2: area, volume_in3: volume };
+}
+
+async function loadPans() {
+  const content = await fs.readFile(PANS_PATH, 'utf8');
+  const { data } = parseCsv(content, { header: true });
+  const pans = data
+    .filter((row) => row.pan_id)
+    .map((row) => {
+      const pan = {
+        pan_id: row.pan_id,
+        label: row.label,
+        shape: row.shape,
+        width_in: numberOrNull(row.width_in),
+        length_in: numberOrNull(row.length_in),
+        diameter_in: numberOrNull(row.diameter_in),
+        depth_in: numberOrNull(row.depth_in),
+        notes: row.notes || ''
+      };
+      const stats = computePanStats(pan);
+      return { ...pan, ...stats };
+    });
+
+  const map = new Map(pans.map((p) => [p.pan_id, p]));
+  return { pans, map };
 }
 
 async function readRecipeDir(recipeDir) {
@@ -118,6 +170,7 @@ async function main() {
   }
 
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
+  const { pans, map: pansMap } = await loadPans();
   const catalog = await loadCatalog();
   const catalogJson = Array.from(catalog.values()).map((item) => ({
     ingredient_id: item.id,
@@ -135,7 +188,21 @@ async function main() {
     const recipe = await readRecipeDir(dir);
     const categories = parseCategories(recipe.meta.categories);
     const compat = computeCompatibility(recipe.ingredients, catalog);
-    recipeObjects.push({ ...recipe, meta: { ...recipe.meta, categories } , compatibility_possible: compat });
+    const uses_pan = String(recipe.meta.uses_pan || '').toLowerCase() === 'true';
+    const default_pan_id = uses_pan ? recipe.meta.default_pan_id || null : null;
+    const pan_scale_method = uses_pan
+      ? (recipe.meta.pan_scale_method || 'none').toLowerCase()
+      : 'none';
+    const default_pan = uses_pan && default_pan_id ? pansMap.get(default_pan_id) || null : null;
+    recipeObjects.push({
+      ...recipe,
+      meta: { ...recipe.meta, categories },
+      compatibility_possible: compat,
+      uses_pan,
+      default_pan_id,
+      pan_scale_method,
+      default_pan
+    });
   }
 
   const categoryCounts = new Map();
@@ -154,10 +221,12 @@ async function main() {
       id: recipe.meta.id,
       title: recipe.meta.title,
       categories: recipe.meta.categories,
-      compatibility_possible: recipe.compatibility_possible
+      compatibility_possible: recipe.compatibility_possible,
+      uses_pan: recipe.uses_pan
     }))
   };
 
+  await fs.writeFile(path.join(OUTPUT_DIR, 'pans.json'), JSON.stringify(pans, null, 2));
   await fs.writeFile(path.join(OUTPUT_DIR, 'recipes.json'), JSON.stringify(recipeObjects, null, 2));
   await fs.writeFile(path.join(OUTPUT_DIR, 'index.json'), JSON.stringify(index, null, 2));
   console.log('Build complete.');
