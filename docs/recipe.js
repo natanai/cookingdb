@@ -11,10 +11,11 @@ function getRecipeIdFromQuery() {
 
 function getDietaryFromQuery() {
   const params = new URLSearchParams(window.location.search);
+  const parseParam = (key) => (params.has(key) ? params.get(key) === '1' : undefined);
   return {
-    gluten_free: params.get('gluten_free') === '1',
-    egg_free: params.get('egg_free') === '1',
-    dairy_free: params.get('dairy_free') === '1',
+    gluten_free: parseParam('gluten_free'),
+    egg_free: parseParam('egg_free'),
+    dairy_free: parseParam('dairy_free'),
   };
 }
 
@@ -137,6 +138,41 @@ function alternativeOptions(tokenData, state, selectedOption) {
     ? choiceOptions.filter((opt) => optionMeetsRestrictions(opt, state.restrictions))
     : choiceOptions;
   return compatible.filter((opt) => opt.option !== selectedOption?.option);
+}
+
+function defaultOptionForToken(token, recipe) {
+  const tokenData = recipe.ingredients[token];
+  if (!tokenData) return null;
+  if (!tokenData.isChoice) return tokenData.options[0] || null;
+
+  const options = tokenData.options.filter((opt) => opt.option);
+  const preferred = recipe.choices[token]?.default_option;
+  return (
+    options.find((opt) => opt.option === preferred) ||
+    options[0] ||
+    tokenData.options[0] ||
+    null
+  );
+}
+
+function recipeDefaultCompatibility(recipe) {
+  const restrictions = { gluten_free: true, egg_free: true, dairy_free: true };
+  Object.keys(recipe.ingredients).forEach((token) => {
+    const option = defaultOptionForToken(token, recipe);
+    Object.keys(restrictions).forEach((restriction) => {
+      if (option?.dietary && option.dietary[restriction] === false) {
+        restrictions[restriction] = false;
+      }
+    });
+  });
+  return restrictions;
+}
+
+function hasNonCompliantAlternative(recipe, restriction) {
+  return Object.values(recipe.ingredients).some((tokenData) => {
+    if (!tokenData.isChoice) return false;
+    return tokenData.options.some((opt) => opt.option && opt.dietary && opt.dietary[restriction] === false);
+  });
 }
 
 function renderIngredientEntry(option, multiplier) {
@@ -311,22 +347,41 @@ function renderRecipe(recipe) {
   const prefGluten = document.getElementById('pref-gluten');
   const prefEgg = document.getElementById('pref-egg');
   const prefDairy = document.getElementById('pref-dairy');
+  const ingredientsHeading = document.getElementById('ingredients-heading');
+  const defaultCompatibility = recipeDefaultCompatibility(recipe);
+  const queryRestrictions = getDietaryFromQuery();
+  const restrictionCanRelax = {
+    gluten_free: hasNonCompliantAlternative(recipe, 'gluten_free'),
+    egg_free: hasNonCompliantAlternative(recipe, 'egg_free'),
+    dairy_free: hasNonCompliantAlternative(recipe, 'dairy_free'),
+  };
+  const resolveRestriction = (restrictionKey) => {
+    if (defaultCompatibility[restrictionKey] && !restrictionCanRelax[restrictionKey]) return true;
+    const queryValue = queryRestrictions[restrictionKey];
+    if (queryValue !== undefined) return queryValue;
+    return defaultCompatibility[restrictionKey];
+  };
   const state = {
     multiplier: Number(recipe.default_base) || 1,
     panMultiplier: 1,
     selectedPanId: recipe.default_pan || null,
     selectedOptions: {},
     restrictions: {
-      gluten_free: false,
-      egg_free: false,
-      dairy_free: false,
-      ...getDietaryFromQuery(),
+      gluten_free: resolveRestriction('gluten_free'),
+      egg_free: resolveRestriction('egg_free'),
+      dairy_free: resolveRestriction('dairy_free'),
     },
   };
   multiplierInput.value = state.multiplier;
   prefGluten.checked = state.restrictions.gluten_free;
   prefEgg.checked = state.restrictions.egg_free;
   prefDairy.checked = state.restrictions.dairy_free;
+  prefGluten.disabled = defaultCompatibility.gluten_free && !restrictionCanRelax.gluten_free;
+  prefEgg.disabled = defaultCompatibility.egg_free && !restrictionCanRelax.egg_free;
+  prefDairy.disabled = defaultCompatibility.dairy_free && !restrictionCanRelax.dairy_free;
+  if (ingredientsHeading) {
+    ingredientsHeading.textContent = 'Ingredients';
+  }
   notesEl.textContent = recipe.notes || 'Notes for this dish will go here soon.';
   metadataEl.innerHTML = '';
   metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.gluten_free, recipe.compatibility_possible.gluten_free));
