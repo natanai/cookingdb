@@ -119,6 +119,14 @@ async function main() {
 
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
   const catalog = await loadCatalog();
+  const catalogJson = Array.from(catalog.values()).map((item) => ({
+    ingredient_id: item.id,
+    canonical_name: item.canonical_name,
+    contains_gluten: item.contains_gluten,
+    contains_egg: item.contains_egg,
+    contains_dairy: item.contains_dairy
+  }));
+  await fs.writeFile(path.join(OUTPUT_DIR, 'ingredient_catalog.json'), JSON.stringify(catalogJson, null, 2));
   const entries = await fs.readdir(RECIPES_DIR, { withFileTypes: true });
   const recipeDirs = entries.filter((e) => e.isDirectory()).map((e) => path.join(RECIPES_DIR, e.name));
 

@@ -40,6 +40,14 @@ CookingDB is a printable, homemade-style cookbook that keeps every recipe consis
 - `npm run build` — validate then emit `/docs/built/index.json` and `/docs/built/recipes.json`.
 - `npm run dev` — serve `/docs` locally at http://localhost:4173 (uses relative assets for GitHub Pages).
 
+## Recipe Card Maker
+- Open `docs/convert.html` (or `npm run dev` → `/convert.html`) to turn any recipe into a CookingDB-ready ZIP.
+- Fill in the slug, title, categories, base, and notes. Paste the source recipe in the scratchpad if you want to keep it handy.
+- Build ingredients by declaring tokens, optional options, and linking to `ingredient_id` from the helper catalog (emitted as `docs/built/ingredient_catalog.json` after `npm run build`).
+- Any token with multiple options must be paired with a per-recipe choice group that includes a valid `default_option`.
+- Write `steps.md` using `{{token}}` placeholders. The checklist will flag any missing or unknown tokens and ratio formatting issues.
+- Click **Download Recipe ZIP** to receive `recipes/<id>/meta.csv`, `ingredients.csv`, optional `choices.csv`, and `steps.md`. Unzip into the repo, then run `npm run validate` (and `npm run build`) before committing.
+
 ## GitHub Pages setup
 - Settings → Pages → Source: **Deploy from a branch**
 - Branch: `main`

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Card Maker | CookingDB</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div>
+        <h1>Recipe Card Maker</h1>
+        <p class="subtitle">Turn a recipe into our CookingDB format.</p>
+      </div>
+      <div class="header-links">
+        <a class="button-link" href="./index.html">Back to Cookbook</a>
+      </div>
+    </header>
+
+    <main class="convert-layout">
+      <section class="convert-section">
+        <div class="section-heading">
+          <h2>Recipe basics</h2>
+          <p class="section-sub">Slug, title, categories, and notes.</p>
+        </div>
+        <div class="form-grid" id="meta-form">
+          <label class="field">
+            <span>Recipe ID (slug)</span>
+            <input type="text" id="recipe-id" placeholder="e.g. maple-oatmeal" />
+            <small>Lowercase letters, numbers, and dashes only.</small>
+          </label>
+          <label class="field">
+            <span>Title</span>
+            <input type="text" id="recipe-title" placeholder="Warm Maple Oatmeal" />
+          </label>
+          <label class="field">
+            <span>Categories</span>
+            <input type="text" id="recipe-categories" placeholder="Breakfast; Cozy" />
+            <small>Semicolon separated.</small>
+          </label>
+          <label class="field">
+            <span>Default base</span>
+            <input type="number" id="recipe-base" min="0" step="0.1" value="1" />
+            <small>Use 1 for simple multiplier recipes.</small>
+          </label>
+          <label class="field full-width">
+            <span>Notes (optional)</span>
+            <textarea id="recipe-notes" rows="2" placeholder="Serving notes, bakeware size, or timing callouts."></textarea>
+          </label>
+        </div>
+      </section>
+
+      <section class="convert-section">
+        <div class="section-heading">
+          <h2>Scratchpad</h2>
+          <p class="section-sub">Paste the original recipe text here if it helps.</p>
+        </div>
+        <textarea id="recipe-scratch" class="scratch" rows="6" placeholder="Paste recipe text here (optional)"></textarea>
+      </section>
+
+      <section class="convert-section">
+        <div class="section-heading split">
+          <div>
+            <h2>Ingredients</h2>
+            <p class="section-sub">Define tokens, options, display text, and ingredient IDs.</p>
+          </div>
+          <div class="section-actions">
+            <button type="button" id="add-ingredient" class="button-link ghost">Add ingredient row</button>
+            <button type="button" id="add-choice-group" class="button-link ghost">Add choice group</button>
+          </div>
+        </div>
+        <div class="ingredient-editor">
+          <div class="ingredient-table-wrapper">
+            <div class="ingredient-header">
+              <div>token</div>
+              <div>option</div>
+              <div>display</div>
+              <div>ratio</div>
+              <div>unit</div>
+              <div>ingredient_id</div>
+              <div></div>
+            </div>
+            <div id="ingredient-rows" class="ingredient-rows" aria-live="polite"></div>
+          </div>
+          <aside class="catalog-note">
+            <h3>Ingredient catalog</h3>
+            <p class="section-sub">Known IDs from <code>data/ingredient_catalog.csv</code>.</p>
+            <div id="catalog-list" class="catalog-list">Loading...</div>
+          </aside>
+        </div>
+        <div class="choice-panel" id="choice-panel">
+          <h3>Choice groups</h3>
+          <p class="section-sub">Required when a token has multiple options.</p>
+          <div id="choice-groups" class="choice-groups"></div>
+        </div>
+      </section>
+
+      <section class="convert-section">
+        <div class="section-heading split">
+          <div>
+            <h2>Steps</h2>
+            <p class="section-sub">Use <code>{{token}}</code> placeholders that match your ingredients.</p>
+          </div>
+          <div class="section-actions">
+            <label class="inline-label">Insert token
+              <select id="token-selector"></select>
+            </label>
+            <button type="button" id="insert-token" class="button-link ghost">Insert</button>
+          </div>
+        </div>
+        <textarea id="recipe-steps" class="steps" rows="10" placeholder="Preheat oven... Use {{flour}} and {{butter}}."></textarea>
+      </section>
+
+      <section class="convert-section">
+        <div class="validation-box">
+          <div>
+            <h3>Proofing checklist</h3>
+            <ul id="validation-messages"></ul>
+          </div>
+          <div class="export">
+            <button type="button" id="download-zip" class="button-link" disabled>Download Recipe ZIP</button>
+            <p class="section-sub">Exports <code>meta.csv</code>, <code>ingredients.csv</code>, <code>choices.csv</code>, and <code>steps.md</code>.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./convert.js"></script>
+  </body>
+</html>
