@@ -1,0 +1,15 @@
+token,option,display,ratio,unit,ingredient_id
+butter_choice,butter,unsalted butter (softened),1,cup,butter
+butter_choice,vegan,vegan butter (softened),1,cup,vegan-butter
+white_sugar,,granulated sugar,3/4,cup,white-sugar
+brown_sugar,,brown sugar (packed),3/4,cup,brown-sugar
+molasses,,molasses,1,tsp,molasses
+vanilla_extract,,pure vanilla extract,1,tsp,vanilla-extract
+egg_choice,egg,egg,1,count,egg
+egg_choice,replacer,egg replacer (prepared),1,count,egg-replacer
+baking_soda,,baking soda,1/2,tsp,baking-soda
+baking_powder,,baking powder,1/2,tsp,baking-powder
+salt,,salt,1/2,tsp,salt
+gf_flour,,gluten-free flour blend with xanthan gum,2 1/2,cup,gf-flour-blend
+chocolate_chips,dairy,semisweet chocolate chips,2,cup,chocolate-chips
+chocolate_chips,dairy_free,dairy-free chocolate chips,2,cup,dairy-free-chocolate-chips
