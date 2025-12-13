@@ -199,7 +199,7 @@ async function build() {
     });
   }
 
-  const builtDir = path.join(process.cwd(), 'public', 'built');
+  const builtDir = path.join(process.cwd(), 'docs', 'built');
   if (!fs.existsSync(builtDir)) {
     fs.mkdirSync(builtDir, { recursive: true });
   }

@@ -1,5 +1,5 @@
 async function loadRecipes() {
-  const res = await fetch('built/recipes.json');
+  const res = await fetch('./built/recipes.json');
   if (!res.ok) throw new Error('Unable to load recipes');
   return res.json();
 }
