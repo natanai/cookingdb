@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <h1 class="site-title" id="recipe-title">Recipe</h1>
+      <nav class="nav-links">
+        <a href="index.html">← Back to recipes</a>
+      </nav>
+    </div>
+  </header>
+  <div class="page-shell">
+    <section class="hero">
+      <div class="hero-content">
+        <h1 id="recipe-title-duplicate">Recipe</h1>
+        <p class="notes" id="notes"></p>
+        <div class="recipe-metadata" id="metadata"></div>
+        <div class="card-categories" id="category-row"></div>
+      </div>
+    </section>
+    <main>
+      <section class="controls">
+        <label>
+          Batch multiplier:
+          <input type="number" id="multiplier" step="0.25" min="0.25" value="1" />
+        </label>
+        <div class="pan-controls" id="pan-controls" hidden>
+          <label>
+            Pan size:
+            <select id="pan-select"></select>
+          </label>
+          <div class="control-note" id="pan-note"></div>
+        </div>
+        <div class="control-note" id="multiplier-helper"></div>
+        <fieldset class="dietary-controls">
+          <legend>Dietary preferences</legend>
+          <label><input type="checkbox" id="pref-gluten" /> Gluten-free</label>
+          <label><input type="checkbox" id="pref-egg" /> Egg-free</label>
+          <label><input type="checkbox" id="pref-dairy" /> Dairy-free</label>
+        </fieldset>
+        <div id="choices-container"></div>
+        <button class="button" id="print-btn" type="button">🖨 Print</button>
+      </section>
+      <section>
+        <h2 id="ingredients-heading">Ingredients</h2>
+        <ul id="ingredients-list"></ul>
+      </section>
+      <section>
+        <h2>Steps</h2>
+        <ol id="steps-list"></ol>
+      </section>
+    </main>
+  </div>
+  <script src="recipe.js" type="module"></script>
+</body>
+</html>

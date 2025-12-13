@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CookingDB</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <h1 class="site-title">CookingDB</h1>
+      <nav class="nav-links">
+        <a href="#recipes-section">Browse recipes</a>
+      </nav>
+    </div>
+  </header>
+  <div class="page-shell">
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Recipe box</h1>
+        <p class="hero-subtitle">Browse every recipe in one place or jump straight into a category. Search and dietary filters help you land on the right card fast.</p>
+        <div class="filter-bar">
+          <label class="search-field" aria-label="Search recipes">
+            <span aria-hidden="true">🔎</span>
+            <input id="search" type="search" placeholder="Search meal or ingredient" />
+          </label>
+          <div class="filters" aria-label="Dietary filters">
+            <label><input type="checkbox" id="filter-gluten" /> Gluten-free friendly</label>
+            <label><input type="checkbox" id="filter-egg" /> Egg-free ready</label>
+            <label><input type="checkbox" id="filter-dairy" /> Dairy-free friendly</label>
+          </div>
+        </div>
+        <details class="category-panel" id="category-panel">
+          <summary class="category-summary">
+            <span class="summary-label">Categories</span>
+            <span class="summary-selection" id="category-current">All recipes</span>
+          </summary>
+          <div class="category-options" id="category-options" aria-label="Recipe categories"></div>
+        </details>
+      </div>
+    </section>
+    <main>
+      <section id="recipes-section">
+        <h2 class="section-heading">Recipes</h2>
+        <ul id="recipe-list" class="recipe-list" aria-live="polite"></ul>
+      </section>
+    </main>
+  </div>
+  <script src="app.js" type="module"></script>
+</body>
+</html>

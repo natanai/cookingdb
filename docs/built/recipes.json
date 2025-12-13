@@ -1,0 +1,2990 @@
+[
+  {
+    "id": "apple-cider-brisket",
+    "title": "Apple Cider Brisket",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Mains"
+    ],
+    "notes": "Use a 3–4 lb brisket. This braise layers apple cider with broth and root vegetables.",
+    "steps_raw": "1. Preheat the oven to 325°F (163°C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}.\n2. In a large Dutch oven over medium-high heat, heat {{neutral_oil}}. Sear the {{brisket}}, turning occasionally, until browned, about 5 minutes per side. Transfer to a large baking dish or plate.\n3. Reduce heat to medium. In the same pot, arrange {{baby_potatoes}} cut side down and cook undisturbed until lightly softened, about 5 minutes. Add {{carrots}} and {{shallots}}, season with more {{kosher_salt}} and {{black_pepper}}, and stir to release the potatoes.\n4. Return {{brisket}} and any accumulated juices to the pot. Pour in {{apple_cider}} and {{broth_choice}}, then add {{thyme}}, {{bay_leaves}}, and {{cayenne}}. Season to taste with {{kosher_salt}} and {{black_pepper}}, cover, and bring to a boil.\n5. Once boiling, transfer the covered pot to the oven and roast until the brisket is easily shreddable, 2 1/2 to 3 hours.\n6. Discard {{thyme}} and {{bay_leaves}}. Shred {{brisket}} with two forks. Arrange the meat on a platter with the vegetables and spoon the cooking juices over the top.\n",
+    "tokens_used": [
+      "brisket",
+      "kosher_salt",
+      "black_pepper",
+      "neutral_oil",
+      "brisket",
+      "baby_potatoes",
+      "carrots",
+      "shallots",
+      "kosher_salt",
+      "black_pepper",
+      "brisket",
+      "apple_cider",
+      "broth_choice",
+      "thyme",
+      "bay_leaves",
+      "cayenne",
+      "kosher_salt",
+      "black_pepper",
+      "thyme",
+      "bay_leaves",
+      "brisket"
+    ],
+    "token_order": [
+      "brisket",
+      "kosher_salt",
+      "black_pepper",
+      "neutral_oil",
+      "baby_potatoes",
+      "carrots",
+      "shallots",
+      "apple_cider",
+      "broth_choice",
+      "thyme",
+      "bay_leaves",
+      "cayenne"
+    ],
+    "ingredients": {
+      "brisket": {
+        "token": "brisket",
+        "options": [
+          {
+            "option": "",
+            "display": "beef brisket (3–4 lb)",
+            "ratio": "3 1/2",
+            "unit": "lb",
+            "ingredient_id": "brisket",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "kosher_salt": {
+        "token": "kosher_salt",
+        "options": [
+          {
+            "option": "",
+            "display": "kosher salt",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "black_pepper": {
+        "token": "black_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "black pepper",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "black-pepper",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "neutral_oil": {
+        "token": "neutral_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "neutral oil",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "neutral-oil",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "baby_potatoes": {
+        "token": "baby_potatoes",
+        "options": [
+          {
+            "option": "",
+            "display": "baby potatoes (halved)",
+            "ratio": "1 1/2",
+            "unit": "lb",
+            "ingredient_id": "baby-potatoes",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "carrots": {
+        "token": "carrots",
+        "options": [
+          {
+            "option": "",
+            "display": "carrots (2-inch pieces)",
+            "ratio": "4",
+            "unit": "count",
+            "ingredient_id": "carrot",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "shallots": {
+        "token": "shallots",
+        "options": [
+          {
+            "option": "",
+            "display": "shallots (1/4-inch slices)",
+            "ratio": "2",
+            "unit": "count",
+            "ingredient_id": "shallot",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "apple_cider": {
+        "token": "apple_cider",
+        "options": [
+          {
+            "option": "",
+            "display": "apple cider",
+            "ratio": "4",
+            "unit": "cup",
+            "ingredient_id": "apple-cider",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "broth_choice": {
+        "token": "broth_choice",
+        "options": [
+          {
+            "option": "beef",
+            "display": "low-sodium beef broth",
+            "ratio": "1 1/2",
+            "unit": "cup",
+            "ingredient_id": "beef-broth",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          },
+          {
+            "option": "chicken",
+            "display": "low-sodium chicken broth",
+            "ratio": "1 1/2",
+            "unit": "cup",
+            "ingredient_id": "chicken-broth",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "thyme": {
+        "token": "thyme",
+        "options": [
+          {
+            "option": "",
+            "display": "thyme sprigs",
+            "ratio": "6",
+            "unit": "sprig",
+            "ingredient_id": "thyme",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "bay_leaves": {
+        "token": "bay_leaves",
+        "options": [
+          {
+            "option": "",
+            "display": "bay leaves",
+            "ratio": "2",
+            "unit": "count",
+            "ingredient_id": "bay-leaf",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "cayenne": {
+        "token": "cayenne",
+        "options": [
+          {
+            "option": "",
+            "display": "cayenne pepper",
+            "ratio": "3/4",
+            "unit": "tsp",
+            "ingredient_id": "cayenne-pepper",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "choices": {
+      "broth_choice": {
+        "token": "broth_choice",
+        "label": "Broth",
+        "default_option": "beef"
+      }
+    },
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "baked-sweet-potatoes",
+    "title": "Baked Sweet Potatoes",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Sides",
+      "Vegetarian"
+    ],
+    "notes": "Sweet potato casserole baked until the brown sugar glaze is sticky.",
+    "steps_raw": "1. Preheat the oven to 350°F (177°C). Peel and cut {{sweet_potatoes}}.\n2. Boil {{sweet_potatoes}} in salted water until almost tender, then drain well.\n3. Spread {{sweet_potatoes}} in a greased casserole dish. Sprinkle with {{salt}}, {{brown_sugar}}, and {{flour}}, then pour {{cream}} over the top.\n4. Bake for 20–30 minutes, or until the sauce is sticky and bubbling around the edges.\n",
+    "tokens_used": [
+      "sweet_potatoes",
+      "sweet_potatoes",
+      "sweet_potatoes",
+      "salt",
+      "brown_sugar",
+      "flour",
+      "cream"
+    ],
+    "token_order": [
+      "sweet_potatoes",
+      "salt",
+      "brown_sugar",
+      "flour",
+      "cream"
+    ],
+    "ingredients": {
+      "sweet_potatoes": {
+        "token": "sweet_potatoes",
+        "options": [
+          {
+            "option": "",
+            "display": "sweet potatoes (peeled and cut)",
+            "ratio": "4",
+            "unit": "cup",
+            "ingredient_id": "sweet-potato",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "brown_sugar": {
+        "token": "brown_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "brown sugar",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "brown-sugar",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "",
+            "display": "flour",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "wheat-flour",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "cream": {
+        "token": "cream",
+        "options": [
+          {
+            "option": "",
+            "display": "cream",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "cream",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "blintzes",
+    "title": "Blintzes (Crepes)",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Breakfast & Brunch"
+    ],
+    "notes": "Crepe/blintz wrapper batter. Uses inline ingredient tokens in steps.",
+    "steps_raw": "1. In a mixing bowl, beat together {{eggs_choice}}, {{milk_choice}}, and {{water}} until smooth.\n2. Whisk in {{butter_choice}}.\n3. Add {{flour_choice}}, {{salt}}, and {{sugar}}. Blend thoroughly until the batter is smooth and lump-free.\n4. Heat a skillet over medium heat and melt a little {{butter_pan}} to coat the surface (repeat before each crepe).\n5. Pour about 1/4 cup of batter into the center of the skillet and tilt the pan so the batter spreads evenly.\n6. Cook until the bottom is light brown and the surface looks set and slightly bubbly.\n7. Flip gently with a spatula.\n8. Cook the second side until light brown, then remove and keep warm. Repeat with remaining batter.\n",
+    "tokens_used": [
+      "eggs_choice",
+      "milk_choice",
+      "water",
+      "butter_choice",
+      "flour_choice",
+      "salt",
+      "sugar",
+      "butter_pan"
+    ],
+    "token_order": [
+      "eggs_choice",
+      "milk_choice",
+      "water",
+      "butter_choice",
+      "flour_choice",
+      "salt",
+      "sugar",
+      "butter_pan"
+    ],
+    "ingredients": {
+      "eggs_choice": {
+        "token": "eggs_choice",
+        "options": [
+          {
+            "option": "egg",
+            "display": "eggs",
+            "ratio": "3",
+            "unit": "count",
+            "ingredient_id": "egg",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": false,
+              "dairy_free": true
+            }
+          },
+          {
+            "option": "replacer",
+            "display": "egg replacer",
+            "ratio": "3",
+            "unit": "tbsp",
+            "ingredient_id": "egg-replacer",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "milk_choice": {
+        "token": "milk_choice",
+        "options": [
+          {
+            "option": "dairy",
+            "display": "milk",
+            "ratio": "3/4",
+            "unit": "cup",
+            "ingredient_id": "milk",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          },
+          {
+            "option": "oat",
+            "display": "oat milk",
+            "ratio": "3/4",
+            "unit": "cup",
+            "ingredient_id": "oat-milk",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "3/4",
+            "unit": "cup",
+            "ingredient_id": "water",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "butter_choice": {
+        "token": "butter_choice",
+        "options": [
+          {
+            "option": "butter",
+            "display": "melted butter",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "butter",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          },
+          {
+            "option": "vegan",
+            "display": "melted vegan butter",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "vegan-butter",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "flour_choice": {
+        "token": "flour_choice",
+        "options": [
+          {
+            "option": "wheat",
+            "display": "flour",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          },
+          {
+            "option": "gf",
+            "display": "gluten-free flour blend",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "gf-flour-blend",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "sugar": {
+        "token": "sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "sugar",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "sugar",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "butter_pan": {
+        "token": "butter_pan",
+        "options": [
+          {
+            "option": "butter",
+            "display": "butter",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "butter",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          },
+          {
+            "option": "vegan",
+            "display": "vegan butter",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "vegan-butter",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      }
+    },
+    "choices": {
+      "eggs_choice": {
+        "token": "eggs_choice",
+        "label": "Eggs",
+        "default_option": "egg"
+      },
+      "milk_choice": {
+        "token": "milk_choice",
+        "label": "Milk",
+        "default_option": "oat"
+      },
+      "butter_choice": {
+        "token": "butter_choice",
+        "label": "Butter",
+        "default_option": "vegan"
+      },
+      "flour_choice": {
+        "token": "flour_choice",
+        "label": "Flour",
+        "default_option": "gf"
+      },
+      "butter_pan": {
+        "token": "butter_pan",
+        "label": "Pan butter",
+        "default_option": "vegan"
+      }
+    },
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "butternut-squash-casserole",
+    "title": "Butternut Squash Casserole",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Mains",
+      "Vegetarian"
+    ],
+    "notes": "Simple baked casserole; add a little coconut oil if the sausage is lean.",
+    "steps_raw": "1. Heat the oven to 350–400°F (177–204°C).\n2. Dice {{butternut_squash}} into 1-inch cubes and place in a baking dish. Add {{sausage}} (broken into pieces) and {{onion}}. Season with {{salt}}.\n3. If the sausage is lean, drizzle with {{coconut_oil}} for extra fat.\n4. Bake until the squash is tender and the sausage is cooked through, stirring occasionally.\n",
+    "tokens_used": [
+      "butternut_squash",
+      "sausage",
+      "onion",
+      "salt",
+      "coconut_oil"
+    ],
+    "token_order": [
+      "butternut_squash",
+      "sausage",
+      "onion",
+      "salt",
+      "coconut_oil"
+    ],
+    "ingredients": {
+      "butternut_squash": {
+        "token": "butternut_squash",
+        "options": [
+          {
+            "option": "",
+            "display": "butternut squash (1-inch cubes)",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "butternut-squash",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "sausage": {
+        "token": "sausage",
+        "options": [
+          {
+            "option": "",
+            "display": "sausage",
+            "ratio": "1",
+            "unit": "lb",
+            "ingredient_id": "sausage",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "onion": {
+        "token": "onion",
+        "options": [
+          {
+            "option": "",
+            "display": "chopped onion",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "onion",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "coconut_oil": {
+        "token": "coconut_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "coconut oil (if sausage is lean)",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "coconut-oil",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "chocolate-chip-cookies-gf",
+    "title": "Chocolate Chip Cookies (Gluten Free)",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Desserts & Baking"
+    ],
+    "notes": "Use a gluten-free flour blend with xanthan gum. For dairy-free, choose vegan butter and dairy-free chips.",
+    "steps_raw": "1. Preheat the oven to 375°F (190°C). Line baking sheets with parchment.\n2. In a large bowl, beat {{butter_choice}}, {{white_sugar}}, and {{brown_sugar}} until creamy.\n3. Add {{egg_choice}}, {{molasses}}, and {{vanilla_extract}} to the bowl and mix until fully combined.\n4. Mix in {{gf_flour}}, {{baking_soda}}, {{baking_powder}}, and {{salt}} until a smooth dough forms.\n5. Stir in {{chocolate_chips}}.\n6. Drop rounded tablespoons of dough (about 1 1/2 tablespoons) onto the prepared sheets, spacing 2 inches apart.\n7. Bake for 8–10 minutes, until the edges just start to turn golden and the centers are soft. Cool briefly on the sheet before transferring to a rack.\n",
+    "tokens_used": [
+      "butter_choice",
+      "white_sugar",
+      "brown_sugar",
+      "egg_choice",
+      "molasses",
+      "vanilla_extract",
+      "gf_flour",
+      "baking_soda",
+      "baking_powder",
+      "salt",
+      "chocolate_chips"
+    ],
+    "token_order": [
+      "butter_choice",
+      "white_sugar",
+      "brown_sugar",
+      "egg_choice",
+      "molasses",
+      "vanilla_extract",
+      "gf_flour",
+      "baking_soda",
+      "baking_powder",
+      "salt",
+      "chocolate_chips"
+    ],
+    "ingredients": {
+      "butter_choice": {
+        "token": "butter_choice",
+        "options": [
+          {
+            "option": "butter",
+            "display": "unsalted butter (softened)",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "butter",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          },
+          {
+            "option": "vegan",
+            "display": "vegan butter (softened)",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "vegan-butter",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "white_sugar": {
+        "token": "white_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "granulated sugar",
+            "ratio": "3/4",
+            "unit": "cup",
+            "ingredient_id": "white-sugar",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "brown_sugar": {
+        "token": "brown_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "brown sugar (packed)",
+            "ratio": "3/4",
+            "unit": "cup",
+            "ingredient_id": "brown-sugar",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "molasses": {
+        "token": "molasses",
+        "options": [
+          {
+            "option": "",
+            "display": "molasses",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "molasses",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "vanilla_extract": {
+        "token": "vanilla_extract",
+        "options": [
+          {
+            "option": "",
+            "display": "pure vanilla extract",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "vanilla-extract",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "egg_choice": {
+        "token": "egg_choice",
+        "options": [
+          {
+            "option": "egg",
+            "display": "egg",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "egg",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": false,
+              "dairy_free": true
+            }
+          },
+          {
+            "option": "replacer",
+            "display": "egg replacer (prepared)",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "egg-replacer",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "baking_soda": {
+        "token": "baking_soda",
+        "options": [
+          {
+            "option": "",
+            "display": "baking soda",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "baking-soda",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "baking_powder": {
+        "token": "baking_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "baking powder",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "baking-powder",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "gf_flour": {
+        "token": "gf_flour",
+        "options": [
+          {
+            "option": "",
+            "display": "gluten-free flour blend with xanthan gum",
+            "ratio": "2 1/2",
+            "unit": "cup",
+            "ingredient_id": "gf-flour-blend",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "chocolate_chips": {
+        "token": "chocolate_chips",
+        "options": [
+          {
+            "option": "dairy",
+            "display": "semisweet chocolate chips",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "chocolate-chips",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          },
+          {
+            "option": "dairy_free",
+            "display": "dairy-free chocolate chips",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "dairy-free-chocolate-chips",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      }
+    },
+    "choices": {
+      "butter_choice": {
+        "token": "butter_choice",
+        "label": "Butter",
+        "default_option": "butter"
+      },
+      "egg_choice": {
+        "token": "egg_choice",
+        "label": "Egg or replacer",
+        "default_option": "egg"
+      },
+      "chocolate_chips": {
+        "token": "chocolate_chips",
+        "label": "Chocolate chips",
+        "default_option": "dairy"
+      }
+    },
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "collards-canadian-bacon",
+    "title": "Collards with Canadian Bacon",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Sides"
+    ],
+    "notes": "Simple skillet collards with smoky bacon.",
+    "steps_raw": "1. In a skillet, heat {{vegetable_oil}} over medium heat. Sauté {{onion}} and {{canadian_bacon}} for about 5 minutes.\n2. Add {{collard_greens}} and toss to coat in the fat. Cover and reduce heat.\n3. Simmer for 10–15 minutes, stirring frequently, until the greens are tender. Season with {{salt}} and {{black_pepper}} to taste.\n",
+    "tokens_used": [
+      "vegetable_oil",
+      "onion",
+      "canadian_bacon",
+      "collard_greens",
+      "salt",
+      "black_pepper"
+    ],
+    "token_order": [
+      "vegetable_oil",
+      "onion",
+      "canadian_bacon",
+      "collard_greens",
+      "salt",
+      "black_pepper"
+    ],
+    "ingredients": {
+      "onion": {
+        "token": "onion",
+        "options": [
+          {
+            "option": "",
+            "display": "chopped onion",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "onion",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "canadian_bacon": {
+        "token": "canadian_bacon",
+        "options": [
+          {
+            "option": "",
+            "display": "diced Canadian bacon",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "canadian-bacon",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "vegetable_oil": {
+        "token": "vegetable_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "vegetable oil",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "vegetable-oil",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "collard_greens": {
+        "token": "collard_greens",
+        "options": [
+          {
+            "option": "",
+            "display": "collard greens (chopped)",
+            "ratio": "11",
+            "unit": "oz",
+            "ingredient_id": "collard-greens",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "black_pepper": {
+        "token": "black_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "black pepper",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "black-pepper",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "creamy-leek-potato-soup",
+    "title": "Creamy Leek and Potato Soup",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Soups & Stews",
+      "Vegetarian"
+    ],
+    "notes": "Adjust milk to your preferred thickness; 1 1/2 cups yields a medium body.",
+    "steps_raw": "1. In a pot, combine {{potatoes}}, {{leeks}}, {{celery}}, and {{water}}. Cook until the vegetables are tender.\n2. Mash the soup slightly if you prefer a smoother texture.\n3. Stir in {{butter}}, {{milk}}, and {{salt}}. Season with {{black_pepper}} and {{parsley}} to taste.\n4. Heat gently until warmed through, then serve.\n",
+    "tokens_used": [
+      "potatoes",
+      "leeks",
+      "celery",
+      "water",
+      "butter",
+      "milk",
+      "salt",
+      "black_pepper",
+      "parsley"
+    ],
+    "token_order": [
+      "potatoes",
+      "leeks",
+      "celery",
+      "water",
+      "butter",
+      "milk",
+      "salt",
+      "black_pepper",
+      "parsley"
+    ],
+    "ingredients": {
+      "potatoes": {
+        "token": "potatoes",
+        "options": [
+          {
+            "option": "",
+            "display": "diced potatoes",
+            "ratio": "3",
+            "unit": "cup",
+            "ingredient_id": "potato",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "leeks": {
+        "token": "leeks",
+        "options": [
+          {
+            "option": "",
+            "display": "chopped leeks (or onions)",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "leek",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "celery": {
+        "token": "celery",
+        "options": [
+          {
+            "option": "",
+            "display": "chopped celery",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "celery",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "water",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "butter": {
+        "token": "butter",
+        "options": [
+          {
+            "option": "",
+            "display": "butter",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "butter",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "milk": {
+        "token": "milk",
+        "options": [
+          {
+            "option": "",
+            "display": "milk",
+            "ratio": "1 1/2",
+            "unit": "cup",
+            "ingredient_id": "milk",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "black_pepper": {
+        "token": "black_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "black pepper",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "black-pepper",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "parsley": {
+        "token": "parsley",
+        "options": [
+          {
+            "option": "",
+            "display": "parsley",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "parsley",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "italian-soup",
+    "title": "Italian Soup",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Soups & Stews"
+    ],
+    "notes": "Hearty ground beef and vegetable soup with tomato base.",
+    "steps_raw": "1. In a soup pot, brown {{ground_beef}} with {{onion}}. Drain excess fat if needed.\n2. Add {{tomato_sauce}}, {{beef_broth}}, {{celery}}, {{salt}}, and {{black_pepper}}. Simmer for 20 minutes.\n3. Stir in {{diced_tomatoes}} and {{mixed_vegetables}}. Continue simmering for about 15 minutes, or until the vegetables are tender.\n",
+    "tokens_used": [
+      "ground_beef",
+      "onion",
+      "tomato_sauce",
+      "beef_broth",
+      "celery",
+      "salt",
+      "black_pepper",
+      "diced_tomatoes",
+      "mixed_vegetables"
+    ],
+    "token_order": [
+      "ground_beef",
+      "onion",
+      "tomato_sauce",
+      "beef_broth",
+      "celery",
+      "salt",
+      "black_pepper",
+      "diced_tomatoes",
+      "mixed_vegetables"
+    ],
+    "ingredients": {
+      "ground_beef": {
+        "token": "ground_beef",
+        "options": [
+          {
+            "option": "",
+            "display": "ground beef",
+            "ratio": "1",
+            "unit": "lb",
+            "ingredient_id": "ground-beef",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "onion": {
+        "token": "onion",
+        "options": [
+          {
+            "option": "",
+            "display": "chopped onion",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "onion",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "tomato_sauce": {
+        "token": "tomato_sauce",
+        "options": [
+          {
+            "option": "",
+            "display": "tomato sauce",
+            "ratio": "1",
+            "unit": "pint",
+            "ingredient_id": "tomato-sauce",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "beef_broth": {
+        "token": "beef_broth",
+        "options": [
+          {
+            "option": "",
+            "display": "beef broth",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "beef-broth",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "celery": {
+        "token": "celery",
+        "options": [
+          {
+            "option": "",
+            "display": "chopped celery",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "celery",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "black_pepper": {
+        "token": "black_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "black pepper",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "black-pepper",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "diced_tomatoes": {
+        "token": "diced_tomatoes",
+        "options": [
+          {
+            "option": "",
+            "display": "diced tomatoes",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "diced-tomatoes",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "mixed_vegetables": {
+        "token": "mixed_vegetables",
+        "options": [
+          {
+            "option": "",
+            "display": "mixed vegetables (potatoes carrots radishes turnips)",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "mixed-vegetables",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "lemon-cake",
+    "title": "Vegan Gluten-Free Lemon Cake",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Desserts & Baking"
+    ],
+    "notes": "Bake in an 8x8-inch square pan (stone preferred; glass/metal ok). Use room-temperature full-fat coconut milk and whisk/blend until completely smooth before measuring.",
+    "steps_raw": "1. Preheat the oven to 350°F (177°C). Lightly grease an 8x8-inch square baking dish (stone preferred; glass or metal ok) with {{neutral_oil}}, then wipe off any excess.\n2. Make sure {{coconut_milk}} is fully smooth before measuring: whisk or blend room-temperature full-fat coconut milk until completely mixed and smooth, then measure out {{coconut_milk}}.\n3. In a large bowl, whisk together {{oat_flour}}, {{almond_flour}}, {{tapioca_starch}}, {{cornstarch}}, {{sugar}}, {{baking_powder}}, and {{salt}} until no lumps remain.\n4. In a separate bowl, whisk together {{coconut_milk}}, {{lemon_juice}}, zest of {{lemon_for_zest}}, and {{vanilla_extract}}.\n5. Pour the wet mixture into the dry mixture and whisk until smooth. Pour the batter into the prepared pan.\n6. Bake for 20–25 minutes, or until a toothpick comes out completely clean. Cool completely (about 45 minutes) before glazing.\n7. For a full glaze, whisk together {{powdered_sugar}}, {{lemon_juice_glaze}}, {{glaze_thickener}}, and {{vanilla_glaze}} until completely smooth. For a light drizzle, make half this glaze by halving those four ingredients.\n8. Spread the glaze over the cooled cake. Let it set for about 15 minutes, then slice and serve.\n",
+    "tokens_used": [
+      "neutral_oil",
+      "coconut_milk",
+      "coconut_milk",
+      "oat_flour",
+      "almond_flour",
+      "tapioca_starch",
+      "cornstarch",
+      "sugar",
+      "baking_powder",
+      "salt",
+      "coconut_milk",
+      "lemon_juice",
+      "lemon_for_zest",
+      "vanilla_extract",
+      "powdered_sugar",
+      "lemon_juice_glaze",
+      "glaze_thickener",
+      "vanilla_glaze"
+    ],
+    "token_order": [
+      "neutral_oil",
+      "coconut_milk",
+      "oat_flour",
+      "almond_flour",
+      "tapioca_starch",
+      "cornstarch",
+      "sugar",
+      "baking_powder",
+      "salt",
+      "lemon_juice",
+      "lemon_for_zest",
+      "vanilla_extract",
+      "powdered_sugar",
+      "lemon_juice_glaze",
+      "glaze_thickener",
+      "vanilla_glaze"
+    ],
+    "ingredients": {
+      "almond_flour": {
+        "token": "almond_flour",
+        "options": [
+          {
+            "option": "",
+            "display": "superfine blanched almond flour",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "almond-flour",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "oat_flour": {
+        "token": "oat_flour",
+        "options": [
+          {
+            "option": "",
+            "display": "superfine oat flour",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "oat-flour",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "tapioca_starch": {
+        "token": "tapioca_starch",
+        "options": [
+          {
+            "option": "",
+            "display": "tapioca starch",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "tapioca-starch",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "cornstarch": {
+        "token": "cornstarch",
+        "options": [
+          {
+            "option": "",
+            "display": "cornstarch",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "cornstarch",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "sugar": {
+        "token": "sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "fine granulated white sugar",
+            "ratio": "3/4",
+            "unit": "cup",
+            "ingredient_id": "white-sugar",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "baking_powder": {
+        "token": "baking_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "baking powder",
+            "ratio": "2",
+            "unit": "tsp",
+            "ingredient_id": "baking-powder",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "fine salt",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "coconut_milk": {
+        "token": "coconut_milk",
+        "options": [
+          {
+            "option": "",
+            "display": "full-fat coconut milk (room temperature, fully mixed)",
+            "ratio": "10",
+            "unit": "tbsp",
+            "ingredient_id": "coconut-milk",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "lemon_juice": {
+        "token": "lemon_juice",
+        "options": [
+          {
+            "option": "",
+            "display": "fresh lemon juice",
+            "ratio": "2 1/2",
+            "unit": "tbsp",
+            "ingredient_id": "lemon",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "lemon_for_zest": {
+        "token": "lemon_for_zest",
+        "options": [
+          {
+            "option": "",
+            "display": "lemon (for zest)",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "lemon",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "vanilla_extract": {
+        "token": "vanilla_extract",
+        "options": [
+          {
+            "option": "",
+            "display": "vanilla extract",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "vanilla-extract",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "neutral_oil": {
+        "token": "neutral_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "neutral oil (for greasing pan)",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "neutral-oil",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "powdered_sugar": {
+        "token": "powdered_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "powdered sugar",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "powdered-sugar",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "lemon_juice_glaze": {
+        "token": "lemon_juice_glaze",
+        "options": [
+          {
+            "option": "",
+            "display": "fresh lemon juice",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "lemon",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "glaze_thickener": {
+        "token": "glaze_thickener",
+        "options": [
+          {
+            "option": "yogurt",
+            "display": "thick non-dairy yogurt (plain or vanilla)",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "nondairy-yogurt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          },
+          {
+            "option": "milk",
+            "display": "creamy milk",
+            "ratio": "1/2",
+            "unit": "tbsp",
+            "ingredient_id": "milk",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "vanilla_glaze": {
+        "token": "vanilla_glaze",
+        "options": [
+          {
+            "option": "",
+            "display": "vanilla extract",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "vanilla-extract",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "choices": {
+      "glaze_thickener": {
+        "token": "glaze_thickener",
+        "label": "Glaze thickener",
+        "default_option": "yogurt"
+      }
+    },
+    "pan_sizes": [
+      {
+        "id": "sq_8",
+        "label": "8x8-inch square",
+        "shape": "square",
+        "width": 8,
+        "height": 8,
+        "unit": "in",
+        "is_default": true
+      },
+      {
+        "id": "rect_9x13",
+        "label": "9x13-inch rectangle",
+        "shape": "rectangle",
+        "width": 9,
+        "height": 13,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "round_9",
+        "label": "9-inch round",
+        "shape": "round",
+        "width": 9,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      }
+    ],
+    "default_pan": "sq_8",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "sausage-stuffed-acorn-squash",
+    "title": "Sausage Stuffed Acorn Squash",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Mains"
+    ],
+    "notes": "Stuff the roasted squash with a cheesy sausage and breadcrumb mixture.",
+    "steps_raw": "1. Heat the oven to 375°F (191°C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom.\n2. Roast for about 35 minutes, until the squash is tender.\n3. While the squash roasts, brown {{sausage}} in a skillet. Drain off all but 2 tablespoons of drippings.\n4. Add {{onion}} and {{celery}} to the skillet and sauté for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}.\n5. Quickly fold {{sausage}} and {{cheese}} into the breadcrumb mixture.\n6. Turn the squash halves cut side up, sprinkle with {{salt}}, and fill the cavities with the sausage mixture.\n7. Bake at 350°F (177°C) for 20–30 minutes, until the stuffing is browned and heated through.\n",
+    "tokens_used": [
+      "acorn_squash",
+      "roasting_water",
+      "sausage",
+      "onion",
+      "celery",
+      "bread_crumbs",
+      "sausage",
+      "cheese",
+      "salt"
+    ],
+    "token_order": [
+      "acorn_squash",
+      "roasting_water",
+      "sausage",
+      "onion",
+      "celery",
+      "bread_crumbs",
+      "cheese",
+      "salt"
+    ],
+    "ingredients": {
+      "acorn_squash": {
+        "token": "acorn_squash",
+        "options": [
+          {
+            "option": "",
+            "display": "acorn squash",
+            "ratio": "2",
+            "unit": "count",
+            "ingredient_id": "acorn-squash",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "roasting_water": {
+        "token": "roasting_water",
+        "options": [
+          {
+            "option": "",
+            "display": "water for roasting pan",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "water",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "sausage": {
+        "token": "sausage",
+        "options": [
+          {
+            "option": "",
+            "display": "sausage",
+            "ratio": "1",
+            "unit": "lb",
+            "ingredient_id": "sausage",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "onion": {
+        "token": "onion",
+        "options": [
+          {
+            "option": "",
+            "display": "finely chopped onion",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "onion",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "celery": {
+        "token": "celery",
+        "options": [
+          {
+            "option": "",
+            "display": "finely chopped celery",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "celery",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "bread_crumbs": {
+        "token": "bread_crumbs",
+        "options": [
+          {
+            "option": "",
+            "display": "stale bread crumbs",
+            "ratio": "3/4",
+            "unit": "cup",
+            "ingredient_id": "bread-crumbs",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "cheese": {
+        "token": "cheese",
+        "options": [
+          {
+            "option": "",
+            "display": "grated cheese",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "cheese",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "sweet-potatoes-pork-chops-pears",
+    "title": "Sweet Potatoes with Pork Chops and Pears",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Mains"
+    ],
+    "notes": "Layered bake with sweet potatoes, seared chops, and a pear syrup glaze.",
+    "steps_raw": "1. Preheat the oven to 350°F (177°C). Drain {{pear_halves}}, reserving the syrup.\n2. Peel and thickly slice {{sweet_potatoes}}. Arrange them in the bottom of a shallow baking dish.\n3. Trim excess fat from {{pork_chops}}, season with {{salt}} and {{black_pepper}}, and brown lightly in a skillet. Place the chops on top of the sweet potatoes.\n4. In a small saucepan, combine the reserved pear syrup with {{brown_sugar}}, {{butter}}, and {{cinnamon}}. Heat just until the sugar dissolves.\n5. Spoon half of the syrup over the chops. Bake for 30 minutes.\n6. Remove the dish from the oven, arrange {{pear_halves}} around the chops, and spoon the remaining syrup over everything. Bake for another 30 minutes, or until the chops are tender.\n",
+    "tokens_used": [
+      "pear_halves",
+      "sweet_potatoes",
+      "pork_chops",
+      "salt",
+      "black_pepper",
+      "brown_sugar",
+      "butter",
+      "cinnamon",
+      "pear_halves"
+    ],
+    "token_order": [
+      "pear_halves",
+      "sweet_potatoes",
+      "pork_chops",
+      "salt",
+      "black_pepper",
+      "brown_sugar",
+      "butter",
+      "cinnamon"
+    ],
+    "ingredients": {
+      "pear_halves": {
+        "token": "pear_halves",
+        "options": [
+          {
+            "option": "",
+            "display": "pear halves (reserve syrup)",
+            "ratio": "1",
+            "unit": "pint",
+            "ingredient_id": "pear-halves",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "sweet_potatoes": {
+        "token": "sweet_potatoes",
+        "options": [
+          {
+            "option": "",
+            "display": "cooked sweet potatoes",
+            "ratio": "4",
+            "unit": "count",
+            "ingredient_id": "sweet-potato",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "pork_chops": {
+        "token": "pork_chops",
+        "options": [
+          {
+            "option": "",
+            "display": "pork chops",
+            "ratio": "4",
+            "unit": "count",
+            "ingredient_id": "pork-chop",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "black_pepper": {
+        "token": "black_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "black pepper",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "black-pepper",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "brown_sugar": {
+        "token": "brown_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "brown sugar",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "brown-sugar",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "butter": {
+        "token": "butter",
+        "options": [
+          {
+            "option": "",
+            "display": "butter",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "butter",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "cinnamon": {
+        "token": "cinnamon",
+        "options": [
+          {
+            "option": "",
+            "display": "ground cinnamon",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "cinnamon",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "turmeric-chicken-curry",
+    "title": "Turmeric Chicken Curry",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Mains"
+    ],
+    "notes": "Bright coconut curry; serve with rice or cauliflower rice and lime wedges.",
+    "steps_raw": "1. Cook {{rice}} according to package directions.\n2. In a large pan over medium heat, melt {{coconut_oil}}. Add {{white_onion}}, {{ginger}}, and {{garlic}}; sauté for 3–4 minutes until the onion is translucent. Remove to a plate, leaving the oil in the pan.\n3. Lightly salt {{chicken_breast}} with part of the {{sea_salt}} and sauté in the same pan until the internal temperature reaches 165°F (74°C).\n4. Return the aromatics to the pan. Stir in {{coconut_milk}}, {{coconut_cream}}, {{coconut_aminos}}, juice from half of the {{lime}}, {{sea_salt}}, {{turmeric}}, and {{black_pepper}}. Simmer for about 5 minutes, stirring, until the sauce thickens slightly.\n5. Adjust seasoning to taste. Top with {{cilantro}} and serve with {{cauliflower_rice}} and lime wedges from the remaining {{lime}}.\n",
+    "tokens_used": [
+      "rice",
+      "coconut_oil",
+      "white_onion",
+      "ginger",
+      "garlic",
+      "chicken_breast",
+      "sea_salt",
+      "coconut_milk",
+      "coconut_cream",
+      "coconut_aminos",
+      "lime",
+      "sea_salt",
+      "turmeric",
+      "black_pepper",
+      "cilantro",
+      "cauliflower_rice",
+      "lime"
+    ],
+    "token_order": [
+      "rice",
+      "coconut_oil",
+      "white_onion",
+      "ginger",
+      "garlic",
+      "chicken_breast",
+      "sea_salt",
+      "coconut_milk",
+      "coconut_cream",
+      "coconut_aminos",
+      "lime",
+      "turmeric",
+      "black_pepper",
+      "cilantro",
+      "cauliflower_rice"
+    ],
+    "ingredients": {
+      "rice": {
+        "token": "rice",
+        "options": [
+          {
+            "option": "",
+            "display": "rice",
+            "ratio": "1 1/2",
+            "unit": "cup",
+            "ingredient_id": "rice",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "coconut_oil": {
+        "token": "coconut_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "coconut oil",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "coconut-oil",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "white_onion": {
+        "token": "white_onion",
+        "options": [
+          {
+            "option": "",
+            "display": "white onion (diced)",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "onion",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "ginger": {
+        "token": "ginger",
+        "options": [
+          {
+            "option": "",
+            "display": "fresh ginger (grated)",
+            "ratio": "1",
+            "unit": "inch",
+            "ingredient_id": "ginger",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "garlic": {
+        "token": "garlic",
+        "options": [
+          {
+            "option": "",
+            "display": "garlic cloves (chopped)",
+            "ratio": "2",
+            "unit": "clove",
+            "ingredient_id": "garlic",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "chicken_breast": {
+        "token": "chicken_breast",
+        "options": [
+          {
+            "option": "",
+            "display": "chicken breast (cubed)",
+            "ratio": "1",
+            "unit": "lb",
+            "ingredient_id": "chicken-breast",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "coconut_milk": {
+        "token": "coconut_milk",
+        "options": [
+          {
+            "option": "",
+            "display": "coconut milk",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "coconut-milk",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "coconut_cream": {
+        "token": "coconut_cream",
+        "options": [
+          {
+            "option": "",
+            "display": "coconut cream",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "coconut-cream",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "coconut_aminos": {
+        "token": "coconut_aminos",
+        "options": [
+          {
+            "option": "",
+            "display": "coconut aminos",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "coconut-aminos",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "lime": {
+        "token": "lime",
+        "options": [
+          {
+            "option": "",
+            "display": "lime",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "lime",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "sea_salt": {
+        "token": "sea_salt",
+        "options": [
+          {
+            "option": "",
+            "display": "sea salt",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "turmeric": {
+        "token": "turmeric",
+        "options": [
+          {
+            "option": "",
+            "display": "turmeric powder",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "turmeric-powder",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "black_pepper": {
+        "token": "black_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "black pepper",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "black-pepper",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "cilantro": {
+        "token": "cilantro",
+        "options": [
+          {
+            "option": "",
+            "display": "fresh cilantro (chopped)",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "cilantro",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "cauliflower_rice": {
+        "token": "cauliflower_rice",
+        "options": [
+          {
+            "option": "",
+            "display": "cauliflower rice (for serving)",
+            "ratio": "4",
+            "unit": "cup",
+            "ingredient_id": "cauliflower-rice",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "watercress-parsley-soup",
+    "title": "Watercress and Parsley Soup",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Soups & Stews",
+      "Vegetarian"
+    ],
+    "notes": "Quick green soup; blend greens with milk if you prefer a smoother finish.",
+    "steps_raw": "1. In a pot, melt {{butter}} and briefly sauté {{onion}} until translucent.\n2. Stir in {{wheat_flour}} and cook for about 3 minutes to form a roux.\n3. Gradually whisk in {{chicken_broth}} and {{milk}}. Bring to a boil while whisking constantly.\n4. Lower the heat, then add {{parsley}}, {{watercress}}, {{nutmeg}}, {{salt}}, and {{black_pepper}}. Cover and cook for about 5 minutes, keeping the greens bright.\n5. For an extra smooth soup, blend some of the hot liquid with the greens before adding, or purée briefly after cooking. Serve hot; add cooked chicken if desired.\n",
+    "tokens_used": [
+      "butter",
+      "onion",
+      "wheat_flour",
+      "chicken_broth",
+      "milk",
+      "parsley",
+      "watercress",
+      "nutmeg",
+      "salt",
+      "black_pepper"
+    ],
+    "token_order": [
+      "butter",
+      "onion",
+      "wheat_flour",
+      "chicken_broth",
+      "milk",
+      "parsley",
+      "watercress",
+      "nutmeg",
+      "salt",
+      "black_pepper"
+    ],
+    "ingredients": {
+      "butter": {
+        "token": "butter",
+        "options": [
+          {
+            "option": "",
+            "display": "butter",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "butter",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "onion": {
+        "token": "onion",
+        "options": [
+          {
+            "option": "",
+            "display": "chopped onion",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "onion",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "wheat_flour": {
+        "token": "wheat_flour",
+        "options": [
+          {
+            "option": "",
+            "display": "wheat flour",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "chicken_broth": {
+        "token": "chicken_broth",
+        "options": [
+          {
+            "option": "",
+            "display": "chicken broth",
+            "ratio": "2 1/4",
+            "unit": "cup",
+            "ingredient_id": "chicken-broth",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "milk": {
+        "token": "milk",
+        "options": [
+          {
+            "option": "",
+            "display": "milk",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "milk",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "parsley": {
+        "token": "parsley",
+        "options": [
+          {
+            "option": "",
+            "display": "finely chopped parsley",
+            "ratio": "2 1/2",
+            "unit": "cup",
+            "ingredient_id": "parsley",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "watercress": {
+        "token": "watercress",
+        "options": [
+          {
+            "option": "",
+            "display": "finely chopped watercress",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "watercress",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "nutmeg": {
+        "token": "nutmeg",
+        "options": [
+          {
+            "option": "",
+            "display": "ground nutmeg",
+            "ratio": "1/8",
+            "unit": "tsp",
+            "ingredient_id": "nutmeg",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "black_pepper": {
+        "token": "black_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "black pepper",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "black-pepper",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  }
+]
