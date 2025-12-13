@@ -30,12 +30,18 @@ function parseRatio(str) {
     num = Number(fracPart);
     den = 1;
   }
+  if (!Number.isFinite(whole) || !Number.isFinite(num) || !Number.isFinite(den) || den === 0) {
+    return null;
+  }
   const totalNum = whole * den + num;
   return simplify({ num: totalNum, den });
 }
 
 function simplify(frac) {
-  const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
+  const gcd = (a, b) => {
+    if (!Number.isFinite(a) || !Number.isFinite(b)) return 1;
+    return b === 0 ? a : gcd(b, a % b);
+  };
   const g = gcd(Math.abs(frac.num), Math.abs(frac.den));
   return { num: frac.num / g, den: frac.den / g };
 }
@@ -73,6 +79,7 @@ function pluralize(display, amount, unit) {
 function renderIngredientEntry(option, multiplier) {
   if (!option.ratio) return option.display;
   const baseFraction = parseRatio(option.ratio);
+  if (!baseFraction) return option.display;
   const scaled = multiplyFraction(baseFraction, multiplier);
   const amountNumber = scaled ? scaled.num / scaled.den : null;
   const amountStr = scaled ? formatFraction(scaled) : '';
