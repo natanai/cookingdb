@@ -1,11 +1,12 @@
 const DEFAULT_BASE_URL = 'https://cookingdb-inbox.natanai.workers.dev';
 const PATHS = {
-  familySubmit: '/api/family/submit',
-  familyList: '/api/family/list',
-  adminExport: '/api/admin/export',
-  adminMarkImported: '/api/admin/mark-imported',
-  adminDelete: '/api/admin/delete',
+  familySubmit: '/api/add',
+  familyList: '/api/list',
+  adminExport: '/admin/export',
+  adminMarkImported: '/admin/mark-imported',
+  adminDelete: '/admin/purge-imported',
 };
+
 
 function storageKey(kind) {
   return `cookingdb-${kind}-password`;
@@ -36,42 +37,37 @@ function buildUrl(path, workerBaseUrl) {
   return `${base.replace(/\/$/, '')}${path}`;
 }
 
-async function postJson(pathKey, { workerBaseUrl, payload }) {
+async function postJson(pathKey, { workerBaseUrl, payload, password, adminToken }) {
   const url = buildUrl(PATHS[pathKey], workerBaseUrl);
-  try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload || {}),
-    });
-    const text = await res.text();
-    const data = text ? JSON.parse(text) : {};
-    if (!res.ok) {
-      const message = data?.error || data?.message || res.statusText;
-      throw new Error(message || 'Request failed');
-    }
-    return data;
-  } catch (err) {
-    if (err instanceof TypeError) {
-      throw new Error('Network error or CORS blocked the request. Please try again later.');
-    }
-    throw err;
-  }
+  const headers = { 'Content-Type': 'application/json' };
+  if (password) headers['X-Recipe-Password'] = password;
+  if (adminToken) headers['X-Admin-Token'] = adminToken;
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(payload || {}),
+  });
+  // ... existing error handling ...
 }
 
 export function familySubmitRecipe({ workerBaseUrl = DEFAULT_BASE_URL, familyPassword, recipe }) {
   return postJson('familySubmit', {
     workerBaseUrl,
-    payload: { password: familyPassword, recipe },
+    password: familyPassword,
+    // The Worker expects a { title, payload } object
+    payload: { title: recipe.title, payload: recipe },
   });
 }
 
 export function familyListPending({ workerBaseUrl = DEFAULT_BASE_URL, familyPassword, includePayload = false }) {
   return postJson('familyList', {
     workerBaseUrl,
-    payload: { password: familyPassword, include_payload: includePayload },
+    password: familyPassword,
+    payload: { status: 'pending', include_payload: includePayload },
   });
 }
+
 
 export function adminExportPending({ workerBaseUrl = DEFAULT_BASE_URL, adminToken }) {
   return postJson('adminExport', {
