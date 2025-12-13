@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes
-butternut-squash-casserole,Butternut Squash Casserole,multiplier,1,"Simple baked casserole; add a little coconut oil if the sausage is lean."
+id,title,base_kind,default_base,notes,categories
+butternut-squash-casserole,Butternut Squash Casserole,multiplier,1,"Simple baked casserole; add a little coconut oil if the sausage is lean.",Side;Comfort;Holiday

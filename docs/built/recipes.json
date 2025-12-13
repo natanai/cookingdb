@@ -4,6 +4,11 @@
     "title": "Apple Cider Brisket",
     "base_kind": "multiplier",
     "default_base": 1,
+    "categories": [
+      "Main",
+      "Beef",
+      "Comfort"
+    ],
     "notes": "Use a 3–4 lb brisket. This braise layers apple cider with broth and root vegetables.",
     "steps_raw": "1. Preheat the oven to 325°F (163°C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}.\n2. In a large Dutch oven over medium-high heat, heat {{neutral_oil}}. Sear the {{brisket}}, turning occasionally, until browned, about 5 minutes per side. Transfer to a large baking dish or plate.\n3. Reduce heat to medium. In the same pot, arrange {{baby_potatoes}} cut side down and cook undisturbed until lightly softened, about 5 minutes. Add {{carrots}} and {{shallots}}, season with more {{kosher_salt}} and {{black_pepper}}, and stir to release the potatoes.\n4. Return {{brisket}} and any accumulated juices to the pot. Pour in {{apple_cider}} and {{broth_choice}}, then add {{thyme}}, {{bay_leaves}}, and {{cayenne}}. Season to taste with {{kosher_salt}} and {{black_pepper}}, cover, and bring to a boil.\n5. Once boiling, transfer the covered pot to the oven and roast until the brisket is easily shreddable, 2 1/2 to 3 hours.\n6. Discard {{thyme}} and {{bay_leaves}}. Shred {{brisket}} with two forks. Arrange the meat on a platter with the vegetables and spoon the cooking juices over the top.\n",
     "tokens_used": [
@@ -293,6 +298,11 @@
     "title": "Baked Sweet Potatoes",
     "base_kind": "multiplier",
     "default_base": 1,
+    "categories": [
+      "Side",
+      "Vegetarian",
+      "Holiday"
+    ],
     "notes": "Sweet potato casserole baked until the brown sugar glaze is sticky.",
     "steps_raw": "1. Preheat the oven to 350°F (177°C). Peel and cut {{sweet_potatoes}}.\n2. Boil {{sweet_potatoes}} in salted water until almost tender, then drain well.\n3. Spread {{sweet_potatoes}} in a greased casserole dish. Sprinkle with {{salt}}, {{brown_sugar}}, and {{flour}}, then pour {{cream}} over the top.\n4. Bake for 20–30 minutes, or until the sauce is sticky and bubbling around the edges.\n",
     "tokens_used": [
@@ -417,6 +427,11 @@
     "title": "Blintzes (Crepes)",
     "base_kind": "multiplier",
     "default_base": 1,
+    "categories": [
+      "Breakfast",
+      "Brunch",
+      "Sweet"
+    ],
     "notes": "Crepe/blintz wrapper batter. Uses inline ingredient tokens in steps.",
     "steps_raw": "1. In a mixing bowl, beat together {{eggs_choice}}, {{milk_choice}}, and {{water}} until smooth.\n2. Whisk in {{butter_choice}}.\n3. Add {{flour_choice}}, {{salt}}, and {{sugar}}. Blend thoroughly until the batter is smooth and lump-free.\n4. Heat a skillet over medium heat and melt a little {{butter_pan}} to coat the surface (repeat before each crepe).\n5. Pour about 1/4 cup of batter into the center of the skillet and tilt the pan so the batter spreads evenly.\n6. Cook until the bottom is light brown and the surface looks set and slightly bubbly.\n7. Flip gently with a spatula.\n8. Cook the second side until light brown, then remove and keep warm. Repeat with remaining batter.\n",
     "tokens_used": [
@@ -685,6 +700,11 @@
     "title": "Butternut Squash Casserole",
     "base_kind": "multiplier",
     "default_base": 1,
+    "categories": [
+      "Side",
+      "Comfort",
+      "Holiday"
+    ],
     "notes": "Simple baked casserole; add a little coconut oil if the sausage is lean.",
     "steps_raw": "1. Heat the oven to 350–400°F (177–204°C).\n2. Dice {{butternut_squash}} into 1-inch cubes and place in a baking dish. Add {{sausage}} (broken into pieces) and {{onion}}. Season with {{salt}}.\n3. If the sausage is lean, drizzle with {{coconut_oil}} for extra fat.\n4. Bake until the squash is tender and the sausage is cooked through, stirring occasionally.\n",
     "tokens_used": [
@@ -807,7 +827,12 @@
     "title": "Chocolate Chip Cookies (Gluten Free)",
     "base_kind": "multiplier",
     "default_base": 1,
-    "notes": "Use a gluten-free flour blend with xanthan gum. For dairy-free, choose vegan butter and dairy-free chips. ",
+    "categories": [
+      "Dessert",
+      "Cookies",
+      "Gluten-free"
+    ],
+    "notes": "Use a gluten-free flour blend with xanthan gum. For dairy-free, choose vegan butter and dairy-free chips.",
     "steps_raw": "1. Preheat the oven to 375°F (190°C). Line baking sheets with parchment.\n2. In a large bowl, beat {{butter_choice}}, {{white_sugar}}, and {{brown_sugar}} until creamy.\n3. Add {{egg_choice}}, {{molasses}}, and {{vanilla_extract}} to the bowl and mix until fully combined.\n4. Mix in {{gf_flour}}, {{baking_soda}}, {{baking_powder}}, and {{salt}} until a smooth dough forms.\n5. Stir in {{chocolate_chips}}.\n6. Drop rounded tablespoons of dough (about 1 1/2 tablespoons) onto the prepared sheets, spacing 2 inches apart.\n7. Bake for 8–10 minutes, until the edges just start to turn golden and the centers are soft. Cool briefly on the sheet before transferring to a rack.\n",
     "tokens_used": [
       "butter_choice",
@@ -1101,6 +1126,11 @@
     "title": "Collards with Canadian Bacon",
     "base_kind": "multiplier",
     "default_base": 1,
+    "categories": [
+      "Side",
+      "Greens",
+      "Quick"
+    ],
     "notes": "Simple skillet collards with smoky bacon.",
     "steps_raw": "1. In a skillet, heat {{vegetable_oil}} over medium heat. Sauté {{onion}} and {{canadian_bacon}} for about 5 minutes.\n2. Add {{collard_greens}} and toss to coat in the fat. Cover and reduce heat.\n3. Simmer for 10–15 minutes, stirring frequently, until the greens are tender. Season with {{salt}} and {{black_pepper}} to taste.\n",
     "tokens_used": [
@@ -1243,6 +1273,11 @@
     "title": "Creamy Leek and Potato Soup",
     "base_kind": "multiplier",
     "default_base": 1,
+    "categories": [
+      "Soup",
+      "Vegetarian",
+      "Cozy"
+    ],
     "notes": "Adjust milk to your preferred thickness; 1 1/2 cups yields a medium body.",
     "steps_raw": "1. In a pot, combine {{potatoes}}, {{leeks}}, {{celery}}, and {{water}}. Cook until the vegetables are tender.\n2. Mash the soup slightly if you prefer a smoother texture.\n3. Stir in {{butter}}, {{milk}}, and {{salt}}. Season with {{black_pepper}} and {{parsley}} to taste.\n4. Heat gently until warmed through, then serve.\n",
     "tokens_used": [
@@ -1445,6 +1480,11 @@
     "title": "Italian Soup",
     "base_kind": "multiplier",
     "default_base": 1,
+    "categories": [
+      "Soup",
+      "Beef",
+      "Hearty"
+    ],
     "notes": "Hearty ground beef and vegetable soup with tomato base.",
     "steps_raw": "1. In a soup pot, brown {{ground_beef}} with {{onion}}. Drain excess fat if needed.\n2. Add {{tomato_sauce}}, {{beef_broth}}, {{celery}}, {{salt}}, and {{black_pepper}}. Simmer for 20 minutes.\n3. Stir in {{diced_tomatoes}} and {{mixed_vegetables}}. Continue simmering for about 15 minutes, or until the vegetables are tender.\n",
     "tokens_used": [
@@ -1647,6 +1687,12 @@
     "title": "Vegan Gluten-Free Lemon Cake",
     "base_kind": "multiplier",
     "default_base": 1,
+    "categories": [
+      "Dessert",
+      "Cake",
+      "Vegan",
+      "Gluten-free"
+    ],
     "notes": "Bake in an 8x8-inch square pan (stone preferred; glass/metal ok). Use room-temperature full-fat coconut milk and whisk/blend until completely smooth before measuring.",
     "steps_raw": "1. Preheat the oven to 350°F (177°C). Lightly grease an 8x8-inch square baking dish (stone preferred; glass or metal ok) with {{neutral_oil}}, then wipe off any excess.\n2. Make sure {{coconut_milk}} is fully smooth before measuring: whisk or blend room-temperature full-fat coconut milk until completely mixed and smooth, then measure out {{coconut_milk}}.\n3. In a large bowl, whisk together {{oat_flour}}, {{almond_flour}}, {{tapioca_starch}}, {{cornstarch}}, {{sugar}}, {{baking_powder}}, and {{salt}} until no lumps remain.\n4. In a separate bowl, whisk together {{coconut_milk}}, {{lemon_juice}}, zest of {{lemon_for_zest}}, and {{vanilla_extract}}.\n5. Pour the wet mixture into the dry mixture and whisk until smooth. Pour the batter into the prepared pan.\n6. Bake for 20–25 minutes, or until a toothpick comes out completely clean. Cool completely (about 45 minutes) before glazing.\n7. For a full glaze, whisk together {{powdered_sugar}}, {{lemon_juice_glaze}}, {{glaze_thickener}}, and {{vanilla_glaze}} until completely smooth. For a light drizzle, make half this glaze by halving those four ingredients.\n8. Spread the glaze over the cooled cake. Let it set for about 15 minutes, then slice and serve.\n",
     "tokens_used": [
@@ -2037,6 +2083,11 @@
     "title": "Sausage Stuffed Acorn Squash",
     "base_kind": "multiplier",
     "default_base": 1,
+    "categories": [
+      "Main",
+      "Fall",
+      "Stuffed"
+    ],
     "notes": "Stuff the roasted squash with a cheesy sausage and breadcrumb mixture.",
     "steps_raw": "1. Heat the oven to 375°F (191°C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom.\n2. Roast for about 35 minutes, until the squash is tender.\n3. While the squash roasts, brown {{sausage}} in a skillet. Drain off all but 2 tablespoons of drippings.\n4. Add {{onion}} and {{celery}} to the skillet and sauté for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}.\n5. Quickly fold {{sausage}} and {{cheese}} into the breadcrumb mixture.\n6. Turn the squash halves cut side up, sprinkle with {{salt}}, and fill the cavities with the sausage mixture.\n7. Bake at 350°F (177°C) for 20–30 minutes, until the stuffing is browned and heated through.\n",
     "tokens_used": [
@@ -2220,6 +2271,11 @@
     "title": "Sweet Potatoes with Pork Chops and Pears",
     "base_kind": "multiplier",
     "default_base": 1,
+    "categories": [
+      "Main",
+      "Pork",
+      "Sheet Pan"
+    ],
     "notes": "Layered bake with sweet potatoes, seared chops, and a pear syrup glaze.",
     "steps_raw": "1. Preheat the oven to 350°F (177°C). Drain {{pear_halves}}, reserving the syrup.\n2. Peel and thickly slice {{sweet_potatoes}}. Arrange them in the bottom of a shallow baking dish.\n3. Trim excess fat from {{pork_chops}}, season with {{salt}} and {{black_pepper}}, and brown lightly in a skillet. Place the chops on top of the sweet potatoes.\n4. In a small saucepan, combine the reserved pear syrup with {{brown_sugar}}, {{butter}}, and {{cinnamon}}. Heat just until the sugar dissolves.\n5. Spoon half of the syrup over the chops. Bake for 30 minutes.\n6. Remove the dish from the oven, arrange {{pear_halves}} around the chops, and spoon the remaining syrup over everything. Bake for another 30 minutes, or until the chops are tender.\n",
     "tokens_used": [
@@ -2403,6 +2459,11 @@
     "title": "Turmeric Chicken Curry",
     "base_kind": "multiplier",
     "default_base": 1,
+    "categories": [
+      "Main",
+      "Chicken",
+      "Curry"
+    ],
     "notes": "Bright coconut curry; serve with rice or cauliflower rice and lime wedges.",
     "steps_raw": "1. Cook {{rice}} according to package directions.\n2. In a large pan over medium heat, melt {{coconut_oil}}. Add {{white_onion}}, {{ginger}}, and {{garlic}}; sauté for 3–4 minutes until the onion is translucent. Remove to a plate, leaving the oil in the pan.\n3. Lightly salt {{chicken_breast}} with part of the {{sea_salt}} and sauté in the same pan until the internal temperature reaches 165°F (74°C).\n4. Return the aromatics to the pan. Stir in {{coconut_milk}}, {{coconut_cream}}, {{coconut_aminos}}, juice from half of the {{lime}}, {{sea_salt}}, {{turmeric}}, and {{black_pepper}}. Simmer for about 5 minutes, stirring, until the sauce thickens slightly.\n5. Adjust seasoning to taste. Top with {{cilantro}} and serve with {{cauliflower_rice}} and lime wedges from the remaining {{lime}}.\n",
     "tokens_used": [
@@ -2727,6 +2788,11 @@
     "title": "Watercress and Parsley Soup",
     "base_kind": "multiplier",
     "default_base": 1,
+    "categories": [
+      "Soup",
+      "Vegetarian",
+      "Greens"
+    ],
     "notes": "Quick green soup; blend greens with milk if you prefer a smoother finish.",
     "steps_raw": "1. In a pot, melt {{butter}} and briefly sauté {{onion}} until translucent.\n2. Stir in {{wheat_flour}} and cook for about 3 minutes to form a roux.\n3. Gradually whisk in {{chicken_broth}} and {{milk}}. Bring to a boil while whisking constantly.\n4. Lower the heat, then add {{parsley}}, {{watercress}}, {{nutmeg}}, {{salt}}, and {{black_pepper}}. Cover and cook for about 5 minutes, keeping the greens bright.\n5. For an extra smooth soup, blend some of the hot liquid with the greens before adding, or purée briefly after cooking. Serve hot; add cooked chicken if desired.\n",
     "tokens_used": [

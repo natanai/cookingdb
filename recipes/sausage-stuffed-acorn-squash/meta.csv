@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes
-sausage-stuffed-acorn-squash,Sausage Stuffed Acorn Squash,multiplier,1,"Stuff the roasted squash with a cheesy sausage and breadcrumb mixture."
+id,title,base_kind,default_base,notes,categories
+sausage-stuffed-acorn-squash,Sausage Stuffed Acorn Squash,multiplier,1,"Stuff the roasted squash with a cheesy sausage and breadcrumb mixture.",Main;Fall;Stuffed
