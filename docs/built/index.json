@@ -2,6 +2,9 @@
   {
     "id": "apple-cider-brisket",
     "title": "Apple Cider Brisket",
+    "categories": [
+      "Mains"
+    ],
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -11,6 +14,10 @@
   {
     "id": "baked-sweet-potatoes",
     "title": "Baked Sweet Potatoes",
+    "categories": [
+      "Sides",
+      "Vegetarian"
+    ],
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -20,6 +27,9 @@
   {
     "id": "blintzes",
     "title": "Blintzes (Crepes)",
+    "categories": [
+      "Breakfast & Brunch"
+    ],
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -29,6 +39,10 @@
   {
     "id": "butternut-squash-casserole",
     "title": "Butternut Squash Casserole",
+    "categories": [
+      "Mains",
+      "Vegetarian"
+    ],
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -38,6 +52,9 @@
   {
     "id": "chocolate-chip-cookies-gf",
     "title": "Chocolate Chip Cookies (Gluten Free)",
+    "categories": [
+      "Desserts & Baking"
+    ],
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -47,6 +64,9 @@
   {
     "id": "collards-canadian-bacon",
     "title": "Collards with Canadian Bacon",
+    "categories": [
+      "Sides"
+    ],
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -56,6 +76,10 @@
   {
     "id": "creamy-leek-potato-soup",
     "title": "Creamy Leek and Potato Soup",
+    "categories": [
+      "Soups & Stews",
+      "Vegetarian"
+    ],
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -65,6 +89,9 @@
   {
     "id": "italian-soup",
     "title": "Italian Soup",
+    "categories": [
+      "Soups & Stews"
+    ],
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -74,6 +101,9 @@
   {
     "id": "lemon-cake",
     "title": "Vegan Gluten-Free Lemon Cake",
+    "categories": [
+      "Desserts & Baking"
+    ],
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -83,6 +113,9 @@
   {
     "id": "sausage-stuffed-acorn-squash",
     "title": "Sausage Stuffed Acorn Squash",
+    "categories": [
+      "Mains"
+    ],
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -92,6 +125,9 @@
   {
     "id": "sweet-potatoes-pork-chops-pears",
     "title": "Sweet Potatoes with Pork Chops and Pears",
+    "categories": [
+      "Mains"
+    ],
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -101,6 +137,9 @@
   {
     "id": "turmeric-chicken-curry",
     "title": "Turmeric Chicken Curry",
+    "categories": [
+      "Mains"
+    ],
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -110,6 +149,10 @@
   {
     "id": "watercress-parsley-soup",
     "title": "Watercress and Parsley Soup",
+    "categories": [
+      "Soups & Stews",
+      "Vegetarian"
+    ],
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,

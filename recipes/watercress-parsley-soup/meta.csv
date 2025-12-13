@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes
-watercress-parsley-soup,Watercress and Parsley Soup,multiplier,1,"Quick green soup; blend greens with milk if you prefer a smoother finish."
+id,title,base_kind,default_base,notes,categories
+watercress-parsley-soup,Watercress and Parsley Soup,multiplier,1,Quick green soup; blend greens with milk if you prefer a smoother finish.,Soups & Stews;Vegetarian

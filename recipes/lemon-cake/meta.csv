@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes
-lemon-cake,Vegan Gluten-Free Lemon Cake,multiplier,1,"Bake in an 8x8-inch square pan (stone preferred; glass/metal ok). Use room-temperature full-fat coconut milk and whisk/blend until completely smooth before measuring."
+id,title,base_kind,default_base,notes,categories
+lemon-cake,Vegan Gluten-Free Lemon Cake,multiplier,1,Bake in an 8x8-inch square pan (stone preferred; glass/metal ok). Use room-temperature full-fat coconut milk and whisk/blend until completely smooth before measuring.,Desserts & Baking

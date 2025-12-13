@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes
-blintzes,Blintzes (Crepes),multiplier,1,"Crepe/blintz wrapper batter. Uses inline ingredient tokens in steps."
+id,title,base_kind,default_base,notes,categories
+blintzes,Blintzes (Crepes),multiplier,1,Crepe/blintz wrapper batter. Uses inline ingredient tokens in steps.,Breakfast & Brunch
