@@ -89,10 +89,10 @@ function pluralize(display, amount, unit) {
   return display;
 }
 
-function createMetadataPill(label, value) {
+function createMetadataPill(label, value, negativeText) {
   const pill = document.createElement('span');
   pill.className = value ? 'pill' : 'pill neutral';
-  pill.textContent = value ? label : `Contains ${label.toLowerCase()}`;
+  pill.textContent = value ? label : negativeText;
   return pill;
 }
 
@@ -248,9 +248,9 @@ function renderRecipe(recipe) {
   prefDairy.checked = state.restrictions.dairy_free;
   notesEl.textContent = recipe.notes || 'A family note for this dish will go here soon.';
   metadataEl.innerHTML = '';
-  metadataEl.appendChild(createMetadataPill('Gluten-free ready', recipe.compatibility_possible.gluten_free));
-  metadataEl.appendChild(createMetadataPill('Egg-free friendly', recipe.compatibility_possible.egg_free));
-  metadataEl.appendChild(createMetadataPill('Dairy-free ready', recipe.compatibility_possible.dairy_free));
+  metadataEl.appendChild(createMetadataPill('Gluten-free ready', recipe.compatibility_possible.gluten_free, 'Contains gluten'));
+  metadataEl.appendChild(createMetadataPill('Egg-free friendly', recipe.compatibility_possible.egg_free, 'Contains egg'));
+  metadataEl.appendChild(createMetadataPill('Dairy-free ready', recipe.compatibility_possible.dairy_free, 'Contains dairy'));
   const rerender = () => {
     state.multiplier = Number(multiplierInput.value) || recipe.default_base;
     renderIngredientsList(recipe, state);

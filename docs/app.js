@@ -12,10 +12,10 @@ function recipeVisible(recipe, filters) {
   return true;
 }
 
-function createTag(label, value) {
+function createTag(label, value, negativeText) {
   const pill = document.createElement('span');
   pill.className = value ? 'pill' : 'pill neutral';
-  pill.textContent = value ? label : `Contains ${label.toLowerCase()}`;
+  pill.textContent = value ? label : negativeText;
   return pill;
 }
 
@@ -53,9 +53,9 @@ function renderRecipes(recipes) {
     li.appendChild(link);
     const tags = document.createElement('div');
     tags.className = 'tags';
-    tags.appendChild(createTag('Gluten-free ready', recipe.compatibility_possible.gluten_free));
-    tags.appendChild(createTag('Egg-free friendly', recipe.compatibility_possible.egg_free));
-    tags.appendChild(createTag('Dairy-free ready', recipe.compatibility_possible.dairy_free));
+    tags.appendChild(createTag('Gluten-free ready', recipe.compatibility_possible.gluten_free, 'Contains gluten'));
+    tags.appendChild(createTag('Egg-free friendly', recipe.compatibility_possible.egg_free, 'Contains egg'));
+    tags.appendChild(createTag('Dairy-free ready', recipe.compatibility_possible.dairy_free, 'Contains dairy'));
     li.appendChild(tags);
     listEl.appendChild(li);
   });
