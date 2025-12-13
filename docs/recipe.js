@@ -9,6 +9,19 @@ function getRecipeIdFromQuery() {
   return params.get('id');
 }
 
+function getDietaryFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    gluten_free: params.get('gluten_free') === '1',
+    egg_free: params.get('egg_free') === '1',
+    dairy_free: params.get('dairy_free') === '1',
+  };
+}
+
+function restrictionsActive(prefs) {
+  return prefs.gluten_free || prefs.egg_free || prefs.dairy_free;
+}
+
 function parseRatio(str) {
   if (!str) return null;
   const trimmed = str.trim();
@@ -83,6 +96,14 @@ function createMetadataPill(label, value) {
   return pill;
 }
 
+function optionMeetsRestrictions(option, restrictions) {
+  if (!option || !option.dietary) return true;
+  if (restrictions.gluten_free && !option.dietary.gluten_free) return false;
+  if (restrictions.egg_free && !option.dietary.egg_free) return false;
+  if (restrictions.dairy_free && !option.dietary.dairy_free) return false;
+  return true;
+}
+
 function renderIngredientEntry(option, multiplier) {
   if (!option.ratio) return option.display;
   const baseFraction = parseRatio(option.ratio);
@@ -103,13 +124,16 @@ function buildChoiceControls(recipe, state, onChange) {
     wrapper.className = 'choice-group';
     const select = document.createElement('select');
     select.dataset.token = token;
+    const preferred = selectOptionForToken(token, recipe, state);
     recipe.ingredients[token].options
       .filter((opt) => opt.option)
       .forEach((opt) => {
         const optionEl = document.createElement('option');
         optionEl.value = opt.option;
         optionEl.textContent = opt.display;
-        if (opt.option === choice.default_option) optionEl.selected = true;
+        const compatible = optionMeetsRestrictions(opt, state.restrictions);
+        optionEl.disabled = restrictionsActive(state.restrictions) && !compatible;
+        if (preferred && opt.option === preferred.option) optionEl.selected = true;
         select.appendChild(optionEl);
       });
     select.addEventListener('change', () => {
@@ -121,7 +145,9 @@ function buildChoiceControls(recipe, state, onChange) {
     wrapper.appendChild(label);
     wrapper.appendChild(select);
     container.appendChild(wrapper);
-    state.selectedOptions[token] = choice.default_option;
+    if (preferred?.option) {
+      state.selectedOptions[token] = preferred.option;
+    }
   });
 }
 
@@ -134,11 +160,27 @@ function formatStepText(stepText, recipe, state) {
 
 function selectOptionForToken(token, recipe, state) {
   const tokenData = recipe.ingredients[token];
-  if (tokenData.isChoice) {
-    const selected = state.selectedOptions[token] || recipe.choices[token]?.default_option;
-    return tokenData.options.find((opt) => opt.option === selected) || tokenData.options[0];
+  if (!tokenData.isChoice) return tokenData.options[0];
+
+  const selectedKey = state.selectedOptions[token] || recipe.choices[token]?.default_option;
+  const options = tokenData.options.filter((opt) => opt.option);
+  let selected = options.find((opt) => opt.option === selectedKey) || options[0];
+
+  const compatibleOptions = options.filter((opt) => optionMeetsRestrictions(opt, state.restrictions));
+  if (restrictionsActive(state.restrictions) && compatibleOptions.length > 0) {
+    if (!optionMeetsRestrictions(selected, state.restrictions)) {
+      selected =
+        compatibleOptions.find((opt) => opt.option === state.selectedOptions[token]) ||
+        compatibleOptions.find((opt) => opt.option === recipe.choices[token]?.default_option) ||
+        compatibleOptions[0];
+    }
   }
-  return tokenData.options[0];
+
+  if (selected && selected.option && state.selectedOptions[token] !== selected.option) {
+    state.selectedOptions[token] = selected.option;
+  }
+
+  return selected || tokenData.options[0];
 }
 
 function renderIngredientsList(recipe, state) {
@@ -169,26 +211,50 @@ function renderRecipe(recipe) {
   const notesEl = document.getElementById('notes');
   const metadataEl = document.getElementById('metadata');
   const multiplierInput = document.getElementById('multiplier');
+  const prefGluten = document.getElementById('pref-gluten');
+  const prefEgg = document.getElementById('pref-egg');
+  const prefDairy = document.getElementById('pref-dairy');
   const state = {
     multiplier: Number(recipe.default_base) || 1,
     selectedOptions: {},
+    restrictions: {
+      gluten_free: false,
+      egg_free: false,
+      dairy_free: false,
+      ...getDietaryFromQuery(),
+    },
   };
   multiplierInput.value = state.multiplier;
+  prefGluten.checked = state.restrictions.gluten_free;
+  prefEgg.checked = state.restrictions.egg_free;
+  prefDairy.checked = state.restrictions.dairy_free;
   notesEl.textContent = recipe.notes || 'A family note for this dish will go here soon.';
   metadataEl.innerHTML = '';
   metadataEl.appendChild(createMetadataPill('Gluten-free ready', recipe.compatibility_possible.gluten_free));
   metadataEl.appendChild(createMetadataPill('Egg-free friendly', recipe.compatibility_possible.egg_free));
   metadataEl.appendChild(createMetadataPill('Dairy-free ready', recipe.compatibility_possible.dairy_free));
-  buildChoiceControls(recipe, state, () => {
-    renderIngredientsList(recipe, state);
-    renderSteps(recipe, state);
-  });
   const rerender = () => {
     state.multiplier = Number(multiplierInput.value) || recipe.default_base;
     renderIngredientsList(recipe, state);
     renderSteps(recipe, state);
   };
+  const syncSelections = () => {
+    Object.keys(recipe.choices).forEach((token) => selectOptionForToken(token, recipe, state));
+  };
+  const handleRestrictionChange = () => {
+    state.restrictions.gluten_free = prefGluten.checked;
+    state.restrictions.egg_free = prefEgg.checked;
+    state.restrictions.dairy_free = prefDairy.checked;
+    syncSelections();
+    buildChoiceControls(recipe, state, rerender);
+    rerender();
+  };
+  syncSelections();
+  buildChoiceControls(recipe, state, rerender);
   multiplierInput.addEventListener('input', rerender);
+  prefGluten.addEventListener('change', handleRestrictionChange);
+  prefEgg.addEventListener('change', handleRestrictionChange);
+  prefDairy.addEventListener('change', handleRestrictionChange);
   rerender();
   titleEl.textContent = recipe.title;
   heroTitleEl.textContent = recipe.title;
