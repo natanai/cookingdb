@@ -1,7 +1,70 @@
 [
   {
+    "id": "apple-cider-brisket",
+    "title": "Apple Cider Brisket",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "baked-sweet-potatoes",
+    "title": "Baked Sweet Potatoes",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "blintzes",
     "title": "Blintzes (Crepes)",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "butternut-squash-casserole",
+    "title": "Butternut Squash Casserole",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "chocolate-chip-cookies-gf",
+    "title": "Chocolate Chip Cookies (Gluten Free)",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "collards-canadian-bacon",
+    "title": "Collards with Canadian Bacon",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "creamy-leek-potato-soup",
+    "title": "Creamy Leek and Potato Soup",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "italian-soup",
+    "title": "Italian Soup",
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -15,6 +78,42 @@
       "gluten_free": true,
       "egg_free": true,
       "dairy_free": true
+    }
+  },
+  {
+    "id": "sausage-stuffed-acorn-squash",
+    "title": "Sausage Stuffed Acorn Squash",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "sweet-potatoes-pork-chops-pears",
+    "title": "Sweet Potatoes with Pork Chops and Pears",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "turmeric-chicken-curry",
+    "title": "Turmeric Chicken Curry",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "watercress-parsley-soup",
+    "title": "Watercress and Parsley Soup",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
     }
   }
 ]
