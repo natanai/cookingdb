@@ -7,5 +7,14 @@
       "egg_free": true,
       "dairy_free": true
     }
+  },
+  {
+    "id": "lemon-cake",
+    "title": "Vegan Gluten-Free Lemon Cake",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": false
+    }
   }
 ]
