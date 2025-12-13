@@ -64,10 +64,6 @@ function renderRecipes(recipes) {
   visible.forEach((recipe) => {
     const li = document.createElement('li');
     li.className = 'recipe-card';
-    const tab = document.createElement('div');
-    tab.className = 'card-tab';
-    tab.textContent = 'Recipe';
-    li.appendChild(tab);
 
     const link = document.createElement('a');
     link.href = buildRecipeLink(recipe.id, filters);
