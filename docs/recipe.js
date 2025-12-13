@@ -258,6 +258,9 @@ function setupPanControls(recipe, state, rerender) {
 
   if (!panControls || !panSelect || !panNote || !recipe.pan_sizes?.length) {
     state.panMultiplier = 1;
+    if (panControls) {
+      panControls.remove();
+    }
     return;
   }
 
@@ -302,6 +305,7 @@ function renderRecipe(recipe) {
   const heroTitleEl = document.getElementById('recipe-title-duplicate');
   const notesEl = document.getElementById('notes');
   const metadataEl = document.getElementById('metadata');
+  const categoryRow = document.getElementById('category-row');
   const multiplierInput = document.getElementById('multiplier');
   const multiplierHelper = document.getElementById('multiplier-helper');
   const prefGluten = document.getElementById('pref-gluten');
@@ -323,11 +327,20 @@ function renderRecipe(recipe) {
   prefGluten.checked = state.restrictions.gluten_free;
   prefEgg.checked = state.restrictions.egg_free;
   prefDairy.checked = state.restrictions.dairy_free;
-  notesEl.textContent = recipe.notes || 'A family note for this dish will go here soon.';
+  notesEl.textContent = recipe.notes || 'Notes for this dish will go here soon.';
   metadataEl.innerHTML = '';
   metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.gluten_free, recipe.compatibility_possible.gluten_free));
   metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.egg_free, recipe.compatibility_possible.egg_free));
   metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.dairy_free, recipe.compatibility_possible.dairy_free));
+  if (categoryRow) {
+    categoryRow.innerHTML = '';
+    (recipe.categories || []).forEach((cat) => {
+      const chip = document.createElement('span');
+      chip.className = 'category-chip';
+      chip.textContent = cat;
+      categoryRow.appendChild(chip);
+    });
+  }
   const updateMultiplierHelper = () => {
     if (!multiplierHelper) return;
     const effective = getEffectiveMultiplier(state);

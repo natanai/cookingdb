@@ -4,8 +4,18 @@ async function loadIndex() {
   return res.json();
 }
 
+let selectedCategory = 'all';
+
 function recipeVisible(recipe, filters) {
-  if (filters.query && !recipe.title.toLowerCase().includes(filters.query)) return false;
+  const matchesCategory =
+    filters.category === 'all' || (recipe.categories || []).includes(filters.category);
+  if (!matchesCategory) return false;
+
+  if (filters.query) {
+    const inTitle = recipe.title.toLowerCase().includes(filters.query);
+    const inCategories = (recipe.categories || []).some((cat) => cat.toLowerCase().includes(filters.query));
+    if (!inTitle && !inCategories) return false;
+  }
   if (filters.gluten && !recipe.compatibility_possible.gluten_free) return false;
   if (filters.egg && !recipe.compatibility_possible.egg_free) return false;
   if (filters.dairy && !recipe.compatibility_possible.dairy_free) return false;
@@ -40,6 +50,7 @@ function renderRecipes(recipes) {
     egg: document.getElementById('filter-egg').checked,
     dairy: document.getElementById('filter-dairy').checked,
     query: document.getElementById('search')?.value.trim().toLowerCase() || '',
+    category: selectedCategory,
   };
   listEl.innerHTML = '';
   const visible = recipes.filter((r) => recipeVisible(r, filters));
@@ -53,6 +64,7 @@ function renderRecipes(recipes) {
   visible.forEach((recipe) => {
     const li = document.createElement('li');
     li.className = 'recipe-card';
+
     const link = document.createElement('a');
     link.href = buildRecipeLink(recipe.id, filters);
     link.textContent = recipe.title;
@@ -67,9 +79,45 @@ function renderRecipes(recipes) {
   });
 }
 
+function uniqueCategories(recipes) {
+  const set = new Set();
+  recipes.forEach((recipe) => {
+    (recipe.categories || []).forEach((cat) => set.add(cat));
+  });
+  return Array.from(set).sort((a, b) => a.localeCompare(b));
+}
+
+function renderCategoryPanel(recipes, onSelect) {
+  const panel = document.getElementById('category-panel');
+  const optionsContainer = document.getElementById('category-options');
+  const currentLabel = document.getElementById('category-current');
+  if (!panel || !optionsContainer || !currentLabel) return;
+
+  const categories = ['all', ...uniqueCategories(recipes)];
+  optionsContainer.innerHTML = '';
+  currentLabel.textContent = selectedCategory === 'all' ? 'All recipes' : selectedCategory;
+
+  categories.forEach((cat) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'category-option';
+    btn.dataset.category = cat;
+    btn.setAttribute('aria-pressed', selectedCategory === cat ? 'true' : 'false');
+    btn.textContent = cat === 'all' ? 'All recipes' : cat;
+    btn.addEventListener('click', () => {
+      selectedCategory = cat;
+      renderCategoryPanel(recipes, onSelect);
+      onSelect();
+      panel.open = false;
+    });
+    optionsContainer.appendChild(btn);
+  });
+}
+
 async function main() {
   const data = await loadIndex();
   const update = () => renderRecipes(data);
+  renderCategoryPanel(data, update);
   document.getElementById('filter-gluten').addEventListener('change', update);
   document.getElementById('filter-egg').addEventListener('change', update);
   document.getElementById('filter-dairy').addEventListener('change', update);

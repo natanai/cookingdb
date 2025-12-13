@@ -19,6 +19,7 @@
     <section class="hero">
       <div class="hero-content">
         <h1 class="hero-title">Recipe box</h1>
+        <p class="hero-subtitle">Browse every recipe in one place or jump straight into a category. Search and dietary filters help you land on the right card fast.</p>
         <div class="filter-bar">
           <label class="search-field" aria-label="Search recipes">
             <span aria-hidden="true">🔎</span>
@@ -30,6 +31,13 @@
             <label><input type="checkbox" id="filter-dairy" /> Dairy-free friendly</label>
           </div>
         </div>
+        <details class="category-panel" id="category-panel">
+          <summary class="category-summary">
+            <span class="summary-label">Categories</span>
+            <span class="summary-selection" id="category-current">All recipes</span>
+          </summary>
+          <div class="category-options" id="category-options" aria-label="Recipe categories"></div>
+        </details>
       </div>
     </section>
     <main>
