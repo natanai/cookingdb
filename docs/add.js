@@ -1,4 +1,4 @@
-import {
+.import {
   familySubmitRecipe,
   getRememberedPassword,
   setRememberedPassword,
@@ -14,6 +14,10 @@ const ingredientRowsEl = document.getElementById('ingredient-rows');
 const stepsListEl = document.getElementById('steps-list');
 const ingredientSuggestionsEl = document.getElementById('ingredient-suggestions');
 const categorySuggestionsEl = document.getElementById('category-suggestions');
+// Remove required attribute from slug input as it's auto-generated
+const slugInputField = document.getElementById('slug');
+if (slugInputField) slugInputField.removeAttribute('required');
+
 const statusEl = document.getElementById('form-status');
 
 const ingredientNameSet = new Set();
