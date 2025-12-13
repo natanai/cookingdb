@@ -1,5 +1,5 @@
 async function loadIndex() {
-  const res = await fetch('built/index.json');
+  const res = await fetch('./built/index.json');
   if (!res.ok) throw new Error('Unable to load index.json');
   return res.json();
 }
