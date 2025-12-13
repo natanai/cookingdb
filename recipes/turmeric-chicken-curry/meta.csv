@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes
-turmeric-chicken-curry,Turmeric Chicken Curry,multiplier,1,"Bright coconut curry; serve with rice or cauliflower rice and lime wedges."
+id,title,base_kind,default_base,notes,categories
+turmeric-chicken-curry,Turmeric Chicken Curry,multiplier,1,"Bright coconut curry; serve with rice or cauliflower rice and lime wedges.",Main;Chicken;Curry
