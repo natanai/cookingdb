@@ -36,7 +36,10 @@ function getToken() {
 
 function extractIds(payload) {
   if (!payload) return [];
-  const list = Array.isArray(payload) ? payload : payload.pending || payload.recipes || payload.items;
+  const list = Array.isArray(payload)
+  ? payload
+  : payload.rows || payload.pending || payload.recipes || payload.items;
+
   if (!Array.isArray(list)) return [];
   return list
     .map((entry) => entry?.id || entry?.recipe_id || entry?.recipe?.id || entry?.payload?.id)
