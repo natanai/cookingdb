@@ -7,7 +7,6 @@ const PATHS = {
   adminDelete: '/admin/purge-imported',
 };
 
-
 function storageKey(kind) {
   return `cookingdb-${kind}-password`;
 }
@@ -15,16 +14,21 @@ function storageKey(kind) {
 export function setRememberedPassword({ kind, value, remember }) {
   if (!['family', 'admin'].includes(kind)) return;
   const key = storageKey(kind);
+
   if (remember && value) {
     localStorage.setItem(key, value);
     sessionStorage.setItem(key, value);
-  } else if (value) {
+    return;
+  }
+
+  if (value) {
     sessionStorage.setItem(key, value);
     localStorage.removeItem(key);
-  } else {
-    sessionStorage.removeItem(key);
-    localStorage.removeItem(key);
+    return;
   }
+
+  sessionStorage.removeItem(key);
+  localStorage.removeItem(key);
 }
 
 export function getRememberedPassword(kind) {
@@ -39,6 +43,7 @@ function buildUrl(path, workerBaseUrl) {
 
 async function postJson(pathKey, { workerBaseUrl, payload, password, adminToken }) {
   const url = buildUrl(PATHS[pathKey], workerBaseUrl);
+
   const headers = { 'Content-Type': 'application/json' };
   if (password) headers['X-Recipe-Password'] = password;
   if (adminToken) headers['X-Admin-Token'] = adminToken;
@@ -48,19 +53,40 @@ async function postJson(pathKey, { workerBaseUrl, payload, password, adminToken 
     headers,
     body: JSON.stringify(payload || {}),
   });
-  // ... existing error handling ...
+
+  const contentType = (res.headers.get('content-type') || '').toLowerCase();
+
+  let data;
+  if (contentType.includes('application/json')) {
+    data = await res.json();
+  } else {
+    const text = await res.text();
+    data = text ? { ok: false, error: text } : null;
+  }
+
+  if (!res.ok) {
+    throw new Error((data && data.error) ? data.error : `Request failed (${res.status})`);
+  }
+  if (data && data.ok === false) {
+    throw new Error(data.error || 'Request failed');
+  }
+
+  return data;
 }
 
 export function familySubmitRecipe({ workerBaseUrl = DEFAULT_BASE_URL, familyPassword, recipe }) {
   return postJson('familySubmit', {
     workerBaseUrl,
     password: familyPassword,
-    // The Worker expects a { title, payload } object
     payload: { title: recipe.title, payload: recipe },
   });
 }
 
-export function familyListPending({ workerBaseUrl = DEFAULT_BASE_URL, familyPassword, includePayload = false }) {
+export function familyListPending({
+  workerBaseUrl = DEFAULT_BASE_URL,
+  familyPassword,
+  includePayload = false,
+}) {
   return postJson('familyList', {
     workerBaseUrl,
     password: familyPassword,
@@ -68,24 +94,26 @@ export function familyListPending({ workerBaseUrl = DEFAULT_BASE_URL, familyPass
   });
 }
 
-
 export function adminExportPending({ workerBaseUrl = DEFAULT_BASE_URL, adminToken }) {
   return postJson('adminExport', {
     workerBaseUrl,
-    payload: { token: adminToken },
+    adminToken,
+    payload: { status: 'pending', include_payload: true },
   });
 }
 
 export function adminMarkImported({ workerBaseUrl = DEFAULT_BASE_URL, adminToken, ids }) {
   return postJson('adminMarkImported', {
     workerBaseUrl,
-    payload: { token: adminToken, ids },
+    adminToken,
+    payload: { ids },
   });
 }
 
 export function adminDelete({ workerBaseUrl = DEFAULT_BASE_URL, adminToken, ids }) {
   return postJson('adminDelete', {
     workerBaseUrl,
-    payload: { token: adminToken, ids },
+    adminToken,
+    payload: { ids },
   });
 }
