@@ -313,6 +313,12 @@ main {
   margin-bottom: 0.5rem;
 }
 
+.ingredient-alternatives {
+  color: var(--muted);
+  font-style: italic;
+  margin-left: 0.35rem;
+}
+
 .notes {
   margin: 0.75rem 0;
   font-style: italic;
