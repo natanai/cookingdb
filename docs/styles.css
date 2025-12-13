@@ -1,15 +1,15 @@
 :root {
-  --bg: #fdfaf4;
-  --text: #1f130d;
-  --muted: #5c5048;
-  --accent: #f05d23;
-  --accent-soft: rgba(240, 93, 35, 0.12);
-  --card: #ffffff;
-  --border: #e9ddcf;
-  --shadow: 0 10px 30px rgba(31, 19, 13, 0.08);
+  --bg: #f7f2e9;
+  --text: #21160f;
+  --muted: #6a5e55;
+  --accent: #b25b36;
+  --accent-soft: #f0e4d6;
+  --card: #fffaf3;
+  --border: #e1d6c8;
+  --shadow: 0 6px 14px rgba(33, 22, 15, 0.06);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 * {
   box-sizing: border-box;
@@ -18,7 +18,7 @@
 body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: linear-gradient(135deg, #fbf3e7 0%, #fdfaf4 45%, #f9f2e9 100%);
+  background: var(--bg);
   color: var(--text);
   line-height: 1.7;
   min-height: 100vh;
@@ -31,12 +31,8 @@ body {
 }
 
 .site-header {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(6px);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid var(--border);
+  background: #f9f4ec;
 }
 
 .site-header .inner {
@@ -52,9 +48,9 @@ body {
 
 .site-title {
   margin: 0;
-  font-family: 'Playfair Display', 'Inter', serif;
-  font-size: clamp(1.4rem, 3vw, 1.9rem);
-  letter-spacing: 0.02em;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  letter-spacing: 0.01em;
 }
 
 .nav-links a {
@@ -65,45 +61,28 @@ body {
 
 .hero {
   margin: 2.5rem 0 2rem;
-  padding: 2.25rem;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #1f130d 0%, #3a1f14 45%, #f05d23 115%);
-  color: #fff8f1;
+  padding: 1.5rem;
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--text);
   box-shadow: var(--shadow);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.15), transparent 35%),
-    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.12), transparent 30%),
-    radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.1), transparent 35%);
-  pointer-events: none;
+  border: 1px solid var(--border);
 }
 
 .hero-content {
   position: relative;
   display: grid;
-  gap: 1rem;
-  max-width: 680px;
+  gap: 0.75rem;
+  max-width: 720px;
   z-index: 1;
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.35rem 0.75rem;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 999px;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
+.hero-title {
+  margin: 0;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  letter-spacing: 0.01em;
+  color: #2a1c13;
 }
 
 .hero h1 {
@@ -114,39 +93,38 @@ body {
 
 .hero p {
   margin: 0;
-  color: #f8eadb;
-  font-size: 1.05rem;
+  color: var(--muted);
+  font-size: 1rem;
 }
 
 .filter-bar {
   display: grid;
   gap: 0.75rem;
   grid-template-columns: 1fr;
-  margin-top: 1.25rem;
+  margin-top: 0.5rem;
 }
 
 .search-field {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
   padding: 0.65rem 0.85rem;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
 .search-field input {
   width: 100%;
   border: none;
   background: transparent;
-  color: #fff8f1;
+  color: var(--text);
   font-size: 1rem;
   outline: none;
 }
 
 .search-field input::placeholder {
-  color: rgba(255, 248, 241, 0.8);
+  color: var(--muted);
 }
 
 .filters {
@@ -160,8 +138,8 @@ body {
   align-items: center;
   gap: 0.4rem;
   padding: 0.4rem 0.75rem;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
   border-radius: 999px;
   font-weight: 600;
   cursor: pointer;
@@ -169,14 +147,14 @@ body {
 }
 
 .filters input {
-  accent-color: #ffe4c7;
+  accent-color: var(--accent);
 }
 
 .filters label:focus-within,
 .filters label:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 18px rgba(33, 22, 15, 0.08);
+  background: #fff;
 }
 
 main {
@@ -187,11 +165,6 @@ main {
   margin: 0 0 0.5rem;
   font-size: 1.35rem;
   letter-spacing: 0.01em;
-}
-
-.section-subtitle {
-  margin: 0 0 1.5rem;
-  color: var(--muted);
 }
 
 .recipe-list {
