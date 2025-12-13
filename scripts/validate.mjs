@@ -73,6 +73,10 @@ function ensure(condition, message) {
   }
 }
 
+function parseBoolean(value) {
+  return ['true', '1', 'yes', 'y', 'on'].includes(String(value || '').trim().toLowerCase());
+}
+
 export async function validateAll() {
   const recipesDir = path.join(process.cwd(), 'recipes');
   const recipeDirs = fs.readdirSync(recipesDir, { withFileTypes: true }).filter((ent) => ent.isDirectory());
@@ -147,6 +151,32 @@ export async function validateAll() {
       const options = tokenOptions.get(row.token);
       ensure(options.size >= 2, `${recipeId}: choices token ${row.token} must have at least two options in ingredients.csv`);
       ensure(options.has(row.default_option), `${recipeId}: default option ${row.default_option} for ${row.token} not found among ingredient options`);
+    }
+
+    const pansPath = path.join(baseDir, 'pans.csv');
+    if (fs.existsSync(pansPath)) {
+      const panRows = await parseCSVFile(pansPath);
+      ensure(panRows.length > 0, `${recipeId}: pans.csv must include at least one pan option`);
+      const allowedShapes = new Set(['rectangle', 'square', 'round']);
+      let defaultCount = 0;
+
+      for (const row of panRows) {
+        ensure(row.id && row.label, `${recipeId}: pan row missing id/label: ${JSON.stringify(row)}`);
+        const shape = (row.shape || 'rectangle').toLowerCase();
+        ensure(allowedShapes.has(shape), `${recipeId}: pan ${row.id} has unsupported shape ${row.shape}`);
+        const width = Number(row.width);
+        ensure(Number.isFinite(width) && width > 0, `${recipeId}: pan ${row.id} must include positive width/diameter`);
+        const heightRaw = row.height ? Number(row.height) : null;
+        if (shape === 'rectangle') {
+          ensure(Number.isFinite(heightRaw) && heightRaw > 0, `${recipeId}: rectangular pan ${row.id} requires height`);
+        }
+        if (shape === 'square' && row.height) {
+          ensure(Number.isFinite(heightRaw) && heightRaw > 0, `${recipeId}: square pan ${row.id} has invalid height`);
+        }
+        if (parseBoolean(row.default)) defaultCount += 1;
+      }
+
+      ensure(defaultCount === 1, `${recipeId}: pans.csv must mark exactly one default pan`);
     }
   }
 

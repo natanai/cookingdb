@@ -290,6 +290,17 @@ main {
   margin-left: 0.25rem;
 }
 
+.pan-controls {
+  display: grid;
+  gap: 0.35rem;
+  align-items: start;
+}
+
+.control-note {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 .choice-group {
   display: inline-flex;
   align-items: center;

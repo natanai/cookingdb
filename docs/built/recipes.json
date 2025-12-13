@@ -280,6 +280,8 @@
         "default_option": "beef"
       }
     },
+    "pan_sizes": [],
+    "default_pan": null,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -402,6 +404,8 @@
       }
     },
     "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -668,6 +672,8 @@
         "default_option": "vegan"
       }
     },
+    "pan_sizes": [],
+    "default_pan": null,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -788,6 +794,8 @@
       }
     },
     "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -1080,6 +1088,8 @@
         "default_option": "dairy"
       }
     },
+    "pan_sizes": [],
+    "default_pan": null,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -1220,6 +1230,8 @@
       }
     },
     "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -1420,6 +1432,8 @@
       }
     },
     "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -1620,6 +1634,8 @@
       }
     },
     "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -1980,6 +1996,36 @@
         "default_option": "yogurt"
       }
     },
+    "pan_sizes": [
+      {
+        "id": "sq_8",
+        "label": "8x8-inch square",
+        "shape": "square",
+        "width": 8,
+        "height": 8,
+        "unit": "in",
+        "is_default": true
+      },
+      {
+        "id": "rect_9x13",
+        "label": "9x13-inch rectangle",
+        "shape": "rectangle",
+        "width": 9,
+        "height": 13,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "round_9",
+        "label": "9-inch round",
+        "shape": "round",
+        "width": 9,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      }
+    ],
+    "default_pan": "sq_8",
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -2161,6 +2207,8 @@
       }
     },
     "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -2342,6 +2390,8 @@
       }
     },
     "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -2664,6 +2714,8 @@
       }
     },
     "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -2884,6 +2936,8 @@
       }
     },
     "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,

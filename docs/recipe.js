@@ -96,6 +96,26 @@ function createMetadataPill(label, value) {
   return pill;
 }
 
+function getEffectiveMultiplier(state) {
+  return (Number(state.multiplier) || 1) * (Number(state.panMultiplier) || 1);
+}
+
+function panArea(pan) {
+  if (!pan) return null;
+  const shape = (pan.shape || 'rectangle').toLowerCase();
+  const width = Number(pan.width);
+  if (!Number.isFinite(width) || width <= 0) return null;
+
+  if (shape === 'round') {
+    const radius = width / 2;
+    return Math.PI * radius * radius;
+  }
+
+  const height = Number(pan.height) || (shape === 'square' ? width : null);
+  if (!Number.isFinite(height) || height <= 0) return null;
+  return width * height;
+}
+
 function optionMeetsRestrictions(option, restrictions) {
   if (!option || !option.dietary) return true;
   if (restrictions.gluten_free && !option.dietary.gluten_free) return false;
@@ -161,9 +181,10 @@ function buildChoiceControls(recipe, state, onChange) {
 }
 
 function formatStepText(stepText, recipe, state) {
+  const multiplier = getEffectiveMultiplier(state);
   return stepText.replace(/{{\s*([a-zA-Z0-9_-]+)\s*}}/g, (match, token) => {
     const option = selectOptionForToken(token, recipe, state);
-    return renderIngredientEntry(option, state.multiplier);
+    return renderIngredientEntry(option, multiplier);
   });
 }
 
@@ -195,14 +216,15 @@ function selectOptionForToken(token, recipe, state) {
 function renderIngredientsList(recipe, state) {
   const list = document.getElementById('ingredients-list');
   list.innerHTML = '';
+  const multiplier = getEffectiveMultiplier(state);
   recipe.token_order.forEach((token) => {
     const tokenData = recipe.ingredients[token];
     const option = selectOptionForToken(token, recipe, state);
     const li = document.createElement('li');
-    li.textContent = renderIngredientEntry(option, state.multiplier);
+    li.textContent = renderIngredientEntry(option, multiplier);
     const alternatives = alternativeOptions(tokenData, state, option);
     if (alternatives.length) {
-      const altText = alternatives.map((opt) => renderIngredientEntry(opt, state.multiplier)).join(' / ');
+      const altText = alternatives.map((opt) => renderIngredientEntry(opt, multiplier)).join(' / ');
       const altSpan = document.createElement('span');
       altSpan.className = 'ingredient-alternatives';
       altSpan.textContent = ` (or ${altText})`;
@@ -223,17 +245,66 @@ function renderSteps(recipe, state) {
   });
 }
 
+function setupPanControls(recipe, state, rerender) {
+  const panControls = document.getElementById('pan-controls');
+  const panSelect = document.getElementById('pan-select');
+  const panNote = document.getElementById('pan-note');
+
+  if (!panControls || !panSelect || !panNote || !recipe.pan_sizes?.length) {
+    state.panMultiplier = 1;
+    return;
+  }
+
+  panControls.hidden = false;
+  panSelect.innerHTML = '';
+
+  const basePan = recipe.pan_sizes.find((p) => p.id === recipe.default_pan) || recipe.pan_sizes[0];
+  const baseArea = panArea(basePan);
+  const baseLabel = basePan?.label || 'default pan';
+
+  recipe.pan_sizes.forEach((pan) => {
+    const option = document.createElement('option');
+    option.value = pan.id;
+    option.textContent = pan.label || pan.id;
+    panSelect.appendChild(option);
+  });
+
+  state.selectedPanId = state.selectedPanId || basePan?.id;
+  if (state.selectedPanId) {
+    panSelect.value = state.selectedPanId;
+  }
+
+  const applySelection = () => {
+    state.selectedPanId = panSelect.value;
+    const selected = recipe.pan_sizes.find((pan) => pan.id === state.selectedPanId) || basePan;
+    const selectedArea = panArea(selected);
+    const ratio = selectedArea && baseArea ? selectedArea / baseArea : 1;
+    state.panMultiplier = Number.isFinite(ratio) && ratio > 0 ? ratio : 1;
+    panNote.textContent =
+      Math.abs(state.panMultiplier - 1) < 1e-3
+        ? `Using ${selected.label || selected.id} as written.`
+        : `Scaled for ${selected.label || selected.id}: ×${state.panMultiplier.toFixed(2)} vs ${baseLabel}.`;
+    rerender();
+  };
+
+  applySelection();
+  panSelect.addEventListener('change', applySelection);
+}
+
 function renderRecipe(recipe) {
   const titleEl = document.getElementById('recipe-title');
   const heroTitleEl = document.getElementById('recipe-title-duplicate');
   const notesEl = document.getElementById('notes');
   const metadataEl = document.getElementById('metadata');
   const multiplierInput = document.getElementById('multiplier');
+  const multiplierHelper = document.getElementById('multiplier-helper');
   const prefGluten = document.getElementById('pref-gluten');
   const prefEgg = document.getElementById('pref-egg');
   const prefDairy = document.getElementById('pref-dairy');
   const state = {
     multiplier: Number(recipe.default_base) || 1,
+    panMultiplier: 1,
+    selectedPanId: recipe.default_pan || null,
     selectedOptions: {},
     restrictions: {
       gluten_free: false,
@@ -251,10 +322,23 @@ function renderRecipe(recipe) {
   metadataEl.appendChild(createMetadataPill('Gluten-free ready', recipe.compatibility_possible.gluten_free));
   metadataEl.appendChild(createMetadataPill('Egg-free friendly', recipe.compatibility_possible.egg_free));
   metadataEl.appendChild(createMetadataPill('Dairy-free ready', recipe.compatibility_possible.dairy_free));
+  const updateMultiplierHelper = () => {
+    if (!multiplierHelper) return;
+    const effective = getEffectiveMultiplier(state);
+    const panActive = Math.abs(state.panMultiplier - 1) > 1e-3;
+    const baseActive = Math.abs(Number(state.multiplier) - (Number(recipe.default_base) || 1)) > 1e-3;
+    const parts = [];
+    if (panActive) parts.push(`pan scaling ×${state.panMultiplier.toFixed(2)}`);
+    if (baseActive) parts.push(`batch multiplier ×${Number(state.multiplier).toFixed(2)}`);
+    multiplierHelper.textContent = parts.length
+      ? `Total scaling ×${effective.toFixed(2)} (${parts.join(' · ')}).`
+      : `Using recipe as written (×${effective.toFixed(2)}).`;
+  };
   const rerender = () => {
     state.multiplier = Number(multiplierInput.value) || recipe.default_base;
     renderIngredientsList(recipe, state);
     renderSteps(recipe, state);
+    updateMultiplierHelper();
   };
   const syncSelections = () => {
     Object.keys(recipe.choices).forEach((token) => selectOptionForToken(token, recipe, state));
@@ -267,6 +351,7 @@ function renderRecipe(recipe) {
     buildChoiceControls(recipe, state, rerender);
     rerender();
   };
+  setupPanControls(recipe, state, rerender);
   syncSelections();
   buildChoiceControls(recipe, state, rerender);
   multiplierInput.addEventListener('input', rerender);
