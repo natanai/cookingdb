@@ -57,6 +57,13 @@ async function readRecipeDir(recipeDir) {
   return { meta, steps, ingredients, choices };
 }
 
+function parseCategories(raw) {
+  return (raw || '')
+    .split(';')
+    .map((c) => c.trim())
+    .filter((c) => c.length > 0);
+}
+
 function computeCompatibility(ingredients, catalog) {
   const optionCounts = new Map();
   for (const row of ingredients) {
@@ -118,13 +125,23 @@ async function main() {
   const recipeObjects = [];
   for (const dir of recipeDirs) {
     const recipe = await readRecipeDir(dir);
-    const categories = recipe.meta.categories ? recipe.meta.categories.split(';').map((c) => c.trim()).filter(Boolean) : [];
+    const categories = parseCategories(recipe.meta.categories);
     const compat = computeCompatibility(recipe.ingredients, catalog);
     recipeObjects.push({ ...recipe, meta: { ...recipe.meta, categories } , compatibility_possible: compat });
   }
 
+  const categoryCounts = new Map();
+  for (const recipe of recipeObjects) {
+    for (const category of recipe.meta.categories) {
+      categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+    }
+  }
+
+  const allCategories = Array.from(categoryCounts.keys()).sort();
+
   const index = {
-    all_categories: Array.from(new Set(recipeObjects.flatMap((r) => r.meta.categories))).filter(Boolean).sort(),
+    all_categories: allCategories,
+    category_counts: Object.fromEntries(allCategories.map((cat) => [cat, categoryCounts.get(cat) || 0])),
     recipes: recipeObjects.map((recipe) => ({
       id: recipe.meta.id,
       title: recipe.meta.title,
