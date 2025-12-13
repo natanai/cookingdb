@@ -12,10 +12,16 @@ function recipeVisible(recipe, filters) {
   return true;
 }
 
-function createTag(label, value) {
+const DIETARY_TAGS = {
+  gluten_free: { positive: 'Gluten-free ready', negative: 'Contains gluten' },
+  egg_free: { positive: 'Egg-free friendly', negative: 'Contains egg' },
+  dairy_free: { positive: 'Dairy-free ready', negative: 'Contains dairy' },
+};
+
+function createTag(labels, value) {
   const pill = document.createElement('span');
   pill.className = value ? 'pill' : 'pill neutral';
-  pill.textContent = value ? label : `Contains ${label.toLowerCase()}`;
+  pill.textContent = value ? labels.positive : labels.negative;
   return pill;
 }
 
@@ -53,9 +59,9 @@ function renderRecipes(recipes) {
     li.appendChild(link);
     const tags = document.createElement('div');
     tags.className = 'tags';
-    tags.appendChild(createTag('Gluten-free ready', recipe.compatibility_possible.gluten_free));
-    tags.appendChild(createTag('Egg-free friendly', recipe.compatibility_possible.egg_free));
-    tags.appendChild(createTag('Dairy-free ready', recipe.compatibility_possible.dairy_free));
+    tags.appendChild(createTag(DIETARY_TAGS.gluten_free, recipe.compatibility_possible.gluten_free));
+    tags.appendChild(createTag(DIETARY_TAGS.egg_free, recipe.compatibility_possible.egg_free));
+    tags.appendChild(createTag(DIETARY_TAGS.dairy_free, recipe.compatibility_possible.dairy_free));
     li.appendChild(tags);
     listEl.appendChild(li);
   });
