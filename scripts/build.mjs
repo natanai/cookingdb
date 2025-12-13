@@ -58,14 +58,6 @@ async function parseCSVFile(filePath) {
   return simpleParseCSV(content);
 }
 
-function parseCategories(raw) {
-  if (!raw) return [];
-  return raw
-    .split(/[;,]/)
-    .map((entry) => entry.trim())
-    .filter(Boolean);
-}
-
 function extractTokensFromSteps(stepsRaw) {
   const tokenRegex = /{{\s*([a-zA-Z0-9_-]+)\s*}}/g;
   const tokens = [];
@@ -219,7 +211,6 @@ async function build() {
       title: meta.title,
       base_kind: meta.base_kind,
       default_base: Number(meta.default_base) || 1,
-      categories: parseCategories(meta.categories),
       notes: meta.notes,
       steps_raw: stepsRaw,
       tokens_used: tokensUsed,
@@ -234,7 +225,6 @@ async function build() {
     indexList.push({
       id: meta.id,
       title: meta.title,
-      categories: parseCategories(meta.categories),
       compatibility_possible: compatibility,
     });
   }
