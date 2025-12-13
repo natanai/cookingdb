@@ -123,6 +123,12 @@ body {
   margin-top: 0.5rem;
 }
 
+/* Space out navigation links */
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
 .search-field {
   display: flex;
   align-items: center;
