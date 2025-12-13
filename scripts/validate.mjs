@@ -77,14 +77,6 @@ function parseBoolean(value) {
   return ['true', '1', 'yes', 'y', 'on'].includes(String(value || '').trim().toLowerCase());
 }
 
-function parseCategories(raw) {
-  if (!raw) return [];
-  return raw
-    .split(/[;,]/)
-    .map((entry) => entry.trim())
-    .filter(Boolean);
-}
-
 export async function validateAll() {
   const recipesDir = path.join(process.cwd(), 'recipes');
   const recipeDirs = fs.readdirSync(recipesDir, { withFileTypes: true }).filter((ent) => ent.isDirectory());
@@ -108,11 +100,6 @@ export async function validateAll() {
     ensure(metaRows.length === 1, `${recipeId}: meta.csv must contain exactly one data row`);
     const metaRow = metaRows[0];
     ensure(metaRow.id === recipeId, `${recipeId}: meta id must match directory name`);
-    ensure(Object.prototype.hasOwnProperty.call(metaRow, 'categories'), `${recipeId}: meta.csv missing categories column`);
-    ensure(
-      parseCategories(metaRow.categories).length > 0,
-      `${recipeId}: meta.csv must include at least one category`
-    );
 
     const ingredientRows = await parseCSVFile(ingredientsPath);
     const stepsRaw = fs.readFileSync(stepsPath, 'utf-8');

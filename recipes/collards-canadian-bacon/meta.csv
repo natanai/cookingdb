@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes,categories
-collards-canadian-bacon,Collards with Canadian Bacon,multiplier,1,"Simple skillet collards with smoky bacon.",Side;Greens;Quick
+id,title,base_kind,default_base,notes
+collards-canadian-bacon,Collards with Canadian Bacon,multiplier,1,"Simple skillet collards with smoky bacon."

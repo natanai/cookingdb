@@ -4,18 +4,8 @@ async function loadIndex() {
   return res.json();
 }
 
-let selectedCategory = 'all';
-
 function recipeVisible(recipe, filters) {
-  const matchesCategory =
-    filters.category === 'all' || (recipe.categories || []).includes(filters.category);
-  if (!matchesCategory) return false;
-
-  if (filters.query) {
-    const inTitle = recipe.title.toLowerCase().includes(filters.query);
-    const inCategories = (recipe.categories || []).some((cat) => cat.toLowerCase().includes(filters.query));
-    if (!inTitle && !inCategories) return false;
-  }
+  if (filters.query && !recipe.title.toLowerCase().includes(filters.query)) return false;
   if (filters.gluten && !recipe.compatibility_possible.gluten_free) return false;
   if (filters.egg && !recipe.compatibility_possible.egg_free) return false;
   if (filters.dairy && !recipe.compatibility_possible.dairy_free) return false;
@@ -50,7 +40,6 @@ function renderRecipes(recipes) {
     egg: document.getElementById('filter-egg').checked,
     dairy: document.getElementById('filter-dairy').checked,
     query: document.getElementById('search')?.value.trim().toLowerCase() || '',
-    category: selectedCategory,
   };
   listEl.innerHTML = '';
   const visible = recipes.filter((r) => recipeVisible(r, filters));
@@ -64,11 +53,6 @@ function renderRecipes(recipes) {
   visible.forEach((recipe) => {
     const li = document.createElement('li');
     li.className = 'recipe-card';
-    const tab = document.createElement('div');
-    tab.className = 'card-tab';
-    tab.textContent = (recipe.categories && recipe.categories[0]) || 'Recipe';
-    li.appendChild(tab);
-
     const link = document.createElement('a');
     link.href = buildRecipeLink(recipe.id, filters);
     link.textContent = recipe.title;
@@ -79,57 +63,13 @@ function renderRecipes(recipes) {
     tags.appendChild(createTag(DIETARY_TAGS.egg_free, recipe.compatibility_possible.egg_free));
     tags.appendChild(createTag(DIETARY_TAGS.dairy_free, recipe.compatibility_possible.dairy_free));
     li.appendChild(tags);
-
-    if (recipe.categories?.length) {
-      const catRow = document.createElement('div');
-      catRow.className = 'card-categories';
-      recipe.categories.forEach((cat) => {
-        const chip = document.createElement('span');
-        chip.className = 'category-chip';
-        chip.textContent = cat;
-        catRow.appendChild(chip);
-      });
-      li.appendChild(catRow);
-    }
     listEl.appendChild(li);
-  });
-}
-
-function uniqueCategories(recipes) {
-  const set = new Set();
-  recipes.forEach((recipe) => {
-    (recipe.categories || []).forEach((cat) => set.add(cat));
-  });
-  return Array.from(set).sort((a, b) => a.localeCompare(b));
-}
-
-function renderCategoryTabs(recipes, onSelect) {
-  const container = document.getElementById('category-tabs');
-  if (!container) return;
-  const categories = ['all', ...uniqueCategories(recipes)];
-  container.innerHTML = '';
-
-  categories.forEach((cat) => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'rolodex-tab';
-    btn.dataset.category = cat;
-    btn.role = 'tab';
-    btn.setAttribute('aria-selected', selectedCategory === cat ? 'true' : 'false');
-    btn.textContent = cat === 'all' ? 'All recipes' : cat;
-    btn.addEventListener('click', () => {
-      selectedCategory = cat;
-      renderCategoryTabs(recipes, onSelect);
-      onSelect();
-    });
-    container.appendChild(btn);
   });
 }
 
 async function main() {
   const data = await loadIndex();
   const update = () => renderRecipes(data);
-  renderCategoryTabs(data, update);
   document.getElementById('filter-gluten').addEventListener('change', update);
   document.getElementById('filter-egg').addEventListener('change', update);
   document.getElementById('filter-dairy').addEventListener('change', update);
