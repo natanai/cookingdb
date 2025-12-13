@@ -1,0 +1,137 @@
+:root {
+  --bg: #faf7f2;
+  --text: #1f1f1f;
+  --accent: #e09d3d;
+  --card: #ffffff;
+  --border: #ded7cb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.site-header {
+  background: var(--card);
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-header h1 {
+  margin: 0;
+}
+
+.filters label {
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+main {
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.recipe-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.recipe-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+}
+
+.recipe-card a {
+  font-size: 1.1rem;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.recipe-card .tags {
+  color: #444;
+  font-size: 0.9rem;
+  margin-top: 0.35rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 0.75rem;
+  border-radius: 6px;
+}
+
+.controls input[type='number'] {
+  width: 80px;
+  margin-left: 0.25rem;
+}
+
+.choice-group {
+  margin-right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+#ingredients-list,
+#steps-list {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+}
+
+#steps-list li {
+  margin-bottom: 0.5rem;
+}
+
+.notes {
+  margin: 0.75rem 0;
+  font-style: italic;
+}
+
+.nav-links a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+@media print {
+  body {
+    background: white;
+    font-size: 14pt;
+  }
+  .site-header,
+  .controls,
+  .nav-links,
+  #print-btn,
+  .filters {
+    display: none !important;
+  }
+  main {
+    padding: 0;
+  }
+  #steps-list li {
+    page-break-inside: avoid;
+  }
+}

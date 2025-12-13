@@ -1,0 +1,150 @@
+import fs from 'fs';
+import path from 'path';
+
+async function loadPapa() {
+  const module = await import('papaparse').catch(() => null);
+  return module ? module.default || module : null;
+}
+
+function simpleParseCSV(text) {
+  const lines = text.replace(/\r\n/g, '\n').split(/\n/).filter((line) => line.trim() !== '');
+  if (lines.length === 0) return [];
+  const headers = parseLine(lines[0]);
+  return lines.slice(1).map((line) => {
+    const values = parseLine(line);
+    const row = {};
+    headers.forEach((header, idx) => {
+      row[header] = values[idx] ?? '';
+    });
+    return row;
+  });
+}
+
+function parseLine(line) {
+  const result = [];
+  let current = '';
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i += 1) {
+    const char = line[i];
+    if (char === '"') {
+      if (inQuotes && line[i + 1] === '"') {
+        current += '"';
+        i += 1;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === ',' && !inQuotes) {
+      result.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  result.push(current);
+  return result;
+}
+
+async function parseCSVFile(filePath) {
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const Papa = await loadPapa();
+  if (Papa) {
+    const parsed = Papa.parse(content, { header: true, skipEmptyLines: true });
+    if (parsed.errors && parsed.errors.length) {
+      throw new Error(`CSV parse error in ${filePath}: ${parsed.errors[0].message}`);
+    }
+    return parsed.data;
+  }
+  return simpleParseCSV(content);
+}
+
+function extractTokensFromSteps(stepsRaw) {
+  const tokenRegex = /{{\s*([a-zA-Z0-9_-]+)\s*}}/g;
+  const tokens = [];
+  let match;
+  while ((match = tokenRegex.exec(stepsRaw)) !== null) {
+    tokens.push(match[1]);
+  }
+  return tokens;
+}
+
+function ensure(condition, message) {
+  if (!condition) {
+    throw new Error(message);
+  }
+}
+
+export async function validateAll() {
+  const recipesDir = path.join(process.cwd(), 'recipes');
+  const recipeDirs = fs.readdirSync(recipesDir, { withFileTypes: true }).filter((ent) => ent.isDirectory());
+
+  for (const dirEnt of recipeDirs) {
+    const recipeId = dirEnt.name;
+    const baseDir = path.join(recipesDir, recipeId);
+    const metaPath = path.join(baseDir, 'meta.csv');
+    const ingredientsPath = path.join(baseDir, 'ingredients.csv');
+    const stepsPath = path.join(baseDir, 'steps.md');
+    ensure(fs.existsSync(metaPath), `Missing meta.csv for recipe ${recipeId}`);
+    ensure(fs.existsSync(ingredientsPath), `Missing ingredients.csv for recipe ${recipeId}`);
+    ensure(fs.existsSync(stepsPath), `Missing steps.md for recipe ${recipeId}`);
+
+    const metaRows = await parseCSVFile(metaPath);
+    ensure(metaRows.length === 1, `${recipeId}: meta.csv must contain exactly one data row`);
+    const metaRow = metaRows[0];
+    ensure(metaRow.id === recipeId, `${recipeId}: meta id must match directory name`);
+
+    const ingredientRows = await parseCSVFile(ingredientsPath);
+    const stepsRaw = fs.readFileSync(stepsPath, 'utf-8');
+    const stepTokens = extractTokensFromSteps(stepsRaw);
+    const stepTokenSet = new Set(stepTokens);
+
+    const tokenOptions = new Map();
+    for (const row of ingredientRows) {
+      const token = row.token;
+      ensure(token, `${recipeId}: ingredient row missing token`);
+      if (!tokenOptions.has(token)) {
+        tokenOptions.set(token, new Set());
+      }
+      if (row.option) {
+        tokenOptions.get(token).add(row.option);
+      }
+      ensure(stepTokenSet.has(token), `${recipeId}: ingredient token ${token} not found in steps`);
+    }
+
+    const ingredientTokenSet = new Set([...tokenOptions.keys()]);
+    for (const token of stepTokenSet) {
+      ensure(ingredientTokenSet.has(token), `${recipeId}: steps token ${token} missing in ingredients`);
+    }
+
+    const choicesPath = path.join(baseDir, 'choices.csv');
+    const choiceRows = fs.existsSync(choicesPath) ? await parseCSVFile(choicesPath) : [];
+    const choicesMap = new Map(choiceRows.map((row) => [row.token, row]));
+
+    for (const [token, options] of tokenOptions.entries()) {
+      if (options.size >= 2) {
+        ensure(choicesMap.has(token), `${recipeId}: token ${token} has multiple options but is missing from choices.csv`);
+        const choice = choicesMap.get(token);
+        ensure(options.has(choice.default_option), `${recipeId}: default option ${choice.default_option} for ${token} not found in ingredients`);
+      }
+    }
+
+    for (const row of choiceRows) {
+      ensure(tokenOptions.has(row.token), `${recipeId}: choices token ${row.token} missing in ingredients`);
+      const options = tokenOptions.get(row.token);
+      ensure(options.size >= 2, `${recipeId}: choices token ${row.token} must have at least two options in ingredients.csv`);
+      ensure(options.has(row.default_option), `${recipeId}: default option ${row.default_option} for ${row.token} not found among ingredient options`);
+    }
+  }
+
+  return true;
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  validateAll()
+    .then(() => {
+      console.log('Validation passed');
+    })
+    .catch((err) => {
+      console.error(err.message || err);
+      process.exit(1);
+    });
+}

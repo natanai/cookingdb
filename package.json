@@ -1,0 +1,13 @@
+{
+  "name": "cookingdb",
+  "version": "1.0.0",
+  "description": "Static CookingDB site with recipes and build/validate scripts",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build": "node scripts/build.mjs"
+  },
+  "dependencies": {
+    "papaparse": "^5.4.1"
+  }
+}

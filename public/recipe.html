@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1 id="recipe-title">Recipe</h1>
+    <nav class="nav-links">
+      <a href="index.html">← Back to recipes</a>
+    </nav>
+  </header>
+  <main>
+    <section class="controls">
+      <label>
+        Batch multiplier:
+        <input type="number" id="multiplier" step="0.25" min="0.25" value="1" />
+      </label>
+      <div id="choices-container"></div>
+      <button id="print-btn" type="button">Print</button>
+    </section>
+    <section id="notes" class="notes"></section>
+    <section>
+      <h2>Ingredients (derived)</h2>
+      <ul id="ingredients-list"></ul>
+    </section>
+    <section>
+      <h2>Steps</h2>
+      <ol id="steps-list"></ol>
+    </section>
+  </main>
+  <script src="recipe.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+[
+  {
+    "id": "blintzes",
+    "title": "Blintzes (Crepes)",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  }
+]
