@@ -1,0 +1,8 @@
+{
+  "name": "http-server",
+  "version": "0.0.0-local",
+  "type": "module",
+  "bin": {
+    "http-server": "./bin/http-server.js"
+  }
+}

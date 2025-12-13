@@ -1,0 +1,167 @@
+:root {
+  --paper: #f7f2e9;
+  --ink: #2d1b0f;
+  --accent: #b5651d;
+  --muted: #6b4f4f;
+  --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --border: 1px solid #e0d6c8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 1.5rem;
+}
+
+a {
+  color: var(--accent);
+}
+
+a.button-link,
+button.button-link {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  border: none;
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+a.button-link:hover,
+button.button-link:hover {
+  background: #9c4f16;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fff7ec;
+  border: var(--border);
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 1.5rem;
+}
+
+.subtitle {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #fffef9;
+  border: var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: var(--card-shadow);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.5rem 0;
+}
+
+.chip {
+  background: #efe0d2;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 1px dashed #c49b73;
+  font-size: 0.9rem;
+}
+
+.toggles {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.toggle {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  font-weight: bold;
+}
+
+.recipe-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.panel {
+  background: #fffef9;
+  border: var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  box-shadow: var(--card-shadow);
+}
+
+.ingredient-list {
+  list-style: disc;
+  padding-left: 1.4rem;
+}
+
+.inline-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.inline-control input,
+.inline-control select {
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #d2b48c;
+  background: #fffdf7;
+  font-family: inherit;
+}
+
+.recipe-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .site-header,
+  .panel,
+  .card {
+    box-shadow: none;
+    border-color: #ccc;
+  }
+
+  .recipe-actions,
+  .toggles,
+  a.button-link,
+  button.button-link {
+    display: none;
+  }
+}

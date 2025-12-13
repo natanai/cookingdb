@@ -1,0 +1,21 @@
+{
+  "all_categories": [
+    "Breakfast",
+    "Dessert"
+  ],
+  "recipes": [
+    {
+      "id": "blintzes",
+      "title": "Blintzes (Crepes)",
+      "categories": [
+        "Breakfast",
+        "Dessert"
+      ],
+      "compatibility_possible": {
+        "gluten_free": true,
+        "egg_free": true,
+        "dairy_free": true
+      }
+    }
+  ]
+}

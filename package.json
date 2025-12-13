@@ -1,0 +1,16 @@
+{
+  "name": "cookingdb",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build": "node scripts/build.mjs",
+    "dev": "http-server docs -c-1 -p 4173"
+  },
+  "dependencies": {
+    "papaparse": "file:vendor/papaparse"
+  },
+  "devDependencies": {
+    "http-server": "file:vendor/http-server"
+  }
+}

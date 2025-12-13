@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CookingDB Recipe</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="recipe-page">
+    <header class="site-header">
+      <div>
+        <h1 id="recipe-title">Recipe</h1>
+        <p class="subtitle">Adjust options, scale batches, and print.</p>
+      </div>
+      <div class="recipe-actions" id="recipe-actions"></div>
+    </header>
+
+    <main class="recipe-layout">
+      <section class="panel">
+        <h2>Ingredients</h2>
+        <ul id="ingredient-list" class="ingredient-list"></ul>
+      </section>
+      <section class="panel">
+        <h2>Steps</h2>
+        <ol id="steps"></ol>
+      </section>
+    </main>
+
+    <script type="module" src="./recipe.js"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+ingredient_id,canonical_name,contains_gluten,contains_egg,contains_dairy
+egg,Egg,false,true,false
+egg-replacer,Egg replacer,false,false,false
+milk,Milk,false,false,true
+oat-milk,Oat milk,false,false,false
+butter,Butter,false,false,true
+vegan-butter,Vegan butter,false,false,false
+wheat-flour,Wheat flour,true,false,false
+gf-flour-blend,Gluten-free flour blend,false,false,false
+water,Water,false,false,false
+salt,Salt,false,false,false
+sugar,Sugar,false,false,false

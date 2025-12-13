@@ -1,0 +1,5 @@
+token,label,default_option
+eggs_choice,Eggs,egg
+milk_choice,Milk,oat
+butter_choice,Butter,vegan
+flour_choice,Flour,gf

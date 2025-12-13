@@ -1,0 +1,150 @@
+[
+  {
+    "meta": {
+      "id": "blintzes",
+      "title": "Blintzes (Crepes)",
+      "base_kind": "multiplier",
+      "default_base": "1",
+      "categories": [
+        "Breakfast",
+        "Dessert"
+      ],
+      "notes": "Thin crepe-style wrappers. Choose options to fit dietary restrictions."
+    },
+    "steps": [
+      "1. In a mixing bowl, beat together {{eggs_choice}}, {{milk_choice}}, and {{water}} until smooth.",
+      "2. Whisk in {{butter_choice}}.",
+      "3. Add {{flour_choice}}, {{salt}}, and {{sugar}}. Blend thoroughly until the batter is smooth and lump-free.",
+      "4. Heat a skillet over medium heat and melt a little {{butter_pan}} to coat the surface (repeat before each crepe).",
+      "5. Pour about 1/4 cup of batter into the center of the skillet and tilt the pan so the batter spreads evenly.",
+      "6. Cook until the bottom is light brown and the surface looks set and slightly bubbly.",
+      "7. Flip gently with a spatula.",
+      "8. Cook the second side until light brown, then remove and keep warm. Repeat with remaining batter."
+    ],
+    "ingredients": [
+      {
+        "token": "eggs_choice",
+        "option": "egg",
+        "display": "eggs",
+        "ratio": "3",
+        "unit": "count",
+        "ingredient_id": "egg"
+      },
+      {
+        "token": "eggs_choice",
+        "option": "replacer",
+        "display": "egg replacer",
+        "ratio": "3",
+        "unit": "tbsp",
+        "ingredient_id": "egg-replacer"
+      },
+      {
+        "token": "milk_choice",
+        "option": "dairy",
+        "display": "milk",
+        "ratio": "3/4",
+        "unit": "cup",
+        "ingredient_id": "milk"
+      },
+      {
+        "token": "milk_choice",
+        "option": "oat",
+        "display": "oat milk",
+        "ratio": "3/4",
+        "unit": "cup",
+        "ingredient_id": "oat-milk"
+      },
+      {
+        "token": "water",
+        "option": "",
+        "display": "water",
+        "ratio": "3/4",
+        "unit": "cup",
+        "ingredient_id": "water"
+      },
+      {
+        "token": "butter_choice",
+        "option": "butter",
+        "display": "melted butter",
+        "ratio": "2",
+        "unit": "tbsp",
+        "ingredient_id": "butter"
+      },
+      {
+        "token": "butter_choice",
+        "option": "vegan",
+        "display": "melted vegan butter",
+        "ratio": "2",
+        "unit": "tbsp",
+        "ingredient_id": "vegan-butter"
+      },
+      {
+        "token": "flour_choice",
+        "option": "wheat",
+        "display": "flour",
+        "ratio": "1",
+        "unit": "cup",
+        "ingredient_id": "wheat-flour"
+      },
+      {
+        "token": "flour_choice",
+        "option": "gf",
+        "display": "gluten-free flour blend",
+        "ratio": "1",
+        "unit": "cup",
+        "ingredient_id": "gf-flour-blend"
+      },
+      {
+        "token": "salt",
+        "option": "",
+        "display": "salt",
+        "ratio": "1",
+        "unit": "tsp",
+        "ingredient_id": "salt"
+      },
+      {
+        "token": "sugar",
+        "option": "",
+        "display": "sugar",
+        "ratio": "1",
+        "unit": "tbsp",
+        "ingredient_id": "sugar"
+      },
+      {
+        "token": "butter_pan",
+        "option": "",
+        "display": "butter (for pan)",
+        "ratio": "",
+        "unit": "",
+        "ingredient_id": "butter"
+      }
+    ],
+    "choices": [
+      {
+        "token": "eggs_choice",
+        "label": "Eggs",
+        "default_option": "egg"
+      },
+      {
+        "token": "milk_choice",
+        "label": "Milk",
+        "default_option": "oat"
+      },
+      {
+        "token": "butter_choice",
+        "label": "Butter",
+        "default_option": "vegan"
+      },
+      {
+        "token": "flour_choice",
+        "label": "Flour",
+        "default_option": "gf"
+      }
+    ],
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  }
+]
