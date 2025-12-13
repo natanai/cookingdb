@@ -1,0 +1,4 @@
+id,label,shape,width,height,unit,default
+sq_8,8x8-inch square,square,8,8,in,true
+rect_9x13,9x13-inch rectangle,rectangle,9,13,in,false
+round_9,9-inch round,round,9,,in,false

@@ -91,6 +91,10 @@ function ingredientCompatible(flags, restriction) {
   return true;
 }
 
+function parseBoolean(value) {
+  return ['true', '1', 'yes', 'y', 'on'].includes(String(value || '').trim().toLowerCase());
+}
+
 function computeCompatibility(ingredients, catalog) {
   const restrictions = ['gluten_free', 'egg_free', 'dairy_free'];
   const result = { gluten_free: true, egg_free: true, dairy_free: true };
@@ -174,6 +178,24 @@ async function build() {
       };
     }
 
+    const pansPath = path.join(baseDir, 'pans.csv');
+    let panSizes = [];
+    let defaultPanId = null;
+    if (fs.existsSync(pansPath)) {
+      const panRows = await parseCSVFile(pansPath);
+      panSizes = panRows.map((row) => ({
+        id: row.id,
+        label: row.label,
+        shape: (row.shape || 'rectangle').toLowerCase(),
+        width: Number(row.width),
+        height: row.height ? Number(row.height) : null,
+        unit: row.unit || 'in',
+        is_default: parseBoolean(row.default),
+      }));
+      const defaultPan = panSizes.find((p) => p.is_default) || panSizes[0];
+      defaultPanId = defaultPan?.id || null;
+    }
+
     const compatibility = computeCompatibility(ingredients, catalog);
     const uniqueTokenOrder = [];
     const seen = new Set();
@@ -195,6 +217,8 @@ async function build() {
       token_order: uniqueTokenOrder,
       ingredients,
       choices,
+      pan_sizes: panSizes,
+      default_pan: defaultPanId,
       compatibility_possible: compatibility,
     });
 
