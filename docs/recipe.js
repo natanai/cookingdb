@@ -104,6 +104,15 @@ function optionMeetsRestrictions(option, restrictions) {
   return true;
 }
 
+function alternativeOptions(tokenData, state, selectedOption) {
+  if (!tokenData?.isChoice) return [];
+  const choiceOptions = tokenData.options.filter((opt) => opt.option);
+  const compatible = restrictionsActive(state.restrictions)
+    ? choiceOptions.filter((opt) => optionMeetsRestrictions(opt, state.restrictions))
+    : choiceOptions;
+  return compatible.filter((opt) => opt.option !== selectedOption?.option);
+}
+
 function renderIngredientEntry(option, multiplier) {
   if (!option.ratio) return option.display;
   const baseFraction = parseRatio(option.ratio);
@@ -187,9 +196,18 @@ function renderIngredientsList(recipe, state) {
   const list = document.getElementById('ingredients-list');
   list.innerHTML = '';
   recipe.token_order.forEach((token) => {
+    const tokenData = recipe.ingredients[token];
     const option = selectOptionForToken(token, recipe, state);
     const li = document.createElement('li');
     li.textContent = renderIngredientEntry(option, state.multiplier);
+    const alternatives = alternativeOptions(tokenData, state, option);
+    if (alternatives.length) {
+      const altText = alternatives.map((opt) => renderIngredientEntry(opt, state.multiplier)).join(' / ');
+      const altSpan = document.createElement('span');
+      altSpan.className = 'ingredient-alternatives';
+      altSpan.textContent = ` (or ${altText})`;
+      li.appendChild(altSpan);
+    }
     list.appendChild(li);
   });
 }
