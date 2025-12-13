@@ -3,6 +3,10 @@
     "Breakfast",
     "Dessert"
   ],
+  "category_counts": {
+    "Breakfast": 1,
+    "Dessert": 1
+  },
   "recipes": [
     {
       "id": "blintzes",

@@ -66,12 +66,89 @@ button.button-link:hover {
   gap: 1rem;
 }
 
-.card {
+.card { 
   background: #fffef9;
   border: var(--border);
   border-radius: 10px;
   padding: 1rem;
   box-shadow: var(--card-shadow);
+}
+
+.chapters-panel {
+  background: #fffaf1;
+  border: var(--border);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 1.25rem;
+}
+
+.chapters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.chapters-label {
+  margin: 0;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+.chapter-clear {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0.15rem 0.35rem;
+  font-family: inherit;
+  font-weight: bold;
+  display: none;
+}
+
+.chapters {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.25rem 0.1rem;
+}
+
+.chapter-tab {
+  flex: 0 0 auto;
+  padding: 0.35rem 0.9rem;
+  border-radius: 8px 8px 2px 2px;
+  border: 1px solid #d2b48c;
+  background: linear-gradient(180deg, #fff9ee 0%, #f1e1cf 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--ink);
+  min-width: 80px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.chapter-tab:hover {
+  transform: translateY(-1px);
+}
+
+.chapter-tab.selected {
+  background: linear-gradient(180deg, #fffdf8 0%, #f7e7d3 100%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  border-color: #c08b54;
+  transform: translateY(-2px);
+}
+
+.chapter-tab .count {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: normal;
 }
 
 .chips {
@@ -87,6 +164,21 @@ button.button-link:hover {
   border-radius: 999px;
   border: 1px dashed #c49b73;
   font-size: 0.9rem;
+}
+
+.category-tags {
+  color: var(--muted);
+}
+
+.category-tags .chip {
+  cursor: pointer;
+  background: #f9efe2;
+  border-color: #d7b189;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.category-tags .chip:hover {
+  background: #f3e2cf;
 }
 
 .toggles {
@@ -160,6 +252,7 @@ button.button-link:hover {
 
   .recipe-actions,
   .toggles,
+  .chapters-panel,
   a.button-link,
   button.button-link {
     display: none;

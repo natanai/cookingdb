@@ -18,12 +18,22 @@ CookingDB is a printable, homemade-style cookbook that keeps every recipe consis
 
 ## Adding a recipe
 1. Create `recipes/<your-id>/`.
-2. Add `meta.csv` with `id,title,base_kind,default_base,categories,notes`.
+2. Add `meta.csv` with `id,title,base_kind,default_base,categories,notes`. The `categories` field is a semicolon-separated list (e.g. `Breakfast; Brunch; Quick`) and empty entries are ignored during the build.
 3. Add `ingredients.csv` with `token,option,display,ratio,unit,ingredient_id`.
 4. Add `steps.md` using `{{token}}` placeholders that match ingredients.
 5. If any token has multiple options, add `choices.csv` with `token,label,default_option` and ensure every `default_option` exists among the ingredient rows for that token.
 6. Update `data/ingredient_catalog.csv` only with classification columns; do not add substitution/alternative columns.
 7. Run validation and build before committing.
+
+### Categories / Chapters
+- Categories behave like cookbook "chapters" and come directly from the semicolon-separated values in each recipe's `meta.csv`.
+- The build step trims whitespace, drops empty entries, and emits:
+  - `all_categories`: sorted unique list across all recipes
+  - `category_counts`: how many recipes belong to each category
+- On the homepage you can click multiple chapters to filter recipes (combined with dietary toggles using AND logic). Selecting none is equivalent to "All".
+- Filtering state persists to `localStorage` under `cookingdb.filters` and `cookingdb.categories`.
+- Deep links are supported via query parameters: `?cat=Soup&cat=Breakfast&gf=1&df=1`.
+- To add a new chapter, just include it in a recipe's `categories` field; it will appear automatically after rebuilding.
 
 ## Commands
 - `npm run validate` — enforce schema rules and placeholder invariants.
