@@ -1,0 +1,2 @@
+id,title,base_kind,default_base,categories,notes,uses_pan,default_pan_id,pan_scale_method
+pan-demo,Pan Demo Cake,multiplier,1,Dessert,Simple pan-scaling demo.,true,square-8,area

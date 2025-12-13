@@ -1,0 +1,98 @@
+[
+  {
+    "pan_id": "square-8",
+    "label": "8x8 square pan",
+    "shape": "rect",
+    "width_in": 8,
+    "length_in": 8,
+    "diameter_in": null,
+    "depth_in": null,
+    "notes": "",
+    "area_in2": 64,
+    "volume_in3": null
+  },
+  {
+    "pan_id": "square-9",
+    "label": "9x9 square pan",
+    "shape": "rect",
+    "width_in": 9,
+    "length_in": 9,
+    "diameter_in": null,
+    "depth_in": null,
+    "notes": "",
+    "area_in2": 81,
+    "volume_in3": null
+  },
+  {
+    "pan_id": "rect-9x13",
+    "label": "9x13 pan",
+    "shape": "rect",
+    "width_in": 9,
+    "length_in": 13,
+    "diameter_in": null,
+    "depth_in": null,
+    "notes": "",
+    "area_in2": 117,
+    "volume_in3": null
+  },
+  {
+    "pan_id": "round-8",
+    "label": "8-inch round pan",
+    "shape": "round",
+    "width_in": null,
+    "length_in": null,
+    "diameter_in": 8,
+    "depth_in": null,
+    "notes": "",
+    "area_in2": 50.26548245743669,
+    "volume_in3": null
+  },
+  {
+    "pan_id": "round-9",
+    "label": "9-inch round pan",
+    "shape": "round",
+    "width_in": null,
+    "length_in": null,
+    "diameter_in": 9,
+    "depth_in": null,
+    "notes": "",
+    "area_in2": 63.61725123519331,
+    "volume_in3": null
+  },
+  {
+    "pan_id": "loaf-9x5",
+    "label": "9x5 loaf pan",
+    "shape": "rect",
+    "width_in": 5,
+    "length_in": 9,
+    "diameter_in": null,
+    "depth_in": null,
+    "notes": "",
+    "area_in2": 45,
+    "volume_in3": null
+  },
+  {
+    "pan_id": "muffin-12",
+    "label": "12-cup muffin tin",
+    "shape": "other",
+    "width_in": null,
+    "length_in": null,
+    "diameter_in": null,
+    "depth_in": null,
+    "notes": "Treat scaling as none unless recipe provides its own base.",
+    "area_in2": null,
+    "volume_in3": null
+  },
+  {
+    "pan_id": "sheet-half",
+    "label": "Half sheet pan",
+    "shape": "rect",
+    "width_in": 13,
+    "length_in": 18,
+    "diameter_in": null,
+    "depth_in": null,
+    "notes": "",
+    "area_in2": 234,
+    "volume_in3": null
+  }
+]

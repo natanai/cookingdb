@@ -12,12 +12,15 @@
         <h1 id="recipe-title">Recipe</h1>
         <p class="subtitle">Adjust options, scale batches, and print.</p>
       </div>
-      <div class="recipe-actions" id="recipe-actions"></div>
+      <div class="recipe-actions" id="recipe-actions">
+        <div id="panRow" class="controlRow" hidden></div>
+      </div>
     </header>
 
     <main class="recipe-layout">
       <section class="panel">
         <h2>Ingredients</h2>
+        <div id="pan-summary" class="pan-summary" hidden></div>
         <ul id="ingredient-list" class="ingredient-list"></ul>
       </section>
       <section class="panel">
