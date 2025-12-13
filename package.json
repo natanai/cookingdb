@@ -8,7 +8,8 @@
     "dev": "http-server docs -c-1 -p 4173"
   },
   "dependencies": {
-    "papaparse": "file:vendor/papaparse"
+    "papaparse": "file:vendor/papaparse",
+    "jszip-lite": "file:docs/vendor/jszip-lite"
   },
   "devDependencies": {
     "http-server": "file:vendor/http-server"

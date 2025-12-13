@@ -1,0 +1,79 @@
+[
+  {
+    "ingredient_id": "egg",
+    "canonical_name": "Egg",
+    "contains_gluten": false,
+    "contains_egg": true,
+    "contains_dairy": false
+  },
+  {
+    "ingredient_id": "egg-replacer",
+    "canonical_name": "Egg replacer",
+    "contains_gluten": false,
+    "contains_egg": false,
+    "contains_dairy": false
+  },
+  {
+    "ingredient_id": "milk",
+    "canonical_name": "Milk",
+    "contains_gluten": false,
+    "contains_egg": false,
+    "contains_dairy": true
+  },
+  {
+    "ingredient_id": "oat-milk",
+    "canonical_name": "Oat milk",
+    "contains_gluten": false,
+    "contains_egg": false,
+    "contains_dairy": false
+  },
+  {
+    "ingredient_id": "butter",
+    "canonical_name": "Butter",
+    "contains_gluten": false,
+    "contains_egg": false,
+    "contains_dairy": true
+  },
+  {
+    "ingredient_id": "vegan-butter",
+    "canonical_name": "Vegan butter",
+    "contains_gluten": false,
+    "contains_egg": false,
+    "contains_dairy": false
+  },
+  {
+    "ingredient_id": "wheat-flour",
+    "canonical_name": "Wheat flour",
+    "contains_gluten": true,
+    "contains_egg": false,
+    "contains_dairy": false
+  },
+  {
+    "ingredient_id": "gf-flour-blend",
+    "canonical_name": "Gluten-free flour blend",
+    "contains_gluten": false,
+    "contains_egg": false,
+    "contains_dairy": false
+  },
+  {
+    "ingredient_id": "water",
+    "canonical_name": "Water",
+    "contains_gluten": false,
+    "contains_egg": false,
+    "contains_dairy": false
+  },
+  {
+    "ingredient_id": "salt",
+    "canonical_name": "Salt",
+    "contains_gluten": false,
+    "contains_egg": false,
+    "contains_dairy": false
+  },
+  {
+    "ingredient_id": "sugar",
+    "canonical_name": "Sugar",
+    "contains_gluten": false,
+    "contains_egg": false,
+    "contains_dairy": false
+  }
+]
