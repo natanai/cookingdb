@@ -5,10 +5,18 @@ async function loadIndex() {
 }
 
 function recipeVisible(recipe, filters) {
+  if (filters.query && !recipe.title.toLowerCase().includes(filters.query)) return false;
   if (filters.gluten && !recipe.compatibility_possible.gluten_free) return false;
   if (filters.egg && !recipe.compatibility_possible.egg_free) return false;
   if (filters.dairy && !recipe.compatibility_possible.dairy_free) return false;
   return true;
+}
+
+function createTag(label, value) {
+  const pill = document.createElement('span');
+  pill.className = value ? 'pill' : 'pill neutral';
+  pill.textContent = value ? label : `Contains ${label.toLowerCase()}`;
+  return pill;
 }
 
 function renderRecipes(recipes) {
@@ -17,9 +25,18 @@ function renderRecipes(recipes) {
     gluten: document.getElementById('filter-gluten').checked,
     egg: document.getElementById('filter-egg').checked,
     dairy: document.getElementById('filter-dairy').checked,
+    query: document.getElementById('search')?.value.trim().toLowerCase() || '',
   };
   listEl.innerHTML = '';
-  recipes.filter((r) => recipeVisible(r, filters)).forEach((recipe) => {
+  const visible = recipes.filter((r) => recipeVisible(r, filters));
+  if (visible.length === 0) {
+    const empty = document.createElement('li');
+    empty.className = 'empty-state';
+    empty.textContent = 'No recipes match that search just yet—try clearing a filter.';
+    listEl.appendChild(empty);
+    return;
+  }
+  visible.forEach((recipe) => {
     const li = document.createElement('li');
     li.className = 'recipe-card';
     const link = document.createElement('a');
@@ -28,9 +45,9 @@ function renderRecipes(recipes) {
     li.appendChild(link);
     const tags = document.createElement('div');
     tags.className = 'tags';
-    tags.textContent = `GF: ${recipe.compatibility_possible.gluten_free ? 'yes' : 'no'} | Egg-free: ${
-      recipe.compatibility_possible.egg_free ? 'yes' : 'no'
-    } | Dairy-free: ${recipe.compatibility_possible.dairy_free ? 'yes' : 'no'}`;
+    tags.appendChild(createTag('Gluten-free ready', recipe.compatibility_possible.gluten_free));
+    tags.appendChild(createTag('Egg-free friendly', recipe.compatibility_possible.egg_free));
+    tags.appendChild(createTag('Dairy-free ready', recipe.compatibility_possible.dairy_free));
     li.appendChild(tags);
     listEl.appendChild(li);
   });
@@ -42,6 +59,7 @@ async function main() {
   document.getElementById('filter-gluten').addEventListener('change', update);
   document.getElementById('filter-egg').addEventListener('change', update);
   document.getElementById('filter-dairy').addEventListener('change', update);
+  document.getElementById('search').addEventListener('input', update);
   update();
 }
 

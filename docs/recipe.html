@@ -8,30 +8,41 @@
 </head>
 <body>
   <header class="site-header">
-    <h1 id="recipe-title">Recipe</h1>
-    <nav class="nav-links">
-      <a href="index.html">← Back to recipes</a>
-    </nav>
+    <div class="inner">
+      <h1 class="site-title" id="recipe-title">Recipe</h1>
+      <nav class="nav-links">
+        <a href="index.html">← Back to recipes</a>
+      </nav>
+    </div>
   </header>
-  <main>
-    <section class="controls">
-      <label>
-        Batch multiplier:
-        <input type="number" id="multiplier" step="0.25" min="0.25" value="1" />
-      </label>
-      <div id="choices-container"></div>
-      <button id="print-btn" type="button">Print</button>
+  <div class="page-shell">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">In the family notebook</div>
+        <h1 id="recipe-title-duplicate">Recipe</h1>
+        <p class="notes" id="notes"></p>
+        <div class="recipe-metadata" id="metadata"></div>
+      </div>
     </section>
-    <section id="notes" class="notes"></section>
-    <section>
-      <h2>Ingredients (derived)</h2>
-      <ul id="ingredients-list"></ul>
-    </section>
-    <section>
-      <h2>Steps</h2>
-      <ol id="steps-list"></ol>
-    </section>
-  </main>
+    <main>
+      <section class="controls">
+        <label>
+          Batch multiplier:
+          <input type="number" id="multiplier" step="0.25" min="0.25" value="1" />
+        </label>
+        <div id="choices-container"></div>
+        <button class="button" id="print-btn" type="button">🖨 Print</button>
+      </section>
+      <section>
+        <h2>Ingredients (derived)</h2>
+        <ul id="ingredients-list"></ul>
+      </section>
+      <section>
+        <h2>Steps</h2>
+        <ol id="steps-list"></ol>
+      </section>
+    </main>
+  </div>
   <script src="recipe.js" type="module"></script>
 </body>
 </html>
