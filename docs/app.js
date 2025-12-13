@@ -183,7 +183,10 @@ function refreshUI() {
 
 function normalizeIncomingList(result) {
   if (!result) return [];
-  const maybeList = Array.isArray(result) ? result : result.pending || result.recipes || result.items;
+  const maybeList = Array.isArray(result)
+  ? result
+  : result.rows || result.pending || result.recipes || result.items;
+
   if (!maybeList || !Array.isArray(maybeList)) return [];
   return maybeList.map((entry) => normalizeRecipePayload(entry)).filter(Boolean);
 }
