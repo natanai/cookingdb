@@ -338,7 +338,6 @@ function setupPanControls(recipe, state, rerender) {
 
 function renderRecipe(recipe) {
   const titleEl = document.getElementById('recipe-title');
-  const heroTitleEl = document.getElementById('recipe-title-duplicate');
   const notesEl = document.getElementById('notes');
   const metadataEl = document.getElementById('metadata');
   const categoryRow = document.getElementById('category-row');
@@ -349,6 +348,7 @@ function renderRecipe(recipe) {
   const prefDairy = document.getElementById('pref-dairy');
   const ingredientsHeading = document.getElementById('ingredients-heading');
   const defaultCompatibility = recipeDefaultCompatibility(recipe);
+  const compatibilityPossible = recipe.compatibility_possible || {};
   const queryRestrictions = getDietaryFromQuery();
   const restrictionCanRelax = {
     gluten_free: hasNonCompliantAlternative(recipe, 'gluten_free'),
@@ -367,18 +367,21 @@ function renderRecipe(recipe) {
     selectedPanId: recipe.default_pan || null,
     selectedOptions: {},
     restrictions: {
-      gluten_free: resolveRestriction('gluten_free'),
-      egg_free: resolveRestriction('egg_free'),
-      dairy_free: resolveRestriction('dairy_free'),
+      gluten_free: compatibilityPossible.gluten_free ? resolveRestriction('gluten_free') : false,
+      egg_free: compatibilityPossible.egg_free ? resolveRestriction('egg_free') : false,
+      dairy_free: compatibilityPossible.dairy_free ? resolveRestriction('dairy_free') : false,
     },
   };
   multiplierInput.value = state.multiplier;
   prefGluten.checked = state.restrictions.gluten_free;
   prefEgg.checked = state.restrictions.egg_free;
   prefDairy.checked = state.restrictions.dairy_free;
-  prefGluten.disabled = defaultCompatibility.gluten_free && !restrictionCanRelax.gluten_free;
-  prefEgg.disabled = defaultCompatibility.egg_free && !restrictionCanRelax.egg_free;
-  prefDairy.disabled = defaultCompatibility.dairy_free && !restrictionCanRelax.dairy_free;
+  prefGluten.disabled =
+    !compatibilityPossible.gluten_free || (defaultCompatibility.gluten_free && !restrictionCanRelax.gluten_free);
+  prefEgg.disabled =
+    !compatibilityPossible.egg_free || (defaultCompatibility.egg_free && !restrictionCanRelax.egg_free);
+  prefDairy.disabled =
+    !compatibilityPossible.dairy_free || (defaultCompatibility.dairy_free && !restrictionCanRelax.dairy_free);
   if (ingredientsHeading) {
     ingredientsHeading.textContent = 'Ingredients';
   }
@@ -434,7 +437,6 @@ function renderRecipe(recipe) {
   prefDairy.addEventListener('change', handleRestrictionChange);
   rerender();
   titleEl.textContent = recipe.title;
-  heroTitleEl.textContent = recipe.title;
   document.getElementById('print-btn').addEventListener('click', () => window.print());
 }
 
