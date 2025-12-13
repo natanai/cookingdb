@@ -18,6 +18,12 @@ function getDietaryFromQuery() {
   };
 }
 
+const DIETARY_TAGS = {
+  gluten_free: { positive: 'Gluten-free ready', negative: 'Contains gluten' },
+  egg_free: { positive: 'Egg-free friendly', negative: 'Contains egg' },
+  dairy_free: { positive: 'Dairy-free ready', negative: 'Contains dairy' },
+};
+
 function restrictionsActive(prefs) {
   return prefs.gluten_free || prefs.egg_free || prefs.dairy_free;
 }
@@ -89,10 +95,10 @@ function pluralize(display, amount, unit) {
   return display;
 }
 
-function createMetadataPill(label, value) {
+function createMetadataPill(labels, value) {
   const pill = document.createElement('span');
   pill.className = value ? 'pill' : 'pill neutral';
-  pill.textContent = value ? label : `Contains ${label.toLowerCase()}`;
+  pill.textContent = value ? labels.positive : labels.negative;
   return pill;
 }
 
@@ -319,9 +325,9 @@ function renderRecipe(recipe) {
   prefDairy.checked = state.restrictions.dairy_free;
   notesEl.textContent = recipe.notes || 'A family note for this dish will go here soon.';
   metadataEl.innerHTML = '';
-  metadataEl.appendChild(createMetadataPill('Gluten-free ready', recipe.compatibility_possible.gluten_free));
-  metadataEl.appendChild(createMetadataPill('Egg-free friendly', recipe.compatibility_possible.egg_free));
-  metadataEl.appendChild(createMetadataPill('Dairy-free ready', recipe.compatibility_possible.dairy_free));
+  metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.gluten_free, recipe.compatibility_possible.gluten_free));
+  metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.egg_free, recipe.compatibility_possible.egg_free));
+  metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.dairy_free, recipe.compatibility_possible.dairy_free));
   const updateMultiplierHelper = () => {
     if (!multiplierHelper) return;
     const effective = getEffectiveMultiplier(state);
