@@ -613,7 +613,7 @@ main {
 .ingredient-header,
 .ingredient-row {
   display: grid;
-  grid-template-columns: 1.1fr 0.6fr 0.5fr 1fr 1fr auto;
+  grid-template-columns: 1.1fr 0.6fr 0.5fr 1fr 1.5fr auto;
   gap: 0.35rem;
   align-items: center;
 }
@@ -632,9 +632,25 @@ main {
 
 .dietary-flags {
   display: flex;
-  gap: 0.35rem;
   flex-wrap: wrap;
+  gap: 0.3rem;
 }
+
+.dietary-flags label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+.dietary-flags input {
+  margin-right: 0.2rem;
+}
+
 
 .pill-toggle {
   display: inline-flex;
@@ -657,6 +673,15 @@ main {
   padding: 0.75rem;
   border-radius: 12px;
   border: 1px solid var(--border);
+}
+.step-row label {
+  display: block;
+  width: 100%;
+}
+
+.step-row .step-text {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .step-ingredients {
