@@ -76,6 +76,13 @@ function pluralize(display, amount, unit) {
   return display;
 }
 
+function createMetadataPill(label, value) {
+  const pill = document.createElement('span');
+  pill.className = value ? 'pill' : 'pill neutral';
+  pill.textContent = value ? label : `Contains ${label.toLowerCase()}`;
+  return pill;
+}
+
 function renderIngredientEntry(option, multiplier) {
   if (!option.ratio) return option.display;
   const baseFraction = parseRatio(option.ratio);
@@ -158,14 +165,20 @@ function renderSteps(recipe, state) {
 
 function renderRecipe(recipe) {
   const titleEl = document.getElementById('recipe-title');
+  const heroTitleEl = document.getElementById('recipe-title-duplicate');
   const notesEl = document.getElementById('notes');
+  const metadataEl = document.getElementById('metadata');
   const multiplierInput = document.getElementById('multiplier');
   const state = {
     multiplier: Number(recipe.default_base) || 1,
     selectedOptions: {},
   };
   multiplierInput.value = state.multiplier;
-  notesEl.textContent = recipe.notes || '';
+  notesEl.textContent = recipe.notes || 'A family note for this dish will go here soon.';
+  metadataEl.innerHTML = '';
+  metadataEl.appendChild(createMetadataPill('Gluten-free ready', recipe.compatibility_possible.gluten_free));
+  metadataEl.appendChild(createMetadataPill('Egg-free friendly', recipe.compatibility_possible.egg_free));
+  metadataEl.appendChild(createMetadataPill('Dairy-free ready', recipe.compatibility_possible.dairy_free));
   buildChoiceControls(recipe, state, () => {
     renderIngredientsList(recipe, state);
     renderSteps(recipe, state);
@@ -178,6 +191,7 @@ function renderRecipe(recipe) {
   multiplierInput.addEventListener('input', rerender);
   rerender();
   titleEl.textContent = recipe.title;
+  heroTitleEl.textContent = recipe.title;
   document.getElementById('print-btn').addEventListener('click', () => window.print());
 }
 
