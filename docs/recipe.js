@@ -88,6 +88,50 @@ function renderIngredientEntry(option, multiplier) {
   return `${amountStr}${unit ? unit : ''} ${displayName}`.trim();
 }
 
+function optionMatchesRestrictions(option, dietary) {
+  const compatibility = option.compatibility || {};
+  return (
+    (!dietary.gluten_free || compatibility.gluten_free) &&
+    (!dietary.egg_free || compatibility.egg_free) &&
+    (!dietary.dairy_free || compatibility.dairy_free)
+  );
+}
+
+function chooseOptionForToken(token, recipe, state) {
+  const tokenData = recipe.ingredients[token];
+  if (!tokenData.isChoice) {
+    return tokenData.options[0];
+  }
+
+  const restrictionEnabled = Object.values(state.dietary).some((val) => val);
+  const options = tokenData.options.filter((opt) => opt.option);
+  const preferred = state.selectedOptions[token] || recipe.choices[token]?.default_option;
+  let selected = options.find((opt) => opt.option === preferred);
+
+  if (restrictionEnabled) {
+    const compatibleOptions = options.filter((opt) => optionMatchesRestrictions(opt, state.dietary));
+    if (!selected || !optionMatchesRestrictions(selected, state.dietary)) {
+      selected =
+        compatibleOptions.find((opt) => opt.option === recipe.choices[token]?.default_option) ||
+        compatibleOptions[0] ||
+        selected;
+    }
+    if (!selected && compatibleOptions.length) {
+      selected = compatibleOptions[0];
+    }
+  }
+
+  if (!selected) {
+    selected = options.find((opt) => opt.option === recipe.choices[token]?.default_option) || options[0];
+  }
+
+  if (selected?.option) {
+    state.selectedOptions[token] = selected.option;
+  }
+
+  return selected || tokenData.options[0];
+}
+
 function buildChoiceControls(recipe, state, onChange) {
   const container = document.getElementById('choices-container');
   container.innerHTML = '';
@@ -120,28 +164,29 @@ function buildChoiceControls(recipe, state, onChange) {
 
 function formatStepText(stepText, recipe, state) {
   return stepText.replace(/{{\s*([a-zA-Z0-9_-]+)\s*}}/g, (match, token) => {
-    const option = selectOptionForToken(token, recipe, state);
+    const option = chooseOptionForToken(token, recipe, state);
     return renderIngredientEntry(option, state.multiplier);
   });
-}
-
-function selectOptionForToken(token, recipe, state) {
-  const tokenData = recipe.ingredients[token];
-  if (tokenData.isChoice) {
-    const selected = state.selectedOptions[token] || recipe.choices[token]?.default_option;
-    return tokenData.options.find((opt) => opt.option === selected) || tokenData.options[0];
-  }
-  return tokenData.options[0];
 }
 
 function renderIngredientsList(recipe, state) {
   const list = document.getElementById('ingredients-list');
   list.innerHTML = '';
   recipe.token_order.forEach((token) => {
-    const option = selectOptionForToken(token, recipe, state);
+    const option = chooseOptionForToken(token, recipe, state);
     const li = document.createElement('li');
     li.textContent = renderIngredientEntry(option, state.multiplier);
     list.appendChild(li);
+  });
+}
+
+function syncChoiceSelections(recipe, state) {
+  document.querySelectorAll('#choices-container select').forEach((select) => {
+    const token = select.dataset.token;
+    const option = chooseOptionForToken(token, recipe, state);
+    if (option?.option) {
+      select.value = option.option;
+    }
   });
 }
 
@@ -163,18 +208,31 @@ function renderRecipe(recipe) {
   const state = {
     multiplier: Number(recipe.default_base) || 1,
     selectedOptions: {},
+    dietary: {
+      gluten_free: false,
+      egg_free: false,
+      dairy_free: false,
+    },
   };
   multiplierInput.value = state.multiplier;
   notesEl.textContent = recipe.notes || '';
-  buildChoiceControls(recipe, state, () => {
-    renderIngredientsList(recipe, state);
-    renderSteps(recipe, state);
+  const readDietaryState = () => ({
+    gluten_free: document.getElementById('diet-gluten-free').checked,
+    egg_free: document.getElementById('diet-egg-free').checked,
+    dairy_free: document.getElementById('diet-dairy-free').checked,
   });
+
   const rerender = () => {
+    state.dietary = readDietaryState();
     state.multiplier = Number(multiplierInput.value) || recipe.default_base;
     renderIngredientsList(recipe, state);
     renderSteps(recipe, state);
+    syncChoiceSelections(recipe, state);
   };
+  buildChoiceControls(recipe, state, rerender);
+  document.querySelectorAll('.dietary-controls input[type="checkbox"]').forEach((input) => {
+    input.addEventListener('change', rerender);
+  });
   multiplierInput.addEventListener('input', rerender);
   rerender();
   titleEl.textContent = recipe.title;

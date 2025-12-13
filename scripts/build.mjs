@@ -91,6 +91,14 @@ function ingredientCompatible(flags, restriction) {
   return true;
 }
 
+function optionCompatibility(flags) {
+  return {
+    gluten_free: ingredientCompatible(flags, 'gluten_free'),
+    egg_free: ingredientCompatible(flags, 'egg_free'),
+    dairy_free: ingredientCompatible(flags, 'dairy_free'),
+  };
+}
+
 function computeCompatibility(ingredients, catalog) {
   const restrictions = ['gluten_free', 'egg_free', 'dairy_free'];
   const result = { gluten_free: true, egg_free: true, dairy_free: true };
@@ -144,12 +152,14 @@ async function build() {
       if (!ingredients[row.token]) {
         ingredients[row.token] = { token: row.token, options: [], isChoice: false };
       }
+      const flags = catalog.get(row.ingredient_id);
       const optionEntry = {
         option: row.option,
         display: row.display,
         ratio: row.ratio,
         unit: row.unit,
         ingredient_id: row.ingredient_id,
+        compatibility: optionCompatibility(flags),
       };
       ingredients[row.token].options.push(optionEntry);
     }

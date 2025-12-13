@@ -82,6 +82,18 @@ main {
   border-radius: 6px;
 }
 
+.dietary-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  font-weight: 600;
+}
+
+.dietary-controls label {
+  font-weight: normal;
+}
+
 .controls input[type='number'] {
   width: 80px;
   margin-left: 0.25rem;

@@ -35,14 +35,24 @@
             "display": "eggs",
             "ratio": "3",
             "unit": "count",
-            "ingredient_id": "egg"
+            "ingredient_id": "egg",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": false,
+              "dairy_free": true
+            }
           },
           {
             "option": "replacer",
             "display": "egg replacer",
             "ratio": "3",
             "unit": "tbsp",
-            "ingredient_id": "egg-replacer"
+            "ingredient_id": "egg-replacer",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": true
@@ -55,14 +65,24 @@
             "display": "milk",
             "ratio": "3/4",
             "unit": "cup",
-            "ingredient_id": "milk"
+            "ingredient_id": "milk",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
           },
           {
             "option": "oat",
             "display": "oat milk",
             "ratio": "3/4",
             "unit": "cup",
-            "ingredient_id": "oat-milk"
+            "ingredient_id": "oat-milk",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": true
@@ -75,7 +95,12 @@
             "display": "water",
             "ratio": "3/4",
             "unit": "cup",
-            "ingredient_id": "water"
+            "ingredient_id": "water",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -88,14 +113,24 @@
             "display": "melted butter",
             "ratio": "2",
             "unit": "tbsp",
-            "ingredient_id": "butter"
+            "ingredient_id": "butter",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
           },
           {
             "option": "vegan",
             "display": "melted vegan butter",
             "ratio": "2",
             "unit": "tbsp",
-            "ingredient_id": "vegan-butter"
+            "ingredient_id": "vegan-butter",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": true
@@ -108,14 +143,24 @@
             "display": "flour",
             "ratio": "1",
             "unit": "cup",
-            "ingredient_id": "wheat-flour"
+            "ingredient_id": "wheat-flour",
+            "compatibility": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
           },
           {
             "option": "gf",
             "display": "gluten-free flour blend",
             "ratio": "1",
             "unit": "cup",
-            "ingredient_id": "gf-flour-blend"
+            "ingredient_id": "gf-flour-blend",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": true
@@ -128,7 +173,12 @@
             "display": "salt",
             "ratio": "1",
             "unit": "tsp",
-            "ingredient_id": "salt"
+            "ingredient_id": "salt",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -141,7 +191,12 @@
             "display": "sugar",
             "ratio": "1",
             "unit": "tbsp",
-            "ingredient_id": "sugar"
+            "ingredient_id": "sugar",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -154,14 +209,24 @@
             "display": "butter",
             "ratio": "",
             "unit": "",
-            "ingredient_id": "butter"
+            "ingredient_id": "butter",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
           },
           {
             "option": "vegan",
             "display": "vegan butter",
             "ratio": "",
             "unit": "",
-            "ingredient_id": "vegan-butter"
+            "ingredient_id": "vegan-butter",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": true
@@ -254,7 +319,12 @@
             "display": "superfine blanched almond flour",
             "ratio": "1/2",
             "unit": "cup",
-            "ingredient_id": "almond-flour"
+            "ingredient_id": "almond-flour",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -267,7 +337,12 @@
             "display": "superfine oat flour",
             "ratio": "1",
             "unit": "cup",
-            "ingredient_id": "oat-flour"
+            "ingredient_id": "oat-flour",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -280,7 +355,12 @@
             "display": "tapioca starch",
             "ratio": "2",
             "unit": "tbsp",
-            "ingredient_id": "tapioca-starch"
+            "ingredient_id": "tapioca-starch",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -293,7 +373,12 @@
             "display": "cornstarch",
             "ratio": "2",
             "unit": "tbsp",
-            "ingredient_id": "cornstarch"
+            "ingredient_id": "cornstarch",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -306,7 +391,12 @@
             "display": "fine granulated white sugar",
             "ratio": "3/4",
             "unit": "cup",
-            "ingredient_id": "white-sugar"
+            "ingredient_id": "white-sugar",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -319,7 +409,12 @@
             "display": "baking powder",
             "ratio": "2",
             "unit": "tsp",
-            "ingredient_id": "baking-powder"
+            "ingredient_id": "baking-powder",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -332,7 +427,12 @@
             "display": "fine salt",
             "ratio": "1/2",
             "unit": "tsp",
-            "ingredient_id": "salt"
+            "ingredient_id": "salt",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -345,7 +445,12 @@
             "display": "full-fat coconut milk (room temperature, fully mixed)",
             "ratio": "10",
             "unit": "tbsp",
-            "ingredient_id": "coconut-milk"
+            "ingredient_id": "coconut-milk",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -358,7 +463,12 @@
             "display": "fresh lemon juice",
             "ratio": "2 1/2",
             "unit": "tbsp",
-            "ingredient_id": "lemon"
+            "ingredient_id": "lemon",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -371,7 +481,12 @@
             "display": "lemon (for zest)",
             "ratio": "1",
             "unit": "count",
-            "ingredient_id": "lemon"
+            "ingredient_id": "lemon",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -384,7 +499,12 @@
             "display": "vanilla extract",
             "ratio": "1",
             "unit": "tsp",
-            "ingredient_id": "vanilla-extract"
+            "ingredient_id": "vanilla-extract",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -397,7 +517,12 @@
             "display": "neutral oil (for greasing pan)",
             "ratio": "",
             "unit": "",
-            "ingredient_id": "neutral-oil"
+            "ingredient_id": "neutral-oil",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -410,7 +535,12 @@
             "display": "powdered sugar",
             "ratio": "1",
             "unit": "cup",
-            "ingredient_id": "powdered-sugar"
+            "ingredient_id": "powdered-sugar",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -423,7 +553,12 @@
             "display": "fresh lemon juice",
             "ratio": "1",
             "unit": "tbsp",
-            "ingredient_id": "lemon"
+            "ingredient_id": "lemon",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
@@ -436,14 +571,24 @@
             "display": "thick non-dairy yogurt (plain or vanilla)",
             "ratio": "1",
             "unit": "tbsp",
-            "ingredient_id": "nondairy-yogurt"
+            "ingredient_id": "nondairy-yogurt",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           },
           {
             "option": "milk",
             "display": "creamy milk",
             "ratio": "1/2",
             "unit": "tbsp",
-            "ingredient_id": "milk"
+            "ingredient_id": "milk",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
           }
         ],
         "isChoice": true
@@ -456,7 +601,12 @@
             "display": "vanilla extract",
             "ratio": "1/4",
             "unit": "tsp",
-            "ingredient_id": "vanilla-extract"
+            "ingredient_id": "vanilla-extract",
+            "compatibility": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
         "isChoice": false
