@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Inbox Export</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <h1 class="site-title">Inbox admin</h1>
+      <nav class="nav-links">
+        <a href="index.html">← Back to cookbook</a>
+        <a href="add.html">Family submit</a>
+      </nav>
+    </div>
+  </header>
+  <div class="page-shell">
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Export pending recipes</h1>
+        <p class="hero-subtitle">Download submissions waiting in the Worker inbox, then optionally mark them imported or delete them.</p>
+      </div>
+    </section>
+    <main class="admin-panel">
+      <section class="form-panel">
+        <div class="field">
+          <label for="admin-token">Admin token</label>
+          <input id="admin-token" type="password" placeholder="Paste admin token" />
+        </div>
+        <label class="remember-row"><input type="checkbox" id="remember-admin" /> Remember token on this device</label>
+        <div class="actions">
+          <button class="button" id="download-btn" type="button">Download pending recipes JSON</button>
+          <button class="button secondary" id="mark-imported-btn" type="button" disabled>Mark downloaded as imported</button>
+          <button class="button secondary" id="delete-btn" type="button" disabled>Delete imported recipes</button>
+        </div>
+        <div id="admin-status" class="status"></div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

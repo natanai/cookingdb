@@ -524,6 +524,211 @@ main {
   border-radius: 12px;
 }
 
+.inbox-grid,
+.admin-panel {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.admin-panel {
+  grid-template-columns: 1fr;
+}
+
+.form-panel,
+.preview-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+.preview-shell {
+  background: #fffdf9;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.field.inline {
+  max-width: 240px;
+}
+
+.field label,
+.remember-row {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.field input,
+.field textarea,
+.ingredient-row input,
+#admin-token {
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.75rem;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #fffdf9;
+}
+
+.field input:focus,
+.field textarea:focus,
+.ingredient-row input:focus,
+#admin-token:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  background: #fff;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field-help {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.ingredient-table {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.ingredient-header,
+.ingredient-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.6fr 0.5fr 1fr 1fr auto;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.ingredient-header {
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.ingredient-row {
+  background: #fffdf9;
+  padding: 0.35rem;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+}
+
+.dietary-flags {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.pill-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: #f6eee4;
+  border-radius: 12px;
+  padding: 0.25rem 0.5rem;
+  font-weight: 600;
+}
+
+.steps-builder {
+  display: grid;
+  gap: 0.75rem;
+  padding-left: 1rem;
+}
+
+.step-row {
+  background: #fffdf9;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.step-ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.remember-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 0.75rem 0;
+}
+
+.button.secondary {
+  background: #f8f1e9;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.link-button {
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.status {
+  margin-top: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  background: #fff9f0;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.status.success {
+  background: #ebf8f1;
+  border-color: #b7e4c7;
+}
+
+.status.error {
+  background: #fff0f0;
+  border-color: #e6a8a8;
+  color: #8c1c1c;
+}
+
+.inbox-pill {
+  background: #f1e3ff;
+  color: #5a2aa8;
+}
+
+.admin-panel .form-panel {
+  max-width: 720px;
+}
+
+.preview-panel h4 {
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 960px) {
+  .inbox-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 680px) {
   .hero {
     padding: 1.5rem;

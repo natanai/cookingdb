@@ -1,3 +1,8 @@
+import { familyListPending, getRememberedPassword, setRememberedPassword } from './inbox/inbox-api.js';
+import { recipeDefaultCompatibility } from './recipe-utils.js';
+
+const STORAGE_KEY = 'cookingdb-inbox-recipes';
+
 async function loadIndex() {
   const res = await fetch('./built/index.json');
   if (!res.ok) throw new Error('Unable to load index.json');
@@ -5,6 +10,58 @@ async function loadIndex() {
 }
 
 let selectedCategory = 'all';
+let recipeList = [];
+let inboxRecipes = loadStoredInboxRecipes();
+
+function loadStoredInboxRecipes() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed;
+  } catch (err) {
+    console.warn('Failed to parse stored inbox recipes', err);
+    return [];
+  }
+}
+
+function storeInboxRecipes(recipes) {
+  inboxRecipes = recipes;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(recipes));
+}
+
+function normalizeTitleKey(title) {
+  return (title || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .split(/-+/)
+    .filter(Boolean)
+    .join('-');
+}
+
+function normalizeRecipePayload(entry) {
+  const payload = entry?.recipe || entry?.payload || entry;
+  if (!payload) return null;
+  const computedId = payload.id || payload.recipe_id || normalizeTitleKey(payload.title || '');
+  const compatibility = payload.compatibility_possible || recipeDefaultCompatibility(payload);
+  return {
+    ...payload,
+    id: computedId,
+    compatibility_possible: compatibility,
+  };
+}
+
+function recipeSummary(recipe, source = 'built') {
+  return {
+    id: recipe.id,
+    title: recipe.title,
+    categories: recipe.categories || [],
+    compatibility_possible: recipe.compatibility_possible || { gluten_free: true, egg_free: true, dairy_free: true },
+    content_hash: recipe.content_hash,
+    _source: source,
+  };
+}
 
 function recipeVisible(recipe, filters) {
   const matchesCategory =
@@ -12,13 +69,14 @@ function recipeVisible(recipe, filters) {
   if (!matchesCategory) return false;
 
   if (filters.query) {
-    const inTitle = recipe.title.toLowerCase().includes(filters.query);
+    const inTitle = (recipe.title || '').toLowerCase().includes(filters.query);
     const inCategories = (recipe.categories || []).some((cat) => cat.toLowerCase().includes(filters.query));
     if (!inTitle && !inCategories) return false;
   }
-  if (filters.gluten && !recipe.compatibility_possible.gluten_free) return false;
-  if (filters.egg && !recipe.compatibility_possible.egg_free) return false;
-  if (filters.dairy && !recipe.compatibility_possible.dairy_free) return false;
+  const compatibility = recipe.compatibility_possible || {};
+  if (filters.gluten && !compatibility.gluten_free) return false;
+  if (filters.egg && !compatibility.egg_free) return false;
+  if (filters.dairy && !compatibility.dairy_free) return false;
   return true;
 }
 
@@ -35,11 +93,8 @@ function createTag(labels, value) {
   return pill;
 }
 
-function buildRecipeLink(recipeId, filters) {
+function buildRecipeLink(recipeId) {
   const params = new URLSearchParams({ id: recipeId });
-  if (filters.gluten) params.set('gluten_free', '1');
-  if (filters.egg) params.set('egg_free', '1');
-  if (filters.dairy) params.set('dairy_free', '1');
   return `recipe.html?${params.toString()}`;
 }
 
@@ -66,14 +121,21 @@ function renderRecipes(recipes) {
     li.className = 'recipe-card';
 
     const link = document.createElement('a');
-    link.href = buildRecipeLink(recipe.id, filters);
+    link.href = buildRecipeLink(recipe.id);
     link.textContent = recipe.title;
     li.appendChild(link);
     const tags = document.createElement('div');
     tags.className = 'tags';
-    tags.appendChild(createTag(DIETARY_TAGS.gluten_free, recipe.compatibility_possible.gluten_free));
-    tags.appendChild(createTag(DIETARY_TAGS.egg_free, recipe.compatibility_possible.egg_free));
-    tags.appendChild(createTag(DIETARY_TAGS.dairy_free, recipe.compatibility_possible.dairy_free));
+    const compatibility = recipe.compatibility_possible || {};
+    tags.appendChild(createTag(DIETARY_TAGS.gluten_free, compatibility.gluten_free));
+    tags.appendChild(createTag(DIETARY_TAGS.egg_free, compatibility.egg_free));
+    tags.appendChild(createTag(DIETARY_TAGS.dairy_free, compatibility.dairy_free));
+    if (recipe._source === 'inbox') {
+      const badge = document.createElement('span');
+      badge.className = 'pill inbox-pill';
+      badge.textContent = 'Inbox';
+      tags.appendChild(badge);
+    }
     li.appendChild(tags);
     listEl.appendChild(li);
   });
@@ -114,15 +176,99 @@ function renderCategoryPanel(recipes, onSelect) {
   });
 }
 
+function refreshUI() {
+  renderCategoryPanel(recipeList, () => renderRecipes(recipeList));
+  renderRecipes(recipeList);
+}
+
+function normalizeIncomingList(result) {
+  if (!result) return [];
+  const maybeList = Array.isArray(result) ? result : result.pending || result.recipes || result.items;
+  if (!maybeList || !Array.isArray(maybeList)) return [];
+  return maybeList.map((entry) => normalizeRecipePayload(entry)).filter(Boolean);
+}
+
+function dedupeInboxRecipes(existing, incoming) {
+  const mapById = new Map();
+  existing.forEach((rec) => mapById.set(rec.id, rec));
+  const hashMap = new Map();
+  existing.forEach((rec) => {
+    if (rec.content_hash) hashMap.set(rec.content_hash, rec);
+  });
+  const titleMap = new Map();
+  existing.forEach((rec) => titleMap.set(normalizeTitleKey(rec.title), rec));
+
+  const fresh = [];
+  incoming.forEach((rec) => {
+    if (mapById.has(rec.id)) return;
+    if (rec.content_hash && hashMap.has(rec.content_hash)) return;
+    if (titleMap.has(normalizeTitleKey(rec.title))) return;
+    fresh.push(rec);
+  });
+  return fresh;
+}
+
+function addInboxRecipes(newOnes) {
+  if (!newOnes.length) return 0;
+  const next = [...inboxRecipes, ...newOnes];
+  storeInboxRecipes(next);
+  const summaries = next.map((rec) => recipeSummary(rec, 'inbox'));
+  const builtSummaries = recipeList.filter((rec) => rec._source !== 'inbox');
+  recipeList = [...builtSummaries, ...summaries];
+  refreshUI();
+  return newOnes.length;
+}
+
+function promptFamilyPassword() {
+  const remembered = getRememberedPassword('family');
+  const password = window.prompt('Family inbox password', remembered || '');
+  if (password === null) return null;
+  const rememberCheckbox = document.getElementById('remember-pull');
+  if (rememberCheckbox?.checked) {
+    setRememberedPassword({ kind: 'family', value: password, remember: true });
+  } else if (password) {
+    setRememberedPassword({ kind: 'family', value: password, remember: false });
+  }
+  return password;
+}
+
+function showPullStatus(message, kind = 'info') {
+  const el = document.getElementById('pull-status');
+  if (!el) return;
+  el.textContent = message;
+  el.className = `status ${kind}`;
+}
+
+async function handlePullClick() {
+  try {
+    const password = promptFamilyPassword();
+    if (!password) return;
+    showPullStatus('Pulling recipes from inbox...', 'info');
+    const result = await familyListPending({ familyPassword: password, includePayload: true });
+    const incoming = normalizeIncomingList(result);
+    const uniqueNew = dedupeInboxRecipes(inboxRecipes, incoming);
+    const addedCount = addInboxRecipes(uniqueNew);
+    if (addedCount === 0) {
+      showPullStatus('No new recipes to import right now.', 'info');
+    } else {
+      showPullStatus(`Added ${addedCount} recipe(s) from the inbox.`, 'success');
+    }
+  } catch (err) {
+    showPullStatus(err.message || 'Unable to pull recipes', 'error');
+  }
+}
+
 async function main() {
-  const data = await loadIndex();
-  const update = () => renderRecipes(data);
-  renderCategoryPanel(data, update);
+  const built = await loadIndex();
+  recipeList = [...built.map((rec) => recipeSummary(rec, 'built')), ...inboxRecipes.map((rec) => recipeSummary(rec, 'inbox'))];
+  const update = () => renderRecipes(recipeList);
+  renderCategoryPanel(recipeList, update);
   document.getElementById('filter-gluten').addEventListener('change', update);
   document.getElementById('filter-egg').addEventListener('change', update);
   document.getElementById('filter-dairy').addEventListener('change', update);
   document.getElementById('search').addEventListener('input', update);
-  update();
+  document.getElementById('pull-inbox')?.addEventListener('click', handlePullClick);
+  refreshUI();
 }
 
 main().catch((err) => {

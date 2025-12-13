@@ -31,3 +31,13 @@ A workflow (`.github/workflows/pages.yml`) builds the site and publishes `/docs`
 1. In the GitHub repository settings, open **Pages** and set **Source** to **Deploy from a branch**.
 2. Select the default branch and set the folder to `/docs`.
 3. Push changes to `main`; the workflow will run `npm run build` and deploy the generated artifact via GitHub Pages.
+
+## Recipe inbox
+
+- Family submit form: [`docs/add.html`](docs/add.html)
+- Admin export tools: [`docs/admin.html`](docs/admin.html)
+- The home page (`docs/index.html`) can pull pending inbox recipes into the local list for previewing.
+
+The Worker-backed database acts as an inbox for submissions; the Git repository remains the source of truth for published recipes. Approved recipes should be exported from the Worker, merged into the repo in the existing schema, and rebuilt for the site.
+
+Make sure the Worker allows CORS (including OPTIONS preflight) from `https://natanai.github.io` so the Pages-hosted UI can reach the inbox API.
