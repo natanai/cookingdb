@@ -74,6 +74,7 @@ function normalizeRecipePayload(entry) {
 }
 
 
+
 function recipeSummary(recipe, source = 'built') {
   return {
     id: recipe.id,
