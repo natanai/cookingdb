@@ -1,4 +1,4 @@
-# CookingDB
+# CookingDB v0.1
 
 Static recipe site with CSV/Markdown sources and a simple build pipeline.
 
