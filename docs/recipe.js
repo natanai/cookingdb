@@ -110,20 +110,69 @@ function buildChoiceControls(recipe, state, onChange) {
 function renderIngredientsList(recipe, state) {
   const list = document.getElementById('ingredients-list');
   list.innerHTML = '';
+
   const multiplier = getEffectiveMultiplier(state);
-  recipe.token_order.forEach((token) => {
-    const tokenData = recipe.ingredients[token];
-    const option = selectOptionForToken(token, recipe, state);
+
+  const ingredients = recipe && recipe.ingredients ? recipe.ingredients : null;
+
+  // Prefer explicit token_order; otherwise fall back to ingredient keys (stable-ish display),
+  // otherwise show a friendly message.
+  const order = Array.isArray(recipe?.token_order)
+    ? recipe.token_order
+    : ingredients
+      ? Object.keys(ingredients)
+      : [];
+
+  if (!ingredients || order.length === 0) {
     const li = document.createElement('li');
-    li.textContent = renderIngredientEntry(option, multiplier);
-    const alternatives = alternativeOptions(tokenData, state, option);
-    if (alternatives.length) {
-      const altText = alternatives.map((opt) => renderIngredientEntry(opt, multiplier)).join(' / ');
-      const altSpan = document.createElement('span');
-      altSpan.className = 'ingredient-alternatives';
-      altSpan.textContent = ` (or ${altText})`;
-      li.appendChild(altSpan);
+    li.textContent = 'This recipe was imported without full ingredient data.';
+    list.appendChild(li);
+    return;
+  }
+
+  order.forEach((token) => {
+    const tokenData = ingredients[token];
+    if (!tokenData) return;
+
+    const li = document.createElement('li');
+
+    // Pick the selected option; if missing, skip gracefully.
+    const option = selectOptionForToken(token, recipe, state);
+    if (!option) return;
+
+    try {
+      li.textContent = renderIngredientEntry(option, multiplier);
+    } catch (e) {
+      // Fallback: show something instead of breaking the whole page.
+      li.textContent = String(token);
     }
+
+    let alternatives = [];
+    try {
+      alternatives = alternativeOptions(tokenData, state, option) || [];
+    } catch (e) {
+      alternatives = [];
+    }
+
+    if (alternatives.length) {
+      let altText = '';
+      try {
+        altText = alternatives
+          .map((opt) => renderIngredientEntry(opt, multiplier))
+          .filter(Boolean)
+          .join(' / ');
+      } catch (e) {
+        altText = '';
+      }
+
+      if (altText) {
+        const altSpan = document.createElement('span');
+        altSpan.className = 'ingredient-alternatives';
+        altSpan.textContent = ` (or ${altText})`;
+        li.appendChild(altSpan);
+      }
+    }
+
     list.appendChild(li);
   });
 }
@@ -131,13 +180,42 @@ function renderIngredientsList(recipe, state) {
 function renderSteps(recipe, state) {
   const steps = document.getElementById('steps-list');
   steps.innerHTML = '';
-  const stepLines = recipe.steps_raw.split(/\n/).filter((line) => line.trim() !== '');
+
+  const raw =
+    recipe && typeof recipe.steps_raw === 'string'
+      ? recipe.steps_raw
+      : Array.isArray(recipe?.steps)
+        ? recipe.steps.map(String).join('\n')
+        : '';
+
+  const stepLines = raw
+    .split(/\n/)
+    .map((l) => l.trim())
+    .filter((l) => l !== '');
+
+  if (stepLines.length === 0) {
+    const li = document.createElement('li');
+    li.textContent = 'This recipe was imported without step text.';
+    steps.appendChild(li);
+    return;
+  }
+
   stepLines.forEach((line) => {
     const li = document.createElement('li');
-    li.textContent = formatStepText(line.replace(/^\d+\.\s*/, ''), recipe, state);
+
+    // Remove leading "1. " / "1) " etc.
+    const cleaned = line.replace(/^\s*\d+\s*[\.\)]\s*/, '');
+
+    try {
+      li.textContent = formatStepText(cleaned, recipe, state);
+    } catch (e) {
+      li.textContent = cleaned;
+    }
+
     steps.appendChild(li);
   });
 }
+
 
 function setupPanControls(recipe, state, rerender) {
   const panControls = document.getElementById('pan-controls');
