@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add a family recipe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <h1 class="site-title">Submit a recipe</h1>
+      <nav class="nav-links">
+        <a href="index.html">← Back to cookbook</a>
+        <a href="admin.html">Admin export</a>
+      </nav>
+    </div>
+  </header>
+  <div class="page-shell">
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Recipe inbox</h1>
+        <p class="hero-subtitle">Share a family recipe with the rest of the cookbook. Every step must list the ingredients it uses so the card renders correctly.</p>
+      </div>
+    </section>
+    <main class="inbox-grid">
+      <section class="form-panel">
+        <h2 class="section-heading">Recipe details</h2>
+        <form id="recipe-form">
+          <div class="field">
+            <label for="title">Recipe title</label>
+            <input id="title" name="title" required placeholder="Mom's lasagna" />
+          </div>
+          <div class="field">
+            <label for="slug">Recipe ID (letters, numbers, dashes)</label>
+            <input id="slug" name="slug" required placeholder="moms-lasagna" />
+            <small class="field-help">Used as the primary key. We’ll suggest one from the title.</small>
+          </div>
+          <div class="field">
+            <label for="notes">Notes (optional)</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Serving suggestions, storage, or quick tips"></textarea>
+          </div>
+          <div class="field">
+            <label for="categories">Categories (comma-separated)</label>
+            <input id="categories" name="categories" placeholder="Mains, Weeknight" />
+          </div>
+          <div class="field inline">
+            <label for="default-base">Batch size (default multiplier)</label>
+            <input id="default-base" name="default-base" type="number" step="0.25" min="0.25" value="1" />
+          </div>
+          <fieldset class="field">
+            <legend>Ingredients</legend>
+            <div id="ingredient-table" class="ingredient-table">
+              <div class="ingredient-header">
+                <span>Name</span>
+                <span>Amount</span>
+                <span>Unit</span>
+                <span>Alternative (optional)</span>
+                <span>Dietary flags</span>
+                <span></span>
+              </div>
+              <div id="ingredient-rows"></div>
+            </div>
+            <div class="field-help">Amount accepts fractions like "1/2" or "1 1/2". Use any common cooking unit.</div>
+            <button class="button secondary" type="button" id="add-ingredient">+ Add ingredient</button>
+          </fieldset>
+          <fieldset class="field">
+            <legend>Steps</legend>
+            <ol id="steps-list" class="steps-builder"></ol>
+            <button class="button secondary" type="button" id="add-step">+ Add step</button>
+            <div class="field-help">Select every ingredient a step uses. Missing ingredients will be appended to the step so the renderer stays in sync.</div>
+          </fieldset>
+          <div class="actions">
+            <button class="button" type="submit">Submit to inbox</button>
+            <label class="remember-row"><input type="checkbox" id="remember-family" /> Remember password on this device</label>
+          </div>
+          <div id="form-status" class="status"></div>
+        </form>
+      </section>
+      <section class="preview-panel">
+        <h2 class="section-heading">Live preview</h2>
+        <div id="preview-shell" class="preview-shell">
+          <h3 id="preview-title">Recipe title</h3>
+          <div id="preview-notes" class="notes"></div>
+          <div id="preview-categories" class="card-categories"></div>
+          <div class="recipe-metadata" id="preview-metadata"></div>
+          <h4>Ingredients</h4>
+          <ul id="preview-ingredients"></ul>
+          <h4>Steps</h4>
+          <ol id="preview-steps"></ol>
+        </div>
+      </section>
+    </main>
+  </div>
+  <datalist id="ingredient-suggestions"></datalist>
+  <datalist id="category-suggestions"></datalist>
+  <script type="module" src="add.js"></script>
+</body>
+</html>
