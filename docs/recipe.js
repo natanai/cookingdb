@@ -306,16 +306,3 @@ async function main() {
 main().catch((err) => {
   document.body.innerHTML = `<p>${err.message || 'Failed to load recipe'}</p>`;
 });
-import {
-  DIETARY_TAGS,
-  restrictionsActive,
-  recipeDefaultCompatibility,
-  hasNonCompliantAlternative,
-  renderIngredientEntry,
-  renderIngredientLines,
-  renderStepLines,
-  selectOptionForToken,
-  optionMeetsRestrictions,
-  alternativeOptions,
-  getEffectiveMultiplier,
-} from './recipe-utils.js';
