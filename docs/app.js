@@ -41,16 +41,38 @@ function normalizeTitleKey(title) {
 }
 
 function normalizeRecipePayload(entry) {
-  const payload = entry?.recipe || entry?.payload || entry;
+  // Support multiple API shapes:
+  // - { payload: <recipe> }
+  // - { payload: { title, payload: <recipe> } }  <-- envelope
+  // - { recipe: <recipe> }
+  const payload =
+    entry?.recipe?.payload ??
+    entry?.recipe ??
+    entry?.payload?.payload ??
+    entry?.payload ??
+    entry;
+
   if (!payload) return null;
-  const computedId = payload.id || payload.recipe_id || normalizeTitleKey(payload.title || '');
+
+  const title = payload.title || entry?.title || '';
+  const computedId =
+    payload.id ||
+    payload.recipe_id ||
+    entry?.id ||
+    entry?.recipe_id ||
+    normalizeTitleKey(title);
+
   const compatibility = payload.compatibility_possible || recipeDefaultCompatibility(payload);
+
   return {
     ...payload,
+    title,
     id: computedId,
+    content_hash: payload.content_hash || entry?.content_hash,
     compatibility_possible: compatibility,
   };
 }
+
 
 function recipeSummary(recipe, source = 'built') {
   return {
