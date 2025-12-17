@@ -840,7 +840,7 @@ function bootstrap() {
     document.getElementById('remember-family').checked = true;
   }
 
-  createIngredientRow();
+  renderIngredientEmptyState();
   createStepRow();
   refreshPreview();
   loadExistingRecipes();

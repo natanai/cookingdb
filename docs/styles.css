@@ -781,6 +781,21 @@ main {
   min-width: 200px;
 }
 
+.remove-cell {
+  width: 1%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.remove-cell .remove-ingredient {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1rem 0.3rem;
+  white-space: nowrap;
+  min-width: auto;
+}
+
 .ingredient-row input,
 .ingredient-row select {
   width: 100%;
@@ -822,6 +837,10 @@ main {
   border: none;
   padding: 10px 6px;
   vertical-align: middle;
+}
+
+.ingredient-empty td:first-child {
+  text-align: center;
 }
 
 .ingredient-empty-help {
