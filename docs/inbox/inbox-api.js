@@ -5,6 +5,7 @@ const PATHS = {
   adminExport: '/admin/export',
   adminMarkImported: '/admin/mark-imported',
   adminDelete: '/admin/purge-imported',
+  adminWipeDatabase: '/admin/wipe',
 };
 
 function storageKey(kind) {
@@ -115,5 +116,12 @@ export function adminDelete({ workerBaseUrl = DEFAULT_BASE_URL, adminToken, ids 
     workerBaseUrl,
     adminToken,
     payload: { ids },
+  });
+}
+
+export function adminWipeDatabase({ workerBaseUrl = DEFAULT_BASE_URL, adminToken }) {
+  return postJson('adminWipeDatabase', {
+    workerBaseUrl,
+    adminToken,
   });
 }
