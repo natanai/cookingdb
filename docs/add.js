@@ -328,28 +328,41 @@ function createStepRow(defaultText = '', defaultSection = '') {
   const li = document.createElement('li');
   li.className = 'step-row';
   li.innerHTML = `
-    <label>Instruction
-      <textarea class="step-text" rows="3" placeholder="Describe the action and include ingredients"></textarea>
-    </label>
-    <label>Section (optional)
-      <input class="step-section" placeholder="e.g., Prep Work" />
-    </label>
-    <div class="step-ingredients" aria-label="Ingredients used in this step"></div>
-    <details class="step-variation">
-      <summary>Add conditional variation (optional)</summary>
-      <div class="variation-grid">
-        <label>Show when ingredient is set to
-          <div class="conditional-inputs">
-            <input class="variation-token" placeholder="Token" aria-label="Variation token" />
-            <input class="variation-option" placeholder="Option" aria-label="Variation option" />
+    <div class="step-main">
+      <label class="step-field">Instruction
+        <textarea class="step-text" rows="3" placeholder="Describe the action and include ingredients"></textarea>
+      </label>
+      <div class="step-ingredients-block">
+        <span class="cell-label">Ingredients used</span>
+        <div class="step-ingredients" aria-label="Ingredients used in this step"></div>
+      </div>
+      <button type="button" class="link-button remove-step">Remove step</button>
+    </div>
+    <details class="step-more">
+      <summary>
+        <span class="more-icon" aria-hidden="true">+</span>
+        <span class="more-label">More options</span>
+      </summary>
+      <div class="more-grid">
+        <label class="step-field">Section
+          <input class="step-section" placeholder="Defaults to one section" />
+        </label>
+        <details class="step-variation">
+          <summary>Add conditional variation (optional)</summary>
+          <div class="variation-grid">
+            <label>Show when ingredient is set to
+              <div class="conditional-inputs">
+                <input class="variation-token" placeholder="Token" aria-label="Variation token" />
+                <input class="variation-option" placeholder="Option" aria-label="Variation option" />
+              </div>
+            </label>
+            <label>Variation text (only shown when matched)
+              <textarea class="variation-text" rows="2" placeholder="Extra instruction when a specific option is chosen"></textarea>
+            </label>
           </div>
-        </label>
-        <label>Variation text (only shown when matched)
-          <textarea class="variation-text" rows="2" placeholder="Extra instruction when a specific option is chosen"></textarea>
-        </label>
+        </details>
       </div>
     </details>
-    <button type="button" class="link-button remove-step">Remove step</button>
   `;
   li.querySelector('.step-text').value = defaultText;
   li.querySelector('.step-section').value = defaultSection;

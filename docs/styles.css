@@ -749,7 +749,8 @@ main {
   vertical-align: bottom;
 }
 
-.ingredient-more summary {
+.ingredient-more summary,
+.step-more summary {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -758,7 +759,8 @@ main {
   color: var(--muted);
 }
 
-.ingredient-more .more-icon {
+.ingredient-more .more-icon,
+.step-more .more-icon {
   display: inline-block;
   font-size: 1.25rem;
   line-height: 1;
@@ -767,11 +769,13 @@ main {
   transition: transform 0.2s ease;
 }
 
-.ingredient-more[open] .more-icon {
+.ingredient-more[open] .more-icon,
+.step-more[open] .more-icon {
   transform: rotate(45deg);
 }
 
-.ingredient-more .more-grid {
+.ingredient-more .more-grid,
+.step-more .more-grid {
   display: grid;
   gap: 0.65rem;
   margin-top: 0.65rem;
@@ -908,6 +912,28 @@ main {
 .step-row {
   padding: 0;
 }
+.step-main {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.step-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.step-row .cell-label {
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.step-ingredients-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .step-row label {
   display: block;
   width: 100%;
@@ -923,6 +949,14 @@ main {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 0.35rem;
+}
+
+.step-more {
+  margin-top: 0.5rem;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem 0.5rem;
+  background: #fffdf9;
 }
 
 .step-variation {
