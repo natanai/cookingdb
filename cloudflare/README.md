@@ -45,3 +45,7 @@ await fetch('https://<your-worker>/admin/export', {
   body: JSON.stringify({ status: 'all', include_payload: true }),
 }).then((r) => r.json());
 ```
+
+## Updating the Worker
+
+After pulling this branch, copy/paste [`worker.js`](./worker.js) into your Cloudflare Worker and deploy. Ensure the Worker keeps the `DB` binding plus the `ADMIN_TOKEN` and `FAMILY_PASSWORD`/`RECIPE_PASSWORD` secrets.
