@@ -42,8 +42,9 @@
             <textarea id="notes" name="notes" rows="3" placeholder="Serving suggestions, storage, or quick tips"></textarea>
           </div>
           <div class="field">
-            <label for="categories">Categories (comma-separated) <span class="required-badge">Required</span></label>
-            <input id="categories" name="categories" placeholder="Mains, Weeknight" />
+            <label for="categories">Categories (choose one or more) <span class="required-badge">Required</span></label>
+            <select id="categories" name="categories" multiple aria-describedby="categories-help"></select>
+            <small id="categories-help" class="field-help">Select from existing cookbook categories.</small>
           </div>
           <div class="field inline">
             <label for="default-base">Batch size (default multiplier)</label>
@@ -62,7 +63,7 @@
               </div>
               <div id="ingredient-rows"></div>
             </div>
-            <div class="field-help">Amount accepts fractions like "1/2" or "1 1/2". Use any common cooking unit.</div>
+            <div class="field-help">Amount accepts fractions like "1/2" or "1 1/2". Units must use the existing list.</div>
             <button class="button secondary" type="button" id="add-ingredient">+ Add ingredient</button>
           </fieldset>
           <fieldset class="field">
@@ -94,7 +95,6 @@
     </main>
   </div>
   <datalist id="ingredient-suggestions"></datalist>
-  <datalist id="category-suggestions"></datalist>
   <script type="module" src="add.js"></script>
 </body>
 </html>
