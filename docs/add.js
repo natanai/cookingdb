@@ -53,6 +53,15 @@ function updateSuggestions() {
   categorySet.forEach((cat) => addOptionToDatalist(categorySuggestionsEl, cat));
 }
 
+function normalizeIngredientsForSuggestions(recipe) {
+  if (!recipe || typeof recipe !== 'object') return [];
+  if (Array.isArray(recipe.ingredients)) return recipe.ingredients.filter(Boolean);
+  if (recipe.ingredients && typeof recipe.ingredients === 'object') {
+    return Object.values(recipe.ingredients).filter(Boolean);
+  }
+  return [];
+}
+
 async function loadExistingRecipes() {
   try {
     const res = await fetch('./built/recipes.json');
@@ -60,7 +69,7 @@ async function loadExistingRecipes() {
       const recipes = await res.json();
       recipes.forEach((recipe) => {
         (recipe.categories || []).forEach((cat) => categorySet.add(cat));
-        Object.values(recipe.ingredients || {}).forEach((tokenData) => {
+        normalizeIngredientsForSuggestions(recipe).forEach((tokenData) => {
           tokenData.options.forEach((opt) => {
             if (opt.display) ingredientNameSet.add(opt.display);
           });
@@ -201,6 +210,40 @@ function readDietaryFlags(row) {
   return flags;
 }
 
+function buildIngredientsFromForm() {
+  const tokenOrder = [];
+  const ingredientList = [];
+  const ingredientRows = [...ingredientRowsEl.querySelectorAll('.ingredient-row')];
+
+  ingredientRows.forEach((row) => {
+    const name = row.querySelector('.ingredient-name').value.trim();
+    const amount = row.querySelector('.ingredient-amount').value.trim();
+    const unit = row.querySelector('.ingredient-unit').value.trim();
+    const alt = row.querySelector('.ingredient-alt').value.trim();
+    if (!name) return;
+    const token = slugify(name);
+    if (!tokenOrder.includes(token)) tokenOrder.push(token);
+    const dietary = readDietaryFlags(row);
+    const optionDisplay = alt ? `${name} (${alt})` : name;
+    ingredientList.push({
+      token,
+      options: [
+        {
+          option: '',
+          display: optionDisplay,
+          ratio: amount,
+          unit,
+          ingredient_id: token,
+          dietary,
+        },
+      ],
+      isChoice: false,
+    });
+  });
+
+  return { ingredientList, tokenOrder };
+}
+
 function buildRecipeFromForm({ strict = true } = {}) {
   const title = document.getElementById('title').value.trim();
   const slug = document.getElementById('slug').value.trim();
@@ -217,34 +260,7 @@ function buildRecipeFromForm({ strict = true } = {}) {
   if (strict && !title) throw new Error('Please add a recipe title.');
   if (strict && !slug) throw new Error('Please set a recipe ID.');
 
-  const ingredients = {};
-  const tokenOrder = [];
-  const ingredientRows = [...ingredientRowsEl.querySelectorAll('.ingredient-row')];
-  ingredientRows.forEach((row) => {
-    const name = row.querySelector('.ingredient-name').value.trim();
-    const amount = row.querySelector('.ingredient-amount').value.trim();
-    const unit = row.querySelector('.ingredient-unit').value.trim();
-    const alt = row.querySelector('.ingredient-alt').value.trim();
-    if (!name) return;
-    const token = slugify(name);
-    if (!tokenOrder.includes(token)) tokenOrder.push(token);
-    const dietary = readDietaryFlags(row);
-    const optionDisplay = alt ? `${name} (${alt})` : name;
-    ingredients[token] = {
-      token,
-      options: [
-        {
-          option: '',
-          display: optionDisplay,
-          ratio: amount,
-          unit,
-          ingredient_id: token,
-          dietary,
-        },
-      ],
-      isChoice: false,
-    };
-  });
+  const { ingredientList, tokenOrder } = buildIngredientsFromForm();
 
   if (strict && tokenOrder.length === 0) {
     throw new Error('Add at least one ingredient.');
@@ -279,7 +295,7 @@ function buildRecipeFromForm({ strict = true } = {}) {
   }
 
   const compatibility = { gluten_free: true, egg_free: true, dairy_free: true };
-  Object.values(ingredients).forEach((tokenData) => {
+  ingredientList.forEach((tokenData) => {
     tokenData.options.forEach((opt) => {
       ['gluten_free', 'egg_free', 'dairy_free'].forEach((key) => {
         if (opt.dietary && opt.dietary[key] === false) {
@@ -299,12 +315,23 @@ function buildRecipeFromForm({ strict = true } = {}) {
     steps_raw: stepsRawLines.join('\n'),
     tokens_used: tokenUsage,
     token_order: tokenOrder,
-    ingredients,
+    ingredients: ingredientList,
     choices: {},
     pan_sizes: [],
     default_pan: null,
     compatibility_possible: compatibility,
   };
+}
+
+function buildPreviewRecipe() {
+  const recipe = buildRecipeFromForm({ strict: false });
+  const ingredientMap = {};
+  (recipe.ingredients || []).forEach((entry) => {
+    if (entry?.token) {
+      ingredientMap[entry.token] = entry;
+    }
+  });
+  return { ...recipe, ingredients: ingredientMap };
 }
 
 function renderPreview(recipe) {
@@ -377,7 +404,7 @@ function createMetadataPill(labels, value) {
 
 function refreshPreview() {
   try {
-    const recipe = buildRecipeFromForm({ strict: false });
+    const recipe = buildPreviewRecipe();
     recipe.compatibility_possible = recipe.compatibility_possible || recipeDefaultCompatibility(recipe);
     renderPreview(recipe);
     statusEl.textContent = '';

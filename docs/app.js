@@ -40,6 +40,25 @@ function normalizeTitleKey(title) {
     .join('-');
 }
 
+function normalizeIngredients(raw, tokenOrder = []) {
+  const list = Array.isArray(raw)
+    ? raw.filter(Boolean)
+    : raw && typeof raw === 'object'
+      ? Object.values(raw).filter(Boolean)
+      : [];
+
+  const order = Array.isArray(tokenOrder) && tokenOrder.length
+    ? tokenOrder
+    : list.map((entry) => entry?.token).filter(Boolean);
+
+  const byToken = {};
+  list.forEach((entry) => {
+    if (entry?.token) byToken[entry.token] = entry;
+  });
+
+  return { list, byToken, order };
+}
+
 function normalizeRecipePayload(entry) {
   // Support multiple API shapes:
   // - { payload: <recipe> }
@@ -62,10 +81,14 @@ function normalizeRecipePayload(entry) {
     entry?.recipe_id ||
     normalizeTitleKey(title);
 
-  const compatibility = payload.compatibility_possible || recipeDefaultCompatibility(payload);
+  const ingredients = normalizeIngredients(payload.ingredients, payload.token_order);
+
+  const compatibility =
+    payload.compatibility_possible ||
+    recipeDefaultCompatibility({ ...payload, ingredients: ingredients.byToken, token_order: ingredients.order });
 
   const hasDetails =
-    Array.isArray(payload.ingredients) && payload.ingredients.length > 0 &&
+    ingredients.list.length > 0 &&
     ((typeof payload.steps_raw === 'string' && payload.steps_raw.trim().length > 0) ||
       (Array.isArray(payload.steps) && payload.steps.length > 0));
 
@@ -75,6 +98,8 @@ function normalizeRecipePayload(entry) {
     id: computedId,
     content_hash: payload.content_hash || entry?.content_hash,
     compatibility_possible: compatibility,
+    ingredients: ingredients.byToken,
+    token_order: ingredients.order,
     has_details: hasDetails,
   };
 }

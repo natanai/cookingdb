@@ -15,7 +15,8 @@ const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
 
 function recipeHasDetails(recipe) {
   if (!recipe || typeof recipe !== 'object') return false;
-  const hasIngredients = Array.isArray(recipe.ingredients) && recipe.ingredients.length > 0;
+  const ingredients = normalizeIngredients(recipe.ingredients, recipe.token_order);
+  const hasIngredients = ingredients.list.length > 0;
   const hasSteps =
     (typeof recipe.steps_raw === 'string' && recipe.steps_raw.trim().length > 0) ||
     (Array.isArray(recipe.steps) && recipe.steps.length > 0);
@@ -29,6 +30,25 @@ function normalizeTitleKey(title) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '');
+}
+
+function normalizeIngredients(raw, tokenOrder = []) {
+  const list = Array.isArray(raw)
+    ? raw.filter(Boolean)
+    : raw && typeof raw === 'object'
+      ? Object.values(raw).filter(Boolean)
+      : [];
+
+  const order = Array.isArray(tokenOrder) && tokenOrder.length
+    ? tokenOrder
+    : list.map((entry) => entry?.token).filter(Boolean);
+
+  const byToken = {};
+  list.forEach((entry) => {
+    if (entry?.token) byToken[entry.token] = entry;
+  });
+
+  return { list, byToken, order };
 }
 
 /**
@@ -73,18 +93,22 @@ function normalizeRecipeForPage(entry) {
   const title = maybe.title || entry?.title || '';
   const id = maybe.id || maybe.recipe_id || entry?.id || entry?.recipe_id || normalizeTitleKey(title);
 
+  const ingredients = normalizeIngredients(maybe.ingredients, maybe.token_order);
+
   // Prefer explicit compatibility_possible, otherwise compute a default
   const compatibility_possible =
     maybe.compatibility_possible && typeof maybe.compatibility_possible === 'object'
       ? maybe.compatibility_possible
-      : recipeDefaultCompatibility(maybe);
+      : recipeDefaultCompatibility({ ...maybe, ingredients: ingredients.byToken, token_order: ingredients.order });
 
   return {
     ...maybe,
     title,
     id,
+    ingredients: ingredients.byToken,
+    token_order: ingredients.order,
     compatibility_possible,
-    has_details: recipeHasDetails(maybe),
+    has_details: recipeHasDetails({ ...maybe, ingredients: ingredients.list, token_order: ingredients.order }),
   };
 }
 
