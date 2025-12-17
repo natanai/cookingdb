@@ -64,12 +64,18 @@ function normalizeRecipePayload(entry) {
 
   const compatibility = payload.compatibility_possible || recipeDefaultCompatibility(payload);
 
+  const hasDetails =
+    Array.isArray(payload.ingredients) && payload.ingredients.length > 0 &&
+    ((typeof payload.steps_raw === 'string' && payload.steps_raw.trim().length > 0) ||
+      (Array.isArray(payload.steps) && payload.steps.length > 0));
+
   return {
     ...payload,
     title,
     id: computedId,
     content_hash: payload.content_hash || entry?.content_hash,
     compatibility_possible: compatibility,
+    has_details: hasDetails,
   };
 }
 
@@ -83,6 +89,7 @@ function recipeSummary(recipe, source = 'built') {
     compatibility_possible: recipe.compatibility_possible || { gluten_free: true, egg_free: true, dairy_free: true },
     content_hash: recipe.content_hash,
     _source: source,
+    has_details: source === 'built' ? true : !!recipe.has_details,
   };
 }
 
@@ -142,10 +149,19 @@ function renderRecipes(recipes) {
   visible.forEach((recipe) => {
     const li = document.createElement('li');
     li.className = 'recipe-card';
+    if (recipe._source === 'inbox' && !recipe.has_details) {
+      li.classList.add('recipe-card-incomplete');
+    }
 
     const link = document.createElement('a');
-    link.href = buildRecipeLink(recipe.id);
+    const hasDetails = recipe._source === 'built' ? true : !!recipe.has_details;
     link.textContent = recipe.title;
+    if (hasDetails) {
+      link.href = buildRecipeLink(recipe.id);
+    } else {
+      link.classList.add('disabled-link');
+      link.title = 'Recipe details not yet available';
+    }
     li.appendChild(link);
     const tags = document.createElement('div');
     tags.className = 'tags';
@@ -158,8 +174,20 @@ function renderRecipes(recipes) {
       badge.className = 'pill inbox-pill';
       badge.textContent = 'Inbox';
       tags.appendChild(badge);
+      if (!recipe.has_details) {
+        const missing = document.createElement('span');
+        missing.className = 'pill neutral';
+        missing.textContent = 'Details pending';
+        tags.appendChild(missing);
+      }
     }
     li.appendChild(tags);
+    if (recipe._source === 'inbox' && !recipe.has_details) {
+      const warning = document.createElement('div');
+      warning.className = 'recipe-warning';
+      warning.textContent = 'Waiting for full recipe details before this can be viewed.';
+      li.appendChild(warning);
+    }
     listEl.appendChild(li);
   });
 }
@@ -270,15 +298,34 @@ async function handlePullClick() {
     const password = promptFamilyPassword();
     if (!password) return;
     showPullStatus('Pulling recipes from inbox...', 'info');
-    const result = await familyListPending({ familyPassword: password, includePayload: true });
+    const result = await familyListPending({
+      familyPassword: password,
+      // Always ask for payload so we can validate completeness.
+      includePayload: true,
+      include_payload: true,
+    });
     const incoming = normalizeIncomingList(result);
-    const uniqueNew = dedupeInboxRecipes(inboxRecipes, incoming);
+    const completeRecipes = incoming.filter((rec) => rec?.has_details);
+    const partialRecipes = incoming.filter((rec) => !rec?.has_details);
+
+    const uniqueNew = dedupeInboxRecipes(inboxRecipes, completeRecipes);
     const addedCount = addInboxRecipes(uniqueNew);
+    const messages = [];
+    let statusKind = 'info';
+
     if (addedCount === 0) {
-      showPullStatus('No new recipes to import right now.', 'info');
+      messages.push('No new recipes to import right now.');
     } else {
-      showPullStatus(`Added ${addedCount} recipe(s) from the inbox.`, 'success');
+      messages.push(`Added ${addedCount} recipe(s) from the inbox.`);
+      statusKind = 'success';
     }
+
+    if (partialRecipes.length > 0) {
+      messages.push(`${partialRecipes.length} inbox recipe(s) skipped because details were missing.`);
+      statusKind = 'warning';
+    }
+
+    showPullStatus(messages.join(' '), statusKind);
   } catch (err) {
     showPullStatus(err.message || 'Unable to pull recipes', 'error');
   }

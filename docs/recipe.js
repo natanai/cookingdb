@@ -13,6 +13,15 @@ import {
 
 const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
 
+function recipeHasDetails(recipe) {
+  if (!recipe || typeof recipe !== 'object') return false;
+  const hasIngredients = Array.isArray(recipe.ingredients) && recipe.ingredients.length > 0;
+  const hasSteps =
+    (typeof recipe.steps_raw === 'string' && recipe.steps_raw.trim().length > 0) ||
+    (Array.isArray(recipe.steps) && recipe.steps.length > 0);
+  return hasIngredients && hasSteps;
+}
+
 function normalizeTitleKey(title) {
   return String(title || '')
     .toLowerCase()
@@ -75,6 +84,7 @@ function normalizeRecipeForPage(entry) {
     title,
     id,
     compatibility_possible,
+    has_details: recipeHasDetails(maybe),
   };
 }
 
@@ -368,10 +378,13 @@ function renderRecipe(recipeInput) {
   const prefEgg = document.getElementById('pref-egg');
   const prefDairy = document.getElementById('pref-dairy');
   const ingredientsHeading = document.getElementById('ingredients-heading');
+  const heroContent = document.querySelector('.hero-content');
 
   const defaultCompatibility = recipeDefaultCompatibility(recipe);
   const compatibilityPossible = recipe.compatibility_possible || {};
   const queryRestrictions = getDietaryFromQuery();
+
+  const hasDetails = recipeHasDetails(recipe);
 
   const restrictionCanRelax = {
     gluten_free: hasNonCompliantAlternative(recipe, 'gluten_free'),
@@ -416,11 +429,19 @@ function renderRecipe(recipeInput) {
   }
 
   if (ingredientsHeading) {
-    ingredientsHeading.textContent = 'Ingredients';
+    ingredientsHeading.textContent = hasDetails ? 'Ingredients' : 'Ingredients (pending)';
   }
 
   if (notesEl) {
     notesEl.textContent = recipe.notes || 'Notes for this dish will go here soon.';
+  }
+
+  if (!hasDetails && heroContent) {
+    const warning = document.createElement('div');
+    warning.className = 'callout warning';
+    warning.textContent =
+      'This inbox recipe is missing ingredients or steps. Pull the inbox again later to load the full details.';
+    heroContent.prepend(warning);
   }
 
   if (metadataEl) {
