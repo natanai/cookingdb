@@ -14,6 +14,7 @@ import {
 const ingredientRowsEl = document.getElementById('ingredient-rows');
 const stepsListEl = document.getElementById('steps-list');
 const ingredientSuggestionsEl = document.getElementById('ingredient-suggestions');
+const sectionSuggestionsEl = document.getElementById('section-suggestions');
 const categorySelectEl = document.getElementById('categories');
 // Remove required attribute from slug input as it's auto-generated
 const slugInputField = document.getElementById('slug');
@@ -25,6 +26,7 @@ const ingredientNameSet = new Set();
 const categorySet = new Set();
 const unitSet = new Set();
 const unitSelects = new Set();
+const sectionNameSet = new Set();
 
 function slugify(text) {
   return text
@@ -62,6 +64,12 @@ function addOptionToDatalist(datalistEl, value) {
 function updateIngredientSuggestions() {
   ingredientSuggestionsEl.innerHTML = '';
   ingredientNameSet.forEach((name) => addOptionToDatalist(ingredientSuggestionsEl, name));
+}
+
+function updateSectionSuggestions() {
+  if (!sectionSuggestionsEl) return;
+  sectionSuggestionsEl.innerHTML = '';
+  sectionNameSet.forEach((name) => addOptionToDatalist(sectionSuggestionsEl, name));
 }
 
 function syncCategoryOptions() {
@@ -139,16 +147,21 @@ async function loadExistingRecipes() {
       const recipes = await res.json();
       recipes.forEach((recipe) => {
         (recipe.categories || []).forEach((cat) => categorySet.add(cat));
+        (recipe.ingredient_sections || []).forEach((section) => {
+          if (section) sectionNameSet.add(section);
+        });
         normalizeIngredientsForSuggestions(recipe).forEach((tokenData) => {
           tokenData.options.forEach((opt) => {
             if (opt.display) ingredientNameSet.add(opt.display);
             if (opt.unit) unitSet.add(opt.unit);
           });
+          if (tokenData.section) sectionNameSet.add(tokenData.section);
         });
       });
       syncCategoryOptions();
       syncUnitSelects();
       updateIngredientSuggestions();
+      updateSectionSuggestions();
     }
   } catch (err) {
     console.warn('Could not load suggestions', err);
@@ -192,17 +205,12 @@ function buildDietaryCheckboxes() {
 function createIngredientRow(defaults = {}) {
   const row = document.createElement('tr');
   row.className = 'ingredient-row';
+  const advancedId = `ingredient-advanced-${Math.random().toString(36).slice(2)}`;
   row.innerHTML = `
     <td>
       <label class="ingredient-cell">
         <span class="cell-label">Name</span>
         <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient name" aria-label="Ingredient name" />
-      </label>
-    </td>
-    <td>
-      <label class="ingredient-cell">
-        <span class="cell-label">Section (optional)</span>
-        <input class="ingredient-section" placeholder="e.g., Chicken" aria-label="Ingredient section" />
       </label>
     </td>
     <td>
@@ -218,46 +226,66 @@ function createIngredientRow(defaults = {}) {
       </label>
     </td>
     <td>
-      <label class="ingredient-cell">
-        <span class="cell-label">Alternative</span>
-        <input class="ingredient-alt" placeholder="Alternative/substitution" aria-label="Alternative or substitution" />
-      </label>
-    </td>
-    <td>
-      <div class="ingredient-cell conditional-cell">
-        <span class="cell-label">Show when</span>
-        <div class="conditional-inputs">
-          <input class="ingredient-dep-token" placeholder="Token" aria-label="Dependency token" />
-          <input class="ingredient-dep-option" placeholder="Option" aria-label="Dependency option" />
-        </div>
-      </div>
-    </td>
-    <td>
-      <label class="ingredient-cell">
-        <span class="cell-label">Inline group</span>
-        <input class="ingredient-group" placeholder="Group key" aria-label="Inline group key" />
-      </label>
-    </td>
-    <td>
       <div class="ingredient-cell">
         <span class="cell-label">Dietary flags</span>
         <div class="dietary-slot"></div>
       </div>
     </td>
-    <td class="remove-cell">
-      <span class="cell-label">Remove</span>
-      <button type="button" class="link-button remove-ingredient" aria-label="Remove ingredient">Remove</button>
+    <td class="action-cell">
+      <div class="row-actions">
+        <button
+          type="button"
+          class="link-button advanced-toggle"
+          aria-expanded="false"
+          aria-controls="${advancedId}"
+          aria-label="Show optional ingredient settings"
+        >
+          +
+        </button>
+        <button type="button" class="link-button remove-ingredient" aria-label="Remove ingredient">Remove</button>
+      </div>
+    </td>
+  `;
+  const advancedRow = document.createElement('tr');
+  advancedRow.className = 'ingredient-advanced';
+  advancedRow.id = advancedId;
+  advancedRow.hidden = true;
+  advancedRow.innerHTML = `
+    <td colspan="5">
+      <div class="advanced-panel">
+        <div class="advanced-grid">
+          <label class="ingredient-cell">
+            <span class="cell-label">Section (optional)</span>
+            <input class="ingredient-section" list="section-suggestions" placeholder="e.g., Chicken" aria-label="Ingredient section" />
+          </label>
+          <label class="ingredient-cell">
+            <span class="cell-label">Alternative</span>
+            <input class="ingredient-alt" placeholder="Alternative/substitution" aria-label="Alternative or substitution" />
+          </label>
+          <div class="ingredient-cell conditional-cell">
+            <span class="cell-label">Show when</span>
+            <div class="conditional-inputs">
+              <input class="ingredient-dep-token" placeholder="Token" aria-label="Dependency token" />
+              <input class="ingredient-dep-option" placeholder="Option" aria-label="Dependency option" />
+            </div>
+          </div>
+          <label class="ingredient-cell">
+            <span class="cell-label">Inline group</span>
+            <input class="ingredient-group" placeholder="Group key" aria-label="Inline group key" />
+          </label>
+        </div>
+      </div>
     </td>
   `;
   row.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
   const nameInput = row.querySelector('.ingredient-name');
-  const sectionInput = row.querySelector('.ingredient-section');
+  const sectionInput = advancedRow.querySelector('.ingredient-section');
   const amountInput = row.querySelector('.ingredient-amount');
   const unitInput = row.querySelector('.ingredient-unit');
-  const altInput = row.querySelector('.ingredient-alt');
-  const depTokenInput = row.querySelector('.ingredient-dep-token');
-  const depOptionInput = row.querySelector('.ingredient-dep-option');
-  const groupInput = row.querySelector('.ingredient-group');
+  const altInput = advancedRow.querySelector('.ingredient-alt');
+  const depTokenInput = advancedRow.querySelector('.ingredient-dep-token');
+  const depOptionInput = advancedRow.querySelector('.ingredient-dep-option');
+  const groupInput = advancedRow.querySelector('.ingredient-group');
 
   nameInput.value = defaults.name || '';
   sectionInput.value = defaults.section || '';
@@ -272,21 +300,45 @@ function createIngredientRow(defaults = {}) {
   const handleChange = () => {
     ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
     updateIngredientSuggestions();
+    const sectionValue = sectionInput.value.trim();
+    if (sectionValue) {
+      sectionNameSet.add(sectionValue);
+      updateSectionSuggestions();
+    }
     refreshStepIngredientPickers();
     refreshPreview();
   };
 
+  const toggleButton = row.querySelector('.advanced-toggle');
+  const toggleAdvanced = (forceOpen = null) => {
+    const isOpen = forceOpen !== null ? forceOpen : toggleButton.getAttribute('aria-expanded') === 'true';
+    const nextOpenState = forceOpen !== null ? forceOpen : !isOpen;
+    toggleButton.setAttribute('aria-expanded', String(nextOpenState));
+    toggleButton.textContent = nextOpenState ? '–' : '+';
+    advancedRow.hidden = !nextOpenState;
+  };
+
+  toggleButton.addEventListener('click', () => toggleAdvanced());
+
   row.addEventListener('input', handleChange);
   row.addEventListener('change', handleChange);
+  advancedRow.addEventListener('input', handleChange);
+  advancedRow.addEventListener('change', handleChange);
 
   row.querySelector('.remove-ingredient').addEventListener('click', () => {
     unitSelects.delete(unitInput);
     row.remove();
+    advancedRow.remove();
     refreshStepIngredientPickers();
     refreshPreview();
   });
 
+  if (sectionInput.value || altInput.value || depTokenInput.value || groupInput.value) {
+    toggleAdvanced(true);
+  }
+
   ingredientRowsEl.appendChild(row);
+  ingredientRowsEl.appendChild(advancedRow);
 }
 
 function createStepRow(defaultText = '', defaultSection = '') {
