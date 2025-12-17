@@ -155,12 +155,15 @@ export async function validateAll() {
     const stepTokenSet = new Set(stepTokens);
 
     const tokenOptions = new Map();
+    const tokenDisplayOptions = new Map();
     for (const row of ingredientRows) {
       const requiredFields = ['token', 'display', 'ingredient_id'];
       for (const field of requiredFields) {
         ensure(row[field], `${recipeId}: ingredient row missing ${field}: ${JSON.stringify(row)}`);
       }
       const token = row.token;
+      const display = (row.display || '').trim();
+      ensure(display, `${recipeId}: ingredient row missing display value: ${JSON.stringify(row)}`);
       const ratio = (row.ratio || '').trim();
       ensure(!ratio || ratioPattern.test(ratio), `${recipeId}: invalid ratio for ${token}: ${row.ratio} | Row: ${JSON.stringify(row)}`);
       ensure(
@@ -174,6 +177,17 @@ export async function validateAll() {
       if (row.option) {
         tokenOptions.get(token).add(row.option);
       }
+      if (!tokenDisplayOptions.has(token)) {
+        tokenDisplayOptions.set(token, new Map());
+      }
+      const displayOptions = tokenDisplayOptions.get(token);
+      if (!displayOptions.has(display)) {
+        displayOptions.set(display, { options: new Set() });
+      }
+      const displayEntry = displayOptions.get(display);
+      if (row.option) {
+        displayEntry.options.add(row.option);
+      }
       ensure(stepTokenSet.has(token), `${recipeId}: ingredient token ${token} not found in steps`);
     }
 
@@ -185,6 +199,20 @@ export async function validateAll() {
     const choicesPath = path.join(baseDir, 'choices.csv');
     const choiceRows = fs.existsSync(choicesPath) ? await parseCSVFile(choicesPath) : [];
     const choicesMap = new Map(choiceRows.map((row) => [row.token, row]));
+
+    for (const [token, displayMap] of tokenDisplayOptions.entries()) {
+      const options = tokenOptions.get(token) || new Set();
+      if (options.size < 2) continue;
+      for (const [displayLabel, info] of displayMap.entries()) {
+        if (info.options.size >= 2) {
+          const optionList = [...info.options].join(', ');
+          ensure(
+            false,
+            `${recipeId}: ingredient token ${token} has multiple options (${optionList}) with identical display "${displayLabel}"`,
+          );
+        }
+      }
+    }
 
     for (const [token, options] of tokenOptions.entries()) {
       if (options.size >= 2) {
