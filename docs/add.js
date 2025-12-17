@@ -190,48 +190,64 @@ function buildDietaryCheckboxes() {
 }
 
 function createIngredientRow(defaults = {}) {
-  const row = document.createElement('div');
+  const row = document.createElement('tr');
   row.className = 'ingredient-row';
   row.innerHTML = `
-    <label class="ingredient-cell">
-      <span class="cell-label">Name</span>
-      <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient name" aria-label="Ingredient name" />
-    </label>
-    <label class="ingredient-cell">
-      <span class="cell-label">Section (optional)</span>
-      <input class="ingredient-section" placeholder="e.g., Chicken" aria-label="Ingredient section" />
-    </label>
-    <label class="ingredient-cell">
-      <span class="cell-label">Amount</span>
-      <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
-    </label>
-    <label class="ingredient-cell">
-      <span class="cell-label">Unit</span>
-      <select class="ingredient-unit" aria-label="Unit"></select>
-    </label>
-    <label class="ingredient-cell">
-      <span class="cell-label">Alternative</span>
-      <input class="ingredient-alt" placeholder="Alternative/substitution" aria-label="Alternative or substitution" />
-    </label>
-    <div class="ingredient-cell conditional-cell">
-      <span class="cell-label">Show when</span>
-      <div class="conditional-inputs">
-        <input class="ingredient-dep-token" placeholder="Token" aria-label="Dependency token" />
-        <input class="ingredient-dep-option" placeholder="Option" aria-label="Dependency option" />
+    <td>
+      <label class="ingredient-cell">
+        <span class="cell-label">Name</span>
+        <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient name" aria-label="Ingredient name" />
+      </label>
+    </td>
+    <td>
+      <label class="ingredient-cell">
+        <span class="cell-label">Section (optional)</span>
+        <input class="ingredient-section" placeholder="e.g., Chicken" aria-label="Ingredient section" />
+      </label>
+    </td>
+    <td>
+      <label class="ingredient-cell">
+        <span class="cell-label">Amount</span>
+        <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
+      </label>
+    </td>
+    <td>
+      <label class="ingredient-cell">
+        <span class="cell-label">Unit</span>
+        <select class="ingredient-unit" aria-label="Unit"></select>
+      </label>
+    </td>
+    <td>
+      <label class="ingredient-cell">
+        <span class="cell-label">Alternative</span>
+        <input class="ingredient-alt" placeholder="Alternative/substitution" aria-label="Alternative or substitution" />
+      </label>
+    </td>
+    <td>
+      <div class="ingredient-cell conditional-cell">
+        <span class="cell-label">Show when</span>
+        <div class="conditional-inputs">
+          <input class="ingredient-dep-token" placeholder="Token" aria-label="Dependency token" />
+          <input class="ingredient-dep-option" placeholder="Option" aria-label="Dependency option" />
+        </div>
       </div>
-    </div>
-    <label class="ingredient-cell">
-      <span class="cell-label">Inline group</span>
-      <input class="ingredient-group" placeholder="Group key" aria-label="Inline group key" />
-    </label>
-    <div class="ingredient-cell">
-      <span class="cell-label">Dietary flags</span>
-      <div class="dietary-slot"></div>
-    </div>
-    <div class="ingredient-cell remove-cell">
+    </td>
+    <td>
+      <label class="ingredient-cell">
+        <span class="cell-label">Inline group</span>
+        <input class="ingredient-group" placeholder="Group key" aria-label="Inline group key" />
+      </label>
+    </td>
+    <td>
+      <div class="ingredient-cell">
+        <span class="cell-label">Dietary flags</span>
+        <div class="dietary-slot"></div>
+      </div>
+    </td>
+    <td class="remove-cell">
       <span class="cell-label">Remove</span>
       <button type="button" class="link-button remove-ingredient" aria-label="Remove ingredient">Remove</button>
-    </div>
+    </td>
   `;
   row.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
   const nameInput = row.querySelector('.ingredient-name');

@@ -656,9 +656,38 @@ main {
   font-size: 0.95rem;
 }
 
-.ingredient-table {
-  display: grid;
-  gap: 0.5rem;
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ingredients-table {
+  width: 100%;
+  min-width: 900px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 10px 6px;
+}
+
+.ingredients-table th,
+.ingredients-table td {
+  padding: 6px 6px;
+  vertical-align: top;
+}
+
+.ingredients-table th {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.15;
+  text-align: left;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.muted {
+  opacity: 0.75;
+  font-weight: normal;
+  font-size: 0.85em;
 }
 
 .ingredient-cell {
@@ -674,42 +703,40 @@ main {
   font-size: 0.9rem;
 }
 
-.ingredient-header span {
-  align-self: end;
-}
-
-.ingredient-header,
-.ingredient-row {
-  display: grid;
-  grid-template-columns:
-    minmax(0, 1.1fr) minmax(0, 0.9fr) minmax(90px, 0.6fr) minmax(90px, 0.65fr) minmax(0, 1fr)
-    minmax(0, 1.1fr) minmax(0, 0.9fr) minmax(0, 1.1fr) auto;
-  gap: 0.45rem;
-  align-items: end;
-}
-
 .ingredient-header {
   font-weight: 700;
-  color: var(--muted);
-  white-space: nowrap;
 }
 
 .ingredient-row {
   background: #fffdf9;
-  padding: 0.35rem;
+}
+
+.ingredient-row td {
+  background: inherit;
   border: 1px dashed var(--border);
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .ingredient-row .remove-cell {
-  display: flex;
-  align-items: flex-end;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.ingredient-row input,
+.ingredient-row select {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .dietary-flags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem;
+  gap: 6px 10px;
+  align-items: center;
+}
+
+.dietary-flags label {
+  white-space: nowrap;
 }
 
 .dietary-chip {
@@ -915,23 +942,8 @@ main {
 }
 
 @media (max-width: 900px) {
-  .ingredient-header {
-    display: none;
-  }
-
-  .ingredient-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.6rem;
-    padding: 0.65rem;
-    border-style: solid;
-  }
-
-  .ingredient-cell .cell-label {
-    display: block;
-  }
-
-  .ingredient-row .remove-cell {
-    justify-content: flex-start;
+  .ingredients-table {
+    min-width: 760px;
   }
 
   .steps-builder {
@@ -956,10 +968,6 @@ main {
 }
 
 @media (max-width: 640px) {
-  .ingredient-row {
-    grid-template-columns: 1fr;
-  }
-
   .steps-builder {
     padding-left: 0;
   }
