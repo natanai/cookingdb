@@ -21,7 +21,7 @@
     <section class="hero">
       <div class="hero-content">
         <h1 class="hero-title">Export pending recipes</h1>
-        <p class="hero-subtitle">Download submissions waiting in the Worker inbox, then optionally mark them imported or delete them.</p>
+        <p class="hero-subtitle">Download submissions waiting in the Worker inbox, or wipe the inbox entirely if you need a fresh start.</p>
       </div>
     </section>
     <main class="admin-panel">
@@ -33,8 +33,7 @@
         <label class="remember-row"><input type="checkbox" id="remember-admin" /> Remember token on this device</label>
         <div class="actions">
           <button class="button" id="download-btn" type="button">Download pending recipes JSON</button>
-          <button class="button secondary" id="mark-imported-btn" type="button" disabled>Mark downloaded as imported</button>
-          <button class="button secondary" id="delete-btn" type="button" disabled>Delete imported recipes</button>
+          <button class="button secondary" id="wipe-btn" type="button">Wipe inbox database</button>
         </div>
         <div id="admin-status" class="status"></div>
       </section>
