@@ -102,7 +102,7 @@ async function parseJson(request) {
 }
 
 function normalizeStatus(input) {
-  const allowed = ['pending', 'imported', 'all'];
+  const allowed = ['pending', 'all'];
   if (allowed.includes(input)) return input;
   return 'pending';
 }
@@ -221,24 +221,7 @@ async function adminExport(request, env, body) {
   return listSubmissions(request, env, body, { requireFamily: false });
 }
 
-async function adminMarkImported(request, env, body) {
-  requireAdminToken(request, env);
-  const ids = Array.isArray(body?.ids) ? body.ids.filter((id) => Number.isInteger(id)) : [];
-  if (ids.length === 0) {
-    return jsonResponse({ ok: false, error: 'No ids provided' }, 400);
-  }
-
-  const db = getDb(env);
-  await ensureSchema(db);
-  const now = new Date().toISOString();
-  const placeholders = ids.map(() => '?').join(',');
-  const sql = `UPDATE recipes_inbox SET status = 'imported', updated_at = ? WHERE id IN (${placeholders})`;
-  const result = await db.prepare(sql).bind(now, ...ids).run();
-
-  return jsonResponse({ ok: true, updated: result.meta.changes || 0 });
-}
-
-async function adminPurgeImported(request, env, body) {
+async function adminDeletePending(request, env, body) {
   requireAdminToken(request, env);
   const ids = Array.isArray(body?.ids) ? body.ids.filter((id) => Number.isInteger(id)) : [];
 
@@ -248,28 +231,10 @@ async function adminPurgeImported(request, env, body) {
   let result;
   if (ids.length > 0) {
     const placeholders = ids.map(() => '?').join(',');
-    result = await db.prepare(`DELETE FROM recipes_inbox WHERE id IN (${placeholders})`).bind(...ids).run();
+    result = await db.prepare(`DELETE FROM recipes_inbox WHERE status = 'pending' AND id IN (${placeholders})`).bind(...ids).run();
   } else {
-    result = await db.prepare("DELETE FROM recipes_inbox WHERE status = 'imported'").run();
+    result = await db.prepare("DELETE FROM recipes_inbox WHERE status = 'pending'").run();
   }
-
-  return jsonResponse({ ok: true, removed: result.meta.changes || 0 });
-}
-
-async function adminDeletePending(request, env, body) {
-  requireAdminToken(request, env);
-  const ids = Array.isArray(body?.ids) ? body.ids.filter((id) => Number.isInteger(id)) : [];
-
-  if (ids.length === 0) {
-    return jsonResponse({ ok: false, error: 'No ids provided' }, 400);
-  }
-
-  const db = getDb(env);
-  await ensureSchema(db);
-
-  const placeholders = ids.map(() => '?').join(',');
-  const sql = `DELETE FROM recipes_inbox WHERE status = 'pending' AND id IN (${placeholders})`;
-  const result = await db.prepare(sql).bind(...ids).run();
   const deleted = typeof result?.meta?.changes === 'number' ? result.meta.changes : undefined;
 
   const response = { ok: true };
@@ -288,8 +253,6 @@ const ROUTES = {
   'POST:/api/add': handleAdd,
   'POST:/api/list': listSubmissions,
   'POST:/admin/export': adminExport,
-  'POST:/admin/mark-imported': adminMarkImported,
-  'POST:/admin/purge-imported': adminPurgeImported,
   'POST:/admin/delete-pending': adminDeletePending,
 };
 

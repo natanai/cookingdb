@@ -3,7 +3,6 @@ const PATHS = {
   familySubmit: '/api/add',
   familyList: '/api/list',
   adminExport: '/admin/export',
-  adminPurgeImported: '/admin/purge-imported',
   adminDeletePending: '/admin/delete-pending',
 };
 
@@ -102,13 +101,6 @@ export function adminExportPending({ workerBaseUrl = DEFAULT_BASE_URL, adminToke
   });
 }
 
-export function adminPurgeImported({ workerBaseUrl = DEFAULT_BASE_URL, adminToken }) {
-  return postJson('adminPurgeImported', {
-    workerBaseUrl,
-    adminToken,
-  });
-}
-
 export function adminDeletePendingByIds({ workerBaseUrl = DEFAULT_BASE_URL, adminToken, ids }) {
   return postJson('adminDeletePending', {
     workerBaseUrl,
@@ -117,4 +109,10 @@ export function adminDeletePendingByIds({ workerBaseUrl = DEFAULT_BASE_URL, admi
   });
 }
 
-export const adminWipe = adminPurgeImported;
+export function adminDeleteAllPending({ workerBaseUrl = DEFAULT_BASE_URL, adminToken }) {
+  return postJson('adminDeletePending', {
+    workerBaseUrl,
+    adminToken,
+    payload: {},
+  });
+}

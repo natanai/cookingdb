@@ -228,44 +228,6 @@ async function adminExport(request, env, body) {
   return listSubmissions(request, env, body, { requirePassword: false });
 }
 
-async function adminMarkImported(request, env, body) {
-  await requireAdmin(request, env);
-  const ids = Array.isArray(body?.ids) ? body.ids : [];
-  if (!ids.length) {
-    return jsonResponse(request, { ok: false, error: 'No ids provided' }, { status: 400 });
-  }
-
-  const db = getDb(env);
-  await ensureInboxTable(db);
-
-  let updated = 0;
-  for (const id of ids) {
-    const result = await db.prepare('UPDATE inbox SET status = ? WHERE recipe_id = ?').bind('imported', id).run();
-    if (result.meta?.changes > 0) updated += 1;
-  }
-
-  return jsonResponse(request, { ok: true, updated });
-}
-
-async function adminPurgeImported(request, env, body) {
-  await requireAdmin(request, env);
-  const ids = Array.isArray(body?.ids) ? body.ids : [];
-  if (!ids.length) {
-    return jsonResponse(request, { ok: false, error: 'No ids provided' }, { status: 400 });
-  }
-
-  const db = getDb(env);
-  await ensureInboxTable(db);
-
-  let removed = 0;
-  for (const id of ids) {
-    const result = await db.prepare('DELETE FROM inbox WHERE recipe_id = ?').bind(id).run();
-    if (result.meta?.changes > 0) removed += 1;
-  }
-
-  return jsonResponse(request, { ok: true, removed });
-}
-
 async function adminWipe(request, env) {
   await requireAdmin(request, env);
   const db = getDb(env);
@@ -278,8 +240,6 @@ const ROUTES = {
   '/api/add': familySubmit,
   '/api/list': listSubmissions,
   '/admin/export': adminExport,
-  '/admin/mark-imported': adminMarkImported,
-  '/admin/purge-imported': adminPurgeImported,
   '/admin/wipe': adminWipe,
 };
 
