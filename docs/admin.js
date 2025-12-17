@@ -1,7 +1,6 @@
 import {
-  adminDeletePendingByIds,
+  adminDeleteAllPending,
   adminExportPending,
-  adminPurgeImported,
   getRememberedPassword,
   setRememberedPassword,
 } from './inbox/inbox-api.js';
@@ -10,7 +9,6 @@ const statusEl = document.getElementById('admin-status');
 const tokenInput = document.getElementById('admin-token');
 const rememberCheckbox = document.getElementById('remember-admin');
 const downloadBtn = document.getElementById('download-btn');
-const purgeBtn = document.getElementById('purge-btn');
 const wipePendingBtn = document.getElementById('wipe-pending-btn');
 
 function showStatus(message, kind = 'info') {
@@ -56,20 +54,6 @@ async function handleDownload() {
   }
 }
 
-async function handlePurgeImported() {
-  const token = getToken();
-  if (!token) return;
-  const confirmed = window.confirm('Permanently delete imported inbox entries?');
-  if (!confirmed) return;
-  try {
-    showStatus('Purging imported inbox entries...', 'info');
-    await adminPurgeImported({ adminToken: token });
-    showStatus('Imported inbox entries purged.', 'success');
-  } catch (err) {
-    showStatus(err.message || 'Unable to purge inbox entries', 'error');
-  }
-}
-
 async function handleWipePending() {
   const token = getToken();
   if (!token) return;
@@ -83,29 +67,11 @@ async function handleWipePending() {
   }
 
   try {
-    showStatus('Loading pending inbox entries...', 'info');
-    const payload = await adminExportPending({ adminToken: token });
-    const ids = Array.isArray(payload?.items)
-      ? payload.items.map((row) => row.id).filter((id) => Number.isInteger(id))
-      : [];
+    showStatus('Deleting pending inbox entries...', 'info');
+    const deletion = await adminDeleteAllPending({ adminToken: token });
+    const deletedCount = typeof deletion?.deleted === 'number' ? deletion.deleted : 0;
 
-    if (ids.length === 0) {
-      showStatus('Nothing to delete. No pending entries found.', 'success');
-      return;
-    }
-
-    const deletion = await adminDeletePendingByIds({ adminToken: token, ids });
-    const deletedCount =
-      typeof deletion?.deleted === 'number'
-        ? deletion.deleted
-        : typeof deletion?.attempted === 'number'
-          ? deletion.attempted
-          : ids.length;
-
-    showStatus(`Deleted ${deletedCount} pending entr${deletedCount === 1 ? 'y' : 'ies'}. Refreshing...`, 'info');
-    const remaining = await adminExportPending({ adminToken: token });
-    const remainingCount = Array.isArray(remaining?.items) ? remaining.items.length : 0;
-    showStatus(`Deleted ${deletedCount} pending entries. Remaining pending: ${remainingCount}.`, 'success');
+    showStatus(`Deleted ${deletedCount} pending entr${deletedCount === 1 ? 'y' : 'ies'}.`, 'success');
   } catch (err) {
     showStatus(err.message || 'Unable to delete pending inbox entries', 'error');
   }
@@ -117,7 +83,6 @@ function bootstrap() {
     rememberCheckbox.checked = true;
   }
   downloadBtn.addEventListener('click', handleDownload);
-  purgeBtn.addEventListener('click', handlePurgeImported);
   wipePendingBtn.addEventListener('click', handleWipePending);
 }
 
