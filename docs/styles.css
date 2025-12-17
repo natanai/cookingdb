@@ -759,16 +759,12 @@ main {
 }
 
 .ingredient-more .more-icon {
-  display: inline-flex;
-  width: 1.75rem;
-  height: 1.75rem;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  background: #f8f1e9;
-  font-size: 1.1rem;
+  display: inline-block;
+  font-size: 1.25rem;
   line-height: 1;
+  font-weight: 700;
+  color: inherit;
+  transition: transform 0.2s ease;
 }
 
 .ingredient-more[open] .more-icon {
@@ -816,6 +812,46 @@ main {
 
 .dietary-chip input {
   margin: 0;
+}
+
+.ingredient-empty {
+  background: #fffdf9;
+}
+
+.ingredient-empty td {
+  border: none;
+  padding: 10px 6px;
+  vertical-align: middle;
+}
+
+.ingredient-empty-help {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--muted);
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.icon-button:hover,
+.icon-button:focus-visible {
+  background: #f6f1e9;
+}
+
+.icon-button:active {
+  transform: translateY(1px);
 }
 
 .conditional-inputs {

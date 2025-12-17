@@ -25,6 +25,7 @@ const ingredientNameSet = new Set();
 const categorySet = new Set();
 const unitSet = new Set();
 const unitSelects = new Set();
+const ingredientEmptyClass = 'ingredient-empty';
 
 function slugify(text) {
   return text
@@ -121,6 +122,37 @@ function syncUnitSelect(selectEl, preferredValue = '') {
 
 function syncUnitSelects() {
   unitSelects.forEach((select) => syncUnitSelect(select));
+}
+
+function renderIngredientEmptyState() {
+  const existingState = ingredientRowsEl.querySelector(`.${ingredientEmptyClass}`);
+  const hasRows = ingredientRowsEl.querySelector('.ingredient-row');
+
+  if (hasRows) {
+    if (existingState) existingState.remove();
+    return;
+  }
+
+  if (existingState) return;
+
+  const row = document.createElement('tr');
+  row.className = ingredientEmptyClass;
+  row.innerHTML = `
+    <td>
+      <button type="button" class="icon-button add-ingredient-inline" aria-label="Add ingredient">
+        <span aria-hidden="true">+</span>
+      </button>
+    </td>
+    <td colspan="5" class="ingredient-empty-help">Add your first ingredient.</td>
+  `;
+
+  row.querySelector('.add-ingredient-inline').addEventListener('click', () => {
+    createIngredientRow();
+    refreshStepIngredientPickers();
+    refreshPreview();
+  });
+
+  ingredientRowsEl.appendChild(row);
 }
 
 function normalizeIngredientsForSuggestions(recipe) {
@@ -285,9 +317,11 @@ function createIngredientRow(defaults = {}) {
     row.remove();
     refreshStepIngredientPickers();
     refreshPreview();
+    renderIngredientEmptyState();
   });
 
   ingredientRowsEl.appendChild(row);
+  renderIngredientEmptyState();
 }
 
 function createStepRow(defaultText = '', defaultSection = '') {
