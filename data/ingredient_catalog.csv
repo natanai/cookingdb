@@ -73,3 +73,20 @@ butternut-squash,Butternut squash,false,false,false
 baking-soda,Baking soda,false,false,false
 chocolate-chips,Chocolate chips,false,false,true
 dairy-free-chocolate-chips,Dairy-free chocolate chips,false,false,false
+chicken_breast,Chicken breast,false,false,false
+salt,Salt,false,false,false
+black_pepper,Black pepper,false,false,false
+italian_seasoning,Italian seasoning,false,false,false
+olive_oil,Olive oil,false,false,false
+wheat_flour,Wheat flour,true,false,false
+parmesan_cheese,Parmesan cheese,false,false,true
+chicken_broth,Chicken broth,false,false,false
+beef_bouillon,Beef bouillon,false,false,false
+soy_sauce,Soy sauce,true,false,false
+worcestershire_sauce,Worcestershire sauce,false,false,false
+onion_powder,Onion powder,false,false,false
+dried_thyme,Dried thyme,false,false,false
+mustard_powder,Mustard powder,false,false,false
+butter,Butter,false,false,true
+garlic,Garlic,false,false,false
+heavy_cream,Heavy cream,false,false,true

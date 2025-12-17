@@ -74,6 +74,20 @@
     }
   },
   {
+    "id": "creamy-garlic-chicken",
+    "title": "Creamy Garlic Chicken",
+    "categories": [
+      "main course",
+      "skillet",
+      "chicken"
+    ],
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "creamy-leek-potato-soup",
     "title": "Creamy Leek and Potato Soup",
     "categories": [

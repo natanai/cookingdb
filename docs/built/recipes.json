@@ -1259,6 +1259,448 @@
     }
   },
   {
+    "id": "creamy-garlic-chicken",
+    "title": "Creamy Garlic Chicken",
+    "base_kind": "protein-main",
+    "default_base": 1,
+    "categories": [
+      "main course",
+      "skillet",
+      "chicken"
+    ],
+    "notes": "Garlic cloves are left whole and caramelized. Sauce thickens further as it cools.",
+    "steps_raw": "1. Slice {{chicken_breast}} in half lengthwise to form thinner cutlets. Cover and pound to an even thickness, then pat dry.\n2. Season both sides of {{chicken_breast}} with {{salt}}, {{black_pepper}}, and {{italian_seasoning}}. Dredge in {{flour_dredge}} mixed with {{parmesan_dredge}}, tapping off excess.\n3. Heat {{olive_oil}} in a large skillet over medium-high heat. Sear {{chicken_breast}} for 4–5 minutes per side until golden. Remove and set aside.\n4. Reduce heat to medium-low and melt {{butter}} in the same skillet. Add {{garlic_cloves}} and cook until softened and caramelized, about 6–7 minutes.\n5. Sprinkle in {{flour_sauce}} and cook for 1–2 minutes, stirring until the raw flour smell is gone.\n6. Gradually whisk in {{chicken_broth}} mixed with {{bouillon}}, {{soy_sauce}}, {{onion_powder}}, {{thyme}}, and {{mustard_powder}} until smooth.\n7. Stir in {{heavy_cream}} and bring to a gentle boil, then reduce heat to low.\n8. Gradually stir in {{parmesan_finish}} until melted.\n9. Return {{chicken_breast}} and any accumulated juices to the skillet. Spoon sauce over the top, cover partially, and simmer for 5 minutes.\n",
+    "tokens_used": [
+      "chicken_breast",
+      "chicken_breast",
+      "salt",
+      "black_pepper",
+      "italian_seasoning",
+      "flour_dredge",
+      "parmesan_dredge",
+      "olive_oil",
+      "chicken_breast",
+      "butter",
+      "garlic_cloves",
+      "flour_sauce",
+      "chicken_broth",
+      "bouillon",
+      "soy_sauce",
+      "onion_powder",
+      "thyme",
+      "mustard_powder",
+      "heavy_cream",
+      "parmesan_finish",
+      "chicken_breast"
+    ],
+    "token_order": [
+      "chicken_breast",
+      "salt",
+      "black_pepper",
+      "italian_seasoning",
+      "flour_dredge",
+      "parmesan_dredge",
+      "olive_oil",
+      "butter",
+      "garlic_cloves",
+      "flour_sauce",
+      "chicken_broth",
+      "bouillon",
+      "soy_sauce",
+      "onion_powder",
+      "thyme",
+      "mustard_powder",
+      "heavy_cream",
+      "parmesan_finish"
+    ],
+    "ingredients": {
+      "chicken_breast": {
+        "token": "chicken_breast",
+        "options": [
+          {
+            "option": "",
+            "display": "boneless skinless chicken breast",
+            "ratio": "2",
+            "unit": "piece",
+            "ingredient_id": "chicken_breast",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "black_pepper": {
+        "token": "black_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "black pepper",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "black_pepper",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "italian_seasoning": {
+        "token": "italian_seasoning",
+        "options": [
+          {
+            "option": "",
+            "display": "Italian seasoning",
+            "ratio": "3",
+            "unit": "tsp",
+            "ingredient_id": "italian_seasoning",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "olive_oil": {
+        "token": "olive_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "olive oil",
+            "ratio": "3",
+            "unit": "tbsp",
+            "ingredient_id": "olive_oil",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "flour_dredge": {
+        "token": "flour_dredge",
+        "options": [
+          {
+            "option": "",
+            "display": "flour",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "wheat_flour",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "parmesan_dredge": {
+        "token": "parmesan_dredge",
+        "options": [
+          {
+            "option": "",
+            "display": "Parmesan cheese",
+            "ratio": "4",
+            "unit": "tbsp",
+            "ingredient_id": "parmesan_cheese",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "chicken_broth": {
+        "token": "chicken_broth",
+        "options": [
+          {
+            "option": "",
+            "display": "chicken broth",
+            "ratio": "2 1/2",
+            "unit": "cup",
+            "ingredient_id": "chicken_broth",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "bouillon": {
+        "token": "bouillon",
+        "options": [
+          {
+            "option": "cube",
+            "display": "beef bouillon",
+            "ratio": "1",
+            "unit": "cube",
+            "ingredient_id": "beef_bouillon",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          },
+          {
+            "option": "paste",
+            "display": "beef bouillon",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "beef_bouillon",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "soy_sauce": {
+        "token": "soy_sauce",
+        "options": [
+          {
+            "option": "soy",
+            "display": "soy sauce",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "soy_sauce",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          },
+          {
+            "option": "worcestershire",
+            "display": "Worcestershire sauce",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "worcestershire_sauce",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "onion_powder": {
+        "token": "onion_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "onion powder",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "onion_powder",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "thyme": {
+        "token": "thyme",
+        "options": [
+          {
+            "option": "",
+            "display": "dried thyme",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "dried_thyme",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "mustard_powder": {
+        "token": "mustard_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "mustard powder",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "mustard_powder",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "butter": {
+        "token": "butter",
+        "options": [
+          {
+            "option": "",
+            "display": "butter",
+            "ratio": "3",
+            "unit": "tbsp",
+            "ingredient_id": "butter",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "garlic_cloves": {
+        "token": "garlic_cloves",
+        "options": [
+          {
+            "option": "",
+            "display": "whole garlic cloves",
+            "ratio": "10",
+            "unit": "piece",
+            "ingredient_id": "garlic",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "flour_sauce": {
+        "token": "flour_sauce",
+        "options": [
+          {
+            "option": "",
+            "display": "flour",
+            "ratio": "3",
+            "unit": "tbsp",
+            "ingredient_id": "wheat_flour",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "heavy_cream": {
+        "token": "heavy_cream",
+        "options": [
+          {
+            "option": "",
+            "display": "heavy cream",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "heavy_cream",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "parmesan_finish": {
+        "token": "parmesan_finish",
+        "options": [
+          {
+            "option": "include",
+            "display": "Parmesan cheese",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "parmesan_cheese",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          },
+          {
+            "option": "omit",
+            "display": "no Parmesan cheese",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "parmesan_cheese",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": true
+      }
+    },
+    "choices": {
+      "bouillon": {
+        "token": "bouillon",
+        "label": "Bouillon type",
+        "default_option": "cube"
+      },
+      "soy_sauce": {
+        "token": "soy_sauce",
+        "label": "Umami seasoning",
+        "default_option": "soy"
+      },
+      "parmesan_finish": {
+        "token": "parmesan_finish",
+        "label": "Finish with Parmesan",
+        "default_option": "include"
+      }
+    },
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "creamy-leek-potato-soup",
     "title": "Creamy Leek and Potato Soup",
     "base_kind": "multiplier",
