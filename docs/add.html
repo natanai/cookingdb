@@ -29,11 +29,11 @@
         <h2 class="section-heading">Recipe details</h2>
         <form id="recipe-form">
           <div class="field">
-            <label for="title">Recipe title</label>
+            <label for="title">Recipe title <span class="required-badge">Required</span></label>
             <input id="title" name="title" required placeholder="Mom's lasagna" />
           </div>
           <div class="field">
-            <label for="slug">Recipe ID (letters, numbers, dashes)</label>
+            <label for="slug">Recipe ID (letters, numbers, dashes) <span class="required-badge">Required</span></label>
             <input id="slug" name="slug" required placeholder="moms-lasagna" />
             <small class="field-help">Used as the primary key. We’ll suggest one from the title.</small>
           </div>
@@ -42,7 +42,7 @@
             <textarea id="notes" name="notes" rows="3" placeholder="Serving suggestions, storage, or quick tips"></textarea>
           </div>
           <div class="field">
-            <label for="categories">Categories (comma-separated)</label>
+            <label for="categories">Categories (comma-separated) <span class="required-badge">Required</span></label>
             <input id="categories" name="categories" placeholder="Mains, Weeknight" />
           </div>
           <div class="field inline">
@@ -50,7 +50,7 @@
             <input id="default-base" name="default-base" type="number" step="0.25" min="0.25" value="1" />
           </div>
           <fieldset class="field">
-            <legend>Ingredients</legend>
+            <legend>Ingredients <span class="required-badge">Required</span></legend>
             <div id="ingredient-table" class="ingredient-table">
               <div class="ingredient-header">
                 <span>Name</span>
@@ -66,7 +66,7 @@
             <button class="button secondary" type="button" id="add-ingredient">+ Add ingredient</button>
           </fieldset>
           <fieldset class="field">
-            <legend>Steps</legend>
+            <legend>Steps <span class="required-badge">Required</span></legend>
             <ol id="steps-list" class="steps-builder"></ol>
             <button class="button secondary" type="button" id="add-step">+ Add step</button>
             <div class="field-help">Select every ingredient a step uses. Missing ingredients will be appended to the step so the renderer stays in sync.</div>
