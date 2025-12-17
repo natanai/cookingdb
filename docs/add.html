@@ -52,23 +52,16 @@
           </div>
           <fieldset class="field">
             <legend>Ingredients <span class="required-badge">Required</span></legend>
-            <div class="table-scroll">
-              <table class="ingredients-table">
-                <thead>
-                  <tr class="ingredient-header">
-                    <th scope="col">Name</th>
-                    <th scope="col">Section</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Unit</th>
-                    <th scope="col">Alternative<br /><span class="muted">(optional)</span></th>
-                    <th scope="col">Show when<br /><span class="muted">(optional)</span></th>
-                    <th scope="col">Inline group</th>
-                    <th scope="col">Dietary flags</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody id="ingredient-rows"></tbody>
-              </table>
+            <div class="ingredients-editor">
+              <div class="ingredients-header" aria-hidden="true">
+                <div>Name</div>
+                <div>Amount</div>
+                <div>Unit</div>
+                <div>Dietary</div>
+                <div></div>
+                <div></div>
+              </div>
+              <div id="ingredient-rows" class="ingredients-list"></div>
             </div>
             <div class="field-help">Amount accepts fractions like "1/2" or "1 1/2". Units must use the existing list. Optional dependency and inline group fields let you hide ingredients based on a choice and keep related amounts on one line. Add a section label (e.g., "Chicken" or "Sauce") when the recipe has multiple parts.</div>
             <button class="button secondary" type="button" id="add-ingredient">+ Add ingredient</button>
@@ -102,6 +95,8 @@
     </main>
   </div>
   <datalist id="ingredient-suggestions"></datalist>
+  <datalist id="section-suggestions"></datalist>
+  <datalist id="dependency-suggestions"></datalist>
   <script type="module" src="add.js"></script>
 </body>
 </html>
