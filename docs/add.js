@@ -25,6 +25,7 @@ const ingredientNameSet = new Set();
 const categorySet = new Set();
 const unitSet = new Set();
 const unitSelects = new Set();
+const ingredientEmptyClass = 'ingredient-empty';
 
 function slugify(text) {
   return text
@@ -123,6 +124,37 @@ function syncUnitSelects() {
   unitSelects.forEach((select) => syncUnitSelect(select));
 }
 
+function renderIngredientEmptyState() {
+  const existingState = ingredientRowsEl.querySelector(`.${ingredientEmptyClass}`);
+  const hasRows = ingredientRowsEl.querySelector('.ingredient-row');
+
+  if (hasRows) {
+    if (existingState) existingState.remove();
+    return;
+  }
+
+  if (existingState) return;
+
+  const row = document.createElement('tr');
+  row.className = ingredientEmptyClass;
+  row.innerHTML = `
+    <td>
+      <button type="button" class="icon-button add-ingredient-inline" aria-label="Add ingredient">
+        <span aria-hidden="true">+</span>
+      </button>
+    </td>
+    <td colspan="5" class="ingredient-empty-help">Add your first ingredient.</td>
+  `;
+
+  row.querySelector('.add-ingredient-inline').addEventListener('click', () => {
+    createIngredientRow();
+    refreshStepIngredientPickers();
+    refreshPreview();
+  });
+
+  ingredientRowsEl.appendChild(row);
+}
+
 function normalizeIngredientsForSuggestions(recipe) {
   if (!recipe || typeof recipe !== 'object') return [];
   if (Array.isArray(recipe.ingredients)) return recipe.ingredients.filter(Boolean);
@@ -201,12 +233,6 @@ function createIngredientRow(defaults = {}) {
     </td>
     <td>
       <label class="ingredient-cell">
-        <span class="cell-label">Section (optional)</span>
-        <input class="ingredient-section" placeholder="e.g., Chicken" aria-label="Ingredient section" />
-      </label>
-    </td>
-    <td>
-      <label class="ingredient-cell">
         <span class="cell-label">Amount</span>
         <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
       </label>
@@ -218,34 +244,41 @@ function createIngredientRow(defaults = {}) {
       </label>
     </td>
     <td>
-      <label class="ingredient-cell">
-        <span class="cell-label">Alternative</span>
-        <input class="ingredient-alt" placeholder="Alternative/substitution" aria-label="Alternative or substitution" />
-      </label>
-    </td>
-    <td>
-      <div class="ingredient-cell conditional-cell">
-        <span class="cell-label">Show when</span>
-        <div class="conditional-inputs">
-          <input class="ingredient-dep-token" placeholder="Token" aria-label="Dependency token" />
-          <input class="ingredient-dep-option" placeholder="Option" aria-label="Dependency option" />
-        </div>
-      </div>
-    </td>
-    <td>
-      <label class="ingredient-cell">
-        <span class="cell-label">Inline group</span>
-        <input class="ingredient-group" placeholder="Group key" aria-label="Inline group key" />
-      </label>
-    </td>
-    <td>
       <div class="ingredient-cell">
         <span class="cell-label">Dietary flags</span>
         <div class="dietary-slot"></div>
       </div>
     </td>
+    <td class="ingredient-more-cell">
+      <details class="ingredient-more">
+        <summary>
+          <span class="more-icon" aria-hidden="true">+</span>
+          <span class="more-label">More options</span>
+        </summary>
+        <div class="more-grid">
+          <label class="ingredient-cell">
+            <span class="cell-label">Section</span>
+            <input class="ingredient-section" placeholder="Defaults to one section" aria-label="Ingredient section" />
+          </label>
+          <label class="ingredient-cell">
+            <span class="cell-label">Alternative</span>
+            <input class="ingredient-alt" placeholder="Alternative/substitution" aria-label="Alternative or substitution" />
+          </label>
+          <div class="ingredient-cell conditional-cell">
+            <span class="cell-label">Show when</span>
+            <div class="conditional-inputs">
+              <input class="ingredient-dep-token" placeholder="Token" aria-label="Dependency token" />
+              <input class="ingredient-dep-option" placeholder="Option" aria-label="Dependency option" />
+            </div>
+          </div>
+          <label class="ingredient-cell">
+            <span class="cell-label">Inline group</span>
+            <input class="ingredient-group" placeholder="Group key" aria-label="Inline group key" />
+          </label>
+        </div>
+      </details>
+    </td>
     <td class="remove-cell">
-      <span class="cell-label">Remove</span>
       <button type="button" class="link-button remove-ingredient" aria-label="Remove ingredient">Remove</button>
     </td>
   `;
@@ -284,37 +317,52 @@ function createIngredientRow(defaults = {}) {
     row.remove();
     refreshStepIngredientPickers();
     refreshPreview();
+    renderIngredientEmptyState();
   });
 
   ingredientRowsEl.appendChild(row);
+  renderIngredientEmptyState();
 }
 
 function createStepRow(defaultText = '', defaultSection = '') {
   const li = document.createElement('li');
   li.className = 'step-row';
   li.innerHTML = `
-    <label>Instruction
-      <textarea class="step-text" rows="3" placeholder="Describe the action and include ingredients"></textarea>
-    </label>
-    <label>Section (optional)
-      <input class="step-section" placeholder="e.g., Prep Work" />
-    </label>
-    <div class="step-ingredients" aria-label="Ingredients used in this step"></div>
-    <details class="step-variation">
-      <summary>Add conditional variation (optional)</summary>
-      <div class="variation-grid">
-        <label>Show when ingredient is set to
-          <div class="conditional-inputs">
-            <input class="variation-token" placeholder="Token" aria-label="Variation token" />
-            <input class="variation-option" placeholder="Option" aria-label="Variation option" />
+    <div class="step-main">
+      <label class="step-field">Instruction
+        <textarea class="step-text" rows="3" placeholder="Describe the action and include ingredients"></textarea>
+      </label>
+      <div class="step-ingredients-block">
+        <span class="cell-label">Ingredients used</span>
+        <div class="step-ingredients" aria-label="Ingredients used in this step"></div>
+      </div>
+      <button type="button" class="link-button remove-step">Remove step</button>
+    </div>
+    <details class="step-more">
+      <summary>
+        <span class="more-icon" aria-hidden="true">+</span>
+        <span class="more-label">More options</span>
+      </summary>
+      <div class="more-grid">
+        <label class="step-field">Section
+          <input class="step-section" placeholder="Defaults to one section" />
+        </label>
+        <details class="step-variation">
+          <summary>Add conditional variation (optional)</summary>
+          <div class="variation-grid">
+            <label>Show when ingredient is set to
+              <div class="conditional-inputs">
+                <input class="variation-token" placeholder="Token" aria-label="Variation token" />
+                <input class="variation-option" placeholder="Option" aria-label="Variation option" />
+              </div>
+            </label>
+            <label>Variation text (only shown when matched)
+              <textarea class="variation-text" rows="2" placeholder="Extra instruction when a specific option is chosen"></textarea>
+            </label>
           </div>
-        </label>
-        <label>Variation text (only shown when matched)
-          <textarea class="variation-text" rows="2" placeholder="Extra instruction when a specific option is chosen"></textarea>
-        </label>
+        </details>
       </div>
     </details>
-    <button type="button" class="link-button remove-step">Remove step</button>
   `;
   li.querySelector('.step-text').value = defaultText;
   li.querySelector('.step-section').value = defaultSection;
@@ -805,7 +853,7 @@ function bootstrap() {
     document.getElementById('remember-family').checked = true;
   }
 
-  createIngredientRow();
+  renderIngredientEmptyState();
   createStepRow();
   refreshPreview();
   loadExistingRecipes();
