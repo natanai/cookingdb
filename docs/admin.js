@@ -1,6 +1,6 @@
 import {
   adminExportPending,
-  adminWipeDatabase,
+  adminPurgeImported,
   getRememberedPassword,
   setRememberedPassword,
 } from './inbox/inbox-api.js';
@@ -9,7 +9,7 @@ const statusEl = document.getElementById('admin-status');
 const tokenInput = document.getElementById('admin-token');
 const rememberCheckbox = document.getElementById('remember-admin');
 const downloadBtn = document.getElementById('download-btn');
-const wipeBtn = document.getElementById('wipe-btn');
+const purgeBtn = document.getElementById('purge-btn');
 
 function showStatus(message, kind = 'info') {
   statusEl.textContent = message;
@@ -54,17 +54,17 @@ async function handleDownload() {
   }
 }
 
-async function handleWipeDatabase() {
+async function handlePurgeImported() {
   const token = getToken();
   if (!token) return;
-  const confirmed = window.confirm('This will permanently wipe the inbox database. Continue?');
+  const confirmed = window.confirm('Permanently delete all imported inbox entries?');
   if (!confirmed) return;
   try {
-    showStatus('Wiping inbox database...', 'info');
-    await adminWipeDatabase({ adminToken: token });
-    showStatus('Inbox database wiped.', 'success');
+    showStatus('Purging imported inbox entries...', 'info');
+    await adminPurgeImported({ adminToken: token });
+    showStatus('Imported inbox entries purged.', 'success');
   } catch (err) {
-    showStatus(err.message || 'Unable to wipe inbox database', 'error');
+    showStatus(err.message || 'Unable to purge imported entries', 'error');
   }
 }
 
@@ -74,7 +74,7 @@ function bootstrap() {
     rememberCheckbox.checked = true;
   }
   downloadBtn.addEventListener('click', handleDownload);
-  wipeBtn.addEventListener('click', handleWipeDatabase);
+  purgeBtn.addEventListener('click', handlePurgeImported);
 }
 
 bootstrap();
