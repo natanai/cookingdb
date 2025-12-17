@@ -8,6 +8,6 @@
     "build": "node scripts/build.mjs"
   },
   "dependencies": {
-    "papaparse": "^5.4.1"
+    "papaparse": "^5.5.3"
   }
 }
