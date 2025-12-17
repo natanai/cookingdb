@@ -73,6 +73,10 @@ function extractTokensFromSteps(stepsRaw) {
   while ((match = tokenRegex.exec(stepsRaw)) !== null) {
     tokens.push(match[1]);
   }
+  const conditionRegex = /{{#if\s+([a-zA-Z0-9_-]+)/g;
+  while ((match = conditionRegex.exec(stepsRaw)) !== null) {
+    tokens.push(match[1]);
+  }
   return tokens;
 }
 
@@ -182,12 +186,17 @@ async function build() {
         ingredients[row.token] = { token: row.token, options: [], isChoice: false };
       }
       const flags = catalog.get(row.ingredient_id);
+      const dependency = row.depends_on_token
+        ? { token: row.depends_on_token, option: row.depends_on_option || null }
+        : null;
       const optionEntry = {
         option: row.option,
         display: row.display,
         ratio: row.ratio,
         unit: row.unit,
         ingredient_id: row.ingredient_id,
+        depends_on: dependency,
+        line_group: row.line_group || null,
         dietary: {
           gluten_free: ingredientCompatible(flags, 'gluten_free'),
           egg_free: ingredientCompatible(flags, 'egg_free'),
@@ -195,6 +204,12 @@ async function build() {
         },
       };
       ingredients[row.token].options.push(optionEntry);
+      if (row.line_group) {
+        ingredients[row.token].line_group = row.line_group;
+      }
+      if (dependency) {
+        ingredients[row.token].depends_on = dependency;
+      }
     }
 
     for (const token of Object.keys(ingredients)) {
