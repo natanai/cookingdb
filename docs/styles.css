@@ -759,6 +759,16 @@ main {
   border: 1px solid var(--border);
 }
 
+.button.danger {
+  background: #c0392b;
+  color: #fff;
+}
+
+.warning-text {
+  color: #8b3a2f;
+  font-weight: 700;
+}
+
 .link-button {
   border: none;
   background: transparent;

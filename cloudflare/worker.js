@@ -256,6 +256,32 @@ async function adminPurgeImported(request, env, body) {
   return jsonResponse({ ok: true, removed: result.meta.changes || 0 });
 }
 
+async function adminDeletePending(request, env, body) {
+  requireAdminToken(request, env);
+  const ids = Array.isArray(body?.ids) ? body.ids.filter((id) => Number.isInteger(id)) : [];
+
+  if (ids.length === 0) {
+    return jsonResponse({ ok: false, error: 'No ids provided' }, 400);
+  }
+
+  const db = getDb(env);
+  await ensureSchema(db);
+
+  const placeholders = ids.map(() => '?').join(',');
+  const sql = `DELETE FROM recipes_inbox WHERE status = 'pending' AND id IN (${placeholders})`;
+  const result = await db.prepare(sql).bind(...ids).run();
+  const deleted = typeof result?.meta?.changes === 'number' ? result.meta.changes : undefined;
+
+  const response = { ok: true };
+  if (typeof deleted === 'number') {
+    response.deleted = deleted;
+  } else {
+    response.attempted = ids.length;
+  }
+
+  return jsonResponse(response);
+}
+
 const ROUTES = {
   'GET:/health': handleHealth,
   'POST:/health': handleHealth,
@@ -264,6 +290,7 @@ const ROUTES = {
   'POST:/admin/export': adminExport,
   'POST:/admin/mark-imported': adminMarkImported,
   'POST:/admin/purge-imported': adminPurgeImported,
+  'POST:/admin/delete-pending': adminDeletePending,
 };
 
 export default {

@@ -1,6 +1,7 @@
 import {
+  adminDeletePendingByIds,
   adminExportPending,
-  adminWipe,
+  adminPurgeImported,
   getRememberedPassword,
   setRememberedPassword,
 } from './inbox/inbox-api.js';
@@ -9,7 +10,8 @@ const statusEl = document.getElementById('admin-status');
 const tokenInput = document.getElementById('admin-token');
 const rememberCheckbox = document.getElementById('remember-admin');
 const downloadBtn = document.getElementById('download-btn');
-const wipeBtn = document.getElementById('wipe-btn');
+const purgeBtn = document.getElementById('purge-btn');
+const wipePendingBtn = document.getElementById('wipe-pending-btn');
 
 function showStatus(message, kind = 'info') {
   statusEl.textContent = message;
@@ -54,17 +56,58 @@ async function handleDownload() {
   }
 }
 
-async function handleWipe() {
+async function handlePurgeImported() {
   const token = getToken();
   if (!token) return;
-  const confirmed = window.confirm('Permanently delete all inbox entries?');
+  const confirmed = window.confirm('Permanently delete imported inbox entries?');
   if (!confirmed) return;
   try {
-    showStatus('Wiping inbox entries...', 'info');
-    await adminWipe({ adminToken: token });
-    showStatus('Inbox entries wiped.', 'success');
+    showStatus('Purging imported inbox entries...', 'info');
+    await adminPurgeImported({ adminToken: token });
+    showStatus('Imported inbox entries purged.', 'success');
   } catch (err) {
-    showStatus(err.message || 'Unable to wipe inbox entries', 'error');
+    showStatus(err.message || 'Unable to purge inbox entries', 'error');
+  }
+}
+
+async function handleWipePending() {
+  const token = getToken();
+  if (!token) return;
+
+  const confirmation = window.prompt(
+    'Type DELETE to permanently delete all pending inbox entries. This cannot be undone.'
+  );
+  if (confirmation !== 'DELETE') {
+    showStatus('Deletion cancelled. Type DELETE to confirm.', 'info');
+    return;
+  }
+
+  try {
+    showStatus('Loading pending inbox entries...', 'info');
+    const payload = await adminExportPending({ adminToken: token });
+    const ids = Array.isArray(payload?.items)
+      ? payload.items.map((row) => row.id).filter((id) => Number.isInteger(id))
+      : [];
+
+    if (ids.length === 0) {
+      showStatus('Nothing to delete. No pending entries found.', 'success');
+      return;
+    }
+
+    const deletion = await adminDeletePendingByIds({ adminToken: token, ids });
+    const deletedCount =
+      typeof deletion?.deleted === 'number'
+        ? deletion.deleted
+        : typeof deletion?.attempted === 'number'
+          ? deletion.attempted
+          : ids.length;
+
+    showStatus(`Deleted ${deletedCount} pending entr${deletedCount === 1 ? 'y' : 'ies'}. Refreshing...`, 'info');
+    const remaining = await adminExportPending({ adminToken: token });
+    const remainingCount = Array.isArray(remaining?.items) ? remaining.items.length : 0;
+    showStatus(`Deleted ${deletedCount} pending entries. Remaining pending: ${remainingCount}.`, 'success');
+  } catch (err) {
+    showStatus(err.message || 'Unable to delete pending inbox entries', 'error');
   }
 }
 
@@ -74,7 +117,8 @@ function bootstrap() {
     rememberCheckbox.checked = true;
   }
   downloadBtn.addEventListener('click', handleDownload);
-  wipeBtn.addEventListener('click', handleWipe);
+  purgeBtn.addEventListener('click', handlePurgeImported);
+  wipePendingBtn.addEventListener('click', handleWipePending);
 }
 
 bootstrap();
