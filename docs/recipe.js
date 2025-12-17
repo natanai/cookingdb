@@ -9,6 +9,7 @@ import {
   optionMeetsRestrictions,
   alternativeOptions,
   getEffectiveMultiplier,
+  unitOptionsFor,
 } from './recipe-utils.js';
 
 const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
@@ -228,7 +229,7 @@ function buildChoiceControls(recipe, state, onChange) {
   });
 }
 
-function renderIngredientsList(recipe, state) {
+function renderIngredientsList(recipe, state, onUnitChange) {
   const list = document.getElementById('ingredients-list');
   if (!list) return;
 
@@ -236,6 +237,7 @@ function renderIngredientsList(recipe, state) {
 
   const multiplier = getEffectiveMultiplier(state);
   const ingredients = recipe?.ingredients && typeof recipe.ingredients === 'object' ? recipe.ingredients : null;
+  const unitSelections = state.unitSelections || (state.unitSelections = {});
 
   const order = Array.isArray(recipe?.token_order)
     ? recipe.token_order
@@ -258,11 +260,13 @@ function renderIngredientsList(recipe, state) {
     if (!option) return;
 
     const li = document.createElement('li');
+    const textSpan = document.createElement('span');
 
+    const selectedUnit = unitSelections[token];
     try {
-      li.textContent = renderIngredientEntry(option, multiplier);
+      textSpan.textContent = renderIngredientEntry(option, multiplier, selectedUnit);
     } catch (e) {
-      li.textContent = String(token);
+      textSpan.textContent = String(token);
     }
 
     let alternatives = [];
@@ -288,8 +292,38 @@ function renderIngredientsList(recipe, state) {
         const altSpan = document.createElement('span');
         altSpan.className = 'ingredient-alternatives';
         altSpan.textContent = ` (or ${altText})`;
+        li.appendChild(textSpan);
         li.appendChild(altSpan);
       }
+    }
+
+    if (!li.contains(textSpan)) {
+      li.appendChild(textSpan);
+    }
+
+    const unitOptions = unitOptionsFor(option.unit);
+    if (unitOptions.length > 1 && option.ratio) {
+      const unitSelect = document.createElement('select');
+      unitSelect.className = 'unit-select';
+      const currentUnit = selectedUnit || option.unit;
+      unitOptions.forEach((unit) => {
+        const opt = document.createElement('option');
+        opt.value = unit.id;
+        opt.textContent = unit.label;
+        if (unit.id === currentUnit) opt.selected = true;
+        unitSelect.appendChild(opt);
+      });
+
+      if (!unitSelections[token]) {
+        unitSelections[token] = currentUnit;
+      }
+
+      unitSelect.addEventListener('change', () => {
+        unitSelections[token] = unitSelect.value;
+        if (typeof onUnitChange === 'function') onUnitChange();
+      });
+
+      li.appendChild(unitSelect);
     }
 
     list.appendChild(li);
@@ -428,6 +462,7 @@ function renderRecipe(recipeInput) {
     panMultiplier: 1,
     selectedPanId: recipe.default_pan || null,
     selectedOptions: {},
+    unitSelections: {},
     restrictions: {
       gluten_free: compatibilityPossible.gluten_free ? resolveRestriction('gluten_free') : false,
       egg_free: compatibilityPossible.egg_free ? resolveRestriction('egg_free') : false,
@@ -501,7 +536,7 @@ function renderRecipe(recipeInput) {
   const rerender = () => {
     const base = Number(recipe.default_base) || 1;
     state.multiplier = multiplierInput ? Number(multiplierInput.value) || base : base;
-    renderIngredientsList(recipe, state);
+    renderIngredientsList(recipe, state, rerender);
     renderSteps(recipe, state);
     updateMultiplierHelper();
   };

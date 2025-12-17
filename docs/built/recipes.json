@@ -2053,6 +2053,87 @@
         "height": null,
         "unit": "in",
         "is_default": false
+      },
+      {
+        "id": "round_8",
+        "label": "8-inch round",
+        "shape": "round",
+        "width": 8,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "round_10",
+        "label": "10-inch round",
+        "shape": "round",
+        "width": 10,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "sheet_half",
+        "label": "Half sheet (18x13)",
+        "shape": "rectangle",
+        "width": 18,
+        "height": 13,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "sheet_quarter",
+        "label": "Quarter sheet (13x9)",
+        "shape": "rectangle",
+        "width": 13,
+        "height": 9,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "rect_9x5",
+        "label": "9x5-inch loaf",
+        "shape": "rectangle",
+        "width": 9,
+        "height": 5,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "rect_8x4",
+        "label": "8x4-inch loaf",
+        "shape": "rectangle",
+        "width": 8,
+        "height": 4,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "round_6",
+        "label": "6-inch round",
+        "shape": "round",
+        "width": 6,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "springform_9",
+        "label": "9-inch springform",
+        "shape": "round",
+        "width": 9,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "bundt_10cup",
+        "label": "10-cup Bundt",
+        "shape": "round",
+        "width": 9.5,
+        "height": null,
+        "unit": "in",
+        "is_default": false
       }
     ],
     "default_pan": "sq_8",
