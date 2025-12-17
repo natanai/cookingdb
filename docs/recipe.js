@@ -4,12 +4,14 @@ import {
   recipeDefaultCompatibility,
   hasNonCompliantAlternative,
   renderIngredientEntry,
+  ingredientDisplay,
   formatStepText,
   selectOptionForToken,
   optionMeetsRestrictions,
   alternativeOptions,
   getEffectiveMultiplier,
   unitOptionsFor,
+  convertUnitAmount,
 } from './recipe-utils.js';
 
 const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
@@ -263,8 +265,10 @@ function renderIngredientsList(recipe, state, onUnitChange) {
     const textSpan = document.createElement('span');
 
     const selectedUnit = unitSelections[token];
+    let display = null;
     try {
-      textSpan.textContent = renderIngredientEntry(option, multiplier, selectedUnit);
+      display = ingredientDisplay(option, multiplier, selectedUnit);
+      textSpan.textContent = display.text;
     } catch (e) {
       textSpan.textContent = String(token);
     }
@@ -297,37 +301,69 @@ function renderIngredientsList(recipe, state, onUnitChange) {
       }
     }
 
-    if (!li.contains(textSpan)) {
-      li.appendChild(textSpan);
-    }
-
-    const unitOptions = unitOptionsFor(option.unit);
-    if (unitOptions.length > 1 && option.ratio) {
-      const unitSelect = document.createElement('select');
-      unitSelect.className = 'unit-select';
-      const currentUnit = selectedUnit || option.unit;
-      unitOptions.forEach((unit) => {
-        const opt = document.createElement('option');
-        opt.value = unit.id;
-        opt.textContent = unit.label;
-        if (unit.id === currentUnit) opt.selected = true;
-        unitSelect.appendChild(opt);
-      });
-
-      if (!unitSelections[token]) {
-        unitSelections[token] = currentUnit;
+      if (!li.contains(textSpan)) {
+        li.appendChild(textSpan);
       }
 
-      unitSelect.addEventListener('change', () => {
-        unitSelections[token] = unitSelect.value;
-        if (typeof onUnitChange === 'function') onUnitChange();
-      });
+      const unitOptions = unitOptionsFor(option.unit);
+      if (unitOptions.length > 1 && option.ratio) {
+        const unitSelect = document.createElement('select');
+        unitSelect.className = 'unit-select';
+        const currentUnit = selectedUnit || option.unit;
+        unitOptions.forEach((unit) => {
+          const opt = document.createElement('option');
+          opt.value = unit.id;
+          opt.textContent = unit.label;
+          if (unit.id === currentUnit) opt.selected = true;
+          unitSelect.appendChild(opt);
+        });
 
-      li.appendChild(unitSelect);
-    }
+        if (!unitSelections[token]) {
+          unitSelections[token] = currentUnit;
+        }
 
-    list.appendChild(li);
-  });
+        unitSelect.addEventListener('change', () => {
+          unitSelections[token] = unitSelect.value;
+          if (typeof onUnitChange === 'function') onUnitChange();
+        });
+
+        li.appendChild(unitSelect);
+
+        if (
+          display &&
+          display.baseAmount !== null &&
+          display.baseUnit &&
+          display.displayUnit &&
+          display.displayUnit !== display.baseUnit
+        ) {
+          const factorConversion = convertUnitAmount(1, display.baseUnit, display.displayUnit);
+          const factor = factorConversion ? factorConversion.amount : display.conversionFactor;
+          const factorStr = Number.isFinite(factor)
+            ? factor
+                .toFixed(3)
+                .replace(/\.0+$/, '')
+                .replace(/(\.\d*[1-9])0+$/, '$1')
+            : null;
+
+          const parts = [
+            `Base: ${display.baseAmountStr} ${display.baseUnitLabel}`.trim(),
+            `Converted: ${display.amountStr} ${display.convertedUnitLabel}`.trim(),
+          ];
+
+          if (factorStr) {
+            parts.push(`1 ${display.baseUnitLabel} = ${factorStr} ${display.convertedUnitLabel}`.trim());
+          }
+
+          const note = document.createElement('div');
+          note.className = 'conversion-note';
+          note.textContent = parts.join(' · ');
+          textSpan.title = parts.join(' | ');
+          li.appendChild(note);
+        }
+      }
+
+      list.appendChild(li);
+    });
 }
 
 function renderSteps(recipe, state) {

@@ -47,10 +47,25 @@ export function simplify(frac) {
   return { num: frac.num / g, den: frac.den / g };
 }
 
-export function decimalToFraction(value, maxDen = 16) {
-  const den = maxDen;
-  const num = Math.round(value * den);
-  return simplify({ num, den });
+export function decimalToFraction(value, options = {}) {
+  const { maxDen = 16, allowedDenominators = [2, 3, 4, 6, 8] } = options;
+  const denoms = allowedDenominators && allowedDenominators.length ? allowedDenominators : [maxDen];
+  const startingNum = Math.round(value * maxDen);
+  const startingApprox = startingNum / maxDen;
+  let best = { num: startingNum, den: maxDen, error: Math.abs(value - startingApprox) };
+
+  denoms.forEach((den) => {
+    if (!Number.isFinite(den) || den <= 0 || den > maxDen) return;
+    const num = Math.round(value * den);
+    const approx = num / den;
+    const error = Math.abs(value - approx);
+    if (error < best.error) {
+      best = { num, den, error };
+    }
+  });
+
+  const simplified = simplify({ num: best.num, den: best.den });
+  return { ...simplified, error: best.error };
 }
 
 export function multiplyFraction(frac, multiplier) {
@@ -97,9 +112,12 @@ export function unitOptionsFor(unitId) {
   }));
 }
 
-export function formatUnitLabel(unitId) {
+export function formatUnitLabel(unitId, amount) {
   const def = unitDefinition(unitId);
   if (!def) return unitId || '';
+  if (Number.isFinite(amount) && Math.abs(amount - 1) > 1e-9 && def.plural) {
+    return def.plural;
+  }
   return def.label || unitId;
 }
 
@@ -113,10 +131,21 @@ export function convertUnitAmount(amount, fromUnit, toUnit) {
   return { amount: converted, unit: toDef.id };
 }
 
-export function formatAmountForDisplay(amount) {
+export function formatAmountForDisplay(amount, options = {}) {
   if (!Number.isFinite(amount)) return '';
-  const frac = decimalToFraction(amount);
-  return formatFraction(frac);
+
+  const { fractionTolerance = 0.015, decimalPrecision = 2, allowedDenominators } = options;
+
+  const frac = decimalToFraction(amount, { allowedDenominators });
+  const approx = frac.num / frac.den;
+  const error = Math.abs(approx - amount);
+
+  if (error <= fractionTolerance) {
+    return formatFraction(frac);
+  }
+
+  const fixed = amount.toFixed(decimalPrecision);
+  return fixed.replace(/\.0+$/, '').replace(/(\.\d*[1-9])0+$/, '$1');
 }
 
 export function getEffectiveMultiplier(state) {
@@ -198,23 +227,67 @@ export function selectOptionForToken(token, recipe, state) {
   return selected || tokenData.options[0];
 }
 
-export function renderIngredientEntry(option, multiplier, selectedUnit) {
-  if (!option) return '';
-  if (!option.ratio) return option.display;
+export function ingredientDisplay(option, multiplier, selectedUnit) {
+  if (!option) {
+    return {
+      text: '',
+      amountStr: '',
+      baseAmountStr: '',
+      baseUnitLabel: '',
+      convertedUnitLabel: '',
+      baseAmount: null,
+      baseUnit: null,
+      displayAmount: null,
+      displayUnit: null,
+      conversionFactor: null,
+    };
+  }
+
+  if (!option.ratio) {
+    return {
+      text: option.display,
+      amountStr: '',
+      baseAmountStr: '',
+      baseUnitLabel: option.unit ? formatUnitLabel(option.unit) : '',
+      convertedUnitLabel: option.unit ? formatUnitLabel(option.unit) : '',
+      baseAmount: null,
+      baseUnit: option.unit || null,
+      displayAmount: null,
+      displayUnit: option.unit || null,
+      conversionFactor: null,
+    };
+  }
+
   const baseFraction = parseRatio(option.ratio);
-  if (!baseFraction) return option.display;
+  if (!baseFraction) {
+    return {
+      text: option.display,
+      amountStr: '',
+      baseAmountStr: '',
+      baseUnitLabel: option.unit ? formatUnitLabel(option.unit) : '',
+      convertedUnitLabel: option.unit ? formatUnitLabel(option.unit) : '',
+      baseAmount: null,
+      baseUnit: option.unit || null,
+      displayAmount: null,
+      displayUnit: option.unit || null,
+      conversionFactor: null,
+    };
+  }
+
   const scaled = multiplyFraction(baseFraction, multiplier);
   const baseAmount = scaled ? scaled.num / scaled.den : null;
 
   const targetUnit = selectedUnit || option.unit;
   let displayAmount = baseAmount;
   let displayUnit = option.unit;
+  let conversionFactor = null;
 
   if (baseAmount !== null && targetUnit && option.unit) {
     const converted = convertUnitAmount(baseAmount, option.unit, targetUnit);
     if (converted) {
       displayAmount = converted.amount;
       displayUnit = converted.unit;
+      conversionFactor = baseAmount !== 0 ? converted.amount / baseAmount : null;
     } else {
       displayUnit = option.unit;
     }
@@ -223,9 +296,29 @@ export function renderIngredientEntry(option, multiplier, selectedUnit) {
   }
 
   const amountStr = displayAmount !== null ? formatAmountForDisplay(displayAmount) : '';
-  const unitLabel = displayUnit ? ` ${formatUnitLabel(displayUnit)}` : '';
+  const baseAmountStr = baseAmount !== null ? formatAmountForDisplay(baseAmount) : '';
+  const unitLabel = displayUnit ? ` ${formatUnitLabel(displayUnit, displayAmount)}` : '';
+  const baseUnitLabel = option.unit ? formatUnitLabel(option.unit, baseAmount) : '';
+  const convertedUnitLabel = displayUnit ? formatUnitLabel(displayUnit, displayAmount) : '';
   const displayName = pluralize(option.display, displayAmount ?? 0, option.unit);
-  return `${amountStr}${unitLabel} ${displayName}`.trim();
+  const text = `${amountStr}${unitLabel} ${displayName}`.trim();
+
+  return {
+    text,
+    amountStr,
+    baseAmountStr,
+    baseUnitLabel,
+    convertedUnitLabel,
+    baseAmount,
+    baseUnit: option.unit || null,
+    displayAmount,
+    displayUnit,
+    conversionFactor,
+  };
+}
+
+export function renderIngredientEntry(option, multiplier, selectedUnit) {
+  return ingredientDisplay(option, multiplier, selectedUnit).text;
 }
 
 export function formatStepText(stepText, recipe, state) {

@@ -496,6 +496,16 @@ main {
   margin-left: 0.35rem;
 }
 
+.conversion-note {
+  width: 100%;
+  color: var(--muted);
+  font-size: 0.9rem;
+  background: #f8f1e9;
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border);
+}
+
 .unit-select {
   padding: 0.2rem 0.4rem;
   border: 1px solid var(--border);
