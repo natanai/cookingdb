@@ -484,12 +484,24 @@ main {
 #ingredients-list li,
 #steps-list li {
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .ingredient-alternatives {
   color: var(--muted);
   font-style: italic;
   margin-left: 0.35rem;
+}
+
+.unit-select {
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.95rem;
 }
 
 .notes {
@@ -927,6 +939,7 @@ main {
   .pill,
   .category-chip,
   .choice-group,
+  .unit-select,
   .control-note,
   .recipe-metadata,
   .card-categories,

@@ -1,3 +1,5 @@
+import { UNIT_CONVERSIONS } from './unit-conversions.js';
+
 export const DIETARY_TAGS = {
   gluten_free: { positive: 'Gluten-free ready', negative: 'Contains gluten' },
   egg_free: { positive: 'Egg-free friendly', negative: 'Contains egg' },
@@ -73,6 +75,48 @@ export function pluralize(display, amount, unit) {
     return `${display}s`;
   }
   return display;
+}
+
+export function unitDefinition(unitId) {
+  if (!unitId) return null;
+  const normalized = String(unitId).toLowerCase();
+  for (const [groupName, group] of Object.entries(UNIT_CONVERSIONS)) {
+    const def = group.units[normalized];
+    if (def) return { ...def, id: normalized, group: groupName };
+  }
+  return null;
+}
+
+export function unitOptionsFor(unitId) {
+  const def = unitDefinition(unitId);
+  if (!def) return [];
+  const group = UNIT_CONVERSIONS[def.group];
+  return Object.entries(group.units).map(([id, meta]) => ({
+    id,
+    label: meta.plural || meta.label || id,
+  }));
+}
+
+export function formatUnitLabel(unitId) {
+  const def = unitDefinition(unitId);
+  if (!def) return unitId || '';
+  return def.label || unitId;
+}
+
+export function convertUnitAmount(amount, fromUnit, toUnit) {
+  if (!Number.isFinite(amount)) return null;
+  const fromDef = unitDefinition(fromUnit);
+  const toDef = unitDefinition(toUnit);
+  if (!fromDef || !toDef || fromDef.group !== toDef.group) return null;
+  const amountInBase = amount * fromDef.to_base;
+  const converted = amountInBase / toDef.to_base;
+  return { amount: converted, unit: toDef.id };
+}
+
+export function formatAmountForDisplay(amount) {
+  if (!Number.isFinite(amount)) return '';
+  const frac = decimalToFraction(amount);
+  return formatFraction(frac);
 }
 
 export function getEffectiveMultiplier(state) {
@@ -154,24 +198,42 @@ export function selectOptionForToken(token, recipe, state) {
   return selected || tokenData.options[0];
 }
 
-export function renderIngredientEntry(option, multiplier) {
+export function renderIngredientEntry(option, multiplier, selectedUnit) {
   if (!option) return '';
   if (!option.ratio) return option.display;
   const baseFraction = parseRatio(option.ratio);
   if (!baseFraction) return option.display;
   const scaled = multiplyFraction(baseFraction, multiplier);
-  const amountNumber = scaled ? scaled.num / scaled.den : null;
-  const amountStr = scaled ? formatFraction(scaled) : '';
-  const displayName = pluralize(option.display, amountNumber ?? 0, option.unit);
-  const unit = option.unit ? ` ${option.unit}` : '';
-  return `${amountStr}${unit ? unit : ''} ${displayName}`.trim();
+  const baseAmount = scaled ? scaled.num / scaled.den : null;
+
+  const targetUnit = selectedUnit || option.unit;
+  let displayAmount = baseAmount;
+  let displayUnit = option.unit;
+
+  if (baseAmount !== null && targetUnit && option.unit) {
+    const converted = convertUnitAmount(baseAmount, option.unit, targetUnit);
+    if (converted) {
+      displayAmount = converted.amount;
+      displayUnit = converted.unit;
+    } else {
+      displayUnit = option.unit;
+    }
+  } else {
+    displayUnit = targetUnit || option.unit;
+  }
+
+  const amountStr = displayAmount !== null ? formatAmountForDisplay(displayAmount) : '';
+  const unitLabel = displayUnit ? ` ${formatUnitLabel(displayUnit)}` : '';
+  const displayName = pluralize(option.display, displayAmount ?? 0, option.unit);
+  return `${amountStr}${unitLabel} ${displayName}`.trim();
 }
 
 export function formatStepText(stepText, recipe, state) {
   const multiplier = getEffectiveMultiplier(state);
   return stepText.replace(/{{\s*([a-zA-Z0-9_-]+)\s*}}/g, (match, token) => {
     const option = selectOptionForToken(token, recipe, state);
-    return renderIngredientEntry(option, multiplier);
+    const selectedUnit = state?.unitSelections?.[token];
+    return renderIngredientEntry(option, multiplier, selectedUnit);
   });
 }
 
@@ -182,10 +244,11 @@ export function renderIngredientLines(recipe, state) {
     const tokenData = recipe.ingredients[token];
     if (!tokenData) return;
     const option = selectOptionForToken(token, recipe, state);
-    const line = { text: renderIngredientEntry(option, multiplier), alternatives: [] };
+    const selectedUnit = state?.unitSelections?.[token];
+    const line = { text: renderIngredientEntry(option, multiplier, selectedUnit), alternatives: [] };
     const alternatives = alternativeOptions(tokenData, state, option);
     if (alternatives.length) {
-      line.alternatives = alternatives.map((opt) => renderIngredientEntry(opt, multiplier));
+      line.alternatives = alternatives.map((opt) => renderIngredientEntry(opt, multiplier, selectedUnit));
     }
     lines.push(line);
   });

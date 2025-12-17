@@ -85,6 +85,23 @@ function parseCategories(raw) {
     .filter(Boolean);
 }
 
+function loadPanCatalog(catalogPath) {
+  ensure(fs.existsSync(catalogPath), 'Missing pan sizes catalog');
+  const raw = fs.readFileSync(catalogPath, 'utf-8');
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (err) {
+    throw new Error(`Unable to parse pan catalog: ${err?.message || err}`);
+  }
+  const map = new Map();
+  parsed.forEach((entry) => {
+    if (!entry?.id) return;
+    map.set(entry.id, entry);
+  });
+  return map;
+}
+
 export async function validateAll() {
   const recipesDir = path.join(process.cwd(), 'recipes');
   const recipeDirs = fs.readdirSync(recipesDir, { withFileTypes: true }).filter((ent) => ent.isDirectory());
@@ -92,6 +109,7 @@ export async function validateAll() {
   ensure(fs.existsSync(ingredientCatalogPath), 'Missing ingredient_catalog.csv');
   const ingredientCatalogRows = await parseCSVFile(ingredientCatalogPath);
   const ingredientCatalog = new Set(ingredientCatalogRows.map((row) => row.ingredient_id));
+  const panCatalog = loadPanCatalog(path.join(process.cwd(), 'data', 'pan-sizes.json'));
   const ratioPattern = /^\d+(?: \d+\/\d+|\/\d+)?$/;
 
   for (const dirEnt of recipeDirs) {
@@ -170,21 +188,15 @@ export async function validateAll() {
     if (fs.existsSync(pansPath)) {
       const panRows = await parseCSVFile(pansPath);
       ensure(panRows.length > 0, `${recipeId}: pans.csv must include at least one pan option`);
-      const allowedShapes = new Set(['rectangle', 'square', 'round']);
       let defaultCount = 0;
 
       for (const row of panRows) {
-        ensure(row.id && row.label, `${recipeId}: pan row missing id/label: ${JSON.stringify(row)}`);
-        const shape = (row.shape || 'rectangle').toLowerCase();
-        ensure(allowedShapes.has(shape), `${recipeId}: pan ${row.id} has unsupported shape ${row.shape}`);
-        const width = Number(row.width);
-        ensure(Number.isFinite(width) && width > 0, `${recipeId}: pan ${row.id} must include positive width/diameter`);
-        const heightRaw = row.height ? Number(row.height) : null;
-        if (shape === 'rectangle') {
-          ensure(Number.isFinite(heightRaw) && heightRaw > 0, `${recipeId}: rectangular pan ${row.id} requires height`);
-        }
-        if (shape === 'square' && row.height) {
-          ensure(Number.isFinite(heightRaw) && heightRaw > 0, `${recipeId}: square pan ${row.id} has invalid height`);
+        ensure(row.id, `${recipeId}: pan row missing id: ${JSON.stringify(row)}`);
+        ensure(panCatalog.has(row.id), `${recipeId}: pan ${row.id} not found in pan catalog`);
+        const panDef = panCatalog.get(row.id);
+        ensure(Number.isFinite(panDef.width) && panDef.width > 0, `${recipeId}: pan ${row.id} missing width`);
+        if (['rectangle', 'square'].includes((panDef.shape || '').toLowerCase())) {
+          ensure(Number.isFinite(panDef.height) && panDef.height > 0, `${recipeId}: pan ${row.id} missing height`);
         }
         if (parseBoolean(row.default)) defaultCount += 1;
       }

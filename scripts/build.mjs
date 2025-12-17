@@ -91,6 +91,30 @@ function loadIngredientCatalog(catalogPath) {
   return map;
 }
 
+function loadPanCatalog(catalogPath) {
+  const raw = fs.existsSync(catalogPath) ? fs.readFileSync(catalogPath, 'utf-8') : '';
+  if (!raw) return new Map();
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (err) {
+    throw new Error(`Unable to parse pan catalog at ${catalogPath}: ${err?.message || err}`);
+  }
+  const map = new Map();
+  parsed.forEach((entry) => {
+    if (!entry?.id) return;
+    map.set(entry.id, {
+      id: entry.id,
+      label: entry.label || entry.id,
+      shape: (entry.shape || 'rectangle').toLowerCase(),
+      width: Number(entry.width),
+      height: entry.height === null || entry.height === undefined ? null : Number(entry.height),
+      unit: entry.unit || 'in',
+    });
+  });
+  return map;
+}
+
 function ingredientCompatible(flags, restriction) {
   if (!flags) return false;
   if (restriction === 'gluten_free') return flags.contains_gluten === false;
@@ -134,6 +158,7 @@ async function build() {
   await validateAll();
   const catalogPath = path.join(process.cwd(), 'data', 'ingredient_catalog.csv');
   const catalog = loadIngredientCatalog(catalogPath);
+  const panCatalog = loadPanCatalog(path.join(process.cwd(), 'data', 'pan-sizes.json'));
   const recipesDir = path.join(process.cwd(), 'recipes');
   const recipeDirs = fs.readdirSync(recipesDir, { withFileTypes: true }).filter((ent) => ent.isDirectory());
 
@@ -191,15 +216,20 @@ async function build() {
     let defaultPanId = null;
     if (fs.existsSync(pansPath)) {
       const panRows = await parseCSVFile(pansPath);
-      panSizes = panRows.map((row) => ({
-        id: row.id,
-        label: row.label,
-        shape: (row.shape || 'rectangle').toLowerCase(),
-        width: Number(row.width),
-        height: row.height ? Number(row.height) : null,
-        unit: row.unit || 'in',
-        is_default: parseBoolean(row.default),
-      }));
+      panSizes = panRows
+        .map((row) => {
+          const catalogEntry = panCatalog.get(row.id);
+          if (!catalogEntry) {
+            console.warn(`Unknown pan id "${row.id}" in ${recipeId}; skipping.`);
+            return null;
+          }
+          return {
+            ...catalogEntry,
+            label: row.label || catalogEntry.label,
+            is_default: parseBoolean(row.default),
+          };
+        })
+        .filter(Boolean);
       const defaultPan = panSizes.find((p) => p.is_default) || panSizes[0];
       defaultPanId = defaultPan?.id || null;
     }
