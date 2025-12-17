@@ -481,8 +481,12 @@ main {
   box-shadow: var(--shadow);
 }
 
-#ingredients-list li,
-#steps-list li {
+#ingredients-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+#ingredients-list li {
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
@@ -490,12 +494,35 @@ main {
   flex-wrap: wrap;
 }
 
+#steps-list {
+  list-style: none;
+  counter-reset: step-counter;
+  padding-left: 1.6rem;
+}
+
+#steps-list .step-item {
+  counter-increment: step-counter;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.65rem;
+  align-items: start;
+  margin-bottom: 0.65rem;
+}
+
+#steps-list .step-item::before {
+  content: counter(step-counter) '.';
+  font-weight: 700;
+  color: var(--muted);
+}
+
 .section-header {
   list-style: none;
   display: block;
   font-weight: 700;
   color: var(--muted);
-  margin-top: 0.6rem;
+  margin: 0.75rem 0 0.25rem;
+  padding-left: 0;
+  counter-increment: none;
 }
 
 .ingredient-alternatives {
