@@ -3,8 +3,7 @@ const PATHS = {
   familySubmit: '/api/add',
   familyList: '/api/list',
   adminExport: '/admin/export',
-  adminMarkImported: '/admin/mark-imported',
-  adminPurgeImported: '/admin/purge-imported',
+  adminWipe: '/admin/wipe',
 };
 
 function storageKey(kind) {
@@ -102,18 +101,9 @@ export function adminExportPending({ workerBaseUrl = DEFAULT_BASE_URL, adminToke
   });
 }
 
-export function adminMarkImported({ workerBaseUrl = DEFAULT_BASE_URL, adminToken, ids }) {
-  return postJson('adminMarkImported', {
+export function adminWipe({ workerBaseUrl = DEFAULT_BASE_URL, adminToken }) {
+  return postJson('adminWipe', {
     workerBaseUrl,
     adminToken,
-    payload: { ids },
-  });
-}
-
-export function adminPurgeImported({ workerBaseUrl = DEFAULT_BASE_URL, adminToken, ids }) {
-  return postJson('adminPurgeImported', {
-    workerBaseUrl,
-    adminToken,
-    payload: { ids },
   });
 }
