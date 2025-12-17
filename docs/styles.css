@@ -490,6 +490,14 @@ main {
   flex-wrap: wrap;
 }
 
+.section-header {
+  list-style: none;
+  display: block;
+  font-weight: 700;
+  color: var(--muted);
+  margin-top: 0.6rem;
+}
+
 .ingredient-alternatives {
   color: var(--muted);
   font-style: italic;
@@ -674,8 +682,8 @@ main {
 .ingredient-row {
   display: grid;
   grid-template-columns:
-    minmax(0, 1.1fr) minmax(90px, 0.6fr) minmax(90px, 0.65fr) minmax(0, 1fr) minmax(0, 1.1fr)
-    minmax(0, 0.9fr) minmax(0, 1.1fr) auto;
+    minmax(0, 1.1fr) minmax(0, 0.9fr) minmax(90px, 0.6fr) minmax(90px, 0.65fr) minmax(0, 1fr)
+    minmax(0, 1.1fr) minmax(0, 0.9fr) minmax(0, 1.1fr) auto;
   gap: 0.45rem;
   align-items: end;
 }

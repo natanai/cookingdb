@@ -348,6 +348,43 @@ export function renderIngredientEntry(option, multiplier, selectedUnit) {
   return ingredientDisplay(option, multiplier, selectedUnit).text;
 }
 
+export function normalizeSteps(recipe) {
+  if (Array.isArray(recipe?.steps)) {
+    return recipe.steps.map((step) => ({ section: step.section || null, text: step.text || '' }));
+  }
+
+  const stepsRaw = recipe?.steps_raw || '';
+  return stepsRaw
+    .split(/\n/)
+    .filter((line) => line.trim() !== '')
+    .map((line) => ({ section: null, text: line.replace(/^\d+\.\s*/, '') }));
+}
+
+export function groupLinesBySection(lines, sectionOrder = []) {
+  const orderMap = new Map((sectionOrder || []).map((name, idx) => [name || null, idx]));
+  const sections = [];
+
+  const findOrCreate = (key) => {
+    const normalizedKey = key || null;
+    let section = sections.find((entry) => entry.section === normalizedKey);
+    if (!section) {
+      const orderIdx = orderMap.has(normalizedKey)
+        ? orderMap.get(normalizedKey)
+        : sectionOrder.length + sections.length;
+      section = { section: normalizedKey, orderIdx, lines: [] };
+      sections.push(section);
+    }
+    return section;
+  };
+
+  lines.forEach((line) => {
+    const target = findOrCreate(line.section || null);
+    target.lines.push(line);
+  });
+
+  return sections.sort((a, b) => a.orderIdx - b.orderIdx);
+}
+
 export function formatStepText(stepText, recipe, state) {
   const multiplier = getEffectiveMultiplier(state);
   const evaluatedConditions = stepText.replace(/{{#if\s+([^}]+)}}([\s\S]*?){{\/if}}/g, (match, condition, inner) => {
@@ -370,16 +407,23 @@ export function renderIngredientLines(recipe, state) {
   const unitSelections = state?.unitSelections || (state.unitSelections = {});
   const groupMap = new Map();
 
-  const addLine = (groupKey, entry, orderIdx) => {
+  const addLine = (groupKey, entry, orderIdx, section) => {
     if (!groupKey) {
-      lines.push({ entries: [entry], alternatives: entry.alternatives, text: entry.text, orderIdx });
+      lines.push({
+        entries: [entry],
+        alternatives: entry.alternatives,
+        text: entry.text,
+        orderIdx,
+        section,
+      });
       return;
     }
 
     if (!groupMap.has(groupKey)) {
-      groupMap.set(groupKey, { entries: [], alternatives: [], orderIdx });
+      groupMap.set(groupKey, { entries: [], alternatives: [], orderIdx, section });
     }
     const group = groupMap.get(groupKey);
+    group.section = group.section || section;
     group.entries.push(entry);
     group.alternatives.push(...entry.alternatives);
   };
@@ -397,9 +441,10 @@ export function renderIngredientLines(recipe, state) {
       .filter((opt) => optionAllowedByDependency(opt, recipe, state))
       .map((opt) => renderIngredientEntry(opt, multiplier, selectedUnit));
 
-    const entry = { token, text, option, selectedUnit, alternatives, display };
+    const section = tokenData.section || option.section || null;
+    const entry = { token, text, option, selectedUnit, alternatives, display, section };
     const groupKey = tokenData.line_group || option.line_group || null;
-    addLine(groupKey, entry, orderIdx);
+    addLine(groupKey, entry, orderIdx, section);
   });
 
   const grouped = [...groupMap.values()].sort((a, b) => a.orderIdx - b.orderIdx);
@@ -412,10 +457,6 @@ export function renderIngredientLines(recipe, state) {
 }
 
 export function renderStepLines(recipe, state) {
-  const lines = [];
-  const stepLines = (recipe.steps_raw || '').split(/\n/).filter((line) => line.trim() !== '');
-  stepLines.forEach((line) => {
-    lines.push(formatStepText(line.replace(/^\d+\.\s*/, ''), recipe, state));
-  });
-  return lines;
+  const steps = normalizeSteps(recipe);
+  return steps.map((step) => ({ section: step.section || null, text: formatStepText(step.text, recipe, state) }));
 }

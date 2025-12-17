@@ -59,9 +59,13 @@ async function parseCSVFile(filePath) {
 
 function extractTokensFromSteps(stepsRaw) {
   const tokenRegex = /{{\s*([a-zA-Z0-9_-]+)\s*}}/g;
+  const conditionRegex = /{{#if\s+([a-zA-Z0-9_-]+)/g;
   const tokens = [];
   let match;
   while ((match = tokenRegex.exec(stepsRaw)) !== null) {
+    tokens.push(match[1]);
+  }
+  while ((match = conditionRegex.exec(stepsRaw)) !== null) {
     tokens.push(match[1]);
   }
   return tokens;
@@ -118,9 +122,10 @@ export async function validateAll() {
     const metaPath = path.join(baseDir, 'meta.csv');
     const ingredientsPath = path.join(baseDir, 'ingredients.csv');
     const stepsPath = path.join(baseDir, 'steps.md');
+    const stepsCsvPath = path.join(baseDir, 'steps.csv');
     ensure(fs.existsSync(metaPath), `Missing meta.csv for recipe ${recipeId}`);
     ensure(fs.existsSync(ingredientsPath), `Missing ingredients.csv for recipe ${recipeId}`);
-    ensure(fs.existsSync(stepsPath), `Missing steps.md for recipe ${recipeId}`);
+    ensure(fs.existsSync(stepsPath) || fs.existsSync(stepsCsvPath), `Missing steps for recipe ${recipeId}`);
 
     const metaRows = await parseCSVFile(metaPath);
     ensure(metaRows.length === 1, `${recipeId}: meta.csv must contain exactly one data row`);
@@ -133,8 +138,20 @@ export async function validateAll() {
     );
 
     const ingredientRows = await parseCSVFile(ingredientsPath);
-    const stepsRaw = fs.readFileSync(stepsPath, 'utf-8');
-    const stepTokens = extractTokensFromSteps(stepsRaw);
+    const stepsRaw = fs.existsSync(stepsCsvPath)
+      ? null
+      : fs.readFileSync(stepsPath, 'utf-8');
+    const stepRows = fs.existsSync(stepsCsvPath) ? await parseCSVFile(stepsCsvPath) : null;
+    const stepTokens = [];
+    if (stepRows) {
+      ensure(stepRows.length > 0, `${recipeId}: steps.csv must include at least one row`);
+      stepRows.forEach((row, idx) => {
+        ensure(row.text, `${recipeId}: steps.csv row ${idx + 1} missing text`);
+        extractTokensFromSteps(row.text).forEach((token) => stepTokens.push(token));
+      });
+    } else {
+      extractTokensFromSteps(stepsRaw).forEach((token) => stepTokens.push(token));
+    }
     const stepTokenSet = new Set(stepTokens);
 
     const tokenOptions = new Map();
