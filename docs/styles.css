@@ -682,77 +682,90 @@ main {
   color: var(--muted);
   font-size: 0.95rem;
 }
-
-.table-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.ingredients-table {
-  width: 100%;
-  min-width: 900px;
-  table-layout: fixed;
-  border-collapse: separate;
-  border-spacing: 10px 6px;
-}
-
-.ingredients-table th,
-.ingredients-table td {
-  padding: 6px 6px;
-  vertical-align: top;
-}
-
-.ingredients-table th {
-  white-space: normal;
-  overflow-wrap: anywhere;
-  line-height: 1.15;
-  text-align: left;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
 .muted {
   opacity: 0.75;
   font-weight: normal;
   font-size: 0.85em;
 }
 
-.ingredient-cell {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+.ingredients-editor {
+  display: grid;
+  gap: 0.65rem;
 }
 
-.ingredient-cell .cell-label {
-  display: none;
-  font-weight: 700;
+.ingredients-header {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1.4fr auto auto;
+  gap: 0.5rem;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0 0.25rem;
+  font-size: 0.95rem;
 }
 
-.ingredient-header {
-  font-weight: 700;
+.ingredients-header div {
+  padding: 0.1rem 0.2rem;
+}
+
+.ingredients-list {
+  display: grid;
+  gap: 0.75rem;
 }
 
 .ingredient-row {
   background: #fffdf9;
-}
-
-.ingredient-row td {
-  background: inherit;
   border: 1px dashed var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
+  padding: 0.75rem 0.85rem;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 0.45rem;
 }
 
-.ingredient-row .remove-cell {
-  text-align: center;
-  vertical-align: bottom;
+.ingredient-main {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1.4fr auto auto;
+  gap: 0.5rem;
+  align-items: center;
 }
 
-.ingredient-row input,
-.ingredient-row select {
+.ingredient-main input,
+.ingredient-main select {
   width: 100%;
-  box-sizing: border-box;
+}
+
+.ingredient-advanced {
+  border-top: 1px dashed var(--border);
+  margin-top: 0.25rem;
+  padding-top: 0.65rem;
+}
+
+.ingredient-advanced-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.5rem;
+}
+
+.show-when-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.4rem;
+}
+
+.ingredient-more-toggle {
+  border: 1px solid var(--border);
+  background: #fff7ea;
+  border-radius: 8px;
+  padding: 0.45rem 0.65rem;
+  cursor: pointer;
+  font-weight: 700;
+  min-width: 44px;
+}
+
+.ingredient-advanced .field-help.subtle {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .dietary-flags {
@@ -969,12 +982,16 @@ main {
 }
 
 @media (max-width: 900px) {
-  .ingredients-table {
-    min-width: 760px;
+  .ingredients-header {
+    display: none;
   }
 
-  .steps-builder {
-    padding-left: 0.5rem;
+  .ingredient-main {
+    grid-template-columns: 1fr;
+  }
+
+  .ingredient-row {
+    padding: 0.75rem;
   }
 }
 

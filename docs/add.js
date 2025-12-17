@@ -14,6 +14,8 @@ import {
 const ingredientRowsEl = document.getElementById('ingredient-rows');
 const stepsListEl = document.getElementById('steps-list');
 const ingredientSuggestionsEl = document.getElementById('ingredient-suggestions');
+const dependencySuggestionsEl = document.getElementById('dependency-suggestions');
+const sectionSuggestionsEl = document.getElementById('section-suggestions');
 const categorySelectEl = document.getElementById('categories');
 // Remove required attribute from slug input as it's auto-generated
 const slugInputField = document.getElementById('slug');
@@ -25,6 +27,8 @@ const ingredientNameSet = new Set();
 const categorySet = new Set();
 const unitSet = new Set();
 const unitSelects = new Set();
+const sectionSet = new Set();
+const unitFrequency = new Map();
 
 function slugify(text) {
   return text
@@ -62,6 +66,16 @@ function addOptionToDatalist(datalistEl, value) {
 function updateIngredientSuggestions() {
   ingredientSuggestionsEl.innerHTML = '';
   ingredientNameSet.forEach((name) => addOptionToDatalist(ingredientSuggestionsEl, name));
+}
+
+function updateSectionSuggestions() {
+  sectionSuggestionsEl.innerHTML = '';
+  sectionSet.forEach((section) => addOptionToDatalist(sectionSuggestionsEl, section));
+}
+
+function updateDependencySuggestions() {
+  dependencySuggestionsEl.innerHTML = '';
+  ingredientChoices().forEach(({ token }) => addOptionToDatalist(dependencySuggestionsEl, token));
 }
 
 function syncCategoryOptions() {
@@ -123,6 +137,29 @@ function syncUnitSelects() {
   unitSelects.forEach((select) => syncUnitSelect(select));
 }
 
+function recordUnitFrequency(token, unit) {
+  if (!token || !unit) return;
+  if (!unitFrequency.has(token)) {
+    unitFrequency.set(token, new Map());
+  }
+  const counter = unitFrequency.get(token);
+  counter.set(unit, (counter.get(unit) || 0) + 1);
+}
+
+function commonUnitForToken(token) {
+  const counts = unitFrequency.get(token);
+  if (!counts) return '';
+  let topUnit = '';
+  let topCount = 0;
+  counts.forEach((count, unit) => {
+    if (count > topCount) {
+      topUnit = unit;
+      topCount = count;
+    }
+  });
+  return topUnit;
+}
+
 function normalizeIngredientsForSuggestions(recipe) {
   if (!recipe || typeof recipe !== 'object') return [];
   if (Array.isArray(recipe.ingredients)) return recipe.ingredients.filter(Boolean);
@@ -140,15 +177,24 @@ async function loadExistingRecipes() {
       recipes.forEach((recipe) => {
         (recipe.categories || []).forEach((cat) => categorySet.add(cat));
         normalizeIngredientsForSuggestions(recipe).forEach((tokenData) => {
+          const tokenFromData = tokenData.token || tokenData.options?.[0]?.ingredient_id || '';
+          const token = slugify(tokenFromData);
           tokenData.options.forEach((opt) => {
             if (opt.display) ingredientNameSet.add(opt.display);
-            if (opt.unit) unitSet.add(opt.unit);
+            if (opt.unit) {
+              unitSet.add(opt.unit);
+              recordUnitFrequency(token, opt.unit);
+            }
+            if (opt.section) sectionSet.add(opt.section);
           });
+          if (tokenData.section) sectionSet.add(tokenData.section);
         });
       });
       syncCategoryOptions();
       syncUnitSelects();
       updateIngredientSuggestions();
+      updateSectionSuggestions();
+      updateDependencySuggestions();
     }
   } catch (err) {
     console.warn('Could not load suggestions', err);
@@ -190,64 +236,32 @@ function buildDietaryCheckboxes() {
 }
 
 function createIngredientRow(defaults = {}) {
-  const row = document.createElement('tr');
+  const row = document.createElement('div');
   row.className = 'ingredient-row';
   row.innerHTML = `
-    <td>
-      <label class="ingredient-cell">
-        <span class="cell-label">Name</span>
-        <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient name" aria-label="Ingredient name" />
-      </label>
-    </td>
-    <td>
-      <label class="ingredient-cell">
-        <span class="cell-label">Section (optional)</span>
-        <input class="ingredient-section" placeholder="e.g., Chicken" aria-label="Ingredient section" />
-      </label>
-    </td>
-    <td>
-      <label class="ingredient-cell">
-        <span class="cell-label">Amount</span>
-        <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
-      </label>
-    </td>
-    <td>
-      <label class="ingredient-cell">
-        <span class="cell-label">Unit</span>
-        <select class="ingredient-unit" aria-label="Unit"></select>
-      </label>
-    </td>
-    <td>
-      <label class="ingredient-cell">
-        <span class="cell-label">Alternative</span>
-        <input class="ingredient-alt" placeholder="Alternative/substitution" aria-label="Alternative or substitution" />
-      </label>
-    </td>
-    <td>
-      <div class="ingredient-cell conditional-cell">
-        <span class="cell-label">Show when</span>
-        <div class="conditional-inputs">
-          <input class="ingredient-dep-token" placeholder="Token" aria-label="Dependency token" />
-          <input class="ingredient-dep-option" placeholder="Option" aria-label="Dependency option" />
+    <div class="ingredient-main">
+      <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient name" aria-label="Ingredient name" />
+      <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
+      <select class="ingredient-unit" aria-label="Unit"></select>
+      <div class="dietary-slot"></div>
+      <button type="button" class="ingredient-more-toggle" aria-expanded="false" aria-label="More options">+</button>
+      <button type="button" class="link-button remove-ingredient">Remove</button>
+    </div>
+
+    <div class="ingredient-advanced" hidden>
+      <div class="ingredient-advanced-grid">
+        <input class="ingredient-section" list="section-suggestions" placeholder="(optional) e.g., Chicken / Sauce" aria-label="Ingredient section" />
+        <input class="ingredient-alt" placeholder="(optional) Alternative/substitution" aria-label="Alternative or substitution" />
+        <div class="show-when-group">
+          <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="(optional) Show when token" aria-label="Dependency token" />
+          <input class="ingredient-dep-option" placeholder="(optional) Option" aria-label="Dependency option" />
         </div>
+        <input class="ingredient-group" placeholder="(optional) Group key" aria-label="Inline group key" />
       </div>
-    </td>
-    <td>
-      <label class="ingredient-cell">
-        <span class="cell-label">Inline group</span>
-        <input class="ingredient-group" placeholder="Group key" aria-label="Inline group key" />
-      </label>
-    </td>
-    <td>
-      <div class="ingredient-cell">
-        <span class="cell-label">Dietary flags</span>
-        <div class="dietary-slot"></div>
+      <div class="field-help subtle">
+        Leave these blank unless you need sections, conditional ingredients, or special formatting.
       </div>
-    </td>
-    <td class="remove-cell">
-      <span class="cell-label">Remove</span>
-      <button type="button" class="link-button remove-ingredient" aria-label="Remove ingredient">Remove</button>
-    </td>
+    </div>
   `;
   row.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
   const nameInput = row.querySelector('.ingredient-name');
@@ -258,6 +272,8 @@ function createIngredientRow(defaults = {}) {
   const depTokenInput = row.querySelector('.ingredient-dep-token');
   const depOptionInput = row.querySelector('.ingredient-dep-option');
   const groupInput = row.querySelector('.ingredient-group');
+  const toggleButton = row.querySelector('.ingredient-more-toggle');
+  const advancedPanel = row.querySelector('.ingredient-advanced');
 
   nameInput.value = defaults.name || '';
   sectionInput.value = defaults.section || '';
@@ -268,20 +284,56 @@ function createIngredientRow(defaults = {}) {
   depTokenInput.value = defaults.depends_on?.token || '';
   depOptionInput.value = defaults.depends_on?.option || '';
   groupInput.value = defaults.line_group || '';
+  unitInput.dataset.userChanged = 'false';
+
+  const hasAdvancedDefaults =
+    Boolean(sectionInput.value || altInput.value || depTokenInput.value || depOptionInput.value || groupInput.value);
+  if (hasAdvancedDefaults) {
+    advancedPanel.hidden = false;
+    toggleButton.textContent = '−';
+    toggleButton.setAttribute('aria-expanded', 'true');
+  }
 
   const handleChange = () => {
     ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
     updateIngredientSuggestions();
+    updateDependencySuggestions();
     refreshStepIngredientPickers();
     refreshPreview();
   };
 
+  const tryAutofillUnit = () => {
+    const token = slugify(nameInput.value || '');
+    if (!token || unitInput.dataset.userChanged === 'true' || unitInput.value) return;
+    const autoUnit = commonUnitForToken(token);
+    if (autoUnit) {
+      syncUnitSelect(unitInput, autoUnit);
+    }
+  };
+
+  nameInput.addEventListener('change', () => {
+    tryAutofillUnit();
+    handleChange();
+  });
+  nameInput.addEventListener('blur', tryAutofillUnit);
   row.addEventListener('input', handleChange);
   row.addEventListener('change', handleChange);
+
+  toggleButton.addEventListener('click', () => {
+    const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
+    toggleButton.setAttribute('aria-expanded', String(!expanded));
+    toggleButton.textContent = expanded ? '+' : '−';
+    advancedPanel.hidden = expanded;
+  });
+
+  unitInput.addEventListener('change', () => {
+    unitInput.dataset.userChanged = 'true';
+  });
 
   row.querySelector('.remove-ingredient').addEventListener('click', () => {
     unitSelects.delete(unitInput);
     row.remove();
+    updateDependencySuggestions();
     refreshStepIngredientPickers();
     refreshPreview();
   });
@@ -365,6 +417,10 @@ function readDietaryFlags(row) {
   return flags;
 }
 
+function dietaryFlagsAreDefault(flags) {
+  return flags.gluten_free === true && flags.egg_free === true && flags.dairy_free === true;
+}
+
 function buildIngredientsFromForm(issues) {
   const tokenOrder = [];
   const ingredientList = [];
@@ -380,16 +436,26 @@ function buildIngredientsFromForm(issues) {
     const depOptionInput = row.querySelector('.ingredient-dep-option');
     const groupInput = row.querySelector('.ingredient-group');
 
-    const name = nameInput.value.trim();
-    const section = sectionInput.value.trim();
-    const amount = amountInput.value.trim();
-    const unit = unitInput.value.trim();
-    const alt = altInput.value.trim();
-    const depToken = depTokenInput.value.trim();
-    const depOption = depOptionInput.value.trim();
-    const lineGroup = groupInput.value.trim();
+    const name = nameInput?.value.trim() || '';
+    const section = sectionInput?.value.trim() || '';
+    const amount = amountInput?.value.trim() || '';
+    const unit = unitInput?.value.trim() || '';
+    const alt = altInput?.value.trim() || '';
+    const depToken = depTokenInput?.value.trim() || '';
+    const depOption = depOptionInput?.value.trim() || '';
+    const lineGroup = groupInput?.value.trim() || '';
+    const dietary = readDietaryFlags(row);
 
-    const allEmpty = !name && !amount && !unit && !alt;
+    const allEmpty =
+      !name &&
+      !section &&
+      !amount &&
+      !unit &&
+      !alt &&
+      !depToken &&
+      !depOption &&
+      !lineGroup &&
+      dietaryFlagsAreDefault(dietary);
     if (allEmpty) return;
 
     const missingFields = [];
@@ -407,9 +473,10 @@ function buildIngredientsFromForm(issues) {
 
     const token = slugify(name);
     if (!tokenOrder.includes(token)) tokenOrder.push(token);
-    const dietary = readDietaryFlags(row);
     const optionDisplay = alt ? `${name} (${alt})` : name;
-    const depends_on = depToken ? { token: slugify(depToken), option: depOption ? slugify(depOption) : null } : null;
+    const depends_on = depToken
+      ? { token: slugify(depToken), option: depOption ? slugify(depOption) : null }
+      : null;
     ingredientList.push({
       token,
       options: [

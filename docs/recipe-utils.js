@@ -441,9 +441,9 @@ export function renderIngredientLines(recipe, state) {
       .filter((opt) => optionAllowedByDependency(opt, recipe, state))
       .map((opt) => renderIngredientEntry(opt, multiplier, selectedUnit));
 
-    const section = tokenData.section || option.section || null;
+    const section = tokenData.section ?? option.section ?? null;
     const entry = { token, text, option, selectedUnit, alternatives, display, section };
-    const groupKey = tokenData.line_group || option.line_group || null;
+    const groupKey = tokenData.line_group ?? option.line_group ?? null;
     addLine(groupKey, entry, orderIdx, section);
   });
 
