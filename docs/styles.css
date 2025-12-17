@@ -610,6 +610,19 @@ main {
   gap: 0.5rem;
 }
 
+.ingredient-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ingredient-cell .cell-label {
+  display: none;
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .ingredient-header,
 .ingredient-row {
   display: grid;
@@ -628,6 +641,11 @@ main {
   padding: 0.35rem;
   border: 1px dashed var(--border);
   border-radius: 10px;
+}
+
+.ingredient-row .remove-cell {
+  display: flex;
+  align-items: flex-end;
 }
 
 .dietary-flags {
@@ -790,6 +808,31 @@ main {
   margin: 0.5rem 0;
 }
 
+@media (max-width: 900px) {
+  .ingredient-header {
+    display: none;
+  }
+
+  .ingredient-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    padding: 0.65rem;
+    border-style: solid;
+  }
+
+  .ingredient-cell .cell-label {
+    display: block;
+  }
+
+  .ingredient-row .remove-cell {
+    justify-content: flex-start;
+  }
+
+  .steps-builder {
+    padding-left: 0.5rem;
+  }
+}
+
 @media (max-width: 960px) {
   .inbox-grid {
     grid-template-columns: 1fr;
@@ -803,6 +846,41 @@ main {
   .site-header .inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .ingredient-row {
+    grid-template-columns: 1fr;
+  }
+
+  .steps-builder {
+    padding-left: 0;
+  }
+
+  .step-ingredients {
+    gap: 0.35rem;
+  }
+
+  .add-page .form-panel,
+  .add-page .preview-panel {
+    padding: 1rem;
+  }
+
+  .add-page .recipe-actions {
+    position: sticky;
+    bottom: 0;
+    background: #fff7ea;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.75rem;
+    box-shadow: var(--shadow);
+    gap: 0.5rem;
+  }
+
+  .add-page .recipe-actions .button {
+    flex: 1 1 160px;
+    justify-content: center;
   }
 }
 
