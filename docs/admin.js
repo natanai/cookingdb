@@ -37,13 +37,21 @@ function getToken() {
 function extractIds(payload) {
   if (!payload) return [];
   const list = Array.isArray(payload)
-  ? payload
-  : payload.rows || payload.pending || payload.recipes || payload.items;
+    ? payload
+    : payload.rows || payload.pending || payload.recipes || payload.items || payload.data;
 
   if (!Array.isArray(list)) return [];
-  return list
-    .map((entry) => entry?.id || entry?.recipe_id || entry?.recipe?.id || entry?.payload?.id)
+  const ids = list
+    .map((entry) => entry?.id
+      ?? entry?.key
+      ?? entry?.recipe_id
+      ?? entry?.recipe?.id
+      ?? entry?.payload?.id
+      ?? entry?.payload?.recipe_id
+      ?? entry?.payload?.recipe?.id)
     .filter(Boolean);
+
+  return Array.from(new Set(ids));
 }
 
 function downloadJsonFile(data) {
@@ -65,17 +73,30 @@ async function handleDownload() {
     const payload = await adminExportPending({ adminToken: token });
     downloadJsonFile(payload);
     lastExportIds = extractIds(payload);
-    showStatus('Export downloaded. You can mark these as imported or delete them.', 'success');
+    if (lastExportIds.length === 0) {
+      console.warn('Admin export did not contain any recipe IDs.');
+      showStatus('Export downloaded but no recipe IDs were found. Nothing will be marked or deleted.', 'info');
+    } else {
+      showStatus('Export downloaded. You can mark these as imported or delete them.', 'success');
+    }
     markImportedBtn.disabled = lastExportIds.length === 0;
     deleteBtn.disabled = lastExportIds.length === 0;
   } catch (err) {
     showStatus(err.message || 'Unable to download recipes', 'error');
+    lastExportIds = [];
+    markImportedBtn.disabled = true;
+    deleteBtn.disabled = true;
   }
 }
 
 async function handleMarkImported() {
   const token = getToken();
-  if (!token || lastExportIds.length === 0) return;
+  if (!token) return;
+  if (lastExportIds.length === 0) {
+    console.warn('Mark imported requested but no recipe IDs are available.');
+    showStatus('No recipe IDs are available to mark as imported. Please download an export first.', 'info');
+    return;
+  }
   try {
     showStatus('Marking recipes as imported...', 'info');
     await adminMarkImported({ adminToken: token, ids: lastExportIds });
@@ -87,7 +108,12 @@ async function handleMarkImported() {
 
 async function handleDelete() {
   const token = getToken();
-  if (!token || lastExportIds.length === 0) return;
+  if (!token) return;
+  if (lastExportIds.length === 0) {
+    console.warn('Delete requested but no recipe IDs are available.');
+    showStatus('No recipe IDs are available to delete. Please download an export first.', 'info');
+    return;
+  }
   try {
     showStatus('Deleting recipes from inbox...', 'info');
     await adminDelete({ adminToken: token, ids: lastExportIds });
