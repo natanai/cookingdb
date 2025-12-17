@@ -3,9 +3,9 @@ fat,shortening,shortening,1,cup,shortening
 fat,butter,butter (softened),1,cup,butter
 sugar,,granulated sugar,3/4,cup,white-sugar
 egg_component,whole,egg,1,,egg
-egg_component,yolks,egg yolk,3,,egg-yolk
+egg_component,yolks,egg yolk (omit the extra flour),3,,egg-yolk
 flour_base,,all-purpose flour (sifted),2,cup,wheat-flour
-flour_adjust,,all-purpose flour (sifted; adjustment),1/4,cup,wheat-flour
+flour_adjust,,all-purpose flour (sifted; only if using a whole egg),1/4,cup,wheat-flour
 baking_powder,,baking powder,1/2,tsp,baking-powder
 salt,,salt (dash),,,salt
 almond_extract,,almond extract,1,tsp,almond-extract
