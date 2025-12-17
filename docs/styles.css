@@ -748,8 +748,42 @@ main {
 
 .show-when-group {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: 1fr auto;
   gap: 0.4rem;
+  align-items: start;
+}
+
+.show-when-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.35rem;
+}
+
+.inline-group-with-help {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.inline-group-with-help input {
+  flex: 1;
+}
+
+.help-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #fff7ea;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ingredient-more-toggle,

@@ -250,13 +250,19 @@ function createIngredientRow(defaults = {}) {
 
     <div class="ingredient-advanced" hidden>
       <div class="ingredient-advanced-grid">
-        <input class="ingredient-section" list="section-suggestions" placeholder="(optional) e.g., Chicken / Sauce" aria-label="Ingredient section" />
-        <input class="ingredient-alt" placeholder="(optional) Alternative/substitution" aria-label="Alternative or substitution" />
+        <input class="ingredient-section" list="section-suggestions" placeholder="Section label" aria-label="Ingredient section" />
+        <input class="ingredient-alt" placeholder="Alternative note" aria-label="Alternative or substitution" />
         <div class="show-when-group">
-          <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="(optional) Show when token" aria-label="Dependency token" />
-          <input class="ingredient-dep-option" placeholder="(optional) Option" aria-label="Dependency option" />
+          <div class="show-when-inputs">
+            <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
+            <input class="ingredient-dep-option" placeholder="Option value" aria-label="Dependency option" />
+          </div>
+          <button type="button" class="help-icon show-when-help" aria-label="How show-when works">?</button>
         </div>
-        <input class="ingredient-group" placeholder="(optional) Group key" aria-label="Inline group key" />
+        <div class="inline-group-with-help">
+          <input class="ingredient-group" placeholder="Inline group key" aria-label="Inline group key" />
+          <button type="button" class="help-icon inline-group-help" aria-label="How inline grouping works">?</button>
+        </div>
       </div>
       <div class="field-help subtle">
         Leave these blank unless you need sections, conditional ingredients, or special formatting.
@@ -274,6 +280,8 @@ function createIngredientRow(defaults = {}) {
   const groupInput = row.querySelector('.ingredient-group');
   const toggleButton = row.querySelector('.ingredient-more-toggle');
   const advancedPanel = row.querySelector('.ingredient-advanced');
+  const showWhenHelp = row.querySelector('.show-when-help');
+  const inlineGroupHelp = row.querySelector('.inline-group-help');
 
   nameInput.value = defaults.name || '';
   sectionInput.value = defaults.section || '';
@@ -328,6 +336,14 @@ function createIngredientRow(defaults = {}) {
 
   unitInput.addEventListener('change', () => {
     unitInput.dataset.userChanged = 'true';
+  });
+
+  showWhenHelp?.addEventListener('click', () => {
+    window.alert('Use "Show when" to hide this ingredient unless a matching choice is selected (token and option come from ingredient choices).');
+  });
+
+  inlineGroupHelp?.addEventListener('click', () => {
+    window.alert('Inline group keeps multiple ingredients on the same line in the recipe (e.g., "1 c sauce + 1/2 c water"). Use the same key for items that should share a line.');
   });
 
   row.querySelector('.remove-ingredient').addEventListener('click', () => {
@@ -388,7 +404,7 @@ function createStepRow(defaultText = '', defaultSection = '') {
   advancedGrid.className = 'step-advanced-grid';
 
   const sectionLabel = document.createElement('label');
-  sectionLabel.innerHTML = 'Section (optional)';
+  sectionLabel.innerHTML = 'Section heading';
   const sectionInput = document.createElement('input');
   sectionInput.className = 'step-section';
   sectionInput.placeholder = 'e.g., Prep Work';
@@ -400,12 +416,12 @@ function createStepRow(defaultText = '', defaultSection = '') {
   variationBlock.innerHTML = `
     <label>Show when ingredient is set to
       <div class="conditional-inputs">
-        <input class="variation-token" list="dependency-suggestions" placeholder="Token" aria-label="Variation token" />
-        <input class="variation-option" placeholder="Option" aria-label="Variation option" />
+        <input class="variation-token" list="dependency-suggestions" placeholder="Ingredient name" aria-label="Variation token" />
+        <input class="variation-option" placeholder="Option value" aria-label="Variation option" />
       </div>
     </label>
     <label>Variation text (only shown when matched)
-      <textarea class="variation-text" rows="2" placeholder="Extra instruction when a specific option is chosen"></textarea>
+      <textarea class="variation-text" rows="2" placeholder="Shown only for that choice"></textarea>
     </label>
   `;
 
