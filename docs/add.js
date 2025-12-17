@@ -247,7 +247,6 @@ function createIngredientRow(defaults = {}) {
       </details>
     </td>
     <td class="remove-cell">
-      <span class="cell-label">Remove</span>
       <button type="button" class="link-button remove-ingredient" aria-label="Remove ingredient">Remove</button>
     </td>
   `;
