@@ -752,7 +752,8 @@ main {
   gap: 0.4rem;
 }
 
-.ingredient-more-toggle {
+.ingredient-more-toggle,
+.step-more-toggle {
   border: 1px solid var(--border);
   background: #fff7ea;
   border-radius: 8px;
@@ -828,11 +829,28 @@ main {
 }
 
 .step-row {
-  padding: 0;
+  background: #fffdf9;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 0.75rem 0.85rem;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 0.45rem;
 }
-.step-row label {
-  display: block;
-  width: 100%;
+
+.step-main {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.step-text-label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.label-top {
+  font-weight: 700;
+  color: var(--muted);
 }
 
 .step-row .step-text {
@@ -844,27 +862,30 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 0.35rem;
 }
 
-.step-variation {
-  margin-top: 0.5rem;
-  border: 1px dashed var(--border);
-  border-radius: 8px;
-  padding: 0.35rem 0.5rem 0.5rem;
-  background: #fffdf9;
+.step-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-.step-variation summary {
-  cursor: pointer;
-  font-weight: 700;
-  color: var(--muted);
+.step-advanced {
+  border-top: 1px dashed var(--border);
+  margin-top: 0.25rem;
+  padding-top: 0.65rem;
+}
+
+.step-advanced-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.5rem;
 }
 
 .variation-grid {
   display: grid;
   gap: 0.4rem;
-  margin-top: 0.35rem;
 }
 
 .variation-grid textarea {

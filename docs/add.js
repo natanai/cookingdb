@@ -344,37 +344,103 @@ function createIngredientRow(defaults = {}) {
 function createStepRow(defaultText = '', defaultSection = '') {
   const li = document.createElement('li');
   li.className = 'step-row';
-  li.innerHTML = `
-    <label>Instruction
-      <textarea class="step-text" rows="3" placeholder="Describe the action and include ingredients"></textarea>
-    </label>
-    <label>Section (optional)
-      <input class="step-section" placeholder="e.g., Prep Work" />
-    </label>
-    <div class="step-ingredients" aria-label="Ingredients used in this step"></div>
-    <details class="step-variation">
-      <summary>Add conditional variation (optional)</summary>
-      <div class="variation-grid">
-        <label>Show when ingredient is set to
-          <div class="conditional-inputs">
-            <input class="variation-token" placeholder="Token" aria-label="Variation token" />
-            <input class="variation-option" placeholder="Option" aria-label="Variation option" />
-          </div>
-        </label>
-        <label>Variation text (only shown when matched)
-          <textarea class="variation-text" rows="2" placeholder="Extra instruction when a specific option is chosen"></textarea>
-        </label>
+
+  const main = document.createElement('div');
+  main.className = 'step-main';
+
+  const instructionLabel = document.createElement('label');
+  instructionLabel.className = 'step-text-label';
+  instructionLabel.innerHTML = '<span class="label-top">Instruction</span>';
+  const textInput = document.createElement('textarea');
+  textInput.className = 'step-text';
+  textInput.rows = 3;
+  textInput.placeholder = 'Describe the action and include ingredients';
+  textInput.value = defaultText;
+  instructionLabel.appendChild(textInput);
+
+  const ingredientsWrap = document.createElement('div');
+  ingredientsWrap.className = 'step-ingredients';
+  ingredientsWrap.setAttribute('aria-label', 'Ingredients used in this step');
+
+  const actions = document.createElement('div');
+  actions.className = 'step-actions';
+
+  const toggleButton = document.createElement('button');
+  toggleButton.type = 'button';
+  toggleButton.className = 'step-more-toggle';
+  toggleButton.setAttribute('aria-expanded', 'false');
+  toggleButton.setAttribute('aria-label', 'More options');
+  toggleButton.textContent = '+';
+
+  const removeButton = document.createElement('button');
+  removeButton.type = 'button';
+  removeButton.className = 'link-button remove-step';
+  removeButton.textContent = 'Remove';
+
+  actions.append(toggleButton, removeButton);
+  main.append(instructionLabel, ingredientsWrap, actions);
+
+  const advanced = document.createElement('div');
+  advanced.className = 'step-advanced';
+  advanced.hidden = true;
+
+  const advancedGrid = document.createElement('div');
+  advancedGrid.className = 'step-advanced-grid';
+
+  const sectionLabel = document.createElement('label');
+  sectionLabel.innerHTML = 'Section (optional)';
+  const sectionInput = document.createElement('input');
+  sectionInput.className = 'step-section';
+  sectionInput.placeholder = 'e.g., Prep Work';
+  sectionInput.value = defaultSection;
+  sectionLabel.appendChild(sectionInput);
+
+  const variationBlock = document.createElement('div');
+  variationBlock.className = 'variation-grid';
+  variationBlock.innerHTML = `
+    <label>Show when ingredient is set to
+      <div class="conditional-inputs">
+        <input class="variation-token" list="dependency-suggestions" placeholder="Token" aria-label="Variation token" />
+        <input class="variation-option" placeholder="Option" aria-label="Variation option" />
       </div>
-    </details>
-    <button type="button" class="link-button remove-step">Remove step</button>
+    </label>
+    <label>Variation text (only shown when matched)
+      <textarea class="variation-text" rows="2" placeholder="Extra instruction when a specific option is chosen"></textarea>
+    </label>
   `;
-  li.querySelector('.step-text').value = defaultText;
-  li.querySelector('.step-section').value = defaultSection;
+
+  advancedGrid.append(sectionLabel, variationBlock);
+  advanced.appendChild(advancedGrid);
+
+  const help = document.createElement('div');
+  help.className = 'field-help subtle';
+  help.textContent = 'Add a section heading or conditional variation only when needed.';
+  advanced.appendChild(help);
+
+  li.append(main, advanced);
+
   li.addEventListener('input', refreshPreview);
-  li.querySelector('.remove-step').addEventListener('click', () => {
+
+  const setExpanded = (expanded) => {
+    toggleButton.setAttribute('aria-expanded', String(expanded));
+    toggleButton.textContent = expanded ? '−' : '+';
+    advanced.hidden = !expanded;
+  };
+
+  toggleButton.addEventListener('click', () => {
+    const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
+    setExpanded(!expanded);
+  });
+
+  removeButton.addEventListener('click', () => {
     li.remove();
     refreshPreview();
   });
+
+  if (defaultSection) {
+    setExpanded(true);
+  }
+
   stepsListEl.appendChild(li);
   refreshStepIngredientPicker(li);
 }
