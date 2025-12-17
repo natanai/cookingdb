@@ -177,10 +177,23 @@ async function build() {
     const choiceRows = fs.existsSync(path.join(baseDir, 'choices.csv'))
       ? await parseCSVFile(path.join(baseDir, 'choices.csv'))
       : [];
-    const stepsRaw = fs.readFileSync(path.join(baseDir, 'steps.md'), 'utf-8');
-    const tokensUsed = extractTokensFromSteps(stepsRaw);
+    const stepsCsvPath = path.join(baseDir, 'steps.csv');
+    const hasStepsCsv = fs.existsSync(stepsCsvPath);
+    const stepRows = hasStepsCsv ? await parseCSVFile(stepsCsvPath) : null;
+    const steps = stepRows
+      ? stepRows.map((row) => ({ section: row.section || null, text: row.text || '' }))
+      : fs
+          .readFileSync(path.join(baseDir, 'steps.md'), 'utf-8')
+          .split(/\n/)
+          .filter((line) => line.trim() !== '')
+          .map((line) => ({ section: null, text: line.replace(/^\d+\.\s*/, '') }));
+    const stepsRaw = hasStepsCsv
+      ? steps.map((step, idx) => `${idx + 1}. ${step.text}`).join('\n')
+      : fs.readFileSync(path.join(baseDir, 'steps.md'), 'utf-8');
+    const tokensUsed = steps.flatMap((step) => extractTokensFromSteps(step.text));
 
     const ingredients = {};
+    const ingredientSections = [];
     for (const row of ingredientRows) {
       if (!ingredients[row.token]) {
         ingredients[row.token] = { token: row.token, options: [], isChoice: false };
@@ -197,6 +210,7 @@ async function build() {
         ingredient_id: row.ingredient_id,
         depends_on: dependency,
         line_group: row.line_group || null,
+        section: row.section || null,
         dietary: {
           gluten_free: ingredientCompatible(flags, 'gluten_free'),
           egg_free: ingredientCompatible(flags, 'egg_free'),
@@ -204,6 +218,12 @@ async function build() {
         },
       };
       ingredients[row.token].options.push(optionEntry);
+      if (row.section) {
+        ingredients[row.token].section = ingredients[row.token].section || row.section;
+        if (!ingredientSections.includes(row.section)) {
+          ingredientSections.push(row.section);
+        }
+      }
       if (row.line_group) {
         ingredients[row.token].line_group = row.line_group;
       }
@@ -259,6 +279,13 @@ async function build() {
       }
     });
 
+    const stepSections = [];
+    steps.forEach((step) => {
+      if (step.section && !stepSections.includes(step.section)) {
+        stepSections.push(step.section);
+      }
+    });
+
     recipeOutputs.push({
       id: meta.id,
       title: meta.title,
@@ -267,9 +294,12 @@ async function build() {
       categories: parseCategories(meta.categories),
       notes: meta.notes,
       steps_raw: stepsRaw,
+      steps,
+      step_sections: stepSections,
       tokens_used: tokensUsed,
       token_order: uniqueTokenOrder,
       ingredients,
+      ingredient_sections: ingredientSections,
       choices,
       pan_sizes: panSizes,
       default_pan: defaultPanId,

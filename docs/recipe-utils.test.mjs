@@ -6,6 +6,8 @@ import {
   formatStepText,
   renderIngredientLines,
   ingredientDisplay,
+  renderStepLines,
+  groupLinesBySection,
 } from './recipe-utils.js';
 
 function runTests() {
@@ -111,6 +113,23 @@ function runTests() {
     false,
     'conditional step text should disappear when dependency is not met'
   );
+
+  const sectionedStepsRecipe = {
+    ...recipe,
+    steps: [
+      { section: 'Prep', text: 'Combine {{flour_base}} ingredients' },
+      { section: 'Cook', text: 'Heat {{egg}} mixture' },
+    ],
+    step_sections: ['Prep', 'Cook'],
+  };
+  const sectionedLines = renderStepLines(sectionedStepsRecipe, {
+    ...baseState,
+    selectedOptions: { ...baseState.selectedOptions },
+    unitSelections: {},
+  });
+  assert.equal(sectionedLines[0].section, 'Prep', 'step sections should be preserved');
+  const groupedSections = groupLinesBySection(sectionedLines, sectionedStepsRecipe.step_sections);
+  assert.equal(groupedSections.length, 2, 'grouping should keep distinct step sections');
 
   return 'All tests passed';
 }

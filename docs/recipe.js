@@ -4,7 +4,8 @@ import {
   recipeDefaultCompatibility,
   hasNonCompliantAlternative,
   renderIngredientLines,
-  formatStepText,
+  renderStepLines,
+  groupLinesBySection,
   selectOptionForToken,
   optionMeetsRestrictions,
   getEffectiveMultiplier,
@@ -244,92 +245,103 @@ function renderIngredientsList(recipe, state, onUnitChange) {
     return;
   }
 
-  lines.forEach((line) => {
-    const li = document.createElement('li');
+  const sections = groupLinesBySection(lines, recipe.ingredient_sections || []);
 
-    line.entries.forEach((entry, idx) => {
-      const textSpan = document.createElement('span');
-      textSpan.textContent = entry.text;
-      li.appendChild(textSpan);
-
-      const unitOptions = unitOptionsFor(entry.option?.unit);
-      const unitSelections = state.unitSelections || (state.unitSelections = {});
-      const selectedUnit = unitSelections[entry.token];
-      const display = entry.display;
-
-      if (unitOptions.length > 1 && entry.option?.ratio) {
-        const unitSelect = document.createElement('select');
-        unitSelect.className = 'unit-select';
-        const currentUnit = selectedUnit || entry.option.unit;
-        unitOptions.forEach((unit) => {
-          const opt = document.createElement('option');
-          opt.value = unit.id;
-          opt.textContent = unit.label;
-          if (unit.id === currentUnit) opt.selected = true;
-          unitSelect.appendChild(opt);
-        });
-
-        if (!unitSelections[entry.token]) {
-          unitSelections[entry.token] = currentUnit;
-        }
-
-        unitSelect.addEventListener('change', () => {
-          unitSelections[entry.token] = unitSelect.value;
-          if (typeof onUnitChange === 'function') onUnitChange();
-        });
-
-        li.appendChild(unitSelect);
-
-        if (
-          display &&
-          display.baseAmount !== null &&
-          display.baseUnit &&
-          display.displayUnit &&
-          display.displayUnit !== display.baseUnit
-        ) {
-          const factorConversion = convertUnitAmount(1, display.baseUnit, display.displayUnit);
-          const factor = factorConversion ? factorConversion.amount : display.conversionFactor;
-          const factorStr = Number.isFinite(factor)
-            ? factor
-                .toFixed(3)
-                .replace(/\.0+$/, '')
-                .replace(/(\.\d*[1-9])0+$/, '$1')
-            : null;
-
-          const parts = [
-            `Base: ${display.baseAmountStr} ${display.baseUnitLabel}`.trim(),
-            `Converted: ${display.amountStr} ${display.convertedUnitLabel}`.trim(),
-          ];
-
-          if (factorStr) {
-            parts.push(`1 ${display.baseUnitLabel} = ${factorStr} ${display.convertedUnitLabel}`.trim());
-          }
-
-          const note = document.createElement('div');
-          note.className = 'conversion-note';
-          note.textContent = parts.join(' · ');
-          textSpan.title = parts.join(' | ');
-          li.appendChild(note);
-        }
-      }
-
-      if (idx < line.entries.length - 1) {
-        const joiner = document.createElement('span');
-        joiner.className = 'ingredient-joiner';
-        joiner.textContent = ' + ';
-        li.appendChild(joiner);
-      }
-    });
-
-    const altText = Array.from(new Set((line.alternatives || []).filter(Boolean))).join(' / ');
-    if (altText) {
-      const altSpan = document.createElement('span');
-      altSpan.className = 'ingredient-alternatives';
-      altSpan.textContent = ` (or ${altText})`;
-      li.appendChild(altSpan);
+  sections.forEach((section) => {
+    if (section.section) {
+      const header = document.createElement('li');
+      header.className = 'section-header';
+      header.textContent = section.section;
+      list.appendChild(header);
     }
 
-    list.appendChild(li);
+    section.lines.forEach((line) => {
+      const li = document.createElement('li');
+
+      line.entries.forEach((entry, idx) => {
+        const textSpan = document.createElement('span');
+        textSpan.textContent = entry.text;
+        li.appendChild(textSpan);
+
+        const unitOptions = unitOptionsFor(entry.option?.unit);
+        const unitSelections = state.unitSelections || (state.unitSelections = {});
+        const selectedUnit = unitSelections[entry.token];
+        const display = entry.display;
+
+        if (unitOptions.length > 1 && entry.option?.ratio) {
+          const unitSelect = document.createElement('select');
+          unitSelect.className = 'unit-select';
+          const currentUnit = selectedUnit || entry.option.unit;
+          unitOptions.forEach((unit) => {
+            const opt = document.createElement('option');
+            opt.value = unit.id;
+            opt.textContent = unit.label;
+            if (unit.id === currentUnit) opt.selected = true;
+            unitSelect.appendChild(opt);
+          });
+
+          if (!unitSelections[entry.token]) {
+            unitSelections[entry.token] = currentUnit;
+          }
+
+          unitSelect.addEventListener('change', () => {
+            unitSelections[entry.token] = unitSelect.value;
+            if (typeof onUnitChange === 'function') onUnitChange();
+          });
+
+          li.appendChild(unitSelect);
+
+          if (
+            display &&
+            display.baseAmount !== null &&
+            display.baseUnit &&
+            display.displayUnit &&
+            display.displayUnit !== display.baseUnit
+          ) {
+            const factorConversion = convertUnitAmount(1, display.baseUnit, display.displayUnit);
+            const factor = factorConversion ? factorConversion.amount : display.conversionFactor;
+            const factorStr = Number.isFinite(factor)
+              ? factor
+                  .toFixed(3)
+                  .replace(/\.0+$/, '')
+                  .replace(/(\.\d*[1-9])0+$/, '$1')
+              : null;
+
+            const parts = [
+              `Base: ${display.baseAmountStr} ${display.baseUnitLabel}`.trim(),
+              `Converted: ${display.amountStr} ${display.convertedUnitLabel}`.trim(),
+            ];
+
+            if (factorStr) {
+              parts.push(`1 ${display.baseUnitLabel} = ${factorStr} ${display.convertedUnitLabel}`.trim());
+            }
+
+            const note = document.createElement('div');
+            note.className = 'conversion-note';
+            note.textContent = parts.join(' · ');
+            textSpan.title = parts.join(' | ');
+            li.appendChild(note);
+          }
+        }
+
+        if (idx < line.entries.length - 1) {
+          const joiner = document.createElement('span');
+          joiner.className = 'ingredient-joiner';
+          joiner.textContent = ' + ';
+          li.appendChild(joiner);
+        }
+      });
+
+      const altText = Array.from(new Set((line.alternatives || []).filter(Boolean))).join(' / ');
+      if (altText) {
+        const altSpan = document.createElement('span');
+        altSpan.className = 'ingredient-alternatives';
+        altSpan.textContent = ` (or ${altText})`;
+        li.appendChild(altSpan);
+      }
+
+      list.appendChild(li);
+    });
   });
 }
 
@@ -339,17 +351,7 @@ function renderSteps(recipe, state) {
 
   steps.innerHTML = '';
 
-  const raw =
-    recipe && typeof recipe.steps_raw === 'string'
-      ? recipe.steps_raw
-      : Array.isArray(recipe?.steps)
-        ? recipe.steps.map(String).join('\n')
-        : '';
-
-  const stepLines = raw
-    .split(/\n/)
-    .map((l) => l.trim())
-    .filter((l) => l !== '');
+  const stepLines = renderStepLines(recipe, { ...state, recipe });
 
   if (stepLines.length === 0) {
     const li = document.createElement('li');
@@ -358,17 +360,21 @@ function renderSteps(recipe, state) {
     return;
   }
 
-  stepLines.forEach((line) => {
-    const li = document.createElement('li');
-    const cleaned = line.replace(/^\s*\d+\s*[\.\)]\s*/, '');
+  const sections = groupLinesBySection(stepLines, recipe.step_sections || []);
 
-    try {
-      li.textContent = formatStepText(cleaned, recipe, state);
-    } catch (e) {
-      li.textContent = cleaned;
+  sections.forEach((section) => {
+    if (section.section) {
+      const header = document.createElement('li');
+      header.className = 'section-header';
+      header.textContent = section.section;
+      steps.appendChild(header);
     }
 
-    steps.appendChild(li);
+    section.lines.forEach((line) => {
+      const li = document.createElement('li');
+      li.textContent = line.text;
+      steps.appendChild(li);
+    });
   });
 }
 

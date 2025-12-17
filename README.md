@@ -22,7 +22,8 @@ Open `docs/index.html` in a browser to view the recipes. Blintzes are included a
 ## Data layout
 
 - Global catalog: `data/ingredient_catalog.csv`
-- Recipes: `recipes/<recipe_id>/` containing `meta.csv`, `ingredients.csv`, optional `choices.csv`, and `steps.md`
+- Recipes: `recipes/<recipe_id>/` containing `meta.csv`, `ingredients.csv`, optional `choices.csv`, and `steps.csv` (preferred) or `steps.md`
+- Ingredients support optional `section` and `line_group` columns so multi-part recipes can group related items; steps can be sectioned via the `section` column in `steps.csv`.
 - Built assets: `docs/built/index.json`, `docs/built/recipes.json`
 
 ## GitHub Pages

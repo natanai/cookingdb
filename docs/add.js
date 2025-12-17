@@ -7,6 +7,7 @@ import {
   DIETARY_TAGS,
   renderIngredientLines,
   renderStepLines,
+  groupLinesBySection,
   recipeDefaultCompatibility,
 } from './recipe-utils.js';
 
@@ -197,6 +198,10 @@ function createIngredientRow(defaults = {}) {
       <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient name" aria-label="Ingredient name" />
     </label>
     <label class="ingredient-cell">
+      <span class="cell-label">Section (optional)</span>
+      <input class="ingredient-section" placeholder="e.g., Chicken" aria-label="Ingredient section" />
+    </label>
+    <label class="ingredient-cell">
       <span class="cell-label">Amount</span>
       <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
     </label>
@@ -230,6 +235,7 @@ function createIngredientRow(defaults = {}) {
   `;
   row.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
   const nameInput = row.querySelector('.ingredient-name');
+  const sectionInput = row.querySelector('.ingredient-section');
   const amountInput = row.querySelector('.ingredient-amount');
   const unitInput = row.querySelector('.ingredient-unit');
   const altInput = row.querySelector('.ingredient-alt');
@@ -238,6 +244,7 @@ function createIngredientRow(defaults = {}) {
   const groupInput = row.querySelector('.ingredient-group');
 
   nameInput.value = defaults.name || '';
+  sectionInput.value = defaults.section || '';
   amountInput.value = defaults.amount || '';
   syncUnitSelect(unitInput, defaults.unit || '');
   unitSelects.add(unitInput);
@@ -266,12 +273,15 @@ function createIngredientRow(defaults = {}) {
   ingredientRowsEl.appendChild(row);
 }
 
-function createStepRow(defaultText = '') {
+function createStepRow(defaultText = '', defaultSection = '') {
   const li = document.createElement('li');
   li.className = 'step-row';
   li.innerHTML = `
     <label>Instruction
       <textarea class="step-text" rows="3" placeholder="Describe the action and include ingredients"></textarea>
+    </label>
+    <label>Section (optional)
+      <input class="step-section" placeholder="e.g., Prep Work" />
     </label>
     <div class="step-ingredients" aria-label="Ingredients used in this step"></div>
     <details class="step-variation">
@@ -291,6 +301,7 @@ function createStepRow(defaultText = '') {
     <button type="button" class="link-button remove-step">Remove step</button>
   `;
   li.querySelector('.step-text').value = defaultText;
+  li.querySelector('.step-section').value = defaultSection;
   li.addEventListener('input', refreshPreview);
   li.querySelector('.remove-step').addEventListener('click', () => {
     li.remove();
@@ -345,6 +356,7 @@ function buildIngredientsFromForm(issues) {
 
   ingredientRows.forEach((row, idx) => {
     const nameInput = row.querySelector('.ingredient-name');
+    const sectionInput = row.querySelector('.ingredient-section');
     const amountInput = row.querySelector('.ingredient-amount');
     const unitInput = row.querySelector('.ingredient-unit');
     const altInput = row.querySelector('.ingredient-alt');
@@ -353,6 +365,7 @@ function buildIngredientsFromForm(issues) {
     const groupInput = row.querySelector('.ingredient-group');
 
     const name = nameInput.value.trim();
+    const section = sectionInput.value.trim();
     const amount = amountInput.value.trim();
     const unit = unitInput.value.trim();
     const alt = altInput.value.trim();
@@ -393,11 +406,13 @@ function buildIngredientsFromForm(issues) {
           dietary,
           depends_on,
           line_group: lineGroup || null,
+          section: section || null,
         },
       ],
       isChoice: false,
       depends_on,
       line_group: lineGroup || null,
+      section: section || null,
     });
   });
 
@@ -450,11 +465,15 @@ function buildRecipeDraft() {
   const { ingredientList, tokenOrder } = buildIngredientsFromForm(issues);
 
   const stepsRawLines = [];
+  const structuredSteps = [];
+  const stepSections = [];
   const tokenUsage = [];
   const stepRows = [...stepsListEl.querySelectorAll('.step-row')];
   stepRows.forEach((row, index) => {
     const textInput = row.querySelector('.step-text');
+    const sectionInput = row.querySelector('.step-section');
     const text = textInput.value.trim();
+    const section = sectionInput?.value.trim() || '';
     const checkboxes = [...row.querySelectorAll('.step-ingredients input')];
     const selectedTokens = checkboxes.filter((cb) => cb.checked).map((cb) => cb.value);
 
@@ -486,7 +505,11 @@ function buildRecipeDraft() {
       stepText = `${stepText} {{#if ${condition}}}${variationText}{{/if}}`.trim();
       tokenUsage.push(variationToken);
     }
-    const numbered = `${index + 1}. ${stepText}`;
+    structuredSteps.push({ section: section || null, text: stepText });
+    if (section && !stepSections.includes(section)) {
+      stepSections.push(section);
+    }
+    const numbered = `${structuredSteps.length}. ${stepText}`;
     stepsRawLines.push(numbered);
     const regex = /{{\s*([a-zA-Z0-9_-]+)\s*}}/g;
     let match;
@@ -509,7 +532,11 @@ function buildRecipeDraft() {
   }
 
   const compatibility = { gluten_free: true, egg_free: true, dairy_free: true };
+  const ingredientSections = [];
   ingredientList.forEach((tokenData) => {
+    if (tokenData.section && !ingredientSections.includes(tokenData.section)) {
+      ingredientSections.push(tokenData.section);
+    }
     tokenData.options.forEach((opt) => {
       ['gluten_free', 'egg_free', 'dairy_free'].forEach((key) => {
         if (opt.dietary && opt.dietary[key] === false) {
@@ -527,9 +554,12 @@ function buildRecipeDraft() {
     categories,
     notes,
     steps_raw: stepsRawLines.join('\n'),
+    steps: structuredSteps,
+    step_sections: stepSections,
     tokens_used: tokenUsage,
     token_order: tokenOrder,
     ingredients: ingredientList,
+    ingredient_sections: ingredientSections,
     choices: {},
     pan_sizes: [],
     default_pan: null,
@@ -600,24 +630,43 @@ function renderPreview(recipe) {
     restrictions: recipe.compatibility_possible || { gluten_free: true, egg_free: true, dairy_free: true },
   };
   const ingredientLines = renderIngredientLines(recipe, state);
-  ingredientLines.forEach((line) => {
-    const li = document.createElement('li');
-    li.textContent = line.text;
-    if (line.alternatives.length) {
-      const span = document.createElement('span');
-      span.className = 'ingredient-alternatives';
-      span.textContent = ` (or ${line.alternatives.join(' / ')})`;
-      li.appendChild(span);
+  const ingredientSections = groupLinesBySection(ingredientLines, recipe.ingredient_sections || []);
+  ingredientSections.forEach((section) => {
+    if (section.section) {
+      const header = document.createElement('li');
+      header.className = 'section-header';
+      header.textContent = section.section;
+      ingredientsEl.appendChild(header);
     }
-    ingredientsEl.appendChild(li);
+
+    section.lines.forEach((line) => {
+      const li = document.createElement('li');
+      li.textContent = line.text;
+      if (line.alternatives.length) {
+        const span = document.createElement('span');
+        span.className = 'ingredient-alternatives';
+        span.textContent = ` (or ${line.alternatives.join(' / ')})`;
+        li.appendChild(span);
+      }
+      ingredientsEl.appendChild(li);
+    });
   });
 
   stepsEl.innerHTML = '';
   const steps = renderStepLines(recipe, state);
-  steps.forEach((line) => {
-    const li = document.createElement('li');
-    li.textContent = line;
-    stepsEl.appendChild(li);
+  const stepSections = groupLinesBySection(steps, recipe.step_sections || []);
+  stepSections.forEach((section) => {
+    if (section.section) {
+      const header = document.createElement('li');
+      header.className = 'section-header';
+      header.textContent = section.section;
+      stepsEl.appendChild(header);
+    }
+    section.lines.forEach((line) => {
+      const li = document.createElement('li');
+      li.textContent = line.text;
+      stepsEl.appendChild(li);
+    });
   });
 }
 
