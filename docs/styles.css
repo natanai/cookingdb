@@ -690,7 +690,7 @@ main {
 
 .ingredients-table {
   width: 100%;
-  min-width: 900px;
+  min-width: 760px;
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 10px 6px;
@@ -747,6 +747,42 @@ main {
 .ingredient-row .remove-cell {
   text-align: center;
   vertical-align: bottom;
+}
+
+.ingredient-more summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.ingredient-more .more-icon {
+  display: inline-flex;
+  width: 1.75rem;
+  height: 1.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: #f8f1e9;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.ingredient-more[open] .more-icon {
+  transform: rotate(45deg);
+}
+
+.ingredient-more .more-grid {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.65rem;
+}
+
+.ingredient-more-cell {
+  min-width: 200px;
 }
 
 .ingredient-row input,

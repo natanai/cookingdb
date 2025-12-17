@@ -201,12 +201,6 @@ function createIngredientRow(defaults = {}) {
     </td>
     <td>
       <label class="ingredient-cell">
-        <span class="cell-label">Section (optional)</span>
-        <input class="ingredient-section" placeholder="e.g., Chicken" aria-label="Ingredient section" />
-      </label>
-    </td>
-    <td>
-      <label class="ingredient-cell">
         <span class="cell-label">Amount</span>
         <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
       </label>
@@ -218,31 +212,39 @@ function createIngredientRow(defaults = {}) {
       </label>
     </td>
     <td>
-      <label class="ingredient-cell">
-        <span class="cell-label">Alternative</span>
-        <input class="ingredient-alt" placeholder="Alternative/substitution" aria-label="Alternative or substitution" />
-      </label>
-    </td>
-    <td>
-      <div class="ingredient-cell conditional-cell">
-        <span class="cell-label">Show when</span>
-        <div class="conditional-inputs">
-          <input class="ingredient-dep-token" placeholder="Token" aria-label="Dependency token" />
-          <input class="ingredient-dep-option" placeholder="Option" aria-label="Dependency option" />
-        </div>
-      </div>
-    </td>
-    <td>
-      <label class="ingredient-cell">
-        <span class="cell-label">Inline group</span>
-        <input class="ingredient-group" placeholder="Group key" aria-label="Inline group key" />
-      </label>
-    </td>
-    <td>
       <div class="ingredient-cell">
         <span class="cell-label">Dietary flags</span>
         <div class="dietary-slot"></div>
       </div>
+    </td>
+    <td class="ingredient-more-cell">
+      <details class="ingredient-more">
+        <summary>
+          <span class="more-icon" aria-hidden="true">+</span>
+          <span class="more-label">More options</span>
+        </summary>
+        <div class="more-grid">
+          <label class="ingredient-cell">
+            <span class="cell-label">Section</span>
+            <input class="ingredient-section" placeholder="Defaults to one section" aria-label="Ingredient section" />
+          </label>
+          <label class="ingredient-cell">
+            <span class="cell-label">Alternative</span>
+            <input class="ingredient-alt" placeholder="Alternative/substitution" aria-label="Alternative or substitution" />
+          </label>
+          <div class="ingredient-cell conditional-cell">
+            <span class="cell-label">Show when</span>
+            <div class="conditional-inputs">
+              <input class="ingredient-dep-token" placeholder="Token" aria-label="Dependency token" />
+              <input class="ingredient-dep-option" placeholder="Option" aria-label="Dependency option" />
+            </div>
+          </div>
+          <label class="ingredient-cell">
+            <span class="cell-label">Inline group</span>
+            <input class="ingredient-group" placeholder="Group key" aria-label="Inline group key" />
+          </label>
+        </div>
+      </details>
     </td>
     <td class="remove-cell">
       <span class="cell-label">Remove</span>
