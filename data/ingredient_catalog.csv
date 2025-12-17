@@ -90,3 +90,7 @@ mustard_powder,Mustard powder,false,false,false
 butter,Butter,false,false,true
 garlic,Garlic,false,false,false
 heavy_cream,Heavy cream,false,false,true
+shortening,Shortening,false,false,false
+egg-yolk,Egg yolk,false,true,false
+almond-extract,Almond extract,false,false,false
+food-coloring,Food coloring,false,false,false
