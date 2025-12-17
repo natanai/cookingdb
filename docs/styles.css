@@ -690,7 +690,7 @@ main {
 
 .ingredients-table {
   width: 100%;
-  min-width: 900px;
+  min-width: 720px;
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 10px 6px;
@@ -730,6 +730,10 @@ main {
   font-size: 0.9rem;
 }
 
+.ingredient-advanced .cell-label {
+  display: inline;
+}
+
 .ingredient-header {
   font-weight: 700;
 }
@@ -744,9 +748,9 @@ main {
   border-radius: 8px;
 }
 
-.ingredient-row .remove-cell {
+.ingredient-row .action-cell {
   text-align: center;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .ingredient-row input,
@@ -776,6 +780,44 @@ main {
   padding: 0.2rem 0.35rem;
   font-size: 0.8rem;
   color: var(--muted);
+}
+
+.row-actions {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.advanced-toggle {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-weight: 700;
+  color: var(--muted);
+  line-height: 1;
+}
+
+.advanced-toggle[aria-expanded='true'] {
+  background: #f6f1e9;
+}
+
+.ingredient-advanced td {
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  background: #fffaf3;
+}
+
+.advanced-panel {
+  display: block;
+  padding: 0.75rem;
+}
+
+.advanced-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
 }
 
 .dietary-chip input {
