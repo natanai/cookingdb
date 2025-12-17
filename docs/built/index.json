@@ -131,7 +131,7 @@
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
-      "dairy_free": false
+      "dairy_free": true
     }
   },
   {

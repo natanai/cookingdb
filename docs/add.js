@@ -119,12 +119,30 @@ function createIngredientRow(defaults = {}) {
   const row = document.createElement('div');
   row.className = 'ingredient-row';
   row.innerHTML = `
-    <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient name" aria-label="Ingredient name" />
-    <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
-    <input class="ingredient-unit" placeholder="cup" aria-label="Unit" />
-    <input class="ingredient-alt" placeholder="Alternative/substitution" aria-label="Alternative or substitution" />
-    <div class="dietary-slot"></div>
-    <button type="button" class="link-button remove-ingredient" aria-label="Remove ingredient">Remove</button>
+    <label class="ingredient-cell">
+      <span class="cell-label">Name</span>
+      <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient name" aria-label="Ingredient name" />
+    </label>
+    <label class="ingredient-cell">
+      <span class="cell-label">Amount</span>
+      <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
+    </label>
+    <label class="ingredient-cell">
+      <span class="cell-label">Unit</span>
+      <input class="ingredient-unit" placeholder="cup" aria-label="Unit" />
+    </label>
+    <label class="ingredient-cell">
+      <span class="cell-label">Alternative</span>
+      <input class="ingredient-alt" placeholder="Alternative/substitution" aria-label="Alternative or substitution" />
+    </label>
+    <div class="ingredient-cell">
+      <span class="cell-label">Dietary flags</span>
+      <div class="dietary-slot"></div>
+    </div>
+    <div class="ingredient-cell remove-cell">
+      <span class="cell-label">Remove</span>
+      <button type="button" class="link-button remove-ingredient" aria-label="Remove ingredient">Remove</button>
+    </div>
   `;
   row.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
   const nameInput = row.querySelector('.ingredient-name');

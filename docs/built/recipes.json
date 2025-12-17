@@ -2257,7 +2257,7 @@
       "Mains"
     ],
     "notes": "Layered bake with sweet potatoes, seared chops, and a pear syrup glaze.",
-    "steps_raw": "1. Preheat the oven to 350°F (177°C). Drain {{pear_halves}}, reserving the syrup.\n2. Peel and thickly slice {{sweet_potatoes}}. Arrange them in the bottom of a shallow baking dish.\n3. Trim excess fat from {{pork_chops}}, season with {{salt}} and {{black_pepper}}, and brown lightly in a skillet. Place the chops on top of the sweet potatoes.\n4. In a small saucepan, combine the reserved pear syrup with {{brown_sugar}}, {{butter}}, and {{cinnamon}}. Heat just until the sugar dissolves.\n5. Spoon half of the syrup over the chops. Bake for 30 minutes.\n6. Remove the dish from the oven, arrange {{pear_halves}} around the chops, and spoon the remaining syrup over everything. Bake for another 30 minutes, or until the chops are tender.\n",
+    "steps_raw": "1. Preheat the oven to 350°F (177°C). Drain {{pear_halves}}, reserving the syrup.\n2. Peel and thickly slice {{sweet_potatoes}}. Arrange them in the bottom of a shallow baking dish.\n3. Trim excess fat from {{pork_chops}}, season with {{salt}} and {{black_pepper}}, and brown lightly in a skillet. Place the chops on top of the sweet potatoes.\n4. In a small saucepan, combine the reserved pear syrup with {{brown_sugar}}, {{butter_choice}}, and {{cinnamon}}. Heat just until the sugar dissolves.\n5. Spoon half of the syrup over the chops. Bake for 30 minutes.\n6. Remove the dish from the oven, arrange {{pear_halves}} around the chops, and spoon the remaining syrup over everything. Bake for another 30 minutes, or until the chops are tender.\n",
     "tokens_used": [
       "pear_halves",
       "sweet_potatoes",
@@ -2265,7 +2265,7 @@
       "salt",
       "black_pepper",
       "brown_sugar",
-      "butter",
+      "butter_choice",
       "cinnamon",
       "pear_halves"
     ],
@@ -2276,7 +2276,7 @@
       "salt",
       "black_pepper",
       "brown_sugar",
-      "butter",
+      "butter_choice",
       "cinnamon"
     ],
     "ingredients": {
@@ -2388,11 +2388,11 @@
         ],
         "isChoice": false
       },
-      "butter": {
-        "token": "butter",
+      "butter_choice": {
+        "token": "butter_choice",
         "options": [
           {
-            "option": "",
+            "option": "butter",
             "display": "butter",
             "ratio": "2",
             "unit": "tbsp",
@@ -2402,9 +2402,21 @@
               "egg_free": true,
               "dairy_free": false
             }
+          },
+          {
+            "option": "vegan",
+            "display": "vegan butter",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "vegan-butter",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
           }
         ],
-        "isChoice": false
+        "isChoice": true
       },
       "cinnamon": {
         "token": "cinnamon",
@@ -2425,13 +2437,19 @@
         "isChoice": false
       }
     },
-    "choices": {},
+    "choices": {
+      "butter_choice": {
+        "token": "butter_choice",
+        "label": "Butter",
+        "default_option": "butter"
+      }
+    },
     "pan_sizes": [],
     "default_pan": null,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
-      "dairy_free": false
+      "dairy_free": true
     }
   },
   {
