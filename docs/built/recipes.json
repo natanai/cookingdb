@@ -2772,6 +2772,248 @@
     }
   },
   {
+    "id": "spritz-cookies",
+    "title": "Spritz Cookies",
+    "base_kind": "servings",
+    "default_base": 60,
+    "categories": [
+      "cookies",
+      "dessert",
+      "baking"
+    ],
+    "notes": "Makes about 5 dozen cookies.",
+    "steps_raw": "1. Preheat the oven to 400°F.\n2. Cream {{fat}}, then gradually beat in {{sugar}} until smooth.\n3. Add {{egg_component}} unbeaten (do not pre-whisk separately) and beat well.\n4. Mix in {{almond_extract}} and {{food_coloring}} (if using).\n5. Whisk together {{flour_base}}, {{baking_powder}}, and {{salt}}. Stir into the dough, then add up to {{flour_adjust}} only if needed so the dough is not too dry.\n6. Fit a cookie press disk (number side up), pack the press firmly, and press cookies onto an ungreased shiny cookie sheet.\n7. Bake for 10–12 minutes.\n\n",
+    "tokens_used": [
+      "fat",
+      "sugar",
+      "egg_component",
+      "almond_extract",
+      "food_coloring",
+      "flour_base",
+      "baking_powder",
+      "salt",
+      "flour_adjust"
+    ],
+    "token_order": [
+      "fat",
+      "sugar",
+      "egg_component",
+      "almond_extract",
+      "food_coloring",
+      "flour_base",
+      "baking_powder",
+      "salt",
+      "flour_adjust"
+    ],
+    "ingredients": {
+      "fat": {
+        "token": "fat",
+        "options": [
+          {
+            "option": "shortening",
+            "display": "shortening",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "shortening",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          },
+          {
+            "option": "butter",
+            "display": "butter (softened)",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "butter",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "sugar": {
+        "token": "sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "granulated sugar",
+            "ratio": "3/4",
+            "unit": "cup",
+            "ingredient_id": "white-sugar",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "egg_component": {
+        "token": "egg_component",
+        "options": [
+          {
+            "option": "whole",
+            "display": "egg",
+            "ratio": "1",
+            "unit": "",
+            "ingredient_id": "egg",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": false,
+              "dairy_free": true
+            }
+          },
+          {
+            "option": "yolks",
+            "display": "egg yolk",
+            "ratio": "3",
+            "unit": "",
+            "ingredient_id": "egg-yolk",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": false,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "flour_base": {
+        "token": "flour_base",
+        "options": [
+          {
+            "option": "",
+            "display": "all-purpose flour (sifted)",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "flour_adjust": {
+        "token": "flour_adjust",
+        "options": [
+          {
+            "option": "",
+            "display": "all-purpose flour (sifted; adjustment)",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "baking_powder": {
+        "token": "baking_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "baking powder",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "baking-powder",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt (dash)",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "salt",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "almond_extract": {
+        "token": "almond_extract",
+        "options": [
+          {
+            "option": "",
+            "display": "almond extract",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "almond-extract",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "food_coloring": {
+        "token": "food_coloring",
+        "options": [
+          {
+            "option": "",
+            "display": "food coloring (optional)",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "food-coloring",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "choices": {
+      "fat": {
+        "token": "fat",
+        "label": "Fat",
+        "default_option": "shortening"
+      },
+      "egg_component": {
+        "token": "egg_component",
+        "label": "Egg",
+        "default_option": "whole"
+      }
+    },
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "sweet-potatoes-pork-chops-pears",
     "title": "Sweet Potatoes with Pork Chops and Pears",
     "base_kind": "multiplier",

@@ -137,6 +137,20 @@
     }
   },
   {
+    "id": "spritz-cookies",
+    "title": "Spritz Cookies",
+    "categories": [
+      "cookies",
+      "dessert",
+      "baking"
+    ],
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "sweet-potatoes-pork-chops-pears",
     "title": "Sweet Potatoes with Pork Chops and Pears",
     "categories": [
