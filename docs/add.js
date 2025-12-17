@@ -13,7 +13,7 @@ import {
 const ingredientRowsEl = document.getElementById('ingredient-rows');
 const stepsListEl = document.getElementById('steps-list');
 const ingredientSuggestionsEl = document.getElementById('ingredient-suggestions');
-const categorySuggestionsEl = document.getElementById('category-suggestions');
+const categorySelectEl = document.getElementById('categories');
 // Remove required attribute from slug input as it's auto-generated
 const slugInputField = document.getElementById('slug');
 if (slugInputField) slugInputField.removeAttribute('required');
@@ -22,6 +22,8 @@ const statusEl = document.getElementById('form-status');
 
 const ingredientNameSet = new Set();
 const categorySet = new Set();
+const unitSet = new Set();
+const unitSelects = new Set();
 
 function slugify(text) {
   return text
@@ -56,11 +58,68 @@ function addOptionToDatalist(datalistEl, value) {
   datalistEl.appendChild(opt);
 }
 
-function updateSuggestions() {
+function updateIngredientSuggestions() {
   ingredientSuggestionsEl.innerHTML = '';
   ingredientNameSet.forEach((name) => addOptionToDatalist(ingredientSuggestionsEl, name));
-  categorySuggestionsEl.innerHTML = '';
-  categorySet.forEach((cat) => addOptionToDatalist(categorySuggestionsEl, cat));
+}
+
+function syncCategoryOptions() {
+  if (!categorySelectEl) return;
+  const previousSelection = new Set([...categorySelectEl.selectedOptions].map((opt) => opt.value));
+  categorySelectEl.innerHTML = '';
+  const sortedCategories = [...categorySet].sort((a, b) => a.localeCompare(b));
+  if (sortedCategories.length === 0) {
+    const placeholder = document.createElement('option');
+    placeholder.disabled = true;
+    placeholder.textContent = 'Loading categories…';
+    categorySelectEl.appendChild(placeholder);
+    return;
+  }
+
+  sortedCategories.forEach((cat) => {
+    const opt = document.createElement('option');
+    opt.value = cat;
+    opt.textContent = cat;
+    opt.selected = previousSelection.has(cat);
+    categorySelectEl.appendChild(opt);
+  });
+}
+
+function syncUnitSelect(selectEl, preferredValue = '') {
+  if (!selectEl) return;
+  const targetValue = preferredValue || selectEl.value;
+  const fragment = document.createDocumentFragment();
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  placeholder.textContent = 'Select unit';
+  placeholder.disabled = true;
+  placeholder.hidden = false;
+  placeholder.selected = !targetValue;
+  fragment.appendChild(placeholder);
+
+  let valueMatched = false;
+  [...unitSet]
+    .sort((a, b) => a.localeCompare(b))
+    .forEach((unit) => {
+      const opt = document.createElement('option');
+      opt.value = unit;
+      opt.textContent = unit;
+      if (unit === targetValue) {
+        opt.selected = true;
+        valueMatched = true;
+      }
+      fragment.appendChild(opt);
+    });
+
+  selectEl.innerHTML = '';
+  selectEl.appendChild(fragment);
+  if (!valueMatched && targetValue) {
+    selectEl.value = '';
+  }
+}
+
+function syncUnitSelects() {
+  unitSelects.forEach((select) => syncUnitSelect(select));
 }
 
 function normalizeIngredientsForSuggestions(recipe) {
@@ -82,10 +141,13 @@ async function loadExistingRecipes() {
         normalizeIngredientsForSuggestions(recipe).forEach((tokenData) => {
           tokenData.options.forEach((opt) => {
             if (opt.display) ingredientNameSet.add(opt.display);
+            if (opt.unit) unitSet.add(opt.unit);
           });
         });
       });
-      updateSuggestions();
+      syncCategoryOptions();
+      syncUnitSelects();
+      updateIngredientSuggestions();
     }
   } catch (err) {
     console.warn('Could not load suggestions', err);
@@ -107,19 +169,20 @@ function buildDietaryCheckboxes() {
   const wrapper = document.createElement('div');
   wrapper.className = 'dietary-flags';
   const options = [
-    { key: 'gluten_free', label: 'GF' },
-    { key: 'egg_free', label: 'Egg-free' },
-    { key: 'dairy_free', label: 'Dairy-free' },
+    { key: 'gluten_free', label: 'GF', title: 'Gluten-free' },
+    { key: 'egg_free', label: 'Egg', title: 'Egg-free' },
+    { key: 'dairy_free', label: 'Dairy', title: 'Dairy-free' },
   ];
   options.forEach((opt) => {
     const label = document.createElement('label');
-    label.className = 'pill-toggle';
+    label.className = 'dietary-chip';
+    label.title = opt.title;
     const input = document.createElement('input');
     input.type = 'checkbox';
     input.checked = true;
     input.dataset.dietaryKey = opt.key;
     label.appendChild(input);
-    label.append(` ${opt.label}`);
+    label.append(opt.label);
     wrapper.appendChild(label);
   });
   return wrapper;
@@ -139,7 +202,7 @@ function createIngredientRow(defaults = {}) {
     </label>
     <label class="ingredient-cell">
       <span class="cell-label">Unit</span>
-      <input class="ingredient-unit" placeholder="cup" aria-label="Unit" />
+      <select class="ingredient-unit" aria-label="Unit"></select>
     </label>
     <label class="ingredient-cell">
       <span class="cell-label">Alternative</span>
@@ -162,17 +225,22 @@ function createIngredientRow(defaults = {}) {
 
   nameInput.value = defaults.name || '';
   amountInput.value = defaults.amount || '';
-  unitInput.value = defaults.unit || '';
+  syncUnitSelect(unitInput, defaults.unit || '');
+  unitSelects.add(unitInput);
   altInput.value = defaults.alt || '';
 
-  row.addEventListener('input', () => {
+  const handleChange = () => {
     ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
-    updateSuggestions();
+    updateIngredientSuggestions();
     refreshStepIngredientPickers();
     refreshPreview();
-  });
+  };
+
+  row.addEventListener('input', handleChange);
+  row.addEventListener('change', handleChange);
 
   row.querySelector('.remove-ingredient').addEventListener('click', () => {
+    unitSelects.delete(unitInput);
     row.remove();
     refreshStepIngredientPickers();
     refreshPreview();
@@ -304,20 +372,14 @@ function buildRecipeDraft() {
   const titleInput = document.getElementById('title');
   const slugInput = document.getElementById('slug');
   const notesInput = document.getElementById('notes');
-  const categoriesInput = document.getElementById('categories');
+  const categoriesSelect = document.getElementById('categories');
   const defaultBaseInput = document.getElementById('default-base');
 
   const title = titleInput.value.trim();
   const slug = slugInput.value.trim();
   const notes = notesInput.value.trim();
-  const categoriesRaw = categoriesInput.value.trim();
+  const categories = categoriesSelect ? [...categoriesSelect.selectedOptions].map((opt) => opt.value) : [];
   const defaultBase = Number(defaultBaseInput.value) || 1;
-  const categories = categoriesRaw
-    ? categoriesRaw
-        .split(',')
-        .map((c) => c.trim())
-        .filter(Boolean)
-    : [];
 
   if (!title) {
     issues.push('Add a recipe title.');
@@ -334,7 +396,7 @@ function buildRecipeDraft() {
 
   if (categories.length === 0) {
     issues.push('Add at least one category.');
-    markInvalid(categoriesInput);
+    markInvalid(categoriesSelect);
   }
 
   if (!Number.isFinite(defaultBase) || defaultBase <= 0) {
@@ -556,6 +618,10 @@ function resetFormForNewEntry() {
   document.getElementById('slug').dataset.userEdited = 'false';
   ingredientRowsEl.innerHTML = '';
   stepsListEl.innerHTML = '';
+  unitSelects.clear();
+  if (categorySelectEl) {
+    [...categorySelectEl.options].forEach((opt) => (opt.selected = false));
+  }
   createIngredientRow();
   createStepRow();
   touchSlugFromTitle();
@@ -599,9 +665,11 @@ function bootstrap() {
   document.getElementById('slug').addEventListener('input', (evt) => {
     evt.target.dataset.userEdited = 'true';
   });
-  document.getElementById('categories').addEventListener('input', refreshPreview);
+  document.getElementById('categories').addEventListener('change', refreshPreview);
   document.getElementById('notes').addEventListener('input', refreshPreview);
   document.getElementById('default-base').addEventListener('input', refreshPreview);
+
+  syncCategoryOptions();
 
   document.getElementById('add-ingredient').addEventListener('click', () => {
     createIngredientRow();
