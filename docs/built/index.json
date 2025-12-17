@@ -15,8 +15,7 @@
     "id": "baked-sweet-potatoes",
     "title": "Baked Sweet Potatoes",
     "categories": [
-      "Sides",
-      "Vegetarian"
+      "Sides"
     ],
     "compatibility_possible": {
       "gluten_free": false,
@@ -40,8 +39,7 @@
     "id": "butternut-squash-casserole",
     "title": "Butternut Squash Casserole",
     "categories": [
-      "Mains",
-      "Vegetarian"
+      "Mains"
     ],
     "compatibility_possible": {
       "gluten_free": true,
@@ -77,9 +75,7 @@
     "id": "creamy-garlic-chicken",
     "title": "Creamy Garlic Chicken",
     "categories": [
-      "main course",
-      "skillet",
-      "chicken"
+      "Mains"
     ],
     "compatibility_possible": {
       "gluten_free": false,
@@ -91,8 +87,7 @@
     "id": "creamy-leek-potato-soup",
     "title": "Creamy Leek and Potato Soup",
     "categories": [
-      "Soups & Stews",
-      "Vegetarian"
+      "Soups & Stews"
     ],
     "compatibility_possible": {
       "gluten_free": true,
@@ -140,9 +135,7 @@
     "id": "spritz-cookies",
     "title": "Spritz Cookies",
     "categories": [
-      "cookies",
-      "dessert",
-      "baking"
+      "Desserts & Baking"
     ],
     "compatibility_possible": {
       "gluten_free": false,
@@ -178,8 +171,7 @@
     "id": "watercress-parsley-soup",
     "title": "Watercress and Parsley Soup",
     "categories": [
-      "Soups & Stews",
-      "Vegetarian"
+      "Soups & Stews"
     ],
     "compatibility_possible": {
       "gluten_free": false,

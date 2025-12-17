@@ -208,6 +208,17 @@ function createIngredientRow(defaults = {}) {
       <span class="cell-label">Alternative</span>
       <input class="ingredient-alt" placeholder="Alternative/substitution" aria-label="Alternative or substitution" />
     </label>
+    <div class="ingredient-cell conditional-cell">
+      <span class="cell-label">Show when</span>
+      <div class="conditional-inputs">
+        <input class="ingredient-dep-token" placeholder="Token" aria-label="Dependency token" />
+        <input class="ingredient-dep-option" placeholder="Option" aria-label="Dependency option" />
+      </div>
+    </div>
+    <label class="ingredient-cell">
+      <span class="cell-label">Inline group</span>
+      <input class="ingredient-group" placeholder="Group key" aria-label="Inline group key" />
+    </label>
     <div class="ingredient-cell">
       <span class="cell-label">Dietary flags</span>
       <div class="dietary-slot"></div>
@@ -222,12 +233,18 @@ function createIngredientRow(defaults = {}) {
   const amountInput = row.querySelector('.ingredient-amount');
   const unitInput = row.querySelector('.ingredient-unit');
   const altInput = row.querySelector('.ingredient-alt');
+  const depTokenInput = row.querySelector('.ingredient-dep-token');
+  const depOptionInput = row.querySelector('.ingredient-dep-option');
+  const groupInput = row.querySelector('.ingredient-group');
 
   nameInput.value = defaults.name || '';
   amountInput.value = defaults.amount || '';
   syncUnitSelect(unitInput, defaults.unit || '');
   unitSelects.add(unitInput);
   altInput.value = defaults.alt || '';
+  depTokenInput.value = defaults.depends_on?.token || '';
+  depOptionInput.value = defaults.depends_on?.option || '';
+  groupInput.value = defaults.line_group || '';
 
   const handleChange = () => {
     ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
@@ -257,9 +274,24 @@ function createStepRow(defaultText = '') {
       <textarea class="step-text" rows="3" placeholder="Describe the action and include ingredients"></textarea>
     </label>
     <div class="step-ingredients" aria-label="Ingredients used in this step"></div>
+    <details class="step-variation">
+      <summary>Add conditional variation (optional)</summary>
+      <div class="variation-grid">
+        <label>Show when ingredient is set to
+          <div class="conditional-inputs">
+            <input class="variation-token" placeholder="Token" aria-label="Variation token" />
+            <input class="variation-option" placeholder="Option" aria-label="Variation option" />
+          </div>
+        </label>
+        <label>Variation text (only shown when matched)
+          <textarea class="variation-text" rows="2" placeholder="Extra instruction when a specific option is chosen"></textarea>
+        </label>
+      </div>
+    </details>
     <button type="button" class="link-button remove-step">Remove step</button>
   `;
   li.querySelector('.step-text').value = defaultText;
+  li.addEventListener('input', refreshPreview);
   li.querySelector('.remove-step').addEventListener('click', () => {
     li.remove();
     refreshPreview();
@@ -316,11 +348,17 @@ function buildIngredientsFromForm(issues) {
     const amountInput = row.querySelector('.ingredient-amount');
     const unitInput = row.querySelector('.ingredient-unit');
     const altInput = row.querySelector('.ingredient-alt');
+    const depTokenInput = row.querySelector('.ingredient-dep-token');
+    const depOptionInput = row.querySelector('.ingredient-dep-option');
+    const groupInput = row.querySelector('.ingredient-group');
 
     const name = nameInput.value.trim();
     const amount = amountInput.value.trim();
     const unit = unitInput.value.trim();
     const alt = altInput.value.trim();
+    const depToken = depTokenInput.value.trim();
+    const depOption = depOptionInput.value.trim();
+    const lineGroup = groupInput.value.trim();
 
     const allEmpty = !name && !amount && !unit && !alt;
     if (allEmpty) return;
@@ -342,6 +380,7 @@ function buildIngredientsFromForm(issues) {
     if (!tokenOrder.includes(token)) tokenOrder.push(token);
     const dietary = readDietaryFlags(row);
     const optionDisplay = alt ? `${name} (${alt})` : name;
+    const depends_on = depToken ? { token: slugify(depToken), option: depOption ? slugify(depOption) : null } : null;
     ingredientList.push({
       token,
       options: [
@@ -352,9 +391,13 @@ function buildIngredientsFromForm(issues) {
           unit,
           ingredient_id: token,
           dietary,
+          depends_on,
+          line_group: lineGroup || null,
         },
       ],
       isChoice: false,
+      depends_on,
+      line_group: lineGroup || null,
     });
   });
 
@@ -434,11 +477,24 @@ function buildRecipeDraft() {
         stepText = `${stepText} {{${token}}}`.trim();
       }
     });
+
+    const variationToken = slugify(row.querySelector('.variation-token')?.value || '');
+    const variationOption = slugify(row.querySelector('.variation-option')?.value || '');
+    const variationText = (row.querySelector('.variation-text')?.value || '').trim();
+    if (variationText && variationToken) {
+      const condition = variationOption ? `${variationToken}=${variationOption}` : variationToken;
+      stepText = `${stepText} {{#if ${condition}}}${variationText}{{/if}}`.trim();
+      tokenUsage.push(variationToken);
+    }
     const numbered = `${index + 1}. ${stepText}`;
     stepsRawLines.push(numbered);
     const regex = /{{\s*([a-zA-Z0-9_-]+)\s*}}/g;
     let match;
     while ((match = regex.exec(stepText)) !== null) {
+      tokenUsage.push(match[1]);
+    }
+    const conditionRegex = /{{#if\s+([a-zA-Z0-9_-]+)/g;
+    while ((match = conditionRegex.exec(stepText)) !== null) {
       tokenUsage.push(match[1]);
     }
   });

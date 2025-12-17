@@ -3,12 +3,10 @@ import {
   restrictionsActive,
   recipeDefaultCompatibility,
   hasNonCompliantAlternative,
-  renderIngredientEntry,
-  ingredientDisplay,
+  renderIngredientLines,
   formatStepText,
   selectOptionForToken,
   optionMeetsRestrictions,
-  alternativeOptions,
   getEffectiveMultiplier,
   unitOptionsFor,
   convertUnitAmount,
@@ -237,79 +235,32 @@ function renderIngredientsList(recipe, state, onUnitChange) {
 
   list.innerHTML = '';
 
-  const multiplier = getEffectiveMultiplier(state);
-  const ingredients = recipe?.ingredients && typeof recipe.ingredients === 'object' ? recipe.ingredients : null;
-  const unitSelections = state.unitSelections || (state.unitSelections = {});
+  const lines = renderIngredientLines(recipe, { ...state, recipe });
 
-  const order = Array.isArray(recipe?.token_order)
-    ? recipe.token_order
-    : ingredients
-      ? Object.keys(ingredients)
-      : [];
-
-  if (!ingredients || order.length === 0) {
+  if (!lines.length) {
     const li = document.createElement('li');
     li.innerHTML = '<em>This recipe was imported without full ingredient data.</em>';
     list.appendChild(li);
     return;
   }
 
-  order.forEach((token) => {
-    const tokenData = ingredients[token];
-    if (!tokenData) return;
-
-    const option = selectOptionForToken(token, recipe, state);
-    if (!option) return;
-
+  lines.forEach((line) => {
     const li = document.createElement('li');
-    const textSpan = document.createElement('span');
 
-    const selectedUnit = unitSelections[token];
-    let display = null;
-    try {
-      display = ingredientDisplay(option, multiplier, selectedUnit);
-      textSpan.textContent = display.text;
-    } catch (e) {
-      textSpan.textContent = String(token);
-    }
+    line.entries.forEach((entry, idx) => {
+      const textSpan = document.createElement('span');
+      textSpan.textContent = entry.text;
+      li.appendChild(textSpan);
 
-    let alternatives = [];
-    try {
-      alternatives = alternativeOptions(tokenData, state, option) || [];
-    } catch (e) {
-      alternatives = [];
-    }
+      const unitOptions = unitOptionsFor(entry.option?.unit);
+      const unitSelections = state.unitSelections || (state.unitSelections = {});
+      const selectedUnit = unitSelections[entry.token];
+      const display = entry.display;
 
-    if (alternatives.length) {
-      const altText = alternatives
-        .map((opt) => {
-          try {
-            return renderIngredientEntry(opt, multiplier);
-          } catch {
-            return '';
-          }
-        })
-        .filter(Boolean)
-        .join(' / ');
-
-      if (altText) {
-        const altSpan = document.createElement('span');
-        altSpan.className = 'ingredient-alternatives';
-        altSpan.textContent = ` (or ${altText})`;
-        li.appendChild(textSpan);
-        li.appendChild(altSpan);
-      }
-    }
-
-      if (!li.contains(textSpan)) {
-        li.appendChild(textSpan);
-      }
-
-      const unitOptions = unitOptionsFor(option.unit);
-      if (unitOptions.length > 1 && option.ratio) {
+      if (unitOptions.length > 1 && entry.option?.ratio) {
         const unitSelect = document.createElement('select');
         unitSelect.className = 'unit-select';
-        const currentUnit = selectedUnit || option.unit;
+        const currentUnit = selectedUnit || entry.option.unit;
         unitOptions.forEach((unit) => {
           const opt = document.createElement('option');
           opt.value = unit.id;
@@ -318,12 +269,12 @@ function renderIngredientsList(recipe, state, onUnitChange) {
           unitSelect.appendChild(opt);
         });
 
-        if (!unitSelections[token]) {
-          unitSelections[token] = currentUnit;
+        if (!unitSelections[entry.token]) {
+          unitSelections[entry.token] = currentUnit;
         }
 
         unitSelect.addEventListener('change', () => {
-          unitSelections[token] = unitSelect.value;
+          unitSelections[entry.token] = unitSelect.value;
           if (typeof onUnitChange === 'function') onUnitChange();
         });
 
@@ -362,8 +313,24 @@ function renderIngredientsList(recipe, state, onUnitChange) {
         }
       }
 
-      list.appendChild(li);
+      if (idx < line.entries.length - 1) {
+        const joiner = document.createElement('span');
+        joiner.className = 'ingredient-joiner';
+        joiner.textContent = ' + ';
+        li.appendChild(joiner);
+      }
     });
+
+    const altText = Array.from(new Set((line.alternatives || []).filter(Boolean))).join(' / ');
+    if (altText) {
+      const altSpan = document.createElement('span');
+      altSpan.className = 'ingredient-alternatives';
+      altSpan.textContent = ` (or ${altText})`;
+      li.appendChild(altSpan);
+    }
+
+    list.appendChild(li);
+  });
 }
 
 function renderSteps(recipe, state) {

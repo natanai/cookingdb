@@ -673,7 +673,9 @@ main {
 .ingredient-header,
 .ingredient-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(90px, 0.6fr) minmax(90px, 0.65fr) minmax(0, 1fr) minmax(0, 1.1fr) auto;
+  grid-template-columns:
+    minmax(0, 1.1fr) minmax(90px, 0.6fr) minmax(90px, 0.65fr) minmax(0, 1fr) minmax(0, 1.1fr)
+    minmax(0, 0.9fr) minmax(0, 1.1fr) auto;
   gap: 0.45rem;
   align-items: end;
 }
@@ -716,6 +718,12 @@ main {
 
 .dietary-chip input {
   margin: 0;
+}
+
+.conditional-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
 }
 
 #categories {
@@ -762,6 +770,31 @@ main {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 0.35rem;
+}
+
+.step-variation {
+  margin-top: 0.5rem;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem 0.5rem;
+  background: #fffdf9;
+}
+
+.step-variation summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.variation-grid {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+
+.variation-grid textarea {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .remember-row {

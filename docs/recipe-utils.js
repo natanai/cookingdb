@@ -160,13 +160,15 @@ export function optionMeetsRestrictions(option, restrictions) {
   return true;
 }
 
-export function alternativeOptions(tokenData, state, selectedOption) {
+export function alternativeOptions(tokenData, state, selectedOption, recipe = null) {
   if (!tokenData?.isChoice) return [];
   const choiceOptions = tokenData.options.filter((opt) => opt.option);
+  const dependencyAllowed = (opt) =>
+    recipe ? optionAllowedByDependency(opt, recipe, state) : true;
   const compatible = restrictionsActive(state.restrictions)
     ? choiceOptions.filter((opt) => optionMeetsRestrictions(opt, state.restrictions))
     : choiceOptions;
-  return compatible.filter((opt) => opt.option !== selectedOption?.option);
+  return compatible.filter((opt) => dependencyAllowed(opt) && opt.option !== selectedOption?.option);
 }
 
 export function defaultOptionForToken(token, recipe) {
@@ -194,6 +196,26 @@ export function recipeDefaultCompatibility(recipe) {
   return restrictions;
 }
 
+export function dependencySatisfied(dependency, recipe, state) {
+  if (!dependency || !dependency.token) return true;
+  const selected = selectOptionForToken(dependency.token, recipe, state);
+  if (!selected) return false;
+  if (dependency.option) {
+    return selected.option === dependency.option;
+  }
+  return true;
+}
+
+function optionAllowedByDependency(option, recipe, state) {
+  if (!option) return false;
+  return dependencySatisfied(option.depends_on || null, recipe, state);
+}
+
+function tokenAllowedByDependency(tokenData, recipe, state) {
+  if (!tokenData) return false;
+  return dependencySatisfied(tokenData.depends_on || null, recipe, state);
+}
+
 export function hasNonCompliantAlternative(recipe, restriction) {
   return Object.values(recipe.ingredients || {}).some((tokenData) => {
     if (!tokenData.isChoice) return false;
@@ -203,14 +225,19 @@ export function hasNonCompliantAlternative(recipe, restriction) {
 
 export function selectOptionForToken(token, recipe, state) {
   const tokenData = recipe.ingredients[token];
-  if (!tokenData) return null;
+  if (!tokenData || !tokenAllowedByDependency(tokenData, recipe, state)) return null;
   if (!tokenData.isChoice) return tokenData.options[0];
 
   const selectedKey = state.selectedOptions[token] || recipe.choices?.[token]?.default_option;
-  const options = tokenData.options.filter((opt) => opt.option);
+  const options = tokenData.options.filter(
+    (opt) => opt.option && optionAllowedByDependency(opt, recipe, state)
+  );
+  if (!options.length) return null;
   let selected = options.find((opt) => opt.option === selectedKey) || options[0];
 
-  const compatibleOptions = options.filter((opt) => optionMeetsRestrictions(opt, state.restrictions));
+  const compatibleOptions = options.filter(
+    (opt) => optionMeetsRestrictions(opt, state.restrictions) && optionAllowedByDependency(opt, recipe, state)
+  );
   if (restrictionsActive(state.restrictions) && compatibleOptions.length > 0) {
     if (!optionMeetsRestrictions(selected, state.restrictions)) {
       selected =
@@ -323,7 +350,13 @@ export function renderIngredientEntry(option, multiplier, selectedUnit) {
 
 export function formatStepText(stepText, recipe, state) {
   const multiplier = getEffectiveMultiplier(state);
-  return stepText.replace(/{{\s*([a-zA-Z0-9_-]+)\s*}}/g, (match, token) => {
+  const evaluatedConditions = stepText.replace(/{{#if\s+([^}]+)}}([\s\S]*?){{\/if}}/g, (match, condition, inner) => {
+    const [token, expected] = condition.split('=').map((part) => part.trim());
+    const dependency = token ? { token, option: expected || null } : null;
+    return dependencySatisfied(dependency, recipe, state) ? inner : '';
+  });
+
+  return evaluatedConditions.replace(/{{\s*([a-zA-Z0-9_-]+)\s*}}/g, (match, token) => {
     const option = selectOptionForToken(token, recipe, state);
     const selectedUnit = state?.unitSelections?.[token];
     return renderIngredientEntry(option, multiplier, selectedUnit);
@@ -333,19 +366,49 @@ export function formatStepText(stepText, recipe, state) {
 export function renderIngredientLines(recipe, state) {
   const lines = [];
   const multiplier = getEffectiveMultiplier(state);
-  (recipe.token_order || []).forEach((token) => {
-    const tokenData = recipe.ingredients[token];
-    if (!tokenData) return;
-    const option = selectOptionForToken(token, recipe, state);
-    const selectedUnit = state?.unitSelections?.[token];
-    const line = { text: renderIngredientEntry(option, multiplier, selectedUnit), alternatives: [] };
-    const alternatives = alternativeOptions(tokenData, state, option);
-    if (alternatives.length) {
-      line.alternatives = alternatives.map((opt) => renderIngredientEntry(opt, multiplier, selectedUnit));
+  state.selectedOptions = state.selectedOptions || {};
+  const unitSelections = state?.unitSelections || (state.unitSelections = {});
+  const groupMap = new Map();
+
+  const addLine = (groupKey, entry, orderIdx) => {
+    if (!groupKey) {
+      lines.push({ entries: [entry], alternatives: entry.alternatives, text: entry.text, orderIdx });
+      return;
     }
-    lines.push(line);
+
+    if (!groupMap.has(groupKey)) {
+      groupMap.set(groupKey, { entries: [], alternatives: [], orderIdx });
+    }
+    const group = groupMap.get(groupKey);
+    group.entries.push(entry);
+    group.alternatives.push(...entry.alternatives);
+  };
+
+  (recipe.token_order || []).forEach((token, orderIdx) => {
+    const tokenData = recipe.ingredients[token];
+    if (!tokenData || !tokenAllowedByDependency(tokenData, recipe, state)) return;
+    const option = selectOptionForToken(token, recipe, state);
+    if (!option || !optionAllowedByDependency(option, recipe, state)) return;
+    const selectedUnit = unitSelections[token];
+
+    const display = ingredientDisplay(option, multiplier, selectedUnit);
+    const text = display.text;
+    const alternatives = (alternativeOptions(tokenData, state, option, recipe) || [])
+      .filter((opt) => optionAllowedByDependency(opt, recipe, state))
+      .map((opt) => renderIngredientEntry(opt, multiplier, selectedUnit));
+
+    const entry = { token, text, option, selectedUnit, alternatives, display };
+    const groupKey = tokenData.line_group || option.line_group || null;
+    addLine(groupKey, entry, orderIdx);
   });
-  return lines;
+
+  const grouped = [...groupMap.values()].sort((a, b) => a.orderIdx - b.orderIdx);
+  grouped.forEach((group) => {
+    const text = group.entries.map((entry) => entry.text).join(' + ');
+    lines.push({ ...group, text });
+  });
+
+  return lines.sort((a, b) => a.orderIdx - b.orderIdx);
 }
 
 export function renderStepLines(recipe, state) {
