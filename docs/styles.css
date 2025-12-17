@@ -612,6 +612,23 @@ main {
   resize: vertical;
 }
 
+.required-badge {
+  color: #c0392b;
+  font-weight: 700;
+  margin-left: 0.35rem;
+  font-size: 0.95rem;
+}
+
+.invalid {
+  border-color: #e6a8a8 !important;
+  background: #fff7f7;
+}
+
+.pill-toggle.invalid {
+  outline: 2px solid #e6a8a8;
+  outline-offset: 2px;
+}
+
 .field-help {
   color: var(--muted);
   font-size: 0.95rem;

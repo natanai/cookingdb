@@ -39,6 +39,16 @@ function touchSlugFromTitle() {
   }
 }
 
+function clearValidationHighlights() {
+  document.querySelectorAll('.invalid').forEach((el) => el.classList.remove('invalid'));
+}
+
+function markInvalid(el) {
+  if (el) {
+    el.classList.add('invalid');
+  }
+}
+
 function addOptionToDatalist(datalistEl, value) {
   if (!value || datalistEl.querySelector(`option[value="${value}"]`)) return;
   const opt = document.createElement('option');
@@ -228,17 +238,38 @@ function readDietaryFlags(row) {
   return flags;
 }
 
-function buildIngredientsFromForm() {
+function buildIngredientsFromForm(issues) {
   const tokenOrder = [];
   const ingredientList = [];
   const ingredientRows = [...ingredientRowsEl.querySelectorAll('.ingredient-row')];
 
-  ingredientRows.forEach((row) => {
-    const name = row.querySelector('.ingredient-name').value.trim();
-    const amount = row.querySelector('.ingredient-amount').value.trim();
-    const unit = row.querySelector('.ingredient-unit').value.trim();
-    const alt = row.querySelector('.ingredient-alt').value.trim();
-    if (!name) return;
+  ingredientRows.forEach((row, idx) => {
+    const nameInput = row.querySelector('.ingredient-name');
+    const amountInput = row.querySelector('.ingredient-amount');
+    const unitInput = row.querySelector('.ingredient-unit');
+    const altInput = row.querySelector('.ingredient-alt');
+
+    const name = nameInput.value.trim();
+    const amount = amountInput.value.trim();
+    const unit = unitInput.value.trim();
+    const alt = altInput.value.trim();
+
+    const allEmpty = !name && !amount && !unit && !alt;
+    if (allEmpty) return;
+
+    const missingFields = [];
+    if (!name) missingFields.push('name');
+    if (!amount) missingFields.push('amount');
+    if (!unit) missingFields.push('unit');
+
+    if (missingFields.length) {
+      issues.push(`Ingredient ${idx + 1} is missing ${missingFields.join(' and ')}.`);
+      if (!name) markInvalid(nameInput);
+      if (!amount) markInvalid(amountInput);
+      if (!unit) markInvalid(unitInput);
+      return;
+    }
+
     const token = slugify(name);
     if (!tokenOrder.includes(token)) tokenOrder.push(token);
     const dietary = readDietaryFlags(row);
@@ -259,15 +290,28 @@ function buildIngredientsFromForm() {
     });
   });
 
+  if (ingredientList.length === 0) {
+    issues.push('Add at least one ingredient with a name, amount, and unit.');
+  }
+
   return { ingredientList, tokenOrder };
 }
 
-function buildRecipeFromForm({ strict = true } = {}) {
-  const title = document.getElementById('title').value.trim();
-  const slug = document.getElementById('slug').value.trim();
-  const notes = document.getElementById('notes').value.trim();
-  const categoriesRaw = document.getElementById('categories').value.trim();
-  const defaultBase = Number(document.getElementById('default-base').value) || 1;
+function buildRecipeDraft() {
+  clearValidationHighlights();
+  const issues = [];
+
+  const titleInput = document.getElementById('title');
+  const slugInput = document.getElementById('slug');
+  const notesInput = document.getElementById('notes');
+  const categoriesInput = document.getElementById('categories');
+  const defaultBaseInput = document.getElementById('default-base');
+
+  const title = titleInput.value.trim();
+  const slug = slugInput.value.trim();
+  const notes = notesInput.value.trim();
+  const categoriesRaw = categoriesInput.value.trim();
+  const defaultBase = Number(defaultBaseInput.value) || 1;
   const categories = categoriesRaw
     ? categoriesRaw
         .split(',')
@@ -275,23 +319,52 @@ function buildRecipeFromForm({ strict = true } = {}) {
         .filter(Boolean)
     : [];
 
-  if (strict && !title) throw new Error('Please add a recipe title.');
-  if (strict && !slug) throw new Error('Please set a recipe ID.');
-
-  const { ingredientList, tokenOrder } = buildIngredientsFromForm();
-
-  if (strict && tokenOrder.length === 0) {
-    throw new Error('Add at least one ingredient.');
+  if (!title) {
+    issues.push('Add a recipe title.');
+    markInvalid(titleInput);
   }
+
+  if (!slug) {
+    issues.push('Add a recipe ID.');
+    markInvalid(slugInput);
+  } else if (!/^[a-z0-9-]+$/.test(slug)) {
+    issues.push('Recipe ID can only contain letters, numbers, and dashes.');
+    markInvalid(slugInput);
+  }
+
+  if (categories.length === 0) {
+    issues.push('Add at least one category.');
+    markInvalid(categoriesInput);
+  }
+
+  if (!Number.isFinite(defaultBase) || defaultBase <= 0) {
+    issues.push('Batch size must be a positive number.');
+    markInvalid(defaultBaseInput);
+  }
+
+  const { ingredientList, tokenOrder } = buildIngredientsFromForm(issues);
 
   const stepsRawLines = [];
   const tokenUsage = [];
   const stepRows = [...stepsListEl.querySelectorAll('.step-row')];
   stepRows.forEach((row, index) => {
-    const text = row.querySelector('.step-text').value.trim();
-    const selectedTokens = [...row.querySelectorAll('.step-ingredients input:checked')].map((cb) => cb.value);
-    if (strict && !text) throw new Error(`Step ${index + 1} needs instructions.`);
-    if (strict && selectedTokens.length === 0) throw new Error(`Select ingredients for step ${index + 1}.`);
+    const textInput = row.querySelector('.step-text');
+    const text = textInput.value.trim();
+    const checkboxes = [...row.querySelectorAll('.step-ingredients input')];
+    const selectedTokens = checkboxes.filter((cb) => cb.checked).map((cb) => cb.value);
+
+    if (!text) {
+      issues.push(`Step ${index + 1} needs instructions.`);
+      markInvalid(textInput);
+    }
+
+    if (selectedTokens.length === 0) {
+      issues.push(`Select ingredients for step ${index + 1}.`);
+      checkboxes.forEach((cb) => markInvalid(cb.closest('label')));
+    }
+
+    if (!text || selectedTokens.length === 0) return;
+
     let stepText = text;
     selectedTokens.forEach((token) => {
       const tokenPattern = new RegExp(`{{\\s*${token}\\s*}}`);
@@ -308,8 +381,13 @@ function buildRecipeFromForm({ strict = true } = {}) {
     }
   });
 
-  if (strict && stepsRawLines.length === 0) {
-    throw new Error('Add at least one step.');
+  if (stepsRawLines.length === 0) {
+    issues.push('Add at least one step with instructions and ingredients.');
+  }
+
+  const unusedTokens = tokenOrder.filter((token) => !tokenUsage.includes(token));
+  if (unusedTokens.length) {
+    issues.push(`Select where to use ${unusedTokens.length > 1 ? 'these ingredients' : 'this ingredient'}: ${unusedTokens.join(', ')}.`);
   }
 
   const compatibility = { gluten_free: true, egg_free: true, dairy_free: true };
@@ -323,7 +401,7 @@ function buildRecipeFromForm({ strict = true } = {}) {
     });
   });
 
-  return {
+  const recipe = {
     id: slug,
     title,
     base_kind: 'multiplier',
@@ -339,10 +417,22 @@ function buildRecipeFromForm({ strict = true } = {}) {
     default_pan: null,
     compatibility_possible: compatibility,
   };
+
+  return { recipe, issues };
+}
+
+function buildRecipeFromForm({ strict = true } = {}) {
+  const { recipe, issues } = buildRecipeDraft();
+  if (strict && issues.length) {
+    const error = new Error('Please fix the highlighted items.');
+    error.issues = issues;
+    throw error;
+  }
+  return recipe;
 }
 
 function buildPreviewRecipe() {
-  const recipe = buildRecipeFromForm({ strict: false });
+  const { recipe } = buildRecipeDraft();
   const ingredientMap = {};
   (recipe.ingredients || []).forEach((entry) => {
     if (entry?.token) {
@@ -443,8 +533,22 @@ function promptFamilyPassword() {
 }
 
 function showStatus(message, kind = 'info') {
-  statusEl.textContent = message;
+  statusEl.textContent = '';
   statusEl.className = `status ${kind}`;
+  if (Array.isArray(message)) {
+    const intro = document.createElement('div');
+    intro.textContent = 'Please fix these issues:';
+    statusEl.appendChild(intro);
+    const list = document.createElement('ul');
+    message.forEach((item) => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      list.appendChild(li);
+    });
+    statusEl.appendChild(list);
+  } else {
+    statusEl.textContent = message;
+  }
 }
 
 function resetFormForNewEntry() {
@@ -479,7 +583,11 @@ async function handleSubmit(evt) {
     statusEl.appendChild(document.createElement('br'));
     statusEl.appendChild(submitAnother);
   } catch (err) {
-    showStatus(err.message || 'Unable to submit', 'error');
+    if (err.issues && Array.isArray(err.issues)) {
+      showStatus(err.issues, 'error');
+    } else {
+      showStatus(err.message || 'Unable to submit', 'error');
+    }
   }
 }
 
