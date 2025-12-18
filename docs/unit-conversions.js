@@ -23,5 +23,12 @@ export const UNIT_CONVERSIONS = {
       oz: { label: 'ounce', plural: 'ounces', to_base: 28.3495 },
       lb: { label: 'pound', plural: 'pounds', to_base: 453.592 }
     }
+  },
+  count: {
+    label: 'Count',
+    base: 'count',
+    units: {
+      count: { label: 'count', plural: 'count', to_base: 1 }
+    }
   }
 };

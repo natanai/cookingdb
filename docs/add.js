@@ -58,7 +58,7 @@ function attachHelpTrigger(button, key) {
 
 const ingredientNameSet = new Set();
 const categorySet = new Set();
-const unitSet = new Set();
+const unitChoices = new Map();
 const unitSelects = new Set();
 const sectionSet = new Set();
 const unitFrequency = new Map();
@@ -113,9 +113,22 @@ function updateDependencySuggestions() {
 
 function loadUnitsFromConversions() {
   Object.values(UNIT_CONVERSIONS).forEach((group) => {
-    Object.keys(group.units || {}).forEach((unit) => unitSet.add(unit));
+    Object.entries(group.units || {}).forEach(([unitKey, unitDef]) => {
+      unitChoices.set(unitKey, buildUnitDisplay(unitKey, unitDef));
+    });
   });
   syncUnitSelects();
+}
+
+function buildUnitDisplay(unitKey, unitDef) {
+  if (!unitDef || !unitDef.label) return unitKey;
+  const label = unitDef.label;
+  const labelNormalized = label.toLowerCase();
+  const pluralNormalized = unitDef.plural ? unitDef.plural.toLowerCase() : '';
+  if (labelNormalized === unitKey.toLowerCase() || pluralNormalized === unitKey.toLowerCase()) {
+    return label;
+  }
+  return `${label} (${unitKey})`;
 }
 
 function syncCategoryOptions() {
@@ -153,12 +166,12 @@ function syncUnitSelect(selectEl, preferredValue = '') {
   fragment.appendChild(placeholder);
 
   let valueMatched = false;
-  [...unitSet]
-    .sort((a, b) => a.localeCompare(b))
-    .forEach((unit) => {
+  [...unitChoices.entries()]
+    .sort((a, b) => a[1].localeCompare(b[1]))
+    .forEach(([unit, display]) => {
       const opt = document.createElement('option');
       opt.value = unit;
-      opt.textContent = unit;
+      opt.textContent = display;
       if (unit === targetValue) {
         opt.selected = true;
         valueMatched = true;
@@ -222,7 +235,7 @@ async function loadExistingRecipes() {
           tokenData.options.forEach((opt) => {
             if (opt.display) ingredientNameSet.add(opt.display);
             if (opt.unit) {
-              unitSet.add(opt.unit);
+              unitChoices.set(opt.unit, unitChoices.get(opt.unit) || opt.unit);
               recordUnitFrequency(token, opt.unit);
             }
             if (opt.section) sectionSet.add(opt.section);
