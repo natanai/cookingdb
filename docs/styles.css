@@ -1827,3 +1827,103 @@ main {
     page-break-inside: avoid;
   }
 }
+
+body.add-page details.mobile-preview > summary {
+  display: none;
+}
+
+/* ===========================
+   Add Recipe: Full-bleed mobile
+   =========================== */
+@media (max-width: 640px), (pointer: coarse) {
+  /* remove outer gutters so inputs can use the screen */
+  body.add-page {
+    background-image: none; /* optional: reduces visual noise */
+  }
+
+  body.add-page .page-shell {
+    padding-left: max(8px, env(safe-area-inset-left));
+    padding-right: max(8px, env(safe-area-inset-right));
+    padding-top: max(8px, env(safe-area-inset-top));
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+    max-width: none;
+  }
+
+  /* remove “card” framing for mobile editor */
+  body.add-page .hero,
+  body.add-page .form-panel,
+  body.add-page .preview-panel {
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  /* kill the extra padding that stacks up */
+  body.add-page .form-panel,
+  body.add-page .preview-panel {
+    padding: 0 !important;
+  }
+
+  /* biggest win: remove fieldset box model on mobile */
+  body.add-page fieldset.field {
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 0 14px 0 !important;
+  }
+
+  /* keep legend readable without consuming width */
+  body.add-page fieldset.field legend {
+    padding: 0 !important;
+    margin: 0 0 6px 0 !important;
+  }
+
+  /* compact help text to avoid huge blocks */
+  body.add-page .help-text {
+    margin: 6px 0 0 0 !important;
+  }
+
+  /* Steps editor: reduce padding and remove “boxed inside boxed” feel */
+  body.add-page .step-row {
+    margin: 0 0 10px 0 !important;
+    padding: 10px !important;            /* was 1rem; shrink */
+    border-radius: 10px !important;      /* optional: can be 0 if you want sharper */
+  }
+
+  /* Make text inputs fill width; prevent iOS zoom by using 16px */
+  body.add-page input,
+  body.add-page select,
+  body.add-page textarea {
+    font-size: 16px;
+  }
+
+  body.add-page textarea.step-text {
+    width: 100%;
+  }
+
+  /* Ingredient table on mobile: allow horizontal breathing room */
+  body.add-page .table-scroll {
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  /* Sticky submit area should be full-bleed, not a rounded card */
+  body.add-page .recipe-actions {
+    border-radius: 0 !important;
+    margin: 0 !important;
+    left: 0;
+    right: 0;
+  }
+
+  body.add-page details.mobile-preview > summary {
+    display: block;
+    font-weight: 700;
+    margin: 0 0 0.35rem;
+    cursor: pointer;
+  }
+
+  body.add-page details.mobile-preview > .section-heading {
+    display: none;
+  }
+}
