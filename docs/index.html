@@ -13,10 +13,7 @@
       <h1 class="site-title">CookingDB</h1>
       <nav class="nav-links">
          <a href="#recipes-section">Browse recipes</a>
-  <a href="add.html" class="button secondary">Add recipe</a>
-</nav>
-
-        
+         <a href="add.html" class="button secondary">Add recipe</a>
       </nav>
     </div>
   </header>
@@ -36,11 +33,32 @@
             <label><input type="checkbox" id="filter-dairy" /> Dairy-free friendly</label>
           </div>
         </div>
+        <div class="result-toolbar" aria-live="polite">
+          <div id="result-summary" class="result-summary"></div>
+          <div class="toolbar-actions">
+            <div id="active-filters" class="active-filters" aria-live="polite"></div>
+            <button class="button tertiary" type="button" id="clear-filters">Clear filters</button>
+          </div>
+        </div>
         <div class="actions">
           <button class="button" type="button" id="pull-inbox">Pull from recipe inbox</button>
           <label class="remember-row"><input type="checkbox" id="remember-pull" /> Remember family password</label>
         </div>
         <div id="pull-status" class="status" aria-live="polite"></div>
+        <div class="helper-grid">
+          <div class="helper-card">
+            <h3>Quick start</h3>
+            <ul class="helper-list">
+              <li><strong>Search</strong> by meal name, ingredient, or category.</li>
+              <li><strong>Filter</strong> by dietary needs, then open <em>Categories</em> to narrow further.</li>
+              <li><strong>Inbox pulls</strong> add family submissions locally—no internet upload needed.</li>
+            </ul>
+          </div>
+          <div class="helper-card subtle">
+            <h3>Tip for next time</h3>
+            <p class="helper-copy">Leave "Remember family password" checked if you regularly import inbox recipes. Uncheck it on shared devices.</p>
+          </div>
+        </div>
         <details class="category-panel" id="category-panel">
           <summary class="category-summary">
             <span class="summary-label">Categories</span>
