@@ -84,8 +84,8 @@ body {
 }
 
 .hero {
-  margin: 0;
-  padding: 0;
+  margin: 0.5rem;
+  padding: 0.5rem;
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, #fffdf9 0%, #fff7ea 100%);
   color: var(--text);
@@ -181,13 +181,13 @@ body {
 
 .filter-bar {
   display: grid;
-  gap: 0;
+  gap: 0.75rem;
   grid-template-columns: 1fr;
-  margin-top: 0;
+  margin-top: 0.5rem;
 }
 
 .refine-panel {
-  margin-top: 0;
+  margin-top: 12px;
 }
 
 .refine-summary {
@@ -197,7 +197,7 @@ body {
   justify-content: space-between;
   gap: 12px;
 
-  padding: 0;
+  padding: 5px 5px;
   border: 1px solid var(--border);
   border-radius: 14px;
   background: var(--paper);
@@ -215,7 +215,7 @@ body {
 }
 
 .refine-body {
-  margin-top: 0;
+  margin-top: 5px;
 }
 
 #filter-panel {
@@ -236,7 +236,7 @@ body {
   background: #fff;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 0;
+  padding: 0.5rem 0.5rem;
 }
 
 .search-field input {
@@ -1930,10 +1930,10 @@ main {
 @media (max-width: 680px) {
   /* reclaim vertical space in the recipe box */
   .hero {
-    padding: 0;
+    padding: 5px 0 5px;
   }
   .hero-content {
-    padding: 0;
+    padding: 5px 5px;
   }
   .hero-subtitle {
     display: none;
@@ -1944,7 +1944,7 @@ main {
 
   /* keep the refine summary comfortably tappable */
   .refine-summary {
-    padding: 0;
+    padding: 5px 5px;
   }
 
   /* inside refine, tighten spacing a bit */
