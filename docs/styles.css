@@ -237,6 +237,26 @@ main {
   gap: 0.4rem;
 }
 
+.dietary-mini {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.dietary-mini .mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  background: #f6eee4;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
 .card-categories {
   display: flex;
   flex-wrap: wrap;

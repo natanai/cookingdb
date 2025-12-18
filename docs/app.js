@@ -191,9 +191,36 @@ function renderRecipes(recipes) {
     const tags = document.createElement('div');
     tags.className = 'tags';
     const compatibility = recipe.compatibility_possible || {};
-    tags.appendChild(createTag(DIETARY_TAGS.gluten_free, compatibility.gluten_free));
-    tags.appendChild(createTag(DIETARY_TAGS.egg_free, compatibility.egg_free));
-    tags.appendChild(createTag(DIETARY_TAGS.dairy_free, compatibility.dairy_free));
+    const dietaryFiltersSelected = filters.gluten || filters.egg || filters.dairy;
+    if (dietaryFiltersSelected) {
+      const dietaryMini = document.createElement('div');
+      dietaryMini.className = 'dietary-mini';
+      if (filters.gluten && compatibility.gluten_free) {
+        const badge = document.createElement('span');
+        badge.className = 'mini';
+        badge.textContent = 'GF';
+        badge.setAttribute('aria-label', DIETARY_TAGS.gluten_free.positive);
+        dietaryMini.appendChild(badge);
+      }
+      if (filters.egg && compatibility.egg_free) {
+        const badge = document.createElement('span');
+        badge.className = 'mini';
+        badge.textContent = 'EF';
+        badge.setAttribute('aria-label', DIETARY_TAGS.egg_free.positive);
+        dietaryMini.appendChild(badge);
+      }
+      if (filters.dairy && compatibility.dairy_free) {
+        const badge = document.createElement('span');
+        badge.className = 'mini';
+        badge.textContent = 'DF';
+        badge.setAttribute('aria-label', DIETARY_TAGS.dairy_free.positive);
+        dietaryMini.appendChild(badge);
+      }
+
+      if (dietaryMini.childElementCount > 0) {
+        tags.appendChild(dietaryMini);
+      }
+    }
     if (recipe._source === 'inbox') {
       const badge = document.createElement('span');
       badge.className = 'pill inbox-pill';
