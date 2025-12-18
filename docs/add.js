@@ -10,6 +10,7 @@ import {
   groupLinesBySection,
   recipeDefaultCompatibility,
 } from './recipe-utils.js';
+import { UNIT_CONVERSIONS } from './unit-conversions.js';
 
 const ingredientRowsEl = document.getElementById('ingredient-rows');
 const stepsListEl = document.getElementById('steps-list');
@@ -76,6 +77,13 @@ function updateSectionSuggestions() {
 function updateDependencySuggestions() {
   dependencySuggestionsEl.innerHTML = '';
   ingredientChoices().forEach(({ token }) => addOptionToDatalist(dependencySuggestionsEl, token));
+}
+
+function loadUnitsFromConversions() {
+  Object.values(UNIT_CONVERSIONS).forEach((group) => {
+    Object.keys(group.units || {}).forEach((unit) => unitSet.add(unit));
+  });
+  syncUnitSelects();
 }
 
 function syncCategoryOptions() {
@@ -939,6 +947,7 @@ function bootstrap() {
   document.getElementById('notes').addEventListener('input', refreshPreview);
   document.getElementById('default-base').addEventListener('input', refreshPreview);
 
+  loadUnitsFromConversions();
   syncCategoryOptions();
 
   document.getElementById('add-ingredient').addEventListener('click', () => {
