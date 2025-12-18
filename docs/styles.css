@@ -1470,6 +1470,78 @@ main {
   justify-content: center;
 }
 
+.add-page .ingredient-advanced {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.75rem;
+  margin-top: 0.35rem;
+  background: #fffdf9;
+}
+
+.add-page .ingredient-advanced-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+@media (max-width: 700px) {
+  .add-page .ingredient-advanced-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.add-page .advanced-group,
+.add-page .choice-block,
+.add-page .conditional-block {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+}
+
+.add-page .choice-toggle,
+.add-page .conditional-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.add-page .choice-fields,
+.add-page .conditional-fields {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+  padding-left: 0.4rem;
+  border: 0;
+  padding-top: 0;
+}
+
+.add-page .choice-fields[hidden],
+.add-page .conditional-fields[hidden] {
+  display: none !important;
+}
+
+.add-page .infield {
+  position: relative;
+}
+
+.add-page .infield input {
+  padding-right: 2.2rem;
+  min-width: 0;
+}
+
+.add-page .infield .help-icon {
+  position: absolute;
+  right: 0.45rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  line-height: 1.5rem;
+  text-align: center;
+}
+
 .ingredient-more-toggle,
 .step-more-toggle {
   border: 1px solid var(--border);
