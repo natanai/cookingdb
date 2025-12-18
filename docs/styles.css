@@ -1405,6 +1405,13 @@ main {
   gap: 0.35rem;
 }
 
+.input-with-help {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.3rem;
+}
+
 .inline-group-with-help {
   display: flex;
   align-items: center;

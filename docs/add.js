@@ -32,13 +32,21 @@ const HELP_TEXT = {
     'Pick the cookbook sections that fit. Hold Control (or Command on a Mac) to highlight more than one so the family can find it easily.',
   batch: 'Leave this as 1 for a normal batch. Change it if the written recipe already makes two pans or another multiplier so scaling works correctly.',
   ingredients:
-    'Enter every ingredient line with an amount and unit. Fractions such as "1/2" or "1 1/2" work. Use a section label like "Sauce" or "Filling" when the recipe has parts, and open “More options” for substitutions or conditional items if needed.',
+    'Enter every ingredient line with an amount and unit. Use a section label like "Sauce" or "Filling" when the recipe has parts, and open “More options” for substitutions or conditional items if needed.',
   steps:
     'Write the steps in the order you cook them. For each step, click the ingredients it uses so the preview stays accurate. Add step sections like "Prep" or "Bake" when grouping instructions helps.',
   showWhen:
     '“Show when” hides this ingredient unless someone picks a matching choice from the ingredient options (token and option come from the ingredient choices). Use it for optional toppings or flavor variations.',
   inlineGroup:
     'Inline group keeps certain ingredients on the same printed line. Give related items the same short key, like putting "sauce" on both “1 c sauce” and “1/2 c water” to show them together.',
+  amount:
+    'Type the quantity exactly as written. Fractions like "1/2" or "1 1/2" are okay, and you can add words like "scant" before the number if that is how the card is written.',
+  sectionLabel:
+    'Section label adds a small heading above related ingredients, such as "Dough" or "Topping." Leave it blank if the recipe is a single part.',
+  altNote:
+    'Alternative note explains a swap or option for this ingredient, like "use almonds instead" or "skip for nut-free." It shows right next to the ingredient in the preview.',
+  optionValue:
+    'Option value must match the exact choice someone clicks from ingredient options, like "extra cheese" or "no nuts." When that choice is picked, this ingredient will show (or stay hidden).',
 };
 
 function attachHelpTrigger(button, key) {
@@ -273,7 +281,10 @@ function createIngredientRow(defaults = {}) {
   row.innerHTML = `
     <div class="ingredient-main">
       <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient name" aria-label="Ingredient name" />
-      <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
+      <div class="input-with-help">
+        <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
+        <button type="button" class="help-icon amount-help" data-help-key="amount" aria-label="Help: amount">?</button>
+      </div>
       <select class="ingredient-unit" aria-label="Unit"></select>
       <div class="dietary-slot"></div>
       <button type="button" class="ingredient-more-toggle" aria-expanded="false" aria-label="More options">+</button>
@@ -282,12 +293,21 @@ function createIngredientRow(defaults = {}) {
 
     <div class="ingredient-advanced" hidden>
       <div class="ingredient-advanced-grid">
-        <input class="ingredient-section" list="section-suggestions" placeholder="Section label" aria-label="Ingredient section" />
-        <input class="ingredient-alt" placeholder="Alternative note" aria-label="Alternative or substitution" />
+        <div class="input-with-help">
+          <input class="ingredient-section" list="section-suggestions" placeholder="Section label" aria-label="Ingredient section" />
+          <button type="button" class="help-icon section-help" data-help-key="sectionLabel" aria-label="Help: section label">?</button>
+        </div>
+        <div class="input-with-help">
+          <input class="ingredient-alt" placeholder="Alternative note" aria-label="Alternative or substitution" />
+          <button type="button" class="help-icon alt-help" data-help-key="altNote" aria-label="Help: alternative note">?</button>
+        </div>
           <div class="show-when-group">
             <div class="show-when-inputs">
               <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
-              <input class="ingredient-dep-option" placeholder="Option value" aria-label="Dependency option" />
+              <div class="input-with-help">
+                <input class="ingredient-dep-option" placeholder="Option value" aria-label="Dependency option" />
+                <button type="button" class="help-icon option-help" data-help-key="optionValue" aria-label="Help: option value">?</button>
+              </div>
             </div>
           <button type="button" class="help-icon show-when-help" data-help-key="showWhen" aria-label="How show-when works">?</button>
         </div>
@@ -314,6 +334,10 @@ function createIngredientRow(defaults = {}) {
   const advancedPanel = row.querySelector('.ingredient-advanced');
   const showWhenHelp = row.querySelector('.show-when-help');
   const inlineGroupHelp = row.querySelector('.inline-group-help');
+  const amountHelp = row.querySelector('.amount-help');
+  const sectionHelp = row.querySelector('.section-help');
+  const altHelp = row.querySelector('.alt-help');
+  const optionHelp = row.querySelector('.option-help');
 
   nameInput.value = defaults.name || '';
   sectionInput.value = defaults.section || '';
@@ -372,6 +396,10 @@ function createIngredientRow(defaults = {}) {
 
   attachHelpTrigger(showWhenHelp, 'showWhen');
   attachHelpTrigger(inlineGroupHelp, 'inlineGroup');
+  attachHelpTrigger(amountHelp, 'amount');
+  attachHelpTrigger(sectionHelp, 'sectionLabel');
+  attachHelpTrigger(altHelp, 'altNote');
+  attachHelpTrigger(optionHelp, 'optionValue');
 
   row.querySelector('.remove-ingredient').addEventListener('click', () => {
     unitSelects.delete(unitInput);
