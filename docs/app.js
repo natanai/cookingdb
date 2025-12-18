@@ -166,7 +166,7 @@ function renderRecipes(recipes) {
   }
   visible.forEach((recipe) => {
     const li = document.createElement('li');
-    li.className = 'recipe-card recipe-row';
+    li.className = 'recipe-row';
     if (recipe._source === 'inbox' && !recipe.has_details) {
       li.classList.add('recipe-card-incomplete');
     }
@@ -190,12 +190,9 @@ function renderRecipes(recipes) {
       link.title = 'Recipe details not yet available';
     }
 
-    const rowTop = document.createElement('div');
-    rowTop.className = 'recipe-row-top';
     const title = document.createElement('span');
     title.className = 'recipe-row-title';
     title.textContent = recipe.title;
-    rowTop.appendChild(title);
 
     const flagContainer = document.createElement('span');
     flagContainer.className = 'recipe-row-flags';
@@ -208,27 +205,9 @@ function renderRecipes(recipes) {
       badge.setAttribute('aria-label', flag.title);
       flagContainer.appendChild(badge);
     });
-    rowTop.appendChild(flagContainer);
 
-    const rowBottom = document.createElement('div');
-    rowBottom.className = 'recipe-row-bottom';
-    const categories = document.createElement('span');
-    categories.className = 'recipe-row-categories';
-    const categoryList = recipe.categories && recipe.categories.length ? recipe.categories.join(' · ') : 'Uncategorized';
-    categories.textContent = categoryList;
-    rowBottom.appendChild(categories);
-
-    const warnings = document.createElement('span');
-    warnings.className = 'recipe-row-warnings';
-    const warningMessages = [];
-    if (containsGluten) warningMessages.push(DIETARY_TAGS.gluten_free.negative);
-    if (containsEgg) warningMessages.push(DIETARY_TAGS.egg_free.negative);
-    if (containsDairy) warningMessages.push(DIETARY_TAGS.dairy_free.negative);
-    warnings.textContent = warningMessages.join(' · ');
-    rowBottom.appendChild(warnings);
-
-    link.appendChild(rowTop);
-    link.appendChild(rowBottom);
+    link.appendChild(title);
+    link.appendChild(flagContainer);
     li.appendChild(link);
     listEl.appendChild(li);
   });
