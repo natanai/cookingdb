@@ -484,12 +484,8 @@ function setupPanControls(recipe, state, rerender) {
   const panSelect = document.getElementById('pan-select');
   const panNote = document.getElementById('pan-note');
 
-  const panSizes = Array.isArray(recipe?.pan_sizes) ? recipe.pan_sizes : [];
-  const hasDefaultPan = Boolean(recipe?.default_pan);
-
-  if (!panControls || !panSelect || !panNote || panSizes.length === 0 || !hasDefaultPan) {
+  if (!panControls || !panSelect || !panNote || !recipe?.pan_sizes?.length) {
     state.panMultiplier = 1;
-    state.selectedPanId = null;
     if (panControls) {
       panControls.hidden = true;
       panSelect.innerHTML = '';
@@ -501,7 +497,7 @@ function setupPanControls(recipe, state, rerender) {
   panControls.hidden = false;
   panSelect.innerHTML = '';
 
-  panSizes.forEach((pan) => {
+  recipe.pan_sizes.forEach((pan) => {
     const optionEl = document.createElement('option');
     optionEl.value = pan.id;
     optionEl.textContent = pan.label || pan.id;
@@ -509,24 +505,14 @@ function setupPanControls(recipe, state, rerender) {
     panSelect.appendChild(optionEl);
   });
 
-  const basePan = panSizes.find((p) => p.id === recipe.default_pan);
-  if (!basePan) {
-    state.panMultiplier = 1;
-    state.selectedPanId = null;
-    panControls.hidden = true;
-    panSelect.innerHTML = '';
-    panNote.textContent = '';
-    return;
-  }
-
-  state.selectedPanId = basePan.id;
+  const basePan = recipe.pan_sizes.find((p) => p.id === recipe.default_pan) || recipe.pan_sizes[0];
   const baseArea = panArea(basePan);
 
   const updatePanMultiplier = () => {
     const selectedId = panSelect.value;
     state.selectedPanId = selectedId;
 
-    const selectedPan = panSizes.find((p) => p.id === selectedId);
+    const selectedPan = recipe.pan_sizes.find((p) => p.id === selectedId);
     const selectedArea = panArea(selectedPan);
 
     if (!baseArea || !selectedArea) {
