@@ -34,20 +34,20 @@ const HELP_TEXT = {
     'Enter name, amount, and unit for each line. Use a section label like “Sauce” or “Filling” when the recipe has parts.',
   steps:
     'Write steps in cooking order. Click the ingredients each step uses so the preview stays accurate.',
-  showWhen:
-    'Hide this ingredient unless a matching dropdown choice is picked. Example: token broth-type, option chicken.',
-  inlineGroup:
-    'Keep items on the same printed line. Give related lines the same short key, like “sauce.”',
+  showWhen: 'Only include this ingredient when another dropdown is set to a specific option.',
+  inlineGroup: 'Use the same short key to keep related items on one line, such as “salt + pepper.”',
   amount: 'Type the amount exactly as written, such as “1 1/2” or “scant 1 cup.”',
-  sectionLabel: 'Adds a small heading above related ingredients, like “Dough” or “Topping.”',
-  altNote: 'Explain a swap right on the line, e.g., “use almonds instead” or “skip if nut-free.”',
-  optionValue:
-    'Normal recipes can ignore this. For dropdown swaps, this is the option key (like “beef” or “yogurt”); leave blank to use the ingredient name.',
-  choiceWhat:
-    'A dropdown swap lets the reader pick between options and updates ingredients and steps automatically.',
-  choiceGroup: 'Use the same Choice group on every option that belongs together. Example: “Broth type.”',
-  choiceLabel: 'Shown on the recipe page as “Swap ___.” Leave blank to reuse the group name.',
-  choiceDefault: 'Marks which option is picked first. If you skip it, the first option becomes default.',
+  sectionLabel: 'Adds a bold mini heading such as “Chicken” or “Sauce” above the related ingredients.',
+  alternativeNote: 'Shows as “(or …)” on the recipe line so families see swaps like “(or almond milk)”.',
+  altNote: 'Shows as “(or …)” on the recipe line so families see swaps like “(or almond milk)”.',
+  optionKey: 'Text families pick in the dropdown, like “beef broth” or “oat milk.”',
+  optionValue: 'Text families pick in the dropdown, like “beef broth” or “oat milk.”',
+  isChoiceOption: 'Turns this ingredient into one option in a dropdown swap.',
+  choiceGroup: 'Options with the same group name become one Swap menu, like “Broth type.”',
+  swapLabel: 'Label shown next to the swap dropdown, such as “Broth”; leave blank to reuse the group name.',
+  choiceLabel: 'Label shown next to the swap dropdown, such as “Broth”; leave blank to reuse the group name.',
+  isDefaultChoice: 'Sets which option shows first before anyone makes a swap.',
+  choiceDefault: 'Sets which option shows first before anyone makes a swap.',
 };
 
 function attachHelpTrigger(button, key) {
@@ -275,14 +275,14 @@ function ingredientChoices() {
     const name = row.querySelector('.ingredient-name')?.value.trim() || '';
     if (!name) return;
 
-    const isChoice = row.querySelector('.ingredient-is-choice')?.checked;
+    const isChoice = row.querySelector('.ingredient-choice-toggle')?.checked;
     if (isChoice) {
       const groupRaw = row.querySelector('.ingredient-choice-group')?.value.trim() || '';
       if (!groupRaw) return;
       const tokenBase = slugify(groupRaw);
       const token = uniqueToken(tokenBase, tokenCounts, { enforceUnique: false });
       if (seenTokens.has(token)) return;
-      const label = row.querySelector('.ingredient-choice-label')?.value.trim() || groupRaw;
+      const label = row.querySelector('.ingredient-choice-swap-label')?.value.trim() || groupRaw;
       seenTokens.add(token);
       choices.push({ token, name: label || groupRaw });
       return;
@@ -338,96 +338,96 @@ function createIngredientRow(defaults = {}) {
 
     <div class="ingredient-advanced" hidden>
       <div class="ingredient-advanced-grid">
-        <div class="input-with-help">
-          <input class="ingredient-section" list="section-suggestions" placeholder="Section label" aria-label="Ingredient section" />
-          <button type="button" class="help-icon section-help" data-help-key="sectionLabel" aria-label="Help: section label">?</button>
-        </div>
-        <div class="input-with-help">
-          <input class="ingredient-alt" placeholder="Alternative note" aria-label="Alternative or substitution" />
-          <button type="button" class="help-icon alt-help" data-help-key="altNote" aria-label="Help: alternative note">?</button>
-        </div>
-        <div class="input-with-help">
-          <input
-            class="ingredient-option"
-            placeholder="Option value for dropdowns (we’ll use the name if empty)"
-            aria-label="Option value"
-          />
-          <button type="button" class="help-icon option-help" data-help-key="optionValue" aria-label="Help: option value">?</button>
-        </div>
-          <div class="show-when-group">
-            <div class="show-when-inputs">
-              <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
-              <div class="input-with-help">
-                <input class="ingredient-dep-option" placeholder="Show when option value" aria-label="Dependency option" />
-                <button type="button" class="help-icon option-help" data-help-key="optionValue" aria-label="Help: option value">?</button>
-              </div>
-            </div>
-          <button type="button" class="help-icon show-when-help" data-help-key="showWhen" aria-label="How show-when works">?</button>
-        </div>
-        <div class="inline-group-with-help">
-          <input class="ingredient-group" placeholder="Inline group key" aria-label="Inline group key" />
-          <button type="button" class="help-icon inline-group-help" data-help-key="inlineGroup" aria-label="How inline grouping works">?</button>
-        </div>
-      </div>
-      <div class="choice-block">
-        <label class="choice-toggle">
-          <input type="checkbox" class="ingredient-is-choice" />
-          <span>Dropdown choice option</span>
-          <button type="button" class="help-icon" data-help-key="choiceWhat" aria-label="Help: dropdown choice">?</button>
-        </label>
-        <div class="choice-fields" hidden>
-          <div class="input-with-help">
-            <input
-              class="ingredient-choice-group"
-              placeholder="Use the same group name on each option, like “Broth type” (required)"
-              aria-label="Choice group"
-            />
-            <button type="button" class="help-icon" data-help-key="choiceGroup" aria-label="Help: choice group">?</button>
+        <div class="advanced-group">
+          <div class="infield">
+            <input class="ingredient-section" list="section-suggestions" placeholder="Section label" aria-label="Ingredient section" />
+            <button type="button" class="help-icon" data-help-key="sectionLabel" aria-label="Help: section label">?</button>
           </div>
-          <div class="input-with-help">
-            <input
-              class="ingredient-choice-label"
-              placeholder="Swap label shown to readers, like “Broth” (optional)"
-              aria-label="Choice label"
-            />
-            <button type="button" class="help-icon" data-help-key="choiceLabel" aria-label="Help: choice label">?</button>
+          <div class="infield">
+            <input class="ingredient-alt-note" placeholder="Alternative note" aria-label="Alternative or substitution" />
+            <button type="button" class="help-icon" data-help-key="alternativeNote" aria-label="Help: alternative note">?</button>
           </div>
-          <label class="choice-default">
-            <input type="checkbox" class="ingredient-choice-default" />
-            <span>Make this the default option</span>
-            <button type="button" class="help-icon" data-help-key="choiceDefault" aria-label="Help: default option">?</button>
+          <div class="infield">
+            <input class="ingredient-inline-group" placeholder="Inline group key" aria-label="Inline group key" />
+            <button type="button" class="help-icon" data-help-key="inlineGroup" aria-label="Help: inline group key">?</button>
+          </div>
+        </div>
+        <div class="choice-block">
+          <label class="choice-toggle">
+            <input type="checkbox" class="ingredient-choice-toggle" />
+            <span>Dropdown choice option</span>
+            <button type="button" class="help-icon" data-help-key="isChoiceOption" aria-label="Help: dropdown choice">?</button>
           </label>
+          <div class="choice-fields" hidden>
+            <div class="infield">
+              <input
+                class="ingredient-choice-group"
+                placeholder="Use the same group name on each option, like “Broth type” (required)"
+                aria-label="Choice group"
+              />
+              <button type="button" class="help-icon" data-help-key="choiceGroup" aria-label="Help: choice group">?</button>
+            </div>
+            <div class="infield">
+              <input
+                class="ingredient-choice-swap-label"
+                placeholder="Swap label shown to readers, like “Broth” (optional)"
+                aria-label="Choice label"
+              />
+              <button type="button" class="help-icon" data-help-key="swapLabel" aria-label="Help: swap label">?</button>
+            </div>
+            <div class="infield">
+              <input
+                class="ingredient-option-key"
+                placeholder="Option value for dropdowns (we’ll use the name if empty)"
+                aria-label="Option value"
+              />
+              <button type="button" class="help-icon" data-help-key="optionKey" aria-label="Help: option value">?</button>
+            </div>
+            <label class="choice-default">
+              <input type="checkbox" class="ingredient-default-choice" />
+              <span>Make this the default option</span>
+              <button type="button" class="help-icon" data-help-key="isDefaultChoice" aria-label="Help: default option">?</button>
+            </label>
+          </div>
+        </div>
+        <div class="conditional-block">
+          <label class="conditional-toggle">
+            <input type="checkbox" class="ingredient-conditional-toggle" />
+            <span>Only include this ingredient sometimes</span>
+          </label>
+          <div class="conditional-fields" hidden>
+            <div class="infield">
+              <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
+              <button type="button" class="help-icon" data-help-key="showWhen" aria-label="Help: show when ingredient">?</button>
+            </div>
+            <div class="infield">
+              <input class="ingredient-dep-option" placeholder="Show when option value" aria-label="Dependency option" />
+              <button type="button" class="help-icon" data-help-key="showWhen" aria-label="Help: show when option value">?</button>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
+    </div>
   `;
   row.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
   const nameInput = row.querySelector('.ingredient-name');
   const sectionInput = row.querySelector('.ingredient-section');
   const amountInput = row.querySelector('.ingredient-amount');
   const unitInput = row.querySelector('.ingredient-unit');
-  const altInput = row.querySelector('.ingredient-alt');
+  const altInput = row.querySelector('.ingredient-alt-note');
   const depTokenInput = row.querySelector('.ingredient-dep-token');
   const depOptionInput = row.querySelector('.ingredient-dep-option');
-  const optionInput = row.querySelector('.ingredient-option');
-  const groupInput = row.querySelector('.ingredient-group');
-  const isChoiceInput = row.querySelector('.ingredient-is-choice');
+  const optionInput = row.querySelector('.ingredient-option-key');
+  const groupInput = row.querySelector('.ingredient-inline-group');
+  const isChoiceInput = row.querySelector('.ingredient-choice-toggle');
   const choiceFields = row.querySelector('.choice-fields');
   const choiceGroupInput = row.querySelector('.ingredient-choice-group');
-  const choiceLabelInput = row.querySelector('.ingredient-choice-label');
-  const choiceDefaultInput = row.querySelector('.ingredient-choice-default');
+  const choiceLabelInput = row.querySelector('.ingredient-choice-swap-label');
+  const choiceDefaultInput = row.querySelector('.ingredient-default-choice');
+  const conditionalToggle = row.querySelector('.ingredient-conditional-toggle');
+  const conditionalFields = row.querySelector('.conditional-fields');
   const toggleButton = row.querySelector('.ingredient-more-toggle');
   const advancedPanel = row.querySelector('.ingredient-advanced');
-  const showWhenHelp = row.querySelector('.show-when-help');
-  const inlineGroupHelp = row.querySelector('.inline-group-help');
-  const amountHelp = row.querySelector('.amount-help');
-  const sectionHelp = row.querySelector('.section-help');
-  const altHelp = row.querySelector('.alt-help');
-  const optionHelpButtons = row.querySelectorAll('.option-help');
-  const choiceWhatHelp = row.querySelector('[data-help-key="choiceWhat"]');
-  const choiceGroupHelp = row.querySelector('[data-help-key="choiceGroup"]');
-  const choiceLabelHelp = row.querySelector('[data-help-key="choiceLabel"]');
-  const choiceDefaultHelp = row.querySelector('[data-help-key="choiceDefault"]');
 
   nameInput.value = defaults.name || '';
   sectionInput.value = defaults.section || '';
@@ -443,6 +443,13 @@ function createIngredientRow(defaults = {}) {
   choiceLabelInput.value = defaults.choice_label || '';
   choiceDefaultInput.checked = Boolean(defaults.choice_default);
   isChoiceInput.checked = Boolean(defaults.isChoice);
+  conditionalToggle.checked = Boolean(depTokenInput.value || depOptionInput.value);
+  if (
+    !isChoiceInput.checked &&
+    (choiceGroupInput.value || choiceLabelInput.value || optionInput.value || choiceDefaultInput.checked)
+  ) {
+    isChoiceInput.checked = true;
+  }
   unitInput.dataset.userChanged = 'false';
 
   const hasAdvancedDefaults = Boolean(
@@ -455,7 +462,8 @@ function createIngredientRow(defaults = {}) {
       choiceGroupInput.value ||
       choiceLabelInput.value ||
       choiceDefaultInput.checked ||
-      defaults.isChoice
+      conditionalToggle.checked ||
+      isChoiceInput.checked
   );
   if (hasAdvancedDefaults) {
     advancedPanel.hidden = false;
@@ -468,7 +476,12 @@ function createIngredientRow(defaults = {}) {
     row.classList.toggle('is-choice', isChoice);
     choiceFields.hidden = !isChoice;
   };
+  const syncConditionalFields = () => {
+    const isConditional = conditionalToggle.checked;
+    conditionalFields.hidden = !isConditional;
+  };
   syncChoiceFields();
+  syncConditionalFields();
 
   const handleChange = () => {
     ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
@@ -496,7 +509,30 @@ function createIngredientRow(defaults = {}) {
   row.addEventListener('change', handleChange);
 
   isChoiceInput.addEventListener('change', () => {
+    if (!isChoiceInput.checked) {
+      choiceGroupInput.value = '';
+      choiceLabelInput.value = '';
+      optionInput.value = '';
+      choiceDefaultInput.checked = false;
+    }
+    const hasChoiceValues = Boolean(
+      isChoiceInput.checked ||
+        choiceGroupInput.value ||
+        choiceLabelInput.value ||
+        optionInput.value ||
+        choiceDefaultInput.checked
+    );
+    isChoiceInput.checked = hasChoiceValues;
     syncChoiceFields();
+    handleChange();
+  });
+
+  conditionalToggle.addEventListener('change', () => {
+    if (!conditionalToggle.checked) {
+      depTokenInput.value = '';
+      depOptionInput.value = '';
+    }
+    syncConditionalFields();
     handleChange();
   });
 
@@ -511,16 +547,9 @@ function createIngredientRow(defaults = {}) {
     unitInput.dataset.userChanged = 'true';
   });
 
-  attachHelpTrigger(showWhenHelp, 'showWhen');
-  attachHelpTrigger(inlineGroupHelp, 'inlineGroup');
-  attachHelpTrigger(amountHelp, 'amount');
-  attachHelpTrigger(sectionHelp, 'sectionLabel');
-  attachHelpTrigger(altHelp, 'altNote');
-  optionHelpButtons.forEach((btn) => attachHelpTrigger(btn, 'optionValue'));
-  attachHelpTrigger(choiceWhatHelp, 'choiceWhat');
-  attachHelpTrigger(choiceGroupHelp, 'choiceGroup');
-  attachHelpTrigger(choiceLabelHelp, 'choiceLabel');
-  attachHelpTrigger(choiceDefaultHelp, 'choiceDefault');
+  row.querySelectorAll('.help-icon[data-help-key]').forEach((btn) => {
+    attachHelpTrigger(btn, btn.dataset.helpKey);
+  });
 
   row.querySelector('.remove-ingredient').addEventListener('click', () => {
     unitSelects.delete(unitInput);
@@ -692,29 +721,31 @@ function buildIngredientsFromForm(issues) {
     const sectionInput = row.querySelector('.ingredient-section');
     const amountInput = row.querySelector('.ingredient-amount');
     const unitInput = row.querySelector('.ingredient-unit');
-    const altInput = row.querySelector('.ingredient-alt');
+    const altInput = row.querySelector('.ingredient-alt-note');
     const depTokenInput = row.querySelector('.ingredient-dep-token');
     const depOptionInput = row.querySelector('.ingredient-dep-option');
-    const groupInput = row.querySelector('.ingredient-group');
-    const optionInput = row.querySelector('.ingredient-option');
-    const isChoiceInput = row.querySelector('.ingredient-is-choice');
+    const conditionalToggle = row.querySelector('.ingredient-conditional-toggle');
+    const groupInput = row.querySelector('.ingredient-inline-group');
+    const optionInput = row.querySelector('.ingredient-option-key');
+    const isChoiceInput = row.querySelector('.ingredient-choice-toggle');
     const choiceGroupInput = row.querySelector('.ingredient-choice-group');
-    const choiceLabelInput = row.querySelector('.ingredient-choice-label');
-    const choiceDefaultInput = row.querySelector('.ingredient-choice-default');
+    const choiceLabelInput = row.querySelector('.ingredient-choice-swap-label');
+    const choiceDefaultInput = row.querySelector('.ingredient-default-choice');
 
     const name = nameInput?.value.trim() || '';
     const section = sectionInput?.value.trim() || '';
     const amount = amountInput?.value.trim() || '';
     const unit = unitInput?.value.trim() || '';
     const alt = altInput?.value.trim() || '';
-    const depToken = depTokenInput?.value.trim() || '';
-    const depOption = depOptionInput?.value.trim() || '';
+    const isConditional = Boolean(conditionalToggle?.checked);
+    const depToken = isConditional ? depTokenInput?.value.trim() || '' : '';
+    const depOption = isConditional ? depOptionInput?.value.trim() || '' : '';
     const lineGroup = groupInput?.value.trim() || '';
-    const optionValue = optionInput?.value.trim() || '';
-    const choiceGroup = choiceGroupInput?.value.trim() || '';
-    const choiceLabel = choiceLabelInput?.value.trim() || '';
-    const isDefaultChoice = Boolean(choiceDefaultInput?.checked);
     const isChoice = Boolean(isChoiceInput?.checked);
+    const optionValue = isChoice ? optionInput?.value.trim() || '' : '';
+    const choiceGroup = isChoice ? choiceGroupInput?.value.trim() || '' : '';
+    const choiceLabel = isChoice ? choiceLabelInput?.value.trim() || '' : '';
+    const isDefaultChoice = isChoice && Boolean(choiceDefaultInput?.checked);
     const dietary = readDietaryFlags(row);
 
     const allEmpty =
