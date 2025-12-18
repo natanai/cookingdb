@@ -318,14 +318,16 @@ function createOptionRow(ingredientRow, defaults = {}) {
         </div>
           <div class="show-when-group">
             <div class="show-when-inputs">
-              <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
+              <div class="input-with-help">
+                <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
+                <button type="button" class="help-icon show-when-help" data-help-key="showWhen" aria-label="How show-when works">?</button>
+              </div>
               <div class="input-with-help">
                 <input class="ingredient-dep-option" placeholder="Option value" aria-label="Dependency option" />
                 <button type="button" class="help-icon option-help" data-help-key="optionValue" aria-label="Help: option value">?</button>
               </div>
             </div>
-          <button type="button" class="help-icon show-when-help" data-help-key="showWhen" aria-label="How show-when works">?</button>
-        </div>
+          </div>
         <div class="inline-group-with-help">
           <input class="ingredient-group" placeholder="Inline group key" aria-label="Inline group key" />
           <button type="button" class="help-icon inline-group-help" data-help-key="inlineGroup" aria-label="How inline grouping works">?</button>
@@ -508,14 +510,16 @@ function createIngredientRow(defaults = {}) {
         </div>
           <div class="show-when-group">
             <div class="show-when-inputs">
-              <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
+              <div class="input-with-help">
+                <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
+                <button type="button" class="help-icon show-when-help" data-help-key="showWhen" aria-label="How show-when works">?</button>
+              </div>
               <div class="input-with-help">
                 <input class="ingredient-dep-option" placeholder="Option value" aria-label="Dependency option" />
                 <button type="button" class="help-icon option-help" data-help-key="optionValue" aria-label="Help: option value">?</button>
               </div>
             </div>
-          <button type="button" class="help-icon show-when-help" data-help-key="showWhen" aria-label="How show-when works">?</button>
-        </div>
+          </div>
         <div class="inline-group-with-help">
           <input class="ingredient-group" placeholder="Inline group key" aria-label="Inline group key" />
           <button type="button" class="help-icon inline-group-help" data-help-key="inlineGroup" aria-label="How inline grouping works">?</button>

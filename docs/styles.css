@@ -1447,10 +1447,23 @@ main {
 }
 
 .input-with-help {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 0.3rem;
+  position: relative;
+}
+
+.input-with-help input,
+.input-with-help select,
+.input-with-help textarea {
+  width: 100%;
+  padding-right: 2.35rem;
+  box-sizing: border-box;
+}
+
+.input-with-help .help-icon {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
 }
 
 .inline-group-with-help {
