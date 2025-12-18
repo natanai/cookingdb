@@ -326,7 +326,7 @@ function createIngredientRow(defaults = {}) {
   row.innerHTML = `
     <div class="ingredient-main">
       <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient name" aria-label="Ingredient name" />
-      <div class="input-with-help">
+      <div class="input-with-help inset-help">
         <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
         <button type="button" class="help-icon amount-help" data-help-key="amount" aria-label="Help: amount">?</button>
       </div>
@@ -338,15 +338,15 @@ function createIngredientRow(defaults = {}) {
 
     <div class="ingredient-advanced" hidden>
       <div class="ingredient-advanced-grid">
-        <div class="input-with-help">
+        <div class="input-with-help inset-help">
           <input class="ingredient-section" list="section-suggestions" placeholder="Section label" aria-label="Ingredient section" />
           <button type="button" class="help-icon section-help" data-help-key="sectionLabel" aria-label="Help: section label">?</button>
         </div>
-        <div class="input-with-help">
+        <div class="input-with-help inset-help">
           <input class="ingredient-alt" placeholder="Alternative note" aria-label="Alternative or substitution" />
           <button type="button" class="help-icon alt-help" data-help-key="altNote" aria-label="Help: alternative note">?</button>
         </div>
-        <div class="input-with-help">
+        <div class="input-with-help inset-help">
           <input
             class="ingredient-option"
             placeholder="Option value for dropdowns (we’ll use the name if empty)"
@@ -354,17 +354,19 @@ function createIngredientRow(defaults = {}) {
           />
           <button type="button" class="help-icon option-help" data-help-key="optionValue" aria-label="Help: option value">?</button>
         </div>
-          <div class="show-when-group">
-            <div class="show-when-inputs">
+        <div class="show-when-group">
+          <div class="show-when-inputs">
+            <div class="input-with-help inset-help">
               <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
-              <div class="input-with-help">
-                <input class="ingredient-dep-option" placeholder="Show when option value" aria-label="Dependency option" />
-                <button type="button" class="help-icon option-help" data-help-key="optionValue" aria-label="Help: option value">?</button>
-              </div>
             </div>
+            <div class="input-with-help inset-help">
+              <input class="ingredient-dep-option" placeholder="Show when option value" aria-label="Dependency option" />
+              <button type="button" class="help-icon option-help" data-help-key="optionValue" aria-label="Help: option value">?</button>
+            </div>
+          </div>
           <button type="button" class="help-icon show-when-help" data-help-key="showWhen" aria-label="How show-when works">?</button>
         </div>
-        <div class="inline-group-with-help">
+        <div class="input-with-help inset-help inline-group-with-help">
           <input class="ingredient-group" placeholder="Inline group key" aria-label="Inline group key" />
           <button type="button" class="help-icon inline-group-help" data-help-key="inlineGroup" aria-label="How inline grouping works">?</button>
         </div>
@@ -376,7 +378,7 @@ function createIngredientRow(defaults = {}) {
           <button type="button" class="help-icon" data-help-key="choiceWhat" aria-label="Help: dropdown choice">?</button>
         </label>
         <div class="choice-fields" hidden>
-          <div class="input-with-help">
+          <div class="input-with-help inset-help">
             <input
               class="ingredient-choice-group"
               placeholder="Use the same group name on each option, like “Broth type” (required)"
@@ -384,7 +386,7 @@ function createIngredientRow(defaults = {}) {
             />
             <button type="button" class="help-icon" data-help-key="choiceGroup" aria-label="Help: choice group">?</button>
           </div>
-          <div class="input-with-help">
+          <div class="input-with-help inset-help">
             <input
               class="ingredient-choice-label"
               placeholder="Swap label shown to readers, like “Broth” (optional)"

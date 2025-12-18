@@ -1419,20 +1419,25 @@ main {
 
 .ingredient-advanced-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.65rem 0.75rem;
 }
+
 
 .show-when-group {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0.4rem;
+  gap: 0.45rem;
   align-items: start;
+  padding: 0.55rem 0.65rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  background: #fffbf6;
+  position: relative;
 }
 
 .show-when-inputs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 0.35rem;
 }
 
@@ -1443,14 +1448,33 @@ main {
   gap: 0.3rem;
 }
 
-.inline-group-with-help {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
+.input-with-help.inset-help {
+  position: relative;
+  display: block;
 }
 
-.inline-group-with-help input {
-  flex: 1;
+.input-with-help.inset-help input,
+.input-with-help.inset-help select,
+.input-with-help.inset-help textarea {
+  width: 100%;
+  padding-right: 2.5rem;
+}
+
+.input-with-help.inset-help .help-icon {
+  position: absolute;
+  right: 0.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.inline-group-with-help.inset-help input {
+  width: 100%;
+}
+
+.show-when-help {
+  position: absolute;
+  right: 0.45rem;
+  top: 0.45rem;
 }
 
 .help-icon {
