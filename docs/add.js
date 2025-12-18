@@ -798,7 +798,7 @@ function renderPreview(recipe) {
 
   if (batchMultiplierEl) {
     const multiplier = Number(recipe.default_base) || 1;
-    batchMultiplierEl.textContent = `×${multiplier}`;
+    batchMultiplierEl.value = multiplier;
   }
 
   renderPreviewDietaryBadges(dietaryBadgesEl, defaultCompatibility, compatibilityPossible, hasChoiceTokens);

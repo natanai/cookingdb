@@ -83,9 +83,11 @@
         <h2 class="section-heading">Live preview</h2>
         <div id="preview-shell" class="preview-shell">
           <div class="recipe-shell">
+            <header class="preview-header">
+              <h3 class="site-title" id="preview-recipe-title">Recipe title</h3>
+            </header>
             <section class="hero">
               <div class="hero-content">
-                <h3 class="hero-title" id="preview-recipe-title">Recipe title</h3>
                 <details class="recipe-note" id="preview-recipe-note">
                   <summary>Cook’s note</summary>
                   <div class="recipe-note-body">
@@ -100,17 +102,18 @@
             </section>
             <main>
               <section class="controls preview-controls">
-                <div class="control-group">
-                  <div class="batch-display">Batch multiplier: <span id="preview-batch-multiplier">×1</span></div>
-                  <button class="button" type="button" disabled>🖨 Print</button>
-                </div>
+                <label class="batch-display" for="preview-batch-multiplier">Batch multiplier:
+                  <input type="number" id="preview-batch-multiplier" step="0.25" min="0.25" value="1" disabled />
+                </label>
+                <button class="button" type="button" disabled>🖨 Print</button>
+                <div class="control-note">Adjustments available after saving.</div>
               </section>
               <section class="preview-section">
-                <h4>Ingredients</h4>
+                <h2>Ingredients</h2>
                 <ul id="preview-ingredients"></ul>
               </section>
               <section class="preview-section">
-                <h4>Steps</h4>
+                <h2>Steps</h2>
                 <ol id="preview-steps"></ol>
               </section>
             </main>
