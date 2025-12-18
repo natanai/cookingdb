@@ -4,11 +4,13 @@ import {
   setRememberedPassword,
 } from './inbox/inbox-api.js';
 import {
-  DIETARY_TAGS,
   renderIngredientLines,
   renderStepLines,
   groupLinesBySection,
   recipeDefaultCompatibility,
+  selectOptionForToken,
+  optionMeetsRestrictions,
+  restrictionsActive,
 } from './recipe-utils.js';
 import { UNIT_CONVERSIONS } from './unit-conversions.js';
 
@@ -44,9 +46,19 @@ const HELP_TEXT = {
   sectionLabel:
     'Section label adds a small heading above related ingredients, such as "Dough" or "Topping." Leave it blank if the recipe is a single part.',
   altNote:
-    'Alternative note explains a swap or option for this ingredient, like "use almonds instead" or "skip for nut-free." It shows right next to the ingredient in the preview.',
+    'Alternative note is quick parenthetical text shown next to the line—like "(or use almonds)"—but it does not create a selectable swap. Use choice options below when you need someone to pick between versions.',
   optionValue:
     'Option value must match the exact choice someone clicks from ingredient options, like "extra cheese" or "no nuts." When that choice is picked, this ingredient will show (or stay hidden).',
+  choiceToggle:
+    'Check “Choice ingredient” when this line should offer a dropdown for swaps (for example, dairy vs. non-dairy milk). The base ingredient name stays as the default option, and any extra options you add become selectable alternatives.',
+  choiceLabel:
+    'Choice label is the heading above the swap selector, like "Milk type" or "Pick a crust." It does not replace your ingredient name; it just titles the dropdown people click.',
+  choiceDefault:
+    'Default option is what loads automatically. The base ingredient you typed is treated as the primary option, and you can pick any option (including that base) as the default so the preview mirrors the written card.',
+  choiceOptions:
+    'Options are the specific swaps for this ingredient. Add one row per version with its own amount and unit; the base ingredient name you typed remains one option, and these rows add the alternates. Option values connect steps or “show when” rules to the right choice.',
+  optionDisplay:
+    'Option name is what cooks will read, like "whole milk" or "oat milk." Use the wording from the card so it is recognizable in the preview and printed recipe.',
 };
 
 function attachHelpTrigger(button, key) {
@@ -62,6 +74,7 @@ const unitChoices = new Map();
 const unitSelects = new Set();
 const sectionSet = new Set();
 const unitFrequency = new Map();
+const previewSelections = { selectedOptions: {} };
 
 function slugify(text) {
   return text
@@ -288,6 +301,202 @@ function buildDietaryCheckboxes() {
   return wrapper;
 }
 
+function createOptionRow(ingredientRow, defaults = {}) {
+  const optionRow = document.createElement('div');
+  optionRow.className = 'ingredient-option-row';
+  optionRow.innerHTML = `
+    <div class="ingredient-main option-main">
+      <input class="option-value" placeholder="Option value" aria-label="Option value" />
+      <div class="input-with-help">
+        <input class="option-display" placeholder="Option name" aria-label="Option display" />
+        <button type="button" class="help-icon option-display-help" data-help-key="optionDisplay" aria-label="Help: option name">?</button>
+      </div>
+      <div class="input-with-help">
+        <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
+        <button type="button" class="help-icon amount-help" data-help-key="amount" aria-label="Help: amount">?</button>
+      </div>
+      <select class="ingredient-unit" aria-label="Unit"></select>
+      <div class="dietary-slot"></div>
+      <button type="button" class="ingredient-more-toggle" aria-expanded="false" aria-label="More options">+</button>
+      <button type="button" class="link-button remove-option">Remove option</button>
+    </div>
+
+    <div class="ingredient-advanced" hidden>
+      <div class="ingredient-advanced-grid">
+        <div class="input-with-help">
+          <input class="ingredient-section" list="section-suggestions" placeholder="Section label" aria-label="Ingredient section" />
+          <button type="button" class="help-icon section-help" data-help-key="sectionLabel" aria-label="Help: section label">?</button>
+        </div>
+        <div class="input-with-help">
+          <input class="ingredient-alt" placeholder="Alternative note" aria-label="Alternative or substitution" />
+          <button type="button" class="help-icon alt-help" data-help-key="altNote" aria-label="Help: alternative note">?</button>
+        </div>
+          <div class="show-when-group">
+            <div class="show-when-inputs">
+              <div class="input-with-help">
+                <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
+                <button type="button" class="help-icon show-when-help" data-help-key="showWhen" aria-label="How show-when works">?</button>
+              </div>
+              <div class="input-with-help">
+                <input class="ingredient-dep-option" placeholder="Option value" aria-label="Dependency option" />
+                <button type="button" class="help-icon option-help" data-help-key="optionValue" aria-label="Help: option value">?</button>
+              </div>
+            </div>
+          </div>
+        <div class="inline-group-with-help">
+          <input class="ingredient-group" placeholder="Inline group key" aria-label="Inline group key" />
+          <button type="button" class="help-icon inline-group-help" data-help-key="inlineGroup" aria-label="How inline grouping works">?</button>
+        </div>
+      </div>
+      <div class="field-help subtle">
+        Leave these blank unless you need sections, conditional ingredients, or to keep items on the same line.
+      </div>
+    </div>
+  `;
+
+  optionRow.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
+  const displayInput = optionRow.querySelector('.option-display');
+  const optionValueInput = optionRow.querySelector('.option-value');
+  const sectionInput = optionRow.querySelector('.ingredient-section');
+  const amountInput = optionRow.querySelector('.ingredient-amount');
+  const unitInput = optionRow.querySelector('.ingredient-unit');
+  const altInput = optionRow.querySelector('.ingredient-alt');
+  const depTokenInput = optionRow.querySelector('.ingredient-dep-token');
+  const depOptionInput = optionRow.querySelector('.ingredient-dep-option');
+  const groupInput = optionRow.querySelector('.ingredient-group');
+  const toggleButton = optionRow.querySelector('.ingredient-more-toggle');
+  const advancedPanel = optionRow.querySelector('.ingredient-advanced');
+  const showWhenHelp = optionRow.querySelector('.show-when-help');
+  const inlineGroupHelp = optionRow.querySelector('.inline-group-help');
+  const amountHelp = optionRow.querySelector('.amount-help');
+  const sectionHelp = optionRow.querySelector('.section-help');
+  const altHelp = optionRow.querySelector('.alt-help');
+  const optionHelp = optionRow.querySelector('.option-help');
+  const optionDisplayHelp = optionRow.querySelector('.option-display-help');
+  const setExpanded = (expanded) => {
+    toggleButton.setAttribute('aria-expanded', String(expanded));
+    toggleButton.textContent = expanded ? '−' : '+';
+    advancedPanel.hidden = !expanded;
+  };
+
+  toggleButton.addEventListener('click', () => {
+    const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
+    setExpanded(!expanded);
+  });
+
+  displayInput.value = defaults.display || defaults.name || '';
+  optionValueInput.value = defaults.option || '';
+  sectionInput.value = defaults.section || '';
+  amountInput.value = defaults.amount || defaults.ratio || '';
+  syncUnitSelect(unitInput, defaults.unit || '');
+  unitSelects.add(unitInput);
+  altInput.value = defaults.alt || '';
+  depTokenInput.value = defaults.depends_on?.token || '';
+  depOptionInput.value = defaults.depends_on?.option || '';
+  groupInput.value = defaults.line_group || '';
+  unitInput.dataset.userChanged = 'false';
+
+  if (defaults.dietary) {
+    optionRow.querySelectorAll('[data-dietary-key]').forEach((input) => {
+      const key = input.dataset.dietaryKey;
+      if (Object.prototype.hasOwnProperty.call(defaults.dietary, key)) {
+        input.checked = defaults.dietary[key];
+      }
+    });
+  }
+
+  const hasAdvancedDefaults = Boolean(
+    sectionInput.value ||
+      altInput.value ||
+      depTokenInput.value ||
+      depOptionInput.value ||
+      groupInput.value,
+  );
+  if (hasAdvancedDefaults) {
+    setExpanded(true);
+  }
+
+  const touchOptionSlug = () => {
+    if (optionValueInput.dataset.userEdited === 'true') return;
+    if (!displayInput.value) return;
+    optionValueInput.value = slugify(displayInput.value);
+  };
+
+  const tryAutofillUnit = () => {
+    const token = slugify(displayInput.value || '');
+    if (!token || unitInput.dataset.userChanged === 'true' || unitInput.value) return;
+    const autoUnit = commonUnitForToken(token);
+    if (autoUnit) {
+      syncUnitSelect(unitInput, autoUnit);
+    }
+  };
+
+  displayInput.addEventListener('input', () => {
+    touchOptionSlug();
+  });
+
+  displayInput.addEventListener('change', () => {
+    tryAutofillUnit();
+  });
+  displayInput.addEventListener('blur', tryAutofillUnit);
+
+  optionRow.addEventListener('input', () => {
+    ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
+    updateIngredientSuggestions();
+    updateDependencySuggestions();
+    refreshStepIngredientPickers();
+    refreshPreview();
+  });
+  optionRow.addEventListener('change', () => {
+    ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
+    updateIngredientSuggestions();
+    updateDependencySuggestions();
+    refreshStepIngredientPickers();
+    refreshPreview();
+  });
+
+  optionValueInput.addEventListener('change', () => {
+    optionValueInput.dataset.userEdited = 'true';
+  });
+
+  toggleButton.addEventListener('click', () => {
+    const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
+    toggleButton.setAttribute('aria-expanded', String(!expanded));
+    toggleButton.textContent = expanded ? '+' : '−';
+    advancedPanel.hidden = expanded;
+  });
+
+  unitInput.addEventListener('change', () => {
+    unitInput.dataset.userChanged = 'true';
+  });
+
+  attachHelpTrigger(showWhenHelp, 'showWhen');
+  attachHelpTrigger(inlineGroupHelp, 'inlineGroup');
+  attachHelpTrigger(amountHelp, 'amount');
+  attachHelpTrigger(sectionHelp, 'sectionLabel');
+  attachHelpTrigger(altHelp, 'altNote');
+  attachHelpTrigger(optionHelp, 'optionValue');
+  attachHelpTrigger(optionDisplayHelp, 'optionDisplay');
+
+  optionRow.querySelector('.remove-option').addEventListener('click', () => {
+    unitSelects.delete(unitInput);
+    const optionsContainer = ingredientRow.querySelector('.ingredient-options');
+    optionRow.remove();
+    if (optionsContainer.children.length === 0) {
+      const fallback = createOptionRow(ingredientRow, {});
+      optionsContainer.appendChild(fallback);
+    }
+    if (ingredientRow.syncChoiceDefaults) {
+      ingredientRow.syncChoiceDefaults();
+    }
+    updateDependencySuggestions();
+    refreshStepIngredientPickers();
+    refreshPreview();
+  });
+
+  return optionRow;
+}
+
 function createIngredientRow(defaults = {}) {
   const row = document.createElement('div');
   row.className = 'ingredient-row';
@@ -316,21 +525,47 @@ function createIngredientRow(defaults = {}) {
         </div>
           <div class="show-when-group">
             <div class="show-when-inputs">
-              <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
+              <div class="input-with-help">
+                <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
+                <button type="button" class="help-icon show-when-help" data-help-key="showWhen" aria-label="How show-when works">?</button>
+              </div>
               <div class="input-with-help">
                 <input class="ingredient-dep-option" placeholder="Option value" aria-label="Dependency option" />
                 <button type="button" class="help-icon option-help" data-help-key="optionValue" aria-label="Help: option value">?</button>
               </div>
             </div>
-          <button type="button" class="help-icon show-when-help" data-help-key="showWhen" aria-label="How show-when works">?</button>
-        </div>
+          </div>
         <div class="inline-group-with-help">
           <input class="ingredient-group" placeholder="Inline group key" aria-label="Inline group key" />
           <button type="button" class="help-icon inline-group-help" data-help-key="inlineGroup" aria-label="How inline grouping works">?</button>
         </div>
       </div>
+
+      <div class="choice-row">
+        <div class="choice-config">
+          <label class="choice-toggle"><input type="checkbox" class="ingredient-choice-flag" /> Choice ingredient <button type="button" class="help-icon choice-toggle-help" data-help-key="choiceToggle" aria-label="Help: choice ingredient">?</button></label>
+          <div class="input-with-help">
+            <input class="ingredient-choice-label" placeholder="Choice label" aria-label="Choice label" />
+            <button type="button" class="help-icon choice-label-help" data-help-key="choiceLabel" aria-label="Help: choice label">?</button>
+          </div>
+          <div class="input-with-help">
+            <select class="ingredient-choice-default" aria-label="Default option"></select>
+            <button type="button" class="help-icon choice-default-help" data-help-key="choiceDefault" aria-label="Help: default option">?</button>
+          </div>
+        </div>
+        <div class="choice-options-block">
+          <div class="options-header">
+            <span>Options</span>
+            <button type="button" class="help-icon choice-options-help" data-help-key="choiceOptions" aria-label="Help: choice options">?</button>
+          </div>
+          <div class="field-help subtle choice-hint">Adding options doesn’t erase the ingredient name above—it simply adds extra selectable versions. Use a short option value that matches any “show when” or step references.</div>
+          <div class="ingredient-options"></div>
+          <button class="button secondary add-option" type="button">+ Add option</button>
+        </div>
+      </div>
+
       <div class="field-help subtle">
-        Leave these blank unless you need sections, conditional ingredients, or to keep items on the same line.
+        Open options to add choice swaps, conditional visibility, or section headings. Leave blank when not needed.
       </div>
     </div>
   `;
@@ -351,32 +586,111 @@ function createIngredientRow(defaults = {}) {
   const sectionHelp = row.querySelector('.section-help');
   const altHelp = row.querySelector('.alt-help');
   const optionHelp = row.querySelector('.option-help');
+  const choiceToggle = row.querySelector('.ingredient-choice-flag');
+  const choiceLabelInput = row.querySelector('.ingredient-choice-label');
+  const choiceDefaultSelect = row.querySelector('.ingredient-choice-default');
+  const optionsContainer = row.querySelector('.ingredient-options');
+  const addOptionButton = row.querySelector('.add-option');
+  const choiceLabelHelp = row.querySelector('.choice-label-help');
+  const choiceDefaultHelp = row.querySelector('.choice-default-help');
+  const choiceOptionsHelp = row.querySelector('.choice-options-help');
+  const choiceToggleHelp = row.querySelector('.choice-toggle-help');
+  const choiceFields = row.querySelector('.choice-row');
+  const setExpanded = (expanded) => {
+    toggleButton.setAttribute('aria-expanded', String(expanded));
+    toggleButton.textContent = expanded ? '−' : '+';
+    advancedPanel.hidden = !expanded;
+  };
 
-  nameInput.value = defaults.name || '';
-  sectionInput.value = defaults.section || '';
-  amountInput.value = defaults.amount || '';
-  syncUnitSelect(unitInput, defaults.unit || '');
+  toggleButton.addEventListener('click', () => {
+    const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
+    setExpanded(!expanded);
+  });
+
+  const baseDefaults = (defaults.options && defaults.options[0]) || defaults;
+  nameInput.value = defaults.name || baseDefaults.display || '';
+  sectionInput.value = baseDefaults.section || '';
+  amountInput.value = baseDefaults.amount || baseDefaults.ratio || '';
+  syncUnitSelect(unitInput, baseDefaults.unit || '');
   unitSelects.add(unitInput);
-  altInput.value = defaults.alt || '';
-  depTokenInput.value = defaults.depends_on?.token || '';
-  depOptionInput.value = defaults.depends_on?.option || '';
-  groupInput.value = defaults.line_group || '';
+  altInput.value = baseDefaults.alt || '';
+  depTokenInput.value = baseDefaults.depends_on?.token || '';
+  depOptionInput.value = baseDefaults.depends_on?.option || '';
+  groupInput.value = baseDefaults.line_group || '';
+  if (baseDefaults.dietary) {
+    row.querySelectorAll('[data-dietary-key]').forEach((input) => {
+      const key = input.dataset.dietaryKey;
+      if (Object.prototype.hasOwnProperty.call(baseDefaults.dietary, key)) {
+        input.checked = baseDefaults.dietary[key];
+      }
+    });
+  }
   unitInput.dataset.userChanged = 'false';
 
   const hasAdvancedDefaults =
-    Boolean(sectionInput.value || altInput.value || depTokenInput.value || depOptionInput.value || groupInput.value);
+    Boolean(sectionInput.value || altInput.value || depTokenInput.value || depOptionInput.value || groupInput.value) ||
+    (defaults.options && defaults.options.length > 1) ||
+    defaults.isChoice;
   if (hasAdvancedDefaults) {
-    advancedPanel.hidden = false;
-    toggleButton.textContent = '−';
-    toggleButton.setAttribute('aria-expanded', 'true');
+    setExpanded(true);
   }
+
+  const syncChoiceDefaults = () => {
+    const optionRows = [...optionsContainer.querySelectorAll('.ingredient-option-row')];
+    const previous = choiceDefaultSelect.value;
+    choiceDefaultSelect.innerHTML = '';
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = 'Select default';
+    placeholder.disabled = true;
+    choiceDefaultSelect.appendChild(placeholder);
+
+    const baseDisplay = nameInput.value.trim();
+    const baseValue = slugify(baseDisplay || 'option-1');
+    const allOptions = baseDisplay
+      ? [{ value: baseValue, label: baseDisplay }]
+      : [];
+
+    optionRows.forEach((optRow, idx) => {
+      const optValueInput = optRow.querySelector('.option-value');
+      const optDisplay = optRow.querySelector('.option-display');
+      const value = slugify(optValueInput.value || optDisplay.value || `option-${idx + 1}`);
+      const label = optDisplay.value || value;
+      allOptions.push({ value, label });
+    });
+
+    allOptions.forEach((opt) => {
+      const optionEl = document.createElement('option');
+      optionEl.value = opt.value;
+      optionEl.textContent = opt.label;
+      if (opt.value === previous) optionEl.selected = true;
+      choiceDefaultSelect.appendChild(optionEl);
+    });
+
+    const shouldShowChoiceFields =
+      choiceToggle.checked || allOptions.length > 1 || optionRows.some((optRow) => (optRow.querySelector('.option-value')?.value || '').trim());
+    if (choiceFields) choiceFields.hidden = !shouldShowChoiceFields;
+    if (!choiceDefaultSelect.value && allOptions.length) {
+      choiceDefaultSelect.value = allOptions[0]?.value || '';
+    }
+  };
+
+  row.syncChoiceDefaults = syncChoiceDefaults;
 
   const handleChange = () => {
     ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
     updateIngredientSuggestions();
     updateDependencySuggestions();
     refreshStepIngredientPickers();
+    syncChoiceDefaults();
     refreshPreview();
+  };
+
+  const tryAutofillFromName = () => {
+    if (!nameInput.value) return;
+    if (!choiceLabelInput.value) {
+      choiceLabelInput.value = nameInput.value;
+    }
   };
 
   const tryAutofillUnit = () => {
@@ -389,19 +703,13 @@ function createIngredientRow(defaults = {}) {
   };
 
   nameInput.addEventListener('change', () => {
+    tryAutofillFromName();
     tryAutofillUnit();
     handleChange();
   });
-  nameInput.addEventListener('blur', tryAutofillUnit);
+  nameInput.addEventListener('blur', tryAutofillFromName);
   row.addEventListener('input', handleChange);
   row.addEventListener('change', handleChange);
-
-  toggleButton.addEventListener('click', () => {
-    const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
-    toggleButton.setAttribute('aria-expanded', String(!expanded));
-    toggleButton.textContent = expanded ? '+' : '−';
-    advancedPanel.hidden = expanded;
-  });
 
   unitInput.addEventListener('change', () => {
     unitInput.dataset.userChanged = 'true';
@@ -413,15 +721,46 @@ function createIngredientRow(defaults = {}) {
   attachHelpTrigger(sectionHelp, 'sectionLabel');
   attachHelpTrigger(altHelp, 'altNote');
   attachHelpTrigger(optionHelp, 'optionValue');
+  attachHelpTrigger(choiceToggleHelp, 'choiceToggle');
+  attachHelpTrigger(choiceLabelHelp, 'choiceLabel');
+  attachHelpTrigger(choiceDefaultHelp, 'choiceDefault');
+  attachHelpTrigger(choiceOptionsHelp, 'choiceOptions');
+
+  choiceToggle.addEventListener('change', () => {
+    syncChoiceDefaults();
+  });
+
+  addOptionButton.addEventListener('click', () => {
+    const optionDefaults = { name: nameInput.value };
+    const newOption = createOptionRow(row, optionDefaults);
+    optionsContainer.appendChild(newOption);
+    syncChoiceDefaults();
+  });
 
   row.querySelector('.remove-ingredient').addEventListener('click', () => {
-    unitSelects.delete(unitInput);
     row.remove();
     updateDependencySuggestions();
     refreshStepIngredientPickers();
     refreshPreview();
   });
 
+  const initialOptions = defaults.options && defaults.options.length > 1 ? defaults.options.slice(1) : [];
+  initialOptions.forEach((optDefaults) => {
+    const optionRow = createOptionRow(row, { ...optDefaults, name: optDefaults.display || defaults.name || '' });
+    optionsContainer.appendChild(optionRow);
+  });
+
+  if (defaults.isChoice) {
+    choiceToggle.checked = true;
+  }
+  if (defaults.choiceLabel) {
+    choiceLabelInput.value = defaults.choiceLabel;
+  }
+  if (defaults.defaultOption) {
+    choiceDefaultSelect.value = defaults.defaultOption;
+  }
+
+  syncChoiceDefaults();
   ingredientRowsEl.appendChild(row);
 }
 
@@ -560,6 +899,7 @@ function refreshStepIngredientPickers() {
 
 function readDietaryFlags(row) {
   const flags = { gluten_free: true, egg_free: true, dairy_free: true };
+  if (!row) return flags;
   row.querySelectorAll('[data-dietary-key]').forEach((input) => {
     const key = input.dataset.dietaryKey;
     flags[key] = input.checked;
@@ -574,86 +914,196 @@ function dietaryFlagsAreDefault(flags) {
 function buildIngredientsFromForm(issues) {
   const tokenOrder = [];
   const ingredientList = [];
+  const choicesMap = {};
   const ingredientRows = [...ingredientRowsEl.querySelectorAll('.ingredient-row')];
 
   ingredientRows.forEach((row, idx) => {
     const nameInput = row.querySelector('.ingredient-name');
-    const sectionInput = row.querySelector('.ingredient-section');
     const amountInput = row.querySelector('.ingredient-amount');
     const unitInput = row.querySelector('.ingredient-unit');
     const altInput = row.querySelector('.ingredient-alt');
     const depTokenInput = row.querySelector('.ingredient-dep-token');
     const depOptionInput = row.querySelector('.ingredient-dep-option');
     const groupInput = row.querySelector('.ingredient-group');
+    const sectionInput = row.querySelector('.ingredient-section');
+    const choiceToggle = row.querySelector('.ingredient-choice-flag');
+    const choiceLabelInput = row.querySelector('.ingredient-choice-label');
+    const choiceDefaultSelect = row.querySelector('.ingredient-choice-default');
+    const optionRows = [...row.querySelectorAll('.ingredient-option-row')];
 
     const name = nameInput?.value.trim() || '';
-    const section = sectionInput?.value.trim() || '';
-    const amount = amountInput?.value.trim() || '';
-    const unit = unitInput?.value.trim() || '';
-    const alt = altInput?.value.trim() || '';
-    const depToken = depTokenInput?.value.trim() || '';
-    const depOption = depOptionInput?.value.trim() || '';
-    const lineGroup = groupInput?.value.trim() || '';
-    const dietary = readDietaryFlags(row);
-
-    const allEmpty =
-      !name &&
-      !section &&
-      !amount &&
-      !unit &&
-      !alt &&
-      !depToken &&
-      !depOption &&
-      !lineGroup &&
-      dietaryFlagsAreDefault(dietary);
-    if (allEmpty) return;
-
-    const missingFields = [];
-    if (!name) missingFields.push('name');
-    if (!amount) missingFields.push('amount');
-    if (!unit) missingFields.push('unit');
-
-    if (missingFields.length) {
-      issues.push(`Ingredient ${idx + 1} is missing ${missingFields.join(' and ')}.`);
-      if (!name) markInvalid(nameInput);
-      if (!amount) markInvalid(amountInput);
-      if (!unit) markInvalid(unitInput);
+    if (!name) {
+      issues.push(`Ingredient ${idx + 1} needs a name.`);
+      markInvalid(nameInput);
       return;
     }
 
+    const options = [];
+
+    const baseAlt = altInput?.value.trim() || '';
+    const baseAmount = amountInput?.value.trim() || '';
+    const baseUnit = unitInput?.value.trim() || '';
+    const baseDepToken = depTokenInput?.value.trim() || '';
+    const baseDepOption = depOptionInput?.value.trim() || '';
+    const baseLineGroup = groupInput?.value.trim() || '';
+    const baseSection = sectionInput?.value.trim() || '';
+    const baseDietary = readDietaryFlags(row.querySelector('.ingredient-main'));
+
+    const baseMissing = [];
+    if (!baseAmount) baseMissing.push('amount');
+    if (!baseUnit) baseMissing.push('unit');
+    if (baseMissing.length) {
+      issues.push(`Ingredient ${idx + 1} is missing ${baseMissing.join(' and ')}.`);
+      if (!baseAmount) markInvalid(amountInput);
+      if (!baseUnit) markInvalid(unitInput);
+      return;
+    }
+
+    const baseDependsOn = baseDepToken
+      ? { token: slugify(baseDepToken), option: baseDepOption ? slugify(baseDepOption) : null }
+      : null;
+    const baseOptionValue = slugify(name);
+    const baseDisplay = baseAlt ? `${name} (${baseAlt})` : name;
+    options.push({
+      option: baseOptionValue,
+      display: baseDisplay,
+      ratio: baseAmount,
+      unit: baseUnit,
+      ingredient_id: slugify(name),
+      dietary: baseDietary,
+      depends_on: baseDependsOn,
+      line_group: baseLineGroup || null,
+      section: baseSection || null,
+    });
+
+    optionRows.forEach((optRow, optIdx) => {
+      const displayInput = optRow.querySelector('.option-display');
+      const optionValueInput = optRow.querySelector('.option-value');
+      const amountInput = optRow.querySelector('.ingredient-amount');
+      const unitInput = optRow.querySelector('.ingredient-unit');
+      const altInput = optRow.querySelector('.ingredient-alt');
+      const depTokenInput = optRow.querySelector('.ingredient-dep-token');
+      const depOptionInput = optRow.querySelector('.ingredient-dep-option');
+      const groupInput = optRow.querySelector('.ingredient-group');
+      const sectionInput = optRow.querySelector('.ingredient-section');
+
+      const display = displayInput?.value.trim() || '';
+      const amount = amountInput?.value.trim() || '';
+      const unit = unitInput?.value.trim() || '';
+      const alt = altInput?.value.trim() || '';
+      const depToken = depTokenInput?.value.trim() || '';
+      const depOption = depOptionInput?.value.trim() || '';
+      const lineGroup = groupInput?.value.trim() || '';
+      const section = sectionInput?.value.trim() || '';
+      const dietary = readDietaryFlags(optRow);
+
+      const allEmpty =
+        !display &&
+        !amount &&
+        !unit &&
+        !alt &&
+        !depToken &&
+        !depOption &&
+        !lineGroup &&
+        !section &&
+        dietaryFlagsAreDefault(dietary);
+      if (allEmpty) return;
+
+      const missingFields = [];
+      if (!display) missingFields.push('name');
+      if (!amount) missingFields.push('amount');
+      if (!unit) missingFields.push('unit');
+
+      if (missingFields.length) {
+        issues.push(`Option ${optIdx + 2} for ingredient ${idx + 1} is missing ${missingFields.join(' and ')}.`);
+        if (!display) markInvalid(displayInput);
+        if (!amount) markInvalid(amountInput);
+        if (!unit) markInvalid(unitInput);
+        return;
+      }
+
+      const depends_on = depToken
+        ? { token: slugify(depToken), option: depOption ? slugify(depOption) : null }
+        : null;
+      const optionValue = slugify(optionValueInput?.value.trim() || display);
+      const optionDisplay = alt ? `${display} (${alt})` : display;
+      options.push({
+        option: optionValue,
+        display: optionDisplay || name,
+        ratio: amount,
+        unit,
+        ingredient_id: slugify(display) || slugify(name) || optionValue || name,
+        dietary,
+        depends_on,
+        line_group: lineGroup || null,
+        section: section || null,
+      });
+    });
+
+    if (options.length === 0) {
+      issues.push(`Add at least one option for ingredient ${idx + 1}.`);
+      markInvalid(nameInput);
+      return;
+    }
+
+    const isChoice =
+      choiceToggle?.checked ||
+      options.length > 1 ||
+      options.some((opt) => opt.option && opt.option !== slugify(name));
+
+    options.forEach((opt, optIdx) => {
+      if (isChoice && !opt.option) {
+        issues.push(`Choice option ${optIdx + 1} for ${name} needs a value.`);
+        const valueInput = optIdx === 0 ? null : optionRows[optIdx - 1]?.querySelector('.option-value');
+        if (valueInput) markInvalid(valueInput);
+      }
+      if (!isChoice) {
+        opt.option = '';
+      }
+    });
+
     const token = slugify(name);
     if (!tokenOrder.includes(token)) tokenOrder.push(token);
-    const optionDisplay = alt ? `${name} (${alt})` : name;
-    const depends_on = depToken
-      ? { token: slugify(depToken), option: depOption ? slugify(depOption) : null }
-      : null;
-    ingredientList.push({
+
+    const defaultOption = choiceDefaultSelect?.value || (isChoice ? options[0]?.option : '');
+    if (isChoice && !defaultOption) {
+      issues.push(`Select a default option for ${name}.`);
+      markInvalid(choiceDefaultSelect);
+    }
+
+    const uniformField = (key) => {
+      if (!options.length) return null;
+      const normalize = (val) => {
+        if (val && typeof val === 'object') return JSON.stringify(val);
+        return val || null;
+      };
+      const first = normalize(options[0][key]);
+      const same = options.every((opt) => normalize(opt[key]) === first);
+      return same ? options[0][key] || null : null;
+    };
+
+    const ingredientEntry = {
       token,
-      options: [
-        {
-          option: '',
-          display: optionDisplay,
-          ratio: amount,
-          unit,
-          ingredient_id: token,
-          dietary,
-          depends_on,
-          line_group: lineGroup || null,
-          section: section || null,
-        },
-      ],
-      isChoice: false,
-      depends_on,
-      line_group: lineGroup || null,
-      section: section || null,
-    });
+      options,
+      isChoice,
+      depends_on: uniformField('depends_on'),
+      line_group: uniformField('line_group'),
+      section: uniformField('section'),
+    };
+
+    ingredientList.push(ingredientEntry);
+
+    if (isChoice) {
+      const label = choiceLabelInput?.value.trim() || name;
+      choicesMap[token] = { token, label, default_option: slugify(defaultOption || options[0]?.option || '') };
+    }
   });
 
   if (ingredientList.length === 0) {
     issues.push('Add at least one ingredient with a name, amount, and unit.');
   }
 
-  return { ingredientList, tokenOrder };
+  return { ingredientList, tokenOrder, choicesMap };
 }
 
 function buildRecipeDraft() {
@@ -695,7 +1145,7 @@ function buildRecipeDraft() {
     markInvalid(defaultBaseInput);
   }
 
-  const { ingredientList, tokenOrder } = buildIngredientsFromForm(issues);
+  const { ingredientList, tokenOrder, choicesMap } = buildIngredientsFromForm(issues);
 
   const stepsRawLines = [];
   const structuredSteps = [];
@@ -793,7 +1243,7 @@ function buildRecipeDraft() {
     token_order: tokenOrder,
     ingredients: ingredientList,
     ingredient_sections: ingredientSections,
-    choices: {},
+    choices: choicesMap,
     pan_sizes: [],
     default_pan: null,
     compatibility_possible: compatibility,
@@ -821,6 +1271,71 @@ function buildPreviewRecipe() {
     }
   });
   return { ...recipe, ingredients: ingredientMap };
+}
+
+function renderPreviewChoiceControls(recipe, state) {
+  const container = document.getElementById('preview-choice-controls');
+  if (!container) return;
+
+  const choices = recipe?.choices && typeof recipe.choices === 'object' ? recipe.choices : {};
+  const ingredients = recipe?.ingredients && typeof recipe.ingredients === 'object' ? recipe.ingredients : {};
+
+  const choiceEntries = Object.entries(choices).filter(([token]) => {
+    const selectable = ingredients[token]?.options?.filter((opt) => opt.option) || [];
+    return selectable.length >= 2;
+  });
+
+  container.innerHTML = '';
+
+  if (!choiceEntries.length) {
+    container.textContent = 'Add a choice ingredient to preview swaps.';
+    return;
+  }
+
+  choiceEntries.forEach(([token, choice]) => {
+    const tokenData = ingredients[token];
+    const selectable = tokenData?.options?.filter((opt) => opt.option) || [];
+    if (selectable.length < 2) return;
+
+    const row = document.createElement('div');
+    row.className = 'swap-row';
+
+    const label = document.createElement('span');
+    label.className = 'swap-label';
+    label.textContent = `Swap ${choice?.label || token}`;
+
+    const select = document.createElement('select');
+    select.dataset.token = token;
+    select.title = 'Choose which ingredient to preview. This updates ingredients and steps.';
+
+    const preferred = selectOptionForToken(token, recipe, state);
+
+    selectable.forEach((opt) => {
+      const optionEl = document.createElement('option');
+      optionEl.value = opt.option;
+      optionEl.textContent = opt.display;
+      const compatible = optionMeetsRestrictions(opt, state.restrictions);
+      optionEl.disabled = restrictionsActive(state.restrictions) && !compatible;
+      if (preferred?.option && preferred.option === opt.option) {
+        optionEl.selected = true;
+      }
+      select.appendChild(optionEl);
+    });
+
+    select.addEventListener('change', () => {
+      state.selectedOptions[token] = select.value;
+      previewSelections.selectedOptions[token] = select.value;
+      renderPreview(recipe);
+    });
+
+    if (preferred?.option) {
+      state.selectedOptions[token] = preferred.option;
+      previewSelections.selectedOptions[token] = preferred.option;
+    }
+
+    row.append(label, select);
+    container.appendChild(row);
+  });
 }
 
 function renderPreview(recipe) {
@@ -863,16 +1378,25 @@ function renderPreview(recipe) {
 
   renderPreviewDietaryBadges(dietaryBadgesEl, defaultCompatibility, compatibilityPossible, hasChoiceTokens);
 
+  const selectedOptions = {};
+  Object.entries(previewSelections.selectedOptions || {}).forEach(([token, value]) => {
+    if (recipe.ingredients && recipe.ingredients[token]) {
+      selectedOptions[token] = value;
+    }
+  });
+
   const state = {
     multiplier: recipe.default_base || 1,
     panMultiplier: 1,
-    selectedOptions: {},
+    selectedOptions,
     restrictions: {
       gluten_free: compatibilityPossible.gluten_free ? defaultCompatibility.gluten_free : false,
       egg_free: compatibilityPossible.egg_free ? defaultCompatibility.egg_free : false,
       dairy_free: compatibilityPossible.dairy_free ? defaultCompatibility.dairy_free : false,
     },
   };
+
+  renderPreviewChoiceControls(recipe, state);
 
   const ingredientLines = renderIngredientLines(recipe, state);
   const ingredientSections = groupLinesBySection(ingredientLines, recipe.ingredient_sections || []);
@@ -999,6 +1523,7 @@ function resetFormForNewEntry() {
   ingredientRowsEl.innerHTML = '';
   stepsListEl.innerHTML = '';
   unitSelects.clear();
+  previewSelections.selectedOptions = {};
   if (categorySelectEl) {
     [...categorySelectEl.options].forEach((opt) => (opt.selected = false));
   }
