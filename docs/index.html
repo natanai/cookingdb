@@ -25,53 +25,64 @@
             <h1 class="hero-title">Recipe box</h1>
           </div>
 
-          <div class="toolbar-row toolbar-row-primary">
-            <!-- Search -->
+          <div class="filter-bar">
             <label class="search-field" aria-label="Search recipes">
-              <span aria-hidden="true">🔎</span>
-              <input id="search" type="search" placeholder="Search meal or ingredient" />
+              <span class="search-icon" aria-hidden="true">🔎</span>
+              <input
+                id="search-input"
+                type="search"
+                placeholder="Search meal or ingredient"
+                autocomplete="off"
+              />
             </label>
 
-            <!-- Categories (keep ids) -->
-            <details class="category-panel category-panel-compact" id="category-panel">
-              <summary class="category-summary">
-                <span class="summary-label">Category</span>
-                <span class="summary-selection" id="category-current">All recipes</span>
+            <details class="refine-panel" id="refine-panel">
+              <summary class="refine-summary">
+                <span class="refine-title">Refine</span>
+                <span class="refine-state" id="refine-summary-state">All recipes</span>
               </summary>
-              <div class="category-options" id="category-options" aria-label="Recipe categories"></div>
+
+              <div class="refine-body" id="filter-panel">
+                <div class="filters filters-compact" aria-label="Dietary filters">
+                  <label><input type="checkbox" id="filter-gluten" /> Gluten-free</label>
+                  <label><input type="checkbox" id="filter-egg" /> Egg-free</label>
+                  <label><input type="checkbox" id="filter-dairy" /> Dairy-free</label>
+                </div>
+
+                <div class="actions">
+                  <div class="family-tools">
+                    <button type="button" id="pull-inbox" class="button secondary button-compact">
+                      Pull inbox
+                    </button>
+
+                    <details class="family-settings">
+                      <summary class="icon-button" aria-label="Family settings"></summary>
+                      <div class="family-settings-panel">
+                        <label class="inline-check">
+                          <input type="checkbox" id="remember-pull" />
+                          Remember family password
+                        </label>
+                        <label class="inline-check">
+                          <input type="checkbox" id="ruffle-haptics" />
+                          Ruffle scroll haptics
+                        </label>
+                      </div>
+                    </details>
+                  </div>
+                </div>
+
+                <div id="pull-status" class="status" aria-live="polite"></div>
+
+                <details class="category-panel category-panel-compact" id="category-panel">
+                  <summary class="category-summary">
+                    <span class="summary-label">Category</span>
+                    <span class="summary-selection" id="category-current">All recipes</span>
+                  </summary>
+                  <div class="category-options" id="category-options" aria-label="Recipe categories"></div>
+                </details>
+              </div>
             </details>
           </div>
-
-          <div class="toolbar-row toolbar-row-secondary">
-            <!-- Dietary filters (keep ids) -->
-            <div class="filters filters-compact" aria-label="Dietary filters">
-              <label><input type="checkbox" id="filter-gluten" /> Gluten-free</label>
-              <label><input type="checkbox" id="filter-egg" /> Egg-free</label>
-              <label><input type="checkbox" id="filter-dairy" /> Dairy-free</label>
-            </div>
-
-            <div class="family-tools">
-              <button type="button" id="pull-inbox" class="button secondary button-compact">
-                Pull inbox
-              </button>
-
-              <details class="family-settings">
-                <summary class="icon-button" aria-label="Family settings"></summary>
-                <div class="family-settings-panel">
-                  <label class="inline-check">
-                    <input type="checkbox" id="remember-pull" />
-                    Remember family password
-                  </label>
-                  <label class="inline-check">
-                    <input type="checkbox" id="ruffle-haptics" />
-                    Ruffle scroll haptics
-                  </label>
-                </div>
-              </details>
-            </div>
-          </div>
-
-          <div id="pull-status" class="status" aria-live="polite"></div>
         </div>
       </div>
     </section>

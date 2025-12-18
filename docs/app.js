@@ -348,7 +348,7 @@ function renderRecipes(recipes) {
     gluten: document.getElementById('filter-gluten').checked,
     egg: document.getElementById('filter-egg').checked,
     dairy: document.getElementById('filter-dairy').checked,
-    query: document.getElementById('search')?.value.trim().toLowerCase() || '',
+    query: document.getElementById('search-input')?.value.trim().toLowerCase() || '',
     category: selectedCategory,
   };
   listEl.innerHTML = '';
@@ -443,8 +443,7 @@ function renderCategoryPanel(recipes, onSelect) {
     btn.textContent = cat === 'all' ? 'All recipes' : cat;
     btn.addEventListener('click', () => {
       selectedCategory = cat;
-      renderCategoryPanel(recipes, onSelect);
-      onSelect();
+      onSelect?.();
       panel.open = false;
     });
     optionsContainer.appendChild(btn);
@@ -452,8 +451,9 @@ function renderCategoryPanel(recipes, onSelect) {
 }
 
 function refreshUI() {
-  renderCategoryPanel(recipeList, () => renderRecipes(recipeList));
+  renderCategoryPanel(recipeList, refreshUI);
   renderRecipes(recipeList);
+  updateRefineSummary();
 }
 
 function normalizeIncomingList(result) {
@@ -555,15 +555,59 @@ async function handlePullClick() {
   }
 }
 
+function initRefinePanel() {
+  const panel = document.getElementById('refine-panel');
+  if (!panel) return;
+
+  const mq = window.matchMedia('(max-width: 680px)');
+  const saved = localStorage.getItem('refineOpen');
+
+  if (saved !== null) {
+    panel.open = saved === '1';
+  } else {
+    panel.open = !mq.matches; // desktop open, mobile closed
+  }
+
+  panel.addEventListener('toggle', () => {
+    localStorage.setItem('refineOpen', panel.open ? '1' : '0');
+  });
+}
+
+function updateRefineSummary() {
+  const el = document.getElementById('refine-summary-state');
+  if (!el) return;
+
+  // category label (use what the UI currently shows)
+  const categoryLabel =
+    document.querySelector('#category-current .label')?.textContent?.trim() ||
+    document.getElementById('category-current')?.textContent?.trim() ||
+    'All recipes';
+
+  const parts = [categoryLabel || 'All recipes'];
+
+  const gf = !!document.getElementById('filter-gluten')?.checked;
+  const ef = !!document.getElementById('filter-egg')?.checked;
+  const df = !!document.getElementById('filter-dairy')?.checked;
+
+  const diet = [];
+  if (gf) diet.push('GF');
+  if (ef) diet.push('EF');
+  if (df) diet.push('DF');
+
+  if (diet.length) parts.push(diet.join(' • '));
+
+  el.textContent = parts.join(' • ');
+}
+
 async function main() {
   const built = await loadIndex();
   recipeList = [...built.map((rec) => recipeSummary(rec, 'built')), ...inboxRecipes.map((rec) => recipeSummary(rec, 'inbox'))];
-  const update = () => renderRecipes(recipeList);
+  const update = () => refreshUI();
   renderCategoryPanel(recipeList, update);
   document.getElementById('filter-gluten').addEventListener('change', update);
   document.getElementById('filter-egg').addEventListener('change', update);
   document.getElementById('filter-dairy').addEventListener('change', update);
-  document.getElementById('search').addEventListener('input', update);
+  document.getElementById('search-input').addEventListener('input', update);
   document.getElementById('pull-inbox')?.addEventListener('click', handlePullClick);
 
   window.addEventListener('pointerdown', () => { userInteracted = true; }, { once: true, passive: true });
@@ -576,6 +620,7 @@ async function main() {
       setRuffleEnabled(hapticsToggle.checked);
     });
   }
+  initRefinePanel();
   refreshUI();
   setupMobileScrollRuffle();
 }

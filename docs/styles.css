@@ -8,6 +8,7 @@
   --accent: #b25b36;
   --accent-soft: #f2dec5;
   --card: #fffaf0;
+  --paper: #fffaf0;
   --card-line: #f7e9d8;
   --border: #dfceb8;
   --shadow: 0 4px 14px rgba(30, 18, 11, 0.1);
@@ -183,6 +184,49 @@ body {
   gap: 0.75rem;
   grid-template-columns: 1fr;
   margin-top: 0.5rem;
+}
+
+.refine-panel {
+  margin-top: 12px;
+}
+
+.refine-summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--paper);
+  cursor: pointer;
+}
+
+.refine-summary::-webkit-details-marker { display: none; }
+
+.refine-title { font-weight: 700; }
+
+.refine-state {
+  opacity: 0.85;
+  font-size: 0.95rem;
+  text-align: right;
+}
+
+.refine-body {
+  margin-top: 10px;
+}
+
+#filter-panel {
+  display: grid;
+  gap: 12px;
+}
+
+/* When open, keep it feeling like one card */
+.refine-panel[open] > .refine-summary {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .search-field {
@@ -1884,8 +1928,34 @@ main {
 }
 
 @media (max-width: 680px) {
+  /* reclaim vertical space in the recipe box */
   .hero {
-    padding: 1.5rem;
+    padding: 18px 0 12px;
+  }
+  .hero-content {
+    padding: 16px 14px;
+  }
+  .hero-subtitle {
+    display: none;
+  }
+  .hero-title {
+    margin-bottom: 12px;
+  }
+
+  /* keep the refine summary comfortably tappable */
+  .refine-summary {
+    padding: 12px 12px;
+  }
+
+  /* inside refine, tighten spacing a bit */
+  #filter-panel {
+    gap: 10px;
+  }
+  .filters {
+    gap: 10px;
+  }
+  .actions {
+    gap: 10px;
   }
   .site-header .inner {
     flex-direction: column;
