@@ -35,6 +35,7 @@ const HELP_TEXT = {
   steps:
     'Write steps in cooking order. Click the ingredients each step uses so the preview stays accurate.',
   showWhen: 'Only include this ingredient when another dropdown is set to a specific option.',
+  showWhenEnabled: 'Only include this ingredient when another dropdown is set to a specific option.',
   inlineGroup: 'Use the same short key to keep related items on one line, such as “salt + pepper.”',
   amount: 'Type the amount exactly as written, such as “1 1/2” or “scant 1 cup.”',
   sectionLabel: 'Adds a bold mini heading such as “Chicken” or “Sauce” above the related ingredients.',
@@ -326,9 +327,16 @@ function createIngredientRow(defaults = {}) {
   row.innerHTML = `
     <div class="ingredient-main">
       <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient name" aria-label="Ingredient name" />
-      <div class="input-with-help">
+      <div class="infield">
         <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
-        <button type="button" class="help-icon amount-help" data-help-key="amount" aria-label="Help: amount">?</button>
+        <button
+          type="button"
+          class="help-icon field-help-icon amount-help"
+          data-help-key="amount"
+          aria-label="Help: amount"
+        >
+          ?
+        </button>
       </div>
       <select class="ingredient-unit" aria-label="Unit"></select>
       <div class="dietary-slot"></div>
@@ -341,22 +349,50 @@ function createIngredientRow(defaults = {}) {
         <div class="advanced-group">
           <div class="infield">
             <input class="ingredient-section" list="section-suggestions" placeholder="Section label" aria-label="Ingredient section" />
-            <button type="button" class="help-icon" data-help-key="sectionLabel" aria-label="Help: section label">?</button>
+            <button
+              type="button"
+              class="help-icon field-help-icon"
+              data-help-key="sectionLabel"
+              aria-label="Help: section label"
+            >
+              ?
+            </button>
           </div>
           <div class="infield">
             <input class="ingredient-alt-note" placeholder="Alternative note" aria-label="Alternative or substitution" />
-            <button type="button" class="help-icon" data-help-key="alternativeNote" aria-label="Help: alternative note">?</button>
+            <button
+              type="button"
+              class="help-icon field-help-icon"
+              data-help-key="alternativeNote"
+              aria-label="Help: alternative note"
+            >
+              ?
+            </button>
           </div>
           <div class="infield">
             <input class="ingredient-inline-group" placeholder="Inline group key" aria-label="Inline group key" />
-            <button type="button" class="help-icon" data-help-key="inlineGroup" aria-label="Help: inline group key">?</button>
+            <button
+              type="button"
+              class="help-icon field-help-icon"
+              data-help-key="inlineGroup"
+              aria-label="Help: inline group key"
+            >
+              ?
+            </button>
           </div>
         </div>
         <div class="choice-block">
           <label class="choice-toggle">
             <input type="checkbox" class="ingredient-choice-toggle" />
             <span>Dropdown choice option</span>
-            <button type="button" class="help-icon" data-help-key="isChoiceOption" aria-label="Help: dropdown choice">?</button>
+            <button
+              type="button"
+              class="help-icon field-help-icon"
+              data-help-key="isChoiceOption"
+              aria-label="Help: dropdown choice"
+            >
+              ?
+            </button>
           </label>
           <div class="choice-fields" hidden>
             <div class="infield">
@@ -365,7 +401,14 @@ function createIngredientRow(defaults = {}) {
                 placeholder="Use the same group name on each option, like “Broth type” (required)"
                 aria-label="Choice group"
               />
-              <button type="button" class="help-icon" data-help-key="choiceGroup" aria-label="Help: choice group">?</button>
+              <button
+                type="button"
+                class="help-icon field-help-icon"
+                data-help-key="choiceGroup"
+                aria-label="Help: choice group"
+              >
+                ?
+              </button>
             </div>
             <div class="infield">
               <input
@@ -373,7 +416,14 @@ function createIngredientRow(defaults = {}) {
                 placeholder="Swap label shown to readers, like “Broth” (optional)"
                 aria-label="Choice label"
               />
-              <button type="button" class="help-icon" data-help-key="swapLabel" aria-label="Help: swap label">?</button>
+              <button
+                type="button"
+                class="help-icon field-help-icon"
+                data-help-key="swapLabel"
+                aria-label="Help: swap label"
+              >
+                ?
+              </button>
             </div>
             <div class="infield">
               <input
@@ -381,12 +431,26 @@ function createIngredientRow(defaults = {}) {
                 placeholder="Option value for dropdowns (we’ll use the name if empty)"
                 aria-label="Option value"
               />
-              <button type="button" class="help-icon" data-help-key="optionKey" aria-label="Help: option value">?</button>
+              <button
+                type="button"
+                class="help-icon field-help-icon"
+                data-help-key="optionKey"
+                aria-label="Help: option value"
+              >
+                ?
+              </button>
             </div>
             <label class="choice-default">
               <input type="checkbox" class="ingredient-default-choice" />
               <span>Make this the default option</span>
-              <button type="button" class="help-icon" data-help-key="isDefaultChoice" aria-label="Help: default option">?</button>
+              <button
+                type="button"
+                class="help-icon field-help-icon"
+                data-help-key="isDefaultChoice"
+                aria-label="Help: default option"
+              >
+                ?
+              </button>
             </label>
           </div>
         </div>
@@ -394,15 +458,37 @@ function createIngredientRow(defaults = {}) {
           <label class="conditional-toggle">
             <input type="checkbox" class="ingredient-conditional-toggle" />
             <span>Only include this ingredient sometimes</span>
+            <button
+              type="button"
+              class="help-icon field-help-icon"
+              data-help-key="showWhenEnabled"
+              aria-label="Help: conditional ingredient"
+            >
+              ?
+            </button>
           </label>
           <div class="conditional-fields" hidden>
             <div class="infield">
               <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
-              <button type="button" class="help-icon" data-help-key="showWhen" aria-label="Help: show when ingredient">?</button>
+              <button
+                type="button"
+                class="help-icon field-help-icon"
+                data-help-key="showWhen"
+                aria-label="Help: show when ingredient"
+              >
+                ?
+              </button>
             </div>
             <div class="infield">
               <input class="ingredient-dep-option" placeholder="Show when option value" aria-label="Dependency option" />
-              <button type="button" class="help-icon" data-help-key="showWhen" aria-label="Help: show when option value">?</button>
+              <button
+                type="button"
+                class="help-icon field-help-icon"
+                data-help-key="showWhen"
+                aria-label="Help: show when option value"
+              >
+                ?
+              </button>
             </div>
           </div>
         </div>

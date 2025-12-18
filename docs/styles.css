@@ -4,6 +4,7 @@
   --bg: #f4efe4;
   --text: #1e120b;
   --muted: #5e5147;
+  --muted-text: #5e5147;
   --accent: #b25b36;
   --accent-soft: #f2dec5;
   --card: #fffaf0;
@@ -1437,10 +1438,7 @@ main {
 }
 
 .input-with-help {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 0.3rem;
+  display: none;
 }
 
 .inline-group-with-help {
@@ -1522,24 +1520,50 @@ main {
 }
 
 .add-page .infield {
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 8px;
+  box-sizing: border-box;
 }
 
 .add-page .infield input {
-  padding-right: 2.2rem;
+  flex: 1 1 auto;
   min-width: 0;
+  width: 100%;
+  border: 0 !important;
+  outline: none;
+  background: transparent;
+  padding: 2px 0;
+  box-shadow: none;
+}
+
+.add-page .infield:focus-within {
+  border-color: #c9a27a;
+  box-shadow: 0 0 0 2px rgba(201, 162, 122, 0.25);
 }
 
 .add-page .infield .help-icon {
-  position: absolute;
-  right: 0.45rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1.5rem;
-  height: 1.5rem;
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
   border-radius: 999px;
-  line-height: 1.5rem;
-  text-align: center;
+  border: 1px solid var(--border);
+  background: #f6f0e6;
+  color: var(--muted-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.add-page .infield .help-icon:hover {
+  filter: brightness(0.98);
 }
 
 .ingredient-more-toggle,
