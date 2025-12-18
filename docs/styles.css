@@ -1252,6 +1252,17 @@ main {
   margin-bottom: 1rem;
 }
 
+.field-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.field-label-row .help-icon {
+  flex-shrink: 0;
+}
+
 .field.inline {
   max-width: 240px;
 }
@@ -1392,6 +1403,13 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 0.35rem;
+}
+
+.input-with-help {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .inline-group-with-help {
