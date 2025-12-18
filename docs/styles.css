@@ -70,6 +70,14 @@ body {
   font-weight: 600;
 }
 
+.nav-links .button {
+  color: #fff;
+}
+
+.nav-links .button.secondary {
+  color: var(--text);
+}
+
 .hero {
   margin: 1.25rem 0 1.25rem;
   padding: 1.1rem;
@@ -231,6 +239,14 @@ main {
   letter-spacing: 0.01em;
 }
 
+.recipe-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .recipe-card .tags {
   display: flex;
   flex-wrap: wrap;
@@ -240,6 +256,7 @@ main {
 .dietary-mini {
   display: flex;
   gap: 0.35rem;
+  margin-left: auto;
   align-items: center;
 }
 
