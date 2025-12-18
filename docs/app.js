@@ -2,6 +2,110 @@ import { familyListPending, getRememberedPassword, setRememberedPassword } from 
 import { recipeDefaultCompatibility } from './recipe-utils.js';
 
 const STORAGE_KEY = 'cookingdb-inbox-recipes';
+const HAPTICS_KEY = 'cookingdb-ruffle-haptics';
+let userInteracted = false;
+let ruffleObserver = null;
+let lastHapticAt = 0;
+
+function installRecipePressFeedback(linkEl) {
+  let startX = 0;
+  let startY = 0;
+  let canceled = false;
+
+  linkEl.addEventListener('pointerdown', (e) => {
+    if (linkEl.classList.contains('disabled-link')) return;
+
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+
+    canceled = false;
+    startX = e.clientX;
+    startY = e.clientY;
+    linkEl.classList.add('is-pressed');
+
+    try {
+      linkEl.setPointerCapture?.(e.pointerId);
+    } catch (_) {}
+  });
+
+  linkEl.addEventListener('pointermove', (e) => {
+    if (!linkEl.classList.contains('is-pressed')) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (Math.hypot(dx, dy) > 10) {
+      canceled = true;
+      linkEl.classList.remove('is-pressed');
+    }
+  });
+
+  const clear = () => linkEl.classList.remove('is-pressed');
+  linkEl.addEventListener('pointerup', clear);
+  linkEl.addEventListener('pointercancel', () => {
+    canceled = true;
+    clear();
+  });
+  linkEl.addEventListener('lostpointercapture', clear);
+
+  linkEl.addEventListener('click', (e) => {
+    if (canceled) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+}
+
+function canUseRuffleHaptics() {
+  const coarse = window.matchMedia?.('(pointer: coarse)')?.matches;
+  const supportsVibrate = typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function';
+  const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+  return !!(coarse && supportsVibrate && !reducedMotion);
+}
+
+function isRuffleEnabled() {
+  const stored = localStorage.getItem(HAPTICS_KEY);
+  if (stored === null) return true;
+  return stored === 'true';
+}
+
+function setRuffleEnabled(value) {
+  localStorage.setItem(HAPTICS_KEY, value ? 'true' : 'false');
+}
+
+function tinyHapticPulse() {
+  if (!canUseRuffleHaptics()) return;
+  if (!isRuffleEnabled()) return;
+  if (!userInteracted) return;
+  if (document.visibilityState !== 'visible') return;
+
+  const now = Date.now();
+  if (now - lastHapticAt < 120) return;
+  lastHapticAt = now;
+
+  navigator.vibrate(5);
+}
+
+function setupRuffleObserver(listEl) {
+  if (ruffleObserver) {
+    ruffleObserver.disconnect();
+    ruffleObserver = null;
+  }
+  if (!canUseRuffleHaptics()) return;
+
+  ruffleObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) tinyHapticPulse();
+      }
+    },
+    {
+      root: null,
+      rootMargin: '-45% 0px -45% 0px',
+      threshold: 0.01,
+    }
+  );
+
+  const rows = listEl.querySelectorAll('li.recipe-row');
+  rows.forEach((row) => ruffleObserver.observe(row));
+}
 
 async function loadIndex() {
   const res = await fetch('./built/index.json');
@@ -162,6 +266,7 @@ function renderRecipes(recipes) {
     empty.className = 'empty-state';
     empty.textContent = 'No recipes match that search just yet—try clearing a filter.';
     listEl.appendChild(empty);
+    setupRuffleObserver(listEl);
     return;
   }
   visible.forEach((recipe) => {
@@ -190,6 +295,8 @@ function renderRecipes(recipes) {
       link.title = 'Recipe details not yet available';
     }
 
+    installRecipePressFeedback(link);
+
     const title = document.createElement('span');
     title.className = 'recipe-row-title';
     title.textContent = recipe.title;
@@ -211,6 +318,8 @@ function renderRecipes(recipes) {
     li.appendChild(link);
     listEl.appendChild(li);
   });
+
+  setupRuffleObserver(listEl);
 }
 
 function uniqueCategories(recipes) {
@@ -362,6 +471,17 @@ async function main() {
   document.getElementById('filter-dairy').addEventListener('change', update);
   document.getElementById('search').addEventListener('input', update);
   document.getElementById('pull-inbox')?.addEventListener('click', handlePullClick);
+
+  window.addEventListener('pointerdown', () => { userInteracted = true; }, { once: true, passive: true });
+  window.addEventListener('touchstart', () => { userInteracted = true; }, { once: true, passive: true });
+
+  const hapticsToggle = document.getElementById('ruffle-haptics');
+  if (hapticsToggle) {
+    hapticsToggle.checked = isRuffleEnabled();
+    hapticsToggle.addEventListener('change', () => {
+      setRuffleEnabled(hapticsToggle.checked);
+    });
+  }
   refreshUI();
 }
 
