@@ -82,14 +82,39 @@
       <section class="preview-panel">
         <h2 class="section-heading">Live preview</h2>
         <div id="preview-shell" class="preview-shell">
-          <h3 id="preview-title">Recipe title</h3>
-          <div id="preview-notes" class="notes"></div>
-          <div id="preview-categories" class="card-categories"></div>
-          <div class="recipe-metadata" id="preview-metadata"></div>
-          <h4>Ingredients</h4>
-          <ul id="preview-ingredients"></ul>
-          <h4>Steps</h4>
-          <ol id="preview-steps"></ol>
+          <div class="recipe-shell">
+            <section class="hero">
+              <div class="hero-content">
+                <h3 class="hero-title" id="preview-recipe-title">Recipe title</h3>
+                <details class="recipe-note" id="preview-recipe-note">
+                  <summary>Cook’s note</summary>
+                  <div class="recipe-note-body">
+                    <p class="notes" id="preview-notes"></p>
+                  </div>
+                </details>
+                <div class="recipe-meta">
+                  <div class="dietary-badges" id="preview-dietary-badges" aria-label="Dietary options"></div>
+                  <div class="category-inline" id="preview-category-badge"></div>
+                </div>
+              </div>
+            </section>
+            <main>
+              <section class="controls preview-controls">
+                <div class="control-group">
+                  <div class="batch-display">Batch multiplier: <span id="preview-batch-multiplier">×1</span></div>
+                  <button class="button" type="button" disabled>🖨 Print</button>
+                </div>
+              </section>
+              <section class="preview-section">
+                <h4>Ingredients</h4>
+                <ul id="preview-ingredients"></ul>
+              </section>
+              <section class="preview-section">
+                <h4>Steps</h4>
+                <ol id="preview-steps"></ol>
+              </section>
+            </main>
+          </div>
         </div>
       </section>
     </main>
