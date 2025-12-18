@@ -1252,6 +1252,17 @@ main {
   margin-bottom: 1rem;
 }
 
+.field-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.field-label-row .help-icon {
+  flex-shrink: 0;
+}
+
 .field.inline {
   max-width: 240px;
 }
