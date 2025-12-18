@@ -79,7 +79,7 @@
         "options": [
           {
             "option": "",
-            "display": "beef brisket (3–4 lb)",
+            "display": "beef brisket",
             "ratio": "3 1/2",
             "unit": "lb",
             "ingredient_id": "brisket",
@@ -1870,7 +1870,7 @@
         "options": [
           {
             "option": "cube",
-            "display": "beef bouillon",
+            "display": "beef bouillon cube",
             "ratio": "1",
             "unit": "cube",
             "ingredient_id": "beef_bouillon",
@@ -1885,7 +1885,7 @@
           },
           {
             "option": "paste",
-            "display": "beef bouillon",
+            "display": "beef bouillon paste",
             "ratio": "1",
             "unit": "tsp",
             "ingredient_id": "beef_bouillon",
