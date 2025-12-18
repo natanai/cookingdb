@@ -1718,15 +1718,20 @@ main {
 
 @media (max-width: 680px) {
   .hero {
-    padding: 1.5rem;
+    padding: 1.1rem;
   }
   .site-header .inner {
     flex-direction: column;
     align-items: flex-start;
+    padding-inline: 0.85rem;
   }
 }
 
 @media (max-width: 640px) {
+  .page-shell {
+    padding: 0 0.65rem 2.5rem;
+  }
+
   .steps-builder {
     padding-left: 0;
   }
@@ -1737,7 +1742,11 @@ main {
 
   .add-page .form-panel,
   .add-page .preview-panel {
-    padding: 1rem;
+    padding: 0.85rem;
+  }
+
+  .add-page .preview-shell {
+    padding: 0.8rem 0.9rem;
   }
 
   .add-page .recipe-actions {
