@@ -153,17 +153,61 @@ function buildRecipeLink(recipeId) {
   return `recipe.html?${params.toString()}`;
 }
 
+function describeFilters(filters) {
+  const active = [];
+  if (filters.queryLabel) active.push(`Search: “${filters.queryLabel}”`);
+  if (filters.category !== 'all') active.push(`Category: ${filters.category}`);
+  if (filters.gluten) active.push('Gluten-free only');
+  if (filters.egg) active.push('Egg-free only');
+  if (filters.dairy) active.push('Dairy-free only');
+  return active;
+}
+
+function renderResultsSummary(visible, filters, totalCount) {
+  const summaryEl = document.getElementById('result-summary');
+  const activeEl = document.getElementById('active-filters');
+  const clearBtn = document.getElementById('clear-filters');
+  if (!summaryEl || !activeEl || !clearBtn) return;
+
+  const activeFilters = describeFilters(filters);
+  const hasFilters = activeFilters.length > 0;
+  summaryEl.textContent = `${visible.length} of ${totalCount} recipe${totalCount === 1 ? '' : 's'} shown`;
+  if (filters.queryLabel && visible.length === 0) {
+    summaryEl.textContent += ` for “${filters.queryLabel}”.`;
+  }
+
+  activeEl.innerHTML = '';
+  if (hasFilters) {
+    activeFilters.forEach((label) => {
+      const chip = document.createElement('span');
+      chip.className = 'filter-chip';
+      chip.textContent = label;
+      activeEl.appendChild(chip);
+    });
+  } else {
+    const none = document.createElement('span');
+    none.className = 'muted';
+    none.textContent = 'No filters active';
+    activeEl.appendChild(none);
+  }
+
+  clearBtn.disabled = !hasFilters;
+}
+
 function renderRecipes(recipes) {
   const listEl = document.getElementById('recipe-list');
+  const rawQuery = document.getElementById('search')?.value || '';
   const filters = {
     gluten: document.getElementById('filter-gluten').checked,
     egg: document.getElementById('filter-egg').checked,
     dairy: document.getElementById('filter-dairy').checked,
-    query: document.getElementById('search')?.value.trim().toLowerCase() || '',
+    query: rawQuery.trim().toLowerCase() || '',
+    queryLabel: rawQuery.trim(),
     category: selectedCategory,
   };
   listEl.innerHTML = '';
   const visible = recipes.filter((r) => recipeVisible(r, filters));
+  renderResultsSummary(visible, filters, recipes.length);
   if (visible.length === 0) {
     const empty = document.createElement('li');
     empty.className = 'empty-state';
@@ -298,6 +342,19 @@ function addInboxRecipes(newOnes) {
   return newOnes.length;
 }
 
+function clearFilters() {
+  const search = document.getElementById('search');
+  const gluten = document.getElementById('filter-gluten');
+  const egg = document.getElementById('filter-egg');
+  const dairy = document.getElementById('filter-dairy');
+  if (search) search.value = '';
+  if (gluten) gluten.checked = false;
+  if (egg) egg.checked = false;
+  if (dairy) dairy.checked = false;
+  selectedCategory = 'all';
+  refreshUI();
+}
+
 function promptFamilyPassword() {
   const remembered = getRememberedPassword('family');
   const password = window.prompt('Family inbox password', remembered || '');
@@ -366,6 +423,7 @@ async function main() {
   document.getElementById('filter-dairy').addEventListener('change', update);
   document.getElementById('search').addEventListener('input', update);
   document.getElementById('pull-inbox')?.addEventListener('click', handlePullClick);
+  document.getElementById('clear-filters')?.addEventListener('click', clearFilters);
   refreshUI();
 }
 
