@@ -20,31 +20,48 @@
   <div class="page-shell">
     <section class="hero">
       <div class="hero-content">
-        <h1 class="hero-title">Recipe box</h1>
-        <p class="hero-subtitle">Browse every recipe in one place or jump straight into a category. Search and dietary filters help you land on the right card fast.</p>
-        <div class="filter-bar">
-          <label class="search-field" aria-label="Search recipes">
-            <span aria-hidden="true">🔎</span>
-            <input id="search" type="search" placeholder="Search meal or ingredient" />
-          </label>
-          <div class="filters" aria-label="Dietary filters">
-            <label><input type="checkbox" id="filter-gluten" /> Gluten-free friendly</label>
-            <label><input type="checkbox" id="filter-egg" /> Egg-free ready</label>
-            <label><input type="checkbox" id="filter-dairy" /> Dairy-free friendly</label>
+        <div class="toolbar">
+          <div class="toolbar-title-row">
+            <h1 class="hero-title">Recipe box</h1>
           </div>
+
+          <div class="toolbar-row toolbar-row-primary">
+            <!-- Search -->
+            <label class="search-field" aria-label="Search recipes">
+              <span aria-hidden="true">🔎</span>
+              <input id="search" type="search" placeholder="Search meal or ingredient" />
+            </label>
+
+            <!-- Categories (keep ids) -->
+            <details class="category-panel category-panel-compact" id="category-panel">
+              <summary class="category-summary">
+                <span class="summary-label">Category</span>
+                <span class="summary-selection" id="category-current">All recipes</span>
+              </summary>
+              <div class="category-options" id="category-options" aria-label="Recipe categories"></div>
+            </details>
+          </div>
+
+          <div class="toolbar-row toolbar-row-secondary">
+            <!-- Dietary filters (keep ids) -->
+            <div class="filters filters-compact" aria-label="Dietary filters">
+              <label><input type="checkbox" id="filter-gluten" /> Gluten-free</label>
+              <label><input type="checkbox" id="filter-egg" /> Egg-free</label>
+              <label><input type="checkbox" id="filter-dairy" /> Dairy-free</label>
+            </div>
+
+            <!-- Family tools disclosure (less used) -->
+            <details class="admin-panel">
+              <summary class="admin-summary">Family tools</summary>
+              <div class="admin-body">
+                <button class="button" type="button" id="pull-inbox">Pull from recipe inbox</button>
+                <label class="remember-row"><input type="checkbox" id="remember-pull" /> Remember family password</label>
+              </div>
+            </details>
+          </div>
+
+          <div id="pull-status" class="status" aria-live="polite"></div>
         </div>
-        <div class="actions">
-          <button class="button" type="button" id="pull-inbox">Pull from recipe inbox</button>
-          <label class="remember-row"><input type="checkbox" id="remember-pull" /> Remember family password</label>
-        </div>
-        <div id="pull-status" class="status" aria-live="polite"></div>
-        <details class="category-panel" id="category-panel">
-          <summary class="category-summary">
-            <span class="summary-label">Categories</span>
-            <span class="summary-selection" id="category-current">All recipes</span>
-          </summary>
-          <div class="category-options" id="category-options" aria-label="Recipe categories"></div>
-        </details>
       </div>
     </section>
     <main>
