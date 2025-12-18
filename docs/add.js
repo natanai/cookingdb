@@ -46,15 +46,17 @@ const HELP_TEXT = {
   sectionLabel:
     'Section label adds a small heading above related ingredients, such as "Dough" or "Topping." Leave it blank if the recipe is a single part.',
   altNote:
-    'Alternative note explains a swap or option for this ingredient, like "use almonds instead" or "skip for nut-free." It shows right next to the ingredient in the preview.',
+    'Alternative note is quick parenthetical text shown next to the line—like "(or use almonds)"—but it does not create a selectable swap. Use choice options below when you need someone to pick between versions.',
   optionValue:
     'Option value must match the exact choice someone clicks from ingredient options, like "extra cheese" or "no nuts." When that choice is picked, this ingredient will show (or stay hidden).',
+  choiceToggle:
+    'Check “Choice ingredient” when this line should offer a dropdown for swaps (for example, dairy vs. non-dairy milk). The base ingredient name stays as the default option, and any extra options you add become selectable alternatives.',
   choiceLabel:
-    'Choice label is the friendly text shown above the swap selector, such as "Milk type" or "Pick a crust." Keep it short and clear—usually the ingredient name works great.',
+    'Choice label is the heading above the swap selector, like "Milk type" or "Pick a crust." It does not replace your ingredient name; it just titles the dropdown people click.',
   choiceDefault:
-    'Default option is the version that should load automatically when the recipe opens. Pick the option that matches the written card so the preview mirrors the intended base recipe.',
+    'Default option is what loads automatically. The base ingredient you typed is treated as the primary option, and you can pick any option (including that base) as the default so the preview mirrors the written card.',
   choiceOptions:
-    'Use options to list every version of this ingredient that someone can pick. Give each option a clear display name, fill in the exact amount and unit for that version, and set the option value slug used by steps or show-when rules.',
+    'Options are the specific swaps for this ingredient. Add one row per version with its own amount and unit; the base ingredient name you typed remains one option, and these rows add the alternates. Option values connect steps or “show when” rules to the right choice.',
   optionDisplay:
     'Option name is what cooks will read, like "whole milk" or "oat milk." Use the wording from the card so it is recognizable in the preview and printed recipe.',
 };
@@ -528,7 +530,7 @@ function createIngredientRow(defaults = {}) {
 
       <div class="choice-row">
         <div class="choice-config">
-          <label class="choice-toggle"><input type="checkbox" class="ingredient-choice-flag" /> Choice ingredient</label>
+          <label class="choice-toggle"><input type="checkbox" class="ingredient-choice-flag" /> Choice ingredient <button type="button" class="help-icon choice-toggle-help" data-help-key="choiceToggle" aria-label="Help: choice ingredient">?</button></label>
           <div class="input-with-help">
             <input class="ingredient-choice-label" placeholder="Choice label" aria-label="Choice label" />
             <button type="button" class="help-icon choice-label-help" data-help-key="choiceLabel" aria-label="Help: choice label">?</button>
@@ -543,6 +545,7 @@ function createIngredientRow(defaults = {}) {
             <span>Options</span>
             <button type="button" class="help-icon choice-options-help" data-help-key="choiceOptions" aria-label="Help: choice options">?</button>
           </div>
+          <div class="field-help subtle choice-hint">Adding options doesn’t erase the ingredient name above—it simply adds extra selectable versions. Use a short option value that matches any “show when” or step references.</div>
           <div class="ingredient-options"></div>
           <button class="button secondary add-option" type="button">+ Add option</button>
         </div>
@@ -578,6 +581,7 @@ function createIngredientRow(defaults = {}) {
   const choiceLabelHelp = row.querySelector('.choice-label-help');
   const choiceDefaultHelp = row.querySelector('.choice-default-help');
   const choiceOptionsHelp = row.querySelector('.choice-options-help');
+  const choiceToggleHelp = row.querySelector('.choice-toggle-help');
   const choiceFields = row.querySelector('.choice-row');
   const setExpanded = (expanded) => {
     toggleButton.setAttribute('aria-expanded', String(expanded));
@@ -704,6 +708,7 @@ function createIngredientRow(defaults = {}) {
   attachHelpTrigger(sectionHelp, 'sectionLabel');
   attachHelpTrigger(altHelp, 'altNote');
   attachHelpTrigger(optionHelp, 'optionValue');
+  attachHelpTrigger(choiceToggleHelp, 'choiceToggle');
   attachHelpTrigger(choiceLabelHelp, 'choiceLabel');
   attachHelpTrigger(choiceDefaultHelp, 'choiceDefault');
   attachHelpTrigger(choiceOptionsHelp, 'choiceOptions');

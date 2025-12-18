@@ -1409,6 +1409,9 @@ main {
 
 .choice-config .choice-toggle {
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .choice-options-block {
@@ -1427,6 +1430,10 @@ main {
   justify-content: space-between;
   gap: 0.35rem;
   font-weight: 600;
+}
+
+.choice-hint {
+  margin-top: -0.1rem;
 }
 
 .choice-options-block .add-option {
