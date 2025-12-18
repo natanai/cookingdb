@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap');
 
 :root {
   --bg: #f4efe4;
@@ -12,6 +12,8 @@
   --shadow: 0 4px 14px rgba(30, 18, 11, 0.1);
   --radius: 6px;
   --radius-lg: 8px;
+  --font-sans: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-serif: 'Georgia', 'Times New Roman', serif;
 }
 
 * {
@@ -20,7 +22,8 @@
 
 body {
   margin: 0;
-  font-family: 'Atkinson Hyperlegible', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
+  font-weight: 400;
   background: var(--bg);
   color: var(--text);
   line-height: 1.7;
@@ -54,7 +57,7 @@ body {
 
 .site-title {
   margin: 0;
-  font-family: 'Source Serif 4', Georgia, serif;
+  font-family: 'Source Serif 4', var(--font-serif);
   font-size: clamp(1.35rem, 3vw, 1.8rem);
   letter-spacing: 0.01em;
 }
@@ -67,7 +70,7 @@ body {
 .nav-links a {
   color: var(--accent);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .nav-links .button {
@@ -99,7 +102,7 @@ body {
 
 .hero-title {
   margin: 0;
-  font-family: 'Source Serif 4', Georgia, serif;
+  font-family: 'Source Serif 4', var(--font-serif);
   font-size: clamp(1.5rem, 4vw, 2rem);
   letter-spacing: 0.01em;
   color: #2a1c13;
@@ -294,7 +297,8 @@ main {
   margin: 0 0 0.5rem;
   font-size: 1.35rem;
   letter-spacing: 0.01em;
-  font-family: 'Source Serif 4', Georgia, serif;
+  font-family: 'Source Serif 4', var(--font-serif);
+  font-weight: 600;
 }
 
 .recipe-list {
@@ -314,17 +318,23 @@ main {
   border: 0;
 }
 
-.recipe-row + .recipe-row {
-  border-top: 1px solid var(--border);
+.recipe-list > li {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.recipe-list > li:last-child {
+  border-bottom: none;
 }
 
 .recipe-row-link {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: baseline;
-  gap: 0.75rem;
-  padding: 0.55rem 0.75rem;
-  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  padding: 0.65rem 0.9rem;
+  color: var(--text);
   text-decoration: none;
 }
 
@@ -333,23 +343,27 @@ main {
 }
 
 .recipe-row-link:focus {
-  outline: 2px solid rgba(0, 0, 0, 0.25);
+  outline: 2px solid rgba(0, 0, 0, 0.22);
   outline-offset: -2px;
 }
 
 .recipe-row-title {
-  font-weight: 600;
+  flex: 1 1 auto;
+  font-weight: 500;
   letter-spacing: 0;
-  line-height: 1.25;
+  line-height: 1.3;
+  font-size: 1.02rem;
   min-width: 0;
 }
 
 .recipe-row-flags {
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   color: var(--muted);
   opacity: 0.8;
 }
@@ -602,6 +616,45 @@ main {
   font-weight: 600;
 }
 
+.page-recipe .controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.85rem 0.9rem;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.page-recipe .dietary-controls {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  min-width: 0;
+  gap: 0.35rem;
+}
+
+.page-recipe .dietary-controls legend {
+  padding: 0;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.page-recipe .dietary-controls label {
+  font-weight: 500;
+  padding: 0;
+}
+
+.page-recipe #print-btn {
+  justify-self: start;
+}
+
+@media (min-width: 720px) {
+  .page-recipe #print-btn {
+    justify-self: end;
+  }
+}
+
 .controls input[type='number'],
 .controls select,
 .button {
@@ -651,7 +704,7 @@ main {
 #steps-list {
   background: var(--card);
   border: 1px solid var(--border);
-  padding: 0.9rem 1.1rem;
+  padding: 1rem 1.35rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
 }
@@ -659,12 +712,13 @@ main {
 #ingredients-list {
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 #ingredients-list li {
   margin-bottom: 0.5rem;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
@@ -752,6 +806,18 @@ main {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin: 0.5rem 0 1rem;
+}
+
+.page-recipe .recipe-metadata {
+  margin: 0.35rem 0 0.5rem;
+  gap: 0.4rem;
+}
+
+.page-recipe .diet-initial {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--muted);
 }
 
 .empty-state {
