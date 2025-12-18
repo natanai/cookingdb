@@ -325,7 +325,7 @@ function buildChoiceControls(recipe, state, onChange) {
     }
   });
 
-  return { hasSwapAdjustments: renderedGroups > 0, swapGroupCount: renderedGroups };
+  return { hasSwapAdjustments: renderedGroups > 0 };
 }
 
 function renderIngredientsList(recipe, state, onUnitChange) {
@@ -484,7 +484,7 @@ function setupPanControls(recipe, state, rerender) {
 
   if (!panControls || !panSelect || !panNote) {
     state.panMultiplier = 1;
-    return { hasPanAdjustments: false, panOptionCount: 0 };
+    return { hasPanAdjustments: false };
   }
 
   const panSizes = Array.isArray(recipe?.pan_sizes) ? recipe.pan_sizes : [];
@@ -508,7 +508,7 @@ function setupPanControls(recipe, state, rerender) {
     state.panMultiplier = 1;
     state.selectedPanId = recipe?.default_pan || null;
     panControls.remove();
-    return { hasPanAdjustments: false, panOptionCount: 0 };
+    return { hasPanAdjustments: false };
   }
 
   panControls.hidden = false;
@@ -552,7 +552,7 @@ function setupPanControls(recipe, state, rerender) {
   panSelect.addEventListener('change', updatePanMultiplier);
   updatePanMultiplier();
 
-  return { hasPanAdjustments: true, panOptionCount: validPans.length };
+  return { hasPanAdjustments: true };
 }
 
 function renderRecipe(recipeInput) {
@@ -680,7 +680,6 @@ function renderRecipe(recipeInput) {
   syncSelections();
   const swapResult = buildChoiceControls(recipe, state, rerender) || {
     hasSwapAdjustments: false,
-    swapGroupCount: 0,
   };
   refreshDietaryBadges();
 
@@ -691,23 +690,20 @@ function renderRecipe(recipeInput) {
     return possible && !lockedOn;
   };
 
-  const dietaryAdjustmentCount = DIETARY_BADGES.filter(({ key }) => dietaryToggleEnabled(key)).length;
-
   const adjustSummary = document.getElementById('adjust-summary');
   const adjustDetails = document.getElementById('adjust-details');
   const adjustDivider = document.getElementById('adjust-divider');
 
-  const adjustmentCount =
-    (panResult?.panOptionCount || 0) + (swapResult?.swapGroupCount || 0) + dietaryAdjustmentCount;
-
   const hasAnyAdjustments =
-    (panResult?.hasPanAdjustments || false) || swapResult.hasSwapAdjustments || dietaryAdjustmentCount > 0;
+    (panResult?.hasPanAdjustments || false) ||
+    swapResult.hasSwapAdjustments ||
+    DIETARY_BADGES.some(({ key }) => dietaryToggleEnabled(key));
 
   if (!hasAnyAdjustments) {
     if (adjustDetails) adjustDetails.remove();
   } else {
     if (adjustSummary) {
-      adjustSummary.textContent = adjustmentCount ? `Adjust recipe (${adjustmentCount})` : 'Adjust recipe';
+      adjustSummary.textContent = 'Adjust recipe';
     }
 
     if (adjustDetails && !adjustDetails.dataset.initialized) {
