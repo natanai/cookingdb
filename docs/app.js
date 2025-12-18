@@ -6,6 +6,8 @@ const HAPTICS_KEY = 'cookingdb-ruffle-haptics';
 let userInteracted = false;
 let ruffleObserver = null;
 let lastHapticAt = 0;
+let mobileRuffleInstalled = false;
+let mobileRuffleUpdate = null;
 
 function installRecipePressFeedback(linkEl) {
   let startX = 0;
@@ -105,6 +107,96 @@ function setupRuffleObserver(listEl) {
 
   const rows = listEl.querySelectorAll('li.recipe-row');
   rows.forEach((row) => ruffleObserver.observe(row));
+}
+
+function setupMobileScrollRuffle() {
+  const listEl = document.getElementById('recipe-list');
+  if (!listEl) return;
+
+  // Only for touch-style pointers and only if user hasn’t asked for reduced motion.
+  const isCoarse = window.matchMedia?.('(pointer: coarse)')?.matches;
+  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+  if (!isCoarse || reduceMotion) return;
+
+  let rows = Array.from(listEl.querySelectorAll('li.recipe-row'));
+  if (!rows.length && mobileRuffleInstalled) {
+    requestAnimationFrame(() => mobileRuffleUpdate?.());
+    return;
+  }
+
+  // Choose an anchor line: slightly above center feels like “riffle” as you scroll.
+  function anchorY() {
+    return Math.round(window.innerHeight * 0.42);
+  }
+
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+
+    // Re-grab rows in case renderRecipes recreated them
+    rows = Array.from(listEl.querySelectorAll('li.recipe-row'));
+    if (!rows.length) return;
+
+    const focusY = anchorY();
+    const maxDist = Math.max(180, Math.round(window.innerHeight * 0.32)); // controls falloff
+
+    // Track most-focused index so we can lightly nudge neighbors.
+    let bestIdx = -1;
+    let bestT = 0;
+
+    // First pass: compute ruffle for visible rows only.
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      const r = row.getBoundingClientRect();
+
+      if (r.bottom < 0 || r.top > window.innerHeight) {
+        row.style.setProperty('--ruffle', '0');
+        row.style.setProperty('--ruffle-near', '0');
+        continue;
+      }
+
+      const cy = r.top + r.height / 2;
+      const dist = Math.abs(cy - focusY);
+      const t = Math.max(0, 1 - (dist / maxDist)); // 0..1
+
+      // Keep it extremely subtle by easing the curve a bit (squares small values)
+      const eased = t * t;
+
+      row.style.setProperty('--ruffle', eased.toFixed(3));
+      row.style.setProperty('--ruffle-near', '0');
+
+      if (eased > bestT) {
+        bestT = eased;
+        bestIdx = i;
+      }
+    }
+
+    // Second pass: tiny cascade to neighbors (optional, very subtle)
+    if (bestIdx >= 0) {
+      const prev = rows[bestIdx - 1];
+      const next = rows[bestIdx + 1];
+      if (prev) prev.style.setProperty('--ruffle-near', (bestT * 0.55).toFixed(3));
+      if (next) next.style.setProperty('--ruffle-near', (bestT * 0.55).toFixed(3));
+    }
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+
+  if (!mobileRuffleInstalled) {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => requestAnimationFrame(update), { passive: true });
+    mobileRuffleInstalled = true;
+  }
+
+  mobileRuffleUpdate = update;
+
+  // Initial paint
+  requestAnimationFrame(update);
 }
 
 async function loadIndex() {
@@ -267,6 +359,7 @@ function renderRecipes(recipes) {
     empty.textContent = 'No recipes match that search just yet—try clearing a filter.';
     listEl.appendChild(empty);
     setupRuffleObserver(listEl);
+    setupMobileScrollRuffle();
     return;
   }
   visible.forEach((recipe) => {
@@ -320,6 +413,7 @@ function renderRecipes(recipes) {
   });
 
   setupRuffleObserver(listEl);
+  setupMobileScrollRuffle();
 }
 
 function uniqueCategories(recipes) {
@@ -483,6 +577,7 @@ async function main() {
     });
   }
   refreshUI();
+  setupMobileScrollRuffle();
 }
 
 main().catch((err) => {
