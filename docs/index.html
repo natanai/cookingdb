@@ -50,14 +50,21 @@
               <label><input type="checkbox" id="filter-dairy" /> Dairy-free</label>
             </div>
 
-            <!-- Family tools disclosure (less used) -->
-            <details class="admin-panel">
-              <summary class="admin-summary">Family tools</summary>
-              <div class="admin-body">
-                <button class="button" type="button" id="pull-inbox">Pull from recipe inbox</button>
-                <label class="remember-row"><input type="checkbox" id="remember-pull" /> Remember family password</label>
-              </div>
-            </details>
+            <div class="family-tools">
+              <button type="button" id="pull-inbox" class="button secondary button-compact">
+                Pull inbox
+              </button>
+
+              <details class="family-settings">
+                <summary class="icon-button" aria-label="Family settings"></summary>
+                <div class="family-settings-panel">
+                  <label class="inline-check">
+                    <input type="checkbox" id="remember-pull" />
+                    Remember family password
+                  </label>
+                </div>
+              </details>
+            </div>
           </div>
 
           <div id="pull-status" class="status" aria-live="polite"></div>
