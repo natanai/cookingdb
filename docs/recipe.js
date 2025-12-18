@@ -515,9 +515,19 @@ function renderRecipe(recipeInput) {
 
   if (metadataEl) {
     metadataEl.innerHTML = '';
-    metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.gluten_free, !!compatibilityPossible.gluten_free));
-    metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.egg_free, !!compatibilityPossible.egg_free));
-    metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.dairy_free, !!compatibilityPossible.dairy_free));
+    const dietInitials = {
+      gluten_free: 'GF',
+      egg_free: 'EF',
+      dairy_free: 'DF',
+    };
+
+    Object.entries(dietInitials).forEach(([key, label]) => {
+      if (!defaultCompatibility[key]) return;
+      const span = document.createElement('span');
+      span.className = 'diet-initial';
+      span.textContent = label;
+      metadataEl.appendChild(span);
+    });
   }
 
   if (categoryRow) {
