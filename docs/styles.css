@@ -1386,6 +1386,37 @@ main {
   padding-top: 0.65rem;
 }
 
+.choice-block {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+
+.choice-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.choice-fields {
+  display: none;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+
+.ingredient-row.is-choice .choice-fields {
+  display: block;
+}
+
+.choice-default {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
 .ingredient-advanced-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
