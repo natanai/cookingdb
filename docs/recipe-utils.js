@@ -6,8 +6,78 @@ export const DIETARY_TAGS = {
   dairy_free: { positive: 'Dairy-free ready', negative: 'Contains dairy' },
 };
 
+export const DIETARY_BADGES = [
+  { key: 'gluten_free', short: 'GF', name: 'Gluten-free' },
+  { key: 'egg_free', short: 'EF', name: 'Egg-free' },
+  { key: 'dairy_free', short: 'DF', name: 'Dairy-free' },
+];
+
 export function restrictionsActive(prefs) {
   return prefs.gluten_free || prefs.egg_free || prefs.dairy_free;
+}
+
+export function renderDietaryBadges(
+  container,
+  state,
+  defaultCompatibility,
+  compatibilityPossible,
+  restrictionCanRelax,
+  onChange,
+  { interactive = true } = {}
+) {
+  if (!container) return;
+  container.innerHTML = '';
+
+  const restrictions = state?.restrictions || {};
+
+  DIETARY_BADGES.forEach(({ key, short, name }) => {
+    const possible = !!compatibilityPossible?.[key];
+    const ready = !!defaultCompatibility?.[key];
+
+    const status = !possible ? 'cannot' : ready ? 'ready' : 'can-become';
+    const lockedOn = ready && !restrictionCanRelax?.[key];
+
+    const label = document.createElement('label');
+    label.className = `diet-badge diet-badge--${status}`;
+    if (!possible) label.classList.add('is-disabled');
+    if (lockedOn) label.classList.add('is-locked');
+    if (!interactive) label.classList.add('is-readonly');
+
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.checked = !!restrictions[key];
+    input.disabled = !interactive || !possible || lockedOn;
+
+    if (interactive && typeof onChange === 'function') {
+      input.addEventListener('change', () => {
+        state.restrictions[key] = input.checked;
+        onChange();
+      });
+    }
+
+    const text = document.createElement('span');
+    text.className = 'diet-badge__text';
+    text.textContent = short;
+
+    const icon = document.createElement('span');
+    icon.className = 'diet-badge__icon';
+    icon.setAttribute('aria-hidden', 'true');
+
+    if (!possible) {
+      label.title = `${name}: no known swaps available`;
+    } else if (ready) {
+      label.title = lockedOn
+        ? `${name}: already meets (always)`
+        : `${name}: already meets (click to allow non-${name.toLowerCase()})`;
+    } else {
+      label.title = `${name}: click to apply swaps`;
+    }
+
+    label.appendChild(input);
+    label.appendChild(text);
+    label.appendChild(icon);
+    container.appendChild(label);
+  });
 }
 
 export function parseRatio(str) {

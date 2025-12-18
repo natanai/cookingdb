@@ -4,11 +4,13 @@ import {
   setRememberedPassword,
 } from './inbox/inbox-api.js';
 import {
-  DIETARY_TAGS,
+  renderDietaryBadges,
   renderIngredientLines,
   renderStepLines,
   groupLinesBySection,
   recipeDefaultCompatibility,
+  hasNonCompliantAlternative,
+  selectOptionForToken,
 } from './recipe-utils.js';
 import { UNIT_CONVERSIONS } from './unit-conversions.js';
 
@@ -514,6 +516,7 @@ function dietaryFlagsAreDefault(flags) {
 function buildIngredientsFromForm(issues) {
   const tokenOrder = [];
   const ingredientList = [];
+  const choices = {};
   const ingredientRows = [...ingredientRowsEl.querySelectorAll('.ingredient-row')];
 
   ingredientRows.forEach((row, idx) => {
@@ -563,29 +566,49 @@ function buildIngredientsFromForm(issues) {
 
     const token = slugify(name);
     if (!tokenOrder.includes(token)) tokenOrder.push(token);
-    const optionDisplay = alt ? `${name} (${alt})` : name;
-    const depends_on = depToken
-      ? { token: slugify(depToken), option: depOption ? slugify(depOption) : null }
+
+    const depends_on_raw = slugify(depToken);
+    const depends_on = depends_on_raw
+      ? { token: depends_on_raw, option: depOption ? slugify(depOption) || null : null }
       : null;
+    const normalizedDependsOn = depends_on?.token ? depends_on : null;
+    const normalizedSection = section || null;
+    const normalizedLineGroup = lineGroup || null;
+
+    const hasAlternative = Boolean(alt && slugify(alt));
+    const baseOptionKey = hasAlternative ? 'base' : '';
+    const baseOption = {
+      option: baseOptionKey,
+      display: name,
+      ratio: amount,
+      unit,
+      ingredient_id: token,
+      dietary,
+      depends_on: normalizedDependsOn,
+      line_group: normalizedLineGroup,
+      section: normalizedSection,
+    };
+
+    const options = [baseOption];
+
+    if (hasAlternative) {
+      const altKey = slugify(alt);
+      options.push({
+        ...baseOption,
+        option: altKey,
+        display: alt,
+        ingredient_id: altKey,
+      });
+      choices[token] = { token, label: name, default_option: baseOptionKey };
+    }
+
     ingredientList.push({
       token,
-      options: [
-        {
-          option: '',
-          display: optionDisplay,
-          ratio: amount,
-          unit,
-          ingredient_id: token,
-          dietary,
-          depends_on,
-          line_group: lineGroup || null,
-          section: section || null,
-        },
-      ],
-      isChoice: false,
-      depends_on,
-      line_group: lineGroup || null,
-      section: section || null,
+      options,
+      isChoice: hasAlternative,
+      depends_on: normalizedDependsOn,
+      line_group: normalizedLineGroup,
+      section: normalizedSection,
     });
   });
 
@@ -593,7 +616,7 @@ function buildIngredientsFromForm(issues) {
     issues.push('Add at least one ingredient with a name, amount, and unit.');
   }
 
-  return { ingredientList, tokenOrder };
+  return { ingredientList, tokenOrder, choices };
 }
 
 function buildRecipeDraft() {
@@ -608,9 +631,14 @@ function buildRecipeDraft() {
 
   const title = titleInput.value.trim();
   const slug = slugInput.value.trim();
-  const notes = notesInput.value.trim();
-  const categories = categoriesSelect ? [...categoriesSelect.selectedOptions].map((opt) => opt.value) : [];
-  const defaultBase = Number(defaultBaseInput.value) || 1;
+  const notesRaw = notesInput.value.trim();
+  const notes = notesRaw ? notesRaw : null;
+  const categories = categoriesSelect
+    ? [...categoriesSelect.selectedOptions].map((opt) => opt.value).filter(Boolean)
+    : [];
+  const defaultBaseRaw = defaultBaseInput.value;
+  const parsedDefaultBase = defaultBaseRaw === '' ? null : Number(defaultBaseRaw);
+  const defaultBase = Number.isFinite(parsedDefaultBase) && parsedDefaultBase > 0 ? parsedDefaultBase : 1;
 
   if (!title) {
     issues.push('Add a recipe title.');
@@ -630,12 +658,12 @@ function buildRecipeDraft() {
     markInvalid(categoriesSelect);
   }
 
-  if (!Number.isFinite(defaultBase) || defaultBase <= 0) {
+  if (defaultBaseRaw !== '' && (!Number.isFinite(parsedDefaultBase) || parsedDefaultBase <= 0)) {
     issues.push('Batch size must be a positive number.');
     markInvalid(defaultBaseInput);
   }
 
-  const { ingredientList, tokenOrder } = buildIngredientsFromForm(issues);
+  const { ingredientList, tokenOrder, choices } = buildIngredientsFromForm(issues);
 
   const stepsRawLines = [];
   const structuredSteps = [];
@@ -733,7 +761,7 @@ function buildRecipeDraft() {
     token_order: tokenOrder,
     ingredients: ingredientList,
     ingredient_sections: ingredientSections,
-    choices: {},
+    choices,
     pan_sizes: [],
     default_pan: null,
     compatibility_possible: compatibility,
@@ -765,89 +793,171 @@ function buildPreviewRecipe() {
 
 function renderPreview(recipe) {
   const titleEl = document.getElementById('preview-title');
-  const notesEl = document.getElementById('preview-notes');
+  const cooknoteDetails = document.getElementById('preview-cooknote-details');
+  const cooknoteBody = document.getElementById('preview-cooknote-body');
   const categoriesEl = document.getElementById('preview-categories');
-  const metadataEl = document.getElementById('preview-metadata');
+  const dietaryRow = document.getElementById('preview-dietary-row');
   const ingredientsEl = document.getElementById('preview-ingredients');
   const stepsEl = document.getElementById('preview-steps');
+  const adjustDetails = document.getElementById('preview-adjust-details');
+  const adjustBody = document.getElementById('preview-adjust-body');
+  const adjustSummary = document.getElementById('preview-adjust-summary');
+  const multiplierNote = document.getElementById('preview-multiplier-note');
 
-  titleEl.textContent = recipe.title || 'Recipe title';
-  notesEl.textContent = recipe.notes || 'Notes will appear here.';
+  const defaultCompatibility = recipeDefaultCompatibility(recipe);
+  const compatibilityPossible = recipe.compatibility_possible || defaultCompatibility;
+  const restrictionCanRelax = {
+    gluten_free: hasNonCompliantAlternative(recipe, 'gluten_free'),
+    egg_free: hasNonCompliantAlternative(recipe, 'egg_free'),
+    dairy_free: hasNonCompliantAlternative(recipe, 'dairy_free'),
+  };
 
-  categoriesEl.innerHTML = '';
-  (recipe.categories || []).forEach((cat) => {
-    const chip = document.createElement('span');
-    chip.className = 'category-chip';
-    chip.textContent = cat;
-    categoriesEl.appendChild(chip);
-  });
-
-  metadataEl.innerHTML = '';
-  metadataEl.appendChild(
-    (() => {
-      const pill = document.createElement('span');
-      pill.className = 'pill neutral';
-      pill.textContent = `Batch ×${recipe.default_base || 1}`;
-      return pill;
-    })()
-  );
-  metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.gluten_free, recipe.compatibility_possible.gluten_free));
-  metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.egg_free, recipe.compatibility_possible.egg_free));
-  metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.dairy_free, recipe.compatibility_possible.dairy_free));
-
-  ingredientsEl.innerHTML = '';
   const state = {
     multiplier: recipe.default_base || 1,
     panMultiplier: 1,
     selectedOptions: {},
-    restrictions: recipe.compatibility_possible || { gluten_free: true, egg_free: true, dairy_free: true },
+    unitSelections: {},
+    restrictions: {
+      gluten_free: compatibilityPossible.gluten_free ? defaultCompatibility.gluten_free : false,
+      egg_free: compatibilityPossible.egg_free ? defaultCompatibility.egg_free : false,
+      dairy_free: compatibilityPossible.dairy_free ? defaultCompatibility.dairy_free : false,
+    },
   };
-  const ingredientLines = renderIngredientLines(recipe, state);
-  const ingredientSections = groupLinesBySection(ingredientLines, recipe.ingredient_sections || []);
-  ingredientSections.forEach((section) => {
-    if (section.section) {
-      const header = document.createElement('li');
-      header.className = 'section-header';
-      header.textContent = section.section;
-      ingredientsEl.appendChild(header);
-    }
 
-    section.lines.forEach((line) => {
-      const li = document.createElement('li');
-      li.textContent = line.text;
-      if (line.alternatives.length) {
-        const span = document.createElement('span');
-        span.className = 'ingredient-alternatives';
-        span.textContent = ` (or ${line.alternatives.join(' / ')})`;
-        li.appendChild(span);
+  if (titleEl) {
+    titleEl.textContent = recipe.title || 'Recipe title';
+  }
+
+  const noteText = typeof recipe.notes === 'string' ? recipe.notes.trim() : '';
+  if (cooknoteDetails) {
+    if (noteText) {
+      cooknoteDetails.hidden = false;
+      cooknoteDetails.open = false;
+      if (cooknoteBody) cooknoteBody.textContent = noteText;
+    } else {
+      cooknoteDetails.hidden = true;
+      if (cooknoteBody) cooknoteBody.textContent = '';
+    }
+  }
+
+  if (categoriesEl) {
+    const categories = (recipe.categories || []).filter(Boolean);
+    categoriesEl.textContent = categories.join(' • ');
+  }
+
+  if (dietaryRow) {
+    renderDietaryBadges(
+      dietaryRow,
+      state,
+      defaultCompatibility,
+      compatibilityPossible,
+      restrictionCanRelax,
+      null,
+      { interactive: false }
+    );
+  }
+
+  if (multiplierNote) {
+    const base = Number(recipe.default_base) || 1;
+    multiplierNote.textContent = `Default batch ×${base}`;
+  }
+
+  if (ingredientsEl) {
+    ingredientsEl.innerHTML = '';
+    const ingredientLines = renderIngredientLines(recipe, state);
+    const ingredientSections = groupLinesBySection(ingredientLines, recipe.ingredient_sections || []);
+    ingredientSections.forEach((section) => {
+      if (section.section) {
+        const header = document.createElement('li');
+        header.className = 'section-header';
+        header.textContent = section.section;
+        ingredientsEl.appendChild(header);
       }
-      ingredientsEl.appendChild(li);
-    });
-  });
 
-  stepsEl.innerHTML = '';
-  const steps = renderStepLines(recipe, state);
-  const stepSections = groupLinesBySection(steps, recipe.step_sections || []);
-  stepSections.forEach((section) => {
-    if (section.section) {
-      const header = document.createElement('li');
-      header.className = 'section-header';
-      header.textContent = section.section;
-      stepsEl.appendChild(header);
+      section.lines.forEach((line) => {
+        const li = document.createElement('li');
+        li.textContent = line.text;
+        if (line.alternatives.length) {
+          const span = document.createElement('span');
+          span.className = 'ingredient-alternatives';
+          span.textContent = ` (or ${line.alternatives.join(' / ')})`;
+          li.appendChild(span);
+        }
+        ingredientsEl.appendChild(li);
+      });
+    });
+  }
+
+  if (stepsEl) {
+    stepsEl.innerHTML = '';
+    const steps = renderStepLines(recipe, state);
+    const stepSections = groupLinesBySection(steps, recipe.step_sections || []);
+    stepSections.forEach((section) => {
+      if (section.section) {
+        const header = document.createElement('li');
+        header.className = 'section-header';
+        header.textContent = section.section;
+        stepsEl.appendChild(header);
+      }
+      section.lines.forEach((line) => {
+        const li = document.createElement('li');
+        li.className = 'step-item';
+        li.textContent = line.text;
+        stepsEl.appendChild(li);
+      });
+    });
+  }
+
+  if (adjustDetails && adjustBody && adjustSummary) {
+    const choiceEntries = Object.entries(recipe.choices || {}).filter(([token]) => {
+      const tokenData = recipe.ingredients?.[token];
+      const selectable = tokenData?.options?.filter((opt) => opt.option) || [];
+      return selectable.length >= 2;
+    });
+
+    adjustBody.innerHTML = '';
+
+    if (!choiceEntries.length) {
+      adjustDetails.hidden = true;
+      adjustDetails.open = false;
+      return;
     }
-    section.lines.forEach((line) => {
-      const li = document.createElement('li');
-      li.textContent = line.text;
-      stepsEl.appendChild(li);
-    });
-  });
-}
 
-function createMetadataPill(labels, value) {
-  const pill = document.createElement('span');
-  pill.className = value ? 'pill' : 'pill neutral';
-  pill.textContent = value ? labels.positive : labels.negative;
-  return pill;
+    choiceEntries.forEach(([token, choice]) => {
+      const tokenData = recipe.ingredients?.[token];
+      const selectable = tokenData?.options?.filter((opt) => opt.option) || [];
+      if (selectable.length < 2) return;
+      const row = document.createElement('div');
+      row.className = 'swap-row';
+
+      const label = document.createElement('span');
+      label.className = 'swap-label';
+      label.textContent = `Swap ${choice?.label || token}`;
+
+      const select = document.createElement('select');
+      select.disabled = true;
+      select.dataset.token = token;
+
+      const preferred = selectOptionForToken(token, recipe, state);
+
+      selectable.forEach((opt) => {
+        const optionEl = document.createElement('option');
+        optionEl.value = opt.option;
+        optionEl.textContent = opt.display;
+        if (preferred?.option && preferred.option === opt.option) {
+          optionEl.selected = true;
+        }
+        select.appendChild(optionEl);
+      });
+
+      row.append(label, select);
+      adjustBody.appendChild(row);
+    });
+
+    adjustSummary.textContent = `Adjust recipe (${choiceEntries.length})`;
+    adjustDetails.hidden = false;
+    adjustDetails.open = false;
+  }
 }
 
 function refreshPreview() {
