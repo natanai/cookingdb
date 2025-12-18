@@ -21,7 +21,7 @@
     <section class="hero">
       <div class="hero-content">
         <h1 class="hero-title">Recipe inbox</h1>
-        <p class="hero-subtitle">Share a family recipe with the rest of the cookbook. Every step must list the ingredients it uses so the card renders correctly.</p>
+        <p class="hero-subtitle">Every step must list the ingredients it uses so the card renders correctly.</p>
       </div>
     </section>
     <main class="inbox-grid">
@@ -63,13 +63,13 @@
               </div>
               <div id="ingredient-rows" class="ingredients-list"></div>
             </div>
-            <div class="field-help">Amount accepts fractions like "1/2" or "1 1/2". Units must use the existing list. Optional dependency and inline group fields let you hide ingredients based on a choice and keep related amounts on one line. Add a section label (e.g., "Chicken" or "Sauce") when the recipe has multiple parts.</div>
             <button class="button secondary" type="button" id="add-ingredient">+ Add ingredient</button>
-          </fieldset>
-          <fieldset class="field">
-            <legend>Steps <span class="required-badge">Required</span></legend>
-            <ol id="steps-list" class="steps-builder"></ol>
-            <button class="button secondary" type="button" id="add-step">+ Add step</button>
+            <div class="field-help">Amount accepts fractions like "1/2" or "1 1/2". Units must use the existing list. Add a section label (e.g., "Chicken" or "Sauce") when the recipe has multiple parts.</div>
+            </fieldset>
+            <fieldset class="field">
+              <legend>Steps <span class="required-badge">Required</span></legend>
+              <ol id="steps-list" class="steps-builder"></ol>
+              <button class="button secondary" type="button" id="add-step">+ Add step</button>
             <div class="field-help">Select every ingredient a step uses. Missing ingredients will be appended to the step so the renderer stays in sync. Use step sections (e.g., "Prep" / "Cook") when you need grouped instructions.</div>
           </fieldset>
           <div class="actions recipe-actions">
