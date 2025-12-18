@@ -356,6 +356,16 @@ function createOptionRow(ingredientRow, defaults = {}) {
   const altHelp = optionRow.querySelector('.alt-help');
   const optionHelp = optionRow.querySelector('.option-help');
   const optionDisplayHelp = optionRow.querySelector('.option-display-help');
+  const setExpanded = (expanded) => {
+    toggleButton.setAttribute('aria-expanded', String(expanded));
+    toggleButton.textContent = expanded ? '−' : '+';
+    advancedPanel.hidden = !expanded;
+  };
+
+  toggleButton.addEventListener('click', () => {
+    const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
+    setExpanded(!expanded);
+  });
 
   displayInput.value = defaults.display || defaults.name || '';
   optionValueInput.value = defaults.option || '';
@@ -378,12 +388,15 @@ function createOptionRow(ingredientRow, defaults = {}) {
     });
   }
 
-  const hasAdvancedDefaults =
-    Boolean(sectionInput.value || altInput.value || depTokenInput.value || depOptionInput.value || groupInput.value);
+  const hasAdvancedDefaults = Boolean(
+    sectionInput.value ||
+      altInput.value ||
+      depTokenInput.value ||
+      depOptionInput.value ||
+      groupInput.value,
+  );
   if (hasAdvancedDefaults) {
-    advancedPanel.hidden = false;
-    toggleButton.textContent = '−';
-    toggleButton.setAttribute('aria-expanded', 'true');
+    setExpanded(true);
   }
 
   const touchOptionSlug = () => {
@@ -562,6 +575,16 @@ function createIngredientRow(defaults = {}) {
   const choiceDefaultHelp = row.querySelector('.choice-default-help');
   const choiceOptionsHelp = row.querySelector('.choice-options-help');
   const choiceFields = row.querySelector('.choice-row');
+  const setExpanded = (expanded) => {
+    toggleButton.setAttribute('aria-expanded', String(expanded));
+    toggleButton.textContent = expanded ? '−' : '+';
+    advancedPanel.hidden = !expanded;
+  };
+
+  toggleButton.addEventListener('click', () => {
+    const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
+    setExpanded(!expanded);
+  });
 
   const baseDefaults = (defaults.options && defaults.options[0]) || defaults;
   nameInput.value = defaults.name || baseDefaults.display || '';
@@ -588,9 +611,7 @@ function createIngredientRow(defaults = {}) {
     (defaults.options && defaults.options.length > 1) ||
     defaults.isChoice;
   if (hasAdvancedDefaults) {
-    advancedPanel.hidden = false;
-    toggleButton.textContent = '−';
-    toggleButton.setAttribute('aria-expanded', 'true');
+    setExpanded(true);
   }
 
   const syncChoiceDefaults = () => {
