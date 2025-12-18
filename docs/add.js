@@ -4,11 +4,13 @@ import {
   setRememberedPassword,
 } from './inbox/inbox-api.js';
 import {
-  DIETARY_TAGS,
   renderIngredientLines,
   renderStepLines,
   groupLinesBySection,
   recipeDefaultCompatibility,
+  selectOptionForToken,
+  optionMeetsRestrictions,
+  restrictionsActive,
 } from './recipe-utils.js';
 import { UNIT_CONVERSIONS } from './unit-conversions.js';
 
@@ -62,6 +64,7 @@ const unitSet = new Set();
 const unitSelects = new Set();
 const sectionSet = new Set();
 const unitFrequency = new Map();
+const previewSelections = { selectedOptions: {} };
 
 function slugify(text) {
   return text
@@ -275,12 +278,13 @@ function buildDietaryCheckboxes() {
   return wrapper;
 }
 
-function createIngredientRow(defaults = {}) {
-  const row = document.createElement('div');
-  row.className = 'ingredient-row';
-  row.innerHTML = `
-    <div class="ingredient-main">
-      <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient name" aria-label="Ingredient name" />
+function createOptionRow(ingredientRow, defaults = {}) {
+  const optionRow = document.createElement('div');
+  optionRow.className = 'ingredient-option-row';
+  optionRow.innerHTML = `
+    <div class="ingredient-main option-main">
+      <input class="option-value" placeholder="Option value" aria-label="Option value" />
+      <input class="option-display" placeholder="Option display" aria-label="Option display" />
       <div class="input-with-help">
         <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
         <button type="button" class="help-icon amount-help" data-help-key="amount" aria-label="Help: amount">?</button>
@@ -288,7 +292,7 @@ function createIngredientRow(defaults = {}) {
       <select class="ingredient-unit" aria-label="Unit"></select>
       <div class="dietary-slot"></div>
       <button type="button" class="ingredient-more-toggle" aria-expanded="false" aria-label="More options">+</button>
-      <button type="button" class="link-button remove-ingredient">Remove</button>
+      <button type="button" class="link-button remove-option">Remove option</button>
     </div>
 
     <div class="ingredient-advanced" hidden>
@@ -321,27 +325,30 @@ function createIngredientRow(defaults = {}) {
       </div>
     </div>
   `;
-  row.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
-  const nameInput = row.querySelector('.ingredient-name');
-  const sectionInput = row.querySelector('.ingredient-section');
-  const amountInput = row.querySelector('.ingredient-amount');
-  const unitInput = row.querySelector('.ingredient-unit');
-  const altInput = row.querySelector('.ingredient-alt');
-  const depTokenInput = row.querySelector('.ingredient-dep-token');
-  const depOptionInput = row.querySelector('.ingredient-dep-option');
-  const groupInput = row.querySelector('.ingredient-group');
-  const toggleButton = row.querySelector('.ingredient-more-toggle');
-  const advancedPanel = row.querySelector('.ingredient-advanced');
-  const showWhenHelp = row.querySelector('.show-when-help');
-  const inlineGroupHelp = row.querySelector('.inline-group-help');
-  const amountHelp = row.querySelector('.amount-help');
-  const sectionHelp = row.querySelector('.section-help');
-  const altHelp = row.querySelector('.alt-help');
-  const optionHelp = row.querySelector('.option-help');
 
-  nameInput.value = defaults.name || '';
+  optionRow.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
+  const displayInput = optionRow.querySelector('.option-display');
+  const optionValueInput = optionRow.querySelector('.option-value');
+  const sectionInput = optionRow.querySelector('.ingredient-section');
+  const amountInput = optionRow.querySelector('.ingredient-amount');
+  const unitInput = optionRow.querySelector('.ingredient-unit');
+  const altInput = optionRow.querySelector('.ingredient-alt');
+  const depTokenInput = optionRow.querySelector('.ingredient-dep-token');
+  const depOptionInput = optionRow.querySelector('.ingredient-dep-option');
+  const groupInput = optionRow.querySelector('.ingredient-group');
+  const toggleButton = optionRow.querySelector('.ingredient-more-toggle');
+  const advancedPanel = optionRow.querySelector('.ingredient-advanced');
+  const showWhenHelp = optionRow.querySelector('.show-when-help');
+  const inlineGroupHelp = optionRow.querySelector('.inline-group-help');
+  const amountHelp = optionRow.querySelector('.amount-help');
+  const sectionHelp = optionRow.querySelector('.section-help');
+  const altHelp = optionRow.querySelector('.alt-help');
+  const optionHelp = optionRow.querySelector('.option-help');
+
+  displayInput.value = defaults.display || defaults.name || '';
+  optionValueInput.value = defaults.option || '';
   sectionInput.value = defaults.section || '';
-  amountInput.value = defaults.amount || '';
+  amountInput.value = defaults.amount || defaults.ratio || '';
   syncUnitSelect(unitInput, defaults.unit || '');
   unitSelects.add(unitInput);
   altInput.value = defaults.alt || '';
@@ -349,6 +356,15 @@ function createIngredientRow(defaults = {}) {
   depOptionInput.value = defaults.depends_on?.option || '';
   groupInput.value = defaults.line_group || '';
   unitInput.dataset.userChanged = 'false';
+
+  if (defaults.dietary) {
+    optionRow.querySelectorAll('[data-dietary-key]').forEach((input) => {
+      const key = input.dataset.dietaryKey;
+      if (Object.prototype.hasOwnProperty.call(defaults.dietary, key)) {
+        input.checked = defaults.dietary[key];
+      }
+    });
+  }
 
   const hasAdvancedDefaults =
     Boolean(sectionInput.value || altInput.value || depTokenInput.value || depOptionInput.value || groupInput.value);
@@ -358,16 +374,14 @@ function createIngredientRow(defaults = {}) {
     toggleButton.setAttribute('aria-expanded', 'true');
   }
 
-  const handleChange = () => {
-    ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
-    updateIngredientSuggestions();
-    updateDependencySuggestions();
-    refreshStepIngredientPickers();
-    refreshPreview();
+  const touchOptionSlug = () => {
+    if (optionValueInput.dataset.userEdited === 'true') return;
+    if (!displayInput.value) return;
+    optionValueInput.value = slugify(displayInput.value);
   };
 
   const tryAutofillUnit = () => {
-    const token = slugify(nameInput.value || '');
+    const token = slugify(displayInput.value || '');
     if (!token || unitInput.dataset.userChanged === 'true' || unitInput.value) return;
     const autoUnit = commonUnitForToken(token);
     if (autoUnit) {
@@ -375,13 +389,33 @@ function createIngredientRow(defaults = {}) {
     }
   };
 
-  nameInput.addEventListener('change', () => {
-    tryAutofillUnit();
-    handleChange();
+  displayInput.addEventListener('input', () => {
+    touchOptionSlug();
   });
-  nameInput.addEventListener('blur', tryAutofillUnit);
-  row.addEventListener('input', handleChange);
-  row.addEventListener('change', handleChange);
+
+  displayInput.addEventListener('change', () => {
+    tryAutofillUnit();
+  });
+  displayInput.addEventListener('blur', tryAutofillUnit);
+
+  optionRow.addEventListener('input', () => {
+    ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
+    updateIngredientSuggestions();
+    updateDependencySuggestions();
+    refreshStepIngredientPickers();
+    refreshPreview();
+  });
+  optionRow.addEventListener('change', () => {
+    ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
+    updateIngredientSuggestions();
+    updateDependencySuggestions();
+    refreshStepIngredientPickers();
+    refreshPreview();
+  });
+
+  optionValueInput.addEventListener('change', () => {
+    optionValueInput.dataset.userEdited = 'true';
+  });
 
   toggleButton.addEventListener('click', () => {
     const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
@@ -401,14 +435,142 @@ function createIngredientRow(defaults = {}) {
   attachHelpTrigger(altHelp, 'altNote');
   attachHelpTrigger(optionHelp, 'optionValue');
 
-  row.querySelector('.remove-ingredient').addEventListener('click', () => {
+  optionRow.querySelector('.remove-option').addEventListener('click', () => {
     unitSelects.delete(unitInput);
+    const optionsContainer = ingredientRow.querySelector('.ingredient-options');
+    optionRow.remove();
+    if (optionsContainer.children.length === 0) {
+      const fallback = createOptionRow(ingredientRow, {});
+      optionsContainer.appendChild(fallback);
+    }
+    if (ingredientRow.syncChoiceDefaults) {
+      ingredientRow.syncChoiceDefaults();
+    }
+    updateDependencySuggestions();
+    refreshStepIngredientPickers();
+    refreshPreview();
+  });
+
+  return optionRow;
+}
+
+function createIngredientRow(defaults = {}) {
+  const row = document.createElement('div');
+  row.className = 'ingredient-row';
+  row.innerHTML = `
+    <div class="ingredient-token">
+      <div class="ingredient-main">
+        <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient token" aria-label="Ingredient name" />
+        <label class="choice-toggle"><input type="checkbox" class="ingredient-choice-flag" /> Choice</label>
+        <button type="button" class="link-button remove-ingredient">Remove</button>
+      </div>
+      <div class="choice-fields" hidden>
+        <input class="ingredient-choice-label" placeholder="Choice label" aria-label="Choice label" />
+        <label class="choice-default-label">Default option
+          <select class="ingredient-choice-default" aria-label="Default option"></select>
+        </label>
+      </div>
+    </div>
+    <div class="ingredient-options"></div>
+    <button class="button secondary add-option" type="button">+ Add option</button>
+  `;
+  const nameInput = row.querySelector('.ingredient-name');
+  nameInput.value = defaults.name || '';
+  const choiceToggle = row.querySelector('.ingredient-choice-flag');
+  const choiceFields = row.querySelector('.choice-fields');
+  const choiceLabelInput = row.querySelector('.ingredient-choice-label');
+  const choiceDefaultSelect = row.querySelector('.ingredient-choice-default');
+  const optionsContainer = row.querySelector('.ingredient-options');
+  const addOptionButton = row.querySelector('.add-option');
+
+  const syncChoiceDefaults = () => {
+    const optionRows = [...optionsContainer.querySelectorAll('.ingredient-option-row')];
+    const previous = choiceDefaultSelect.value;
+    choiceDefaultSelect.innerHTML = '';
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = 'Select default';
+    placeholder.disabled = true;
+    choiceDefaultSelect.appendChild(placeholder);
+    optionRows.forEach((optRow, idx) => {
+      const optValueInput = optRow.querySelector('.option-value');
+      const optDisplay = optRow.querySelector('.option-display');
+      const value = slugify(optValueInput.value || optDisplay.value || `option-${idx + 1}`);
+      const opt = document.createElement('option');
+      opt.value = value;
+      opt.textContent = optDisplay.value || value;
+      if (value === previous) opt.selected = true;
+      choiceDefaultSelect.appendChild(opt);
+    });
+    const shouldShowChoiceFields =
+      choiceToggle.checked || optionRows.length > 1 || optionRows.some((optRow) => (optRow.querySelector('.option-value')?.value || '').trim());
+    choiceFields.hidden = !shouldShowChoiceFields;
+    if (!choiceDefaultSelect.value && optionRows.length) {
+      choiceDefaultSelect.value = choiceDefaultSelect.querySelector('option:not([disabled])')?.value || '';
+    }
+  };
+
+  row.syncChoiceDefaults = syncChoiceDefaults;
+
+  const handleChange = () => {
+    ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
+    updateIngredientSuggestions();
+    updateDependencySuggestions();
+    refreshStepIngredientPickers();
+    syncChoiceDefaults();
+    refreshPreview();
+  };
+
+  const tryAutofillFromName = () => {
+    if (!nameInput.value) return;
+    if (!choiceLabelInput.value) {
+      choiceLabelInput.value = nameInput.value;
+    }
+  };
+
+  nameInput.addEventListener('change', () => {
+    tryAutofillFromName();
+    handleChange();
+  });
+  nameInput.addEventListener('blur', tryAutofillFromName);
+  row.addEventListener('input', handleChange);
+  row.addEventListener('change', handleChange);
+
+  choiceToggle.addEventListener('change', () => {
+    syncChoiceDefaults();
+  });
+
+  addOptionButton.addEventListener('click', () => {
+    const optionDefaults = { name: nameInput.value };
+    const newOption = createOptionRow(row, optionDefaults);
+    optionsContainer.appendChild(newOption);
+    syncChoiceDefaults();
+  });
+
+  row.querySelector('.remove-ingredient').addEventListener('click', () => {
     row.remove();
     updateDependencySuggestions();
     refreshStepIngredientPickers();
     refreshPreview();
   });
 
+  const initialOptions = defaults.options && defaults.options.length ? defaults.options : [{}];
+  initialOptions.forEach((optDefaults) => {
+    const optionRow = createOptionRow(row, { ...optDefaults, name: optDefaults.display || defaults.name || '' });
+    optionsContainer.appendChild(optionRow);
+  });
+
+  if (defaults.isChoice) {
+    choiceToggle.checked = true;
+  }
+  if (defaults.choiceLabel) {
+    choiceLabelInput.value = defaults.choiceLabel;
+  }
+  if (defaults.defaultOption) {
+    choiceDefaultSelect.value = defaults.defaultOption;
+  }
+
+  syncChoiceDefaults();
   ingredientRowsEl.appendChild(row);
 }
 
@@ -561,86 +723,152 @@ function dietaryFlagsAreDefault(flags) {
 function buildIngredientsFromForm(issues) {
   const tokenOrder = [];
   const ingredientList = [];
+  const choicesMap = {};
   const ingredientRows = [...ingredientRowsEl.querySelectorAll('.ingredient-row')];
 
   ingredientRows.forEach((row, idx) => {
     const nameInput = row.querySelector('.ingredient-name');
-    const sectionInput = row.querySelector('.ingredient-section');
-    const amountInput = row.querySelector('.ingredient-amount');
-    const unitInput = row.querySelector('.ingredient-unit');
-    const altInput = row.querySelector('.ingredient-alt');
-    const depTokenInput = row.querySelector('.ingredient-dep-token');
-    const depOptionInput = row.querySelector('.ingredient-dep-option');
-    const groupInput = row.querySelector('.ingredient-group');
+    const choiceToggle = row.querySelector('.ingredient-choice-flag');
+    const choiceLabelInput = row.querySelector('.ingredient-choice-label');
+    const choiceDefaultSelect = row.querySelector('.ingredient-choice-default');
+    const optionRows = [...row.querySelectorAll('.ingredient-option-row')];
 
     const name = nameInput?.value.trim() || '';
-    const section = sectionInput?.value.trim() || '';
-    const amount = amountInput?.value.trim() || '';
-    const unit = unitInput?.value.trim() || '';
-    const alt = altInput?.value.trim() || '';
-    const depToken = depTokenInput?.value.trim() || '';
-    const depOption = depOptionInput?.value.trim() || '';
-    const lineGroup = groupInput?.value.trim() || '';
-    const dietary = readDietaryFlags(row);
-
-    const allEmpty =
-      !name &&
-      !section &&
-      !amount &&
-      !unit &&
-      !alt &&
-      !depToken &&
-      !depOption &&
-      !lineGroup &&
-      dietaryFlagsAreDefault(dietary);
-    if (allEmpty) return;
-
-    const missingFields = [];
-    if (!name) missingFields.push('name');
-    if (!amount) missingFields.push('amount');
-    if (!unit) missingFields.push('unit');
-
-    if (missingFields.length) {
-      issues.push(`Ingredient ${idx + 1} is missing ${missingFields.join(' and ')}.`);
-      if (!name) markInvalid(nameInput);
-      if (!amount) markInvalid(amountInput);
-      if (!unit) markInvalid(unitInput);
+    if (!name) {
+      issues.push(`Ingredient ${idx + 1} needs a name.`);
+      markInvalid(nameInput);
       return;
     }
 
+    const options = [];
+    optionRows.forEach((optRow, optIdx) => {
+      const displayInput = optRow.querySelector('.option-display');
+      const optionValueInput = optRow.querySelector('.option-value');
+      const amountInput = optRow.querySelector('.ingredient-amount');
+      const unitInput = optRow.querySelector('.ingredient-unit');
+      const altInput = optRow.querySelector('.ingredient-alt');
+      const depTokenInput = optRow.querySelector('.ingredient-dep-token');
+      const depOptionInput = optRow.querySelector('.ingredient-dep-option');
+      const groupInput = optRow.querySelector('.ingredient-group');
+      const sectionInput = optRow.querySelector('.ingredient-section');
+
+      const display = displayInput?.value.trim() || '';
+      const amount = amountInput?.value.trim() || '';
+      const unit = unitInput?.value.trim() || '';
+      const alt = altInput?.value.trim() || '';
+      const depToken = depTokenInput?.value.trim() || '';
+      const depOption = depOptionInput?.value.trim() || '';
+      const lineGroup = groupInput?.value.trim() || '';
+      const section = sectionInput?.value.trim() || '';
+      const dietary = readDietaryFlags(optRow);
+
+      const allEmpty =
+        !display &&
+        !amount &&
+        !unit &&
+        !alt &&
+        !depToken &&
+        !depOption &&
+        !lineGroup &&
+        !section &&
+        dietaryFlagsAreDefault(dietary);
+      if (allEmpty) return;
+
+      const missingFields = [];
+      if (!display) missingFields.push('name');
+      if (!amount) missingFields.push('amount');
+      if (!unit) missingFields.push('unit');
+
+      if (missingFields.length) {
+        issues.push(`Option ${optIdx + 1} for ingredient ${idx + 1} is missing ${missingFields.join(' and ')}.`);
+        if (!display) markInvalid(displayInput);
+        if (!amount) markInvalid(amountInput);
+        if (!unit) markInvalid(unitInput);
+        return;
+      }
+
+      const depends_on = depToken
+        ? { token: slugify(depToken), option: depOption ? slugify(depOption) : null }
+        : null;
+      const optionValue = slugify(optionValueInput?.value.trim() || display);
+      const optionDisplay = alt ? `${display} (${alt})` : display;
+      options.push({
+        option: optionValue,
+        display: optionDisplay || name,
+        ratio: amount,
+        unit,
+        ingredient_id: slugify(display) || slugify(name) || optionValue || name,
+        dietary,
+        depends_on,
+        line_group: lineGroup || null,
+        section: section || null,
+      });
+    });
+
+    if (options.length === 0) {
+      issues.push(`Add at least one option for ingredient ${idx + 1}.`);
+      markInvalid(nameInput);
+      return;
+    }
+
+    const isChoice =
+      choiceToggle?.checked ||
+      options.length > 1 ||
+      options.some((opt) => opt.option && opt.option !== slugify(name));
+
+    options.forEach((opt, optIdx) => {
+      if (isChoice && !opt.option) {
+        issues.push(`Choice option ${optIdx + 1} for ${name} needs a value.`);
+        const valueInput = optionRows[optIdx]?.querySelector('.option-value');
+        if (valueInput) markInvalid(valueInput);
+      }
+      if (!isChoice) {
+        opt.option = '';
+      }
+    });
+
     const token = slugify(name);
     if (!tokenOrder.includes(token)) tokenOrder.push(token);
-    const optionDisplay = alt ? `${name} (${alt})` : name;
-    const depends_on = depToken
-      ? { token: slugify(depToken), option: depOption ? slugify(depOption) : null }
-      : null;
-    ingredientList.push({
+
+    const defaultOption = choiceDefaultSelect?.value || (isChoice ? options[0]?.option : '');
+    if (isChoice && !defaultOption) {
+      issues.push(`Select a default option for ${name}.`);
+      markInvalid(choiceDefaultSelect);
+    }
+
+    const uniformField = (key) => {
+      if (!options.length) return null;
+      const normalize = (val) => {
+        if (val && typeof val === 'object') return JSON.stringify(val);
+        return val || null;
+      };
+      const first = normalize(options[0][key]);
+      const same = options.every((opt) => normalize(opt[key]) === first);
+      return same ? options[0][key] || null : null;
+    };
+
+    const ingredientEntry = {
       token,
-      options: [
-        {
-          option: '',
-          display: optionDisplay,
-          ratio: amount,
-          unit,
-          ingredient_id: token,
-          dietary,
-          depends_on,
-          line_group: lineGroup || null,
-          section: section || null,
-        },
-      ],
-      isChoice: false,
-      depends_on,
-      line_group: lineGroup || null,
-      section: section || null,
-    });
+      options,
+      isChoice,
+      depends_on: uniformField('depends_on'),
+      line_group: uniformField('line_group'),
+      section: uniformField('section'),
+    };
+
+    ingredientList.push(ingredientEntry);
+
+    if (isChoice) {
+      const label = choiceLabelInput?.value.trim() || name;
+      choicesMap[token] = { token, label, default_option: slugify(defaultOption || options[0]?.option || '') };
+    }
   });
 
   if (ingredientList.length === 0) {
     issues.push('Add at least one ingredient with a name, amount, and unit.');
   }
 
-  return { ingredientList, tokenOrder };
+  return { ingredientList, tokenOrder, choicesMap };
 }
 
 function buildRecipeDraft() {
@@ -682,7 +910,7 @@ function buildRecipeDraft() {
     markInvalid(defaultBaseInput);
   }
 
-  const { ingredientList, tokenOrder } = buildIngredientsFromForm(issues);
+  const { ingredientList, tokenOrder, choicesMap } = buildIngredientsFromForm(issues);
 
   const stepsRawLines = [];
   const structuredSteps = [];
@@ -780,7 +1008,7 @@ function buildRecipeDraft() {
     token_order: tokenOrder,
     ingredients: ingredientList,
     ingredient_sections: ingredientSections,
-    choices: {},
+    choices: choicesMap,
     pan_sizes: [],
     default_pan: null,
     compatibility_possible: compatibility,
@@ -808,6 +1036,71 @@ function buildPreviewRecipe() {
     }
   });
   return { ...recipe, ingredients: ingredientMap };
+}
+
+function renderPreviewChoiceControls(recipe, state) {
+  const container = document.getElementById('preview-choice-controls');
+  if (!container) return;
+
+  const choices = recipe?.choices && typeof recipe.choices === 'object' ? recipe.choices : {};
+  const ingredients = recipe?.ingredients && typeof recipe.ingredients === 'object' ? recipe.ingredients : {};
+
+  const choiceEntries = Object.entries(choices).filter(([token]) => {
+    const selectable = ingredients[token]?.options?.filter((opt) => opt.option) || [];
+    return selectable.length >= 2;
+  });
+
+  container.innerHTML = '';
+
+  if (!choiceEntries.length) {
+    container.textContent = 'Add a choice ingredient to preview swaps.';
+    return;
+  }
+
+  choiceEntries.forEach(([token, choice]) => {
+    const tokenData = ingredients[token];
+    const selectable = tokenData?.options?.filter((opt) => opt.option) || [];
+    if (selectable.length < 2) return;
+
+    const row = document.createElement('div');
+    row.className = 'swap-row';
+
+    const label = document.createElement('span');
+    label.className = 'swap-label';
+    label.textContent = `Swap ${choice?.label || token}`;
+
+    const select = document.createElement('select');
+    select.dataset.token = token;
+    select.title = 'Choose which ingredient to preview. This updates ingredients and steps.';
+
+    const preferred = selectOptionForToken(token, recipe, state);
+
+    selectable.forEach((opt) => {
+      const optionEl = document.createElement('option');
+      optionEl.value = opt.option;
+      optionEl.textContent = opt.display;
+      const compatible = optionMeetsRestrictions(opt, state.restrictions);
+      optionEl.disabled = restrictionsActive(state.restrictions) && !compatible;
+      if (preferred?.option && preferred.option === opt.option) {
+        optionEl.selected = true;
+      }
+      select.appendChild(optionEl);
+    });
+
+    select.addEventListener('change', () => {
+      state.selectedOptions[token] = select.value;
+      previewSelections.selectedOptions[token] = select.value;
+      renderPreview(recipe);
+    });
+
+    if (preferred?.option) {
+      state.selectedOptions[token] = preferred.option;
+      previewSelections.selectedOptions[token] = preferred.option;
+    }
+
+    row.append(label, select);
+    container.appendChild(row);
+  });
 }
 
 function renderPreview(recipe) {
@@ -850,16 +1143,25 @@ function renderPreview(recipe) {
 
   renderPreviewDietaryBadges(dietaryBadgesEl, defaultCompatibility, compatibilityPossible, hasChoiceTokens);
 
+  const selectedOptions = {};
+  Object.entries(previewSelections.selectedOptions || {}).forEach(([token, value]) => {
+    if (recipe.ingredients && recipe.ingredients[token]) {
+      selectedOptions[token] = value;
+    }
+  });
+
   const state = {
     multiplier: recipe.default_base || 1,
     panMultiplier: 1,
-    selectedOptions: {},
+    selectedOptions,
     restrictions: {
       gluten_free: compatibilityPossible.gluten_free ? defaultCompatibility.gluten_free : false,
       egg_free: compatibilityPossible.egg_free ? defaultCompatibility.egg_free : false,
       dairy_free: compatibilityPossible.dairy_free ? defaultCompatibility.dairy_free : false,
     },
   };
+
+  renderPreviewChoiceControls(recipe, state);
 
   const ingredientLines = renderIngredientLines(recipe, state);
   const ingredientSections = groupLinesBySection(ingredientLines, recipe.ingredient_sections || []);
@@ -986,6 +1288,7 @@ function resetFormForNewEntry() {
   ingredientRowsEl.innerHTML = '';
   stepsListEl.innerHTML = '';
   unitSelects.clear();
+  previewSelections.selectedOptions = {};
   if (categorySelectEl) {
     [...categorySelectEl.options].forEach((opt) => (opt.selected = false));
   }
