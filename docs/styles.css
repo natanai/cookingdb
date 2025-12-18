@@ -100,6 +100,20 @@ body {
   z-index: 1;
 }
 
+.page-recipe .hero {
+  margin: 1.25rem 0 1rem;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  border-radius: 0;
+}
+
+.page-recipe .hero-content {
+  max-width: 100%;
+  gap: 0.4rem;
+}
+
 .hero-title {
   margin: 0;
   font-family: 'Source Serif 4', var(--font-serif);
@@ -618,11 +632,11 @@ main {
 
 .page-recipe .controls {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem 1rem;
   align-items: start;
-  padding: 0.85rem 0.9rem;
-  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
   box-shadow: none;
 }
 
@@ -646,13 +660,68 @@ main {
 }
 
 .page-recipe #print-btn {
-  justify-self: start;
+  justify-self: end;
+  align-self: start;
 }
 
-@media (min-width: 720px) {
-  .page-recipe #print-btn {
-    justify-self: end;
-  }
+.page-recipe #choices-container,
+.page-recipe .more-options {
+  grid-column: 1 / -1;
+}
+
+.page-recipe .more-options,
+.page-recipe .choices-details {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+  background: #fffaf4;
+}
+
+.page-recipe .more-options summary,
+.page-recipe .choices-details summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.page-recipe .more-options summary::marker,
+.page-recipe .choices-details summary::marker {
+  color: var(--muted);
+}
+
+.page-recipe .more-options-body {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.page-recipe .choices-panel {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.page-recipe .choices-title {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.page-recipe .choices-help {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.page-recipe .choice-group {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+.page-recipe .choices-details > * + * {
+  margin-top: 0.35rem;
 }
 
 .controls input[type='number'],
@@ -711,7 +780,6 @@ main {
 
 #ingredients-list {
   list-style: none;
-  padding-left: 0;
   margin: 0;
 }
 
@@ -784,6 +852,12 @@ main {
   color: var(--muted);
 }
 
+.page-recipe .notes {
+  margin: 0;
+  font-style: italic;
+  color: var(--muted);
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -808,9 +882,35 @@ main {
   margin: 0.5rem 0 1rem;
 }
 
-.page-recipe .recipe-metadata {
-  margin: 0.35rem 0 0.5rem;
+.page-recipe .recipe-metadata,
+.page-recipe #category-row {
+  display: inline-flex;
+  flex-wrap: wrap;
   gap: 0.4rem;
+  align-items: baseline;
+  margin: 0.25rem 0 0;
+}
+
+.page-recipe .pill,
+.page-recipe .category-chip {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.page-recipe .category-chip:not(:last-child)::after {
+  content: " • ";
+}
+
+.page-recipe .pill:not(:last-child)::after {
+  content: " · ";
 }
 
 .page-recipe .diet-initial {

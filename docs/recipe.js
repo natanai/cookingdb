@@ -187,15 +187,25 @@ function buildChoiceControls(recipe, state, onChange) {
   const choices = recipe?.choices && typeof recipe.choices === 'object' ? recipe.choices : {};
   const ingredients = recipe?.ingredients && typeof recipe.ingredients === 'object' ? recipe.ingredients : {};
 
-  Object.entries(choices).forEach(([token, choice]) => {
+  const choiceEntries = Object.entries(choices).filter(([token]) =>
+    ingredients[token]?.options?.some((opt) => opt.option)
+  );
+
+  if (!choiceEntries.length) return;
+
+  const panel = document.createElement('div');
+  panel.className = 'choices-panel';
+
+  const createChoiceGroup = ([token, choice]) => {
     const tokenData = ingredients[token];
-    if (!tokenData?.options) return;
+    if (!tokenData?.options) return null;
 
     const wrapper = document.createElement('label');
     wrapper.className = 'choice-group';
 
     const select = document.createElement('select');
     select.dataset.token = token;
+    select.title = 'Choose which ingredient to use. This updates ingredients and steps.';
 
     const preferred = selectOptionForToken(token, recipe, state);
 
@@ -219,15 +229,57 @@ function buildChoiceControls(recipe, state, onChange) {
     });
 
     const label = document.createElement('span');
-    label.textContent = `${choice?.label || token}: `;
+    label.textContent = `Swap ${choice?.label || token}:`;
     wrapper.appendChild(label);
     wrapper.appendChild(select);
-    container.appendChild(wrapper);
 
     if (preferred?.option) {
       state.selectedOptions[token] = preferred.option;
     }
-  });
+
+    return wrapper;
+  };
+
+  if (choiceEntries.length >= 2) {
+    const details = document.createElement('details');
+    details.className = 'choices-details';
+    details.open = true;
+
+    const summary = document.createElement('summary');
+    summary.textContent = `Ingredient swaps (${choiceEntries.length})`;
+    details.appendChild(summary);
+
+    const help = document.createElement('div');
+    help.className = 'choices-help';
+    help.textContent = 'Changes ingredient list + steps.';
+    details.appendChild(help);
+
+    choiceEntries.forEach((entry) => {
+      const group = createChoiceGroup(entry);
+      if (group) {
+        details.appendChild(group);
+      }
+    });
+
+    panel.appendChild(details);
+  } else {
+    const title = document.createElement('div');
+    title.className = 'choices-title';
+    title.textContent = 'Ingredient swaps';
+    panel.appendChild(title);
+
+    const help = document.createElement('div');
+    help.className = 'choices-help';
+    help.textContent = 'Changes ingredient list + steps.';
+    panel.appendChild(help);
+
+    const group = createChoiceGroup(choiceEntries[0]);
+    if (group) {
+      panel.appendChild(group);
+    }
+  }
+
+  container.appendChild(panel);
 }
 
 function renderIngredientsList(recipe, state, onUnitChange) {
