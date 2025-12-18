@@ -978,6 +978,11 @@ async function handleSubmit(evt) {
 }
 
 function bootstrap() {
+  const previewDetails = document.querySelector('details.mobile-preview');
+  if (previewDetails && window.matchMedia('(max-width: 640px)').matches) {
+    previewDetails.removeAttribute('open');
+  }
+
   document.getElementById('title').addEventListener('input', () => {
     touchSlugFromTitle();
     refreshPreview();
