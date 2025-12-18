@@ -559,13 +559,12 @@ function initRefinePanel() {
   const panel = document.getElementById('refine-panel');
   if (!panel) return;
 
-  const mq = window.matchMedia('(max-width: 680px)');
   const saved = localStorage.getItem('refineOpen');
 
   if (saved !== null) {
     panel.open = saved === '1';
   } else {
-    panel.open = !mq.matches; // desktop open, mobile closed
+    panel.open = false;
   }
 
   panel.addEventListener('toggle', () => {
