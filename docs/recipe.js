@@ -179,10 +179,12 @@ function panArea(pan) {
 }
 
 function buildChoiceControls(recipe, state, onChange) {
-  const container = document.getElementById('choices-container');
-  if (!container) return;
+  const swapList = document.getElementById('swap-list');
+  const adjustDetails = document.getElementById('adjust-details');
+  const adjustSummary = document.getElementById('adjust-summary');
+  const adjustDivider = document.getElementById('adjust-divider');
 
-  container.innerHTML = '';
+  if (!swapList || !adjustDetails || !adjustSummary) return;
 
   const choices = recipe?.choices && typeof recipe.choices === 'object' ? recipe.choices : {};
   const ingredients = recipe?.ingredients && typeof recipe.ingredients === 'object' ? recipe.ingredients : {};
@@ -191,17 +193,26 @@ function buildChoiceControls(recipe, state, onChange) {
     ingredients[token]?.options?.some((opt) => opt.option)
   );
 
-  if (!choiceEntries.length) return;
+  swapList.innerHTML = '';
+  adjustSummary.textContent = choiceEntries.length
+    ? `Adjust recipe (${choiceEntries.length})`
+    : 'Adjust recipe';
 
-  const panel = document.createElement('div');
-  panel.className = 'choices-panel';
+  if (!adjustDetails.dataset.initialized) {
+    adjustDetails.open = false;
+    adjustDetails.dataset.initialized = 'true';
+  }
 
   const createChoiceGroup = ([token, choice]) => {
     const tokenData = ingredients[token];
     if (!tokenData?.options) return null;
 
-    const wrapper = document.createElement('label');
-    wrapper.className = 'choice-group';
+    const row = document.createElement('div');
+    row.className = 'swap-row';
+
+    const label = document.createElement('span');
+    label.className = 'swap-label';
+    label.textContent = `Swap ${choice?.label || token}`;
 
     const select = document.createElement('select');
     select.dataset.token = token;
@@ -228,58 +239,23 @@ function buildChoiceControls(recipe, state, onChange) {
       onChange();
     });
 
-    const label = document.createElement('span');
-    label.textContent = `Swap ${choice?.label || token}:`;
-    wrapper.appendChild(label);
-    wrapper.appendChild(select);
-
     if (preferred?.option) {
       state.selectedOptions[token] = preferred.option;
     }
 
-    return wrapper;
+    row.appendChild(label);
+    row.appendChild(select);
+    return row;
   };
 
-  if (choiceEntries.length >= 2) {
-    const details = document.createElement('details');
-    details.className = 'choices-details';
-    details.open = true;
-
-    const summary = document.createElement('summary');
-    summary.textContent = `Ingredient swaps (${choiceEntries.length})`;
-    details.appendChild(summary);
-
-    const help = document.createElement('div');
-    help.className = 'choices-help';
-    help.textContent = 'Changes ingredient list + steps.';
-    details.appendChild(help);
-
-    choiceEntries.forEach((entry) => {
-      const group = createChoiceGroup(entry);
-      if (group) {
-        details.appendChild(group);
-      }
-    });
-
-    panel.appendChild(details);
-  } else {
-    const title = document.createElement('div');
-    title.className = 'choices-title';
-    title.textContent = 'Ingredient swaps';
-    panel.appendChild(title);
-
-    const help = document.createElement('div');
-    help.className = 'choices-help';
-    help.textContent = 'Changes ingredient list + steps.';
-    panel.appendChild(help);
-
-    const group = createChoiceGroup(choiceEntries[0]);
+  choiceEntries.forEach((entry) => {
+    const group = createChoiceGroup(entry);
     if (group) {
-      panel.appendChild(group);
+      swapList.appendChild(group);
     }
-  }
+  });
 
-  container.appendChild(panel);
+  adjustDivider.hidden = choiceEntries.length === 0;
 }
 
 function renderIngredientsList(recipe, state, onUnitChange) {
@@ -439,7 +415,9 @@ function setupPanControls(recipe, state, rerender) {
   if (!panControls || !panSelect || !panNote || !recipe?.pan_sizes?.length) {
     state.panMultiplier = 1;
     if (panControls) {
-      panControls.remove();
+      panControls.hidden = true;
+      panSelect.innerHTML = '';
+      panNote.textContent = '';
     }
     return;
   }
@@ -499,6 +477,7 @@ function renderRecipe(recipeInput) {
   const prefDairy = document.getElementById('pref-dairy');
   const ingredientsHeading = document.getElementById('ingredients-heading');
   const heroContent = document.querySelector('.hero-content');
+  const recipeNoteDetails = document.querySelector('.recipe-note');
 
   const defaultCompatibility = recipeDefaultCompatibility(recipe);
   const compatibilityPossible = recipe.compatibility_possible || {};
@@ -553,8 +532,14 @@ function renderRecipe(recipeInput) {
     ingredientsHeading.textContent = hasDetails ? 'Ingredients' : 'Ingredients (pending)';
   }
 
-  if (notesEl) {
-    notesEl.textContent = recipe.notes || 'Notes for this dish will go here soon.';
+  const noteText = typeof recipe.notes === 'string' ? recipe.notes.trim() : '';
+  if (recipeNoteDetails) {
+    if (noteText) {
+      recipeNoteDetails.style.display = '';
+      if (notesEl) notesEl.textContent = recipe.notes;
+    } else {
+      recipeNoteDetails.style.display = 'none';
+    }
   }
 
   if (!hasDetails && heroContent) {

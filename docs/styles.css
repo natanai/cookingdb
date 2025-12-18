@@ -639,89 +639,9 @@ main {
   border-radius: 10px;
   box-shadow: none;
 }
-
-.page-recipe .dietary-controls {
-  border: 0;
-  background: transparent;
-  padding: 0;
-  min-width: 0;
-  gap: 0.35rem;
-}
-
-.page-recipe .dietary-controls legend {
-  padding: 0;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-.page-recipe .dietary-controls label {
-  font-weight: 500;
-  padding: 0;
-}
-
 .page-recipe #print-btn {
   justify-self: end;
   align-self: start;
-}
-
-.page-recipe #choices-container,
-.page-recipe .more-options {
-  grid-column: 1 / -1;
-}
-
-.page-recipe .more-options,
-.page-recipe .choices-details {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.65rem 0.75rem;
-  background: #fffaf4;
-}
-
-.page-recipe .more-options summary,
-.page-recipe .choices-details summary {
-  cursor: pointer;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.page-recipe .more-options summary::marker,
-.page-recipe .choices-details summary::marker {
-  color: var(--muted);
-}
-
-.page-recipe .more-options-body {
-  display: grid;
-  gap: 0.5rem;
-  margin-top: 0.35rem;
-}
-
-.page-recipe .choices-panel {
-  display: grid;
-  gap: 0.35rem;
-}
-
-.page-recipe .choices-title {
-  font-weight: 600;
-  color: var(--text);
-}
-
-.page-recipe .choices-help {
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.page-recipe .choice-group {
-  display: inline-flex;
-  gap: 0.5rem;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 0;
-  background: transparent;
-  border-radius: 0;
-}
-
-.page-recipe .choices-details > * + * {
-  margin-top: 0.35rem;
 }
 
 .controls input[type='number'],
@@ -758,6 +678,101 @@ main {
 .control-note {
   color: var(--muted);
   font-size: 0.95rem;
+}
+
+.page-recipe .adjust-details {
+  grid-column: 1 / -1;
+  margin-top: 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+}
+
+.page-recipe .adjust-details > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.7rem 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.page-recipe .adjust-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.page-recipe .adjust-details > summary::marker {
+  content: '';
+}
+
+.page-recipe .adjust-details > summary::before {
+  content: "▸";
+  opacity: 0.7;
+}
+
+.page-recipe .adjust-details[open] > summary::before {
+  content: "▾";
+}
+
+.page-recipe .adjust-panel {
+  padding: 0.75rem 0.9rem 0.9rem;
+}
+
+.page-recipe .swap-list {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.page-recipe .swap-row {
+  display: grid;
+  grid-template-columns: 160px minmax(220px, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.page-recipe .swap-label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.page-recipe .swap-row select {
+  width: 100%;
+  max-width: 420px;
+}
+
+@media (max-width: 700px) {
+  .page-recipe .swap-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+  .page-recipe .swap-row select {
+    max-width: 100%;
+  }
+}
+
+.page-recipe .adjust-divider {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 0.8rem 0;
+  opacity: 0.8;
+}
+
+.page-recipe .dietary-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.page-recipe .dietary-fieldset legend {
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.page-recipe .dietary-fieldset label {
+  margin-right: 1rem;
+  font-weight: 500;
 }
 
 .choice-group {
@@ -856,6 +871,49 @@ main {
   margin: 0;
   font-style: italic;
   color: var(--muted);
+}
+
+.page-recipe .recipe-note {
+  margin: 0.25rem 0 0.75rem;
+  padding: 0;
+  border: 0;
+}
+
+.page-recipe .recipe-note > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.page-recipe .recipe-note > summary::-webkit-details-marker {
+  display: none;
+}
+
+.page-recipe .recipe-note > summary::marker {
+  content: '';
+}
+
+.page-recipe .recipe-note > summary::before {
+  content: "▸";
+  opacity: 0.7;
+  transform: translateY(-1px);
+}
+
+.page-recipe .recipe-note[open] > summary::before {
+  content: "▾";
+}
+
+.page-recipe .recipe-note-body {
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.45;
+  max-width: 70ch;
 }
 
 .button {

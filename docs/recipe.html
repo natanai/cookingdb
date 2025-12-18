@@ -19,7 +19,12 @@
   <div class="page-shell">
     <section class="hero">
       <div class="hero-content">
-        <p class="notes" id="notes"></p>
+        <details class="recipe-note">
+          <summary>Cook’s note</summary>
+          <div class="recipe-note-body" id="recipe-notes">
+            <p class="notes" id="notes"></p>
+          </div>
+        </details>
         <div class="recipe-metadata" id="metadata"></div>
         <div class="card-categories" id="category-row"></div>
       </div>
@@ -32,9 +37,17 @@
         </label>
         <button class="button" id="print-btn" type="button">🖨 Print</button>
         <div class="control-note" id="multiplier-helper"></div>
-        <details class="more-options">
-          <summary>More options</summary>
-          <div class="more-options-body">
+        <details class="adjust-details" id="adjust-details">
+          <summary id="adjust-summary">Adjust recipe</summary>
+          <div class="adjust-panel">
+            <div class="swap-list" id="swap-list"></div>
+            <hr class="adjust-divider" id="adjust-divider" />
+            <fieldset class="dietary-fieldset" id="dietary-fieldset">
+              <legend>Dietary preferences</legend>
+              <label><input type="checkbox" id="pref-gluten" /> Gluten-free</label>
+              <label><input type="checkbox" id="pref-egg" /> Egg-free</label>
+              <label><input type="checkbox" id="pref-dairy" /> Dairy-free</label>
+            </fieldset>
             <div class="pan-controls" id="pan-controls" hidden>
               <label>
                 Pan size:
@@ -42,15 +55,8 @@
               </label>
               <div class="control-note" id="pan-note"></div>
             </div>
-            <fieldset class="dietary-controls">
-              <legend>Dietary preferences</legend>
-              <label><input type="checkbox" id="pref-gluten" /> Gluten-free</label>
-              <label><input type="checkbox" id="pref-egg" /> Egg-free</label>
-              <label><input type="checkbox" id="pref-dairy" /> Dairy-free</label>
-            </fieldset>
           </div>
         </details>
-        <div id="choices-container"></div>
       </section>
       <section>
         <h2 id="ingredients-heading">Ingredients</h2>
