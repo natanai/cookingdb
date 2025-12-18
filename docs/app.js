@@ -199,7 +199,7 @@ function renderRecipes(recipes) {
     flagContainer.setAttribute('aria-label', 'Dietary-friendly indicators');
     flags.forEach((flag) => {
       const badge = document.createElement('span');
-      badge.className = 'diet-flag';
+      badge.className = 'recipe-flag';
       badge.textContent = flag.label;
       badge.title = flag.title;
       badge.setAttribute('aria-label', flag.title);

@@ -226,52 +226,64 @@ body {
   background: #fff;
 }
 
-.admin-panel {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: #fff;
-  padding: 0.35rem 0.5rem;
-}
-
-.admin-summary {
-  list-style: none;
+.family-tools {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.6rem;
-  border: 1px solid var(--border);
-  background: #fff;
-  border-radius: 6px;
-  font-weight: 700;
-  cursor: pointer;
+  gap: 0.5rem;
 }
 
-.admin-summary::-webkit-details-marker {
+.button-compact {
+  padding: 0.45rem 0.65rem;
+  font-size: 0.95rem;
+}
+
+.family-settings {
+  position: relative;
+}
+
+.family-settings > summary {
+  list-style: none;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+}
+
+.family-settings > summary::-webkit-details-marker { display: none; }
+.family-settings > summary::marker { content: ""; }
+
+.family-settings > summary::before {
+  content: "⚙";
+  font-size: 1rem;
+  opacity: 0.75;
+}
+
+.family-settings-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.4rem);
+  min-width: 240px;
+  padding: 0.6rem 0.7rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+}
+
+.family-settings:not([open]) .family-settings-panel {
   display: none;
 }
 
-.admin-summary::marker {
-  content: "";
-}
-
-.admin-summary::after {
-  content: "▾";
-  opacity: 0.8;
-  font-size: 0.85rem;
-}
-
-details[open] > .admin-summary::after {
-  content: "▴";
-}
-
-.admin-body {
-  display: grid;
-  gap: 0.55rem;
-  margin-top: 0.5rem;
-  padding: 0.6rem;
-  border: 1px solid var(--border);
-  background: #fff;
-  border-radius: 0;
+.inline-check {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.95rem;
+  color: var(--muted);
 }
 
 main {
@@ -311,7 +323,7 @@ main {
   grid-template-columns: 1fr auto;
   align-items: baseline;
   gap: 0.75rem;
-  padding: 0.52rem 0.75rem;
+  padding: 0.55rem 0.75rem;
   color: inherit;
   text-decoration: none;
 }
@@ -326,25 +338,32 @@ main {
 }
 
 .recipe-row-title {
-  font-weight: 800;
+  font-weight: 600;
+  letter-spacing: 0;
   line-height: 1.25;
   min-width: 0;
 }
 
 .recipe-row-flags {
   display: inline-flex;
-  gap: 0.25rem;
   align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  opacity: 0.8;
 }
 
-.diet-flag {
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  padding: 0.05rem 0.28rem;
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  opacity: 0.75;
+.recipe-flag {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.recipe-flag + .recipe-flag::before {
+  content: "·";
+  margin-right: 0.35rem;
+  opacity: 0.5;
 }
 
 @media (max-width: 700px) {
@@ -445,7 +464,6 @@ main {
 }
 
 .category-summary {
-  list-style: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -460,22 +478,26 @@ main {
   position: relative;
 }
 
-.category-summary::-webkit-details-marker {
-  display: none;
+.category-panel > summary {
+  list-style: none;
 }
 
-.category-summary::marker {
+.category-panel > summary::-webkit-details-marker { display: none; }
+.category-panel > summary::marker { content: ""; }
+
+.category-panel > summary::after {
   content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+  opacity: 0.7;
+  margin-left: 0.5rem;
 }
 
-.category-summary::after {
-  content: "▾";
-  opacity: 0.8;
-  font-size: 0.85rem;
-}
-
-details[open] > .category-summary::after {
-  content: "▴";
+.category-panel[open] > summary::after {
+  transform: rotate(-135deg);
 }
 
 .summary-label {
