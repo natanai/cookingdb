@@ -1313,19 +1313,23 @@ main {
 }
 
 .dietary-chip {
-  display: inline-flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
   align-items: center;
-  gap: 0.2rem;
+  column-gap: 0.3rem;
   background: #f6f1e9;
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 0.2rem 0.35rem;
+  padding: 0.25rem 0.4rem;
   font-size: 0.8rem;
   color: var(--muted);
 }
 
 .dietary-chip input {
   margin: 0;
+  width: 18px;
+  height: 18px;
 }
 
 .conditional-inputs {
@@ -1584,13 +1588,6 @@ main {
   }
 
   .add-page .recipe-actions {
-    position: sticky;
-    bottom: 0;
-    background: #fff7ea;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 0.75rem;
-    box-shadow: var(--shadow);
     gap: 0.5rem;
   }
 
