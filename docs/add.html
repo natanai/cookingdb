@@ -21,7 +21,7 @@
     <section class="hero">
       <div class="hero-content">
         <h1 class="hero-title">Recipe inbox</h1>
-        <p class="hero-subtitle">Share a family recipe with the rest of the cookbook. Every step must list the ingredients it uses so the card renders correctly.</p>
+        <p class="hero-subtitle">Every step must list the ingredients it uses so the card renders correctly.</p>
       </div>
     </section>
     <main class="inbox-grid">
@@ -63,13 +63,13 @@
               </div>
               <div id="ingredient-rows" class="ingredients-list"></div>
             </div>
-            <div class="field-help">Amount accepts fractions like "1/2" or "1 1/2". Units must use the existing list. Optional dependency and inline group fields let you hide ingredients based on a choice and keep related amounts on one line. Add a section label (e.g., "Chicken" or "Sauce") when the recipe has multiple parts.</div>
             <button class="button secondary" type="button" id="add-ingredient">+ Add ingredient</button>
-          </fieldset>
-          <fieldset class="field">
-            <legend>Steps <span class="required-badge">Required</span></legend>
-            <ol id="steps-list" class="steps-builder"></ol>
-            <button class="button secondary" type="button" id="add-step">+ Add step</button>
+            <div class="field-help">Amount accepts fractions like "1/2" or "1 1/2". Units must use the existing list. Add a section label (e.g., "Chicken" or "Sauce") when the recipe has multiple parts.</div>
+            </fieldset>
+            <fieldset class="field">
+              <legend>Steps <span class="required-badge">Required</span></legend>
+              <ol id="steps-list" class="steps-builder"></ol>
+              <button class="button secondary" type="button" id="add-step">+ Add step</button>
             <div class="field-help">Select every ingredient a step uses. Missing ingredients will be appended to the step so the renderer stays in sync. Use step sections (e.g., "Prep" / "Cook") when you need grouped instructions.</div>
           </fieldset>
           <div class="actions recipe-actions">
@@ -80,17 +80,48 @@
         </form>
       </section>
       <section class="preview-panel">
-        <h2 class="section-heading">Live preview</h2>
-        <div id="preview-shell" class="preview-shell">
-          <h3 id="preview-title">Recipe title</h3>
-          <div id="preview-notes" class="notes"></div>
-          <div id="preview-categories" class="card-categories"></div>
-          <div class="recipe-metadata" id="preview-metadata"></div>
-          <h4>Ingredients</h4>
-          <ul id="preview-ingredients"></ul>
-          <h4>Steps</h4>
-          <ol id="preview-steps"></ol>
-        </div>
+        <details class="mobile-preview" open>
+          <summary>Live preview</summary>
+          <h2 class="section-heading">Live preview</h2>
+          <div id="preview-shell" class="preview-shell">
+            <div class="recipe-shell">
+              <header class="preview-header">
+                <h3 class="site-title" id="preview-recipe-title">Recipe title</h3>
+              </header>
+              <section class="hero">
+                <div class="hero-content">
+                  <details class="recipe-note" id="preview-recipe-note">
+                    <summary>Cook’s note</summary>
+                    <div class="recipe-note-body">
+                      <p class="notes" id="preview-notes"></p>
+                    </div>
+                  </details>
+                  <div class="recipe-meta">
+                    <div class="dietary-badges" id="preview-dietary-badges" aria-label="Dietary options"></div>
+                    <div class="category-inline" id="preview-category-badge"></div>
+                  </div>
+                </div>
+              </section>
+              <main>
+                <section class="controls preview-controls">
+                  <label class="batch-display" for="preview-batch-multiplier">Batch multiplier:
+                    <input type="number" id="preview-batch-multiplier" step="0.25" min="0.25" value="1" disabled />
+                  </label>
+                  <button class="button" type="button" disabled>🖨 Print</button>
+                  <div class="control-note">Adjustments available after saving.</div>
+                </section>
+                <section class="preview-section">
+                  <h2>Ingredients</h2>
+                  <ul id="preview-ingredients"></ul>
+                </section>
+                <section class="preview-section">
+                  <h2>Steps</h2>
+                  <ol id="preview-steps"></ol>
+                </section>
+              </main>
+            </div>
+          </div>
+        </details>
       </section>
     </main>
   </div>
