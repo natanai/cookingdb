@@ -21,7 +21,7 @@
     <section class="hero">
       <div class="hero-content">
         <h1 class="hero-title">Recipe inbox</h1>
-        <p class="hero-subtitle">Every step must list the ingredients it uses so the card renders correctly.</p>
+        <p class="hero-subtitle">Add a recipe! Yay! Be sure to click the little question marks for guidance.</p>
       </div>
     </section>
     <main class="inbox-grid">
@@ -41,8 +41,7 @@
               <button type="button" class="help-icon field-help-icon" data-help-key="slug" aria-label="Help: recipe ID">?</button>
             </div>
             <input id="slug" name="slug" required placeholder="moms-lasagna" />
-            <small class="field-help">This is the simple file name for the recipe. Keep lowercase letters, numbers, and dashes—
-              we fill it from the title for you.</small>
+            
           </div>
           <div class="field">
             <div class="field-label-row">
@@ -57,7 +56,7 @@
               <button type="button" class="help-icon field-help-icon" data-help-key="categories" aria-label="Help: categories">?</button>
             </div>
             <select id="categories" name="categories" multiple aria-describedby="categories-help"></select>
-            <small id="categories-help" class="field-help">Pick the cookbook sections this belongs in. Hold Control (or Command on a Mac) to choose more than one.</small>
+            
           </div>
           <div class="field inline">
             <div class="field-label-row">
@@ -83,7 +82,7 @@
               <div id="ingredient-rows" class="ingredients-list"></div>
             </div>
             <button class="button secondary" type="button" id="add-ingredient">+ Add ingredient</button>
-            <div class="field-help">List every ingredient line with its amount and unit. Use a section label (like "Sauce" or "Topping") when the recipe has parts.</div>
+          
             </fieldset>
             <fieldset class="field">
               <legend class="field-label-row">
@@ -92,7 +91,7 @@
               </legend>
               <ol id="steps-list" class="steps-builder"></ol>
               <button class="button secondary" type="button" id="add-step">+ Add step</button>
-            <div class="field-help">Write each step in order and click the matching ingredients for that step so nothing is missed. Add step sections (like "Prep" / "Cook") when the instructions need to be grouped.</div>
+            
           </fieldset>
           <div class="actions recipe-actions">
             <button class="button" type="submit">Submit to inbox</button>
