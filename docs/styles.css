@@ -1392,6 +1392,47 @@ main {
   gap: 0.5rem;
 }
 
+.choice-row {
+  display: grid;
+  gap: 0.6rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--border);
+  margin-top: 0.5rem;
+}
+
+.choice-config {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.choice-config .choice-toggle {
+  font-weight: 600;
+}
+
+.choice-options-block {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.choice-options-block .ingredient-options {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.options-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.choice-options-block .add-option {
+  width: fit-content;
+}
+
 .show-when-group {
   display: grid;
   grid-template-columns: 1fr auto;
