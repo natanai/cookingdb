@@ -399,10 +399,7 @@ function createIngredientRow(defaults = {}) {
           </label>
         </div>
       </div>
-      <div class="field-help subtle">
-        Use these for sections, dropdown swaps, conditional ingredients, or to keep items on the same line.
       </div>
-    </div>
   `;
   row.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
   const nameInput = row.querySelector('.ingredient-name');
