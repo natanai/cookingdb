@@ -332,6 +332,38 @@ main {
   border: 0;
 }
 
+/* ===== Mobile scroll “rolling magnify” ===== */
+.recipe-row {
+  --ruffle: 0; /* 0..1, set by JS */
+  --ruffle-near: 0; /* 0..1, neighbor hint (optional) */
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .recipe-row {
+    will-change: transform;
+    transform-origin: center;
+    /* 0.008 => max +0.8% scale when --ruffle=1 */
+    transform:
+      scale(calc(1 + (var(--ruffle) * 0.008) + (var(--ruffle-near) * 0.004)))
+      translateY(calc((var(--ruffle) * -1px) + (var(--ruffle-near) * -0.5px)));
+    /* Keep transition almost imperceptible; linear helps it feel “attached” to scroll */
+    transition: transform 70ms linear;
+  }
+
+  /* If your click target is the <a> inside, keep it visually stable */
+  .recipe-row-link {
+    transition: transform 120ms ease, background 120ms ease;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .recipe-row {
+    transition: none;
+    transform: none;
+  }
+}
+
 .recipe-list > li {
   margin: 0;
   padding: 0;
