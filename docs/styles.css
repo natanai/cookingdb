@@ -269,7 +269,7 @@ main {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.4rem;
 }
 
 .recipe-card {
@@ -286,11 +286,39 @@ main {
   transition: background-color 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
 }
 
+.recipe-row {
+  box-shadow: none;
+  border-radius: 0;
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 0;
+}
+
+.recipe-row-link {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  text-decoration: none;
+  color: inherit;
+}
+
 .recipe-card:hover,
 .recipe-card:focus-within {
   background: #fffdf9;
   border-color: #d7c4ad;
   box-shadow: 0 8px 18px rgba(30, 18, 11, 0.08);
+}
+
+.recipe-row:hover {
+  background: rgba(0, 0, 0, 0.02);
+  box-shadow: none;
+  border-color: var(--border);
+}
+
+.recipe-row:focus-within {
+  outline: 2px solid rgba(0, 0, 0, 0.25);
+  outline-offset: 2px;
+  box-shadow: none;
+  border-color: var(--border);
 }
 
 .recipe-card a {
@@ -299,6 +327,49 @@ main {
   text-decoration: none;
   font-weight: 700;
   letter-spacing: 0.01em;
+}
+
+.recipe-row-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.recipe-row-title {
+  font-size: 1.02rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.recipe-row-flags {
+  display: inline-flex;
+  gap: 0.25rem;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+.diet-flag {
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.05rem 0.28rem;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  opacity: 0.7;
+}
+
+.recipe-row-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.15rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.recipe-row-warnings {
+  font-weight: 700;
 }
 
 .recipe-header {
@@ -334,6 +405,16 @@ main {
   color: var(--text);
   font-weight: 700;
   letter-spacing: 0.01em;
+}
+
+@media (max-width: 700px) {
+  .recipe-row-link {
+    padding: 0.6rem 0.7rem;
+  }
+
+  .recipe-row-title {
+    font-size: 1rem;
+  }
 }
 
 .card-categories {
