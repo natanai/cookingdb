@@ -485,14 +485,30 @@ function setupPanControls(recipe, state, rerender) {
   const panSizes = Array.isArray(recipe?.pan_sizes) ? recipe.pan_sizes : [];
   const hasDefaultPan = Boolean(recipe?.default_pan);
 
-  if (!panControls || !panSelect || !panNote || panSizes.length === 0 || !hasDefaultPan) {
+  const resetPanControls = () => {
     state.panMultiplier = 1;
     state.selectedPanId = null;
     if (panControls) {
       panControls.hidden = true;
-      panSelect.innerHTML = '';
-      panNote.textContent = '';
+      if (panSelect) panSelect.innerHTML = '';
+      if (panNote) panNote.textContent = '';
     }
+  };
+
+  if (!panControls || !panSelect || !panNote || panSizes.length === 0 || !hasDefaultPan) {
+    resetPanControls();
+    return false;
+  }
+
+  const basePan = panSizes.find((p) => p.id === recipe.default_pan);
+  if (!basePan) {
+    resetPanControls();
+    return false;
+  }
+
+  const baseArea = panArea(basePan);
+  if (!baseArea) {
+    resetPanControls();
     return false;
   }
 
@@ -503,31 +519,11 @@ function setupPanControls(recipe, state, rerender) {
     const optionEl = document.createElement('option');
     optionEl.value = pan.id;
     optionEl.textContent = pan.label || pan.id;
-    if (pan.id === recipe.default_pan) optionEl.selected = true;
+    if (pan.id === basePan.id) optionEl.selected = true;
     panSelect.appendChild(optionEl);
   });
 
-  const basePan = panSizes.find((p) => p.id === recipe.default_pan);
-  if (!basePan) {
-    state.panMultiplier = 1;
-    state.selectedPanId = null;
-    panControls.hidden = true;
-    panSelect.innerHTML = '';
-    panNote.textContent = '';
-    return false;
-  }
-
   state.selectedPanId = basePan.id;
-  const baseArea = panArea(basePan);
-
-  if (!baseArea) {
-    state.panMultiplier = 1;
-    state.selectedPanId = null;
-    panControls.hidden = true;
-    panSelect.innerHTML = '';
-    panNote.textContent = '';
-    return false;
-  }
 
   const updatePanMultiplier = () => {
     const selectedId = panSelect.value;
