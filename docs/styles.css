@@ -4,6 +4,7 @@
   --bg: #f4efe4;
   --text: #1e120b;
   --muted: #5e5147;
+  --muted-text: #5e5147;
   --accent: #b25b36;
   --accent-soft: #f2dec5;
   --card: #fffaf0;
@@ -1386,6 +1387,37 @@ main {
   padding-top: 0.65rem;
 }
 
+.choice-block {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+
+.choice-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.choice-fields {
+  display: none;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+
+.ingredient-row.is-choice .choice-fields {
+  display: block;
+}
+
+.choice-default {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
 .ingredient-advanced-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1406,10 +1438,7 @@ main {
 }
 
 .input-with-help {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 0.3rem;
+  display: none;
 }
 
 .inline-group-with-help {
@@ -1437,6 +1466,104 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.add-page .ingredient-advanced {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.75rem;
+  margin-top: 0.35rem;
+  background: #fffdf9;
+}
+
+.add-page .ingredient-advanced-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+@media (max-width: 700px) {
+  .add-page .ingredient-advanced-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.add-page .advanced-group,
+.add-page .choice-block,
+.add-page .conditional-block {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+}
+
+.add-page .choice-toggle,
+.add-page .conditional-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.add-page .choice-fields,
+.add-page .conditional-fields {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+  padding-left: 0.4rem;
+  border: 0;
+  padding-top: 0;
+}
+
+.add-page .choice-fields[hidden],
+.add-page .conditional-fields[hidden] {
+  display: none !important;
+}
+
+.add-page .infield {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 8px;
+  box-sizing: border-box;
+}
+
+.add-page .infield input {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  border: 0 !important;
+  outline: none;
+  background: transparent;
+  padding: 2px 0;
+  box-shadow: none;
+}
+
+.add-page .infield:focus-within {
+  border-color: #c9a27a;
+  box-shadow: 0 0 0 2px rgba(201, 162, 122, 0.25);
+}
+
+.add-page .infield .help-icon {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #f6f0e6;
+  color: var(--muted-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.add-page .infield .help-icon:hover {
+  filter: brightness(0.98);
 }
 
 .ingredient-more-toggle,
