@@ -1985,6 +1985,36 @@ main {
     white-space: nowrap;
     padding: 0.45rem 0.7rem;
   }
+    /* make the top "recipe box" much tighter on mobile */
+  .hero {
+    padding: 10px 10px;     /* less whitespace inside the bordered box */
+    margin: 12px 0;         /* less vertical whitespace around it */
+  }
+
+  .hero-content {
+    gap: 8px;               /* tighten overall vertical spacing inside */
+  }
+
+  .filter-bar {
+    margin-top: 0;          /* remove extra separation above search */
+    gap: 6px;               /* search + refine nearly touch */
+  }
+
+  /* reduce the height/padding of the search row */
+  .search-field input {
+    padding: 12px 14px 12px 44px; /* keep room for magnifier icon */
+  }
+  .search-field .search-icon {
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* reduce the height/padding of the "Refine / All recipes" row */
+  .category-summary {
+    padding: 12px 14px;
+  }
+
 }
 
 
