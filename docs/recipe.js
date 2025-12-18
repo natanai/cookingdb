@@ -15,6 +15,12 @@ import {
 
 const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
 
+const DIETARY_BADGES = [
+  { key: 'gluten_free', short: 'GF', name: 'Gluten-free' },
+  { key: 'egg_free', short: 'EF', name: 'Egg-free' },
+  { key: 'dairy_free', short: 'DF', name: 'Dairy-free' },
+];
+
 function recipeHasDetails(recipe) {
   if (!recipe || typeof recipe !== 'object') return false;
   const ingredients = normalizeIngredients(recipe.ingredients, recipe.token_order);
@@ -155,11 +161,77 @@ function getDietaryFromQuery() {
   };
 }
 
-function createMetadataPill(labels, value) {
-  const pill = document.createElement('span');
-  pill.className = value ? 'pill' : 'pill neutral';
-  pill.textContent = value ? labels.positive : labels.negative;
-  return pill;
+function updateQueryFromState(state) {
+  const params = new URLSearchParams(window.location.search);
+  ['gluten_free', 'egg_free', 'dairy_free'].forEach((key) => {
+    const value = state.restrictions?.[key];
+    if (value) {
+      params.set(key, '1');
+    } else {
+      params.delete(key);
+    }
+  });
+
+  const newUrl = `${window.location.pathname}?${params.toString()}`;
+  window.history.replaceState({}, '', newUrl);
+}
+
+function renderDietaryBadges(
+  container,
+  state,
+  defaultCompatibility,
+  compatibilityPossible,
+  restrictionCanRelax,
+  onChange
+) {
+  container.innerHTML = '';
+
+  DIETARY_BADGES.forEach(({ key, short, name }) => {
+    const possible = !!compatibilityPossible[key];
+    const ready = !!defaultCompatibility[key];
+
+    const status = !possible ? 'cannot' : ready ? 'ready' : 'can-become';
+    const lockedOn = ready && !restrictionCanRelax[key];
+
+    const label = document.createElement('label');
+    label.className = `diet-badge diet-badge--${status}`;
+    if (!possible) label.classList.add('is-disabled');
+    if (lockedOn) label.classList.add('is-locked');
+
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.checked = !!state.restrictions[key];
+    input.disabled = !possible || lockedOn;
+
+    input.addEventListener('change', () => {
+      state.restrictions[key] = input.checked;
+      if (typeof onChange === 'function') onChange();
+      updateQueryFromState(state);
+    });
+
+    const text = document.createElement('span');
+    text.className = 'diet-badge__text';
+    text.textContent = short;
+
+    const icon = document.createElement('span');
+    icon.className = 'diet-badge__icon';
+    icon.setAttribute('aria-hidden', 'true');
+
+    if (!possible) {
+      label.title = `${name}: no known swaps available`;
+    } else if (ready) {
+      label.title = lockedOn
+        ? `${name}: already meets (always)`
+        : `${name}: already meets (click to allow non-${name.toLowerCase()})`;
+    } else {
+      label.title = `${name}: click to apply swaps`;
+    }
+
+    label.appendChild(input);
+    label.appendChild(text);
+    label.appendChild(icon);
+    container.appendChild(label);
+  });
 }
 
 function panArea(pan) {
@@ -468,13 +540,10 @@ function renderRecipe(recipeInput) {
 
   const titleEl = document.getElementById('recipe-title');
   const notesEl = document.getElementById('notes');
-  const metadataEl = document.getElementById('metadata');
-  const categoryRow = document.getElementById('category-row');
+  const categoryInline = document.getElementById('category-inline');
+  const dietaryBadges = document.getElementById('dietary-badges');
   const multiplierInput = document.getElementById('multiplier');
   const multiplierHelper = document.getElementById('multiplier-helper');
-  const prefGluten = document.getElementById('pref-gluten');
-  const prefEgg = document.getElementById('pref-egg');
-  const prefDairy = document.getElementById('pref-dairy');
   const ingredientsHeading = document.getElementById('ingredients-heading');
   const heroContent = document.querySelector('.hero-content');
   const recipeNoteDetails = document.querySelector('.recipe-note');
@@ -512,21 +581,6 @@ function renderRecipe(recipeInput) {
   };
 
   if (multiplierInput) multiplierInput.value = state.multiplier;
-  if (prefGluten) prefGluten.checked = state.restrictions.gluten_free;
-  if (prefEgg) prefEgg.checked = state.restrictions.egg_free;
-  if (prefDairy) prefDairy.checked = state.restrictions.dairy_free;
-
-  if (prefGluten) {
-    prefGluten.disabled =
-      !compatibilityPossible.gluten_free || (defaultCompatibility.gluten_free && !restrictionCanRelax.gluten_free);
-  }
-  if (prefEgg) {
-    prefEgg.disabled = !compatibilityPossible.egg_free || (defaultCompatibility.egg_free && !restrictionCanRelax.egg_free);
-  }
-  if (prefDairy) {
-    prefDairy.disabled =
-      !compatibilityPossible.dairy_free || (defaultCompatibility.dairy_free && !restrictionCanRelax.dairy_free);
-  }
 
   if (ingredientsHeading) {
     ingredientsHeading.textContent = hasDetails ? 'Ingredients' : 'Ingredients (pending)';
@@ -550,31 +604,9 @@ function renderRecipe(recipeInput) {
     heroContent.prepend(warning);
   }
 
-  if (metadataEl) {
-    metadataEl.innerHTML = '';
-    const dietInitials = {
-      gluten_free: 'GF',
-      egg_free: 'EF',
-      dairy_free: 'DF',
-    };
-
-    Object.entries(dietInitials).forEach(([key, label]) => {
-      if (!defaultCompatibility[key]) return;
-      const span = document.createElement('span');
-      span.className = 'diet-initial';
-      span.textContent = label;
-      metadataEl.appendChild(span);
-    });
-  }
-
-  if (categoryRow) {
-    categoryRow.innerHTML = '';
-    (recipe.categories || []).forEach((cat) => {
-      const chip = document.createElement('span');
-      chip.className = 'category-chip';
-      chip.textContent = cat;
-      categoryRow.appendChild(chip);
-    });
+  if (categoryInline) {
+    const categories = Array.isArray(recipe.categories) ? recipe.categories.filter(Boolean) : [];
+    categoryInline.textContent = categories.join(' • ');
   }
 
   const updateMultiplierHelper = () => {
@@ -604,22 +636,32 @@ function renderRecipe(recipeInput) {
   };
 
   const handleRestrictionChange = () => {
-    if (prefGluten) state.restrictions.gluten_free = prefGluten.checked;
-    if (prefEgg) state.restrictions.egg_free = prefEgg.checked;
-    if (prefDairy) state.restrictions.dairy_free = prefDairy.checked;
     syncSelections();
     buildChoiceControls(recipe, state, rerender);
     rerender();
   };
 
+  const refreshDietaryBadges = () => {
+    if (!dietaryBadges) return;
+    renderDietaryBadges(
+      dietaryBadges,
+      state,
+      defaultCompatibility,
+      compatibilityPossible,
+      restrictionCanRelax,
+      () => {
+        handleRestrictionChange();
+        refreshDietaryBadges();
+      }
+    );
+  };
+
   setupPanControls(recipe, state, rerender);
   syncSelections();
   buildChoiceControls(recipe, state, rerender);
+  refreshDietaryBadges();
 
   if (multiplierInput) multiplierInput.addEventListener('input', rerender);
-  if (prefGluten) prefGluten.addEventListener('change', handleRestrictionChange);
-  if (prefEgg) prefEgg.addEventListener('change', handleRestrictionChange);
-  if (prefDairy) prefDairy.addEventListener('change', handleRestrictionChange);
 
   rerender();
 

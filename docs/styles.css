@@ -758,23 +758,6 @@ main {
   opacity: 0.8;
 }
 
-.page-recipe .dietary-fieldset {
-  border: 0;
-  padding: 0;
-  margin: 0;
-}
-
-.page-recipe .dietary-fieldset legend {
-  font-weight: 600;
-  color: var(--muted);
-  margin-bottom: 0.35rem;
-}
-
-.page-recipe .dietary-fieldset label {
-  margin-right: 1rem;
-  font-weight: 500;
-}
-
 .choice-group {
   display: inline-flex;
   align-items: center;
@@ -940,41 +923,97 @@ main {
   margin: 0.5rem 0 1rem;
 }
 
-.page-recipe .recipe-metadata,
-.page-recipe #category-row {
-  display: inline-flex;
+.page-recipe .recipe-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.35rem 0 0.75rem;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  align-items: baseline;
-  margin: 0.25rem 0 0;
 }
 
-.page-recipe .pill,
-.page-recipe .category-chip {
+.page-recipe .dietary-badges {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.page-recipe .diet-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.page-recipe .diet-badge input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.page-recipe .diet-badge__icon {
+  width: 0.85rem;
+  text-align: center;
+  opacity: 0.75;
+}
+
+.page-recipe .diet-badge--ready {
+  color: var(--text);
+}
+
+.page-recipe .diet-badge--ready:not(.is-locked) {
+  cursor: pointer;
+}
+
+.page-recipe .diet-badge--can-become {
+  color: var(--text);
+  border-style: dashed;
+  cursor: pointer;
+}
+
+.page-recipe .diet-badge--can-become:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.page-recipe .diet-badge--cannot {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.page-recipe .diet-badge input:checked ~ .diet-badge__icon::before {
+  content: "✓";
+}
+
+.page-recipe .diet-badge--can-become input:not(:checked) ~ .diet-badge__icon::before {
+  content: "+";
+}
+
+.page-recipe .diet-badge--ready input:not(:checked) ~ .diet-badge__icon::before {
+  content: "";
+}
+
+.page-recipe .diet-badge--cannot .diet-badge__icon::before {
+  content: "×";
+}
+
+.page-recipe .diet-badge.is-locked {
+  cursor: default;
+}
+
+.page-recipe .diet-badge.is-locked:hover {
   background: transparent;
-  border: 0;
-  padding: 0;
-  border-radius: 0;
-  box-shadow: none;
-  color: var(--muted);
-  font-size: 0.85rem;
-  font-weight: 600;
+}
+
+.page-recipe .category-inline {
+  font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-}
-
-.page-recipe .category-chip:not(:last-child)::after {
-  content: " • ";
-}
-
-.page-recipe .pill:not(:last-child)::after {
-  content: " · ";
-}
-
-.page-recipe .diet-initial {
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
   color: var(--muted);
 }
 

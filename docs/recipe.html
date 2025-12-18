@@ -25,8 +25,10 @@
             <p class="notes" id="notes"></p>
           </div>
         </details>
-        <div class="recipe-metadata" id="metadata"></div>
-        <div class="card-categories" id="category-row"></div>
+        <div class="recipe-meta">
+          <div class="dietary-badges" id="dietary-badges" aria-label="Dietary options"></div>
+          <div class="category-inline" id="category-inline"></div>
+        </div>
       </div>
     </section>
     <main>
@@ -42,12 +44,6 @@
           <div class="adjust-panel">
             <div class="swap-list" id="swap-list"></div>
             <hr class="adjust-divider" id="adjust-divider" />
-            <fieldset class="dietary-fieldset" id="dietary-fieldset">
-              <legend>Dietary preferences</legend>
-              <label><input type="checkbox" id="pref-gluten" /> Gluten-free</label>
-              <label><input type="checkbox" id="pref-egg" /> Egg-free</label>
-              <label><input type="checkbox" id="pref-dairy" /> Dairy-free</label>
-            </fieldset>
             <div class="pan-controls" id="pan-controls" hidden>
               <label>
                 Pan size:
