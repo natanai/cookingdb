@@ -1,6 +1,8 @@
 import {
   DIETARY_TAGS,
+  DIETARY_BADGES,
   restrictionsActive,
+  renderDietaryBadges,
   recipeDefaultCompatibility,
   hasNonCompliantAlternative,
   renderIngredientLines,
@@ -14,12 +16,6 @@ import {
 } from './recipe-utils.js';
 
 const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
-
-const DIETARY_BADGES = [
-  { key: 'gluten_free', short: 'GF', name: 'Gluten-free' },
-  { key: 'egg_free', short: 'EF', name: 'Egg-free' },
-  { key: 'dairy_free', short: 'DF', name: 'Dairy-free' },
-];
 
 function recipeHasDetails(recipe) {
   if (!recipe || typeof recipe !== 'object') return false;
@@ -174,64 +170,6 @@ function updateQueryFromState(state) {
 
   const newUrl = `${window.location.pathname}?${params.toString()}`;
   window.history.replaceState({}, '', newUrl);
-}
-
-function renderDietaryBadges(
-  container,
-  state,
-  defaultCompatibility,
-  compatibilityPossible,
-  restrictionCanRelax,
-  onChange
-) {
-  container.innerHTML = '';
-
-  DIETARY_BADGES.forEach(({ key, short, name }) => {
-    const possible = !!compatibilityPossible[key];
-    const ready = !!defaultCompatibility[key];
-
-    const status = !possible ? 'cannot' : ready ? 'ready' : 'can-become';
-    const lockedOn = ready && !restrictionCanRelax[key];
-
-    const label = document.createElement('label');
-    label.className = `diet-badge diet-badge--${status}`;
-    if (!possible) label.classList.add('is-disabled');
-    if (lockedOn) label.classList.add('is-locked');
-
-    const input = document.createElement('input');
-    input.type = 'checkbox';
-    input.checked = !!state.restrictions[key];
-    input.disabled = !possible || lockedOn;
-
-    input.addEventListener('change', () => {
-      state.restrictions[key] = input.checked;
-      if (typeof onChange === 'function') onChange();
-      updateQueryFromState(state);
-    });
-
-    const text = document.createElement('span');
-    text.className = 'diet-badge__text';
-    text.textContent = short;
-
-    const icon = document.createElement('span');
-    icon.className = 'diet-badge__icon';
-    icon.setAttribute('aria-hidden', 'true');
-
-    if (!possible) {
-      label.title = `${name}: no known swaps available`;
-    } else if (ready) {
-      label.title = lockedOn
-        ? `${name}: already meets (always)`
-        : `${name}: already meets (click to allow non-${name.toLowerCase()})`;
-    } else {
-      label.title = `${name}: click to apply swaps`;
-    }
-
-    label.appendChild(input);
-    label.appendChild(text);
-    label.appendChild(icon);
-    container.appendChild(label);
-  });
 }
 
 function panArea(pan) {
@@ -672,6 +610,7 @@ function renderRecipe(recipeInput) {
       () => {
         handleRestrictionChange();
         refreshDietaryBadges();
+        updateQueryFromState(state);
       }
     );
   };
