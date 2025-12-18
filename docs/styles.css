@@ -350,15 +350,43 @@ main {
   padding: 0.65rem 0.9rem;
   color: var(--text);
   text-decoration: none;
-}
-
-.recipe-row-link:hover {
-  background: rgba(0, 0, 0, 0.02);
+  position: relative;
+  transform: translateZ(0);
+  transition: transform 120ms ease, background 120ms ease;
+  will-change: transform;
 }
 
 .recipe-row-link:focus {
   outline: 2px solid rgba(0, 0, 0, 0.22);
   outline-offset: -2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .recipe-row-link:hover {
+    transform: scale(1.006);
+    background: rgba(0, 0, 0, 0.02);
+  }
+}
+
+.recipe-row-link.is-pressed {
+  transform: scale(1.01);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.recipe-row-link:active {
+  transform: scale(1.01);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recipe-row-link {
+    transition: none;
+  }
+
+  .recipe-row-link:hover,
+  .recipe-row-link.is-pressed,
+  .recipe-row-link:active {
+    transform: none;
+  }
 }
 
 .recipe-row-title {
