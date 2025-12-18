@@ -256,7 +256,7 @@ function buildChoiceControls(recipe, state, onChange) {
   const adjustSummary = document.getElementById('adjust-summary');
   const adjustDivider = document.getElementById('adjust-divider');
 
-  if (!swapList || !adjustDetails || !adjustSummary) return;
+  if (!swapList || !adjustDetails || !adjustSummary || !adjustDivider) return 0;
 
   const choices = recipe?.choices && typeof recipe.choices === 'object' ? recipe.choices : {};
   const ingredients = recipe?.ingredients && typeof recipe.ingredients === 'object' ? recipe.ingredients : {};
@@ -266,10 +266,6 @@ function buildChoiceControls(recipe, state, onChange) {
   );
 
   swapList.innerHTML = '';
-  adjustSummary.textContent = choiceEntries.length
-    ? `Adjust recipe (${choiceEntries.length})`
-    : 'Adjust recipe';
-
   if (!adjustDetails.dataset.initialized) {
     adjustDetails.open = false;
     adjustDetails.dataset.initialized = 'true';
@@ -328,6 +324,8 @@ function buildChoiceControls(recipe, state, onChange) {
   });
 
   adjustDivider.hidden = choiceEntries.length === 0;
+
+  return choiceEntries.length;
 }
 
 function renderIngredientsList(recipe, state, onUnitChange) {
@@ -484,35 +482,54 @@ function setupPanControls(recipe, state, rerender) {
   const panSelect = document.getElementById('pan-select');
   const panNote = document.getElementById('pan-note');
 
-  if (!panControls || !panSelect || !panNote || !recipe?.pan_sizes?.length) {
+  const panSizes = Array.isArray(recipe?.pan_sizes) ? recipe.pan_sizes : [];
+  const hasDefaultPan = Boolean(recipe?.default_pan);
+
+  const resetPanControls = () => {
     state.panMultiplier = 1;
+    state.selectedPanId = null;
     if (panControls) {
       panControls.hidden = true;
-      panSelect.innerHTML = '';
-      panNote.textContent = '';
+      if (panSelect) panSelect.innerHTML = '';
+      if (panNote) panNote.textContent = '';
     }
-    return;
+  };
+
+  if (!panControls || !panSelect || !panNote || panSizes.length === 0 || !hasDefaultPan) {
+    resetPanControls();
+    return false;
+  }
+
+  const basePan = panSizes.find((p) => p.id === recipe.default_pan);
+  if (!basePan) {
+    resetPanControls();
+    return false;
+  }
+
+  const baseArea = panArea(basePan);
+  if (!baseArea) {
+    resetPanControls();
+    return false;
   }
 
   panControls.hidden = false;
   panSelect.innerHTML = '';
 
-  recipe.pan_sizes.forEach((pan) => {
+  panSizes.forEach((pan) => {
     const optionEl = document.createElement('option');
     optionEl.value = pan.id;
     optionEl.textContent = pan.label || pan.id;
-    if (pan.id === recipe.default_pan) optionEl.selected = true;
+    if (pan.id === basePan.id) optionEl.selected = true;
     panSelect.appendChild(optionEl);
   });
 
-  const basePan = recipe.pan_sizes.find((p) => p.id === recipe.default_pan) || recipe.pan_sizes[0];
-  const baseArea = panArea(basePan);
+  state.selectedPanId = basePan.id;
 
   const updatePanMultiplier = () => {
     const selectedId = panSelect.value;
     state.selectedPanId = selectedId;
 
-    const selectedPan = recipe.pan_sizes.find((p) => p.id === selectedId);
+    const selectedPan = panSizes.find((p) => p.id === selectedId);
     const selectedArea = panArea(selectedPan);
 
     if (!baseArea || !selectedArea) {
@@ -533,6 +550,8 @@ function setupPanControls(recipe, state, rerender) {
 
   panSelect.addEventListener('change', updatePanMultiplier);
   updatePanMultiplier();
+
+  return true;
 }
 
 function renderRecipe(recipeInput) {
@@ -544,6 +563,8 @@ function renderRecipe(recipeInput) {
   const dietaryBadges = document.getElementById('dietary-badges');
   const multiplierInput = document.getElementById('multiplier');
   const multiplierHelper = document.getElementById('multiplier-helper');
+  const adjustDetails = document.getElementById('adjust-details');
+  const adjustSummary = document.getElementById('adjust-summary');
   const ingredientsHeading = document.getElementById('ingredients-heading');
   const heroContent = document.querySelector('.hero-content');
   const recipeNoteDetails = document.querySelector('.recipe-note');
@@ -581,6 +602,17 @@ function renderRecipe(recipeInput) {
   };
 
   if (multiplierInput) multiplierInput.value = state.multiplier;
+
+  const updateAdjustPanel = (choiceCount, panAvailable) => {
+    const hasAdjustments = panAvailable || choiceCount > 0;
+    if (adjustDetails) {
+      adjustDetails.hidden = !hasAdjustments;
+      if (!hasAdjustments) adjustDetails.open = false;
+    }
+    if (adjustSummary) {
+      adjustSummary.textContent = choiceCount > 0 ? `Adjust recipe (${choiceCount})` : 'Adjust recipe';
+    }
+  };
 
   if (ingredientsHeading) {
     ingredientsHeading.textContent = hasDetails ? 'Ingredients' : 'Ingredients (pending)';
@@ -637,7 +669,8 @@ function renderRecipe(recipeInput) {
 
   const handleRestrictionChange = () => {
     syncSelections();
-    buildChoiceControls(recipe, state, rerender);
+    const choiceCount = buildChoiceControls(recipe, state, rerender);
+    updateAdjustPanel(choiceCount, panControlsAvailable);
     rerender();
   };
 
@@ -656,9 +689,10 @@ function renderRecipe(recipeInput) {
     );
   };
 
-  setupPanControls(recipe, state, rerender);
+  const panControlsAvailable = setupPanControls(recipe, state, rerender);
   syncSelections();
-  buildChoiceControls(recipe, state, rerender);
+  const choiceCount = buildChoiceControls(recipe, state, rerender);
+  updateAdjustPanel(choiceCount, panControlsAvailable);
   refreshDietaryBadges();
 
   if (multiplierInput) multiplierInput.addEventListener('input', rerender);
