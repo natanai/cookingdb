@@ -1957,11 +1957,36 @@ main {
   .actions {
     gap: 10px;
   }
+
+  /* keep header title + button on the same row when possible */
   .site-header .inner {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap; /* wraps only if it truly can't fit */
+  }
+
+  .site-title {
+    margin: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .nav-links {
+    margin-left: auto;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .nav-links .button {
+    white-space: nowrap;
+    padding: 0.45rem 0.7rem;
   }
 }
+
 
 @media (max-width: 640px) {
   .page-shell {
