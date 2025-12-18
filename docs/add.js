@@ -764,96 +764,138 @@ function buildPreviewRecipe() {
 }
 
 function renderPreview(recipe) {
-  const titleEl = document.getElementById('preview-title');
+  const titleEl = document.getElementById('preview-recipe-title');
+  const noteDetails = document.getElementById('preview-recipe-note');
   const notesEl = document.getElementById('preview-notes');
-  const categoriesEl = document.getElementById('preview-categories');
-  const metadataEl = document.getElementById('preview-metadata');
+  const dietaryBadgesEl = document.getElementById('preview-dietary-badges');
+  const categoryBadgeEl = document.getElementById('preview-category-badge');
+  const batchMultiplierEl = document.getElementById('preview-batch-multiplier');
   const ingredientsEl = document.getElementById('preview-ingredients');
   const stepsEl = document.getElementById('preview-steps');
 
-  titleEl.textContent = recipe.title || 'Recipe title';
-  notesEl.textContent = recipe.notes || 'Notes will appear here.';
+  const defaultCompatibility = recipeDefaultCompatibility(recipe);
+  const compatibilityPossible = recipe.compatibility_possible || {};
+  const hasChoiceTokens = Object.values(recipe.ingredients || {}).some((entry) => entry?.isChoice);
 
-  categoriesEl.innerHTML = '';
-  (recipe.categories || []).forEach((cat) => {
-    const chip = document.createElement('span');
-    chip.className = 'category-chip';
-    chip.textContent = cat;
-    categoriesEl.appendChild(chip);
-  });
+  if (titleEl) titleEl.textContent = recipe.title || 'Recipe title';
 
-  metadataEl.innerHTML = '';
-  metadataEl.appendChild(
-    (() => {
-      const pill = document.createElement('span');
-      pill.className = 'pill neutral';
-      pill.textContent = `Batch ×${recipe.default_base || 1}`;
-      return pill;
-    })()
-  );
-  metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.gluten_free, recipe.compatibility_possible.gluten_free));
-  metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.egg_free, recipe.compatibility_possible.egg_free));
-  metadataEl.appendChild(createMetadataPill(DIETARY_TAGS.dairy_free, recipe.compatibility_possible.dairy_free));
+  const noteText = (recipe.notes || '').trim();
+  if (noteDetails) {
+    if (noteText) {
+      noteDetails.hidden = false;
+      noteDetails.open = false;
+      if (notesEl) notesEl.textContent = noteText;
+    } else {
+      noteDetails.hidden = true;
+      if (notesEl) notesEl.textContent = '';
+    }
+  }
 
-  ingredientsEl.innerHTML = '';
+  if (categoryBadgeEl) {
+    const primaryCategory = (recipe.categories || [])[0] || 'Uncategorized';
+    categoryBadgeEl.textContent = primaryCategory;
+  }
+
+  if (batchMultiplierEl) {
+    const multiplier = Number(recipe.default_base) || 1;
+    batchMultiplierEl.value = multiplier;
+  }
+
+  renderPreviewDietaryBadges(dietaryBadgesEl, defaultCompatibility, compatibilityPossible, hasChoiceTokens);
+
   const state = {
     multiplier: recipe.default_base || 1,
     panMultiplier: 1,
     selectedOptions: {},
-    restrictions: recipe.compatibility_possible || { gluten_free: true, egg_free: true, dairy_free: true },
+    restrictions: {
+      gluten_free: compatibilityPossible.gluten_free ? defaultCompatibility.gluten_free : false,
+      egg_free: compatibilityPossible.egg_free ? defaultCompatibility.egg_free : false,
+      dairy_free: compatibilityPossible.dairy_free ? defaultCompatibility.dairy_free : false,
+    },
   };
+
   const ingredientLines = renderIngredientLines(recipe, state);
   const ingredientSections = groupLinesBySection(ingredientLines, recipe.ingredient_sections || []);
-  ingredientSections.forEach((section) => {
+  renderPreviewLines(ingredientsEl, ingredientSections, { showAlternatives: true });
+
+  const steps = renderStepLines(recipe, state);
+  const stepSections = groupLinesBySection(steps, recipe.step_sections || []);
+  renderPreviewLines(stepsEl, stepSections);
+}
+
+function renderPreviewDietaryBadges(container, defaultCompatibility, compatibilityPossible, hasChoiceTokens) {
+  if (!container) return;
+
+  const BADGES = [
+    { key: 'gluten_free', short: 'GF', name: 'Gluten-free' },
+    { key: 'egg_free', short: 'EF', name: 'Egg-free' },
+    { key: 'dairy_free', short: 'DF', name: 'Dairy-free' },
+  ];
+
+  container.innerHTML = '';
+
+  BADGES.forEach(({ key, short, name }) => {
+    const ready = !!defaultCompatibility[key];
+    const possible = !!compatibilityPossible[key] || hasChoiceTokens;
+    const status = !possible && !ready ? 'cannot' : ready ? 'ready' : 'can-become';
+
+    const badge = document.createElement('span');
+    badge.className = `diet-badge diet-badge--${status} is-static`;
+    badge.title = `${name}: ${ready ? 'meets by default' : possible ? 'can be made' : 'no swaps yet'}`;
+
+    const text = document.createElement('span');
+    text.className = 'diet-badge__text';
+    text.textContent = short;
+
+    const icon = document.createElement('span');
+    icon.className = 'diet-badge__icon';
+    icon.setAttribute('aria-hidden', 'true');
+
+    badge.append(text, icon);
+    container.appendChild(badge);
+  });
+}
+
+function renderPreviewLines(container, sections, options = {}) {
+  if (!container) return;
+  const { showAlternatives = false } = options;
+
+  container.innerHTML = '';
+
+  if (!sections.length) {
+    const placeholder = document.createElement('li');
+    placeholder.className = 'section-header';
+    placeholder.textContent = 'Details will appear here.';
+    container.appendChild(placeholder);
+    return;
+  }
+
+  sections.forEach((section) => {
     if (section.section) {
       const header = document.createElement('li');
       header.className = 'section-header';
       header.textContent = section.section;
-      ingredientsEl.appendChild(header);
+      container.appendChild(header);
     }
 
     section.lines.forEach((line) => {
       const li = document.createElement('li');
       li.textContent = line.text;
-      if (line.alternatives.length) {
+      if (showAlternatives && line.alternatives.length) {
         const span = document.createElement('span');
         span.className = 'ingredient-alternatives';
         span.textContent = ` (or ${line.alternatives.join(' / ')})`;
         li.appendChild(span);
       }
-      ingredientsEl.appendChild(li);
+      container.appendChild(li);
     });
   });
-
-  stepsEl.innerHTML = '';
-  const steps = renderStepLines(recipe, state);
-  const stepSections = groupLinesBySection(steps, recipe.step_sections || []);
-  stepSections.forEach((section) => {
-    if (section.section) {
-      const header = document.createElement('li');
-      header.className = 'section-header';
-      header.textContent = section.section;
-      stepsEl.appendChild(header);
-    }
-    section.lines.forEach((line) => {
-      const li = document.createElement('li');
-      li.textContent = line.text;
-      stepsEl.appendChild(li);
-    });
-  });
-}
-
-function createMetadataPill(labels, value) {
-  const pill = document.createElement('span');
-  pill.className = value ? 'pill' : 'pill neutral';
-  pill.textContent = value ? labels.positive : labels.negative;
-  return pill;
 }
 
 function refreshPreview() {
   try {
     const recipe = buildPreviewRecipe();
-    recipe.compatibility_possible = recipe.compatibility_possible || recipeDefaultCompatibility(recipe);
+    recipe.compatibility_possible = recipe.compatibility_possible || {};
     renderPreview(recipe);
     statusEl.textContent = '';
     statusEl.className = 'status';
