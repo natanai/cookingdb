@@ -833,8 +833,8 @@ main {
   border-radius: var(--radius);
 }
 
-#ingredients-list,
-#steps-list {
+.page-recipe #ingredients-list,
+.page-recipe #steps-list {
   background: var(--card);
   border: 1px solid var(--border);
   padding: 1rem 1.35rem;
@@ -1499,6 +1499,44 @@ main {
   display: grid;
   gap: 0.75rem;
   padding-left: 1rem;
+}
+
+.steps-field {
+  border: 0;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  min-inline-size: 0;
+}
+
+.steps-field > legend {
+  padding: 0;
+  margin: 0 0 0.5rem 0;
+}
+
+.steps-field .steps-builder {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.steps-field .step-row {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.steps-field #add-step {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0.75rem;
+}
+
+.add-page #steps-list {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .step-row {
