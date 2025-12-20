@@ -1,0 +1,16 @@
+token,option,display,ratio,unit,ingredient_id
+beef,,beef,1,lb,beef
+potatoes,,potatoes (diced),3,count,potato
+celery,,celery (chopped),,,celery
+onion,,onion (chopped),,,onion
+green_beans,,green beans (canned),2,can,green-beans
+pinto_beans,,pinto beans,1,can,pinto-beans
+carrots,,carrots (diced),1,lb,carrot
+peas,,frozen peas,1,lb,peas
+corn,,frozen corn,1,lb,corn
+diced_tomatoes,,diced tomatoes,1,can,diced-tomatoes
+bouillon,,beef bouillon cubes (8 to 10),8,cube,beef_bouillon
+celery_salt,,celery salt,,,celery-salt
+white_pepper,,white pepper,,,white-pepper
+flour,,all-purpose flour,2,tbsp,wheat-flour
+water,,water,,,water

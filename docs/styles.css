@@ -1128,6 +1128,12 @@ main {
   color: var(--muted);
 }
 
+.page-recipe .family-inline {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
 .empty-state {
   margin: 1rem 0;
   padding: 1.25rem;
@@ -1248,6 +1254,12 @@ main {
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: var(--muted);
+}
+
+.preview-panel .family-inline {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
   color: var(--muted);
 }
 

@@ -307,6 +307,7 @@ function recipeSummary(recipe, source = 'built') {
     id: recipe.id,
     title: recipe.title,
     categories: recipe.categories || [],
+    family: recipe.family || '',
     compatibility_possible: recipe.compatibility_possible || { gluten_free: true, egg_free: true, dairy_free: true },
     content_hash: recipe.content_hash,
     _source: source,
@@ -316,13 +317,16 @@ function recipeSummary(recipe, source = 'built') {
 
 function recipeVisible(recipe, filters) {
   const matchesCategory =
-    filters.category === 'all' || (recipe.categories || []).includes(filters.category);
+    filters.category === 'all' ||
+    (recipe.categories || []).includes(filters.category) ||
+    (recipe.family && recipe.family === filters.category);
   if (!matchesCategory) return false;
 
   if (filters.query) {
     const inTitle = (recipe.title || '').toLowerCase().includes(filters.query);
     const inCategories = (recipe.categories || []).some((cat) => cat.toLowerCase().includes(filters.query));
-    if (!inTitle && !inCategories) return false;
+    const inFamily = (recipe.family || '').toLowerCase().includes(filters.query);
+    if (!inTitle && !inCategories && !inFamily) return false;
   }
   const compatibility = recipe.compatibility_possible || {};
   if (filters.gluten && !compatibility.gluten_free) return false;
@@ -420,6 +424,7 @@ function uniqueCategories(recipes) {
   const set = new Set();
   recipes.forEach((recipe) => {
     (recipe.categories || []).forEach((cat) => set.add(cat));
+    if (recipe.family) set.add(recipe.family);
   });
   return Array.from(set).sort((a, b) => a.localeCompare(b));
 }

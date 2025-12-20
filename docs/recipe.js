@@ -560,6 +560,7 @@ function renderRecipe(recipeInput) {
 
   const titleEl = document.getElementById('recipe-title');
   const notesEl = document.getElementById('notes');
+  const familyInline = document.getElementById('family-inline');
   const categoryInline = document.getElementById('category-inline');
   const dietaryBadges = document.getElementById('dietary-badges');
   const multiplierInput = document.getElementById('multiplier');
@@ -622,6 +623,16 @@ function renderRecipe(recipeInput) {
     warning.textContent =
       'This inbox recipe is missing ingredients or steps. Pull the inbox again later to load the full details.';
     heroContent.prepend(warning);
+  }
+
+  if (familyInline) {
+    const familyName = (recipe.family || '').trim();
+    if (familyName) {
+      familyInline.textContent = `Family: ${familyName}`;
+      familyInline.style.display = '';
+    } else {
+      familyInline.style.display = 'none';
+    }
   }
 
   if (categoryInline) {
