@@ -1,7 +1,7 @@
 token,option,display,ratio,unit,ingredient_id
-onion,,chopped onion,1,tbsp,onion
-canadian_bacon,,diced Canadian bacon,1/2,cup,canadian-bacon
+onion,,onion,1,tbsp,onion
+canadian_bacon,,Canadian bacon,1/2,cup,canadian-bacon
 vegetable_oil,,vegetable oil,1,tbsp,vegetable-oil
-collard_greens,,collard greens (chopped),11,oz,collard-greens
-salt,,salt,,,salt
-black_pepper,,black pepper,,,black-pepper
+collard_greens,,collard greens,11,oz,collard-greens
+salt,,salt,1/4,tsp,salt
+black_pepper,,black pepper,1/8,tsp,black-pepper

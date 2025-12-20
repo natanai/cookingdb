@@ -1,6 +1,6 @@
 token,option,display,ratio,unit,ingredient_id
-macaroni,,macaroni (cooked and drained),2,cup,macaroni
-tomatoes,diced,diced tomatoes,1,can,diced-tomatoes
+macaroni,,macaroni,2,cup,macaroni
+tomatoes,diced,tomatoes,1,can,diced-tomatoes
 tomatoes,whole,whole tomatoes,1,can,whole-tomatoes
 tomato_sauce,,tomato sauce,1,can,tomato-sauce
-black_pepper,,black pepper,,,black-pepper
+black_pepper,,black pepper,1/4,tsp,black-pepper

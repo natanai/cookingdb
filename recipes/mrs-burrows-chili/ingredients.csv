@@ -1,9 +1,9 @@
 token,option,display,ratio,unit,ingredient_id
 ground_beef,,ground beef,2,lb,ground-beef
-kidney_beans,,kidney beans (drained),4,can,kidney-beans
+kidney_beans,,kidney beans,4,can,kidney-beans
 tomato_sauce,,tomato sauce,2,can,tomato-sauce
 tomato_soup,,tomato soup,2,can,tomato-soup
-chili_powder,,chili powder,,,chili-powder
-salt,,salt,,,salt
-black_pepper,,black pepper,,,black-pepper
-water,,water (as needed),,,water
+chili_powder,,chili powder,2,tbsp,chili-powder
+salt,,salt,1,tsp,salt
+black_pepper,,black pepper,1/2,tsp,black-pepper
+water,,water,1/2,cup,water

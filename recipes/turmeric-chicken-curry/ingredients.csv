@@ -1,10 +1,10 @@
 token,option,display,ratio,unit,ingredient_id
 rice,,rice,1 1/2,cup,rice
 coconut_oil,,coconut oil,2,tbsp,coconut-oil
-white_onion,,white onion (diced),1,count,onion
-ginger,,fresh ginger (grated),1,inch,ginger
-garlic,,garlic cloves (chopped),2,clove,garlic
-chicken_breast,,chicken breast (cubed),1,lb,chicken-breast
+white_onion,,white onion,1,count,onion
+ginger,,fresh ginger,1,inch,ginger
+garlic,,garlic cloves,2,clove,garlic
+chicken_breast,,chicken breast,1,lb,chicken-breast
 coconut_milk,,coconut milk,1/2,cup,coconut-milk
 coconut_cream,,coconut cream,1/2,cup,coconut-cream
 coconut_aminos,,coconut aminos,2,tbsp,coconut-aminos
@@ -12,5 +12,5 @@ lime,,lime,1,count,lime
 sea_salt,,sea salt,1,tsp,salt
 turmeric,,turmeric powder,1/2,tsp,turmeric-powder
 black_pepper,,black pepper,1/4,tsp,black-pepper
-cilantro,,fresh cilantro (chopped),2,tbsp,cilantro
-cauliflower_rice,,cauliflower rice (for serving),4,cup,cauliflower-rice
+cilantro,,fresh cilantro,2,tbsp,cilantro
+cauliflower_rice,,cauliflower rice,4,cup,cauliflower-rice
