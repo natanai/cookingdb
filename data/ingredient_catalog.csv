@@ -94,3 +94,49 @@ shortening,Shortening,false,false,false
 egg-yolk,Egg yolk,false,true,false
 almond-extract,Almond extract,false,false,false
 food-coloring,Food coloring,false,false,false
+beef,Beef,false,false,false
+green-beans,Green beans,false,false,false
+pinto-beans,Pinto beans,false,false,false
+peas,Peas,false,false,false
+corn,Corn,false,false,false
+celery-salt,Celery salt,false,false,false
+white-pepper,White pepper,false,false,false
+american-cheese,American cheese,false,false,true
+tuna,Tuna,false,false,false
+green-pepper,Green pepper,false,false,false
+green-olives,Green olives,false,false,false
+sweet-pickles,Sweet pickles,false,false,false
+mayonnaise,Mayonnaise,false,true,false
+hot-dog-buns,Hot dog buns,true,false,false
+cream-of-tartar,Cream of tartar,false,false,false
+peanut-butter,Peanut butter,false,false,false
+peanuts,Peanuts,false,false,false
+ketchup,Ketchup,false,false,false
+vinegar,Vinegar,false,false,false
+prepared-mustard,Prepared mustard,false,false,false
+hamburger-buns,Hamburger buns,true,false,false
+stew-beef,Stew beef,false,false,false
+onion-flakes,Onion flakes,false,false,false
+egg-noodles,Egg noodles,true,true,false
+ground-turkey,Ground turkey,false,false,false
+crushed-tomatoes,Crushed tomatoes,false,false,false
+stewed-tomatoes,Stewed tomatoes,false,false,false
+kidney-beans,Kidney beans,false,false,false
+chili-powder,Chili powder,false,false,false
+paprika,Paprika,false,false,false
+tomatoes,Tomatoes,false,false,false
+cream-of-chicken-soup,Cream of chicken soup,true,false,true
+velveeta,Velveeta,false,false,true
+cheddar-cheese,Cheddar cheese,false,false,true
+crescent-rolls,Crescent rolls,true,true,true
+margarine,Margarine,false,false,true
+turkey,Turkey,false,false,false
+mushrooms,Mushrooms,false,false,false
+pimiento,Pimiento,false,false,false
+almonds,Almonds,false,false,false
+tomato-soup,Tomato soup,false,false,false
+cream-cheese,Cream cheese,false,false,true
+green-onion,Green onion,false,false,false
+macaroni,Macaroni,true,false,false
+whole-tomatoes,Whole tomatoes,false,false,false
+canned-chicken,Canned chicken,false,false,false

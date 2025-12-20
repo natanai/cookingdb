@@ -52,6 +52,13 @@
           </div>
           <div class="field">
             <div class="field-label-row">
+              <label for="family">Family (optional)</label>
+              <button type="button" class="help-icon field-help-icon" data-help-key="family" aria-label="Help: family">?</button>
+            </div>
+            <input id="family" name="family" placeholder="Burrows" />
+          </div>
+          <div class="field">
+            <div class="field-label-row">
               <label for="categories">Categories (choose one or more) <span class="required-badge">Required</span></label>
               <button type="button" class="help-icon field-help-icon" data-help-key="categories" aria-label="Help: categories">?</button>
             </div>
@@ -119,6 +126,7 @@
                   </details>
                   <div class="recipe-meta">
                     <div class="dietary-badges" id="preview-dietary-badges" aria-label="Dietary options"></div>
+                    <div class="family-inline" id="preview-family-badge"></div>
                     <div class="category-inline" id="preview-category-badge"></div>
                   </div>
                 </div>

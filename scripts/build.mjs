@@ -292,6 +292,7 @@ async function build() {
       base_kind: meta.base_kind,
       default_base: Number(meta.default_base) || 1,
       categories: parseCategories(meta.categories),
+      family: meta.family || '',
       notes: meta.notes,
       steps_raw: stepsRaw,
       steps,
@@ -310,6 +311,7 @@ async function build() {
       id: meta.id,
       title: meta.title,
       categories: parseCategories(meta.categories),
+      family: meta.family || '',
       compatibility_possible: compatibility,
     });
   }

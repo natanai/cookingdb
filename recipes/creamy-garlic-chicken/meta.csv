@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes,categories
-creamy-garlic-chicken,Creamy Garlic Chicken,protein-main,chicken,"Garlic cloves are left whole and caramelized. Sauce thickens further as it cools.",Mains
+id,title,base_kind,default_base,notes,categories,family
+creamy-garlic-chicken,Creamy Garlic Chicken,protein-main,chicken,Garlic cloves are left whole and caramelized. Sauce thickens further as it cools.,Mains; Family,

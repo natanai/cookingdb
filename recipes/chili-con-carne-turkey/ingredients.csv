@@ -1,0 +1,16 @@
+token,option,display,ratio,unit,ingredient_id
+ground_turkey,,ground turkey,2,lb,ground-turkey
+onion,,onions (chopped),3,count,onion
+green_pepper,,green peppers (1 to 2 chopped),1,count,green-pepper
+crushed_tomatoes,,crushed tomatoes,1,can,crushed-tomatoes
+tomato_sauce,,tomato sauce,1,can,tomato-sauce
+stewed_tomatoes,,stewed tomatoes,1,can,stewed-tomatoes
+kidney_beans,,kidney beans,3,lb,kidney-beans
+chili_powder,,chili powder,3,tbsp,chili-powder
+salt,,salt,1 1/2,tbsp,salt
+worcestershire,,Worcestershire sauce,1,tbsp,worcestershire_sauce
+paprika,,paprika,1/2,tsp,paprika
+cayenne,,cayenne pepper,1/8,tsp,cayenne-pepper
+garlic,,garlic (crushed),3,clove,garlic
+bay_leaves,,bay leaves,3,count,bay-leaf
+parsley,,parsley leaves,1/8,tsp,parsley

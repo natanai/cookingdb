@@ -28,6 +28,7 @@ const HELP_TEXT = {
   title: 'Write the full recipe name just like you would tell a friend.',
   slug: 'Short ID for the link. Use lowercase letters, numbers, dashes, or underscores—we fill it from the title for you.',
   notes: 'Quick tips such as storage, serving, or special tools. Leave blank if there is nothing extra.',
+  family: 'Add a family name if this recipe is tied to a specific family.',
   categories: 'Pick the cookbook sections that fit (e.g., “Main dishes” and “Slow cooker”).',
   batch: 'How many batches the written recipe makes. Example: set to 2 if the card already makes two pans.',
   ingredients:
@@ -988,12 +989,14 @@ function buildRecipeDraft() {
   const titleInput = document.getElementById('title');
   const slugInput = document.getElementById('slug');
   const notesInput = document.getElementById('notes');
+  const familyInput = document.getElementById('family');
   const categoriesSelect = document.getElementById('categories');
   const defaultBaseInput = document.getElementById('default-base');
 
   const title = titleInput.value.trim();
   const slug = slugInput.value.trim();
   const notes = notesInput.value.trim();
+  const family = familyInput ? familyInput.value.trim() : '';
   const categories = categoriesSelect ? [...categoriesSelect.selectedOptions].map((opt) => opt.value) : [];
   const defaultBase = Number(defaultBaseInput.value) || 1;
 
@@ -1110,6 +1113,7 @@ function buildRecipeDraft() {
     base_kind: 'multiplier',
     default_base: defaultBase,
     categories,
+    family,
     notes,
     steps_raw: stepsRawLines.join('\n'),
     steps: structuredSteps,
@@ -1154,6 +1158,7 @@ function renderPreview(recipe) {
   const noteDetails = document.getElementById('preview-recipe-note');
   const notesEl = document.getElementById('preview-notes');
   const dietaryBadgesEl = document.getElementById('preview-dietary-badges');
+  const familyBadgeEl = document.getElementById('preview-family-badge');
   const categoryBadgeEl = document.getElementById('preview-category-badge');
   const batchMultiplierEl = document.getElementById('preview-batch-multiplier');
   const ingredientsEl = document.getElementById('preview-ingredients');
@@ -1180,6 +1185,16 @@ function renderPreview(recipe) {
   if (categoryBadgeEl) {
     const primaryCategory = (recipe.categories || [])[0] || 'Uncategorized';
     categoryBadgeEl.textContent = primaryCategory;
+  }
+
+  if (familyBadgeEl) {
+    const familyName = (recipe.family || '').trim();
+    if (familyName) {
+      familyBadgeEl.textContent = `Family: ${familyName}`;
+      familyBadgeEl.style.display = '';
+    } else {
+      familyBadgeEl.style.display = 'none';
+    }
   }
 
   if (batchMultiplierEl) {
@@ -1382,6 +1397,7 @@ function bootstrap() {
   });
   document.getElementById('categories').addEventListener('change', refreshPreview);
   document.getElementById('notes').addEventListener('input', refreshPreview);
+  document.getElementById('family').addEventListener('input', refreshPreview);
   document.getElementById('default-base').addEventListener('input', refreshPreview);
 
   loadUnitsFromConversions();
