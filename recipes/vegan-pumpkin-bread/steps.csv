@@ -1,9 +1,9 @@
 section,text
-,Preheat the oven to 350°F (175°C). Line a 9-inch loaf pan with parchment, leaving an overhang.
-,Whisk {{pumpkin_puree}}, {{granulated_sugar}}, {{brown_sugar}}, {{oil}}, and {{vanilla_extract}} in a large bowl.
-,Add {{flour}}, {{baking_powder}}, {{baking_soda}}, {{sea_salt}}, {{pumpkin_spice}}, and {{cinnamon}}. Whisk just until combined.
-Optional streusel,Combine {{streusel_flour}}, {{streusel_sugar}}, {{streusel_spice}}, and {{streusel_salt}}. Stir in {{streusel_butter}} and {{streusel_vanilla}} until crumbly.
-,Pour the batter into the prepared pan. Sprinkle streusel on top if using.
-,Bake until a toothpick comes out clean: about 65 minutes without streusel or up to 80 minutes with streusel (cover loosely with foil after 60 minutes if needed).
-,Cool completely before slicing.
-Optional frosting,Beat {{frosting_butter}} and {{frosting_cream_cheese}} until fluffy. Mix in {{powdered_sugar}} and {{frosting_vanilla}}, then spread on cooled bread.
+,"Preheat the oven to 350°F (175°C). Line a 9-inch loaf pan with parchment, leaving an overhang."
+,"Whisk {{pumpkin_puree}}, {{granulated_sugar}}, {{brown_sugar}}, {{oil}}, and {{vanilla_extract}} in a large bowl."
+,"Add {{flour}}, {{baking_powder}}, {{baking_soda}}, {{sea_salt}}, {{pumpkin_spice}}, and {{cinnamon}}. Whisk just until combined."
+Optional streusel,"Combine {{streusel_flour}}, {{streusel_sugar}}, {{streusel_spice}}, and {{streusel_salt}}. Stir in {{streusel_butter}} and {{streusel_vanilla}} until crumbly."
+,"Pour the batter into the prepared pan. Sprinkle streusel on top if using."
+,"Bake until a toothpick comes out clean: about 65 minutes without streusel or up to 80 minutes with streusel (cover loosely with foil after 60 minutes if needed)."
+,"Cool completely before slicing."
+Optional frosting,"Beat {{frosting_butter}} and {{frosting_cream_cheese}} until fluffy. Mix in {{powdered_sugar}} and {{frosting_vanilla}}, then spread on cooled bread."

@@ -4,12 +4,19 @@ granulated_sugar,,granulated sugar,1/2,cup,white-sugar
 brown_sugar,,light brown sugar,3/4,cup,brown-sugar
 oil,,neutral oil,2/3,cup,neutral-oil
 vanilla_extract,,vanilla extract,1,tsp,vanilla-extract
-flour,,all-purpose flour,2,cup,all-purpose-flour
+flour,,all-purpose flour,2,cup,wheat-flour
 baking_powder,,baking powder,1 1/2,tsp,baking-powder
 baking_soda,,baking soda,1/4,tsp,baking-soda
-sea_salt,,sea salt,1/4,tsp,sea-salt
+sea_salt,,sea salt,1/4,tsp,salt
 pumpkin_spice,,pumpkin spice blend,2,tsp,pumpkin-spice
-cinnamon,,ground cinnamon,1,tsp,ground-cinnamon
-streusel_flour,,all-purpose flour,1/2,cup,all-purpose-flour
+cinnamon,,ground cinnamon,1,tsp,cinnamon
+streusel_flour,,all-purpose flour,1/2,cup,wheat-flour
 streusel_sugar,,light brown sugar,1/3,cup,brown-sugar
 streusel_spice,,pumpkin spice blend,1,tsp,pumpkin-spice
+streusel_salt,,salt,,,salt
+streusel_butter,,butter,,,butter
+streusel_vanilla,,vanilla extract,,,vanilla-extract
+frosting_butter,,butter,,,butter
+frosting_cream_cheese,,cream cheese,,,cream-cheese
+powdered_sugar,,powdered sugar,,,powdered-sugar
+frosting_vanilla,,vanilla extract,,,vanilla-extract
