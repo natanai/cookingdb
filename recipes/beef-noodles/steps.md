@@ -1,2 +1,0 @@
-1. Combine {{stew_beef}}, {{bouillon}}, and enough {{water}} to cover in a pot. Season with {{salt}}, {{black_pepper}}, and {{onion_flakes}} if using. Simmer about 2 hours until tender.
-2. Add {{egg_noodles}} and enough {{water}} to cover. Cook 30 to 60 minutes on low, stirring often.
