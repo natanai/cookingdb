@@ -356,7 +356,13 @@ function renderRecipes(recipes) {
     category: selectedCategory,
   };
   listEl.innerHTML = '';
-  const visible = recipes.filter((r) => recipeVisible(r, filters));
+  const visible = recipes
+    .filter((r) => recipeVisible(r, filters))
+    .sort((a, b) =>
+      (a.title || '').localeCompare(b.title || '', undefined, {
+        sensitivity: 'base',
+      }),
+    );
   if (visible.length === 0) {
     const empty = document.createElement('li');
     empty.className = 'empty-state';
@@ -396,7 +402,19 @@ function renderRecipes(recipes) {
 
     const title = document.createElement('span');
     title.className = 'recipe-row-title';
-    title.textContent = recipe.title;
+
+    const titleText = document.createElement('span');
+    titleText.className = 'recipe-row-title-text';
+    titleText.textContent = recipe.title;
+    title.appendChild(titleText);
+
+    const familyName = (recipe.family || '').trim();
+    if (familyName) {
+      const nameEl = document.createElement('span');
+      nameEl.className = 'recipe-row-title-name';
+      nameEl.textContent = ` — ${familyName}`;
+      title.appendChild(nameEl);
+    }
 
     const flagContainer = document.createElement('span');
     flagContainer.className = 'recipe-row-flags';
