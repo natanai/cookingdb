@@ -1,6 +1,6 @@
 token,option,display,ratio,unit,ingredient_id
-butternut_squash,,butternut squash (1-inch cubes),1,count,butternut-squash
+butternut_squash,,butternut squash,1,count,butternut-squash
 sausage,,sausage,1,lb,sausage
-onion,,chopped onion,1,count,onion
-salt,,salt,,,salt
-coconut_oil,,coconut oil (if sausage is lean),1,tbsp,coconut-oil
+onion,,onion,1,count,onion
+salt,,salt,1/2,tsp,salt
+coconut_oil,,coconut oil,1,tbsp,coconut-oil

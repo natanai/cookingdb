@@ -1,13 +1,13 @@
 token,option,display,ratio,unit,ingredient_id
 ground_beef,,ground beef,1,lb,ground-beef
-onion,,onion (chopped),1,count,onion
-green_pepper,,green pepper (diced),1,count,green-pepper
+onion,,onion,1,count,onion
+green_pepper,,green pepper,1,count,green-pepper
 tomatoes,,tomatoes,1,lb,tomatoes
 kidney_beans,,kidney beans,1,lb,kidney-beans
 chili_powder,,chili powder,1,tbsp,chili-powder
 salt,,salt,1,tsp,salt
 paprika,,paprika,1/2,tsp,paprika
 cayenne,,cayenne pepper,1/8,tsp,cayenne-pepper
-garlic,,garlic (crushed),1,clove,garlic
+garlic,,garlic,1,clove,garlic
 bay_leaf,,bay leaf,1,count,bay-leaf
 worcestershire,,Worcestershire sauce,1,tsp,worcestershire_sauce

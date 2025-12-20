@@ -1,12 +1,12 @@
 token,option,display,ratio,unit,ingredient_id,depends_on_token,depends_on_option,line_group
 fat,shortening,shortening,1,cup,shortening,,,
-fat,butter,butter (softened),1,cup,butter,,,
+fat,butter,butter,1,cup,butter,,,
 sugar,,granulated sugar,3/4,cup,white-sugar,,,
-egg_component,whole,egg,1,,egg,,,
-egg_component,yolks,egg yolk (omit the extra flour),3,,egg-yolk,,,
-flour_base,,all-purpose flour (sifted),2,cup,wheat-flour,,,flour
-flour_adjust,,all-purpose flour (sifted; only if using a whole egg),1/4,cup,wheat-flour,egg_component,whole,flour
+egg_component,whole,egg,1,count,egg,,,
+egg_component,yolks,egg yolk,3,count,egg-yolk,,,
+flour_base,,all-purpose flour,2,cup,wheat-flour,,,flour
+flour_adjust,,all-purpose flour,1/4,cup,wheat-flour,egg_component,whole,flour
 baking_powder,,baking powder,1/2,tsp,baking-powder,,,
-salt,,salt (dash),,,salt,,,
+salt,,salt,1,dash,salt,,,
 almond_extract,,almond extract,1,tsp,almond-extract,,,
-food_coloring,,food coloring (optional),,,food-coloring,,,
+food_coloring,,food coloring,1,drop,food-coloring,,,

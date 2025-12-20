@@ -1,9 +1,9 @@
 token,option,display,ratio,unit,ingredient_id
 acorn_squash,,acorn squash,2,count,acorn-squash
-roasting_water,,water for roasting pan,1/2,cup,water
+roasting_water,,water,1/2,cup,water
 sausage,,sausage,1,lb,sausage
-onion,,finely chopped onion,1,cup,onion
-celery,,finely chopped celery,1,cup,celery
+onion,,onion,1,cup,onion
+celery,,celery,1,cup,celery
 bread_crumbs,,stale bread crumbs,3/4,cup,bread-crumbs
-cheese,,grated cheese,1,cup,cheese
-salt,,salt,,,salt
+cheese,,cheese,1,cup,cheese
+salt,,salt,1/2,tsp,salt

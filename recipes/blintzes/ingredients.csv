@@ -4,11 +4,11 @@ eggs_choice,replacer,egg replacer,3,tbsp,egg-replacer
 milk_choice,dairy,milk,3/4,cup,milk
 milk_choice,oat,oat milk,3/4,cup,oat-milk
 water,,water,3/4,cup,water
-butter_choice,butter,melted butter,2,tbsp,butter
-butter_choice,vegan,melted vegan butter,2,tbsp,vegan-butter
+butter_choice,butter,butter,2,tbsp,butter
+butter_choice,vegan,vegan butter,2,tbsp,vegan-butter
 flour_choice,wheat,flour,1,cup,wheat-flour
 flour_choice,gf,gluten-free flour blend,1,cup,gf-flour-blend
 salt,,salt,1,tsp,salt
 sugar,,sugar,1,tbsp,sugar
-butter_pan,butter,butter,,,butter
-butter_pan,vegan,vegan butter,,,vegan-butter
+butter_pan,butter,butter,1,tbsp,butter
+butter_pan,vegan,vegan butter,1,tbsp,vegan-butter

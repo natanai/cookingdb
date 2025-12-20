@@ -1,8 +1,8 @@
 token,option,display,ratio,unit,ingredient_id
-chicken,cooked,cooked chicken (cut into small pieces),1/2,lb,chicken-breast
-chicken,canned,canned chicken (drained),1,can,canned-chicken
+chicken,cooked,chicken,1/2,lb,chicken-breast
+chicken,canned,canned chicken,1,can,canned-chicken
 soup,,cream of chicken soup,1,can,cream-of-chicken-soup
 milk,,milk,1/2,can,milk
 cheese,velveeta,Velveeta,8,oz,velveeta
-cheese,cheddar,shredded cheddar cheese,1,cup,cheddar-cheese
+cheese,cheddar,cheddar cheese,1,cup,cheddar-cheese
 crescent_rolls,,crescent rolls,1,package,crescent-rolls
