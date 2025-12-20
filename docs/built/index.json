@@ -1,7 +1,22 @@
 [
   {
+    "id": "anti-histamine-turkey-kale-sweet-potato-skillet",
+    "title": "Anti-histamine Turkey, Kale & Sweet Potato Skillet",
+    "byline": "",
+    "categories": [
+      "Main Dishes"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "apple-cider-brisket",
     "title": "Apple Cider Brisket",
+    "byline": "",
     "categories": [
       "Mains",
       "Family"
@@ -16,6 +31,7 @@
   {
     "id": "baked-sweet-potatoes",
     "title": "Baked Sweet Potatoes",
+    "byline": "",
     "categories": [
       "Sides",
       "Family"
@@ -30,6 +46,7 @@
   {
     "id": "barbecued-hamburger",
     "title": "Barbecued Hamburger (Sloppy Joes)",
+    "byline": "",
     "categories": [
       "Mains",
       "Family",
@@ -45,6 +62,7 @@
   {
     "id": "beef-noodles",
     "title": "Beef and Noodles",
+    "byline": "",
     "categories": [
       "Mains",
       "Family",
@@ -60,6 +78,7 @@
   {
     "id": "blintzes",
     "title": "Blintzes (Crepes)",
+    "byline": "",
     "categories": [
       "Breakfast & Brunch",
       "Family"
@@ -72,8 +91,23 @@
     }
   },
   {
+    "id": "brown-rice",
+    "title": "Brown Rice",
+    "byline": "",
+    "categories": [
+      "Sides"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "bun-steads",
     "title": "Bun-steads (Tuna Cheesies)",
+    "byline": "",
     "categories": [
       "Mains",
       "Family",
@@ -89,6 +123,7 @@
   {
     "id": "butternut-squash-casserole",
     "title": "Butternut Squash Casserole",
+    "byline": "",
     "categories": [
       "Mains",
       "Family"
@@ -103,6 +138,7 @@
   {
     "id": "chicken-rice-casserole",
     "title": "Chicken-Rice Casserole",
+    "byline": "",
     "categories": [
       "Mains",
       "Family",
@@ -118,6 +154,7 @@
   {
     "id": "chicken-roll-ups",
     "title": "Chicken Roll-ups",
+    "byline": "",
     "categories": [
       "Mains",
       "Family",
@@ -133,6 +170,7 @@
   {
     "id": "chili-con-carne-turkey",
     "title": "Chili Con Carne (Turkey)",
+    "byline": "",
     "categories": [
       "Soups & Stews",
       "Family",
@@ -148,6 +186,7 @@
   {
     "id": "chocolate-chip-cookies-gf",
     "title": "Chocolate Chip Cookies (Gluten Free)",
+    "byline": "",
     "categories": [
       "Desserts & Baking",
       "Family"
@@ -162,6 +201,7 @@
   {
     "id": "collards-canadian-bacon",
     "title": "Collards with Canadian Bacon",
+    "byline": "",
     "categories": [
       "Sides",
       "Family"
@@ -176,6 +216,7 @@
   {
     "id": "creamy-garlic-chicken",
     "title": "Creamy Garlic Chicken",
+    "byline": "",
     "categories": [
       "Mains",
       "Family"
@@ -190,6 +231,7 @@
   {
     "id": "creamy-leek-potato-soup",
     "title": "Creamy Leek and Potato Soup",
+    "byline": "",
     "categories": [
       "Soups & Stews",
       "Family"
@@ -204,6 +246,7 @@
   {
     "id": "gluten-free-peanut-butter-cookies",
     "title": "Gluten-Free Peanut Butter Cookies",
+    "byline": "",
     "categories": [
       "Desserts & Baking",
       "Family",
@@ -219,6 +262,7 @@
   {
     "id": "holiday-potatoes",
     "title": "Holiday Potatoes",
+    "byline": "",
     "categories": [
       "Sides",
       "Family",
@@ -234,6 +278,7 @@
   {
     "id": "italian-soup",
     "title": "Italian Soup",
+    "byline": "",
     "categories": [
       "Soups & Stews",
       "Family"
@@ -246,8 +291,25 @@
     }
   },
   {
+    "id": "layered-dip",
+    "title": "Layered Dip",
+    "byline": "",
+    "categories": [
+      "Appetizers & Snacks",
+      "Family",
+      "Burrows"
+    ],
+    "family": "Burrows",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "lemon-cake",
     "title": "Vegan Gluten-Free Lemon Cake",
+    "byline": "",
     "categories": [
       "Desserts & Baking",
       "Family"
@@ -261,7 +323,8 @@
   },
   {
     "id": "lorenes-vegetable-soup",
-    "title": "Lorene’s Vegetable Soup",
+    "title": "Vegetable Soup",
+    "byline": "Lorene’s",
     "categories": [
       "Soups & Stews",
       "Family",
@@ -277,6 +340,7 @@
   {
     "id": "mac-and-cheese",
     "title": "Mac + Cheese",
+    "byline": "",
     "categories": [
       "Sides",
       "Family",
@@ -292,6 +356,7 @@
   {
     "id": "macaroni-and-tomatoes",
     "title": "Macaroni + Tomatoes",
+    "byline": "",
     "categories": [
       "Sides",
       "Family",
@@ -305,8 +370,25 @@
     }
   },
   {
+    "id": "mexican-chicken",
+    "title": "Mexican Chicken Bake",
+    "byline": "",
+    "categories": [
+      "Casseroles",
+      "Family",
+      "Burrows"
+    ],
+    "family": "Burrows",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "mrs-burrows-chili",
-    "title": "Chili (Mrs. Burrows)",
+    "title": "Chili",
+    "byline": "Mrs. Burrows",
     "categories": [
       "Soups & Stews",
       "Family",
@@ -320,8 +402,25 @@
     }
   },
   {
+    "id": "orange-sherbet-salad",
+    "title": "Orange Sherbet Salad",
+    "byline": "",
+    "categories": [
+      "Desserts & Baking",
+      "Family",
+      "Burrows"
+    ],
+    "family": "Burrows",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "original-chili-con-carne",
     "title": "Original Chili Con Carne",
+    "byline": "",
     "categories": [
       "Soups & Stews",
       "Family",
@@ -337,6 +436,7 @@
   {
     "id": "sausage-stuffed-acorn-squash",
     "title": "Sausage Stuffed Acorn Squash",
+    "byline": "",
     "categories": [
       "Mains",
       "Family"
@@ -351,6 +451,7 @@
   {
     "id": "snickerdoodles",
     "title": "Snickerdoodles",
+    "byline": "",
     "categories": [
       "Desserts & Baking",
       "Family",
@@ -366,6 +467,7 @@
   {
     "id": "spritz-cookies",
     "title": "Spritz Cookies",
+    "byline": "",
     "categories": [
       "Desserts & Baking",
       "Family"
@@ -378,8 +480,23 @@
     }
   },
   {
+    "id": "sweet-potato-pizza-crust",
+    "title": "Sweet Potato Pizza Crust",
+    "byline": "",
+    "categories": [
+      "Breads & Pizza"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "sweet-potatoes-pork-chops-pears",
     "title": "Sweet Potatoes with Pork Chops and Pears",
+    "byline": "",
     "categories": [
       "Mains",
       "Family"
@@ -394,6 +511,7 @@
   {
     "id": "turmeric-chicken-curry",
     "title": "Turmeric Chicken Curry",
+    "byline": "",
     "categories": [
       "Mains",
       "Family"
@@ -406,8 +524,37 @@
     }
   },
   {
+    "id": "vegan-pumpkin-bread",
+    "title": "Vegan Pumpkin Bread",
+    "byline": "",
+    "categories": [
+      "Desserts & Baking"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "veggie-teriyaki-stir-fry-noodles",
+    "title": "Veggie Teriyaki Stir-Fry with Noodles",
+    "byline": "",
+    "categories": [
+      "Main Dishes"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "watercress-parsley-soup",
     "title": "Watercress and Parsley Soup",
+    "byline": "",
     "categories": [
       "Soups & Stews",
       "Family"

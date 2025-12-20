@@ -1,7 +1,224 @@
 [
   {
+    "id": "anti-histamine-turkey-kale-sweet-potato-skillet",
+    "title": "Anti-histamine Turkey, Kale & Sweet Potato Skillet",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Main Dishes"
+    ],
+    "family": "",
+    "notes": "",
+    "steps_raw": "1. Heat {{olive_oil}} in a large skillet or Dutch oven over medium heat.\n2. Add {{ground_turkey}} and {{garlic}}. Cook\n3. Add {{sweet_potato}} and {{sea_salt}} to the skillet. Cook for 6–8 minutes\n4. Stir in {{kale}} and cook until tender\n5. Return the turkey to the skillet and cook for 3–4 minutes to heat through.\n6. Garnish with {{thyme}} and serve.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Heat {{olive_oil}} in a large skillet or Dutch oven over medium heat."
+      },
+      {
+        "section": null,
+        "text": "Add {{ground_turkey}} and {{garlic}}. Cook"
+      },
+      {
+        "section": null,
+        "text": "Add {{sweet_potato}} and {{sea_salt}} to the skillet. Cook for 6–8 minutes"
+      },
+      {
+        "section": null,
+        "text": "Stir in {{kale}} and cook until tender"
+      },
+      {
+        "section": null,
+        "text": "Return the turkey to the skillet and cook for 3–4 minutes to heat through."
+      },
+      {
+        "section": null,
+        "text": "Garnish with {{thyme}} and serve."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "olive_oil",
+      "ground_turkey",
+      "garlic",
+      "sweet_potato",
+      "sea_salt",
+      "kale",
+      "thyme"
+    ],
+    "token_order": [
+      "olive_oil",
+      "ground_turkey",
+      "garlic",
+      "sweet_potato",
+      "sea_salt",
+      "kale",
+      "thyme"
+    ],
+    "ingredients": {
+      "olive_oil": {
+        "token": "olive_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "extra-virgin olive oil",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "olive_oil",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "ground_turkey": {
+        "token": "ground_turkey",
+        "options": [
+          {
+            "option": "",
+            "display": "ground turkey",
+            "ratio": "1",
+            "unit": "lb",
+            "ingredient_id": "ground-turkey",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "garlic": {
+        "token": "garlic",
+        "options": [
+          {
+            "option": "",
+            "display": "garlic",
+            "ratio": "1",
+            "unit": "clove",
+            "ingredient_id": "garlic",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "sweet_potato": {
+        "token": "sweet_potato",
+        "options": [
+          {
+            "option": "",
+            "display": "sweet potato",
+            "ratio": "1",
+            "unit": "medium",
+            "ingredient_id": "sweet-potato",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "sea_salt": {
+        "token": "sea_salt",
+        "options": [
+          {
+            "option": "",
+            "display": "sea salt",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "kale": {
+        "token": "kale",
+        "options": [
+          {
+            "option": "",
+            "display": "kale, chopped",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "kale",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "thyme": {
+        "token": "thyme",
+        "options": [
+          {
+            "option": "",
+            "display": "fresh thyme leaves",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "thyme",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "apple-cider-brisket",
     "title": "Apple Cider Brisket",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -10,7 +227,7 @@
     ],
     "family": "",
     "notes": "Use a 3–4 lb brisket. This braise layers apple cider with broth and root vegetables.",
-    "steps_raw": "1. Preheat the oven to 325°F (163°C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}.\n2. In a large Dutch oven over medium-high heat, heat {{neutral_oil}}. Sear the {{brisket}}, turning occasionally, until browned, about 5 minutes per side. Transfer to a large baking dish or plate.\n3. Reduce heat to medium. In the same pot, arrange {{baby_potatoes}} cut side down and cook undisturbed until lightly softened, about 5 minutes. Add {{carrots}} and {{shallots}}, season with more {{kosher_salt}} and {{black_pepper}}, and stir to release the potatoes.\n4. Return {{brisket}} and any accumulated juices to the pot. Pour in {{apple_cider}} and {{broth_choice}}, then add {{thyme}}, {{bay_leaves}}, and {{cayenne}}. Season to taste with {{kosher_salt}} and {{black_pepper}}, cover, and bring to a boil.\n5. Once boiling, transfer the covered pot to the oven and roast until the brisket is easily shreddable, 2 1/2 to 3 hours.\n6. Discard {{thyme}} and {{bay_leaves}}. Shred {{brisket}} with two forks. Arrange the meat on a platter with the vegetables and spoon the cooking juices over the top.\n",
+    "steps_raw": "1. Preheat the oven to 325°F (163°C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}.\n2. In a large Dutch oven over medium-high heat, heat {{neutral_oil}}. Sear the {{brisket}}, turning occasionally, until browned, about 5 minutes per side. Transfer to a large baking dish or plate.\n3. Reduce heat to medium. In the same pot, arrange {{baby_potatoes}} cut side down and cook undisturbed until lightly softened, about 5 minutes. Add {{carrots}} and {{shallots}}, season with more {{kosher_salt}} and {{black_pepper}}, and stir to release the potatoes.\n4. Return {{brisket}} and any accumulated juices to the pot. Pour in {{apple_cider}} and {{broth_choice}}, then add {{thyme}}, {{bay_leaves}}, and {{cayenne}}. Season to taste with {{kosher_salt}} and {{black_pepper}}, cover, and bring to a boil.\n5. Once boiling, transfer the covered pot to the oven and roast until the brisket is easily shreddable, 2 1/2 to 3 hours.\n6. Discard {{thyme}} and {{bay_leaves}}. Shred {{brisket}} with two forks. Arrange the meat on a platter with the vegetables and spoon the cooking juices over the top.",
     "steps": [
       {
         "section": null,
@@ -103,8 +320,8 @@
           {
             "option": "",
             "display": "kosher salt",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1",
+            "unit": "tsp",
             "ingredient_id": "salt",
             "depends_on": null,
             "line_group": null,
@@ -124,8 +341,8 @@
           {
             "option": "",
             "display": "black pepper",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/2",
+            "unit": "tsp",
             "ingredient_id": "black-pepper",
             "depends_on": null,
             "line_group": null,
@@ -165,7 +382,7 @@
         "options": [
           {
             "option": "",
-            "display": "baby potatoes (halved)",
+            "display": "baby potatoes",
             "ratio": "1 1/2",
             "unit": "lb",
             "ingredient_id": "baby-potatoes",
@@ -186,7 +403,7 @@
         "options": [
           {
             "option": "",
-            "display": "carrots (2-inch pieces)",
+            "display": "carrots",
             "ratio": "4",
             "unit": "count",
             "ingredient_id": "carrot",
@@ -207,7 +424,7 @@
         "options": [
           {
             "option": "",
-            "display": "shallots (1/4-inch slices)",
+            "display": "shallots",
             "ratio": "2",
             "unit": "count",
             "ingredient_id": "shallot",
@@ -363,6 +580,7 @@
   {
     "id": "baked-sweet-potatoes",
     "title": "Baked Sweet Potatoes",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -371,7 +589,7 @@
     ],
     "family": "",
     "notes": "Sweet potato casserole baked until the brown sugar glaze is sticky.",
-    "steps_raw": "1. Preheat the oven to 350°F (177°C). Peel and cut {{sweet_potatoes}}.\n2. Boil {{sweet_potatoes}} in salted water until almost tender, then drain well.\n3. Spread {{sweet_potatoes}} in a greased casserole dish. Sprinkle with {{salt}}, {{brown_sugar}}, and {{flour}}, then pour {{cream}} over the top.\n4. Bake for 20–30 minutes, or until the sauce is sticky and bubbling around the edges.\n",
+    "steps_raw": "1. Preheat the oven to 350°F (177°C). Peel and cut {{sweet_potatoes}}.\n2. Boil {{sweet_potatoes}} in salted water until almost tender, then drain well.\n3. Spread {{sweet_potatoes}} in a greased casserole dish. Sprinkle with {{salt}}, {{brown_sugar}}, and {{flour}}, then pour {{cream}} over the top.\n4. Bake for 20–30 minutes, or until the sauce is sticky and bubbling around the edges.",
     "steps": [
       {
         "section": null,
@@ -413,7 +631,7 @@
         "options": [
           {
             "option": "",
-            "display": "sweet potatoes (peeled and cut)",
+            "display": "sweet potatoes",
             "ratio": "4",
             "unit": "cup",
             "ingredient_id": "sweet-potato",
@@ -527,6 +745,7 @@
   {
     "id": "barbecued-hamburger",
     "title": "Barbecued Hamburger (Sloppy Joes)",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -536,7 +755,7 @@
     ],
     "family": "Burrows",
     "notes": "",
-    "steps_raw": "1. Brown {{ground_beef}}, stirring with a fork, and drain excess fat.\n2. Add {{ketchup}}, {{salt}}, {{onion}}, {{vinegar}}, {{sugar}}, and {{mustard}}.\n3. Simmer for about 30 minutes, then spoon onto {{buns}}.\n",
+    "steps_raw": "1. Brown {{ground_beef}}, stirring with a fork, and drain excess fat.\n2. Add {{ketchup}}, {{salt}}, {{onion}}, {{vinegar}}, {{sugar}}, and {{mustard}}.\n3. Simmer for about 30 minutes, then spoon onto {{buns}}.",
     "steps": [
       {
         "section": null,
@@ -641,7 +860,7 @@
         "options": [
           {
             "option": "",
-            "display": "onion (finely chopped)",
+            "display": "onion",
             "ratio": "1",
             "unit": "count",
             "ingredient_id": "onion",
@@ -755,6 +974,7 @@
   {
     "id": "beef-noodles",
     "title": "Beef and Noodles",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -764,7 +984,7 @@
     ],
     "family": "Burrows",
     "notes": "",
-    "steps_raw": "1. Combine {{stew_beef}}, {{bouillon}}, and enough {{water}} to cover in a pot. Season with {{salt}}, {{black_pepper}}, and {{onion_flakes}} if using. Simmer about 2 hours until tender.\n2. Add {{egg_noodles}} and enough {{water}} to cover. Cook 30 to 60 minutes on low, stirring often.\n",
+    "steps_raw": "1. Combine {{stew_beef}}, {{bouillon}}, and enough {{water}} to cover in a pot. Season with {{salt}}, {{black_pepper}}, and {{onion_flakes}} if using. Simmer about 2 hours until tender.\n2. Add {{egg_noodles}} and enough {{water}} to cover. Cook 30 to 60 minutes on low, stirring often.",
     "steps": [
       {
         "section": null,
@@ -843,9 +1063,9 @@
         "options": [
           {
             "option": "",
-            "display": "water (to cover)",
-            "ratio": "",
-            "unit": "",
+            "display": "water",
+            "ratio": "6",
+            "unit": "cup",
             "ingredient_id": "water",
             "depends_on": null,
             "line_group": null,
@@ -865,8 +1085,8 @@
           {
             "option": "",
             "display": "salt",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1",
+            "unit": "tsp",
             "ingredient_id": "salt",
             "depends_on": null,
             "line_group": null,
@@ -886,8 +1106,8 @@
           {
             "option": "",
             "display": "black pepper",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/2",
+            "unit": "tsp",
             "ingredient_id": "black-pepper",
             "depends_on": null,
             "line_group": null,
@@ -906,9 +1126,9 @@
         "options": [
           {
             "option": "",
-            "display": "onion flakes (optional)",
-            "ratio": "",
-            "unit": "",
+            "display": "onion flakes",
+            "ratio": "1",
+            "unit": "tbsp",
             "ingredient_id": "onion-flakes",
             "depends_on": null,
             "line_group": null,
@@ -957,6 +1177,7 @@
   {
     "id": "blintzes",
     "title": "Blintzes (Crepes)",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -965,7 +1186,7 @@
     ],
     "family": "",
     "notes": "Crepe/blintz wrapper batter. Uses inline ingredient tokens in steps.",
-    "steps_raw": "1. In a mixing bowl, beat together {{eggs_choice}}, {{milk_choice}}, and {{water}} until smooth.\n2. Whisk in {{butter_choice}}.\n3. Add {{flour_choice}}, {{salt}}, and {{sugar}}. Blend thoroughly until the batter is smooth and lump-free.\n4. Heat a skillet over medium heat and melt a little {{butter_pan}} to coat the surface (repeat before each crepe).\n5. Pour about 1/4 cup of batter into the center of the skillet and tilt the pan so the batter spreads evenly.\n6. Cook until the bottom is light brown and the surface looks set and slightly bubbly.\n7. Flip gently with a spatula.\n8. Cook the second side until light brown, then remove and keep warm. Repeat with remaining batter.\n",
+    "steps_raw": "1. In a mixing bowl, beat together {{eggs_choice}}, {{milk_choice}}, and {{water}} until smooth.\n2. Whisk in {{butter_choice}}.\n3. Add {{flour_choice}}, {{salt}}, and {{sugar}}. Blend thoroughly until the batter is smooth and lump-free.\n4. Heat a skillet over medium heat and melt a little {{butter_pan}} to coat the surface (repeat before each crepe).\n5. Pour about 1/4 cup of batter into the center of the skillet and tilt the pan so the batter spreads evenly.\n6. Cook until the bottom is light brown and the surface looks set and slightly bubbly.\n7. Flip gently with a spatula.\n8. Cook the second side until light brown, then remove and keep warm. Repeat with remaining batter.",
     "steps": [
       {
         "section": null,
@@ -1120,7 +1341,7 @@
         "options": [
           {
             "option": "butter",
-            "display": "melted butter",
+            "display": "butter",
             "ratio": "2",
             "unit": "tbsp",
             "ingredient_id": "butter",
@@ -1135,7 +1356,7 @@
           },
           {
             "option": "vegan",
-            "display": "melted vegan butter",
+            "display": "vegan butter",
             "ratio": "2",
             "unit": "tbsp",
             "ingredient_id": "vegan-butter",
@@ -1235,8 +1456,8 @@
           {
             "option": "butter",
             "display": "butter",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1",
+            "unit": "tbsp",
             "ingredient_id": "butter",
             "depends_on": null,
             "line_group": null,
@@ -1250,8 +1471,8 @@
           {
             "option": "vegan",
             "display": "vegan butter",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1",
+            "unit": "tbsp",
             "ingredient_id": "vegan-butter",
             "depends_on": null,
             "line_group": null,
@@ -1303,8 +1524,129 @@
     }
   },
   {
+    "id": "brown-rice",
+    "title": "Brown Rice",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Sides"
+    ],
+    "family": "",
+    "notes": "Season with salt, soy sauce, or other seasonings to taste. For wild rice, use 8 cups water and boil 40–55 minutes.",
+    "steps_raw": "1. Bring {{water}} to a boil in a large pot.\n2. Rinse {{brown_rice}} in a fine mesh strainer under running water to remove excess starch.\n3. Add the rice to the boiling water. Boil\n4. Drain the rice and return it to the pot. Cover and let rest off the heat for 10 minutes.\n5. Fluff and season with {{salt}} or other seasonings to taste.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Bring {{water}} to a boil in a large pot."
+      },
+      {
+        "section": null,
+        "text": "Rinse {{brown_rice}} in a fine mesh strainer under running water to remove excess starch."
+      },
+      {
+        "section": null,
+        "text": "Add the rice to the boiling water. Boil"
+      },
+      {
+        "section": null,
+        "text": "Drain the rice and return it to the pot. Cover and let rest off the heat for 10 minutes."
+      },
+      {
+        "section": null,
+        "text": "Fluff and season with {{salt}} or other seasonings to taste."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "water",
+      "brown_rice",
+      "salt"
+    ],
+    "token_order": [
+      "water",
+      "brown_rice",
+      "salt"
+    ],
+    "ingredients": {
+      "brown_rice": {
+        "token": "brown_rice",
+        "options": [
+          {
+            "option": "",
+            "display": "brown rice",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "brown-rice",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "6",
+            "unit": "cup",
+            "ingredient_id": "water",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "bun-steads",
     "title": "Bun-steads (Tuna Cheesies)",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -1314,7 +1656,7 @@
     ],
     "family": "Burrows",
     "notes": "",
-    "steps_raw": "1. Mix {{american_cheese}}, {{eggs}}, {{tuna}}, {{green_pepper}}, {{green_olives}}, {{sweet_pickles}}, and {{mayonnaise}} lightly.\n2. Fill the {{buns}} with the mixture.\n3. Wrap each bun in foil and bake at 350°F for about 30 minutes, until the filling is heated and the cheese is melted.\n",
+    "steps_raw": "1. Mix {{american_cheese}}, {{eggs}}, {{tuna}}, {{green_pepper}}, {{green_olives}}, {{sweet_pickles}}, and {{mayonnaise}} lightly.\n2. Fill the {{buns}} with the mixture.\n3. Wrap each bun in foil and bake at 350°F for about 30 minutes, until the filling is heated and the cheese is melted.",
     "steps": [
       {
         "section": null,
@@ -1356,7 +1698,7 @@
         "options": [
           {
             "option": "",
-            "display": "American cheese (diced)",
+            "display": "American cheese",
             "ratio": "1/4",
             "unit": "lb",
             "ingredient_id": "american-cheese",
@@ -1377,7 +1719,7 @@
         "options": [
           {
             "option": "",
-            "display": "hardcooked eggs (chopped)",
+            "display": "eggs",
             "ratio": "3",
             "unit": "count",
             "ingredient_id": "egg",
@@ -1398,7 +1740,7 @@
         "options": [
           {
             "option": "",
-            "display": "tuna (drained and flaked)",
+            "display": "tuna",
             "ratio": "1",
             "unit": "can",
             "ingredient_id": "tuna",
@@ -1419,7 +1761,7 @@
         "options": [
           {
             "option": "",
-            "display": "green pepper (chopped)",
+            "display": "green pepper",
             "ratio": "2",
             "unit": "tbsp",
             "ingredient_id": "green-pepper",
@@ -1440,7 +1782,7 @@
         "options": [
           {
             "option": "",
-            "display": "stuffed green olives (chopped)",
+            "display": "stuffed green olives",
             "ratio": "2",
             "unit": "tbsp",
             "ingredient_id": "green-olives",
@@ -1461,7 +1803,7 @@
         "options": [
           {
             "option": "",
-            "display": "sweet pickles (chopped)",
+            "display": "sweet pickles",
             "ratio": "2",
             "unit": "tbsp",
             "ingredient_id": "sweet-pickles",
@@ -1533,6 +1875,7 @@
   {
     "id": "butternut-squash-casserole",
     "title": "Butternut Squash Casserole",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -1541,7 +1884,7 @@
     ],
     "family": "",
     "notes": "Simple baked casserole; add a little coconut oil if the sausage is lean.",
-    "steps_raw": "1. Heat the oven to 350–400°F (177–204°C).\n2. Dice {{butternut_squash}} into 1-inch cubes and place in a baking dish. Add {{sausage}} (broken into pieces) and {{onion}}. Season with {{salt}}.\n3. If the sausage is lean, drizzle with {{coconut_oil}} for extra fat.\n4. Bake until the squash is tender and the sausage is cooked through, stirring occasionally.\n",
+    "steps_raw": "1. Heat the oven to 350–400°F (177–204°C).\n2. Dice {{butternut_squash}} into 1-inch cubes and place in a baking dish. Add {{sausage}} (broken into pieces) and {{onion}}. Season with {{salt}}.\n3. If the sausage is lean, drizzle with {{coconut_oil}} for extra fat.\n4. Bake until the squash is tender and the sausage is cooked through, stirring occasionally.",
     "steps": [
       {
         "section": null,
@@ -1581,7 +1924,7 @@
         "options": [
           {
             "option": "",
-            "display": "butternut squash (1-inch cubes)",
+            "display": "butternut squash",
             "ratio": "1",
             "unit": "count",
             "ingredient_id": "butternut-squash",
@@ -1623,7 +1966,7 @@
         "options": [
           {
             "option": "",
-            "display": "chopped onion",
+            "display": "onion",
             "ratio": "1",
             "unit": "count",
             "ingredient_id": "onion",
@@ -1645,8 +1988,8 @@
           {
             "option": "",
             "display": "salt",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/2",
+            "unit": "tsp",
             "ingredient_id": "salt",
             "depends_on": null,
             "line_group": null,
@@ -1665,7 +2008,7 @@
         "options": [
           {
             "option": "",
-            "display": "coconut oil (if sausage is lean)",
+            "display": "coconut oil",
             "ratio": "1",
             "unit": "tbsp",
             "ingredient_id": "coconut-oil",
@@ -1695,6 +2038,7 @@
   {
     "id": "chicken-rice-casserole",
     "title": "Chicken-Rice Casserole",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -1704,7 +2048,7 @@
     ],
     "family": "Burrows",
     "notes": "Serves 6. Bake in a 2-qt casserole.",
-    "steps_raw": "1. Melt {{fat}} in a saucepan over low heat. Whisk in {{flour}}, {{pepper}}, and {{salt}} if using.\n2. Cook, stirring constantly, until bubbly. Remove from heat.\n3. Stir in {{chicken_broth}} and {{milk}}. Bring to a boil, stirring constantly, and cook 1 minute.\n4. Stir in {{rice}} and {{poultry}}. Add {{mushrooms}}, {{green_pepper}}, {{pimiento}}, and {{almonds}} if desired.\n5. Pour into an ungreased 2-qt casserole dish and bake uncovered at 350°F for 40 to 45 minutes.\n6. Garnish with {{parsley}} before serving.\n",
+    "steps_raw": "1. Melt {{fat}} in a saucepan over low heat. Whisk in {{flour}}, {{pepper}}, and {{salt}} if using.\n2. Cook, stirring constantly, until bubbly. Remove from heat.\n3. Stir in {{chicken_broth}} and {{milk}}. Bring to a boil, stirring constantly, and cook 1 minute.\n4. Stir in {{rice}} and {{poultry}}. Add {{mushrooms}}, {{green_pepper}}, {{pimiento}}, and {{almonds}} if desired.\n5. Pour into an ungreased 2-qt casserole dish and bake uncovered at 350°F for 40 to 45 minutes.\n6. Garnish with {{parsley}} before serving.",
     "steps": [
       {
         "section": null,
@@ -1846,7 +2190,7 @@
         "options": [
           {
             "option": "",
-            "display": "salt (optional)",
+            "display": "salt",
             "ratio": "1 1/2",
             "unit": "tsp",
             "ingredient_id": "salt",
@@ -1909,7 +2253,7 @@
         "options": [
           {
             "option": "",
-            "display": "cooked rice",
+            "display": "rice",
             "ratio": "1 1/2",
             "unit": "cup",
             "ingredient_id": "rice",
@@ -1930,7 +2274,7 @@
         "options": [
           {
             "option": "chicken",
-            "display": "cooked chicken (cut up)",
+            "display": "chicken",
             "ratio": "2",
             "unit": "cup",
             "ingredient_id": "chicken-breast",
@@ -1945,7 +2289,7 @@
           },
           {
             "option": "turkey",
-            "display": "cooked turkey (cut up)",
+            "display": "turkey",
             "ratio": "2",
             "unit": "cup",
             "ingredient_id": "turkey",
@@ -1966,9 +2310,9 @@
         "options": [
           {
             "option": "",
-            "display": "mushrooms (optional)",
-            "ratio": "",
-            "unit": "",
+            "display": "mushrooms",
+            "ratio": "1/2",
+            "unit": "cup",
             "ingredient_id": "mushrooms",
             "depends_on": null,
             "line_group": null,
@@ -1987,9 +2331,9 @@
         "options": [
           {
             "option": "",
-            "display": "green pepper (optional)",
-            "ratio": "",
-            "unit": "",
+            "display": "green pepper",
+            "ratio": "1/2",
+            "unit": "cup",
             "ingredient_id": "green-pepper",
             "depends_on": null,
             "line_group": null,
@@ -2008,9 +2352,9 @@
         "options": [
           {
             "option": "",
-            "display": "pimiento (optional)",
-            "ratio": "",
-            "unit": "",
+            "display": "pimiento",
+            "ratio": "2",
+            "unit": "tbsp",
             "ingredient_id": "pimiento",
             "depends_on": null,
             "line_group": null,
@@ -2029,9 +2373,9 @@
         "options": [
           {
             "option": "",
-            "display": "slivered almonds (optional)",
-            "ratio": "",
-            "unit": "",
+            "display": "slivered almonds",
+            "ratio": "1/4",
+            "unit": "cup",
             "ingredient_id": "almonds",
             "depends_on": null,
             "line_group": null,
@@ -2050,9 +2394,9 @@
         "options": [
           {
             "option": "",
-            "display": "parsley (optional)",
-            "ratio": "",
-            "unit": "",
+            "display": "parsley",
+            "ratio": "1",
+            "unit": "tbsp",
             "ingredient_id": "parsley",
             "depends_on": null,
             "line_group": null,
@@ -2091,6 +2435,7 @@
   {
     "id": "chicken-roll-ups",
     "title": "Chicken Roll-ups",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -2100,7 +2445,7 @@
     ],
     "family": "Burrows",
     "notes": "",
-    "steps_raw": "1. Cut {{chicken}} into small pieces.\n2. Combine {{soup}}, {{milk}}, and {{cheese}} in a saucepan; cook until the cheese melts.\n3. Spread half of the sauce in the bottom of a baking dish.\n4. Spoon some {{chicken}} onto the wide end of each {{crescent_rolls}}, roll up, and place on the sauce.\n5. Cover with the remaining sauce and bake at 350°F for 30 minutes.\n",
+    "steps_raw": "1. Cut {{chicken}} into small pieces.\n2. Combine {{soup}}, {{milk}}, and {{cheese}} in a saucepan; cook until the cheese melts.\n3. Spread half of the sauce in the bottom of a baking dish.\n4. Spoon some {{chicken}} onto the wide end of each {{crescent_rolls}}, roll up, and place on the sauce.\n5. Cover with the remaining sauce and bake at 350°F for 30 minutes.",
     "steps": [
       {
         "section": null,
@@ -2145,7 +2490,7 @@
         "options": [
           {
             "option": "cooked",
-            "display": "cooked chicken (cut into small pieces)",
+            "display": "chicken",
             "ratio": "1/2",
             "unit": "lb",
             "ingredient_id": "chicken-breast",
@@ -2160,7 +2505,7 @@
           },
           {
             "option": "canned",
-            "display": "canned chicken (drained)",
+            "display": "canned chicken",
             "ratio": "1",
             "unit": "can",
             "ingredient_id": "canned-chicken",
@@ -2238,7 +2583,7 @@
           },
           {
             "option": "cheddar",
-            "display": "shredded cheddar cheese",
+            "display": "cheddar cheese",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "cheddar-cheese",
@@ -2300,6 +2645,7 @@
   {
     "id": "chili-con-carne-turkey",
     "title": "Chili Con Carne (Turkey)",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -2309,7 +2655,7 @@
     ],
     "family": "Burrows",
     "notes": "Doubled batch made with ground turkey.",
-    "steps_raw": "1. Brown the {{ground_turkey}} in a large pot.\n2. Add {{onion}} and {{green_pepper}}; cook 2 to 3 minutes.\n3. Pour off excess fat and stir in {{crushed_tomatoes}}, {{tomato_sauce}}, {{stewed_tomatoes}}, {{kidney_beans}}, {{chili_powder}}, {{salt}}, {{worcestershire}}, {{paprika}}, {{cayenne}}, {{garlic}}, {{bay_leaves}}, and {{parsley}}.\n4. Simmer for 1 hour, then remove the {{bay_leaves}} before serving.\n",
+    "steps_raw": "1. Brown the {{ground_turkey}} in a large pot.\n2. Add {{onion}} and {{green_pepper}}; cook 2 to 3 minutes.\n3. Pour off excess fat and stir in {{crushed_tomatoes}}, {{tomato_sauce}}, {{stewed_tomatoes}}, {{kidney_beans}}, {{chili_powder}}, {{salt}}, {{worcestershire}}, {{paprika}}, {{cayenne}}, {{garlic}}, {{bay_leaves}}, and {{parsley}}.\n4. Simmer for 1 hour, then remove the {{bay_leaves}} before serving.",
     "steps": [
       {
         "section": null,
@@ -2391,7 +2737,7 @@
         "options": [
           {
             "option": "",
-            "display": "onions (chopped)",
+            "display": "onions",
             "ratio": "3",
             "unit": "count",
             "ingredient_id": "onion",
@@ -2412,7 +2758,7 @@
         "options": [
           {
             "option": "",
-            "display": "green peppers (1 to 2 chopped)",
+            "display": "green peppers",
             "ratio": "1",
             "unit": "count",
             "ingredient_id": "green-pepper",
@@ -2433,7 +2779,7 @@
         "options": [
           {
             "option": "",
-            "display": "crushed tomatoes",
+            "display": "tomatoes",
             "ratio": "1",
             "unit": "can",
             "ingredient_id": "crushed-tomatoes",
@@ -2622,7 +2968,7 @@
         "options": [
           {
             "option": "",
-            "display": "garlic (crushed)",
+            "display": "garlic",
             "ratio": "3",
             "unit": "clove",
             "ingredient_id": "garlic",
@@ -2694,6 +3040,7 @@
   {
     "id": "chocolate-chip-cookies-gf",
     "title": "Chocolate Chip Cookies (Gluten Free)",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -2702,7 +3049,7 @@
     ],
     "family": "",
     "notes": "Use a gluten-free flour blend with xanthan gum. For dairy-free, choose vegan butter and dairy-free chips.",
-    "steps_raw": "1. Preheat the oven to 375°F (190°C). Line baking sheets with parchment.\n2. In a large bowl, beat {{butter_choice}}, {{white_sugar}}, and {{brown_sugar}} until creamy.\n3. Add {{egg_choice}}, {{molasses}}, and {{vanilla_extract}} to the bowl and mix until fully combined.\n4. Mix in {{gf_flour}}, {{baking_soda}}, {{baking_powder}}, and {{salt}} until a smooth dough forms.\n5. Stir in {{chocolate_chips}}.\n6. Drop rounded tablespoons of dough (about 1 1/2 tablespoons) onto the prepared sheets, spacing 2 inches apart.\n7. Bake for 8–10 minutes, until the edges just start to turn golden and the centers are soft. Cool briefly on the sheet before transferring to a rack.\n",
+    "steps_raw": "1. Preheat the oven to 375°F (190°C). Line baking sheets with parchment.\n2. In a large bowl, beat {{butter_choice}}, {{white_sugar}}, and {{brown_sugar}} until creamy.\n3. Add {{egg_choice}}, {{molasses}}, and {{vanilla_extract}} to the bowl and mix until fully combined.\n4. Mix in {{gf_flour}}, {{baking_soda}}, {{baking_powder}}, and {{salt}} until a smooth dough forms.\n5. Stir in {{chocolate_chips}}.\n6. Drop rounded tablespoons of dough (about 1 1/2 tablespoons) onto the prepared sheets, spacing 2 inches apart.\n7. Bake for 8–10 minutes, until the edges just start to turn golden and the centers are soft. Cool briefly on the sheet before transferring to a rack.",
     "steps": [
       {
         "section": null,
@@ -2766,7 +3113,7 @@
         "options": [
           {
             "option": "butter",
-            "display": "unsalted butter (softened)",
+            "display": "unsalted butter",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "butter",
@@ -2781,7 +3128,7 @@
           },
           {
             "option": "vegan",
-            "display": "vegan butter (softened)",
+            "display": "vegan butter",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "vegan-butter",
@@ -2823,7 +3170,7 @@
         "options": [
           {
             "option": "",
-            "display": "brown sugar (packed)",
+            "display": "brown sugar",
             "ratio": "3/4",
             "unit": "cup",
             "ingredient_id": "brown-sugar",
@@ -2901,7 +3248,7 @@
           },
           {
             "option": "replacer",
-            "display": "egg replacer (prepared)",
+            "display": "egg replacer",
             "ratio": "1",
             "unit": "count",
             "ingredient_id": "egg-replacer",
@@ -3067,6 +3414,7 @@
   {
     "id": "collards-canadian-bacon",
     "title": "Collards with Canadian Bacon",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -3075,7 +3423,7 @@
     ],
     "family": "",
     "notes": "Simple skillet collards with smoky bacon.",
-    "steps_raw": "1. In a skillet, heat {{vegetable_oil}} over medium heat. Sauté {{onion}} and {{canadian_bacon}} for about 5 minutes.\n2. Add {{collard_greens}} and toss to coat in the fat. Cover and reduce heat.\n3. Simmer for 10–15 minutes, stirring frequently, until the greens are tender. Season with {{salt}} and {{black_pepper}} to taste.\n",
+    "steps_raw": "1. In a skillet, heat {{vegetable_oil}} over medium heat. Sauté {{onion}} and {{canadian_bacon}} for about 5 minutes.\n2. Add {{collard_greens}} and toss to coat in the fat. Cover and reduce heat.\n3. Simmer for 10–15 minutes, stirring frequently, until the greens are tender. Season with {{salt}} and {{black_pepper}} to taste.",
     "steps": [
       {
         "section": null,
@@ -3113,7 +3461,7 @@
         "options": [
           {
             "option": "",
-            "display": "chopped onion",
+            "display": "onion",
             "ratio": "1",
             "unit": "tbsp",
             "ingredient_id": "onion",
@@ -3134,7 +3482,7 @@
         "options": [
           {
             "option": "",
-            "display": "diced Canadian bacon",
+            "display": "Canadian bacon",
             "ratio": "1/2",
             "unit": "cup",
             "ingredient_id": "canadian-bacon",
@@ -3176,7 +3524,7 @@
         "options": [
           {
             "option": "",
-            "display": "collard greens (chopped)",
+            "display": "collard greens",
             "ratio": "11",
             "unit": "oz",
             "ingredient_id": "collard-greens",
@@ -3198,8 +3546,8 @@
           {
             "option": "",
             "display": "salt",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/4",
+            "unit": "tsp",
             "ingredient_id": "salt",
             "depends_on": null,
             "line_group": null,
@@ -3219,8 +3567,8 @@
           {
             "option": "",
             "display": "black pepper",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/8",
+            "unit": "tsp",
             "ingredient_id": "black-pepper",
             "depends_on": null,
             "line_group": null,
@@ -3248,6 +3596,7 @@
   {
     "id": "creamy-garlic-chicken",
     "title": "Creamy Garlic Chicken",
+    "byline": "",
     "base_kind": "protein-main",
     "default_base": 1,
     "categories": [
@@ -3388,8 +3737,8 @@
           {
             "option": "",
             "display": "salt",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1",
+            "unit": "tsp",
             "ingredient_id": "salt",
             "depends_on": null,
             "line_group": null,
@@ -3410,8 +3759,8 @@
           {
             "option": "",
             "display": "black pepper",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/2",
+            "unit": "tsp",
             "ingredient_id": "black_pepper",
             "depends_on": null,
             "line_group": null,
@@ -3784,9 +4133,9 @@
           },
           {
             "option": "omit",
-            "display": "no Parmesan cheese",
-            "ratio": "",
-            "unit": "",
+            "display": "No parmesan",
+            "ratio": "0",
+            "unit": "cup",
             "ingredient_id": "parmesan_cheese",
             "depends_on": null,
             "line_group": null,
@@ -3834,6 +4183,7 @@
   {
     "id": "creamy-leek-potato-soup",
     "title": "Creamy Leek and Potato Soup",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -3842,7 +4192,7 @@
     ],
     "family": "",
     "notes": "Adjust milk to your preferred thickness; 1 1/2 cups yields a medium body.",
-    "steps_raw": "1. In a pot, combine {{potatoes}}, {{leeks}}, {{celery}}, and {{water}}. Cook until the vegetables are tender.\n2. Mash the soup slightly if you prefer a smoother texture.\n3. Stir in {{butter}}, {{milk}}, and {{salt}}. Season with {{black_pepper}} and {{parsley}} to taste.\n4. Heat gently until warmed through, then serve.\n",
+    "steps_raw": "1. In a pot, combine {{potatoes}}, {{leeks}}, {{celery}}, and {{water}}. Cook until the vegetables are tender.\n2. Mash the soup slightly if you prefer a smoother texture.\n3. Stir in {{butter}}, {{milk}}, and {{salt}}. Season with {{black_pepper}} and {{parsley}} to taste.\n4. Heat gently until warmed through, then serve.",
     "steps": [
       {
         "section": null,
@@ -3890,7 +4240,7 @@
         "options": [
           {
             "option": "",
-            "display": "diced potatoes",
+            "display": "potatoes",
             "ratio": "3",
             "unit": "cup",
             "ingredient_id": "potato",
@@ -3911,7 +4261,7 @@
         "options": [
           {
             "option": "",
-            "display": "chopped leeks (or onions)",
+            "display": "leeks",
             "ratio": "1/2",
             "unit": "cup",
             "ingredient_id": "leek",
@@ -3932,7 +4282,7 @@
         "options": [
           {
             "option": "",
-            "display": "chopped celery",
+            "display": "celery",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "celery",
@@ -4038,8 +4388,8 @@
           {
             "option": "",
             "display": "black pepper",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/4",
+            "unit": "tsp",
             "ingredient_id": "black-pepper",
             "depends_on": null,
             "line_group": null,
@@ -4059,8 +4409,8 @@
           {
             "option": "",
             "display": "parsley",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1",
+            "unit": "tbsp",
             "ingredient_id": "parsley",
             "depends_on": null,
             "line_group": null,
@@ -4088,6 +4438,7 @@
   {
     "id": "gluten-free-peanut-butter-cookies",
     "title": "Gluten-Free Peanut Butter Cookies",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -4097,7 +4448,7 @@
     ],
     "family": "Burrows",
     "notes": "Makes about 24 cookies.",
-    "steps_raw": "1. Beat {{sugar}}, {{peanut_butter}}, {{egg}}, and {{vanilla}} until well blended.\n2. Fold in {{peanuts}} if using.\n3. Form cookies and place on a parchment-lined baking sheet. Flatten with a fork in a criss-cross pattern.\n4. Bake at 325°F for 10 to 12 minutes, until lightly browned. Cool 2 minutes on the pan.\n",
+    "steps_raw": "1. Beat {{sugar}}, {{peanut_butter}}, {{egg}}, and {{vanilla}} until well blended.\n2. Fold in {{peanuts}} if using.\n3. Form cookies and place on a parchment-lined baking sheet. Flatten with a fork in a criss-cross pattern.\n4. Bake at 325°F for 10 to 12 minutes, until lightly browned. Cool 2 minutes on the pan.",
     "steps": [
       {
         "section": null,
@@ -4221,7 +4572,7 @@
         "options": [
           {
             "option": "",
-            "display": "crushed peanuts (optional)",
+            "display": "peanuts",
             "ratio": "1/2",
             "unit": "cup",
             "ingredient_id": "peanuts",
@@ -4251,6 +4602,7 @@
   {
     "id": "holiday-potatoes",
     "title": "Holiday Potatoes",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -4260,7 +4612,7 @@
     ],
     "family": "Burrows",
     "notes": "",
-    "steps_raw": "1. Mash the cooked {{potatoes}}.\n2. Beat in {{butter}} and {{cream_cheese}} until smooth.\n3. Stir in {{cheddar_cheese}}, {{pimiento}}, {{green_pepper}}, {{parmesan}}, {{milk}}, {{salt}}, and {{green_onions}}.\n4. Spoon into a lightly greased 9x13 baking dish and bake at 350°F for 35 minutes.\n5. Sprinkle with extra {{cheddar_cheese}} and bake until melted.\n",
+    "steps_raw": "1. Mash the cooked {{potatoes}}.\n2. Beat in {{butter}} and {{cream_cheese}} until smooth.\n3. Stir in {{cheddar_cheese}}, {{pimiento}}, {{green_pepper}}, {{parmesan}}, {{milk}}, {{salt}}, and {{green_onions}}.\n4. Spoon into a lightly greased 9x13 baking dish and bake at 350°F for 35 minutes.\n5. Sprinkle with extra {{cheddar_cheese}} and bake until melted.",
     "steps": [
       {
         "section": null,
@@ -4315,7 +4667,7 @@
         "options": [
           {
             "option": "",
-            "display": "potatoes (peeled and quartered cooked)",
+            "display": "potatoes",
             "ratio": "3",
             "unit": "lb",
             "ingredient_id": "potato",
@@ -4378,7 +4730,7 @@
         "options": [
           {
             "option": "",
-            "display": "shredded cheddar cheese (divided)",
+            "display": "cheddar cheese",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "cheddar-cheese",
@@ -4399,7 +4751,7 @@
         "options": [
           {
             "option": "",
-            "display": "diced pimiento (drained)",
+            "display": "pimiento",
             "ratio": "2",
             "unit": "oz",
             "ingredient_id": "pimiento",
@@ -4420,7 +4772,7 @@
         "options": [
           {
             "option": "",
-            "display": "green pepper (chopped)",
+            "display": "green pepper",
             "ratio": "1",
             "unit": "count",
             "ingredient_id": "green-pepper",
@@ -4441,7 +4793,7 @@
         "options": [
           {
             "option": "",
-            "display": "grated Parmesan cheese",
+            "display": "Parmesan cheese",
             "ratio": "1/2",
             "unit": "cup",
             "ingredient_id": "parmesan_cheese",
@@ -4504,7 +4856,7 @@
         "options": [
           {
             "option": "",
-            "display": "green onions (chopped)",
+            "display": "green onions",
             "ratio": "1",
             "unit": "bunch",
             "ingredient_id": "green-onion",
@@ -4534,6 +4886,7 @@
   {
     "id": "italian-soup",
     "title": "Italian Soup",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -4542,7 +4895,7 @@
     ],
     "family": "",
     "notes": "Hearty ground beef and vegetable soup with tomato base.",
-    "steps_raw": "1. In a soup pot, brown {{ground_beef}} with {{onion}}. Drain excess fat if needed.\n2. Add {{tomato_sauce}}, {{beef_broth}}, {{celery}}, {{salt}}, and {{black_pepper}}. Simmer for 20 minutes.\n3. Stir in {{diced_tomatoes}} and {{mixed_vegetables}}. Continue simmering for about 15 minutes, or until the vegetables are tender.\n",
+    "steps_raw": "1. In a soup pot, brown {{ground_beef}} with {{onion}}. Drain excess fat if needed.\n2. Add {{tomato_sauce}}, {{beef_broth}}, {{celery}}, {{salt}}, and {{black_pepper}}. Simmer for 20 minutes.\n3. Stir in {{diced_tomatoes}} and {{mixed_vegetables}}. Continue simmering for about 15 minutes, or until the vegetables are tender.",
     "steps": [
       {
         "section": null,
@@ -4607,7 +4960,7 @@
         "options": [
           {
             "option": "",
-            "display": "chopped onion",
+            "display": "onion",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "onion",
@@ -4670,7 +5023,7 @@
         "options": [
           {
             "option": "",
-            "display": "chopped celery",
+            "display": "celery",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "celery",
@@ -4733,7 +5086,7 @@
         "options": [
           {
             "option": "",
-            "display": "diced tomatoes",
+            "display": "tomatoes",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "diced-tomatoes",
@@ -4754,7 +5107,7 @@
         "options": [
           {
             "option": "",
-            "display": "mixed vegetables (potatoes carrots radishes turnips)",
+            "display": "mixed vegetables",
             "ratio": "2",
             "unit": "cup",
             "ingredient_id": "mixed-vegetables",
@@ -4782,8 +5135,152 @@
     }
   },
   {
+    "id": "layered-dip",
+    "title": "Layered Dip",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Appetizers & Snacks",
+      "Family",
+      "Burrows"
+    ],
+    "family": "Burrows",
+    "notes": "Use up to 8 oz cream cheese, depending on how thick you want the base layer.",
+    "steps_raw": "1. Spread {{cream_cheese}} in the bottom of a square pan.\n2. Layer {{salsa}} evenly over the cream cheese.\n3. Scatter {{ground_beef}} over the salsa.\n4. Finish with {{cheese_blend}}. Chill until ready to serve.",
+    "steps": [
+      {
+        "section": "Assembly",
+        "text": "Spread {{cream_cheese}} in the bottom of a square pan."
+      },
+      {
+        "section": "Assembly",
+        "text": "Layer {{salsa}} evenly over the cream cheese."
+      },
+      {
+        "section": "Assembly",
+        "text": "Scatter {{ground_beef}} over the salsa."
+      },
+      {
+        "section": "Assembly",
+        "text": "Finish with {{cheese_blend}}. Chill until ready to serve."
+      }
+    ],
+    "step_sections": [
+      "Assembly"
+    ],
+    "tokens_used": [
+      "cream_cheese",
+      "salsa",
+      "ground_beef",
+      "cheese_blend"
+    ],
+    "token_order": [
+      "cream_cheese",
+      "salsa",
+      "ground_beef",
+      "cheese_blend"
+    ],
+    "ingredients": {
+      "cream_cheese": {
+        "token": "cream_cheese",
+        "options": [
+          {
+            "option": "",
+            "display": "cream cheese",
+            "ratio": "8",
+            "unit": "oz",
+            "ingredient_id": "cream-cheese",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salsa": {
+        "token": "salsa",
+        "options": [
+          {
+            "option": "",
+            "display": "salsa",
+            "ratio": "8",
+            "unit": "oz",
+            "ingredient_id": "salsa",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "ground_beef": {
+        "token": "ground_beef",
+        "options": [
+          {
+            "option": "",
+            "display": "ground beef",
+            "ratio": "1/2",
+            "unit": "lb",
+            "ingredient_id": "ground-beef",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "cheese_blend": {
+        "token": "cheese_blend",
+        "options": [
+          {
+            "option": "",
+            "display": "cheddar and mozzarella cheese blend",
+            "ratio": "4",
+            "unit": "oz",
+            "ingredient_id": "cheddar-mozzarella-cheese",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "lemon-cake",
     "title": "Vegan Gluten-Free Lemon Cake",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -4792,7 +5289,7 @@
     ],
     "family": "",
     "notes": "Bake in an 8x8-inch square pan (stone preferred; glass/metal ok). Use room-temperature full-fat coconut milk and whisk/blend until completely smooth before measuring.",
-    "steps_raw": "1. Preheat the oven to 350°F (177°C). Lightly grease an 8x8-inch square baking dish (stone preferred; glass or metal ok) with {{neutral_oil}}, then wipe off any excess.\n2. Make sure {{coconut_milk}} is fully smooth before measuring: whisk or blend room-temperature full-fat coconut milk until completely mixed and smooth, then measure out {{coconut_milk}}.\n3. In a large bowl, whisk together {{oat_flour}}, {{almond_flour}}, {{tapioca_starch}}, {{cornstarch}}, {{sugar}}, {{baking_powder}}, and {{salt}} until no lumps remain.\n4. In a separate bowl, whisk together {{coconut_milk}}, {{lemon_juice}}, zest of {{lemon_for_zest}}, and {{vanilla_extract}}.\n5. Pour the wet mixture into the dry mixture and whisk until smooth. Pour the batter into the prepared pan.\n6. Bake for 20–25 minutes, or until a toothpick comes out completely clean. Cool completely (about 45 minutes) before glazing.\n7. For a full glaze, whisk together {{powdered_sugar}}, {{lemon_juice_glaze}}, {{glaze_thickener}}, and {{vanilla_glaze}} until completely smooth. For a light drizzle, make half this glaze by halving those four ingredients.\n8. Spread the glaze over the cooled cake. Let it set for about 15 minutes, then slice and serve.\n",
+    "steps_raw": "1. Preheat the oven to 350°F (177°C). Lightly grease an 8x8-inch square baking dish (stone preferred; glass or metal ok) with {{neutral_oil}}, then wipe off any excess.\n2. Make sure {{coconut_milk}} is fully smooth before measuring: whisk or blend room-temperature full-fat coconut milk until completely mixed and smooth, then measure out {{coconut_milk}}.\n3. In a large bowl, whisk together {{oat_flour}}, {{almond_flour}}, {{tapioca_starch}}, {{cornstarch}}, {{sugar}}, {{baking_powder}}, and {{salt}} until no lumps remain.\n4. In a separate bowl, whisk together {{coconut_milk}}, {{lemon_juice}}, zest of {{lemon_for_zest}}, and {{vanilla_extract}}.\n5. Pour the wet mixture into the dry mixture and whisk until smooth. Pour the batter into the prepared pan.\n6. Bake for 20–25 minutes, or until a toothpick comes out completely clean. Cool completely (about 45 minutes) before glazing.\n7. For a full glaze, whisk together {{powdered_sugar}}, {{lemon_juice_glaze}}, {{glaze_thickener}}, and {{vanilla_glaze}} until completely smooth. For a light drizzle, make half this glaze by halving those four ingredients.\n8. Spread the glaze over the cooled cake. Let it set for about 15 minutes, then slice and serve.",
     "steps": [
       {
         "section": null,
@@ -5019,7 +5516,7 @@
         "options": [
           {
             "option": "",
-            "display": "full-fat coconut milk (room temperature, fully mixed)",
+            "display": "full-fat coconut milk",
             "ratio": "10",
             "unit": "tbsp",
             "ingredient_id": "coconut-milk",
@@ -5061,7 +5558,7 @@
         "options": [
           {
             "option": "",
-            "display": "lemon (for zest)",
+            "display": "lemon",
             "ratio": "1",
             "unit": "count",
             "ingredient_id": "lemon",
@@ -5103,9 +5600,9 @@
         "options": [
           {
             "option": "",
-            "display": "neutral oil (for greasing pan)",
-            "ratio": "",
-            "unit": "",
+            "display": "neutral oil",
+            "ratio": "1",
+            "unit": "tsp",
             "ingredient_id": "neutral-oil",
             "depends_on": null,
             "line_group": null,
@@ -5166,7 +5663,7 @@
         "options": [
           {
             "option": "yogurt",
-            "display": "thick non-dairy yogurt (plain or vanilla)",
+            "display": "thick non-dairy yogurt",
             "ratio": "1",
             "unit": "tbsp",
             "ingredient_id": "nondairy-yogurt",
@@ -5346,7 +5843,8 @@
   },
   {
     "id": "lorenes-vegetable-soup",
-    "title": "Lorene’s Vegetable Soup",
+    "title": "Vegetable Soup",
+    "byline": "Lorene’s",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -5356,7 +5854,7 @@
     ],
     "family": "Burrows",
     "notes": "",
-    "steps_raw": "1. Brown the {{beef}} in a large pot.\n2. Add {{potatoes}}, {{celery}}, {{onion}}, {{green_beans}}, {{pinto_beans}}, {{carrots}}, {{peas}}, {{corn}}, and {{diced_tomatoes}}.\n3. Stir in {{bouillon}}, {{celery_salt}}, and {{white_pepper}}.\n4. Add {{water}} to reach the desired consistency and simmer for 2 hours.\n5. Whisk {{flour}} with a splash of hot broth and stir it in quickly to avoid lumps.\n",
+    "steps_raw": "1. Brown the {{beef}} in a large pot.\n2. Add {{potatoes}}, {{celery}}, {{onion}}, {{green_beans}}, {{pinto_beans}}, {{carrots}}, {{peas}}, {{corn}}, and {{diced_tomatoes}}.\n3. Stir in {{bouillon}}, {{celery_salt}}, and {{white_pepper}}.\n4. Add {{water}} to reach the desired consistency and simmer for 2 hours.\n5. Whisk {{flour}} with a splash of hot broth and stir it in quickly to avoid lumps.",
     "steps": [
       {
         "section": null,
@@ -5441,7 +5939,7 @@
         "options": [
           {
             "option": "",
-            "display": "potatoes (diced)",
+            "display": "potatoes",
             "ratio": "3",
             "unit": "count",
             "ingredient_id": "potato",
@@ -5462,9 +5960,9 @@
         "options": [
           {
             "option": "",
-            "display": "celery (chopped)",
-            "ratio": "",
-            "unit": "",
+            "display": "celery",
+            "ratio": "1",
+            "unit": "cup",
             "ingredient_id": "celery",
             "depends_on": null,
             "line_group": null,
@@ -5483,9 +5981,9 @@
         "options": [
           {
             "option": "",
-            "display": "onion (chopped)",
-            "ratio": "",
-            "unit": "",
+            "display": "onion",
+            "ratio": "1",
+            "unit": "cup",
             "ingredient_id": "onion",
             "depends_on": null,
             "line_group": null,
@@ -5504,7 +6002,7 @@
         "options": [
           {
             "option": "",
-            "display": "green beans (canned)",
+            "display": "green beans",
             "ratio": "2",
             "unit": "can",
             "ingredient_id": "green-beans",
@@ -5546,7 +6044,7 @@
         "options": [
           {
             "option": "",
-            "display": "carrots (diced)",
+            "display": "carrots",
             "ratio": "1",
             "unit": "lb",
             "ingredient_id": "carrot",
@@ -5609,7 +6107,7 @@
         "options": [
           {
             "option": "",
-            "display": "diced tomatoes",
+            "display": "tomatoes",
             "ratio": "1",
             "unit": "can",
             "ingredient_id": "diced-tomatoes",
@@ -5630,7 +6128,7 @@
         "options": [
           {
             "option": "",
-            "display": "beef bouillon cubes (8 to 10)",
+            "display": "beef bouillon cubes",
             "ratio": "8",
             "unit": "cube",
             "ingredient_id": "beef_bouillon",
@@ -5652,8 +6150,8 @@
           {
             "option": "",
             "display": "celery salt",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1",
+            "unit": "tsp",
             "ingredient_id": "celery-salt",
             "depends_on": null,
             "line_group": null,
@@ -5673,8 +6171,8 @@
           {
             "option": "",
             "display": "white pepper",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/2",
+            "unit": "tsp",
             "ingredient_id": "white-pepper",
             "depends_on": null,
             "line_group": null,
@@ -5715,8 +6213,8 @@
           {
             "option": "",
             "display": "water",
-            "ratio": "",
-            "unit": "",
+            "ratio": "8",
+            "unit": "cup",
             "ingredient_id": "water",
             "depends_on": null,
             "line_group": null,
@@ -5744,6 +6242,7 @@
   {
     "id": "mac-and-cheese",
     "title": "Mac + Cheese",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -5753,7 +6252,7 @@
     ],
     "family": "Burrows",
     "notes": "Let stand for 1 hour or bake at 350°F for 30 minutes.",
-    "steps_raw": "1. Cook the {{macaroni}} and drain.\n2. Stir in {{velveeta}}, {{milk}}, {{salt}}, and {{black_pepper}}.\n3. Heat on low until smooth, then let stand or bake at 350°F for about 30 minutes.\n",
+    "steps_raw": "1. Cook the {{macaroni}} and drain.\n2. Stir in {{velveeta}}, {{milk}}, {{salt}}, and {{black_pepper}}.\n3. Heat on low until smooth, then let stand or bake at 350°F for about 30 minutes.",
     "steps": [
       {
         "section": null,
@@ -5789,7 +6288,7 @@
         "options": [
           {
             "option": "",
-            "display": "macaroni (cooked and drained)",
+            "display": "macaroni",
             "ratio": "4",
             "unit": "cup",
             "ingredient_id": "macaroni",
@@ -5831,9 +6330,9 @@
         "options": [
           {
             "option": "",
-            "display": "milk (as needed)",
-            "ratio": "",
-            "unit": "",
+            "display": "milk",
+            "ratio": "1/2",
+            "unit": "cup",
             "ingredient_id": "milk",
             "depends_on": null,
             "line_group": null,
@@ -5853,8 +6352,8 @@
           {
             "option": "",
             "display": "salt",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/2",
+            "unit": "tsp",
             "ingredient_id": "salt",
             "depends_on": null,
             "line_group": null,
@@ -5874,8 +6373,8 @@
           {
             "option": "",
             "display": "black pepper",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/4",
+            "unit": "tsp",
             "ingredient_id": "black-pepper",
             "depends_on": null,
             "line_group": null,
@@ -5903,6 +6402,7 @@
   {
     "id": "macaroni-and-tomatoes",
     "title": "Macaroni + Tomatoes",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -5912,7 +6412,7 @@
     ],
     "family": "Burrows",
     "notes": "",
-    "steps_raw": "1. Cook and drain the {{macaroni}}.\n2. Stir in {{tomatoes}}, {{tomato_sauce}}, and {{black_pepper}}.\n3. Heat through before serving.\n",
+    "steps_raw": "1. Cook and drain the {{macaroni}}.\n2. Stir in {{tomatoes}}, {{tomato_sauce}}, and {{black_pepper}}.\n3. Heat through before serving.",
     "steps": [
       {
         "section": null,
@@ -5946,7 +6446,7 @@
         "options": [
           {
             "option": "",
-            "display": "macaroni (cooked and drained)",
+            "display": "macaroni",
             "ratio": "2",
             "unit": "cup",
             "ingredient_id": "macaroni",
@@ -5967,7 +6467,7 @@
         "options": [
           {
             "option": "diced",
-            "display": "diced tomatoes",
+            "display": "tomatoes",
             "ratio": "1",
             "unit": "can",
             "ingredient_id": "diced-tomatoes",
@@ -6025,8 +6525,8 @@
           {
             "option": "",
             "display": "black pepper",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/4",
+            "unit": "tsp",
             "ingredient_id": "black-pepper",
             "depends_on": null,
             "line_group": null,
@@ -6058,8 +6558,200 @@
     }
   },
   {
+    "id": "mexican-chicken",
+    "title": "Mexican Chicken Bake",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Casseroles",
+      "Family",
+      "Burrows"
+    ],
+    "family": "Burrows",
+    "notes": "Use 1/2 can Rotel for a milder version.",
+    "steps_raw": "1. Preheat the oven to 350°F (175°C).\n2. Combine {{celery_soup}}, {{chicken_soup}}, and {{rotel}} in a bowl.\n3. In a baking dish, layer {{cooked_chicken}}, {{velveeta}}, and {{nacho_chips}}.\n4. Pour the soup mixture evenly over the top.\n5. Bake for 30 minutes, until bubbly and hot throughout.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Preheat the oven to 350°F (175°C)."
+      },
+      {
+        "section": null,
+        "text": "Combine {{celery_soup}}, {{chicken_soup}}, and {{rotel}} in a bowl."
+      },
+      {
+        "section": null,
+        "text": "In a baking dish, layer {{cooked_chicken}}, {{velveeta}}, and {{nacho_chips}}."
+      },
+      {
+        "section": null,
+        "text": "Pour the soup mixture evenly over the top."
+      },
+      {
+        "section": null,
+        "text": "Bake for 30 minutes, until bubbly and hot throughout."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "celery_soup",
+      "chicken_soup",
+      "rotel",
+      "cooked_chicken",
+      "velveeta",
+      "nacho_chips"
+    ],
+    "token_order": [
+      "celery_soup",
+      "chicken_soup",
+      "rotel",
+      "cooked_chicken",
+      "velveeta",
+      "nacho_chips"
+    ],
+    "ingredients": {
+      "cooked_chicken": {
+        "token": "cooked_chicken",
+        "options": [
+          {
+            "option": "",
+            "display": "chicken",
+            "ratio": "3",
+            "unit": "cup",
+            "ingredient_id": "cooked-chicken",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "velveeta": {
+        "token": "velveeta",
+        "options": [
+          {
+            "option": "",
+            "display": "Velveeta",
+            "ratio": "4",
+            "unit": "oz",
+            "ingredient_id": "velveeta",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "nacho_chips": {
+        "token": "nacho_chips",
+        "options": [
+          {
+            "option": "",
+            "display": "nacho-flavored tortilla chips",
+            "ratio": "1/2",
+            "unit": "bag",
+            "ingredient_id": "nacho-chips",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "celery_soup": {
+        "token": "celery_soup",
+        "options": [
+          {
+            "option": "",
+            "display": "cream of celery soup",
+            "ratio": "1",
+            "unit": "can",
+            "ingredient_id": "cream-of-celery-soup",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "chicken_soup": {
+        "token": "chicken_soup",
+        "options": [
+          {
+            "option": "",
+            "display": "cream of chicken soup",
+            "ratio": "1",
+            "unit": "can",
+            "ingredient_id": "cream-of-chicken-soup",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "rotel": {
+        "token": "rotel",
+        "options": [
+          {
+            "option": "",
+            "display": "Rotel tomatoes with green chiles",
+            "ratio": "10",
+            "unit": "oz",
+            "ingredient_id": "rotel",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "mrs-burrows-chili",
-    "title": "Chili (Mrs. Burrows)",
+    "title": "Chili",
+    "byline": "Mrs. Burrows",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -6069,7 +6761,7 @@
     ],
     "family": "Burrows",
     "notes": "",
-    "steps_raw": "1. Brown {{ground_beef}} and drain off grease.\n2. Stir in {{kidney_beans}}, {{tomato_sauce}}, {{tomato_soup}}, {{chili_powder}}, {{salt}}, and {{black_pepper}}.\n3. Add {{water}} as needed and cook until it begins to thicken.\n",
+    "steps_raw": "1. Brown {{ground_beef}} and drain off grease.\n2. Stir in {{kidney_beans}}, {{tomato_sauce}}, {{tomato_soup}}, {{chili_powder}}, {{salt}}, and {{black_pepper}}.\n3. Add {{water}} as needed and cook until it begins to thicken.",
     "steps": [
       {
         "section": null,
@@ -6132,7 +6824,7 @@
         "options": [
           {
             "option": "",
-            "display": "kidney beans (drained)",
+            "display": "kidney beans",
             "ratio": "4",
             "unit": "can",
             "ingredient_id": "kidney-beans",
@@ -6196,8 +6888,8 @@
           {
             "option": "",
             "display": "chili powder",
-            "ratio": "",
-            "unit": "",
+            "ratio": "2",
+            "unit": "tbsp",
             "ingredient_id": "chili-powder",
             "depends_on": null,
             "line_group": null,
@@ -6217,8 +6909,8 @@
           {
             "option": "",
             "display": "salt",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1",
+            "unit": "tsp",
             "ingredient_id": "salt",
             "depends_on": null,
             "line_group": null,
@@ -6238,8 +6930,8 @@
           {
             "option": "",
             "display": "black pepper",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/2",
+            "unit": "tsp",
             "ingredient_id": "black-pepper",
             "depends_on": null,
             "line_group": null,
@@ -6258,9 +6950,9 @@
         "options": [
           {
             "option": "",
-            "display": "water (as needed)",
-            "ratio": "",
-            "unit": "",
+            "display": "water",
+            "ratio": "1/2",
+            "unit": "cup",
             "ingredient_id": "water",
             "depends_on": null,
             "line_group": null,
@@ -6286,8 +6978,177 @@
     }
   },
   {
+    "id": "orange-sherbet-salad",
+    "title": "Orange Sherbet Salad",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Desserts & Baking",
+      "Family",
+      "Burrows"
+    ],
+    "family": "Burrows",
+    "notes": "Dream Whip works well in place of homemade whipped cream.",
+    "steps_raw": "1. Combine {{orange_gelatin}} with {{boiling_water}} and stir until dissolved.\n2. Add {{orange_sherbet}} and mix until melted and smooth.\n3. Chill until the mixture is partially set, then fold in {{mandarin_oranges}}.\n4. Fold in {{whipped_cream}}.\n5. Pour into a buttered mold and chill until fully set.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Combine {{orange_gelatin}} with {{boiling_water}} and stir until dissolved."
+      },
+      {
+        "section": null,
+        "text": "Add {{orange_sherbet}} and mix until melted and smooth."
+      },
+      {
+        "section": null,
+        "text": "Chill until the mixture is partially set, then fold in {{mandarin_oranges}}."
+      },
+      {
+        "section": null,
+        "text": "Fold in {{whipped_cream}}."
+      },
+      {
+        "section": null,
+        "text": "Pour into a buttered mold and chill until fully set."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "orange_gelatin",
+      "boiling_water",
+      "orange_sherbet",
+      "mandarin_oranges",
+      "whipped_cream"
+    ],
+    "token_order": [
+      "orange_gelatin",
+      "boiling_water",
+      "orange_sherbet",
+      "mandarin_oranges",
+      "whipped_cream"
+    ],
+    "ingredients": {
+      "orange_gelatin": {
+        "token": "orange_gelatin",
+        "options": [
+          {
+            "option": "",
+            "display": "orange gelatin",
+            "ratio": "1",
+            "unit": "package",
+            "ingredient_id": "orange-gelatin",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "boiling_water": {
+        "token": "boiling_water",
+        "options": [
+          {
+            "option": "",
+            "display": "boiling water",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "water",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "orange_sherbet": {
+        "token": "orange_sherbet",
+        "options": [
+          {
+            "option": "",
+            "display": "orange sherbet",
+            "ratio": "1",
+            "unit": "pint",
+            "ingredient_id": "orange-sherbet",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "mandarin_oranges": {
+        "token": "mandarin_oranges",
+        "options": [
+          {
+            "option": "",
+            "display": "mandarin oranges",
+            "ratio": "1",
+            "unit": "can",
+            "ingredient_id": "mandarin-oranges",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "whipped_cream": {
+        "token": "whipped_cream",
+        "options": [
+          {
+            "option": "",
+            "display": "whipped heavy cream",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "whipped-cream",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "original-chili-con-carne",
     "title": "Original Chili Con Carne",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -6297,7 +7158,7 @@
     ],
     "family": "Burrows",
     "notes": "Serves 3.",
-    "steps_raw": "1. Brown the {{ground_beef}} in a large pot.\n2. Add {{onion}} and {{green_pepper}}; cook 2 to 3 minutes.\n3. Pour off fat and stir in {{tomatoes}}, {{kidney_beans}}, {{chili_powder}}, {{salt}}, {{paprika}}, {{cayenne}}, {{garlic}}, {{bay_leaf}}, and {{worcestershire}}.\n4. Simmer for 1 hour, then remove the {{bay_leaf}} before serving.\n",
+    "steps_raw": "1. Brown the {{ground_beef}} in a large pot.\n2. Add {{onion}} and {{green_pepper}}; cook 2 to 3 minutes.\n3. Pour off fat and stir in {{tomatoes}}, {{kidney_beans}}, {{chili_powder}}, {{salt}}, {{paprika}}, {{cayenne}}, {{garlic}}, {{bay_leaf}}, and {{worcestershire}}.\n4. Simmer for 1 hour, then remove the {{bay_leaf}} before serving.",
     "steps": [
       {
         "section": null,
@@ -6373,7 +7234,7 @@
         "options": [
           {
             "option": "",
-            "display": "onion (chopped)",
+            "display": "onion",
             "ratio": "1",
             "unit": "count",
             "ingredient_id": "onion",
@@ -6394,7 +7255,7 @@
         "options": [
           {
             "option": "",
-            "display": "green pepper (diced)",
+            "display": "green pepper",
             "ratio": "1",
             "unit": "count",
             "ingredient_id": "green-pepper",
@@ -6541,7 +7402,7 @@
         "options": [
           {
             "option": "",
-            "display": "garlic (crushed)",
+            "display": "garlic",
             "ratio": "1",
             "unit": "clove",
             "ingredient_id": "garlic",
@@ -6613,6 +7474,7 @@
   {
     "id": "sausage-stuffed-acorn-squash",
     "title": "Sausage Stuffed Acorn Squash",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -6621,7 +7483,7 @@
     ],
     "family": "",
     "notes": "Stuff the roasted squash with a cheesy sausage and breadcrumb mixture.",
-    "steps_raw": "1. Heat the oven to 375°F (191°C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom.\n2. Roast for about 35 minutes, until the squash is tender.\n3. While the squash roasts, brown {{sausage}} in a skillet. Drain off all but 2 tablespoons of drippings.\n4. Add {{onion}} and {{celery}} to the skillet and sauté for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}.\n5. Quickly fold {{sausage}} and {{cheese}} into the breadcrumb mixture.\n6. Turn the squash halves cut side up, sprinkle with {{salt}}, and fill the cavities with the sausage mixture.\n7. Bake at 350°F (177°C) for 20–30 minutes, until the stuffing is browned and heated through.\n",
+    "steps_raw": "1. Heat the oven to 375°F (191°C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom.\n2. Roast for about 35 minutes, until the squash is tender.\n3. While the squash roasts, brown {{sausage}} in a skillet. Drain off all but 2 tablespoons of drippings.\n4. Add {{onion}} and {{celery}} to the skillet and sauté for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}.\n5. Quickly fold {{sausage}} and {{cheese}} into the breadcrumb mixture.\n6. Turn the squash halves cut side up, sprinkle with {{salt}}, and fill the cavities with the sausage mixture.\n7. Bake at 350°F (177°C) for 20–30 minutes, until the stuffing is browned and heated through.",
     "steps": [
       {
         "section": null,
@@ -6701,7 +7563,7 @@
         "options": [
           {
             "option": "",
-            "display": "water for roasting pan",
+            "display": "water",
             "ratio": "1/2",
             "unit": "cup",
             "ingredient_id": "water",
@@ -6743,7 +7605,7 @@
         "options": [
           {
             "option": "",
-            "display": "finely chopped onion",
+            "display": "onion",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "onion",
@@ -6764,7 +7626,7 @@
         "options": [
           {
             "option": "",
-            "display": "finely chopped celery",
+            "display": "celery",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "celery",
@@ -6806,7 +7668,7 @@
         "options": [
           {
             "option": "",
-            "display": "grated cheese",
+            "display": "cheese",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "cheese",
@@ -6828,8 +7690,8 @@
           {
             "option": "",
             "display": "salt",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/2",
+            "unit": "tsp",
             "ingredient_id": "salt",
             "depends_on": null,
             "line_group": null,
@@ -6857,6 +7719,7 @@
   {
     "id": "snickerdoodles",
     "title": "Snickerdoodles",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -6866,7 +7729,7 @@
     ],
     "family": "Burrows",
     "notes": "",
-    "steps_raw": "1. Preheat the oven to 400°F.\n2. Cream {{shortening}} and {{sugar}} together, then beat in the {{eggs}}.\n3. Stir in {{flour}}, {{cream_of_tartar}}, {{baking_soda}}, and {{salt}} to make a soft dough.\n4. Combine {{coating_sugar}} and {{cinnamon}} in a small bowl.\n5. Roll dough into balls and coat with the cinnamon sugar.\n6. Bake 8 to 10 minutes until set.\n",
+    "steps_raw": "1. Preheat the oven to 400°F.\n2. Cream {{shortening}} and {{sugar}} together, then beat in the {{eggs}}.\n3. Stir in {{flour}}, {{cream_of_tartar}}, {{baking_soda}}, and {{salt}} to make a soft dough.\n4. Combine {{coating_sugar}} and {{cinnamon}} in a small bowl.\n5. Roll dough into balls and coat with the cinnamon sugar.\n6. Bake 8 to 10 minutes until set.",
     "steps": [
       {
         "section": null,
@@ -7069,7 +7932,7 @@
         "options": [
           {
             "option": "",
-            "display": "granulated sugar (for coating)",
+            "display": "granulated sugar",
             "ratio": "2",
             "unit": "tbsp",
             "ingredient_id": "sugar",
@@ -7120,6 +7983,7 @@
   {
     "id": "spritz-cookies",
     "title": "Spritz Cookies",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -7128,7 +7992,7 @@
     ],
     "family": "",
     "notes": "Makes about 5 dozen cookies; requires a cookie press.",
-    "steps_raw": "1. Preheat the oven to 400°F.\n2. Cream {{fat}}, then gradually beat in {{sugar}} until smooth.\n3. Add {{egg_component}} unbeaten (do not pre-whisk separately) and beat well.\n4. Mix in {{almond_extract}} and {{food_coloring}} (if using).\n5. Whisk together {{flour_base}}, {{baking_powder}}, and {{salt}}. Stir into the dough{{#if egg_component=whole}}, then add up to {{flour_adjust}} only if needed so the dough is not too dry{{/if}}.\n6. {{#if fat=butter}}Cover and refrigerate the dough for about 1 hour to firm it before pressing. {{/if}}Fit a cookie press disk (number side up)—a cookie press is required—pack the press firmly, and press cookies onto an ungreased shiny cookie sheet.\n7. Bake for 10–12 minutes.\n\n",
+    "steps_raw": "1. Preheat the oven to 400°F.\n2. Cream {{fat}}, then gradually beat in {{sugar}} until smooth.\n3. Add {{egg_component}} unbeaten (do not pre-whisk separately) and beat well.\n4. Mix in {{almond_extract}} and {{food_coloring}} (if using).\n5. Whisk together {{flour_base}}, {{baking_powder}}, and {{salt}}. Stir into the dough{{#if egg_component=whole}}, then add up to {{flour_adjust}} only if needed so the dough is not too dry{{/if}}.\n6. {{#if fat=butter}}Cover and refrigerate the dough for about 1 hour to firm it before pressing. {{/if}}Fit a cookie press disk (number side up)—a cookie press is required—pack the press firmly, and press cookies onto an ungreased shiny cookie sheet.\n7. Bake for 10–12 minutes.",
     "steps": [
       {
         "section": null,
@@ -7205,7 +8069,7 @@
           },
           {
             "option": "butter",
-            "display": "butter (softened)",
+            "display": "butter",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "butter",
@@ -7249,7 +8113,7 @@
             "option": "whole",
             "display": "egg",
             "ratio": "1",
-            "unit": "",
+            "unit": "count",
             "ingredient_id": "egg",
             "depends_on": null,
             "line_group": null,
@@ -7262,9 +8126,9 @@
           },
           {
             "option": "yolks",
-            "display": "egg yolk (omit the extra flour)",
+            "display": "egg yolk",
             "ratio": "3",
-            "unit": "",
+            "unit": "count",
             "ingredient_id": "egg-yolk",
             "depends_on": null,
             "line_group": null,
@@ -7283,7 +8147,7 @@
         "options": [
           {
             "option": "",
-            "display": "all-purpose flour (sifted)",
+            "display": "all-purpose flour",
             "ratio": "2",
             "unit": "cup",
             "ingredient_id": "wheat-flour",
@@ -7305,7 +8169,7 @@
         "options": [
           {
             "option": "",
-            "display": "all-purpose flour (sifted; only if using a whole egg)",
+            "display": "all-purpose flour",
             "ratio": "1/4",
             "unit": "cup",
             "ingredient_id": "wheat-flour",
@@ -7355,9 +8219,9 @@
         "options": [
           {
             "option": "",
-            "display": "salt (dash)",
-            "ratio": "",
-            "unit": "",
+            "display": "salt",
+            "ratio": "1",
+            "unit": "dash",
             "ingredient_id": "salt",
             "depends_on": null,
             "line_group": null,
@@ -7397,9 +8261,9 @@
         "options": [
           {
             "option": "",
-            "display": "food coloring (optional)",
-            "ratio": "",
-            "unit": "",
+            "display": "food coloring",
+            "ratio": "1",
+            "unit": "drop",
             "ingredient_id": "food-coloring",
             "depends_on": null,
             "line_group": null,
@@ -7436,8 +8300,206 @@
     }
   },
   {
+    "id": "sweet-potato-pizza-crust",
+    "title": "Sweet Potato Pizza Crust",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Breads & Pizza"
+    ],
+    "family": "",
+    "notes": "Arrowroot starch can replace tapioca flour. Add toppings of choice after prebaking the crust.",
+    "steps_raw": "1. Preheat the oven to 375°F (190°C).\n2. Peel and chop {{sweet_potato}}. Boil in water until fork-tender, about 10 minutes. Drain well and mash until smooth.\n3. Measure 1 cup mashed sweet potato into a bowl. Mix in {{rice_flour}}, {{tapioca_flour}}, {{baking_powder}}, and {{salt}} to form a shaggy dough.\n4. If the dough feels dry, add a splash of water or oil. If sticky, dust with more rice flour.\n5. Grease parchment with {{oil}}. Roll the dough between two sheets of parchment to 1/4–3/8 inch thick and transfer to a baking sheet.\n6. Bake for 10 minutes. Flip the crust by placing parchment on top, turning it over, and removing the hot parchment.\n7. Add toppings of choice and bake 10–18 minutes more, until the edges are crisp and toppings are done.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Preheat the oven to 375°F (190°C)."
+      },
+      {
+        "section": null,
+        "text": "Peel and chop {{sweet_potato}}. Boil in water until fork-tender, about 10 minutes. Drain well and mash until smooth."
+      },
+      {
+        "section": null,
+        "text": "Measure 1 cup mashed sweet potato into a bowl. Mix in {{rice_flour}}, {{tapioca_flour}}, {{baking_powder}}, and {{salt}} to form a shaggy dough."
+      },
+      {
+        "section": null,
+        "text": "If the dough feels dry, add a splash of water or oil. If sticky, dust with more rice flour."
+      },
+      {
+        "section": null,
+        "text": "Grease parchment with {{oil}}. Roll the dough between two sheets of parchment to 1/4–3/8 inch thick and transfer to a baking sheet."
+      },
+      {
+        "section": null,
+        "text": "Bake for 10 minutes. Flip the crust by placing parchment on top, turning it over, and removing the hot parchment."
+      },
+      {
+        "section": null,
+        "text": "Add toppings of choice and bake 10–18 minutes more, until the edges are crisp and toppings are done."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "sweet_potato",
+      "rice_flour",
+      "tapioca_flour",
+      "baking_powder",
+      "salt",
+      "oil"
+    ],
+    "token_order": [
+      "sweet_potato",
+      "rice_flour",
+      "tapioca_flour",
+      "baking_powder",
+      "salt",
+      "oil"
+    ],
+    "ingredients": {
+      "sweet_potato": {
+        "token": "sweet_potato",
+        "options": [
+          {
+            "option": "",
+            "display": "sweet potato",
+            "ratio": "1",
+            "unit": "medium",
+            "ingredient_id": "sweet-potato",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "rice_flour": {
+        "token": "rice_flour",
+        "options": [
+          {
+            "option": "",
+            "display": "white rice flour",
+            "ratio": "3/4",
+            "unit": "cup",
+            "ingredient_id": "rice-flour",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "tapioca_flour": {
+        "token": "tapioca_flour",
+        "options": [
+          {
+            "option": "",
+            "display": "tapioca flour/starch",
+            "ratio": "1/3",
+            "unit": "cup",
+            "ingredient_id": "tapioca-starch",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "baking_powder": {
+        "token": "baking_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "baking powder",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "baking-powder",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "oil": {
+        "token": "oil",
+        "options": [
+          {
+            "option": "",
+            "display": "oil or cooking spray",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "neutral-oil",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "sweet-potatoes-pork-chops-pears",
     "title": "Sweet Potatoes with Pork Chops and Pears",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -7446,7 +8508,7 @@
     ],
     "family": "",
     "notes": "Layered bake with sweet potatoes, seared chops, and a pear syrup glaze.",
-    "steps_raw": "1. Preheat the oven to 350°F (177°C). Drain {{pear_halves}}, reserving the syrup.\n2. Peel and thickly slice {{sweet_potatoes}}. Arrange them in the bottom of a shallow baking dish.\n3. Trim excess fat from {{pork_chops}}, season with {{salt}} and {{black_pepper}}, and brown lightly in a skillet. Place the chops on top of the sweet potatoes.\n4. In a small saucepan, combine the reserved pear syrup with {{brown_sugar}}, {{butter_choice}}, and {{cinnamon}}. Heat just until the sugar dissolves.\n5. Spoon half of the syrup over the chops. Bake for 30 minutes.\n6. Remove the dish from the oven, arrange {{pear_halves}} around the chops, and spoon the remaining syrup over everything. Bake for another 30 minutes, or until the chops are tender.\n",
+    "steps_raw": "1. Preheat the oven to 350°F (177°C). Drain {{pear_halves}}, reserving the syrup.\n2. Peel and thickly slice {{sweet_potatoes}}. Arrange them in the bottom of a shallow baking dish.\n3. Trim excess fat from {{pork_chops}}, season with {{salt}} and {{black_pepper}}, and brown lightly in a skillet. Place the chops on top of the sweet potatoes.\n4. In a small saucepan, combine the reserved pear syrup with {{brown_sugar}}, {{butter_choice}}, and {{cinnamon}}. Heat just until the sugar dissolves.\n5. Spoon half of the syrup over the chops. Bake for 30 minutes.\n6. Remove the dish from the oven, arrange {{pear_halves}} around the chops, and spoon the remaining syrup over everything. Bake for another 30 minutes, or until the chops are tender.",
     "steps": [
       {
         "section": null,
@@ -7501,7 +8563,7 @@
         "options": [
           {
             "option": "",
-            "display": "pear halves (reserve syrup)",
+            "display": "pear halves",
             "ratio": "1",
             "unit": "pint",
             "ingredient_id": "pear-halves",
@@ -7522,7 +8584,7 @@
         "options": [
           {
             "option": "",
-            "display": "cooked sweet potatoes",
+            "display": "sweet potatoes",
             "ratio": "4",
             "unit": "count",
             "ingredient_id": "sweet-potato",
@@ -7565,8 +8627,8 @@
           {
             "option": "",
             "display": "salt",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/2",
+            "unit": "tsp",
             "ingredient_id": "salt",
             "depends_on": null,
             "line_group": null,
@@ -7586,8 +8648,8 @@
           {
             "option": "",
             "display": "black pepper",
-            "ratio": "",
-            "unit": "",
+            "ratio": "1/4",
+            "unit": "tsp",
             "ingredient_id": "black-pepper",
             "depends_on": null,
             "line_group": null,
@@ -7699,6 +8761,7 @@
   {
     "id": "turmeric-chicken-curry",
     "title": "Turmeric Chicken Curry",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -7707,7 +8770,7 @@
     ],
     "family": "",
     "notes": "Bright coconut curry; serve with rice or cauliflower rice and lime wedges.",
-    "steps_raw": "1. Cook {{rice}} according to package directions.\n2. In a large pan over medium heat, melt {{coconut_oil}}. Add {{white_onion}}, {{ginger}}, and {{garlic}}; sauté for 3–4 minutes until the onion is translucent. Remove to a plate, leaving the oil in the pan.\n3. Lightly salt {{chicken_breast}} with part of the {{sea_salt}} and sauté in the same pan until the internal temperature reaches 165°F (74°C).\n4. Return the aromatics to the pan. Stir in {{coconut_milk}}, {{coconut_cream}}, {{coconut_aminos}}, juice from half of the {{lime}}, {{sea_salt}}, {{turmeric}}, and {{black_pepper}}. Simmer for about 5 minutes, stirring, until the sauce thickens slightly.\n5. Adjust seasoning to taste. Top with {{cilantro}} and serve with {{cauliflower_rice}} and lime wedges from the remaining {{lime}}.\n",
+    "steps_raw": "1. Cook {{rice}} according to package directions.\n2. In a large pan over medium heat, melt {{coconut_oil}}. Add {{white_onion}}, {{ginger}}, and {{garlic}}; sauté for 3–4 minutes until the onion is translucent. Remove to a plate, leaving the oil in the pan.\n3. Lightly salt {{chicken_breast}} with part of the {{sea_salt}} and sauté in the same pan until the internal temperature reaches 165°F (74°C).\n4. Return the aromatics to the pan. Stir in {{coconut_milk}}, {{coconut_cream}}, {{coconut_aminos}}, juice from half of the {{lime}}, {{sea_salt}}, {{turmeric}}, and {{black_pepper}}. Simmer for about 5 minutes, stirring, until the sauce thickens slightly.\n5. Adjust seasoning to taste. Top with {{cilantro}} and serve with {{cauliflower_rice}} and lime wedges from the remaining {{lime}}.",
     "steps": [
       {
         "section": null,
@@ -7815,7 +8878,7 @@
         "options": [
           {
             "option": "",
-            "display": "white onion (diced)",
+            "display": "white onion",
             "ratio": "1",
             "unit": "count",
             "ingredient_id": "onion",
@@ -7836,7 +8899,7 @@
         "options": [
           {
             "option": "",
-            "display": "fresh ginger (grated)",
+            "display": "fresh ginger",
             "ratio": "1",
             "unit": "inch",
             "ingredient_id": "ginger",
@@ -7857,7 +8920,7 @@
         "options": [
           {
             "option": "",
-            "display": "garlic cloves (chopped)",
+            "display": "garlic cloves",
             "ratio": "2",
             "unit": "clove",
             "ingredient_id": "garlic",
@@ -7878,7 +8941,7 @@
         "options": [
           {
             "option": "",
-            "display": "chicken breast (cubed)",
+            "display": "chicken breast",
             "ratio": "1",
             "unit": "lb",
             "ingredient_id": "chicken-breast",
@@ -8046,7 +9109,7 @@
         "options": [
           {
             "option": "",
-            "display": "fresh cilantro (chopped)",
+            "display": "fresh cilantro",
             "ratio": "2",
             "unit": "tbsp",
             "ingredient_id": "cilantro",
@@ -8067,7 +9130,7 @@
         "options": [
           {
             "option": "",
-            "display": "cauliflower rice (for serving)",
+            "display": "cauliflower rice",
             "ratio": "4",
             "unit": "cup",
             "ingredient_id": "cauliflower-rice",
@@ -8095,8 +9158,820 @@
     }
   },
   {
+    "id": "vegan-pumpkin-bread",
+    "title": "Vegan Pumpkin Bread",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Desserts & Baking"
+    ],
+    "family": "",
+    "notes": "Use gluten-free flour if desired. Streusel topping and vegan cream cheese frosting are optional.",
+    "steps_raw": "1. Preheat the oven to 350°F (175°C). Line a 9-inch loaf pan with parchment, leaving an overhang.\n2. Whisk {{pumpkin_puree}}, {{granulated_sugar}}, {{brown_sugar}}, {{oil}}, and {{vanilla_extract}} in a large bowl.\n3. Add {{flour}}, {{baking_powder}}, {{baking_soda}}, {{sea_salt}}, {{pumpkin_spice}}, and {{cinnamon}}. Whisk just until combined.\n4. Combine {{streusel_flour}}, {{streusel_sugar}}, {{streusel_spice}}, and {{streusel_salt}}. Stir in {{streusel_butter}} and {{streusel_vanilla}} until crumbly.\n5. Pour the batter into the prepared pan. Sprinkle streusel on top if using.\n6. Bake until a toothpick comes out clean: about 65 minutes without streusel or up to 80 minutes with streusel (cover loosely with foil after 60 minutes if needed).\n7. Cool completely before slicing.\n8. Beat {{frosting_butter}} and {{frosting_cream_cheese}} until fluffy. Mix in {{powdered_sugar}} and {{frosting_vanilla}}, then spread on cooled bread.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Preheat the oven to 350°F (175°C). Line a 9-inch loaf pan with parchment, leaving an overhang."
+      },
+      {
+        "section": null,
+        "text": "Whisk {{pumpkin_puree}}, {{granulated_sugar}}, {{brown_sugar}}, {{oil}}, and {{vanilla_extract}} in a large bowl."
+      },
+      {
+        "section": null,
+        "text": "Add {{flour}}, {{baking_powder}}, {{baking_soda}}, {{sea_salt}}, {{pumpkin_spice}}, and {{cinnamon}}. Whisk just until combined."
+      },
+      {
+        "section": "Optional streusel",
+        "text": "Combine {{streusel_flour}}, {{streusel_sugar}}, {{streusel_spice}}, and {{streusel_salt}}. Stir in {{streusel_butter}} and {{streusel_vanilla}} until crumbly."
+      },
+      {
+        "section": null,
+        "text": "Pour the batter into the prepared pan. Sprinkle streusel on top if using."
+      },
+      {
+        "section": null,
+        "text": "Bake until a toothpick comes out clean: about 65 minutes without streusel or up to 80 minutes with streusel (cover loosely with foil after 60 minutes if needed)."
+      },
+      {
+        "section": null,
+        "text": "Cool completely before slicing."
+      },
+      {
+        "section": "Optional frosting",
+        "text": "Beat {{frosting_butter}} and {{frosting_cream_cheese}} until fluffy. Mix in {{powdered_sugar}} and {{frosting_vanilla}}, then spread on cooled bread."
+      }
+    ],
+    "step_sections": [
+      "Optional streusel",
+      "Optional frosting"
+    ],
+    "tokens_used": [
+      "pumpkin_puree",
+      "granulated_sugar",
+      "brown_sugar",
+      "oil",
+      "vanilla_extract",
+      "flour",
+      "baking_powder",
+      "baking_soda",
+      "sea_salt",
+      "pumpkin_spice",
+      "cinnamon",
+      "streusel_flour",
+      "streusel_sugar",
+      "streusel_spice",
+      "streusel_salt",
+      "streusel_butter",
+      "streusel_vanilla",
+      "frosting_butter",
+      "frosting_cream_cheese",
+      "powdered_sugar",
+      "frosting_vanilla"
+    ],
+    "token_order": [
+      "pumpkin_puree",
+      "granulated_sugar",
+      "brown_sugar",
+      "oil",
+      "vanilla_extract",
+      "flour",
+      "baking_powder",
+      "baking_soda",
+      "sea_salt",
+      "pumpkin_spice",
+      "cinnamon",
+      "streusel_flour",
+      "streusel_sugar",
+      "streusel_spice",
+      "streusel_salt",
+      "streusel_butter",
+      "streusel_vanilla",
+      "frosting_butter",
+      "frosting_cream_cheese",
+      "powdered_sugar",
+      "frosting_vanilla"
+    ],
+    "ingredients": {
+      "pumpkin_puree": {
+        "token": "pumpkin_puree",
+        "options": [
+          {
+            "option": "",
+            "display": "pumpkin puree",
+            "ratio": "1 1/4",
+            "unit": "cup",
+            "ingredient_id": "pumpkin-puree",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "granulated_sugar": {
+        "token": "granulated_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "granulated sugar",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "white-sugar",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "brown_sugar": {
+        "token": "brown_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "light brown sugar",
+            "ratio": "3/4",
+            "unit": "cup",
+            "ingredient_id": "brown-sugar",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "oil": {
+        "token": "oil",
+        "options": [
+          {
+            "option": "",
+            "display": "neutral oil",
+            "ratio": "2/3",
+            "unit": "cup",
+            "ingredient_id": "neutral-oil",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "vanilla_extract": {
+        "token": "vanilla_extract",
+        "options": [
+          {
+            "option": "",
+            "display": "vanilla extract",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "vanilla-extract",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "",
+            "display": "all-purpose flour",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "baking_powder": {
+        "token": "baking_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "baking powder",
+            "ratio": "1 1/2",
+            "unit": "tsp",
+            "ingredient_id": "baking-powder",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "baking_soda": {
+        "token": "baking_soda",
+        "options": [
+          {
+            "option": "",
+            "display": "baking soda",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "baking-soda",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "sea_salt": {
+        "token": "sea_salt",
+        "options": [
+          {
+            "option": "",
+            "display": "sea salt",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "pumpkin_spice": {
+        "token": "pumpkin_spice",
+        "options": [
+          {
+            "option": "",
+            "display": "pumpkin spice blend",
+            "ratio": "2",
+            "unit": "tsp",
+            "ingredient_id": "pumpkin-spice",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "cinnamon": {
+        "token": "cinnamon",
+        "options": [
+          {
+            "option": "",
+            "display": "ground cinnamon",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "cinnamon",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "streusel_flour": {
+        "token": "streusel_flour",
+        "options": [
+          {
+            "option": "",
+            "display": "all-purpose flour",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "streusel_sugar": {
+        "token": "streusel_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "light brown sugar",
+            "ratio": "1/3",
+            "unit": "cup",
+            "ingredient_id": "brown-sugar",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "streusel_spice": {
+        "token": "streusel_spice",
+        "options": [
+          {
+            "option": "",
+            "display": "pumpkin spice blend",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "pumpkin-spice",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "streusel_salt": {
+        "token": "streusel_salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "salt",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "streusel_butter": {
+        "token": "streusel_butter",
+        "options": [
+          {
+            "option": "",
+            "display": "butter",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "butter",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "streusel_vanilla": {
+        "token": "streusel_vanilla",
+        "options": [
+          {
+            "option": "",
+            "display": "vanilla extract",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "vanilla-extract",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "frosting_butter": {
+        "token": "frosting_butter",
+        "options": [
+          {
+            "option": "",
+            "display": "butter",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "butter",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "frosting_cream_cheese": {
+        "token": "frosting_cream_cheese",
+        "options": [
+          {
+            "option": "",
+            "display": "cream cheese",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "cream-cheese",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "powdered_sugar": {
+        "token": "powdered_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "powdered sugar",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "powdered-sugar",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "frosting_vanilla": {
+        "token": "frosting_vanilla",
+        "options": [
+          {
+            "option": "",
+            "display": "vanilla extract",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "vanilla-extract",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "veggie-teriyaki-stir-fry-noodles",
+    "title": "Veggie Teriyaki Stir-Fry with Noodles",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Main Dishes"
+    ],
+    "family": "",
+    "notes": "Use your favorite noodle and mixed vegetables. For gluten-free, choose gluten-free teriyaki and noodles.",
+    "steps_raw": "1. Cook {{noodles}} in boiling water until al dente. Drain and rinse to remove excess starch.\n2. Heat {{olive_oil}} in a large skillet over medium heat. Add {{onion}} and {{sea_salt}}; cook until tender\n3. Add {{mixed_vegetables}} and cook\n4. Stir in the noodles and {{teriyaki_sauce}}. Cook until warmed through\n5. Remove from heat. Toss with {{sesame_oil}} and {{sesame_seeds}}.\n6. Serve topped with {{green_onion}} and extra sesame seeds if desired.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Cook {{noodles}} in boiling water until al dente. Drain and rinse to remove excess starch."
+      },
+      {
+        "section": null,
+        "text": "Heat {{olive_oil}} in a large skillet over medium heat. Add {{onion}} and {{sea_salt}}; cook until tender"
+      },
+      {
+        "section": null,
+        "text": "Add {{mixed_vegetables}} and cook"
+      },
+      {
+        "section": null,
+        "text": "Stir in the noodles and {{teriyaki_sauce}}. Cook until warmed through"
+      },
+      {
+        "section": null,
+        "text": "Remove from heat. Toss with {{sesame_oil}} and {{sesame_seeds}}."
+      },
+      {
+        "section": null,
+        "text": "Serve topped with {{green_onion}} and extra sesame seeds if desired."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "noodles",
+      "olive_oil",
+      "onion",
+      "sea_salt",
+      "mixed_vegetables",
+      "teriyaki_sauce",
+      "sesame_oil",
+      "sesame_seeds",
+      "green_onion"
+    ],
+    "token_order": [
+      "noodles",
+      "olive_oil",
+      "onion",
+      "sea_salt",
+      "mixed_vegetables",
+      "teriyaki_sauce",
+      "sesame_oil",
+      "sesame_seeds",
+      "green_onion"
+    ],
+    "ingredients": {
+      "noodles": {
+        "token": "noodles",
+        "options": [
+          {
+            "option": "",
+            "display": "soba noodles",
+            "ratio": "4",
+            "unit": "oz",
+            "ingredient_id": "noodles",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "olive_oil": {
+        "token": "olive_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "extra-virgin olive oil",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "olive_oil",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "onion": {
+        "token": "onion",
+        "options": [
+          {
+            "option": "",
+            "display": "red or white onion",
+            "ratio": "1",
+            "unit": "medium",
+            "ingredient_id": "onion",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "sea_salt": {
+        "token": "sea_salt",
+        "options": [
+          {
+            "option": "",
+            "display": "fine sea salt",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "mixed_vegetables": {
+        "token": "mixed_vegetables",
+        "options": [
+          {
+            "option": "",
+            "display": "mixed vegetables",
+            "ratio": "6",
+            "unit": "cup",
+            "ingredient_id": "mixed-vegetables",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "teriyaki_sauce": {
+        "token": "teriyaki_sauce",
+        "options": [
+          {
+            "option": "",
+            "display": "teriyaki sauce",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "teriyaki-sauce",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "sesame_oil": {
+        "token": "sesame_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "toasted sesame oil",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "toasted-sesame-oil",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "sesame_seeds": {
+        "token": "sesame_seeds",
+        "options": [
+          {
+            "option": "",
+            "display": "sesame seeds",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "sesame-seeds",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "green_onion": {
+        "token": "green_onion",
+        "options": [
+          {
+            "option": "",
+            "display": "green onion",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "green-onion",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "watercress-parsley-soup",
     "title": "Watercress and Parsley Soup",
+    "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -8105,7 +9980,7 @@
     ],
     "family": "",
     "notes": "Quick green soup; blend greens with milk if you prefer a smoother finish.",
-    "steps_raw": "1. In a pot, melt {{butter}} and briefly sauté {{onion}} until translucent.\n2. Stir in {{wheat_flour}} and cook for about 3 minutes to form a roux.\n3. Gradually whisk in {{chicken_broth}} and {{milk}}. Bring to a boil while whisking constantly.\n4. Lower the heat, then add {{parsley}}, {{watercress}}, {{nutmeg}}, {{salt}}, and {{black_pepper}}. Cover and cook for about 5 minutes, keeping the greens bright.\n5. For an extra smooth soup, blend some of the hot liquid with the greens before adding, or purée briefly after cooking. Serve hot; add cooked chicken if desired.\n",
+    "steps_raw": "1. In a pot, melt {{butter}} and briefly sauté {{onion}} until translucent.\n2. Stir in {{wheat_flour}} and cook for about 3 minutes to form a roux.\n3. Gradually whisk in {{chicken_broth}} and {{milk}}. Bring to a boil while whisking constantly.\n4. Lower the heat, then add {{parsley}}, {{watercress}}, {{nutmeg}}, {{salt}}, and {{black_pepper}}. Cover and cook for about 5 minutes, keeping the greens bright.\n5. For an extra smooth soup, blend some of the hot liquid with the greens before adding, or purée briefly after cooking. Serve hot; add cooked chicken if desired.",
     "steps": [
       {
         "section": null,
@@ -8180,7 +10055,7 @@
         "options": [
           {
             "option": "",
-            "display": "chopped onion",
+            "display": "onion",
             "ratio": "1/2",
             "unit": "cup",
             "ingredient_id": "onion",
@@ -8264,7 +10139,7 @@
         "options": [
           {
             "option": "",
-            "display": "finely chopped parsley",
+            "display": "parsley",
             "ratio": "2 1/2",
             "unit": "cup",
             "ingredient_id": "parsley",
@@ -8285,7 +10160,7 @@
         "options": [
           {
             "option": "",
-            "display": "finely chopped watercress",
+            "display": "watercress",
             "ratio": "2",
             "unit": "cup",
             "ingredient_id": "watercress",

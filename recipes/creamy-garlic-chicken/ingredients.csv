@@ -19,4 +19,4 @@ garlic_cloves,whole garlic cloves,garlic,10,piece,,Sauce
 flour_sauce,flour,wheat_flour,3,tbsp,,Sauce
 heavy_cream,heavy cream,heavy_cream,1/2,cup,,Sauce
 parmesan_finish,Parmesan cheese,parmesan_cheese,1/2,cup,include,Sauce
-parmesan_finish,Parmesan cheese,parmesan_cheese,0,cup,omit,Sauce
+parmesan_finish,No parmesan,parmesan_cheese,0,cup,omit,Sauce

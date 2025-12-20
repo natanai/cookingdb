@@ -1,8 +1,8 @@
 token,option,display,ratio,unit,ingredient_id
 noodles,,soba noodles,4,oz,noodles
-olive_oil,,extra-virgin olive oil,2,tbsp,olive-oil
+olive_oil,,extra-virgin olive oil,2,tbsp,olive_oil
 onion,,red or white onion,1,medium,onion
-sea_salt,,fine sea salt,1/2,tsp,sea-salt
+sea_salt,,fine sea salt,1/2,tsp,salt
 mixed_vegetables,,mixed vegetables,6,cup,mixed-vegetables
 teriyaki_sauce,,teriyaki sauce,1/2,cup,teriyaki-sauce
 sesame_oil,,toasted sesame oil,1,tsp,toasted-sesame-oil
