@@ -40,31 +40,6 @@ function normalizeTitleKey(title) {
     .replace(/^-|-$/g, '');
 }
 
-function splitRecipeTitle(rawTitle) {
-  const title = (rawTitle || '').trim();
-  if (!title) return { title: '', name: '' };
-
-  const parenMatch = title.match(/^(.*)\s*\(([^)]+)\)\s*$/);
-  if (parenMatch) {
-    return { title: parenMatch[1].trim(), name: parenMatch[2].trim() };
-  }
-
-  const possessiveMatch = title.match(/^([^–—-]+?)\s*['’]s\s+(.+)$/i);
-  if (possessiveMatch) {
-    return { title: possessiveMatch[2].trim(), name: possessiveMatch[1].trim() };
-  }
-
-  return { title, name: '' };
-}
-
-function getRecipeTitleParts(recipe) {
-  const byline = (recipe?.byline || '').trim();
-  if (byline) {
-    return { title: (recipe?.title || '').trim(), name: byline };
-  }
-  return splitRecipeTitle(recipe?.title || '');
-}
-
 function normalizeIngredients(raw, tokenOrder = []) {
   const list = Array.isArray(raw)
     ? raw.filter(Boolean)
@@ -760,19 +735,7 @@ function renderRecipe(recipeInput) {
 
   rerender();
 
-  if (titleEl) {
-    const { title, name } = getRecipeTitleParts(recipe);
-    titleEl.textContent = '';
-    const titleText = document.createElement('span');
-    titleText.textContent = title || 'Recipe';
-    titleEl.appendChild(titleText);
-    if (name) {
-      const nameEl = document.createElement('span');
-      nameEl.className = 'recipe-row-title-name';
-      nameEl.textContent = ` — ${name}`;
-      titleEl.appendChild(nameEl);
-    }
-  }
+  if (titleEl) titleEl.textContent = recipe.title || 'Recipe';
 
   const printBtn = document.getElementById('print-btn');
   if (printBtn) {

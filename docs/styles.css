@@ -481,14 +481,6 @@ main {
   min-width: 0;
 }
 
-.recipe-row-title-name {
-  margin-left: 0.25rem;
-  font-size: 0.9em;
-  font-weight: 400;
-  color: var(--muted);
-  opacity: 0.9;
-}
-
 .recipe-row-flags {
   flex-shrink: 0;
   display: inline-flex;
