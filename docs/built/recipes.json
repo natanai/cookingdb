@@ -9,12 +9,12 @@
       "Family"
     ],
     "family": "",
-    "notes": "Use a 3\u20134 lb brisket. This braise layers apple cider with broth and root vegetables.",
-    "steps_raw": "1. Preheat the oven to 325\u00b0F (163\u00b0C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}.\n2. In a large Dutch oven over medium-high heat, heat {{neutral_oil}}. Sear the {{brisket}}, turning occasionally, until browned, about 5 minutes per side. Transfer to a large baking dish or plate.\n3. Reduce heat to medium. In the same pot, arrange {{baby_potatoes}} cut side down and cook undisturbed until lightly softened, about 5 minutes. Add {{carrots}} and {{shallots}}, season with more {{kosher_salt}} and {{black_pepper}}, and stir to release the potatoes.\n4. Return {{brisket}} and any accumulated juices to the pot. Pour in {{apple_cider}} and {{broth_choice}}, then add {{thyme}}, {{bay_leaves}}, and {{cayenne}}. Season to taste with {{kosher_salt}} and {{black_pepper}}, cover, and bring to a boil.\n5. Once boiling, transfer the covered pot to the oven and roast until the brisket is easily shreddable, 2 1/2 to 3 hours.\n6. Discard {{thyme}} and {{bay_leaves}}. Shred {{brisket}} with two forks. Arrange the meat on a platter with the vegetables and spoon the cooking juices over the top.\n",
+    "notes": "Use a 3–4 lb brisket. This braise layers apple cider with broth and root vegetables.",
+    "steps_raw": "1. Preheat the oven to 325°F (163°C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}.\n2. In a large Dutch oven over medium-high heat, heat {{neutral_oil}}. Sear the {{brisket}}, turning occasionally, until browned, about 5 minutes per side. Transfer to a large baking dish or plate.\n3. Reduce heat to medium. In the same pot, arrange {{baby_potatoes}} cut side down and cook undisturbed until lightly softened, about 5 minutes. Add {{carrots}} and {{shallots}}, season with more {{kosher_salt}} and {{black_pepper}}, and stir to release the potatoes.\n4. Return {{brisket}} and any accumulated juices to the pot. Pour in {{apple_cider}} and {{broth_choice}}, then add {{thyme}}, {{bay_leaves}}, and {{cayenne}}. Season to taste with {{kosher_salt}} and {{black_pepper}}, cover, and bring to a boil.\n5. Once boiling, transfer the covered pot to the oven and roast until the brisket is easily shreddable, 2 1/2 to 3 hours.\n6. Discard {{thyme}} and {{bay_leaves}}. Shred {{brisket}} with two forks. Arrange the meat on a platter with the vegetables and spoon the cooking juices over the top.\n",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 325\u00b0F (163\u00b0C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}."
+        "text": "Preheat the oven to 325°F (163°C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}."
       },
       {
         "section": null,
@@ -371,11 +371,11 @@
     ],
     "family": "",
     "notes": "Sweet potato casserole baked until the brown sugar glaze is sticky.",
-    "steps_raw": "1. Preheat the oven to 350\u00b0F (177\u00b0C). Peel and cut {{sweet_potatoes}}.\n2. Boil {{sweet_potatoes}} in salted water until almost tender, then drain well.\n3. Spread {{sweet_potatoes}} in a greased casserole dish. Sprinkle with {{salt}}, {{brown_sugar}}, and {{flour}}, then pour {{cream}} over the top.\n4. Bake for 20\u201330 minutes, or until the sauce is sticky and bubbling around the edges.\n",
+    "steps_raw": "1. Preheat the oven to 350°F (177°C). Peel and cut {{sweet_potatoes}}.\n2. Boil {{sweet_potatoes}} in salted water until almost tender, then drain well.\n3. Spread {{sweet_potatoes}} in a greased casserole dish. Sprinkle with {{salt}}, {{brown_sugar}}, and {{flour}}, then pour {{cream}} over the top.\n4. Bake for 20–30 minutes, or until the sauce is sticky and bubbling around the edges.\n",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 350\u00b0F (177\u00b0C). Peel and cut {{sweet_potatoes}}."
+        "text": "Preheat the oven to 350°F (177°C). Peel and cut {{sweet_potatoes}}."
       },
       {
         "section": null,
@@ -387,7 +387,7 @@
       },
       {
         "section": null,
-        "text": "Bake for 20\u201330 minutes, or until the sauce is sticky and bubbling around the edges."
+        "text": "Bake for 20–30 minutes, or until the sauce is sticky and bubbling around the edges."
       }
     ],
     "step_sections": [],
@@ -1314,7 +1314,7 @@
     ],
     "family": "Burrows",
     "notes": "",
-    "steps_raw": "1. Mix {{american_cheese}}, {{eggs}}, {{tuna}}, {{green_pepper}}, {{green_olives}}, {{sweet_pickles}}, and {{mayonnaise}} lightly.\n2. Fill the {{buns}} with the mixture.\n3. Wrap each bun in foil and bake at 350\u00b0F for about 30 minutes, until the filling is heated and the cheese is melted.\n",
+    "steps_raw": "1. Mix {{american_cheese}}, {{eggs}}, {{tuna}}, {{green_pepper}}, {{green_olives}}, {{sweet_pickles}}, and {{mayonnaise}} lightly.\n2. Fill the {{buns}} with the mixture.\n3. Wrap each bun in foil and bake at 350°F for about 30 minutes, until the filling is heated and the cheese is melted.\n",
     "steps": [
       {
         "section": null,
@@ -1326,7 +1326,7 @@
       },
       {
         "section": null,
-        "text": "Wrap each bun in foil and bake at 350\u00b0F for about 30 minutes, until the filling is heated and the cheese is melted."
+        "text": "Wrap each bun in foil and bake at 350°F for about 30 minutes, until the filling is heated and the cheese is melted."
       }
     ],
     "step_sections": [],
@@ -1541,11 +1541,11 @@
     ],
     "family": "",
     "notes": "Simple baked casserole; add a little coconut oil if the sausage is lean.",
-    "steps_raw": "1. Heat the oven to 350\u2013400\u00b0F (177\u2013204\u00b0C).\n2. Dice {{butternut_squash}} into 1-inch cubes and place in a baking dish. Add {{sausage}} (broken into pieces) and {{onion}}. Season with {{salt}}.\n3. If the sausage is lean, drizzle with {{coconut_oil}} for extra fat.\n4. Bake until the squash is tender and the sausage is cooked through, stirring occasionally.\n",
+    "steps_raw": "1. Heat the oven to 350–400°F (177–204°C).\n2. Dice {{butternut_squash}} into 1-inch cubes and place in a baking dish. Add {{sausage}} (broken into pieces) and {{onion}}. Season with {{salt}}.\n3. If the sausage is lean, drizzle with {{coconut_oil}} for extra fat.\n4. Bake until the squash is tender and the sausage is cooked through, stirring occasionally.\n",
     "steps": [
       {
         "section": null,
-        "text": "Heat the oven to 350\u2013400\u00b0F (177\u2013204\u00b0C)."
+        "text": "Heat the oven to 350–400°F (177–204°C)."
       },
       {
         "section": null,
@@ -1704,7 +1704,7 @@
     ],
     "family": "Burrows",
     "notes": "Serves 6. Bake in a 2-qt casserole.",
-    "steps_raw": "1. Melt {{fat}} in a saucepan over low heat. Whisk in {{flour}}, {{pepper}}, and {{salt}} if using.\n2. Cook, stirring constantly, until bubbly. Remove from heat.\n3. Stir in {{chicken_broth}} and {{milk}}. Bring to a boil, stirring constantly, and cook 1 minute.\n4. Stir in {{rice}} and {{poultry}}. Add {{mushrooms}}, {{green_pepper}}, {{pimiento}}, and {{almonds}} if desired.\n5. Pour into an ungreased 2-qt casserole dish and bake uncovered at 350\u00b0F for 40 to 45 minutes.\n6. Garnish with {{parsley}} before serving.\n",
+    "steps_raw": "1. Melt {{fat}} in a saucepan over low heat. Whisk in {{flour}}, {{pepper}}, and {{salt}} if using.\n2. Cook, stirring constantly, until bubbly. Remove from heat.\n3. Stir in {{chicken_broth}} and {{milk}}. Bring to a boil, stirring constantly, and cook 1 minute.\n4. Stir in {{rice}} and {{poultry}}. Add {{mushrooms}}, {{green_pepper}}, {{pimiento}}, and {{almonds}} if desired.\n5. Pour into an ungreased 2-qt casserole dish and bake uncovered at 350°F for 40 to 45 minutes.\n6. Garnish with {{parsley}} before serving.\n",
     "steps": [
       {
         "section": null,
@@ -1724,7 +1724,7 @@
       },
       {
         "section": null,
-        "text": "Pour into an ungreased 2-qt casserole dish and bake uncovered at 350\u00b0F for 40 to 45 minutes."
+        "text": "Pour into an ungreased 2-qt casserole dish and bake uncovered at 350°F for 40 to 45 minutes."
       },
       {
         "section": null,
@@ -2100,7 +2100,7 @@
     ],
     "family": "Burrows",
     "notes": "",
-    "steps_raw": "1. Cut {{chicken}} into small pieces.\n2. Combine {{soup}}, {{milk}}, and {{cheese}} in a saucepan; cook until the cheese melts.\n3. Spread half of the sauce in the bottom of a baking dish.\n4. Spoon some {{chicken}} onto the wide end of each {{crescent_rolls}}, roll up, and place on the sauce.\n5. Cover with the remaining sauce and bake at 350\u00b0F for 30 minutes.\n",
+    "steps_raw": "1. Cut {{chicken}} into small pieces.\n2. Combine {{soup}}, {{milk}}, and {{cheese}} in a saucepan; cook until the cheese melts.\n3. Spread half of the sauce in the bottom of a baking dish.\n4. Spoon some {{chicken}} onto the wide end of each {{crescent_rolls}}, roll up, and place on the sauce.\n5. Cover with the remaining sauce and bake at 350°F for 30 minutes.\n",
     "steps": [
       {
         "section": null,
@@ -2120,7 +2120,7 @@
       },
       {
         "section": null,
-        "text": "Cover with the remaining sauce and bake at 350\u00b0F for 30 minutes."
+        "text": "Cover with the remaining sauce and bake at 350°F for 30 minutes."
       }
     ],
     "step_sections": [],
@@ -2702,11 +2702,11 @@
     ],
     "family": "",
     "notes": "Use a gluten-free flour blend with xanthan gum. For dairy-free, choose vegan butter and dairy-free chips.",
-    "steps_raw": "1. Preheat the oven to 375\u00b0F (190\u00b0C). Line baking sheets with parchment.\n2. In a large bowl, beat {{butter_choice}}, {{white_sugar}}, and {{brown_sugar}} until creamy.\n3. Add {{egg_choice}}, {{molasses}}, and {{vanilla_extract}} to the bowl and mix until fully combined.\n4. Mix in {{gf_flour}}, {{baking_soda}}, {{baking_powder}}, and {{salt}} until a smooth dough forms.\n5. Stir in {{chocolate_chips}}.\n6. Drop rounded tablespoons of dough (about 1 1/2 tablespoons) onto the prepared sheets, spacing 2 inches apart.\n7. Bake for 8\u201310 minutes, until the edges just start to turn golden and the centers are soft. Cool briefly on the sheet before transferring to a rack.\n",
+    "steps_raw": "1. Preheat the oven to 375°F (190°C). Line baking sheets with parchment.\n2. In a large bowl, beat {{butter_choice}}, {{white_sugar}}, and {{brown_sugar}} until creamy.\n3. Add {{egg_choice}}, {{molasses}}, and {{vanilla_extract}} to the bowl and mix until fully combined.\n4. Mix in {{gf_flour}}, {{baking_soda}}, {{baking_powder}}, and {{salt}} until a smooth dough forms.\n5. Stir in {{chocolate_chips}}.\n6. Drop rounded tablespoons of dough (about 1 1/2 tablespoons) onto the prepared sheets, spacing 2 inches apart.\n7. Bake for 8–10 minutes, until the edges just start to turn golden and the centers are soft. Cool briefly on the sheet before transferring to a rack.\n",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 375\u00b0F (190\u00b0C). Line baking sheets with parchment."
+        "text": "Preheat the oven to 375°F (190°C). Line baking sheets with parchment."
       },
       {
         "section": null,
@@ -2730,7 +2730,7 @@
       },
       {
         "section": null,
-        "text": "Bake for 8\u201310 minutes, until the edges just start to turn golden and the centers are soft. Cool briefly on the sheet before transferring to a rack."
+        "text": "Bake for 8–10 minutes, until the edges just start to turn golden and the centers are soft. Cool briefly on the sheet before transferring to a rack."
       }
     ],
     "step_sections": [],
@@ -3075,11 +3075,11 @@
     ],
     "family": "",
     "notes": "Simple skillet collards with smoky bacon.",
-    "steps_raw": "1. In a skillet, heat {{vegetable_oil}} over medium heat. Saut\u00e9 {{onion}} and {{canadian_bacon}} for about 5 minutes.\n2. Add {{collard_greens}} and toss to coat in the fat. Cover and reduce heat.\n3. Simmer for 10\u201315 minutes, stirring frequently, until the greens are tender. Season with {{salt}} and {{black_pepper}} to taste.\n",
+    "steps_raw": "1. In a skillet, heat {{vegetable_oil}} over medium heat. Sauté {{onion}} and {{canadian_bacon}} for about 5 minutes.\n2. Add {{collard_greens}} and toss to coat in the fat. Cover and reduce heat.\n3. Simmer for 10–15 minutes, stirring frequently, until the greens are tender. Season with {{salt}} and {{black_pepper}} to taste.\n",
     "steps": [
       {
         "section": null,
-        "text": "In a skillet, heat {{vegetable_oil}} over medium heat. Saut\u00e9 {{onion}} and {{canadian_bacon}} for about 5 minutes."
+        "text": "In a skillet, heat {{vegetable_oil}} over medium heat. Sauté {{onion}} and {{canadian_bacon}} for about 5 minutes."
       },
       {
         "section": null,
@@ -3087,7 +3087,7 @@
       },
       {
         "section": null,
-        "text": "Simmer for 10\u201315 minutes, stirring frequently, until the greens are tender. Season with {{salt}} and {{black_pepper}} to taste."
+        "text": "Simmer for 10–15 minutes, stirring frequently, until the greens are tender. Season with {{salt}} and {{black_pepper}} to taste."
       }
     ],
     "step_sections": [],
@@ -3256,7 +3256,7 @@
     ],
     "family": "",
     "notes": "Garlic cloves are left whole and caramelized. Sauce thickens further as it cools.",
-    "steps_raw": "1. Combine {{chicken_broth}} with {{bouillon}}, {{soy_sauce}}, {{onion_powder}}, {{mustard_powder}}, and {{thyme}} in a large measuring cup and set aside.\n2. Combine {{flour_dredge}} and {{parmesan_dredge}} on a plate and measure remaining ingredients before cooking.\n3. Slice {{chicken_breast}} in half lengthwise to form thinner cutlets. Cover and pound to an even thickness, then pat dry.\n4. Season both sides of {{chicken_breast}} with {{italian_seasoning}}, {{salt}}, and {{black_pepper}}. Dredge in {{flour_dredge}} mixed with {{parmesan_dredge}}, tapping off excess.\n5. Heat {{olive_oil}} in a large skillet over medium-high heat. Sear {{chicken_breast}} for 4\u20135 minutes per side until golden. Remove and set aside.\n6. Reduce heat to medium-low and melt {{butter}} in the same skillet. Add {{garlic_cloves}} and cook until softened and caramelized, about 6\u20137 minutes.\n7. Sprinkle in {{flour_sauce}} and cook for 1\u20132 minutes, stirring until the raw flour smell is gone.\n8. Gradually whisk in the reserved {{chicken_broth}} mixture with {{bouillon}}, {{soy_sauce}}, {{onion_powder}}, {{mustard_powder}}, and {{thyme}} until smooth.\n9. Stir in {{heavy_cream}} and bring to a gentle boil, then reduce heat to low.\n10. Gradually stir in {{parmesan_finish}} until melted.\n11. Return {{chicken_breast}} and any accumulated juices to the skillet. Spoon sauce over the top, cover partially, and simmer for 5 minutes.",
+    "steps_raw": "1. Combine {{chicken_broth}} with {{bouillon}}, {{soy_sauce}}, {{onion_powder}}, {{mustard_powder}}, and {{thyme}} in a large measuring cup and set aside.\n2. Combine {{flour_dredge}} and {{parmesan_dredge}} on a plate and measure remaining ingredients before cooking.\n3. Slice {{chicken_breast}} in half lengthwise to form thinner cutlets. Cover and pound to an even thickness, then pat dry.\n4. Season both sides of {{chicken_breast}} with {{italian_seasoning}}, {{salt}}, and {{black_pepper}}. Dredge in {{flour_dredge}} mixed with {{parmesan_dredge}}, tapping off excess.\n5. Heat {{olive_oil}} in a large skillet over medium-high heat. Sear {{chicken_breast}} for 4–5 minutes per side until golden. Remove and set aside.\n6. Reduce heat to medium-low and melt {{butter}} in the same skillet. Add {{garlic_cloves}} and cook until softened and caramelized, about 6–7 minutes.\n7. Sprinkle in {{flour_sauce}} and cook for 1–2 minutes, stirring until the raw flour smell is gone.\n8. Gradually whisk in the reserved {{chicken_broth}} mixture with {{bouillon}}, {{soy_sauce}}, {{onion_powder}}, {{mustard_powder}}, and {{thyme}} until smooth.\n9. Stir in {{heavy_cream}} and bring to a gentle boil, then reduce heat to low.\n10. Gradually stir in {{parmesan_finish}} until melted.\n11. Return {{chicken_breast}} and any accumulated juices to the skillet. Spoon sauce over the top, cover partially, and simmer for 5 minutes.",
     "steps": [
       {
         "section": "Prep Work",
@@ -3276,15 +3276,15 @@
       },
       {
         "section": "Cook the Chicken",
-        "text": "Heat {{olive_oil}} in a large skillet over medium-high heat. Sear {{chicken_breast}} for 4\u20135 minutes per side until golden. Remove and set aside."
+        "text": "Heat {{olive_oil}} in a large skillet over medium-high heat. Sear {{chicken_breast}} for 4–5 minutes per side until golden. Remove and set aside."
       },
       {
         "section": "Make the Sauce",
-        "text": "Reduce heat to medium-low and melt {{butter}} in the same skillet. Add {{garlic_cloves}} and cook until softened and caramelized, about 6\u20137 minutes."
+        "text": "Reduce heat to medium-low and melt {{butter}} in the same skillet. Add {{garlic_cloves}} and cook until softened and caramelized, about 6–7 minutes."
       },
       {
         "section": "Make the Sauce",
-        "text": "Sprinkle in {{flour_sauce}} and cook for 1\u20132 minutes, stirring until the raw flour smell is gone."
+        "text": "Sprinkle in {{flour_sauce}} and cook for 1–2 minutes, stirring until the raw flour smell is gone."
       },
       {
         "section": "Make the Sauce",
@@ -4097,7 +4097,7 @@
     ],
     "family": "Burrows",
     "notes": "Makes about 24 cookies.",
-    "steps_raw": "1. Beat {{sugar}}, {{peanut_butter}}, {{egg}}, and {{vanilla}} until well blended.\n2. Fold in {{peanuts}} if using.\n3. Form cookies and place on a parchment-lined baking sheet. Flatten with a fork in a criss-cross pattern.\n4. Bake at 325\u00b0F for 10 to 12 minutes, until lightly browned. Cool 2 minutes on the pan.\n",
+    "steps_raw": "1. Beat {{sugar}}, {{peanut_butter}}, {{egg}}, and {{vanilla}} until well blended.\n2. Fold in {{peanuts}} if using.\n3. Form cookies and place on a parchment-lined baking sheet. Flatten with a fork in a criss-cross pattern.\n4. Bake at 325°F for 10 to 12 minutes, until lightly browned. Cool 2 minutes on the pan.\n",
     "steps": [
       {
         "section": null,
@@ -4113,7 +4113,7 @@
       },
       {
         "section": null,
-        "text": "Bake at 325\u00b0F for 10 to 12 minutes, until lightly browned. Cool 2 minutes on the pan."
+        "text": "Bake at 325°F for 10 to 12 minutes, until lightly browned. Cool 2 minutes on the pan."
       }
     ],
     "step_sections": [],
@@ -4260,7 +4260,7 @@
     ],
     "family": "Burrows",
     "notes": "",
-    "steps_raw": "1. Mash the cooked {{potatoes}}.\n2. Beat in {{butter}} and {{cream_cheese}} until smooth.\n3. Stir in {{cheddar_cheese}}, {{pimiento}}, {{green_pepper}}, {{parmesan}}, {{milk}}, {{salt}}, and {{green_onions}}.\n4. Spoon into a lightly greased 9x13 baking dish and bake at 350\u00b0F for 35 minutes.\n5. Sprinkle with extra {{cheddar_cheese}} and bake until melted.\n",
+    "steps_raw": "1. Mash the cooked {{potatoes}}.\n2. Beat in {{butter}} and {{cream_cheese}} until smooth.\n3. Stir in {{cheddar_cheese}}, {{pimiento}}, {{green_pepper}}, {{parmesan}}, {{milk}}, {{salt}}, and {{green_onions}}.\n4. Spoon into a lightly greased 9x13 baking dish and bake at 350°F for 35 minutes.\n5. Sprinkle with extra {{cheddar_cheese}} and bake until melted.\n",
     "steps": [
       {
         "section": null,
@@ -4276,7 +4276,7 @@
       },
       {
         "section": null,
-        "text": "Spoon into a lightly greased 9x13 baking dish and bake at 350\u00b0F for 35 minutes."
+        "text": "Spoon into a lightly greased 9x13 baking dish and bake at 350°F for 35 minutes."
       },
       {
         "section": null,
@@ -4792,11 +4792,11 @@
     ],
     "family": "",
     "notes": "Bake in an 8x8-inch square pan (stone preferred; glass/metal ok). Use room-temperature full-fat coconut milk and whisk/blend until completely smooth before measuring.",
-    "steps_raw": "1. Preheat the oven to 350\u00b0F (177\u00b0C). Lightly grease an 8x8-inch square baking dish (stone preferred; glass or metal ok) with {{neutral_oil}}, then wipe off any excess.\n2. Make sure {{coconut_milk}} is fully smooth before measuring: whisk or blend room-temperature full-fat coconut milk until completely mixed and smooth, then measure out {{coconut_milk}}.\n3. In a large bowl, whisk together {{oat_flour}}, {{almond_flour}}, {{tapioca_starch}}, {{cornstarch}}, {{sugar}}, {{baking_powder}}, and {{salt}} until no lumps remain.\n4. In a separate bowl, whisk together {{coconut_milk}}, {{lemon_juice}}, zest of {{lemon_for_zest}}, and {{vanilla_extract}}.\n5. Pour the wet mixture into the dry mixture and whisk until smooth. Pour the batter into the prepared pan.\n6. Bake for 20\u201325 minutes, or until a toothpick comes out completely clean. Cool completely (about 45 minutes) before glazing.\n7. For a full glaze, whisk together {{powdered_sugar}}, {{lemon_juice_glaze}}, {{glaze_thickener}}, and {{vanilla_glaze}} until completely smooth. For a light drizzle, make half this glaze by halving those four ingredients.\n8. Spread the glaze over the cooled cake. Let it set for about 15 minutes, then slice and serve.\n",
+    "steps_raw": "1. Preheat the oven to 350°F (177°C). Lightly grease an 8x8-inch square baking dish (stone preferred; glass or metal ok) with {{neutral_oil}}, then wipe off any excess.\n2. Make sure {{coconut_milk}} is fully smooth before measuring: whisk or blend room-temperature full-fat coconut milk until completely mixed and smooth, then measure out {{coconut_milk}}.\n3. In a large bowl, whisk together {{oat_flour}}, {{almond_flour}}, {{tapioca_starch}}, {{cornstarch}}, {{sugar}}, {{baking_powder}}, and {{salt}} until no lumps remain.\n4. In a separate bowl, whisk together {{coconut_milk}}, {{lemon_juice}}, zest of {{lemon_for_zest}}, and {{vanilla_extract}}.\n5. Pour the wet mixture into the dry mixture and whisk until smooth. Pour the batter into the prepared pan.\n6. Bake for 20–25 minutes, or until a toothpick comes out completely clean. Cool completely (about 45 minutes) before glazing.\n7. For a full glaze, whisk together {{powdered_sugar}}, {{lemon_juice_glaze}}, {{glaze_thickener}}, and {{vanilla_glaze}} until completely smooth. For a light drizzle, make half this glaze by halving those four ingredients.\n8. Spread the glaze over the cooled cake. Let it set for about 15 minutes, then slice and serve.\n",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 350\u00b0F (177\u00b0C). Lightly grease an 8x8-inch square baking dish (stone preferred; glass or metal ok) with {{neutral_oil}}, then wipe off any excess."
+        "text": "Preheat the oven to 350°F (177°C). Lightly grease an 8x8-inch square baking dish (stone preferred; glass or metal ok) with {{neutral_oil}}, then wipe off any excess."
       },
       {
         "section": null,
@@ -4816,7 +4816,7 @@
       },
       {
         "section": null,
-        "text": "Bake for 20\u201325 minutes, or until a toothpick comes out completely clean. Cool completely (about 45 minutes) before glazing."
+        "text": "Bake for 20–25 minutes, or until a toothpick comes out completely clean. Cool completely (about 45 minutes) before glazing."
       },
       {
         "section": null,
@@ -5346,7 +5346,7 @@
   },
   {
     "id": "lorenes-vegetable-soup",
-    "title": "Vegetable Soup",
+    "title": "Lorene’s Vegetable Soup",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -5739,8 +5739,7 @@
       "gluten_free": false,
       "egg_free": true,
       "dairy_free": true
-    },
-    "byline": "Lorene\u2019s"
+    }
   },
   {
     "id": "mac-and-cheese",
@@ -5753,8 +5752,8 @@
       "Burrows"
     ],
     "family": "Burrows",
-    "notes": "Let stand for 1 hour or bake at 350\u00b0F for 30 minutes.",
-    "steps_raw": "1. Cook the {{macaroni}} and drain.\n2. Stir in {{velveeta}}, {{milk}}, {{salt}}, and {{black_pepper}}.\n3. Heat on low until smooth, then let stand or bake at 350\u00b0F for about 30 minutes.\n",
+    "notes": "Let stand for 1 hour or bake at 350°F for 30 minutes.",
+    "steps_raw": "1. Cook the {{macaroni}} and drain.\n2. Stir in {{velveeta}}, {{milk}}, {{salt}}, and {{black_pepper}}.\n3. Heat on low until smooth, then let stand or bake at 350°F for about 30 minutes.\n",
     "steps": [
       {
         "section": null,
@@ -5766,7 +5765,7 @@
       },
       {
         "section": null,
-        "text": "Heat on low until smooth, then let stand or bake at 350\u00b0F for about 30 minutes."
+        "text": "Heat on low until smooth, then let stand or bake at 350°F for about 30 minutes."
       }
     ],
     "step_sections": [],
@@ -6060,7 +6059,7 @@
   },
   {
     "id": "mrs-burrows-chili",
-    "title": "Chili",
+    "title": "Chili (Mrs. Burrows)",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -6284,8 +6283,7 @@
       "gluten_free": true,
       "egg_free": true,
       "dairy_free": true
-    },
-    "byline": "Mrs. Burrows"
+    }
   },
   {
     "id": "original-chili-con-carne",
@@ -6623,11 +6621,11 @@
     ],
     "family": "",
     "notes": "Stuff the roasted squash with a cheesy sausage and breadcrumb mixture.",
-    "steps_raw": "1. Heat the oven to 375\u00b0F (191\u00b0C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom.\n2. Roast for about 35 minutes, until the squash is tender.\n3. While the squash roasts, brown {{sausage}} in a skillet. Drain off all but 2 tablespoons of drippings.\n4. Add {{onion}} and {{celery}} to the skillet and saut\u00e9 for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}.\n5. Quickly fold {{sausage}} and {{cheese}} into the breadcrumb mixture.\n6. Turn the squash halves cut side up, sprinkle with {{salt}}, and fill the cavities with the sausage mixture.\n7. Bake at 350\u00b0F (177\u00b0C) for 20\u201330 minutes, until the stuffing is browned and heated through.\n",
+    "steps_raw": "1. Heat the oven to 375°F (191°C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom.\n2. Roast for about 35 minutes, until the squash is tender.\n3. While the squash roasts, brown {{sausage}} in a skillet. Drain off all but 2 tablespoons of drippings.\n4. Add {{onion}} and {{celery}} to the skillet and sauté for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}.\n5. Quickly fold {{sausage}} and {{cheese}} into the breadcrumb mixture.\n6. Turn the squash halves cut side up, sprinkle with {{salt}}, and fill the cavities with the sausage mixture.\n7. Bake at 350°F (177°C) for 20–30 minutes, until the stuffing is browned and heated through.\n",
     "steps": [
       {
         "section": null,
-        "text": "Heat the oven to 375\u00b0F (191\u00b0C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom."
+        "text": "Heat the oven to 375°F (191°C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom."
       },
       {
         "section": null,
@@ -6639,7 +6637,7 @@
       },
       {
         "section": null,
-        "text": "Add {{onion}} and {{celery}} to the skillet and saut\u00e9 for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}."
+        "text": "Add {{onion}} and {{celery}} to the skillet and sauté for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}."
       },
       {
         "section": null,
@@ -6651,7 +6649,7 @@
       },
       {
         "section": null,
-        "text": "Bake at 350\u00b0F (177\u00b0C) for 20\u201330 minutes, until the stuffing is browned and heated through."
+        "text": "Bake at 350°F (177°C) for 20–30 minutes, until the stuffing is browned and heated through."
       }
     ],
     "step_sections": [],
@@ -6868,11 +6866,11 @@
     ],
     "family": "Burrows",
     "notes": "",
-    "steps_raw": "1. Preheat the oven to 400\u00b0F.\n2. Cream {{shortening}} and {{sugar}} together, then beat in the {{eggs}}.\n3. Stir in {{flour}}, {{cream_of_tartar}}, {{baking_soda}}, and {{salt}} to make a soft dough.\n4. Combine {{coating_sugar}} and {{cinnamon}} in a small bowl.\n5. Roll dough into balls and coat with the cinnamon sugar.\n6. Bake 8 to 10 minutes until set.\n",
+    "steps_raw": "1. Preheat the oven to 400°F.\n2. Cream {{shortening}} and {{sugar}} together, then beat in the {{eggs}}.\n3. Stir in {{flour}}, {{cream_of_tartar}}, {{baking_soda}}, and {{salt}} to make a soft dough.\n4. Combine {{coating_sugar}} and {{cinnamon}} in a small bowl.\n5. Roll dough into balls and coat with the cinnamon sugar.\n6. Bake 8 to 10 minutes until set.\n",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 400\u00b0F."
+        "text": "Preheat the oven to 400°F."
       },
       {
         "section": null,
@@ -7130,11 +7128,11 @@
     ],
     "family": "",
     "notes": "Makes about 5 dozen cookies; requires a cookie press.",
-    "steps_raw": "1. Preheat the oven to 400\u00b0F.\n2. Cream {{fat}}, then gradually beat in {{sugar}} until smooth.\n3. Add {{egg_component}} unbeaten (do not pre-whisk separately) and beat well.\n4. Mix in {{almond_extract}} and {{food_coloring}} (if using).\n5. Whisk together {{flour_base}}, {{baking_powder}}, and {{salt}}. Stir into the dough{{#if egg_component=whole}}, then add up to {{flour_adjust}} only if needed so the dough is not too dry{{/if}}.\n6. {{#if fat=butter}}Cover and refrigerate the dough for about 1 hour to firm it before pressing. {{/if}}Fit a cookie press disk (number side up)\u2014a cookie press is required\u2014pack the press firmly, and press cookies onto an ungreased shiny cookie sheet.\n7. Bake for 10\u201312 minutes.\n\n",
+    "steps_raw": "1. Preheat the oven to 400°F.\n2. Cream {{fat}}, then gradually beat in {{sugar}} until smooth.\n3. Add {{egg_component}} unbeaten (do not pre-whisk separately) and beat well.\n4. Mix in {{almond_extract}} and {{food_coloring}} (if using).\n5. Whisk together {{flour_base}}, {{baking_powder}}, and {{salt}}. Stir into the dough{{#if egg_component=whole}}, then add up to {{flour_adjust}} only if needed so the dough is not too dry{{/if}}.\n6. {{#if fat=butter}}Cover and refrigerate the dough for about 1 hour to firm it before pressing. {{/if}}Fit a cookie press disk (number side up)—a cookie press is required—pack the press firmly, and press cookies onto an ungreased shiny cookie sheet.\n7. Bake for 10–12 minutes.\n\n",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 400\u00b0F."
+        "text": "Preheat the oven to 400°F."
       },
       {
         "section": null,
@@ -7154,11 +7152,11 @@
       },
       {
         "section": null,
-        "text": "{{#if fat=butter}}Cover and refrigerate the dough for about 1 hour to firm it before pressing. {{/if}}Fit a cookie press disk (number side up)\u2014a cookie press is required\u2014pack the press firmly, and press cookies onto an ungreased shiny cookie sheet."
+        "text": "{{#if fat=butter}}Cover and refrigerate the dough for about 1 hour to firm it before pressing. {{/if}}Fit a cookie press disk (number side up)—a cookie press is required—pack the press firmly, and press cookies onto an ungreased shiny cookie sheet."
       },
       {
         "section": null,
-        "text": "Bake for 10\u201312 minutes."
+        "text": "Bake for 10–12 minutes."
       }
     ],
     "step_sections": [],
@@ -7448,11 +7446,11 @@
     ],
     "family": "",
     "notes": "Layered bake with sweet potatoes, seared chops, and a pear syrup glaze.",
-    "steps_raw": "1. Preheat the oven to 350\u00b0F (177\u00b0C). Drain {{pear_halves}}, reserving the syrup.\n2. Peel and thickly slice {{sweet_potatoes}}. Arrange them in the bottom of a shallow baking dish.\n3. Trim excess fat from {{pork_chops}}, season with {{salt}} and {{black_pepper}}, and brown lightly in a skillet. Place the chops on top of the sweet potatoes.\n4. In a small saucepan, combine the reserved pear syrup with {{brown_sugar}}, {{butter_choice}}, and {{cinnamon}}. Heat just until the sugar dissolves.\n5. Spoon half of the syrup over the chops. Bake for 30 minutes.\n6. Remove the dish from the oven, arrange {{pear_halves}} around the chops, and spoon the remaining syrup over everything. Bake for another 30 minutes, or until the chops are tender.\n",
+    "steps_raw": "1. Preheat the oven to 350°F (177°C). Drain {{pear_halves}}, reserving the syrup.\n2. Peel and thickly slice {{sweet_potatoes}}. Arrange them in the bottom of a shallow baking dish.\n3. Trim excess fat from {{pork_chops}}, season with {{salt}} and {{black_pepper}}, and brown lightly in a skillet. Place the chops on top of the sweet potatoes.\n4. In a small saucepan, combine the reserved pear syrup with {{brown_sugar}}, {{butter_choice}}, and {{cinnamon}}. Heat just until the sugar dissolves.\n5. Spoon half of the syrup over the chops. Bake for 30 minutes.\n6. Remove the dish from the oven, arrange {{pear_halves}} around the chops, and spoon the remaining syrup over everything. Bake for another 30 minutes, or until the chops are tender.\n",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 350\u00b0F (177\u00b0C). Drain {{pear_halves}}, reserving the syrup."
+        "text": "Preheat the oven to 350°F (177°C). Drain {{pear_halves}}, reserving the syrup."
       },
       {
         "section": null,
@@ -7709,7 +7707,7 @@
     ],
     "family": "",
     "notes": "Bright coconut curry; serve with rice or cauliflower rice and lime wedges.",
-    "steps_raw": "1. Cook {{rice}} according to package directions.\n2. In a large pan over medium heat, melt {{coconut_oil}}. Add {{white_onion}}, {{ginger}}, and {{garlic}}; saut\u00e9 for 3\u20134 minutes until the onion is translucent. Remove to a plate, leaving the oil in the pan.\n3. Lightly salt {{chicken_breast}} with part of the {{sea_salt}} and saut\u00e9 in the same pan until the internal temperature reaches 165\u00b0F (74\u00b0C).\n4. Return the aromatics to the pan. Stir in {{coconut_milk}}, {{coconut_cream}}, {{coconut_aminos}}, juice from half of the {{lime}}, {{sea_salt}}, {{turmeric}}, and {{black_pepper}}. Simmer for about 5 minutes, stirring, until the sauce thickens slightly.\n5. Adjust seasoning to taste. Top with {{cilantro}} and serve with {{cauliflower_rice}} and lime wedges from the remaining {{lime}}.\n",
+    "steps_raw": "1. Cook {{rice}} according to package directions.\n2. In a large pan over medium heat, melt {{coconut_oil}}. Add {{white_onion}}, {{ginger}}, and {{garlic}}; sauté for 3–4 minutes until the onion is translucent. Remove to a plate, leaving the oil in the pan.\n3. Lightly salt {{chicken_breast}} with part of the {{sea_salt}} and sauté in the same pan until the internal temperature reaches 165°F (74°C).\n4. Return the aromatics to the pan. Stir in {{coconut_milk}}, {{coconut_cream}}, {{coconut_aminos}}, juice from half of the {{lime}}, {{sea_salt}}, {{turmeric}}, and {{black_pepper}}. Simmer for about 5 minutes, stirring, until the sauce thickens slightly.\n5. Adjust seasoning to taste. Top with {{cilantro}} and serve with {{cauliflower_rice}} and lime wedges from the remaining {{lime}}.\n",
     "steps": [
       {
         "section": null,
@@ -7717,11 +7715,11 @@
       },
       {
         "section": null,
-        "text": "In a large pan over medium heat, melt {{coconut_oil}}. Add {{white_onion}}, {{ginger}}, and {{garlic}}; saut\u00e9 for 3\u20134 minutes until the onion is translucent. Remove to a plate, leaving the oil in the pan."
+        "text": "In a large pan over medium heat, melt {{coconut_oil}}. Add {{white_onion}}, {{ginger}}, and {{garlic}}; sauté for 3–4 minutes until the onion is translucent. Remove to a plate, leaving the oil in the pan."
       },
       {
         "section": null,
-        "text": "Lightly salt {{chicken_breast}} with part of the {{sea_salt}} and saut\u00e9 in the same pan until the internal temperature reaches 165\u00b0F (74\u00b0C)."
+        "text": "Lightly salt {{chicken_breast}} with part of the {{sea_salt}} and sauté in the same pan until the internal temperature reaches 165°F (74°C)."
       },
       {
         "section": null,
@@ -8107,11 +8105,11 @@
     ],
     "family": "",
     "notes": "Quick green soup; blend greens with milk if you prefer a smoother finish.",
-    "steps_raw": "1. In a pot, melt {{butter}} and briefly saut\u00e9 {{onion}} until translucent.\n2. Stir in {{wheat_flour}} and cook for about 3 minutes to form a roux.\n3. Gradually whisk in {{chicken_broth}} and {{milk}}. Bring to a boil while whisking constantly.\n4. Lower the heat, then add {{parsley}}, {{watercress}}, {{nutmeg}}, {{salt}}, and {{black_pepper}}. Cover and cook for about 5 minutes, keeping the greens bright.\n5. For an extra smooth soup, blend some of the hot liquid with the greens before adding, or pur\u00e9e briefly after cooking. Serve hot; add cooked chicken if desired.\n",
+    "steps_raw": "1. In a pot, melt {{butter}} and briefly sauté {{onion}} until translucent.\n2. Stir in {{wheat_flour}} and cook for about 3 minutes to form a roux.\n3. Gradually whisk in {{chicken_broth}} and {{milk}}. Bring to a boil while whisking constantly.\n4. Lower the heat, then add {{parsley}}, {{watercress}}, {{nutmeg}}, {{salt}}, and {{black_pepper}}. Cover and cook for about 5 minutes, keeping the greens bright.\n5. For an extra smooth soup, blend some of the hot liquid with the greens before adding, or purée briefly after cooking. Serve hot; add cooked chicken if desired.\n",
     "steps": [
       {
         "section": null,
-        "text": "In a pot, melt {{butter}} and briefly saut\u00e9 {{onion}} until translucent."
+        "text": "In a pot, melt {{butter}} and briefly sauté {{onion}} until translucent."
       },
       {
         "section": null,
@@ -8127,7 +8125,7 @@
       },
       {
         "section": null,
-        "text": "For an extra smooth soup, blend some of the hot liquid with the greens before adding, or pur\u00e9e briefly after cooking. Serve hot; add cooked chicken if desired."
+        "text": "For an extra smooth soup, blend some of the hot liquid with the greens before adding, or purée briefly after cooking. Serve hot; add cooked chicken if desired."
       }
     ],
     "step_sections": [],

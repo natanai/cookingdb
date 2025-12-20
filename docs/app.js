@@ -306,7 +306,6 @@ function recipeSummary(recipe, source = 'built') {
   return {
     id: recipe.id,
     title: recipe.title,
-    byline: recipe.byline || '',
     categories: recipe.categories || [],
     family: recipe.family || '',
     compatibility_possible: recipe.compatibility_possible || { gluten_free: true, egg_free: true, dairy_free: true },
@@ -327,39 +326,13 @@ function recipeVisible(recipe, filters) {
     const inTitle = (recipe.title || '').toLowerCase().includes(filters.query);
     const inCategories = (recipe.categories || []).some((cat) => cat.toLowerCase().includes(filters.query));
     const inFamily = (recipe.family || '').toLowerCase().includes(filters.query);
-    const inByline = (recipe.byline || '').toLowerCase().includes(filters.query);
-    if (!inTitle && !inCategories && !inFamily && !inByline) return false;
+    if (!inTitle && !inCategories && !inFamily) return false;
   }
   const compatibility = recipe.compatibility_possible || {};
   if (filters.gluten && !compatibility.gluten_free) return false;
   if (filters.egg && !compatibility.egg_free) return false;
   if (filters.dairy && !compatibility.dairy_free) return false;
   return true;
-}
-
-function splitRecipeTitle(rawTitle) {
-  const title = (rawTitle || '').trim();
-  if (!title) return { title: '', name: '' };
-
-  const parenMatch = title.match(/^(.*)\s*\(([^)]+)\)\s*$/);
-  if (parenMatch) {
-    return { title: parenMatch[1].trim(), name: parenMatch[2].trim() };
-  }
-
-  const possessiveMatch = title.match(/^([^–—-]+?)\s*['’]s\s+(.+)$/i);
-  if (possessiveMatch) {
-    return { title: possessiveMatch[2].trim(), name: possessiveMatch[1].trim() };
-  }
-
-  return { title, name: '' };
-}
-
-function getRecipeTitleParts(recipe) {
-  const byline = (recipe.byline || '').trim();
-  if (byline) {
-    return { title: (recipe.title || '').trim(), name: byline };
-  }
-  return splitRecipeTitle(recipe.title || '');
 }
 
 const DIETARY_TAGS = {
@@ -383,13 +356,7 @@ function renderRecipes(recipes) {
     category: selectedCategory,
   };
   listEl.innerHTML = '';
-  const visible = recipes
-    .filter((r) => recipeVisible(r, filters))
-    .sort((a, b) => {
-      const aTitle = getRecipeTitleParts(a).title;
-      const bTitle = getRecipeTitleParts(b).title;
-      return aTitle.localeCompare(bTitle, undefined, { sensitivity: 'base' });
-    });
+  const visible = recipes.filter((r) => recipeVisible(r, filters));
   if (visible.length === 0) {
     const empty = document.createElement('li');
     empty.className = 'empty-state';
@@ -429,19 +396,7 @@ function renderRecipes(recipes) {
 
     const title = document.createElement('span');
     title.className = 'recipe-row-title';
-
-    const titleText = document.createElement('span');
-    titleText.className = 'recipe-row-title-text';
-    const { title: cleanTitle, name: titleName } = getRecipeTitleParts(recipe);
-    titleText.textContent = cleanTitle;
-    title.appendChild(titleText);
-
-    if (titleName) {
-      const nameEl = document.createElement('span');
-      nameEl.className = 'recipe-row-title-name';
-      nameEl.textContent = ` — ${titleName}`;
-      title.appendChild(nameEl);
-    }
+    title.textContent = recipe.title;
 
     const flagContainer = document.createElement('span');
     flagContainer.className = 'recipe-row-flags';

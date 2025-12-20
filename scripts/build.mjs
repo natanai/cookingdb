@@ -289,7 +289,6 @@ async function build() {
     recipeOutputs.push({
       id: meta.id,
       title: meta.title,
-      byline: meta.byline || '',
       base_kind: meta.base_kind,
       default_base: Number(meta.default_base) || 1,
       categories: parseCategories(meta.categories),
@@ -311,7 +310,6 @@ async function build() {
     indexList.push({
       id: meta.id,
       title: meta.title,
-      byline: meta.byline || '',
       categories: parseCategories(meta.categories),
       family: meta.family || '',
       compatibility_possible: compatibility,
