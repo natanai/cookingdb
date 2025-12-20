@@ -261,7 +261,7 @@
   },
   {
     "id": "lorenes-vegetable-soup",
-    "title": "Lorene’s Vegetable Soup",
+    "title": "Vegetable Soup",
     "categories": [
       "Soups & Stews",
       "Family",
@@ -272,7 +272,8 @@
       "gluten_free": false,
       "egg_free": true,
       "dairy_free": true
-    }
+    },
+    "byline": "Lorene\u2019s"
   },
   {
     "id": "mac-and-cheese",
@@ -306,7 +307,7 @@
   },
   {
     "id": "mrs-burrows-chili",
-    "title": "Chili (Mrs. Burrows)",
+    "title": "Chili",
     "categories": [
       "Soups & Stews",
       "Family",
@@ -317,7 +318,8 @@
       "gluten_free": true,
       "egg_free": true,
       "dairy_free": true
-    }
+    },
+    "byline": "Mrs. Burrows"
   },
   {
     "id": "original-chili-con-carne",
