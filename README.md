@@ -28,6 +28,10 @@ Open `docs/index.html` in a browser to view the recipes. Blintzes are included a
 - In `recipes/<recipe_id>/meta.csv`, any field containing commas (especially `notes`) must be wrapped in double quotes or columns will shift; e.g. `notes` value: `"Serve warm, with berries."`
 - Built assets: `docs/built/index.json`, `docs/built/recipes.json`
 
+## Recipe integration checklist
+
+- See [`docs/recipe-integration.md`](docs/recipe-integration.md) for the full checklist and validation rules.
+
 ## GitHub Pages
 
 A workflow (`.github/workflows/pages.yml`) builds the site and publishes `/docs` as the artifact. To enable Pages:

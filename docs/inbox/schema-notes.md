@@ -7,3 +7,15 @@ Schema notes for inbox payloads:
 - Structured fields: ingredient_sections (ordered array of section labels) and step_sections (ordered array of section labels). Steps may also be provided as an array of { section, text } objects (steps_raw should still contain a numbered text fallback).
 - Steps rely on {{token}} placeholders matching ingredient tokens; keep tokens_used in sync with steps_raw/steps to ensure rendering works in docs/recipe.js.
 -->
+
+## Inbox payload mapping to CSV schema
+
+Inbox payloads should map cleanly to the CSV recipe schema used by `scripts/build.mjs`:
+
+- `token_order`, `ingredients`, and option data map to `recipes/<id>/ingredients.csv` (tokens, options, ratios, units, dependencies).
+- `steps_raw` and/or `steps` map to `recipes/<id>/steps.md` or `recipes/<id>/steps.csv` (including step sections).
+- `choices`, `pan_sizes`, and `default_pan` map to `choices.csv` and `pans.csv` where applicable.
+
+Published recipes must pass `scripts/validate.mjs` and be rebuilt via `scripts/build.mjs` to appear in `docs/built/recipes.json`.
+Missing steps or ingredients will produce incomplete or non-rendering recipes in `docs/recipe.js` and `docs/app.js`.
+See the full checklist in `docs/recipe-integration.md`.
