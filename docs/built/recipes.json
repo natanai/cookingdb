@@ -7717,6 +7717,449 @@
     }
   },
   {
+    "id": "slow-cooker-beef-stew",
+    "title": "Slow Cooker Beef Stew",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Crock-Pot",
+      "Soups & Stews"
+    ],
+    "family": "",
+    "notes": "Classic slow-cooked beef stew with potatoes, carrots, and peas.",
+    "steps_raw": "1. Toss {{stew_beef}} with {{flour}} and {{seasoned_salt}} until evenly coated.\n2. Heat {{olive_oil}} in a large skillet over medium-high heat. Brown the coated beef, stirring as needed; it does not need to cook through.\n3. Transfer the beef to the slow cooker. Add {{potatoes}}, {{carrots}}, {{onion}}, {{garlic}}, and {{bay_leaf}}.\n4. Add {{black_pepper}}, then pour in {{beef_broth}} and stir in {{tomato_paste}} and {{worcestershire}}.\n5. Cover and cook on LOW for 8–10 hours or HIGH for 4–6 hours, until the beef and vegetables are tender.\n6. Remove the {{bay_leaf}}. Stir in {{peas}} and season with {{salt}} to taste before serving.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Toss {{stew_beef}} with {{flour}} and {{seasoned_salt}} until evenly coated."
+      },
+      {
+        "section": null,
+        "text": "Heat {{olive_oil}} in a large skillet over medium-high heat. Brown the coated beef, stirring as needed; it does not need to cook through."
+      },
+      {
+        "section": null,
+        "text": "Transfer the beef to the slow cooker. Add {{potatoes}}, {{carrots}}, {{onion}}, {{garlic}}, and {{bay_leaf}}."
+      },
+      {
+        "section": null,
+        "text": "Add {{black_pepper}}, then pour in {{beef_broth}} and stir in {{tomato_paste}} and {{worcestershire}}."
+      },
+      {
+        "section": null,
+        "text": "Cover and cook on LOW for 8–10 hours or HIGH for 4–6 hours, until the beef and vegetables are tender."
+      },
+      {
+        "section": null,
+        "text": "Remove the {{bay_leaf}}. Stir in {{peas}} and season with {{salt}} to taste before serving."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "stew_beef",
+      "flour",
+      "seasoned_salt",
+      "olive_oil",
+      "potatoes",
+      "carrots",
+      "onion",
+      "garlic",
+      "bay_leaf",
+      "black_pepper",
+      "beef_broth",
+      "tomato_paste",
+      "worcestershire",
+      "bay_leaf",
+      "peas",
+      "salt"
+    ],
+    "token_order": [
+      "stew_beef",
+      "flour",
+      "seasoned_salt",
+      "olive_oil",
+      "potatoes",
+      "carrots",
+      "onion",
+      "garlic",
+      "bay_leaf",
+      "black_pepper",
+      "beef_broth",
+      "tomato_paste",
+      "worcestershire",
+      "peas",
+      "salt"
+    ],
+    "ingredients": {
+      "stew_beef": {
+        "token": "stew_beef",
+        "options": [
+          {
+            "option": "",
+            "display": "stew meat",
+            "ratio": "1 1/2",
+            "unit": "lb",
+            "ingredient_id": "stew-beef",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "wheat",
+            "display": "all-purpose flour",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          },
+          {
+            "option": "gf",
+            "display": "gluten-free flour blend",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "gf-flour-blend",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "seasoned_salt": {
+        "token": "seasoned_salt",
+        "options": [
+          {
+            "option": "",
+            "display": "seasoned salt",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "seasoned-salt",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "olive_oil": {
+        "token": "olive_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "olive oil",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "olive_oil",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "potatoes": {
+        "token": "potatoes",
+        "options": [
+          {
+            "option": "",
+            "display": "yellow potatoes",
+            "ratio": "4",
+            "unit": "medium",
+            "ingredient_id": "potato",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "carrots": {
+        "token": "carrots",
+        "options": [
+          {
+            "option": "",
+            "display": "carrots",
+            "ratio": "4",
+            "unit": "large",
+            "ingredient_id": "carrot",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "onion": {
+        "token": "onion",
+        "options": [
+          {
+            "option": "",
+            "display": "sweet onion",
+            "ratio": "1",
+            "unit": "medium",
+            "ingredient_id": "onion",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "garlic": {
+        "token": "garlic",
+        "options": [
+          {
+            "option": "",
+            "display": "garlic cloves",
+            "ratio": "3",
+            "unit": "clove",
+            "ingredient_id": "garlic",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "bay_leaf": {
+        "token": "bay_leaf",
+        "options": [
+          {
+            "option": "",
+            "display": "bay leaf",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "bay-leaf",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "black_pepper": {
+        "token": "black_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "black pepper",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "black-pepper",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "beef_broth": {
+        "token": "beef_broth",
+        "options": [
+          {
+            "option": "",
+            "display": "beef broth",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "beef-broth",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "tomato_paste": {
+        "token": "tomato_paste",
+        "options": [
+          {
+            "option": "",
+            "display": "tomato paste",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "tomato-paste",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "worcestershire": {
+        "token": "worcestershire",
+        "options": [
+          {
+            "option": "include",
+            "display": "Worcestershire sauce",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "worcestershire_sauce",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          },
+          {
+            "option": "omit",
+            "display": "No Worcestershire sauce",
+            "ratio": "0",
+            "unit": "tbsp",
+            "ingredient_id": "worcestershire_sauce",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": true
+      },
+      "peas": {
+        "token": "peas",
+        "options": [
+          {
+            "option": "",
+            "display": "frozen peas",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "peas",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {
+      "flour": {
+        "token": "flour",
+        "label": "Flour",
+        "default_option": "wheat"
+      },
+      "worcestershire": {
+        "token": "worcestershire",
+        "label": "Worcestershire sauce",
+        "default_option": "include"
+      }
+    },
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "snickerdoodles",
     "title": "Snickerdoodles",
     "byline": "",
