@@ -44,8 +44,28 @@ function parseLine(line) {
   return result;
 }
 
-async function parseCSVFile(filePath) {
+function ensureNoExtraColumns(content, filePath, label) {
+  const lines = content.replace(/\r\n/g, '\n').split(/\n/).filter((line) => line.trim() !== '');
+  if (lines.length === 0) return;
+  const headers = parseLine(lines[0]);
+  const headerCount = headers.length;
+  lines.slice(1).forEach((line, idx) => {
+    const values = parseLine(line);
+    if (values.length > headerCount) {
+      const rowNumber = idx + 2;
+      throw new Error(
+        `${label || filePath}: detected extra columns in row ${rowNumber}. ` +
+          'Check for unquoted commas in fields like notes.',
+      );
+    }
+  });
+}
+
+async function parseCSVFile(filePath, options = {}) {
   const content = fs.readFileSync(filePath, 'utf-8');
+  if (options.expectNoExtraColumns) {
+    ensureNoExtraColumns(content, filePath, options.label);
+  }
   const Papa = await loadPapa();
   if (Papa) {
     const parsed = Papa.parse(content, { header: true, skipEmptyLines: true });
@@ -127,7 +147,10 @@ export async function validateAll() {
     ensure(fs.existsSync(ingredientsPath), `Missing ingredients.csv for recipe ${recipeId}`);
     ensure(fs.existsSync(stepsPath) || fs.existsSync(stepsCsvPath), `Missing steps for recipe ${recipeId}`);
 
-    const metaRows = await parseCSVFile(metaPath);
+    const metaRows = await parseCSVFile(metaPath, {
+      expectNoExtraColumns: true,
+      label: `${recipeId}: meta.csv`,
+    });
     ensure(metaRows.length === 1, `${recipeId}: meta.csv must contain exactly one data row`);
     const metaRow = metaRows[0];
     ensure(metaRow.id === recipeId, `${recipeId}: meta id must match directory name`);
