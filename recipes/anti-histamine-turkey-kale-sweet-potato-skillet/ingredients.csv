@@ -1,8 +1,8 @@
-token,option,display,ratio,unit,ingredient_id
-olive_oil,,extra-virgin olive oil,1,tbsp,olive_oil
-ground_turkey,,ground turkey,1,lb,ground-turkey
-garlic,,garlic,1,clove,garlic
-sweet_potato,,sweet potato,1,medium,sweet-potato
-sea_salt,,sea salt,1/4,tsp,salt
-kale,,"kale, chopped",2,cup,kale
-thyme,,fresh thyme leaves,1,tbsp,thyme
+token,option,display,ratio,unit,ingredient_id,prep
+olive_oil,,extra-virgin olive oil,1,tbsp,olive_oil,
+ground_turkey,,ground turkey,1,lb,ground-turkey,
+garlic,,garlic,1,clove,garlic,
+sweet_potato,,sweet potato,1,medium,sweet-potato,
+sea_salt,,sea salt,1/4,tsp,salt,
+kale,,kale,2,cup,kale,chopped
+thyme,,fresh thyme leaves,1,tbsp,thyme,
