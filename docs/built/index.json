@@ -449,20 +449,6 @@
     }
   },
   {
-    "id": "slow-cooker-beef-stew",
-    "title": "Slow Cooker Beef Stew",
-    "byline": "",
-    "categories": [
-      "carrots"
-    ],
-    "family": " and peas.",
-    "compatibility_possible": {
-      "gluten_free": true,
-      "egg_free": true,
-      "dairy_free": true
-    }
-  },
-  {
     "id": "snickerdoodles",
     "title": "Snickerdoodles",
     "byline": "",
