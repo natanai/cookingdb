@@ -1,18 +1,18 @@
-token,option,display,ratio,unit,ingredient_id
-stew_beef,,stew meat,1 1/2,lb,stew-beef
-flour,wheat,all-purpose flour,1/4,cup,wheat-flour
-flour,gf,gluten-free flour blend,1/4,cup,gf-flour-blend
-seasoned_salt,,seasoned salt,1,tbsp,seasoned-salt
-olive_oil,,olive oil,1,tbsp,olive_oil
-potatoes,,yellow potatoes,4,medium,potato
-carrots,,carrots,4,large,carrot
-onion,,sweet onion,1,medium,onion
-garlic,,garlic cloves,3,clove,garlic
-bay_leaf,,bay leaf,1,count,bay-leaf
-black_pepper,,black pepper,1/2,tsp,black-pepper
-beef_broth,,beef broth,2,cup,beef-broth
-tomato_paste,,tomato paste,2,tbsp,tomato-paste
-worcestershire,include,Worcestershire sauce,1,tbsp,worcestershire_sauce
-worcestershire,omit,No Worcestershire sauce,0,tbsp,worcestershire_sauce
-peas,,frozen peas,1,cup,peas
-salt,,salt,1,tsp,salt
+token,option,display,ratio,unit,ingredient_id,prep
+stew_beef,,stew meat,1 1/2,lb,stew-beef,
+flour,wheat,all-purpose flour,1/4,cup,wheat-flour,
+flour,gf,gluten-free flour blend,1/4,cup,gf-flour-blend,
+seasoned_salt,,seasoned salt,1,tbsp,seasoned-salt,
+olive_oil,,olive oil,1,tbsp,olive_oil,
+potatoes,,yellow potatoes,4,medium,potato,"peeled and diced"
+carrots,,carrots,4,large,carrot,"peeled and diced"
+onion,,sweet onion,1,medium,onion,diced
+garlic,,garlic cloves,3,clove,garlic,minced
+bay_leaf,,bay leaf,1,count,bay-leaf,
+black_pepper,,black pepper,1/2,tsp,black-pepper,
+beef_broth,,beef broth,2,cup,beef-broth,
+tomato_paste,,tomato paste,2,tbsp,tomato-paste,
+worcestershire,include,Worcestershire sauce,1,tbsp,worcestershire_sauce,
+worcestershire,omit,No Worcestershire sauce,0,tbsp,worcestershire_sauce,
+peas,,frozen peas,1,cup,peas,
+salt,,salt,1,tsp,salt,

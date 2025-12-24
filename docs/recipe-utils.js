@@ -254,7 +254,7 @@ export function selectOptionForToken(token, recipe, state) {
   return selected || tokenData.options[0];
 }
 
-export function ingredientDisplay(option, multiplier, selectedUnit) {
+export function ingredientDisplay(option, multiplier, selectedUnit, includePrep = false) {
   if (!option) {
     return {
       text: '',
@@ -328,7 +328,8 @@ export function ingredientDisplay(option, multiplier, selectedUnit) {
   const baseUnitLabel = option.unit ? formatUnitLabel(option.unit, baseAmount) : '';
   const convertedUnitLabel = displayUnit ? formatUnitLabel(displayUnit, displayAmount) : '';
   const displayName = pluralize(option.display, displayAmount ?? 0, option.unit);
-  const text = `${amountStr}${unitLabel} ${displayName}`.trim();
+  const prepSuffix = includePrep && option.prep ? `, ${option.prep}` : '';
+  const text = `${amountStr}${unitLabel} ${displayName}${prepSuffix}`.trim();
 
   return {
     text,
@@ -344,8 +345,8 @@ export function ingredientDisplay(option, multiplier, selectedUnit) {
   };
 }
 
-export function renderIngredientEntry(option, multiplier, selectedUnit) {
-  return ingredientDisplay(option, multiplier, selectedUnit).text;
+export function renderIngredientEntry(option, multiplier, selectedUnit, includePrep = false) {
+  return ingredientDisplay(option, multiplier, selectedUnit, includePrep).text;
 }
 
 export function normalizeSteps(recipe) {
@@ -396,7 +397,7 @@ export function formatStepText(stepText, recipe, state) {
   return evaluatedConditions.replace(/{{\s*([a-zA-Z0-9_-]+)\s*}}/g, (match, token) => {
     const option = selectOptionForToken(token, recipe, state);
     const selectedUnit = state?.unitSelections?.[token];
-    return renderIngredientEntry(option, multiplier, selectedUnit);
+    return renderIngredientEntry(option, multiplier, selectedUnit, false);
   });
 }
 
@@ -435,11 +436,11 @@ export function renderIngredientLines(recipe, state) {
     if (!option || !optionAllowedByDependency(option, recipe, state)) return;
     const selectedUnit = unitSelections[token];
 
-    const display = ingredientDisplay(option, multiplier, selectedUnit);
+    const display = ingredientDisplay(option, multiplier, selectedUnit, true);
     const text = display.text;
     const alternatives = (alternativeOptions(tokenData, state, option, recipe) || [])
       .filter((opt) => optionAllowedByDependency(opt, recipe, state))
-      .map((opt) => renderIngredientEntry(opt, multiplier, selectedUnit));
+      .map((opt) => renderIngredientEntry(opt, multiplier, selectedUnit, true));
 
     const section = tokenData.section ?? option.section ?? null;
     const entry = { token, text, option, selectedUnit, alternatives, display, section };

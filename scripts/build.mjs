@@ -208,6 +208,7 @@ async function build() {
         ratio: row.ratio,
         unit: row.unit,
         ingredient_id: row.ingredient_id,
+        prep: row.prep || '',
         depends_on: dependency,
         line_group: row.line_group || null,
         section: row.section || null,
