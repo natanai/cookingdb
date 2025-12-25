@@ -419,7 +419,14 @@ export function formatStepText(stepText, recipe, state) {
     const option = selectOptionForToken(token, recipe, state);
     const selectedUnit = state?.unitSelections?.[token];
     const ingredientText = renderIngredientEntry(option, multiplier, selectedUnit, false);
-    return `<strong class="step-ingredient">${escapeHtml(ingredientText)}</strong>`;
+    const ingredientHtml = `<strong class="step-ingredient">${escapeHtml(ingredientText)}</strong>`;
+    const recipeId = option?.ingredient_id;
+    const recipeIndex = state?.recipeIndex;
+    if (recipeId && recipeIndex?.has?.(recipeId)) {
+      const href = `recipe.html?id=${encodeURIComponent(recipeId)}`;
+      return `<a class="step-ingredient-link" href="${href}">${ingredientHtml}</a>`;
+    }
+    return ingredientHtml;
   });
 }
 
