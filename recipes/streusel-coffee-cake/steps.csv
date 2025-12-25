@@ -1,6 +1,9 @@
 section,text
-Dough,"Prepare {{basic_roll_dough}} and let it rise. Turn out onto a floured surface, divide into thirds, and pat each third into a greased 8 1/2-inch round pan."
-Streusel,"Make the streusel: mix {{flour}}, {{brown_sugar}}, {{granulated_sugar}}, and {{cinnamon}}. Cut in {{streusel_fat}} until crumbly, then add {{nuts}}."
-Streusel,"Sprinkle 1/3 of the streusel topping over each coffee cake. Cover and let rise until double (30 to 45 minutes)."
-Bake,"Bake at 375°F for about 20 minutes, or until done."
-Finish,"Immediately drizzle {{vanilla}} over each coffee cake. Serve warm. Makes 3 cakes."
+,"Make {{basic_roll_dough}} (use the gluten-free options there if needed; the dough recipe is printable on its own)."
+,Grease three 8 1/2-inch round pans.
+,"If using wheat dough: turn out onto a floured surface, divide into thirds, and pat each third into a prepared pan. If using gluten-free dough: divide dough into thirds and spread each portion into a prepared pan with damp hands or an oiled spatula."
+,"Make the streusel: mix {{flour}}, {{brown_sugar}}, {{granulated_sugar}}, and {{cinnamon}}. Cut in {{streusel_fat}} until crumbly, then stir in {{nuts}}."
+,Sprinkle 1/3 of the streusel topping over each pan.
+,"Rise: Wheat dough: cover and let rise until doubled (30–45 minutes). Gluten-free dough: let rest 10–20 minutes while the oven preheats (don’t wait for “double”; just a short puff is enough)."
+,"Bake at 375°F until done: Wheat dough: about 20 minutes. Gluten-free dough: start checking at 22 minutes; may take closer to 25–30 minutes."
+,"Immediately drizzle {{vanilla}} over each coffee cake. Serve warm."

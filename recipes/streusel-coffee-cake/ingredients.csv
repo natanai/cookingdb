@@ -1,10 +1,10 @@
 token,option,display,ratio,unit,ingredient_id,section
-basic_roll_dough,,Basic Roll Dough,1,recipe,basic-roll-dough,Dough
-flour,,all-purpose flour,1,cup,wheat-flour,Streusel
+basic_roll_dough,,Basic Roll Dough (recipe; includes gluten-free options),1,recipe,basic-roll-dough,Dough
+flour,,sifted all-purpose flour (or gluten-free flour blend),1,cup,wheat-flour,Streusel
 brown_sugar,,brown sugar,1/2,cup,brown-sugar,Streusel
 granulated_sugar,,granulated sugar,1/2,cup,white-sugar,Streusel
 cinnamon,,ground cinnamon,1,tsp,cinnamon,Streusel
 streusel_fat,butter,butter,1/2,cup,butter,Streusel
 streusel_fat,margarine,margarine,1/2,cup,margarine,Streusel
-nuts,,finely chopped nuts,1/4,cup,chopped-nuts,Streusel
+nuts,,finely chopped nuts (optional),1/4,cup,chopped-nuts,Streusel
 vanilla,,vanilla extract,1 1/2,tsp,vanilla-extract,Finish
