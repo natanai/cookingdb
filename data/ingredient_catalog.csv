@@ -161,3 +161,9 @@ whole-tomatoes,Whole tomatoes,false,false,false
 canned-chicken,Canned chicken,false,false,false
 seasoned-salt,Seasoned salt,false,false,false
 tomato-paste,Tomato paste,false,false,false
+cocoa-powder,Cocoa powder,false,false,false
+graham-cracker-crumbs,Graham cracker crumbs,true,false,false
+shredded-coconut,Shredded coconut,false,false,false
+vanilla-pudding-powder,Vanilla pudding powder,false,false,true
+chopped-nuts,Chopped nuts,false,false,false
+basic-roll-dough,Basic Roll Dough,true,true,true
