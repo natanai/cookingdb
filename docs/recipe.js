@@ -496,7 +496,7 @@ function renderSteps(recipe, state) {
     section.lines.forEach((line) => {
       const li = document.createElement('li');
       li.className = 'step-item';
-      li.innerHTML = line.text;
+      li.innerHTML = `<span class="step-text">${line.text}</span>`;
       steps.appendChild(li);
     });
   });
