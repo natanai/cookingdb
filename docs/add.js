@@ -1282,7 +1282,7 @@ function renderPreviewLines(container, sections, options = {}) {
     section.lines.forEach((line) => {
       const li = document.createElement('li');
       if (allowHtml) {
-        li.innerHTML = line.text;
+        li.innerHTML = `<span class="step-text">${line.text}</span>`;
       } else {
         li.textContent = line.text;
       }
