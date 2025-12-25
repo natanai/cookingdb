@@ -402,6 +402,20 @@
     }
   },
   {
+    "id": "nanaimo-bars",
+    "title": "Nanaimo Bars",
+    "byline": "",
+    "categories": [
+      "Desserts & Baking"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "orange-sherbet-salad",
     "title": "Orange Sherbet Salad",
     "byline": "",
@@ -492,6 +506,21 @@
       "gluten_free": false,
       "egg_free": false,
       "dairy_free": true
+    }
+  },
+  {
+    "id": "streusel-coffee-cake",
+    "title": "Streusel Coffee Cake",
+    "byline": "",
+    "categories": [
+      "Breakfast & Brunch",
+      "Desserts & Baking"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": false
     }
   },
   {

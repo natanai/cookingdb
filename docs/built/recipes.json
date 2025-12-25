@@ -7218,6 +7218,402 @@
     }
   },
   {
+    "id": "nanaimo-bars",
+    "title": "Nanaimo Bars",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Desserts & Baking"
+    ],
+    "family": "",
+    "notes": "",
+    "steps_raw": "1. In a saucepan, melt {{butter_base}}, then stir in {{sugar_base}} and {{cocoa_powder}} until smooth.\n2. Stir in {{egg_base}}, then bring to a boil and cook 2 minutes, stirring constantly.\n3. Remove from heat and stir in {{vanilla_base}}.\n4. Stir in {{coconut}} and {{graham_crumbs}}. Press into a lined 3x9 pan. Refrigerate.\n5. In a mixer, stir together {{pudding_powder}} and {{milk_middle}}. Add {{powdered_sugar}} and {{butter_middle}}. Beat on high (whisk attachment) for 5 minutes.\n6. Spread the middle layer over the chilled base. Refrigerate a couple hours\n7. Melt {{chocolate_chips}} with {{oil_top}} in a microwave-safe bowl, stirring until smooth.\n8. Spread chocolate over the set middle layer. Refrigerate until set. For easy cutting",
+    "steps": [
+      {
+        "section": "Base",
+        "text": "In a saucepan, melt {{butter_base}}, then stir in {{sugar_base}} and {{cocoa_powder}} until smooth."
+      },
+      {
+        "section": "Base",
+        "text": "Stir in {{egg_base}}, then bring to a boil and cook 2 minutes, stirring constantly."
+      },
+      {
+        "section": "Base",
+        "text": "Remove from heat and stir in {{vanilla_base}}."
+      },
+      {
+        "section": "Base",
+        "text": "Stir in {{coconut}} and {{graham_crumbs}}. Press into a lined 3x9 pan. Refrigerate."
+      },
+      {
+        "section": "Middle",
+        "text": "In a mixer, stir together {{pudding_powder}} and {{milk_middle}}. Add {{powdered_sugar}} and {{butter_middle}}. Beat on high (whisk attachment) for 5 minutes."
+      },
+      {
+        "section": "Middle",
+        "text": "Spread the middle layer over the chilled base. Refrigerate a couple hours"
+      },
+      {
+        "section": "Top",
+        "text": "Melt {{chocolate_chips}} with {{oil_top}} in a microwave-safe bowl, stirring until smooth."
+      },
+      {
+        "section": "Top",
+        "text": "Spread chocolate over the set middle layer. Refrigerate until set. For easy cutting"
+      }
+    ],
+    "step_sections": [
+      "Base",
+      "Middle",
+      "Top"
+    ],
+    "tokens_used": [
+      "butter_base",
+      "sugar_base",
+      "cocoa_powder",
+      "egg_base",
+      "vanilla_base",
+      "coconut",
+      "graham_crumbs",
+      "pudding_powder",
+      "milk_middle",
+      "powdered_sugar",
+      "butter_middle",
+      "chocolate_chips",
+      "oil_top"
+    ],
+    "token_order": [
+      "butter_base",
+      "sugar_base",
+      "cocoa_powder",
+      "egg_base",
+      "vanilla_base",
+      "coconut",
+      "graham_crumbs",
+      "pudding_powder",
+      "milk_middle",
+      "powdered_sugar",
+      "butter_middle",
+      "chocolate_chips",
+      "oil_top"
+    ],
+    "ingredients": {
+      "butter_base": {
+        "token": "butter_base",
+        "options": [
+          {
+            "option": "",
+            "display": "butter",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Base",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Base"
+      },
+      "sugar_base": {
+        "token": "sugar_base",
+        "options": [
+          {
+            "option": "",
+            "display": "granulated sugar",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "white-sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Base",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Base"
+      },
+      "cocoa_powder": {
+        "token": "cocoa_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "cocoa powder",
+            "ratio": "1/3",
+            "unit": "cup",
+            "ingredient_id": "cocoa-powder",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Base",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Base"
+      },
+      "egg_base": {
+        "token": "egg_base",
+        "options": [
+          {
+            "option": "",
+            "display": "egg",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "egg",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Base",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": false,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Base"
+      },
+      "vanilla_base": {
+        "token": "vanilla_base",
+        "options": [
+          {
+            "option": "",
+            "display": "vanilla extract",
+            "ratio": "2",
+            "unit": "tsp",
+            "ingredient_id": "vanilla-extract",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Base",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Base"
+      },
+      "graham_crumbs": {
+        "token": "graham_crumbs",
+        "options": [
+          {
+            "option": "",
+            "display": "graham cracker crumbs",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "graham-cracker-crumbs",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Base",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Base"
+      },
+      "coconut": {
+        "token": "coconut",
+        "options": [
+          {
+            "option": "",
+            "display": "shredded coconut",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "shredded-coconut",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Base",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Base"
+      },
+      "butter_middle": {
+        "token": "butter_middle",
+        "options": [
+          {
+            "option": "",
+            "display": "butter",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Middle",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Middle"
+      },
+      "milk_middle": {
+        "token": "milk_middle",
+        "options": [
+          {
+            "option": "",
+            "display": "milk",
+            "ratio": "6",
+            "unit": "tbsp",
+            "ingredient_id": "milk",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Middle",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Middle"
+      },
+      "pudding_powder": {
+        "token": "pudding_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "vanilla pudding powder",
+            "ratio": "5",
+            "unit": "tbsp",
+            "ingredient_id": "vanilla-pudding-powder",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Middle",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Middle"
+      },
+      "powdered_sugar": {
+        "token": "powdered_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "powdered sugar",
+            "ratio": "3",
+            "unit": "cup",
+            "ingredient_id": "powdered-sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Middle",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Middle"
+      },
+      "chocolate_chips": {
+        "token": "chocolate_chips",
+        "options": [
+          {
+            "option": "",
+            "display": "chocolate chips",
+            "ratio": "6",
+            "unit": "oz",
+            "ingredient_id": "chocolate-chips",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Top",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Top"
+      },
+      "oil_top": {
+        "token": "oil_top",
+        "options": [
+          {
+            "option": "",
+            "display": "neutral oil",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "neutral-oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Top",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Top"
+      }
+    },
+    "ingredient_sections": [
+      "Base",
+      "Middle",
+      "Top"
+    ],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "orange-sherbet-salad",
     "title": "Orange Sherbet Salad",
     "byline": "",
@@ -8237,9 +8633,9 @@
         "options": [
           {
             "option": "",
-            "display": "garlic cloves",
+            "display": "garlic",
             "ratio": "3",
-            "unit": "clove",
+            "unit": "cloves",
             "ingredient_id": "garlic",
             "prep": "minced",
             "depends_on": null,
@@ -9047,6 +9443,289 @@
       "gluten_free": false,
       "egg_free": false,
       "dairy_free": true
+    }
+  },
+  {
+    "id": "streusel-coffee-cake",
+    "title": "Streusel Coffee Cake",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Breakfast & Brunch",
+      "Desserts & Baking"
+    ],
+    "family": "",
+    "notes": "",
+    "steps_raw": "1. Prepare {{basic_roll_dough}} and let it rise. Turn out onto a floured surface, divide into thirds, and pat each third into a greased 8 1/2-inch round pan.\n2. Make the streusel: mix {{flour}}, {{brown_sugar}}, {{granulated_sugar}}, and {{cinnamon}}. Cut in {{streusel_fat}} until crumbly, then add {{nuts}}.\n3. Sprinkle 1/3 of the streusel topping over each coffee cake. Cover and let rise until double (30 to 45 minutes).\n4. Bake at 375°F for about 20 minutes, or until done.\n5. Immediately drizzle {{vanilla}} over each coffee cake. Serve warm. Makes 3 cakes.",
+    "steps": [
+      {
+        "section": "Dough",
+        "text": "Prepare {{basic_roll_dough}} and let it rise. Turn out onto a floured surface, divide into thirds, and pat each third into a greased 8 1/2-inch round pan."
+      },
+      {
+        "section": "Streusel",
+        "text": "Make the streusel: mix {{flour}}, {{brown_sugar}}, {{granulated_sugar}}, and {{cinnamon}}. Cut in {{streusel_fat}} until crumbly, then add {{nuts}}."
+      },
+      {
+        "section": "Streusel",
+        "text": "Sprinkle 1/3 of the streusel topping over each coffee cake. Cover and let rise until double (30 to 45 minutes)."
+      },
+      {
+        "section": "Bake",
+        "text": "Bake at 375°F for about 20 minutes, or until done."
+      },
+      {
+        "section": "Finish",
+        "text": "Immediately drizzle {{vanilla}} over each coffee cake. Serve warm. Makes 3 cakes."
+      }
+    ],
+    "step_sections": [
+      "Dough",
+      "Streusel",
+      "Bake",
+      "Finish"
+    ],
+    "tokens_used": [
+      "basic_roll_dough",
+      "flour",
+      "brown_sugar",
+      "granulated_sugar",
+      "cinnamon",
+      "streusel_fat",
+      "nuts",
+      "vanilla"
+    ],
+    "token_order": [
+      "basic_roll_dough",
+      "flour",
+      "brown_sugar",
+      "granulated_sugar",
+      "cinnamon",
+      "streusel_fat",
+      "nuts",
+      "vanilla"
+    ],
+    "ingredients": {
+      "basic_roll_dough": {
+        "token": "basic_roll_dough",
+        "options": [
+          {
+            "option": "",
+            "display": "Basic Roll Dough",
+            "ratio": "1",
+            "unit": "recipe",
+            "ingredient_id": "basic-roll-dough",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dough",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": false,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Dough"
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "",
+            "display": "all-purpose flour",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Streusel",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Streusel"
+      },
+      "brown_sugar": {
+        "token": "brown_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "brown sugar",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "brown-sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Streusel",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Streusel"
+      },
+      "granulated_sugar": {
+        "token": "granulated_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "granulated sugar",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "white-sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Streusel",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Streusel"
+      },
+      "cinnamon": {
+        "token": "cinnamon",
+        "options": [
+          {
+            "option": "",
+            "display": "ground cinnamon",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "cinnamon",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Streusel",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Streusel"
+      },
+      "streusel_fat": {
+        "token": "streusel_fat",
+        "options": [
+          {
+            "option": "butter",
+            "display": "butter",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Streusel",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          },
+          {
+            "option": "margarine",
+            "display": "margarine",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "margarine",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Streusel",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            }
+          }
+        ],
+        "isChoice": true,
+        "section": "Streusel"
+      },
+      "nuts": {
+        "token": "nuts",
+        "options": [
+          {
+            "option": "",
+            "display": "finely chopped nuts",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "chopped-nuts",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Streusel",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Streusel"
+      },
+      "vanilla": {
+        "token": "vanilla",
+        "options": [
+          {
+            "option": "",
+            "display": "vanilla extract",
+            "ratio": "1 1/2",
+            "unit": "tsp",
+            "ingredient_id": "vanilla-extract",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Finish",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            }
+          }
+        ],
+        "isChoice": false,
+        "section": "Finish"
+      }
+    },
+    "ingredient_sections": [
+      "Dough",
+      "Streusel",
+      "Finish"
+    ],
+    "choices": {
+      "streusel_fat": {
+        "token": "streusel_fat",
+        "label": "Streusel fat",
+        "default_option": "butter"
+      }
+    },
+    "pan_sizes": [],
+    "default_pan": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": false
     }
   },
   {

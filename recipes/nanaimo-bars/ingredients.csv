@@ -1,0 +1,14 @@
+token,option,display,ratio,unit,ingredient_id,section
+butter_base,,butter,1/2,cup,butter,Base
+sugar_base,,granulated sugar,1/4,cup,white-sugar,Base
+cocoa_powder,,cocoa powder,1/3,cup,cocoa-powder,Base
+egg_base,,egg,1,count,egg,Base
+vanilla_base,,vanilla extract,2,tsp,vanilla-extract,Base
+graham_crumbs,,graham cracker crumbs,1,cup,graham-cracker-crumbs,Base
+coconut,,shredded coconut,1,cup,shredded-coconut,Base
+butter_middle,,butter,1/2,cup,butter,Middle
+milk_middle,,milk,6,tbsp,milk,Middle
+pudding_powder,,vanilla pudding powder,5,tbsp,vanilla-pudding-powder,Middle
+powdered_sugar,,powdered sugar,3,cup,powdered-sugar,Middle
+chocolate_chips,,chocolate chips,6,oz,chocolate-chips,Top
+oil_top,,neutral oil,2,tbsp,neutral-oil,Top
