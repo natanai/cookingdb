@@ -386,6 +386,25 @@ export function groupLinesBySection(lines, sectionOrder = []) {
   return sections.sort((a, b) => a.orderIdx - b.orderIdx);
 }
 
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (char) => {
+    switch (char) {
+      case '&':
+        return '&amp;';
+      case '<':
+        return '&lt;';
+      case '>':
+        return '&gt;';
+      case '"':
+        return '&quot;';
+      case "'":
+        return '&#39;';
+      default:
+        return char;
+    }
+  });
+}
+
 export function formatStepText(stepText, recipe, state) {
   const multiplier = getEffectiveMultiplier(state);
   const evaluatedConditions = stepText.replace(/{{#if\s+([^}]+)}}([\s\S]*?){{\/if}}/g, (match, condition, inner) => {
@@ -394,10 +413,13 @@ export function formatStepText(stepText, recipe, state) {
     return dependencySatisfied(dependency, recipe, state) ? inner : '';
   });
 
-  return evaluatedConditions.replace(/{{\s*([a-zA-Z0-9_-]+)\s*}}/g, (match, token) => {
+  const escaped = escapeHtml(evaluatedConditions);
+
+  return escaped.replace(/{{\s*([a-zA-Z0-9_-]+)\s*}}/g, (match, token) => {
     const option = selectOptionForToken(token, recipe, state);
     const selectedUnit = state?.unitSelections?.[token];
-    return renderIngredientEntry(option, multiplier, selectedUnit, false);
+    const ingredientText = renderIngredientEntry(option, multiplier, selectedUnit, false);
+    return `<strong class="step-ingredient">${escapeHtml(ingredientText)}</strong>`;
   });
 }
 

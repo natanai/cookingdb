@@ -1221,7 +1221,7 @@ function renderPreview(recipe) {
 
   const steps = renderStepLines(recipe, state);
   const stepSections = groupLinesBySection(steps, recipe.step_sections || []);
-  renderPreviewLines(stepsEl, stepSections);
+  renderPreviewLines(stepsEl, stepSections, { allowHtml: true });
 }
 
 function renderPreviewDietaryBadges(container, defaultCompatibility, compatibilityPossible, hasChoiceTokens) {
@@ -1259,7 +1259,7 @@ function renderPreviewDietaryBadges(container, defaultCompatibility, compatibili
 
 function renderPreviewLines(container, sections, options = {}) {
   if (!container) return;
-  const { showAlternatives = false } = options;
+  const { showAlternatives = false, allowHtml = false } = options;
 
   container.innerHTML = '';
 
@@ -1281,7 +1281,11 @@ function renderPreviewLines(container, sections, options = {}) {
 
     section.lines.forEach((line) => {
       const li = document.createElement('li');
-      li.textContent = line.text;
+      if (allowHtml) {
+        li.innerHTML = line.text;
+      } else {
+        li.textContent = line.text;
+      }
       if (showAlternatives && line.alternatives.length) {
         const span = document.createElement('span');
         span.className = 'ingredient-alternatives';

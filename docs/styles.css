@@ -929,6 +929,10 @@ main {
   color: var(--muted);
 }
 
+#steps-list .step-ingredient {
+  font-weight: 600;
+}
+
 .section-header {
   list-style: none;
   display: block;
