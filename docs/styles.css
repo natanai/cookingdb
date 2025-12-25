@@ -937,6 +937,18 @@ main {
   font-weight: 600;
 }
 
+#steps-list .step-ingredient-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
+}
+
+#steps-list .step-ingredient-link:hover,
+#steps-list .step-ingredient-link:focus {
+  color: var(--accent);
+}
+
 .section-header {
   list-style: none;
   display: block;

@@ -161,14 +161,24 @@ function loadStoredInboxRecipes() {
 }
 
 async function loadRecipes() {
-  const res = await fetch('./built/recipes.json');
-  if (!res.ok) {
-    throw new Error(`Unable to load built/recipes.json (${res.status})`);
+  const [recipesRes, indexRes] = await Promise.all([fetch('./built/recipes.json'), fetch('./built/index.json')]);
+  if (!indexRes.ok) {
+    throw new Error(`Unable to load built/index.json (${indexRes.status})`);
   }
-  const builtRaw = await res.json();
+  const indexRaw = await indexRes.json();
+  const indexList = Array.isArray(indexRaw) ? indexRaw : [];
+  if (!recipesRes.ok) {
+    throw new Error(`Unable to load built/recipes.json (${recipesRes.status})`);
+  }
+  const builtRaw = await recipesRes.json();
   const built = Array.isArray(builtRaw) ? builtRaw.map(normalizeRecipeForPage).filter(Boolean) : [];
   const inbox = loadStoredInboxRecipes();
-  return [...built, ...inbox];
+  const recipeIndex = new Map(
+    indexList
+      .filter((entry) => entry && entry.id)
+      .map((entry) => [String(entry.id), entry])
+  );
+  return { recipes: [...built, ...inbox], recipeIndex };
 }
 
 function getRecipeIdFromQuery() {
@@ -619,6 +629,7 @@ function renderRecipe(recipeInput) {
     selectedPanId: recipe.default_pan || null,
     selectedOptions: {},
     unitSelections: {},
+    recipeIndex: recipe.recipeIndex || null,
     restrictions: {
       gluten_free: compatibilityPossible.gluten_free ? resolveRestriction('gluten_free') : false,
       egg_free: compatibilityPossible.egg_free ? resolveRestriction('egg_free') : false,
@@ -787,7 +798,7 @@ async function main() {
     return;
   }
 
-  const recipes = await loadRecipes();
+  const { recipes, recipeIndex } = await loadRecipes();
 
   const recipe = recipes.find((r) => String(r?.id) === String(recipeId));
   if (!recipe) {
@@ -795,6 +806,7 @@ async function main() {
     return;
   }
 
+  recipe.recipeIndex = recipeIndex;
   renderRecipe(recipe);
 }
 
