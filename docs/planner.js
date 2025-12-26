@@ -16,7 +16,6 @@ import {
   loadNutritionSettings,
   normalizeMealFractions,
   saveNutritionSettings,
-  scaleNutritionTotals,
 } from './nutrition-engine.js';
 
 const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
@@ -405,16 +404,16 @@ function computeSelectionNutrition(selection) {
   recipeState.restrictions = selection.restrictions;
   const totals = computeBatchTotals(selection.recipe, recipeState);
   if (!totals.complete) {
-    return { totals, estimate: null, perServing: null, plannedTotals: null };
+    return { totals, estimate: null, perServing: null };
   }
   const mealTypes = Object.keys(state.nutritionPolicy?.meal_fractions_default || {});
   const defaultMealType = mealTypes.includes('dinner') ? 'dinner' : (mealTypes[0] || 'dinner');
   const estimate = estimateServings(totals, state.nutritionSettings, defaultMealType, state.nutritionPolicy);
-  const perServing = estimate?.perServing || null;
-  const plannedTotals = perServing && selection.plannedServings
-    ? scaleNutritionTotals(perServing, selection.plannedServings)
-    : null;
-  return { totals, estimate, perServing, plannedTotals };
+  const servingsPerBatch = Number(selection.servingsPerBatch);
+  const perServing = Number.isFinite(servingsPerBatch) && servingsPerBatch > 0
+    ? scaleNutritionTotals(totals, 1 / servingsPerBatch)
+    : estimate?.perServing || null;
+  return { totals, estimate, perServing };
 }
 
 function updateNutritionSummary() {
@@ -432,12 +431,12 @@ function updateNutritionSummary() {
   };
 
   state.selections.forEach((selection) => {
-    if (!selection.nutrition?.plannedTotals) return;
-    totals.kcal += selection.nutrition.plannedTotals.kcal;
-    totals.sodium_mg += selection.nutrition.plannedTotals.sodium_mg;
-    totals.sat_fat_g += selection.nutrition.plannedTotals.sat_fat_g;
-    totals.sugars_g += selection.nutrition.plannedTotals.sugars_g;
-    totals.fiber_g += selection.nutrition.plannedTotals.fiber_g;
+    if (!selection.nutrition?.totals) return;
+    totals.kcal += selection.nutrition.totals.kcal;
+    totals.sodium_mg += selection.nutrition.totals.sodium_mg;
+    totals.sat_fat_g += selection.nutrition.totals.sat_fat_g;
+    totals.sugars_g += selection.nutrition.totals.sugars_g;
+    totals.fiber_g += selection.nutrition.totals.fiber_g;
   });
 
   const rows = [
@@ -618,14 +617,30 @@ function addRecipeSelection(recipe) {
     (Number.isFinite(servingsFromRecipe) && servingsFromRecipe > 0 ? servingsFromRecipe : null) ||
     (Number.isFinite(servingsFromEstimate) && servingsFromEstimate > 0 ? servingsFromEstimate : null) ||
     4;
+  const nutritionDefaults = state.nutritionPolicy && state.nutritionSettings
+    ? (() => {
+        const recipeState = {
+          multiplier: 1,
+          panMultiplier: 1,
+          restrictions: recipe.compatibility_default || recipeDefaultCompatibility(recipe),
+          selectedOptions: {},
+          unitSelections: {},
+        };
+        const totals = computeBatchTotals(recipe, recipeState);
+        if (!totals.complete) return null;
+        const mealTypes = Object.keys(state.nutritionPolicy?.meal_fractions_default || {});
+        const defaultMealType = mealTypes.includes('dinner') ? 'dinner' : (mealTypes[0] || 'dinner');
+        return estimateServings(totals, state.nutritionSettings, defaultMealType, state.nutritionPolicy);
+      })()
+    : null;
+  const defaultServingsPerBatch = nutritionDefaults?.servings_estimate || servingsPerBatch;
   const batchSize = 1;
   const defaultCompatibility = recipe.compatibility_default || recipeDefaultCompatibility(recipe);
   const selection = {
     recipe,
     batchSize,
-    servingsPerBatch,
-    totalServings: batchSize * servingsPerBatch,
-    plannedServings: 1,
+    servingsPerBatch: defaultServingsPerBatch,
+    totalServings: batchSize * defaultServingsPerBatch,
     nutrition: null,
     defaultCompatibility,
     restrictions: { ...defaultCompatibility },
@@ -712,7 +727,7 @@ function renderSelections() {
 
     const servingsPerBatchLabel = document.createElement('label');
     servingsPerBatchLabel.className = 'planner-field';
-    servingsPerBatchLabel.textContent = 'Servings per batch';
+    servingsPerBatchLabel.textContent = 'Servings per batch (editable)';
     const servingsPerBatchInput = document.createElement('input');
     servingsPerBatchInput.type = 'number';
     servingsPerBatchInput.min = '1';
@@ -783,26 +798,14 @@ function renderSelections() {
     const nutritionControls = document.createElement('div');
     nutritionControls.className = 'planner-nutrition-controls';
 
-    const plannedServingsLabel = document.createElement('label');
-    plannedServingsLabel.className = 'planner-field';
-    plannedServingsLabel.textContent = 'Planned servings';
-    const plannedServingsInput = document.createElement('input');
-    plannedServingsInput.type = 'number';
-    plannedServingsInput.min = '0.25';
-    plannedServingsInput.step = '0.25';
-    plannedServingsInput.value = selection.plannedServings;
-    plannedServingsLabel.appendChild(plannedServingsInput);
-
-    nutritionControls.appendChild(plannedServingsLabel);
-
     const estimateLine = document.createElement('p');
     estimateLine.className = 'planner-note';
 
     const perServingList = document.createElement('ul');
     perServingList.className = 'planner-nutrition-metrics';
 
-    const plannedTotalsList = document.createElement('ul');
-    plannedTotalsList.className = 'planner-nutrition-metrics';
+    const batchTotalsList = document.createElement('ul');
+    batchTotalsList.className = 'planner-nutrition-metrics';
 
     const updateNutritionDisplay = () => {
       selection.nutrition = computeSelectionNutrition(selection);
@@ -815,15 +818,15 @@ function renderSelections() {
         nutritionWarning.style.display = '';
         estimateLine.textContent = 'Nutrition estimate unavailable for this recipe.';
         perServingList.innerHTML = '';
-        plannedTotalsList.innerHTML = '';
+        batchTotalsList.innerHTML = '';
         updateNutritionSummary();
         return;
       }
 
       nutritionWarning.style.display = 'none';
       estimateLine.textContent =
-        `Batch servings (recipe): ${selection.servingsPerBatch} • ` +
-        `Estimated meal-sized servings: ${nutrition.estimate.servings_estimate} (nutrition targets)`;
+        `Estimated servings per batch (nutrition): ${nutrition.estimate.servings_estimate}. ` +
+        `Servings per batch (editable): ${selection.servingsPerBatch}.`;
 
       const renderMetrics = (target, label) => {
         target.innerHTML = '';
@@ -853,20 +856,11 @@ function renderSelections() {
       renderMetrics(perServingList, 'Per serving');
       addMetrics(perServingList, nutrition.perServing);
 
-      renderMetrics(plannedTotalsList, 'Planned totals');
-      if (nutrition.plannedTotals) {
-        addMetrics(plannedTotalsList, nutrition.plannedTotals);
-      }
+      renderMetrics(batchTotalsList, 'Per batch');
+      addMetrics(batchTotalsList, nutrition.totals);
 
       updateNutritionSummary();
     };
-
-    plannedServingsInput.addEventListener('input', () => {
-      const value = Number(plannedServingsInput.value);
-      selection.plannedServings = Number.isFinite(value) && value > 0 ? value : 1;
-      plannedServingsInput.value = selection.plannedServings;
-      updateNutritionDisplay();
-    });
 
     const dietary = document.createElement('div');
     dietary.className = 'planner-dietary';
@@ -922,7 +916,7 @@ function renderSelections() {
     nutritionBlock.appendChild(nutritionControls);
     nutritionBlock.appendChild(estimateLine);
     nutritionBlock.appendChild(perServingList);
-    nutritionBlock.appendChild(plannedTotalsList);
+    nutritionBlock.appendChild(batchTotalsList);
 
     updateNutritionDisplay();
 

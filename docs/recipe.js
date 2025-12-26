@@ -779,7 +779,7 @@ function renderRecipe(recipeInput, nutritionPolicy) {
       }
       if (nutritionDetails) {
         nutritionDetails.textContent = batchServings
-          ? `Batch servings (recipe): ${batchServings} • Nutrition estimate unavailable for this recipe.`
+          ? `Recipe servings (author): ${batchServings}. Nutrition estimate unavailable for this recipe.`
           : 'Nutrition estimate unavailable for this recipe.';
       }
       if (nutritionMetrics) nutritionMetrics.innerHTML = '';
@@ -796,9 +796,13 @@ function renderRecipe(recipeInput, nutritionPolicy) {
       const batchServings = Number.isFinite(Number(recipe.servings_per_batch))
         ? Number(recipe.servings_per_batch)
         : estimate.servings_estimate;
-      nutritionDetails.textContent =
-        `Batch servings (recipe): ${batchServings} • ` +
-        `Estimated meal-sized servings: ${estimate.servings_estimate} (nutrition targets)`;
+      const parts = [
+        `Estimated servings per batch (nutrition): ${estimate.servings_estimate}.`,
+      ];
+      if (Number.isFinite(Number(recipe.servings_per_batch))) {
+        parts.push(`Recipe servings (author): ${batchServings}.`);
+      }
+      nutritionDetails.textContent = parts.join(' ');
     }
 
     if (nutritionMetrics) {
