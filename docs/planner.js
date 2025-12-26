@@ -5,6 +5,7 @@ import {
   formatUnitLabel,
   pluralize,
   groupLinesBySection,
+  convertUnitAmount,
 } from './recipe-utils.js';
 
 const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
@@ -237,7 +238,7 @@ function updateIngredientsSummary() {
   }
 
   const combined = new Map();
-  const extras = [];
+  const extras = new Map();
 
   state.selections.forEach((selection) => {
     const recipeState = selection.state;
@@ -250,23 +251,35 @@ function updateIngredientsSummary() {
         const display = entry.option?.display || entry.text;
         const ingredientId = entry.option?.ingredient_id || display;
         const baseAmount = entry.display?.baseAmount;
-        const baseUnit = entry.display?.baseUnit;
+        const baseUnit = entry.display?.baseUnit || 'count';
 
-        if (baseAmount === null || baseAmount === undefined || !baseUnit) {
-          extras.push(entry.text);
+        if (baseAmount === null || baseAmount === undefined) {
+          const key = entry.text.trim();
+          if (!key) return;
+          extras.set(key, (extras.get(key) || 0) + 1);
           return;
         }
 
-        const key = `${ingredientId}::${baseUnit}`;
-        if (!combined.has(key)) {
-          combined.set(key, {
+        const ingredientKey = String(ingredientId).toLowerCase();
+        let targetKey = `${ingredientKey}::${baseUnit}`;
+        if (!combined.has(targetKey)) {
+          const existing = [...combined.values()].find((item) => item.ingredientKey === ingredientKey);
+          if (existing && existing.unit && baseUnit) {
+            const conversion = convertUnitAmount(baseAmount, baseUnit, existing.unit);
+            if (conversion) {
+              existing.amount += conversion.amount;
+              return;
+            }
+          }
+          combined.set(targetKey, {
             ingredientId,
+            ingredientKey,
             display,
             unit: baseUnit,
             amount: 0,
           });
         }
-        combined.get(key).amount += baseAmount;
+        combined.get(targetKey).amount += baseAmount;
       });
     });
   });
@@ -281,13 +294,13 @@ function updateIngredientsSummary() {
     container.appendChild(li);
   });
 
-  if (extras.length) {
+  if (extras.size) {
     const divider = document.createElement('li');
     divider.className = 'ingredients-divider';
     divider.textContent = 'Additional items:';
     container.appendChild(divider);
 
-    extras.forEach((item) => {
+    [...extras.keys()].sort().forEach((item) => {
       const li = document.createElement('li');
       li.textContent = item;
       container.appendChild(li);
@@ -530,6 +543,7 @@ function renderSelections() {
       input.addEventListener('change', () => {
         selection.restrictions[tag.key] = input.checked;
         selection.state.restrictions = selection.restrictions;
+        selection.state.selectedOptions = {};
         updateIngredientsSummary();
       });
       label.appendChild(input);
@@ -602,8 +616,8 @@ function setupSearch() {
 }
 
 function buildIngredientListForPrint() {
-  const combined = [];
-  const extras = [];
+  const combined = new Map();
+  const extras = new Map();
 
   state.selections.forEach((selection) => {
     const recipeState = selection.state;
@@ -615,37 +629,51 @@ function buildIngredientListForPrint() {
         const display = entry.option?.display || entry.text;
         const ingredientId = entry.option?.ingredient_id || display;
         const baseAmount = entry.display?.baseAmount;
-        const baseUnit = entry.display?.baseUnit;
+        const baseUnit = entry.display?.baseUnit || 'count';
 
-        if (baseAmount === null || baseAmount === undefined || !baseUnit) {
-          extras.push(entry.text);
+        if (baseAmount === null || baseAmount === undefined) {
+          const key = entry.text.trim();
+          if (!key) return;
+          extras.set(key, (extras.get(key) || 0) + 1);
           return;
         }
 
-        const existing = combined.find(
-          (item) => item.ingredientId === ingredientId && item.unit === baseUnit
-        );
-        if (existing) {
-          existing.amount += baseAmount;
-        } else {
-          combined.push({ ingredientId, display, unit: baseUnit, amount: baseAmount });
+        const ingredientKey = String(ingredientId).toLowerCase();
+        let targetKey = `${ingredientKey}::${baseUnit}`;
+        if (!combined.has(targetKey)) {
+          const existing = [...combined.values()].find((item) => item.ingredientKey === ingredientKey);
+          if (existing && existing.unit && baseUnit) {
+            const conversion = convertUnitAmount(baseAmount, baseUnit, existing.unit);
+            if (conversion) {
+              existing.amount += conversion.amount;
+              return;
+            }
+          }
+          combined.set(targetKey, {
+            ingredientId,
+            ingredientKey,
+            display,
+            unit: baseUnit,
+            amount: 0,
+          });
         }
+        combined.get(targetKey).amount += baseAmount;
       });
     });
   });
 
-  combined.sort((a, b) => a.display.localeCompare(b.display));
-  const lines = combined.map((entry) => {
+  const sorted = [...combined.values()].sort((a, b) => a.display.localeCompare(b.display));
+  const lines = sorted.map((entry) => {
     const amountStr = formatAmountForDisplay(entry.amount);
     const unitLabel = entry.unit ? ` ${formatUnitLabel(entry.unit, entry.amount)}` : '';
     const displayName = pluralize(entry.display, entry.amount, entry.unit || 'count');
     return `${amountStr}${unitLabel} ${displayName}`.trim();
   });
 
-  if (extras.length) {
+  if (extras.size) {
     lines.push('');
     lines.push('Additional items:');
-    extras.forEach((item) => lines.push(`• ${item}`));
+    [...extras.keys()].sort().forEach((item) => lines.push(`• ${item}`));
   }
 
   return lines.join('\n');
