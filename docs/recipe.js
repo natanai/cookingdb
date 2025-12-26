@@ -360,7 +360,7 @@ function buildChoiceControls(recipe, state, onChange) {
     }
   });
 
-  return { hasSwapAdjustments: renderedGroups > 0, swapGroupCount: renderedGroups };
+  return { hasSwapAdjustments: renderedGroups > 0 };
 }
 
 function renderIngredientsList(recipe, state, onUnitChange) {
@@ -519,7 +519,7 @@ function setupPanControls(recipe, state, rerender) {
 
   if (!panControls || !panSelect || !panNote) {
     state.panMultiplier = 1;
-    return false;
+    return { hasPanAdjustments: false };
   }
 
   const panSizes = Array.isArray(recipe?.pan_sizes) ? recipe.pan_sizes : [];
@@ -543,7 +543,7 @@ function setupPanControls(recipe, state, rerender) {
     state.panMultiplier = 1;
     state.selectedPanId = recipe?.default_pan || null;
     panControls.remove();
-    return false;
+    return { hasPanAdjustments: false };
   }
 
   panControls.hidden = false;
@@ -587,7 +587,7 @@ function setupPanControls(recipe, state, rerender) {
   panSelect.addEventListener('change', updatePanMultiplier);
   updatePanMultiplier();
 
-  return true;
+  return { hasPanAdjustments: true };
 }
 
 function renderRecipe(recipeInput) {
@@ -723,11 +723,10 @@ function renderRecipe(recipeInput) {
     );
   };
 
-  const hasPanAdjustments = setupPanControls(recipe, state, rerender);
+  const panResult = setupPanControls(recipe, state, rerender);
   syncSelections();
   const swapResult = buildChoiceControls(recipe, state, rerender) || {
     hasSwapAdjustments: false,
-    swapGroupCount: 0,
   };
   refreshDietaryBadges();
 
@@ -738,23 +737,20 @@ function renderRecipe(recipeInput) {
     return possible && !lockedOn;
   };
 
-  const hasSelectableDietaryAdjustments = DIETARY_BADGES.some(({ key }) => dietaryToggleEnabled(key));
-
   const adjustSummary = document.getElementById('adjust-summary');
   const adjustDetails = document.getElementById('adjust-details');
   const adjustDivider = document.getElementById('adjust-divider');
 
-  const adjustmentCount = [hasPanAdjustments, swapResult.hasSwapAdjustments, hasSelectableDietaryAdjustments]
-    .filter(Boolean)
-    .length;
-
-  const hasAnyAdjustments = adjustmentCount > 0;
+  const hasAnyAdjustments =
+    (panResult?.hasPanAdjustments || false) ||
+    swapResult.hasSwapAdjustments ||
+    DIETARY_BADGES.some(({ key }) => dietaryToggleEnabled(key));
 
   if (!hasAnyAdjustments) {
     if (adjustDetails) adjustDetails.remove();
   } else {
     if (adjustSummary) {
-      adjustSummary.textContent = adjustmentCount ? `Adjust recipe (${adjustmentCount})` : 'Adjust recipe';
+      adjustSummary.textContent = 'Adjust recipe';
     }
 
     if (adjustDetails && !adjustDetails.dataset.initialized) {
@@ -763,7 +759,7 @@ function renderRecipe(recipeInput) {
     }
 
     if (adjustDivider) {
-      adjustDivider.hidden = !(hasPanAdjustments && swapResult.hasSwapAdjustments);
+      adjustDivider.hidden = !(panResult?.hasPanAdjustments && swapResult.hasSwapAdjustments);
     }
   }
 
