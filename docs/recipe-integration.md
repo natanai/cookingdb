@@ -45,6 +45,8 @@ Every ingredient row must include:
 Additional validations and constraints:
 
 - `ratio` must match the format expected by validation: integers or fractions such as `1`, `1/2`, or `1 1/2`.
+- Ingredient IDs must be unique in `data/ingredient_catalog.csv`. Reuse existing ingredient IDs instead of
+  adding duplicates, and update recipes to point at the canonical ID when consolidating ingredients.
 - Optional grouping columns (`section`, `line_group`) are supported for multi-part ingredient lists.
 - Tokens can define **options** via the `option` column; options with identical `display` values cannot repeat
   for the same token (validation error).
