@@ -131,10 +131,8 @@ export async function validateAll() {
   const recipeDirs = fs.readdirSync(recipesDir, { withFileTypes: true }).filter((ent) => ent.isDirectory());
   const ingredientCatalogPath = path.join(process.cwd(), 'data', 'ingredient_catalog.csv');
   const nutritionGuidelinesPath = path.join(process.cwd(), 'data', 'nutrition_guidelines.json');
-  const nutritionPolicyPath = path.join(process.cwd(), 'data', 'nutrition_policy.json');
   ensure(fs.existsSync(ingredientCatalogPath), 'Missing ingredient_catalog.csv');
   ensure(fs.existsSync(nutritionGuidelinesPath), 'Missing nutrition_guidelines.json');
-  ensure(fs.existsSync(nutritionPolicyPath), 'Missing nutrition_policy.json');
   const ingredientCatalogRows = await parseCSVFile(ingredientCatalogPath);
   const ingredientCatalog = new Set(ingredientCatalogRows.map((row) => row.ingredient_id));
   const ingredientCatalogIds = new Set();
