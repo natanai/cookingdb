@@ -158,6 +158,8 @@ export async function validateAll() {
         'iron_mg',
         'potassium_mg',
         'vitamin_c_mg',
+        'grams_per_count',
+        'tsp_per_sprig',
       ].every((field) => Object.prototype.hasOwnProperty.call(row, field)),
       'ingredient_catalog.csv missing nutrition columns'
     );

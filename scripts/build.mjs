@@ -107,6 +107,8 @@ function loadIngredientCatalog(catalogPath) {
       iron_mg: row.iron_mg || '',
       potassium_mg: row.potassium_mg || '',
       vitamin_c_mg: row.vitamin_c_mg || '',
+      grams_per_count: row.grams_per_count || '',
+      tsp_per_sprig: row.tsp_per_sprig || '',
     });
   }
   return map;
@@ -120,12 +122,18 @@ function loadIngredientNutritionFromCatalog(catalogPath) {
   for (const row of parsed) {
     if (!row.ingredient_id || !row.nutrition_unit) continue;
     const calories = Number(row.calories_per_unit);
+    const gramsPerCount = Number(row.grams_per_count);
+    const tspPerSprig = Number(row.tsp_per_sprig);
     map.set(`${row.ingredient_id}::${row.nutrition_unit}`, {
       ingredient_id: row.ingredient_id,
       unit: row.nutrition_unit,
       calories_per_unit: Number.isFinite(calories) ? calories : null,
       source: row.nutrition_source || '',
       notes: row.nutrition_notes || '',
+      conversions: {
+        grams_per_count: Number.isFinite(gramsPerCount) && gramsPerCount > 0 ? gramsPerCount : null,
+        tsp_per_sprig: Number.isFinite(tspPerSprig) && tspPerSprig > 0 ? tspPerSprig : null,
+      },
     });
   }
   return map;
@@ -250,6 +258,38 @@ function convertUnitAmount(amount, fromUnit, toUnit) {
   return { amount: converted, unit: toDef.id };
 }
 
+function convertUnitAmountWithFactors(amount, fromUnit, toUnit, conversions) {
+  const direct = convertUnitAmount(amount, fromUnit, toUnit);
+  if (direct) return direct;
+  const fromDef = unitDefinition(fromUnit);
+  const toDef = unitDefinition(toUnit);
+  if (!fromDef || !toDef) return null;
+
+  const gramsPerCount = parseNumericField(conversions?.grams_per_count);
+  if (fromDef.group === 'count' && toDef.group === 'mass' && Number.isFinite(gramsPerCount) && gramsPerCount > 0) {
+    const grams = amount * gramsPerCount;
+    return convertUnitAmount(grams, 'g', toUnit);
+  }
+  if (fromDef.group === 'mass' && toDef.group === 'count' && Number.isFinite(gramsPerCount) && gramsPerCount > 0) {
+    const grams = convertUnitAmount(amount, fromUnit, 'g');
+    if (!grams) return null;
+    return { amount: grams.amount / gramsPerCount, unit: toUnit };
+  }
+
+  const tspPerSprig = parseNumericField(conversions?.tsp_per_sprig);
+  if (fromDef.group === 'count' && toDef.group === 'volume' && Number.isFinite(tspPerSprig) && tspPerSprig > 0) {
+    const tsp = amount * tspPerSprig;
+    return convertUnitAmount(tsp, 'tsp', toUnit);
+  }
+  if (fromDef.group === 'volume' && toDef.group === 'count' && Number.isFinite(tspPerSprig) && tspPerSprig > 0) {
+    const tsp = convertUnitAmount(amount, fromUnit, 'tsp');
+    if (!tsp) return null;
+    return { amount: tsp.amount / tspPerSprig, unit: toUnit };
+  }
+
+  return null;
+}
+
 function loadPanCatalog(catalogPath) {
   const raw = fs.existsSync(catalogPath) ? fs.readFileSync(catalogPath, 'utf-8') : '';
   if (!raw) return new Map();
@@ -336,6 +376,16 @@ function buildNutritionProfile(entry) {
     sugars_g: parseNumericField(entry.sugars_g),
     fiber_g: parseNumericField(entry.fiber_g),
     sodium_mg: parseNumericField(entry.sodium_mg),
+    conversions: {
+      grams_per_count: (() => {
+        const gramsPerCount = parseNumericField(entry.grams_per_count);
+        return Number.isFinite(gramsPerCount) && gramsPerCount > 0 ? gramsPerCount : null;
+      })(),
+      tsp_per_sprig: (() => {
+        const tspPerSprig = parseNumericField(entry.tsp_per_sprig);
+        return Number.isFinite(tspPerSprig) && tspPerSprig > 0 ? tspPerSprig : null;
+      })(),
+    },
   };
 }
 
@@ -369,7 +419,7 @@ function computeNutritionEstimate(ingredients, choices, nutritionCatalog, nutrit
       const entries = nutritionIndex.get(option.ingredient_id) || [];
       for (const entry of entries) {
         if (!Number.isFinite(entry.calories_per_unit)) continue;
-        const conversion = convertUnitAmount(amount, normalizedUnit, entry.unit);
+        const conversion = convertUnitAmountWithFactors(amount, normalizedUnit, entry.unit, entry.conversions);
         if (!conversion) continue;
         caloriesForOption = conversion.amount * entry.calories_per_unit;
         break;

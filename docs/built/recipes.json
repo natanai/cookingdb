@@ -94,7 +94,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -127,7 +131,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -160,7 +168,11 @@
               "total_carbs_g": 0.9,
               "sugars_g": 0.03,
               "fiber_g": 0.1,
-              "sodium_mg": 0.5
+              "sodium_mg": 0.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -193,7 +205,11 @@
               "total_carbs_g": 24,
               "sugars_g": 7,
               "fiber_g": 4,
-              "sodium_mg": 41
+              "sodium_mg": 41,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -226,7 +242,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -259,7 +279,11 @@
               "total_carbs_g": 0.9,
               "sugars_g": 0.2,
               "fiber_g": 0.8,
-              "sodium_mg": 10
+              "sodium_mg": 10,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -292,7 +316,11 @@
               "total_carbs_g": 0.9,
               "sugars_g": 0,
               "fiber_g": 0.6,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": 0.5
+              }
             }
           }
         ],
@@ -323,12 +351,12 @@
     "family": "",
     "notes": "Use a 3–4 lb brisket. This braise layers apple cider with broth and root vegetables.",
     "nutrition_estimate": {
-      "calories_total": 4328,
-      "calories_per_serving": 721.3333333333334,
-      "servings_estimate": 6,
-      "covered_ingredients": 10,
+      "calories_total": 4926.6696,
+      "calories_per_serving": 703.8099428571429,
+      "servings_estimate": 7,
+      "covered_ingredients": 12,
       "total_ingredients": 12,
-      "coverage_ratio": 0.8333333333333334,
+      "coverage_ratio": 1,
       "target_meal_calories": 700
     },
     "steps_raw": "1. Preheat the oven to 325°F (163°C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}.\n2. In a large Dutch oven over medium-high heat, heat {{neutral_oil}}. Sear the {{brisket}}, turning occasionally, until browned, about 5 minutes per side. Transfer to a large baking dish or plate.\n3. Reduce heat to medium. In the same pot, arrange {{baby_potatoes}} cut side down and cook undisturbed until lightly softened, about 5 minutes. Add {{carrots}} and {{shallots}}, season with more {{kosher_salt}} and {{black_pepper}}, and stir to release the potatoes.\n4. Return {{brisket}} and any accumulated juices to the pot. Pour in {{apple_cider}} and {{broth_choice}}, then add {{thyme}}, {{bay_leaves}}, and {{cayenne}}. Season to taste with {{kosher_salt}} and {{black_pepper}}, cover, and bring to a boil.\n5. Once boiling, transfer the covered pot to the oven and roast until the brisket is easily shreddable, 2 1/2 to 3 hours.\n6. Discard {{thyme}} and {{bay_leaves}}. Shred {{brisket}} with two forks. Arrange the meat on a platter with the vegetables and spoon the cooking juices over the top.",
@@ -424,7 +452,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -457,7 +489,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -490,7 +526,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -523,7 +563,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -556,7 +600,11 @@
               "total_carbs_g": 6,
               "sugars_g": 0,
               "fiber_g": 1,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": 30,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -589,7 +637,11 @@
               "total_carbs_g": 6,
               "sugars_g": 2.9,
               "fiber_g": 1.5,
-              "sodium_mg": 42
+              "sodium_mg": 42,
+              "conversions": {
+                "grams_per_count": 61,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -622,7 +674,11 @@
               "total_carbs_g": 5,
               "sugars_g": 1,
               "fiber_g": 0.8,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -655,7 +711,11 @@
               "total_carbs_g": 30,
               "sugars_g": 24,
               "fiber_g": 0,
-              "sodium_mg": 10
+              "sodium_mg": 10,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -688,7 +748,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 830
+              "sodium_mg": 830,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -715,7 +779,11 @@
               "total_carbs_g": 1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 860
+              "sodium_mg": 860,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -748,7 +816,11 @@
               "total_carbs_g": 0.9,
               "sugars_g": 0,
               "fiber_g": 0.6,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": 0.5
+              }
             }
           }
         ],
@@ -781,7 +853,11 @@
               "total_carbs_g": 0.5,
               "sugars_g": 0,
               "fiber_g": 0.3,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -814,7 +890,11 @@
               "total_carbs_g": 1.4,
               "sugars_g": 0.5,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -923,7 +1003,11 @@
               "total_carbs_g": 24,
               "sugars_g": 7,
               "fiber_g": 4,
-              "sodium_mg": 41
+              "sodium_mg": 41,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -956,7 +1040,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -989,7 +1077,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1022,7 +1114,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1055,7 +1151,11 @@
               "total_carbs_g": 0.4,
               "sugars_g": 0.4,
               "fiber_g": 0,
-              "sodium_mg": 5
+              "sodium_mg": 5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1159,7 +1259,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 98
+              "sodium_mg": 98,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1192,7 +1296,11 @@
               "total_carbs_g": 4,
               "sugars_g": 3.2,
               "fiber_g": 0,
-              "sodium_mg": 160
+              "sodium_mg": 160,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1225,7 +1333,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1258,7 +1370,11 @@
               "total_carbs_g": 10,
               "sugars_g": 4.7,
               "fiber_g": 1.9,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1291,7 +1407,11 @@
               "total_carbs_g": 0.1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1324,7 +1444,11 @@
               "total_carbs_g": 13,
               "sugars_g": 13,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1357,7 +1481,11 @@
               "total_carbs_g": 1.5,
               "sugars_g": 0.5,
               "fiber_g": 0.5,
-              "sodium_mg": 168
+              "sodium_mg": 168,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1390,7 +1518,11 @@
               "total_carbs_g": 27,
               "sugars_g": 4,
               "fiber_g": 1,
-              "sodium_mg": 230
+              "sodium_mg": 230,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1508,7 +1640,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 95
+              "sodium_mg": 95,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1541,7 +1677,11 @@
               "total_carbs_g": 13,
               "sugars_g": 13,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1574,7 +1714,11 @@
               "total_carbs_g": 2.8,
               "sugars_g": 0.3,
               "fiber_g": 1.9,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1607,7 +1751,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -1634,7 +1782,11 @@
               "total_carbs_g": 0.1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 153
+              "sodium_mg": 153,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -1661,7 +1813,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1694,7 +1850,11 @@
               "total_carbs_g": 0.4,
               "sugars_g": 0.2,
               "fiber_g": 0,
-              "sodium_mg": 71
+              "sodium_mg": 71,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -1721,7 +1881,11 @@
               "total_carbs_g": 7,
               "sugars_g": 0,
               "fiber_g": 1,
-              "sodium_mg": 320
+              "sodium_mg": 320,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -1748,7 +1912,11 @@
               "total_carbs_g": 0.3,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 20
+              "sodium_mg": 20,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1781,7 +1949,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1814,7 +1986,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -1841,7 +2017,11 @@
               "total_carbs_g": 92,
               "sugars_g": 0,
               "fiber_g": 4,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1877,7 +2057,11 @@
               "total_carbs_g": 3,
               "sugars_g": 0,
               "fiber_g": 3,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1917,7 +2101,11 @@
               "total_carbs_g": 4,
               "sugars_g": 0,
               "fiber_g": 4,
-              "sodium_mg": 5
+              "sodium_mg": 5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -1957,7 +2145,11 @@
               "total_carbs_g": 1.1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 363
+              "sodium_mg": 363,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2076,7 +2268,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 320
+              "sodium_mg": 320,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2109,7 +2305,11 @@
               "total_carbs_g": 1,
               "sugars_g": 1,
               "fiber_g": 0,
-              "sodium_mg": 900
+              "sodium_mg": 900,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2142,7 +2342,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2175,7 +2379,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2208,7 +2416,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2241,7 +2453,11 @@
               "total_carbs_g": 4.2,
               "sugars_g": 2,
               "fiber_g": 0,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2274,7 +2490,11 @@
               "total_carbs_g": 40.3,
               "sugars_g": 0.4,
               "fiber_g": 2,
-              "sodium_mg": 8
+              "sodium_mg": 8,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2397,7 +2617,11 @@
               "total_carbs_g": 0.4,
               "sugars_g": 0.2,
               "fiber_g": 0,
-              "sodium_mg": 71
+              "sodium_mg": 71,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -2424,7 +2648,11 @@
               "total_carbs_g": 7,
               "sugars_g": 0,
               "fiber_g": 1,
-              "sodium_mg": 320
+              "sodium_mg": 320,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2457,7 +2685,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 95
+              "sodium_mg": 95,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -2484,7 +2716,11 @@
               "total_carbs_g": 16,
               "sugars_g": 7,
               "fiber_g": 1.9,
-              "sodium_mg": 101
+              "sodium_mg": 101,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2517,7 +2753,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2550,7 +2790,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -2577,7 +2821,11 @@
               "total_carbs_g": 0.1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 153
+              "sodium_mg": 153,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2610,7 +2858,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -2637,7 +2889,11 @@
               "total_carbs_g": 92,
               "sugars_g": 0,
               "fiber_g": 4,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2670,7 +2926,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2703,7 +2963,11 @@
               "total_carbs_g": 13,
               "sugars_g": 13,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2736,7 +3000,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -2763,7 +3031,11 @@
               "total_carbs_g": 0.1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 153
+              "sodium_mg": 153,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2889,7 +3161,11 @@
               "total_carbs_g": 142,
               "sugars_g": 0.7,
               "fiber_g": 7.4,
-              "sodium_mg": 14
+              "sodium_mg": 14,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2922,7 +3198,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -2955,7 +3235,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3059,7 +3343,11 @@
               "total_carbs_g": 1,
               "sugars_g": 1,
               "fiber_g": 0,
-              "sodium_mg": 350
+              "sodium_mg": 350,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3092,7 +3380,11 @@
               "total_carbs_g": 0.4,
               "sugars_g": 0.2,
               "fiber_g": 0,
-              "sodium_mg": 71
+              "sodium_mg": 71,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3125,7 +3417,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 479
+              "sodium_mg": 479,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3158,7 +3454,11 @@
               "total_carbs_g": 5.5,
               "sugars_g": 2.9,
               "fiber_g": 2,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3191,7 +3491,11 @@
               "total_carbs_g": 1.1,
               "sugars_g": 0.2,
               "fiber_g": 0.9,
-              "sodium_mg": 442
+              "sodium_mg": 442,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3224,7 +3528,11 @@
               "total_carbs_g": 7,
               "sugars_g": 7,
               "fiber_g": 0,
-              "sodium_mg": 220
+              "sodium_mg": 220,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3257,7 +3565,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 90
+              "sodium_mg": 90,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3290,7 +3602,11 @@
               "total_carbs_g": 26,
               "sugars_g": 4,
               "fiber_g": 1,
-              "sodium_mg": 230
+              "sodium_mg": 230,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3321,12 +3637,12 @@
     "family": "",
     "notes": "Simple baked casserole; add a little coconut oil if the sausage is lean.",
     "nutrition_estimate": {
-      "calories_total": 165,
-      "calories_per_serving": 165,
-      "servings_estimate": 1,
-      "covered_ingredients": 3,
+      "calories_total": 1576.175111111111,
+      "calories_per_serving": 788.0875555555555,
+      "servings_estimate": 2,
+      "covered_ingredients": 4,
       "total_ingredients": 5,
-      "coverage_ratio": 0.6,
+      "coverage_ratio": 0.8,
       "target_meal_calories": 700
     },
     "steps_raw": "1. Heat the oven to 350–400°F (177–204°C).\n2. Dice {{butternut_squash}} into 1-inch cubes and place in a baking dish. Add {{sausage}} (broken into pieces) and {{onion}}. Season with {{salt}}.\n3. If the sausage is lean, drizzle with {{coconut_oil}} for extra fat.\n4. Bake until the squash is tender and the sausage is cooked through, stirring occasionally.",
@@ -3391,7 +3707,11 @@
               "total_carbs_g": 16,
               "sugars_g": 3.1,
               "fiber_g": 2.8,
-              "sodium_mg": 6
+              "sodium_mg": 6,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3424,7 +3744,11 @@
               "total_carbs_g": 1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 330
+              "sodium_mg": 330,
+              "conversions": {
+                "grams_per_count": 45,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3457,7 +3781,11 @@
               "total_carbs_g": 10,
               "sugars_g": 4.7,
               "fiber_g": 1.9,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3490,7 +3818,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3523,7 +3855,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3649,7 +3985,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 90
+              "sodium_mg": 90,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -3676,7 +4016,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3709,7 +4053,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3742,7 +4090,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3775,7 +4127,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3808,7 +4164,11 @@
               "total_carbs_g": 1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 860
+              "sodium_mg": 860,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3841,7 +4201,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 95
+              "sodium_mg": 95,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3874,7 +4238,11 @@
               "total_carbs_g": 148,
               "sugars_g": 0.1,
               "fiber_g": 2.4,
-              "sodium_mg": 9
+              "sodium_mg": 9,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3907,7 +4275,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 308
+              "sodium_mg": 308,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -3934,7 +4306,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 80
+              "sodium_mg": 80,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -3967,7 +4343,11 @@
               "total_carbs_g": 2.3,
               "sugars_g": 1.4,
               "fiber_g": 0.7,
-              "sodium_mg": 5
+              "sodium_mg": 5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4000,7 +4380,11 @@
               "total_carbs_g": 5.5,
               "sugars_g": 2.9,
               "fiber_g": 2,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4033,7 +4417,11 @@
               "total_carbs_g": 1.5,
               "sugars_g": 1,
               "fiber_g": 0.5,
-              "sodium_mg": 50
+              "sodium_mg": 50,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4058,15 +4446,19 @@
               "dairy_free": true
             },
             "nutrition": {
-              "unit": "",
-              "calories_per_unit": 0,
-              "protein_g": 0,
-              "total_fat_g": 0,
-              "saturated_fat_g": 0,
-              "total_carbs_g": 0,
-              "sugars_g": 0,
-              "fiber_g": 0,
-              "sodium_mg": 0
+              "unit": "oz",
+              "calories_per_unit": 164,
+              "protein_g": 6,
+              "total_fat_g": 14.2,
+              "saturated_fat_g": 1.1,
+              "total_carbs_g": 6.1,
+              "sugars_g": 1.2,
+              "fiber_g": 3.6,
+              "sodium_mg": 0.28,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4099,7 +4491,11 @@
               "total_carbs_g": 0.2,
               "sugars_g": 0.1,
               "fiber_g": 0.1,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4217,7 +4613,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 308
+              "sodium_mg": 308,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -4244,7 +4644,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 1000
+              "sodium_mg": 1000,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4277,7 +4681,11 @@
               "total_carbs_g": 25,
               "sugars_g": 2,
               "fiber_g": 0,
-              "sodium_mg": 2150
+              "sodium_mg": 2150,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4310,7 +4718,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 95
+              "sodium_mg": 95,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4343,7 +4755,11 @@
               "total_carbs_g": 2.7,
               "sugars_g": 2.3,
               "fiber_g": 0,
-              "sodium_mg": 420
+              "sodium_mg": 420,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -4370,7 +4786,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4403,7 +4823,11 @@
               "total_carbs_g": 96,
               "sugars_g": 24,
               "fiber_g": 4,
-              "sodium_mg": 1760
+              "sodium_mg": 1760,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4537,7 +4961,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4570,7 +4998,11 @@
               "total_carbs_g": 10,
               "sugars_g": 4.7,
               "fiber_g": 1.9,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4603,7 +5035,11 @@
               "total_carbs_g": 5.5,
               "sugars_g": 2.9,
               "fiber_g": 2,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4636,7 +5072,11 @@
               "total_carbs_g": 18,
               "sugars_g": 10,
               "fiber_g": 4,
-              "sodium_mg": 300
+              "sodium_mg": 300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4669,7 +5109,11 @@
               "total_carbs_g": 13,
               "sugars_g": 8.8,
               "fiber_g": 2.7,
-              "sodium_mg": 879
+              "sodium_mg": 879,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4702,7 +5146,11 @@
               "total_carbs_g": 16,
               "sugars_g": 8,
               "fiber_g": 3,
-              "sodium_mg": 500
+              "sodium_mg": 500,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4727,15 +5175,19 @@
               "dairy_free": true
             },
             "nutrition": {
-              "unit": "",
-              "calories_per_unit": 0,
-              "protein_g": 0,
-              "total_fat_g": 0,
-              "saturated_fat_g": 0,
-              "total_carbs_g": 0,
-              "sugars_g": 0,
-              "fiber_g": 0,
-              "sodium_mg": 0
+              "unit": "cup",
+              "calories_per_unit": 225,
+              "protein_g": 15.3,
+              "total_fat_g": 0.89,
+              "saturated_fat_g": 0.13,
+              "total_carbs_g": 40.4,
+              "sugars_g": 0.57,
+              "fiber_g": 13.1,
+              "sodium_mg": 3.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4768,7 +5220,11 @@
               "total_carbs_g": 1.42,
               "sugars_g": 0.19,
               "fiber_g": 0.9,
-              "sodium_mg": 26
+              "sodium_mg": 26,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4801,7 +5257,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4834,7 +5294,11 @@
               "total_carbs_g": 3.1,
               "sugars_g": 2.4,
               "fiber_g": 0,
-              "sodium_mg": 167
+              "sodium_mg": 167,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4867,7 +5331,11 @@
               "total_carbs_g": 1.17,
               "sugars_g": 0.22,
               "fiber_g": 0.79,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4900,7 +5368,11 @@
               "total_carbs_g": 1.4,
               "sugars_g": 0.5,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4933,7 +5405,11 @@
               "total_carbs_g": 0.9,
               "sugars_g": 0.03,
               "fiber_g": 0.1,
-              "sodium_mg": 0.5
+              "sodium_mg": 0.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4966,7 +5442,11 @@
               "total_carbs_g": 0.5,
               "sugars_g": 0,
               "fiber_g": 0.3,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -4999,7 +5479,11 @@
               "total_carbs_g": 0.2,
               "sugars_g": 0.1,
               "fiber_g": 0.1,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5124,7 +5608,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -5151,7 +5639,11 @@
               "total_carbs_g": 0.1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 153
+              "sodium_mg": 153,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5184,7 +5676,11 @@
               "total_carbs_g": 13,
               "sugars_g": 13,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5217,7 +5713,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5250,7 +5750,11 @@
               "total_carbs_g": 15,
               "sugars_g": 11.1,
               "fiber_g": 0,
-              "sodium_mg": 8
+              "sodium_mg": 8,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5283,7 +5787,11 @@
               "total_carbs_g": 0.53,
               "sugars_g": 0.53,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5316,7 +5824,11 @@
               "total_carbs_g": 0.4,
               "sugars_g": 0.2,
               "fiber_g": 0,
-              "sodium_mg": 71
+              "sodium_mg": 71,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -5343,7 +5855,11 @@
               "total_carbs_g": 7,
               "sugars_g": 0,
               "fiber_g": 1,
-              "sodium_mg": 320
+              "sodium_mg": 320,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5376,7 +5892,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 1260
+              "sodium_mg": 1260,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5409,7 +5929,11 @@
               "total_carbs_g": 1.1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 363
+              "sodium_mg": 363,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5442,7 +5966,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5475,7 +6003,11 @@
               "total_carbs_g": 92,
               "sugars_g": 0,
               "fiber_g": 4,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5508,7 +6040,11 @@
               "total_carbs_g": 108,
               "sugars_g": 91,
               "fiber_g": 8,
-              "sodium_mg": 8
+              "sodium_mg": 8,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -5535,7 +6071,11 @@
               "total_carbs_g": 100,
               "sugars_g": 75,
               "fiber_g": 8,
-              "sodium_mg": 10
+              "sodium_mg": 10,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5650,7 +6190,11 @@
               "total_carbs_g": 10,
               "sugars_g": 4.7,
               "fiber_g": 1.9,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5683,7 +6227,11 @@
               "total_carbs_g": 1,
               "sugars_g": 1,
               "fiber_g": 0,
-              "sodium_mg": 250
+              "sodium_mg": 250,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5716,7 +6264,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5749,7 +6301,11 @@
               "total_carbs_g": 2,
               "sugars_g": 0.1,
               "fiber_g": 1.4,
-              "sodium_mg": 6
+              "sodium_mg": 6,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5782,7 +6338,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5815,7 +6375,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -5985,7 +6549,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 308
+              "sodium_mg": 308,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6019,7 +6587,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6053,7 +6625,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6087,7 +6663,11 @@
               "total_carbs_g": 1,
               "sugars_g": 0.1,
               "fiber_g": 0.6,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6121,7 +6701,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6155,7 +6739,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6189,7 +6777,11 @@
               "total_carbs_g": 1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 416
+              "sodium_mg": 416,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6223,7 +6815,11 @@
               "total_carbs_g": 1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 860
+              "sodium_mg": 860,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6257,7 +6853,11 @@
               "total_carbs_g": 1,
               "sugars_g": 1,
               "fiber_g": 0,
-              "sodium_mg": 900
+              "sodium_mg": 900,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -6284,7 +6884,11 @@
               "total_carbs_g": 1,
               "sugars_g": 1,
               "fiber_g": 0,
-              "sodium_mg": 900
+              "sodium_mg": 900,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6318,7 +6922,11 @@
               "total_carbs_g": 0.8,
               "sugars_g": 0.1,
               "fiber_g": 0,
-              "sodium_mg": 879
+              "sodium_mg": 879,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -6345,7 +6953,11 @@
               "total_carbs_g": 3.1,
               "sugars_g": 2.4,
               "fiber_g": 0,
-              "sodium_mg": 167
+              "sodium_mg": 167,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6379,7 +6991,11 @@
               "total_carbs_g": 2.3,
               "sugars_g": 0.9,
               "fiber_g": 0.4,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6413,7 +7029,11 @@
               "total_carbs_g": 0.9,
               "sugars_g": 0,
               "fiber_g": 0.6,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6447,7 +7067,11 @@
               "total_carbs_g": 0.4,
               "sugars_g": 0.2,
               "fiber_g": 0.2,
-              "sodium_mg": 0.5
+              "sodium_mg": 0.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6481,7 +7105,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6515,7 +7143,11 @@
               "total_carbs_g": 0.9,
               "sugars_g": 0.03,
               "fiber_g": 0.1,
-              "sodium_mg": 0.5
+              "sodium_mg": 0.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6549,7 +7181,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6583,7 +7219,11 @@
               "total_carbs_g": 0.4,
               "sugars_g": 0.4,
               "fiber_g": 0,
-              "sodium_mg": 5
+              "sodium_mg": 5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6617,7 +7257,11 @@
               "total_carbs_g": 1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 416
+              "sodium_mg": 416,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -6644,7 +7288,11 @@
               "total_carbs_g": 1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 416
+              "sodium_mg": 416,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6773,7 +7421,11 @@
               "total_carbs_g": 37,
               "sugars_g": 1.7,
               "fiber_g": 4.7,
-              "sodium_mg": 13
+              "sodium_mg": 13,
+              "conversions": {
+                "grams_per_count": 173,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6806,7 +7458,11 @@
               "total_carbs_g": 12,
               "sugars_g": 3.4,
               "fiber_g": 1.6,
-              "sodium_mg": 18
+              "sodium_mg": 18,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6839,7 +7495,11 @@
               "total_carbs_g": 1.2,
               "sugars_g": 0.5,
               "fiber_g": 0.6,
-              "sodium_mg": 32
+              "sodium_mg": 32,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6872,7 +7532,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6905,7 +7569,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6938,7 +7606,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 95
+              "sodium_mg": 95,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -6971,7 +7643,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7004,7 +7680,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7037,7 +7717,11 @@
               "total_carbs_g": 0.2,
               "sugars_g": 0.1,
               "fiber_g": 0.1,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7139,7 +7823,11 @@
               "total_carbs_g": 13,
               "sugars_g": 13,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7172,7 +7860,11 @@
               "total_carbs_g": 3,
               "sugars_g": 1.5,
               "fiber_g": 1,
-              "sodium_mg": 70
+              "sodium_mg": 70,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7205,7 +7897,11 @@
               "total_carbs_g": 0.4,
               "sugars_g": 0.2,
               "fiber_g": 0,
-              "sodium_mg": 71
+              "sodium_mg": 71,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7238,7 +7934,11 @@
               "total_carbs_g": 0.53,
               "sugars_g": 0.53,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7271,7 +7971,11 @@
               "total_carbs_g": 4.6,
               "sugars_g": 1.3,
               "fiber_g": 2.4,
-              "sodium_mg": 5
+              "sodium_mg": 5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7303,12 +8007,12 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 1952.2653041902238,
-      "calories_per_serving": 650.7551013967412,
-      "servings_estimate": 3,
-      "covered_ingredients": 7,
+      "calories_total": 3247.249489161322,
+      "calories_per_serving": 649.4498978322644,
+      "servings_estimate": 5,
+      "covered_ingredients": 9,
       "total_ingredients": 10,
-      "coverage_ratio": 0.7,
+      "coverage_ratio": 0.9,
       "target_meal_calories": 700
     },
     "steps_raw": "1. Mash the cooked {{potatoes}}.\n2. Beat in {{butter}} and {{cream_cheese}} until smooth.\n3. Stir in {{cheddar_cheese}}, {{pimiento}}, {{green_pepper}}, {{parmesan}}, {{milk}}, {{salt}}, and {{green_onions}}.\n4. Spoon into a lightly greased 9x13 baking dish and bake at 350°F for 35 minutes.\n5. Sprinkle with extra {{cheddar_cheese}} and bake until melted.",
@@ -7388,7 +8092,11 @@
               "total_carbs_g": 37,
               "sugars_g": 1.7,
               "fiber_g": 4.7,
-              "sodium_mg": 13
+              "sodium_mg": 13,
+              "conversions": {
+                "grams_per_count": 173,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7421,7 +8129,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7454,7 +8166,11 @@
               "total_carbs_g": 0.8,
               "sugars_g": 0.8,
               "fiber_g": 0,
-              "sodium_mg": 90
+              "sodium_mg": 90,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7487,7 +8203,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7520,7 +8240,11 @@
               "total_carbs_g": 1.5,
               "sugars_g": 1,
               "fiber_g": 0.5,
-              "sodium_mg": 50
+              "sodium_mg": 50,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7553,7 +8277,11 @@
               "total_carbs_g": 5.5,
               "sugars_g": 2.9,
               "fiber_g": 2,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7586,7 +8314,11 @@
               "total_carbs_g": 1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 416
+              "sodium_mg": 416,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7619,7 +8351,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 95
+              "sodium_mg": 95,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7652,7 +8388,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7677,15 +8417,19 @@
               "dairy_free": true
             },
             "nutrition": {
-              "unit": "",
-              "calories_per_unit": 0,
-              "protein_g": 0,
-              "total_fat_g": 0,
+              "unit": "count",
+              "calories_per_unit": 5,
+              "protein_g": 0.27,
+              "total_fat_g": 0.03,
               "saturated_fat_g": 0,
-              "total_carbs_g": 0,
-              "sugars_g": 0,
-              "fiber_g": 0,
-              "sodium_mg": 0
+              "total_carbs_g": 1.1,
+              "sugars_g": 0.35,
+              "fiber_g": 0.39,
+              "sodium_mg": 2.4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7790,7 +8534,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 98
+              "sodium_mg": 98,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7823,7 +8571,11 @@
               "total_carbs_g": 10,
               "sugars_g": 4.7,
               "fiber_g": 1.9,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7856,7 +8608,11 @@
               "total_carbs_g": 13,
               "sugars_g": 8.8,
               "fiber_g": 2.7,
-              "sodium_mg": 879
+              "sodium_mg": 879,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7889,7 +8645,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 830
+              "sodium_mg": 830,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7922,7 +8682,11 @@
               "total_carbs_g": 1.2,
               "sugars_g": 0.5,
               "fiber_g": 0.6,
-              "sodium_mg": 32
+              "sodium_mg": 32,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7955,7 +8719,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -7988,7 +8756,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8021,7 +8793,11 @@
               "total_carbs_g": 11,
               "sugars_g": 8,
               "fiber_g": 3,
-              "sodium_mg": 520
+              "sodium_mg": 520,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8054,7 +8830,11 @@
               "total_carbs_g": 22,
               "sugars_g": 5,
               "fiber_g": 7,
-              "sodium_mg": 45
+              "sodium_mg": 45,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8156,7 +8936,11 @@
               "total_carbs_g": 0.8,
               "sugars_g": 0.8,
               "fiber_g": 0,
-              "sodium_mg": 90
+              "sodium_mg": 90,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8189,7 +8973,11 @@
               "total_carbs_g": 2,
               "sugars_g": 1.5,
               "fiber_g": 0.5,
-              "sodium_mg": 230
+              "sodium_mg": 230,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8222,7 +9010,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 98
+              "sodium_mg": 98,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8255,7 +9047,11 @@
               "total_carbs_g": 3,
               "sugars_g": 2,
               "fiber_g": 0,
-              "sodium_mg": 800
+              "sodium_mg": 800,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8396,7 +9192,11 @@
               "total_carbs_g": 22,
               "sugars_g": 4,
               "fiber_g": 12,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8429,7 +9229,11 @@
               "total_carbs_g": 68.3,
               "sugars_g": 0.83,
               "fiber_g": 6.8,
-              "sodium_mg": 20
+              "sodium_mg": 20,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8462,7 +9266,11 @@
               "total_carbs_g": 105,
               "sugars_g": 0,
               "fiber_g": 1,
-              "sodium_mg": 11
+              "sodium_mg": 11,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8495,7 +9303,11 @@
               "total_carbs_g": 117,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8528,7 +9340,11 @@
               "total_carbs_g": 13,
               "sugars_g": 13,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8561,7 +9377,11 @@
               "total_carbs_g": 1.1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 363
+              "sodium_mg": 363,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8594,7 +9414,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8627,7 +9451,11 @@
               "total_carbs_g": 6.3,
               "sugars_g": 6,
               "fiber_g": 0,
-              "sodium_mg": 40
+              "sodium_mg": 40,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8660,7 +9488,11 @@
               "total_carbs_g": 5.4,
               "sugars_g": 1.5,
               "fiber_g": 1.6,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8693,7 +9525,11 @@
               "total_carbs_g": 5.4,
               "sugars_g": 1.5,
               "fiber_g": 1.6,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8726,7 +9562,11 @@
               "total_carbs_g": 0.53,
               "sugars_g": 0.53,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8759,7 +9599,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8792,7 +9636,11 @@
               "total_carbs_g": 119.7,
               "sugars_g": 119.7,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8825,7 +9673,11 @@
               "total_carbs_g": 5.4,
               "sugars_g": 1.5,
               "fiber_g": 1.6,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8858,7 +9710,11 @@
               "total_carbs_g": 7,
               "sugars_g": 2,
               "fiber_g": 2,
-              "sodium_mg": 60
+              "sodium_mg": 60,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -8885,7 +9741,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 95
+              "sodium_mg": 95,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -8918,7 +9778,11 @@
               "total_carbs_g": 0.53,
               "sugars_g": 0.53,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9065,12 +9929,12 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 1601.5666166666667,
-      "calories_per_serving": 800.7833083333334,
-      "servings_estimate": 2,
-      "covered_ingredients": 7,
+      "calories_total": 1787.4649773224044,
+      "calories_per_serving": 595.8216591074681,
+      "servings_estimate": 3,
+      "covered_ingredients": 8,
       "total_ingredients": 15,
-      "coverage_ratio": 0.4666666666666667,
+      "coverage_ratio": 0.5333333333333333,
       "target_meal_calories": 700
     },
     "steps_raw": "1. Brown the {{beef}} in a large pot.\n2. Add {{potatoes}}, {{celery}}, {{onion}}, {{green_beans}}, {{pinto_beans}}, {{carrots}}, {{peas}}, {{corn}}, and {{diced_tomatoes}}.\n3. Stir in {{bouillon}}, {{celery_salt}}, and {{white_pepper}}.\n4. Add {{water}} to reach the desired consistency and simmer for 2 hours.\n5. Whisk {{flour}} with a splash of hot broth and stir it in quickly to avoid lumps.",
@@ -9159,7 +10023,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 100
+              "sodium_mg": 100,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9192,7 +10060,11 @@
               "total_carbs_g": 37,
               "sugars_g": 1.7,
               "fiber_g": 4.7,
-              "sodium_mg": 13
+              "sodium_mg": 13,
+              "conversions": {
+                "grams_per_count": 173,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9225,7 +10097,11 @@
               "total_carbs_g": 1.2,
               "sugars_g": 0.5,
               "fiber_g": 0.6,
-              "sodium_mg": 32
+              "sodium_mg": 32,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9258,7 +10134,11 @@
               "total_carbs_g": 10,
               "sugars_g": 4.7,
               "fiber_g": 1.9,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9291,7 +10171,11 @@
               "total_carbs_g": 7,
               "sugars_g": 3.3,
               "fiber_g": 3.4,
-              "sodium_mg": 6
+              "sodium_mg": 6,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9324,7 +10208,11 @@
               "total_carbs_g": 45,
               "sugars_g": 0.6,
               "fiber_g": 15,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9357,7 +10245,11 @@
               "total_carbs_g": 6,
               "sugars_g": 2.9,
               "fiber_g": 1.5,
-              "sodium_mg": 42
+              "sodium_mg": 42,
+              "conversions": {
+                "grams_per_count": 61,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9390,7 +10282,11 @@
               "total_carbs_g": 25,
               "sugars_g": 9.5,
               "fiber_g": 8.8,
-              "sodium_mg": 5
+              "sodium_mg": 5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9423,7 +10319,11 @@
               "total_carbs_g": 41.2,
               "sugars_g": 5.2,
               "fiber_g": 4.6,
-              "sodium_mg": 28
+              "sodium_mg": 28,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9456,7 +10356,11 @@
               "total_carbs_g": 11,
               "sugars_g": 8,
               "fiber_g": 3,
-              "sodium_mg": 520
+              "sodium_mg": 520,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9489,7 +10393,11 @@
               "total_carbs_g": 1,
               "sugars_g": 1,
               "fiber_g": 0,
-              "sodium_mg": 900
+              "sodium_mg": 900,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9522,7 +10430,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 1160
+              "sodium_mg": 1160,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9555,7 +10467,11 @@
               "total_carbs_g": 1.65,
               "sugars_g": 0,
               "fiber_g": 0.6,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9588,7 +10504,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9621,7 +10541,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9719,7 +10643,11 @@
               "total_carbs_g": 65,
               "sugars_g": 2,
               "fiber_g": 3,
-              "sodium_mg": 5
+              "sodium_mg": 5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9752,7 +10680,11 @@
               "total_carbs_g": 2.7,
               "sugars_g": 2.3,
               "fiber_g": 0,
-              "sodium_mg": 420
+              "sodium_mg": 420,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9785,7 +10717,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 95
+              "sodium_mg": 95,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9818,7 +10754,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9851,7 +10791,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9947,7 +10891,11 @@
               "total_carbs_g": 65,
               "sugars_g": 2,
               "fiber_g": 3,
-              "sodium_mg": 5
+              "sodium_mg": 5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -9980,7 +10928,11 @@
               "total_carbs_g": 11,
               "sugars_g": 8,
               "fiber_g": 3,
-              "sodium_mg": 520
+              "sodium_mg": 520,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -10007,7 +10959,11 @@
               "total_carbs_g": 35,
               "sugars_g": 25,
               "fiber_g": 10,
-              "sodium_mg": 1400
+              "sodium_mg": 1400,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10040,7 +10996,11 @@
               "total_carbs_g": 13,
               "sugars_g": 8.8,
               "fiber_g": 2.7,
-              "sodium_mg": 879
+              "sodium_mg": 879,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10073,7 +11033,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10187,7 +11151,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 70
+              "sodium_mg": 70,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10220,7 +11188,11 @@
               "total_carbs_g": 2.7,
               "sugars_g": 2.3,
               "fiber_g": 0,
-              "sodium_mg": 420
+              "sodium_mg": 420,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10245,15 +11217,19 @@
               "dairy_free": true
             },
             "nutrition": {
-              "unit": "",
-              "calories_per_unit": 0,
-              "protein_g": 0,
-              "total_fat_g": 0,
-              "saturated_fat_g": 0,
-              "total_carbs_g": 0,
-              "sugars_g": 0,
-              "fiber_g": 0,
-              "sodium_mg": 0
+              "unit": "oz",
+              "calories_per_unit": 147,
+              "protein_g": 2.1,
+              "total_fat_g": 7.8,
+              "saturated_fat_g": 1.1,
+              "total_carbs_g": 17.3,
+              "sugars_g": 0.74,
+              "fiber_g": 1.4,
+              "sodium_mg": 196.2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10286,7 +11262,11 @@
               "total_carbs_g": 20,
               "sugars_g": 2,
               "fiber_g": 1,
-              "sodium_mg": 2125
+              "sodium_mg": 2125,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10319,7 +11299,11 @@
               "total_carbs_g": 25,
               "sugars_g": 2,
               "fiber_g": 0,
-              "sodium_mg": 2150
+              "sodium_mg": 2150,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10352,7 +11336,11 @@
               "total_carbs_g": 14,
               "sugars_g": 7.5,
               "fiber_g": 3,
-              "sodium_mg": 950
+              "sodium_mg": 950,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10456,7 +11444,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 98
+              "sodium_mg": 98,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10481,15 +11473,19 @@
               "dairy_free": true
             },
             "nutrition": {
-              "unit": "",
-              "calories_per_unit": 0,
-              "protein_g": 0,
-              "total_fat_g": 0,
-              "saturated_fat_g": 0,
-              "total_carbs_g": 0,
-              "sugars_g": 0,
-              "fiber_g": 0,
-              "sodium_mg": 0
+              "unit": "cup",
+              "calories_per_unit": 225,
+              "protein_g": 15.3,
+              "total_fat_g": 0.89,
+              "saturated_fat_g": 0.13,
+              "total_carbs_g": 40.4,
+              "sugars_g": 0.57,
+              "fiber_g": 13.1,
+              "sodium_mg": 3.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10522,7 +11518,11 @@
               "total_carbs_g": 13,
               "sugars_g": 8.8,
               "fiber_g": 2.7,
-              "sodium_mg": 879
+              "sodium_mg": 879,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10555,7 +11555,11 @@
               "total_carbs_g": 55,
               "sugars_g": 30,
               "fiber_g": 2,
-              "sodium_mg": 1200
+              "sodium_mg": 1200,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10588,7 +11592,11 @@
               "total_carbs_g": 1.42,
               "sugars_g": 0.19,
               "fiber_g": 0.9,
-              "sodium_mg": 26
+              "sodium_mg": 26,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10621,7 +11629,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10654,7 +11666,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10687,7 +11703,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10717,12 +11737,12 @@
     "family": "",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 3937.807088308491,
-      "calories_per_serving": 656.3011813847485,
+      "calories_total": 4123.729857264587,
+      "calories_per_serving": 687.2883095440978,
       "servings_estimate": 6,
-      "covered_ingredients": 9,
+      "covered_ingredients": 11,
       "total_ingredients": 13,
-      "coverage_ratio": 0.6923076923076923,
+      "coverage_ratio": 0.8461538461538461,
       "target_meal_calories": 700
     },
     "steps_raw": "1. In a saucepan, melt {{butter_base}}, then stir in {{sugar_base}} and {{cocoa_powder}} until smooth.\n2. Stir in {{egg_base}}, then bring to a boil and cook 2 minutes, stirring constantly.\n3. Remove from heat and stir in {{vanilla_base}}.\n4. Stir in {{coconut}} and {{graham_crumbs}}. Press into a lined 3x9 pan. Refrigerate.\n5. In a mixer, stir together {{pudding_powder}} and {{milk_middle}}. Add {{powdered_sugar}} and {{butter_middle}}. Beat on high (whisk attachment) for 5 minutes.\n6. Spread the middle layer over the chilled base. Refrigerate a couple hours\n7. Melt {{chocolate_chips}} with {{oil_top}} in a microwave-safe bowl, stirring until smooth.\n8. Spread chocolate over the set middle layer. Refrigerate until set. For easy cutting",
@@ -10823,7 +11843,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10857,7 +11881,11 @@
               "total_carbs_g": 13,
               "sugars_g": 13,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10883,15 +11911,19 @@
               "dairy_free": true
             },
             "nutrition": {
-              "unit": "",
-              "calories_per_unit": 0,
-              "protein_g": 0,
-              "total_fat_g": 0,
-              "saturated_fat_g": 0,
-              "total_carbs_g": 0,
-              "sugars_g": 0,
-              "fiber_g": 0,
-              "sodium_mg": 0
+              "unit": "tbsp",
+              "calories_per_unit": 12,
+              "protein_g": 1.1,
+              "total_fat_g": 0.74,
+              "saturated_fat_g": 0.44,
+              "total_carbs_g": 3.1,
+              "sugars_g": 0.09,
+              "fiber_g": 2,
+              "sodium_mg": 1.1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10925,7 +11957,11 @@
               "total_carbs_g": 0.4,
               "sugars_g": 0.2,
               "fiber_g": 0,
-              "sodium_mg": 71
+              "sodium_mg": 71,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10959,7 +11995,11 @@
               "total_carbs_g": 0.53,
               "sugars_g": 0.53,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -10985,15 +12025,19 @@
               "dairy_free": true
             },
             "nutrition": {
-              "unit": "",
-              "calories_per_unit": 0,
-              "protein_g": 0,
-              "total_fat_g": 0,
-              "saturated_fat_g": 0,
-              "total_carbs_g": 0,
-              "sugars_g": 0,
-              "fiber_g": 0,
-              "sodium_mg": 0
+              "unit": "cup",
+              "calories_per_unit": 121,
+              "protein_g": 1.9,
+              "total_fat_g": 3,
+              "saturated_fat_g": 0.45,
+              "total_carbs_g": 21.7,
+              "sugars_g": 6.9,
+              "fiber_g": 1,
+              "sodium_mg": 144,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11027,7 +12071,11 @@
               "total_carbs_g": 12.2,
               "sugars_g": 5,
               "fiber_g": 7,
-              "sodium_mg": 16
+              "sodium_mg": 16,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11061,7 +12109,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11095,7 +12147,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 95
+              "sodium_mg": 95,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11129,7 +12185,11 @@
               "total_carbs_g": 88,
               "sugars_g": 72,
               "fiber_g": 0,
-              "sodium_mg": 1400
+              "sodium_mg": 1400,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11163,7 +12223,11 @@
               "total_carbs_g": 119.7,
               "sugars_g": 119.7,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11197,7 +12261,11 @@
               "total_carbs_g": 108,
               "sugars_g": 91,
               "fiber_g": 8,
-              "sodium_mg": 8
+              "sodium_mg": 8,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11231,7 +12299,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11342,7 +12414,11 @@
               "total_carbs_g": 80,
               "sugars_g": 80,
               "fiber_g": 0,
-              "sodium_mg": 100
+              "sodium_mg": 100,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11375,7 +12451,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11408,7 +12488,11 @@
               "total_carbs_g": 45,
               "sugars_g": 38,
               "fiber_g": 0,
-              "sodium_mg": 80
+              "sodium_mg": 80,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11441,7 +12525,11 @@
               "total_carbs_g": 26,
               "sugars_g": 20,
               "fiber_g": 2,
-              "sodium_mg": 10
+              "sodium_mg": 10,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11474,7 +12562,11 @@
               "total_carbs_g": 7,
               "sugars_g": 7,
               "fiber_g": 0,
-              "sodium_mg": 20
+              "sodium_mg": 20,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11506,12 +12598,12 @@
     "family": "Burrows",
     "notes": "Serves 3.",
     "nutrition_estimate": {
-      "calories_total": 1256.0833865341112,
-      "calories_per_serving": 628.0416932670556,
+      "calories_total": 1337.2136629568754,
+      "calories_per_serving": 668.6068314784377,
       "servings_estimate": 2,
-      "covered_ingredients": 10,
+      "covered_ingredients": 11,
       "total_ingredients": 12,
-      "coverage_ratio": 0.8333333333333334,
+      "coverage_ratio": 0.9166666666666666,
       "target_meal_calories": 700
     },
     "steps_raw": "1. Brown the {{ground_beef}} in a large pot.\n2. Add {{onion}} and {{green_pepper}}; cook 2 to 3 minutes.\n3. Pour off fat and stir in {{tomatoes}}, {{kidney_beans}}, {{chili_powder}}, {{salt}}, {{paprika}}, {{cayenne}}, {{garlic}}, {{bay_leaf}}, and {{worcestershire}}.\n4. Simmer for 1 hour, then remove the {{bay_leaf}} before serving.",
@@ -11591,7 +12683,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 98
+              "sodium_mg": 98,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11624,7 +12720,11 @@
               "total_carbs_g": 10,
               "sugars_g": 4.7,
               "fiber_g": 1.9,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11657,7 +12757,11 @@
               "total_carbs_g": 5.5,
               "sugars_g": 2.9,
               "fiber_g": 2,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11682,15 +12786,19 @@
               "dairy_free": true
             },
             "nutrition": {
-              "unit": "",
-              "calories_per_unit": 0,
-              "protein_g": 0,
-              "total_fat_g": 0,
-              "saturated_fat_g": 0,
-              "total_carbs_g": 0,
-              "sugars_g": 0,
-              "fiber_g": 0,
-              "sodium_mg": 0
+              "unit": "count",
+              "calories_per_unit": 22,
+              "protein_g": 1.1,
+              "total_fat_g": 0.25,
+              "saturated_fat_g": 0.03,
+              "total_carbs_g": 4.8,
+              "sugars_g": 3.2,
+              "fiber_g": 1.5,
+              "sodium_mg": 6.2,
+              "conversions": {
+                "grams_per_count": 123,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11715,15 +12823,19 @@
               "dairy_free": true
             },
             "nutrition": {
-              "unit": "",
-              "calories_per_unit": 0,
-              "protein_g": 0,
-              "total_fat_g": 0,
-              "saturated_fat_g": 0,
-              "total_carbs_g": 0,
-              "sugars_g": 0,
-              "fiber_g": 0,
-              "sodium_mg": 0
+              "unit": "cup",
+              "calories_per_unit": 225,
+              "protein_g": 15.3,
+              "total_fat_g": 0.89,
+              "saturated_fat_g": 0.13,
+              "total_carbs_g": 40.4,
+              "sugars_g": 0.57,
+              "fiber_g": 13.1,
+              "sodium_mg": 3.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11756,7 +12868,11 @@
               "total_carbs_g": 1.42,
               "sugars_g": 0.19,
               "fiber_g": 0.9,
-              "sodium_mg": 26
+              "sodium_mg": 26,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11789,7 +12905,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11822,7 +12942,11 @@
               "total_carbs_g": 1.17,
               "sugars_g": 0.22,
               "fiber_g": 0.79,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11855,7 +12979,11 @@
               "total_carbs_g": 1.4,
               "sugars_g": 0.5,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11888,7 +13016,11 @@
               "total_carbs_g": 0.9,
               "sugars_g": 0.03,
               "fiber_g": 0.1,
-              "sodium_mg": 0.5
+              "sodium_mg": 0.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11921,7 +13053,11 @@
               "total_carbs_g": 0.5,
               "sugars_g": 0,
               "fiber_g": 0.3,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -11954,7 +13090,11 @@
               "total_carbs_g": 3.1,
               "sugars_g": 2.4,
               "fiber_g": 0,
-              "sodium_mg": 167
+              "sodium_mg": 167,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12083,7 +13223,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -12110,7 +13254,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 90
+              "sodium_mg": 90,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -12137,7 +13285,11 @@
               "total_carbs_g": 0.1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 153
+              "sodium_mg": 153,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12170,7 +13322,11 @@
               "total_carbs_g": 119.7,
               "sugars_g": 119.7,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12203,7 +13359,11 @@
               "total_carbs_g": 0.53,
               "sugars_g": 0.53,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12236,7 +13396,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12269,7 +13433,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12302,7 +13470,11 @@
               "total_carbs_g": 20,
               "sugars_g": 6,
               "fiber_g": 12,
-              "sodium_mg": 10
+              "sodium_mg": 10,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12335,7 +13507,11 @@
               "total_carbs_g": 119.7,
               "sugars_g": 119.7,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12372,12 +13548,12 @@
     "family": "",
     "notes": "Stuff the roasted squash with a cheesy sausage and breadcrumb mixture.",
     "nutrition_estimate": {
-      "calories_total": 320.25,
-      "calories_per_serving": 320.25,
-      "servings_estimate": 1,
-      "covered_ingredients": 3,
+      "calories_total": 1731.425111111111,
+      "calories_per_serving": 865.7125555555555,
+      "servings_estimate": 2,
+      "covered_ingredients": 4,
       "total_ingredients": 8,
-      "coverage_ratio": 0.375,
+      "coverage_ratio": 0.5,
       "target_meal_calories": 700
     },
     "steps_raw": "1. Heat the oven to 375°F (191°C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom.\n2. Roast for about 35 minutes, until the squash is tender.\n3. While the squash roasts, brown {{sausage}} in a skillet. Drain off all but 2 tablespoons of drippings.\n4. Add {{onion}} and {{celery}} to the skillet and sauté for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}.\n5. Quickly fold {{sausage}} and {{cheese}} into the breadcrumb mixture.\n6. Turn the squash halves cut side up, sprinkle with {{salt}}, and fill the cavities with the sausage mixture.\n7. Bake at 350°F (177°C) for 20–30 minutes, until the stuffing is browned and heated through.",
@@ -12461,7 +13637,11 @@
               "total_carbs_g": 15,
               "sugars_g": 0,
               "fiber_g": 2.3,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12494,7 +13674,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12527,7 +13711,11 @@
               "total_carbs_g": 1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 330
+              "sodium_mg": 330,
+              "conversions": {
+                "grams_per_count": 45,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12560,7 +13748,11 @@
               "total_carbs_g": 10,
               "sugars_g": 4.7,
               "fiber_g": 1.9,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12593,7 +13785,11 @@
               "total_carbs_g": 1.2,
               "sugars_g": 0.5,
               "fiber_g": 0.6,
-              "sodium_mg": 32
+              "sodium_mg": 32,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12626,7 +13822,11 @@
               "total_carbs_g": 78,
               "sugars_g": 7,
               "fiber_g": 5.3,
-              "sodium_mg": 736
+              "sodium_mg": 736,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12659,7 +13859,11 @@
               "total_carbs_g": 1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 174
+              "sodium_mg": 174,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12692,7 +13896,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12827,7 +14035,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 320
+              "sodium_mg": 320,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12860,7 +14072,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -12887,7 +14103,11 @@
               "total_carbs_g": 92,
               "sugars_g": 0,
               "fiber_g": 4,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12920,7 +14140,11 @@
               "total_carbs_g": 1.1,
               "sugars_g": 0.6,
               "fiber_g": 0.2,
-              "sodium_mg": 1490
+              "sodium_mg": 1490,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12953,7 +14177,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -12986,7 +14214,11 @@
               "total_carbs_g": 37,
               "sugars_g": 1.7,
               "fiber_g": 4.7,
-              "sodium_mg": 13
+              "sodium_mg": 13,
+              "conversions": {
+                "grams_per_count": 173,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13019,7 +14251,11 @@
               "total_carbs_g": 6,
               "sugars_g": 2.9,
               "fiber_g": 1.5,
-              "sodium_mg": 42
+              "sodium_mg": 42,
+              "conversions": {
+                "grams_per_count": 61,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13052,7 +14288,11 @@
               "total_carbs_g": 10,
               "sugars_g": 4.7,
               "fiber_g": 1.9,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13085,7 +14325,11 @@
               "total_carbs_g": 0.9,
               "sugars_g": 0.03,
               "fiber_g": 0.1,
-              "sodium_mg": 0.5
+              "sodium_mg": 0.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13118,7 +14362,11 @@
               "total_carbs_g": 0.5,
               "sugars_g": 0,
               "fiber_g": 0.3,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13151,7 +14399,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13184,7 +14436,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 830
+              "sodium_mg": 830,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13217,7 +14473,11 @@
               "total_carbs_g": 3,
               "sugars_g": 1.5,
               "fiber_g": 0.5,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13250,7 +14510,11 @@
               "total_carbs_g": 3.1,
               "sugars_g": 2.4,
               "fiber_g": 0,
-              "sodium_mg": 167
+              "sodium_mg": 167,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -13277,7 +14541,11 @@
               "total_carbs_g": 3.1,
               "sugars_g": 2.4,
               "fiber_g": 0,
-              "sodium_mg": 167
+              "sodium_mg": 167,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13310,7 +14578,11 @@
               "total_carbs_g": 25,
               "sugars_g": 9.5,
               "fiber_g": 8.8,
-              "sodium_mg": 5
+              "sodium_mg": 5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13343,7 +14615,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13472,7 +14748,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13505,7 +14785,11 @@
               "total_carbs_g": 13,
               "sugars_g": 13,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13538,7 +14822,11 @@
               "total_carbs_g": 0.4,
               "sugars_g": 0.2,
               "fiber_g": 0,
-              "sodium_mg": 71
+              "sodium_mg": 71,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13571,7 +14859,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13604,7 +14896,11 @@
               "total_carbs_g": 1.84,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13637,7 +14933,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 1260
+              "sodium_mg": 1260,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13670,7 +14970,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13703,7 +15007,11 @@
               "total_carbs_g": 13,
               "sugars_g": 13,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13736,7 +15044,11 @@
               "total_carbs_g": 2.1,
               "sugars_g": 0,
               "fiber_g": 1.4,
-              "sodium_mg": 0.5
+              "sodium_mg": 0.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13859,7 +15171,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -13886,7 +15202,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13919,7 +15239,11 @@
               "total_carbs_g": 13,
               "sugars_g": 13,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -13952,7 +15276,11 @@
               "total_carbs_g": 0.4,
               "sugars_g": 0.2,
               "fiber_g": 0,
-              "sodium_mg": 71
+              "sodium_mg": 71,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -13979,7 +15307,11 @@
               "total_carbs_g": 0.6,
               "sugars_g": 0.1,
               "fiber_g": 0,
-              "sodium_mg": 8
+              "sodium_mg": 8,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14012,7 +15344,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14049,7 +15385,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14087,7 +15427,11 @@
               "total_carbs_g": 1.1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 363
+              "sodium_mg": 363,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14120,7 +15464,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14153,7 +15501,11 @@
               "total_carbs_g": 0.5,
               "sugars_g": 0.5,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14186,7 +15538,11 @@
               "total_carbs_g": 1,
               "sugars_g": 1,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14320,7 +15676,11 @@
               "total_carbs_g": 13,
               "sugars_g": 2,
               "fiber_g": 0.5,
-              "sodium_mg": 150
+              "sodium_mg": 150,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14354,7 +15714,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14388,7 +15752,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14422,7 +15790,11 @@
               "total_carbs_g": 13,
               "sugars_g": 13,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14456,7 +15828,11 @@
               "total_carbs_g": 2.1,
               "sugars_g": 0,
               "fiber_g": 1.4,
-              "sodium_mg": 0.5
+              "sodium_mg": 0.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14490,7 +15866,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -14517,7 +15897,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 90
+              "sodium_mg": 90,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14551,7 +15935,11 @@
               "total_carbs_g": 20,
               "sugars_g": 6,
               "fiber_g": 12,
-              "sodium_mg": 10
+              "sodium_mg": 10,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14585,7 +15973,11 @@
               "total_carbs_g": 0.53,
               "sugars_g": 0.53,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14710,7 +16102,11 @@
               "total_carbs_g": 24,
               "sugars_g": 7,
               "fiber_g": 4,
-              "sodium_mg": 41
+              "sodium_mg": 41,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14743,7 +16139,11 @@
               "total_carbs_g": 126.6,
               "sugars_g": 0,
               "fiber_g": 2,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14776,7 +16176,11 @@
               "total_carbs_g": 105,
               "sugars_g": 0,
               "fiber_g": 1,
-              "sodium_mg": 11
+              "sodium_mg": 11,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14809,7 +16213,11 @@
               "total_carbs_g": 1.1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 363
+              "sodium_mg": 363,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14842,7 +16250,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14875,7 +16287,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -14991,7 +16407,11 @@
               "total_carbs_g": 9,
               "sugars_g": 8,
               "fiber_g": 1,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15024,7 +16444,11 @@
               "total_carbs_g": 24,
               "sugars_g": 7,
               "fiber_g": 4,
-              "sodium_mg": 41
+              "sodium_mg": 41,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15057,7 +16481,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 59
+              "sodium_mg": 59,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15090,7 +16518,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15123,7 +16555,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15156,7 +16592,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15189,7 +16629,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           },
           {
@@ -15216,7 +16660,11 @@
               "total_carbs_g": 0.1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 153
+              "sodium_mg": 153,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15249,7 +16697,11 @@
               "total_carbs_g": 2.1,
               "sugars_g": 0,
               "fiber_g": 1.4,
-              "sodium_mg": 0.5
+              "sodium_mg": 0.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15382,7 +16834,11 @@
               "total_carbs_g": 148,
               "sugars_g": 0.1,
               "fiber_g": 2.4,
-              "sodium_mg": 9
+              "sodium_mg": 9,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15415,7 +16871,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15448,7 +16908,11 @@
               "total_carbs_g": 10,
               "sugars_g": 4.7,
               "fiber_g": 1.9,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15481,7 +16945,11 @@
               "total_carbs_g": 0.4,
               "sugars_g": 0,
               "fiber_g": 0.1,
-              "sodium_mg": 0.3
+              "sodium_mg": 0.3,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15514,7 +16982,11 @@
               "total_carbs_g": 0.9,
               "sugars_g": 0.03,
               "fiber_g": 0.1,
-              "sodium_mg": 0.5
+              "sodium_mg": 0.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15547,7 +17019,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 308
+              "sodium_mg": 308,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15580,7 +17056,11 @@
               "total_carbs_g": 6.3,
               "sugars_g": 6,
               "fiber_g": 0,
-              "sodium_mg": 40
+              "sodium_mg": 40,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15613,7 +17093,11 @@
               "total_carbs_g": 1,
               "sugars_g": 1,
               "fiber_g": 0,
-              "sodium_mg": 5
+              "sodium_mg": 5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15646,7 +17130,11 @@
               "total_carbs_g": 3,
               "sugars_g": 2,
               "fiber_g": 0,
-              "sodium_mg": 270
+              "sodium_mg": 270,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15679,7 +17167,11 @@
               "total_carbs_g": 7,
               "sugars_g": 1.1,
               "fiber_g": 1.9,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15712,7 +17204,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15745,7 +17241,11 @@
               "total_carbs_g": 1.8,
               "sugars_g": 0.1,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15778,7 +17278,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15811,7 +17315,11 @@
               "total_carbs_g": 0.7,
               "sugars_g": 0.1,
               "fiber_g": 0.6,
-              "sodium_mg": 7
+              "sodium_mg": 7,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15844,7 +17352,11 @@
               "total_carbs_g": 5,
               "sugars_g": 2,
               "fiber_g": 2.5,
-              "sodium_mg": 30
+              "sodium_mg": 30,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -15995,7 +17507,11 @@
               "total_carbs_g": 19.8,
               "sugars_g": 8,
               "fiber_g": 7.1,
-              "sodium_mg": 12
+              "sodium_mg": 12,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16028,7 +17544,11 @@
               "total_carbs_g": 13,
               "sugars_g": 13,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16061,7 +17581,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16094,7 +17618,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16127,7 +17655,11 @@
               "total_carbs_g": 0.53,
               "sugars_g": 0.53,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16160,7 +17692,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16193,7 +17729,11 @@
               "total_carbs_g": 1.1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 363
+              "sodium_mg": 363,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16226,7 +17766,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 1260
+              "sodium_mg": 1260,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16259,7 +17803,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16292,7 +17840,11 @@
               "total_carbs_g": 1.18,
               "sugars_g": 0.13,
               "fiber_g": 0.25,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16325,7 +17877,11 @@
               "total_carbs_g": 2.1,
               "sugars_g": 0,
               "fiber_g": 1.4,
-              "sodium_mg": 0.5
+              "sodium_mg": 0.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16358,7 +17914,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16391,7 +17951,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16424,7 +17988,11 @@
               "total_carbs_g": 1.18,
               "sugars_g": 0.13,
               "fiber_g": 0.25,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16457,7 +18025,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16490,7 +18062,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16523,7 +18099,11 @@
               "total_carbs_g": 0.53,
               "sugars_g": 0.53,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16556,7 +18136,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16589,7 +18173,11 @@
               "total_carbs_g": 0.8,
               "sugars_g": 0.8,
               "fiber_g": 0,
-              "sodium_mg": 90
+              "sodium_mg": 90,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16622,7 +18210,11 @@
               "total_carbs_g": 119.7,
               "sugars_g": 119.7,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16655,7 +18247,11 @@
               "total_carbs_g": 0.53,
               "sugars_g": 0.53,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16685,12 +18281,12 @@
     "family": "",
     "notes": "Use your favorite noodle and mixed vegetables. For gluten-free, choose gluten-free teriyaki and noodles.",
     "nutrition_estimate": {
-      "calories_total": 1159.845429707577,
-      "calories_per_serving": 579.9227148537885,
+      "calories_total": 1177.1787161522439,
+      "calories_per_serving": 588.5893580761219,
       "servings_estimate": 2,
-      "covered_ingredients": 6,
+      "covered_ingredients": 7,
       "total_ingredients": 9,
-      "coverage_ratio": 0.6666666666666666,
+      "coverage_ratio": 0.7777777777777778,
       "target_meal_calories": 700
     },
     "steps_raw": "1. Cook {{noodles}} in boiling water until al dente. Drain and rinse to remove excess starch.\n2. Heat {{olive_oil}} in a large skillet over medium heat. Add {{onion}} and {{sea_salt}}; cook until tender\n3. Add {{mixed_vegetables}} and cook\n4. Stir in the noodles and {{teriyaki_sauce}}. Cook until warmed through\n5. Remove from heat. Toss with {{sesame_oil}} and {{sesame_seeds}}.\n6. Serve topped with {{green_onion}} and extra sesame seeds if desired.",
@@ -16771,7 +18367,11 @@
               "total_carbs_g": 43,
               "sugars_g": 0.8,
               "fiber_g": 2,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16804,7 +18404,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16837,7 +18441,11 @@
               "total_carbs_g": 10,
               "sugars_g": 4.7,
               "fiber_g": 1.9,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16870,7 +18478,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16903,7 +18515,11 @@
               "total_carbs_g": 22,
               "sugars_g": 5,
               "fiber_g": 7,
-              "sodium_mg": 45
+              "sodium_mg": 45,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16936,7 +18552,11 @@
               "total_carbs_g": 3.2,
               "sugars_g": 2.8,
               "fiber_g": 0,
-              "sodium_mg": 690
+              "sodium_mg": 690,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16969,7 +18589,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 0
+              "sodium_mg": 0,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -16994,15 +18618,19 @@
               "dairy_free": true
             },
             "nutrition": {
-              "unit": "",
-              "calories_per_unit": 0,
-              "protein_g": 0,
-              "total_fat_g": 0,
-              "saturated_fat_g": 0,
-              "total_carbs_g": 0,
-              "sugars_g": 0,
-              "fiber_g": 0,
-              "sodium_mg": 0
+              "unit": "tbsp",
+              "calories_per_unit": 52,
+              "protein_g": 1.6,
+              "total_fat_g": 4.5,
+              "saturated_fat_g": 0.63,
+              "total_carbs_g": 2.1,
+              "sugars_g": 0.03,
+              "fiber_g": 1.1,
+              "sodium_mg": 0.99,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -17027,15 +18655,19 @@
               "dairy_free": true
             },
             "nutrition": {
-              "unit": "",
-              "calories_per_unit": 0,
-              "protein_g": 0,
-              "total_fat_g": 0,
+              "unit": "count",
+              "calories_per_unit": 5,
+              "protein_g": 0.27,
+              "total_fat_g": 0.03,
               "saturated_fat_g": 0,
-              "total_carbs_g": 0,
-              "sugars_g": 0,
-              "fiber_g": 0,
-              "sodium_mg": 0
+              "total_carbs_g": 1.1,
+              "sugars_g": 0.35,
+              "fiber_g": 0.39,
+              "sodium_mg": 2.4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -17150,7 +18782,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 82
+              "sodium_mg": 82,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -17183,7 +18819,11 @@
               "total_carbs_g": 10,
               "sugars_g": 4.7,
               "fiber_g": 1.9,
-              "sodium_mg": 4
+              "sodium_mg": 4,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -17216,7 +18856,11 @@
               "total_carbs_g": 95.4,
               "sugars_g": 0.3,
               "fiber_g": 3.4,
-              "sodium_mg": 2.5
+              "sodium_mg": 2.5,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -17249,7 +18893,11 @@
               "total_carbs_g": 1,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 860
+              "sodium_mg": 860,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -17282,7 +18930,11 @@
               "total_carbs_g": 12,
               "sugars_g": 12,
               "fiber_g": 0,
-              "sodium_mg": 95
+              "sodium_mg": 95,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -17315,7 +18967,11 @@
               "total_carbs_g": 0.2,
               "sugars_g": 0.1,
               "fiber_g": 0.1,
-              "sodium_mg": 2
+              "sodium_mg": 2,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -17348,7 +19004,11 @@
               "total_carbs_g": 0.4,
               "sugars_g": 0.1,
               "fiber_g": 0.2,
-              "sodium_mg": 14
+              "sodium_mg": 14,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -17381,7 +19041,11 @@
               "total_carbs_g": 1.1,
               "sugars_g": 0.3,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -17414,7 +19078,11 @@
               "total_carbs_g": 0,
               "sugars_g": 0,
               "fiber_g": 0,
-              "sodium_mg": 2300
+              "sodium_mg": 2300,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
@@ -17447,7 +19115,11 @@
               "total_carbs_g": 1.3,
               "sugars_g": 0,
               "fiber_g": 0.5,
-              "sodium_mg": 1
+              "sodium_mg": 1,
+              "conversions": {
+                "grams_per_count": null,
+                "tsp_per_sprig": null
+              }
             }
           }
         ],
