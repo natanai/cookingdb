@@ -2366,37 +2366,19 @@ body.add-page details.mobile-preview > summary {
   color: var(--accent);
 }
 
-.planner-recipe-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 0.75rem;
-}
-
 .planner-recipe-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.75rem;
-  background: #fff7ea;
-  border-radius: 10px;
-  border: 1px solid var(--border);
+  position: relative;
 }
 
-.planner-recipe-info {
-  display: grid;
-  gap: 0.2rem;
+.planner-recipe-row .recipe-row-link {
+  padding-right: 6rem;
 }
 
-.planner-recipe-title {
-  font-weight: 600;
-}
-
-.planner-recipe-byline {
-  font-size: 0.85rem;
-  color: var(--muted);
+.planner-add-button {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .planner-selected-list {

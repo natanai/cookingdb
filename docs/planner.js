@@ -175,7 +175,11 @@ function getRecipeTitleParts(recipe) {
 
 function recipeMatchesQuery(recipe, query) {
   if (!query) return true;
-  const haystack = [recipe.title, recipe.byline, ...(recipe.categories || []), recipe.family]
+  const ingredientText = Object.values(recipe.ingredients || {})
+    .flatMap((tokenData) => tokenData?.options || [])
+    .map((opt) => [opt.display, opt.ingredient_id].filter(Boolean).join(' '))
+    .join(' ');
+  const haystack = [recipe.title, recipe.byline, ...(recipe.categories || []), recipe.family, ingredientText]
     .filter(Boolean)
     .join(' ')
     .toLowerCase();
@@ -333,27 +337,55 @@ function renderRecipeList() {
 
   available.forEach((recipe) => {
     const li = document.createElement('li');
-    li.className = 'planner-recipe-row';
+    li.className = 'recipe-row planner-recipe-row';
 
-    const info = document.createElement('div');
-    info.className = 'planner-recipe-info';
+    const link = document.createElement('a');
+    link.className = 'recipe-row-link';
+    link.href = `recipe.html?id=${encodeURIComponent(recipe.id)}`;
 
-    const titleEl = document.createElement('span');
-    titleEl.className = 'planner-recipe-title';
+    const title = document.createElement('span');
+    title.className = 'recipe-row-title';
+
+    const titleText = document.createElement('span');
+    titleText.className = 'recipe-row-title-text';
     const { title: cleanTitle, name: titleName } = getRecipeTitleParts(recipe);
-    titleEl.textContent = cleanTitle;
-    info.appendChild(titleEl);
+    titleText.textContent = cleanTitle;
+    title.appendChild(titleText);
 
     if (titleName) {
-      const byline = document.createElement('span');
-      byline.className = 'planner-recipe-byline';
-      byline.textContent = titleName;
-      info.appendChild(byline);
+      const nameEl = document.createElement('span');
+      nameEl.className = 'recipe-row-title-name';
+      nameEl.textContent = ` — ${titleName}`;
+      title.appendChild(nameEl);
     }
+
+    const compatibility = recipe.compatibility_possible || {};
+    const containsGluten = compatibility.gluten_free === false;
+    const containsEgg = compatibility.egg_free === false;
+    const containsDairy = compatibility.dairy_free === false;
+    const flags = [];
+    if (!containsGluten) flags.push({ label: 'GF', title: 'Gluten-free' });
+    if (!containsEgg) flags.push({ label: 'EF', title: 'Egg-free' });
+    if (!containsDairy) flags.push({ label: 'DF', title: 'Dairy-free' });
+
+    const flagContainer = document.createElement('span');
+    flagContainer.className = 'recipe-row-flags';
+    flagContainer.setAttribute('aria-label', 'Dietary-friendly indicators');
+    flags.forEach((flag) => {
+      const badge = document.createElement('span');
+      badge.className = 'recipe-flag';
+      badge.textContent = flag.label;
+      badge.title = flag.title;
+      badge.setAttribute('aria-label', flag.title);
+      flagContainer.appendChild(badge);
+    });
+
+    link.appendChild(title);
+    link.appendChild(flagContainer);
 
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'button secondary button-compact';
+    button.className = 'button secondary button-compact planner-add-button';
     const alreadySelected = state.selections.has(recipe.id);
     button.textContent = alreadySelected ? 'Added' : 'Add';
     button.disabled = alreadySelected;
@@ -363,7 +395,7 @@ function renderRecipeList() {
       });
     }
 
-    li.appendChild(info);
+    li.appendChild(link);
     li.appendChild(button);
     list.appendChild(li);
   });
