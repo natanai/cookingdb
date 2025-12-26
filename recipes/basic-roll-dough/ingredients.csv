@@ -9,7 +9,7 @@ egg_style,egg,egg,1,count,egg,,
 egg_style,flax_egg,"flax egg (1 Tbsp ground flax + 3 Tbsp warm water, mixed and rested 5 min)",1,count,egg-replacer,,
 egg_style,aquafaba,aquafaba,3,tbsp,aquafaba,,
 salt,,salt,1,tsp,salt,,
-flour_base,wheat,"all-purpose flour",3 to 3 1/2,cup,wheat-flour,,
+flour_base,wheat,"all-purpose flour",3 1/2,cup,wheat-flour,,
 flour_base,gluten_free,"gluten-free flour blend meant for yeast baking (with xanthan gum already in it)",2 3/4,cup,gf-flour-blend,,
 xanthan,add,"xanthan gum (if needed for your blend)",1,tsp,xanthan-gum,flour_base,gluten_free
 psyllium,,"psyllium husk (optional but strongly recommended)",1,tbsp,psyllium-husk,flour_base,gluten_free
