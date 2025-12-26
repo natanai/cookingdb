@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { UNIT_CONVERSIONS } from '../docs/unit-conversions.js';
 import { validateAll } from './validate.mjs';
 
 async function loadPapa() {
@@ -118,6 +119,18 @@ function loadIngredientNutritionFromCatalog(catalogPath) {
   return map;
 }
 
+function buildNutritionIndex(nutritionCatalog) {
+  const index = new Map();
+  for (const entry of nutritionCatalog.values()) {
+    if (!entry?.ingredient_id) continue;
+    if (!index.has(entry.ingredient_id)) {
+      index.set(entry.ingredient_id, []);
+    }
+    index.get(entry.ingredient_id).push(entry);
+  }
+  return index;
+}
+
 function loadNutritionGuidelines(guidelinesPath) {
   if (!fs.existsSync(guidelinesPath)) {
     return { meal_calories_target: 600 };
@@ -157,6 +170,48 @@ function parseRatioToNumber(raw) {
     return null;
   }
   return whole + num / den;
+}
+
+const UNIT_ALIASES = new Map([
+  ['cloves', 'clove'],
+  ['medium', 'count'],
+  ['large', 'count'],
+  ['small', 'count'],
+  ['piece', 'count'],
+  ['package', 'count'],
+  ['bag', 'count'],
+  ['bunch', 'count'],
+  ['sprig', 'count'],
+  ['can', 'count'],
+  ['dash', 'tsp'],
+  ['drop', 'tsp'],
+]);
+
+function normalizeUnit(unit) {
+  if (!unit) return null;
+  const cleaned = String(unit).trim().toLowerCase();
+  if (!cleaned) return null;
+  return UNIT_ALIASES.get(cleaned) || cleaned;
+}
+
+function unitDefinition(unitId) {
+  if (!unitId) return null;
+  const normalized = String(unitId).toLowerCase();
+  for (const [groupName, group] of Object.entries(UNIT_CONVERSIONS)) {
+    const def = group.units[normalized];
+    if (def) return { ...def, id: normalized, group: groupName };
+  }
+  return null;
+}
+
+function convertUnitAmount(amount, fromUnit, toUnit) {
+  if (!Number.isFinite(amount)) return null;
+  const fromDef = unitDefinition(fromUnit);
+  const toDef = unitDefinition(toUnit);
+  if (!fromDef || !toDef || fromDef.group !== toDef.group) return null;
+  const amountInBase = amount * fromDef.to_base;
+  const converted = amountInBase / toDef.to_base;
+  return { amount: converted, unit: toDef.id };
 }
 
 function loadPanCatalog(catalogPath) {
@@ -233,7 +288,7 @@ function selectDefaultOption(tokenData, choice) {
   return withOption || tokenData.options[0];
 }
 
-function computeNutritionEstimate(ingredients, choices, nutritionCatalog, guidelines) {
+function computeNutritionEstimate(ingredients, choices, nutritionCatalog, nutritionIndex, guidelines) {
   const targetMealCalories = Number(guidelines?.meal_calories_target) || 600;
   let totalCalories = 0;
   let covered = 0;
@@ -244,9 +299,24 @@ function computeNutritionEstimate(ingredients, choices, nutritionCatalog, guidel
     if (!option || !option.ratio || !option.unit) return;
     const amount = parseRatioToNumber(option.ratio);
     if (!Number.isFinite(amount)) return;
-    const entry = nutritionCatalog.get(`${option.ingredient_id}::${option.unit}`);
-    if (!entry || !Number.isFinite(entry.calories_per_unit)) return;
-    totalCalories += amount * entry.calories_per_unit;
+    const normalizedUnit = normalizeUnit(option.unit);
+    if (!normalizedUnit) return;
+    let caloriesForOption = null;
+    const directEntry = nutritionCatalog.get(`${option.ingredient_id}::${normalizedUnit}`);
+    if (directEntry && Number.isFinite(directEntry.calories_per_unit)) {
+      caloriesForOption = amount * directEntry.calories_per_unit;
+    } else {
+      const entries = nutritionIndex.get(option.ingredient_id) || [];
+      for (const entry of entries) {
+        if (!Number.isFinite(entry.calories_per_unit)) continue;
+        const conversion = convertUnitAmount(amount, normalizedUnit, entry.unit);
+        if (!conversion) continue;
+        caloriesForOption = conversion.amount * entry.calories_per_unit;
+        break;
+      }
+    }
+    if (!Number.isFinite(caloriesForOption)) return;
+    totalCalories += caloriesForOption;
     covered += 1;
   });
 
@@ -281,6 +351,7 @@ async function build() {
   const nutritionCatalog = loadIngredientNutritionFromCatalog(catalogPath);
   const nutritionGuidelines = loadNutritionGuidelines(path.join(process.cwd(), 'data', 'nutrition_guidelines.json'));
   const panCatalog = loadPanCatalog(path.join(process.cwd(), 'data', 'pan-sizes.json'));
+  const nutritionIndex = buildNutritionIndex(nutritionCatalog);
   const recipesDir = path.join(process.cwd(), 'recipes');
   const recipeDirs = fs.readdirSync(recipesDir, { withFileTypes: true }).filter((ent) => ent.isDirectory());
 
@@ -389,7 +460,20 @@ async function build() {
     }
 
     const compatibility = computeCompatibility(ingredients, catalog);
-    const nutritionEstimate = computeNutritionEstimate(ingredients, choices, nutritionCatalog, nutritionGuidelines);
+    const nutritionEstimate = computeNutritionEstimate(
+      ingredients,
+      choices,
+      nutritionCatalog,
+      nutritionIndex,
+      nutritionGuidelines
+    );
+    const metaServingsPerBatch = Number(meta.servings_per_batch);
+    const servingsPerBatch =
+      (Number.isFinite(metaServingsPerBatch) && metaServingsPerBatch > 0 ? metaServingsPerBatch : null) ||
+      (Number.isFinite(nutritionEstimate.servings_estimate) && nutritionEstimate.servings_estimate > 0
+        ? nutritionEstimate.servings_estimate
+        : null) ||
+      4;
     const uniqueTokenOrder = [];
     const seen = new Set();
     tokensUsed.forEach((token) => {
@@ -412,7 +496,7 @@ async function build() {
       byline: meta.byline || '',
       base_kind: meta.base_kind,
       default_base: Number(meta.default_base) || 1,
-      servings_per_batch: Number(meta.servings_per_batch) || 1,
+      servings_per_batch: servingsPerBatch,
       categories: parseCategories(meta.categories),
       family: meta.family || '',
       notes: meta.notes,
