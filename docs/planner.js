@@ -193,48 +193,6 @@ function recipeMatchesQuery(recipe, query) {
   return haystack.includes(query);
 }
 
-function buildIngredientKey(value) {
-  const key = String(value || '').trim().toLowerCase();
-  return key || null;
-}
-
-function collectRecipeIngredientKeys(recipe) {
-  const keys = new Set();
-  Object.values(recipe.ingredients || {}).forEach((tokenData) => {
-    (tokenData?.options || []).forEach((option) => {
-      const key = buildIngredientKey(option?.ingredient_id || option?.display || option?.token);
-      if (key) keys.add(key);
-    });
-  });
-  return keys;
-}
-
-function collectSelectedIngredientKeys() {
-  const keys = new Set();
-  state.selections.forEach((selection) => {
-    const recipeState = selection.state;
-    recipeState.multiplier = selection.batchSize;
-    recipeState.restrictions = selection.restrictions;
-    const lines = renderIngredientLines(selection.recipe, recipeState);
-    lines.forEach((line) => {
-      line.entries.forEach((entry) => {
-        const key = buildIngredientKey(entry.option?.ingredient_id || entry.option?.display || entry.text);
-        if (key) keys.add(key);
-      });
-    });
-  });
-  return keys;
-}
-
-function recipeSharesIngredients(recipe, selectedIngredients) {
-  if (!selectedIngredients.size) return false;
-  const keys = collectRecipeIngredientKeys(recipe);
-  for (const key of keys) {
-    if (selectedIngredients.has(key)) return true;
-  }
-  return false;
-}
-
 function totalMealsNeeded() {
   if (state.plan.useCustom) {
     return Math.max(0, Math.round(state.plan.days * state.plan.mealsPerDay));
@@ -364,7 +322,6 @@ function updateIngredientsSummary() {
 function renderRecipeList() {
   const list = document.getElementById('planner-recipe-list');
   const query = document.getElementById('planner-search')?.value.trim().toLowerCase() || '';
-  const selectedIngredients = collectSelectedIngredientKeys();
 
   list.innerHTML = '';
 
@@ -430,24 +387,13 @@ function renderRecipeList() {
       flagContainer.appendChild(badge);
     });
 
-    const alreadySelected = state.selections.has(recipe.id);
-    const sharesIngredients = !alreadySelected && recipeSharesIngredients(recipe, selectedIngredients);
-    if (sharesIngredients) {
-      li.classList.add('is-shared-ingredient');
-      const sharedBadge = document.createElement('span');
-      sharedBadge.className = 'recipe-flag planner-ingredient-flag';
-      sharedBadge.textContent = 'Shared';
-      sharedBadge.title = 'Shares ingredients with your selected recipes';
-      sharedBadge.setAttribute('aria-label', sharedBadge.title);
-      flagContainer.prepend(sharedBadge);
-    }
-
     link.appendChild(title);
     link.appendChild(flagContainer);
 
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'button secondary button-compact planner-add-button';
+    const alreadySelected = state.selections.has(recipe.id);
     button.textContent = alreadySelected ? 'Added' : 'Add';
     button.disabled = alreadySelected;
     if (!alreadySelected) {
@@ -668,7 +614,6 @@ function renderSelections() {
         selection.state.restrictions = selection.restrictions;
         selection.state.selectedOptions = {};
         updateIngredientsSummary();
-        renderRecipeList();
       });
       label.appendChild(input);
       const span = document.createElement('span');
