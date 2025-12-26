@@ -6,6 +6,7 @@ import {
   pluralize,
   groupLinesBySection,
   convertUnitAmount,
+  recipeDefaultCompatibility,
 } from './recipe-utils.js';
 
 const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
@@ -97,6 +98,11 @@ function normalizeRecipeForPlanner(entry) {
   const title = maybe.title || entry?.title || '';
   const id = maybe.id || maybe.recipe_id || entry?.id || entry?.recipe_id || normalizeTitleKey(title);
   const ingredients = normalizeIngredients(maybe.ingredients, maybe.token_order);
+  const defaultCompatibility = recipeDefaultCompatibility({
+    ...maybe,
+    ingredients: ingredients.byToken,
+    token_order: ingredients.order,
+  });
 
   return {
     ...maybe,
@@ -104,6 +110,7 @@ function normalizeRecipeForPlanner(entry) {
     id,
     ingredients: ingredients.byToken,
     token_order: ingredients.order,
+    compatibility_default: defaultCompatibility,
     has_details: recipeHasDetails({ ...maybe, ingredients: ingredients.list, token_order: ingredients.order }),
   };
 }
@@ -405,16 +412,18 @@ function addRecipeSelection(recipe) {
   if (state.selections.has(recipe.id)) return;
   const servingsPerBatch = Number(recipe.servings_per_batch) || 4;
   const batchSize = 1;
+  const defaultCompatibility = recipe.compatibility_default || recipeDefaultCompatibility(recipe);
   const selection = {
     recipe,
     batchSize,
     servingsPerBatch,
     totalServings: batchSize * servingsPerBatch,
-    restrictions: { gluten_free: false, egg_free: false, dairy_free: false },
+    defaultCompatibility,
+    restrictions: { ...defaultCompatibility },
     state: {
       multiplier: batchSize,
       panMultiplier: 1,
-      restrictions: { gluten_free: false, egg_free: false, dairy_free: false },
+      restrictions: { ...defaultCompatibility },
       selectedOptions: {},
       unitSelections: {},
       recipeIndex: state.recipeIndex,
@@ -573,6 +582,17 @@ function renderSelections() {
     dietaryLabel.className = 'planner-note';
     dietaryLabel.textContent = 'Dietary adjustments';
     dietary.appendChild(dietaryLabel);
+
+    const defaultCompatibility = selection.defaultCompatibility || {};
+    const defaultNotes = DIETARY_BADGES.filter((tag) => defaultCompatibility[tag.key]);
+    if (defaultNotes.length) {
+      const note = document.createElement('p');
+      note.className = 'planner-note';
+      note.textContent = defaultNotes
+        .map((tag) => `Already ${tag.name.toLowerCase()} by default`)
+        .join(' • ');
+      dietary.appendChild(note);
+    }
 
     const dietaryOptions = document.createElement('div');
     dietaryOptions.className = 'planner-dietary-options';
