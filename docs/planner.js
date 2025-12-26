@@ -457,7 +457,7 @@ function updateNutritionSummary() {
 
 function setupNutritionSettings() {
   const dailyInput = document.getElementById('planner-daily-kcal');
-  const weightInput = document.getElementById('planner-weight-kg');
+  const weightInput = document.getElementById('planner-weight-lb');
   const mealInputs = {
     breakfast: document.getElementById('planner-meal-breakfast'),
     lunch: document.getElementById('planner-meal-lunch'),
@@ -471,7 +471,7 @@ function setupNutritionSettings() {
     dailyInput.value = Number.isFinite(state.nutritionSettings.daily_kcal)
       ? Math.round(state.nutritionSettings.daily_kcal)
       : '';
-    if (weightInput) weightInput.value = state.nutritionSettings.weight_kg ?? '';
+    if (weightInput) weightInput.value = state.nutritionSettings.weight_lb ?? '';
     const fractions = normalizeMealFractions(state.nutritionSettings.meal_fractions, state.nutritionPolicy);
     Object.entries(mealInputs).forEach(([meal, input]) => {
       if (!input) return;
@@ -486,7 +486,7 @@ function setupNutritionSettings() {
       : (state.nutritionPolicy?.default_daily_kcal || state.nutritionSettings.daily_kcal);
 
     const weight = Number(weightInput?.value);
-    state.nutritionSettings.weight_kg = Number.isFinite(weight) && weight > 0 ? weight : null;
+    state.nutritionSettings.weight_lb = Number.isFinite(weight) && weight > 0 ? weight : null;
 
     const fractions = { ...state.nutritionSettings.meal_fractions };
     Object.entries(mealInputs).forEach(([meal, input]) => {
@@ -822,8 +822,8 @@ function renderSelections() {
 
       nutritionWarning.style.display = 'none';
       estimateLine.textContent =
-        `Batch servings: ${selection.servingsPerBatch} • ` +
-        `Estimated meal-sized servings: ${nutrition.estimate.servings_estimate}`;
+        `Batch servings (recipe): ${selection.servingsPerBatch} • ` +
+        `Estimated meal-sized servings: ${nutrition.estimate.servings_estimate} (nutrition targets)`;
 
       const renderMetrics = (target, label) => {
         target.innerHTML = '';

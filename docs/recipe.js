@@ -629,7 +629,7 @@ function renderRecipe(recipeInput, nutritionPolicy) {
   const nutritionMetrics = document.getElementById('recipe-nutrition-metrics');
   const nutritionTargets = document.getElementById('recipe-nutrition-targets');
   const nutritionDailyInput = document.getElementById('nutrition-daily-kcal');
-  const nutritionWeightInput = document.getElementById('nutrition-weight-kg');
+  const nutritionWeightInput = document.getElementById('nutrition-weight-lb');
   const nutritionMealInputs = {
     breakfast: document.getElementById('nutrition-meal-breakfast'),
     lunch: document.getElementById('nutrition-meal-lunch'),
@@ -727,7 +727,7 @@ function renderRecipe(recipeInput, nutritionPolicy) {
         ? Math.round(nutritionState.settings.daily_kcal)
         : '';
     }
-    if (nutritionWeightInput) nutritionWeightInput.value = nutritionState.settings.weight_kg ?? '';
+    if (nutritionWeightInput) nutritionWeightInput.value = nutritionState.settings.weight_lb ?? '';
     const fractions = normalizeMealFractions(nutritionState.settings.meal_fractions, recipe.nutritionPolicy);
     Object.entries(nutritionMealInputs).forEach(([meal, input]) => {
       if (!input) return;
@@ -742,7 +742,7 @@ function renderRecipe(recipeInput, nutritionPolicy) {
       : (recipe.nutritionPolicy?.default_daily_kcal || nutritionState.settings.daily_kcal);
 
     const weight = Number(nutritionWeightInput?.value);
-    nutritionState.settings.weight_kg = Number.isFinite(weight) && weight > 0 ? weight : null;
+    nutritionState.settings.weight_lb = Number.isFinite(weight) && weight > 0 ? weight : null;
 
     const fractions = { ...nutritionState.settings.meal_fractions };
     Object.entries(nutritionMealInputs).forEach(([meal, input]) => {
@@ -779,7 +779,7 @@ function renderRecipe(recipeInput, nutritionPolicy) {
       }
       if (nutritionDetails) {
         nutritionDetails.textContent = batchServings
-          ? `Batch servings: ${batchServings} • Nutrition estimate unavailable for this recipe.`
+          ? `Batch servings (recipe): ${batchServings} • Nutrition estimate unavailable for this recipe.`
           : 'Nutrition estimate unavailable for this recipe.';
       }
       if (nutritionMetrics) nutritionMetrics.innerHTML = '';
@@ -797,8 +797,8 @@ function renderRecipe(recipeInput, nutritionPolicy) {
         ? Number(recipe.servings_per_batch)
         : estimate.servings_estimate;
       nutritionDetails.textContent =
-        `Batch servings: ${batchServings} • ` +
-        `Estimated meal-sized servings: ${estimate.servings_estimate}`;
+        `Batch servings (recipe): ${batchServings} • ` +
+        `Estimated meal-sized servings: ${estimate.servings_estimate} (nutrition targets)`;
     }
 
     if (nutritionMetrics) {
@@ -823,10 +823,10 @@ function renderRecipe(recipeInput, nutritionPolicy) {
     if (nutritionTargets) {
       const targets = estimate.debugTargets || {};
       nutritionTargets.textContent =
-        `Based on your targets: ~${formatKcal(targets.kcal_target_meal)} kcal/meal, ` +
-        `sodium ≤ ${formatNumber(targets.sodium_limit_meal, { maximumFractionDigits: 0 })} mg/meal, ` +
-        `sat fat ≤ ${formatNumber(targets.sat_fat_limit_g_meal)} g/meal, ` +
-        `fiber ≥ ${formatNumber(targets.fiber_target_g_meal)} g/meal.`;
+        `Based on your targets: ~${formatKcal(targets.kcal_target_meal)} kcal per meal, ` +
+        `sodium ≤ ${formatNumber(targets.sodium_limit_meal, { maximumFractionDigits: 0 })} mg per meal, ` +
+        `sat fat ≤ ${formatNumber(targets.sat_fat_limit_g_meal)} g per meal, ` +
+        `fiber ≥ ${formatNumber(targets.fiber_target_g_meal)} g per meal.`;
     }
   };
 

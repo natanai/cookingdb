@@ -111,7 +111,7 @@ export function normalizeMealFractions(fractions, policy = DEFAULT_POLICY) {
 export function loadNutritionSettings(policy = DEFAULT_POLICY) {
   const defaults = {
     daily_kcal: policy.default_daily_kcal || DEFAULT_POLICY.default_daily_kcal,
-    weight_kg: null,
+    weight_lb: null,
     meal_fractions: normalizeMealFractions(null, policy),
   };
 
@@ -120,9 +120,14 @@ export function loadNutritionSettings(policy = DEFAULT_POLICY) {
     if (!raw) return defaults;
     const parsed = JSON.parse(raw);
     const mealFractions = normalizeMealFractions(parsed?.meal_fractions, policy);
+    const weightLb = coerceNumber(parsed?.weight_lb);
+    const weightKg = weightLb === null ? coerceNumber(parsed?.weight_kg) : null;
+    const normalizedWeightLb = Number.isFinite(weightLb)
+      ? weightLb
+      : (Number.isFinite(weightKg) ? weightKg * 2.20462 : null);
     return {
       daily_kcal: coerceNumber(parsed?.daily_kcal) || defaults.daily_kcal,
-      weight_kg: coerceNumber(parsed?.weight_kg),
+      weight_lb: normalizedWeightLb,
       meal_fractions: mealFractions,
     };
   } catch (err) {
@@ -135,7 +140,7 @@ export function saveNutritionSettings(settings) {
   if (!settings) return;
   const payload = {
     daily_kcal: settings.daily_kcal,
-    weight_kg: settings.weight_kg,
+    weight_lb: settings.weight_lb,
     meal_fractions: settings.meal_fractions,
   };
   localStorage.setItem(SETTINGS_KEY, JSON.stringify(payload));
@@ -143,14 +148,15 @@ export function saveNutritionSettings(settings) {
 
 export function deriveDailyTargets(settings, policy = DEFAULT_POLICY) {
   const dailyKcal = coerceNumber(settings?.daily_kcal) || policy.default_daily_kcal || DEFAULT_POLICY.default_daily_kcal;
+  const weightKg = settings?.weight_lb ? settings.weight_lb / 2.20462 : null;
   return {
     kcal: dailyKcal,
     sodium_mg: (policy.sodium_day_max_mg || DEFAULT_POLICY.sodium_day_max_mg),
     sat_fat_g: (dailyKcal * (policy.sat_fat_max_pct_kcal || DEFAULT_POLICY.sat_fat_max_pct_kcal)) / 9,
     added_sugar_g: (dailyKcal * (policy.added_sugar_max_pct_kcal || DEFAULT_POLICY.added_sugar_max_pct_kcal)) / 4,
     fiber_g: (dailyKcal / 1000) * (policy.fiber_g_per_1000_kcal_min || DEFAULT_POLICY.fiber_g_per_1000_kcal_min),
-    protein_floor_g: settings?.weight_kg
-      ? (settings.weight_kg * (policy.protein_rda_g_per_kg_day || DEFAULT_POLICY.protein_rda_g_per_kg_day))
+    protein_floor_g: weightKg
+      ? (weightKg * (policy.protein_rda_g_per_kg_day || DEFAULT_POLICY.protein_rda_g_per_kg_day))
       : 0,
   };
 }
@@ -302,8 +308,9 @@ export function estimateServings(totals, settings, mealType, policy = DEFAULT_PO
   const addedSugarLimitMeal = (kcalTargetMeal * (policy.added_sugar_max_pct_kcal || DEFAULT_POLICY.added_sugar_max_pct_kcal)) / 4;
   const fiberTargetMeal =
     (kcalTargetMeal / 1000) * (policy.fiber_g_per_1000_kcal_min || DEFAULT_POLICY.fiber_g_per_1000_kcal_min);
-  const proteinFloorMeal = settings?.weight_kg
-    ? settings.weight_kg * (policy.protein_rda_g_per_kg_day || DEFAULT_POLICY.protein_rda_g_per_kg_day) * mealFraction
+  const weightKg = settings?.weight_lb ? settings.weight_lb / 2.20462 : null;
+  const proteinFloorMeal = weightKg
+    ? weightKg * (policy.protein_rda_g_per_kg_day || DEFAULT_POLICY.protein_rda_g_per_kg_day) * mealFraction
     : 0;
 
   const weights = policy.weights || DEFAULT_POLICY.weights;
