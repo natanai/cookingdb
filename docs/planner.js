@@ -395,8 +395,8 @@ function renderRecipeList() {
       });
     }
 
-    li.appendChild(link);
     li.appendChild(button);
+    li.appendChild(link);
     list.appendChild(li);
   });
 }

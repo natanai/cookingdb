@@ -2371,12 +2371,15 @@ body.add-page details.mobile-preview > summary {
 }
 
 .planner-recipe-row .recipe-row-link {
-  padding-right: 6rem;
+  padding-left: 6rem;
+  position: relative;
+  z-index: 1;
 }
 
 .planner-add-button {
+  z-index: 2;
   position: absolute;
-  right: 0.75rem;
+  left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
 }
