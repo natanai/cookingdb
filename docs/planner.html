@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meal Prep Planner</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon.svg" />
+</head>
+<body class="page-planner">
+  <header class="site-header">
+    <div class="inner">
+      <h1 class="site-title">Meal prep planner</h1>
+      <nav class="nav-links">
+        <a href="index.html">← Back to recipes</a>
+        <a href="add.html" class="button secondary">Add recipe</a>
+      </nav>
+    </div>
+  </header>
+  <div class="page-shell">
+    <section class="hero planner-hero">
+      <div class="hero-content">
+        <p class="eyebrow">Meal planning</p>
+        <h2 class="hero-title">Build a grocery order for your meal-prep weeks.</h2>
+        <p class="hero-subtitle">Choose recipes, adjust batch sizes, and print a consolidated ingredient list.</p>
+      </div>
+    </section>
+    <main class="planner-grid">
+      <section class="planner-panel planner-overview">
+        <div class="planner-panel-header">
+          <h2 class="section-heading">Plan overview</h2>
+        </div>
+        <div class="planner-field-row">
+          <label class="planner-field">
+            Weeks to prep
+            <input id="weeks-input" type="number" min="1" step="1" value="1" />
+          </label>
+          <div class="planner-meals-inline">
+            <span class="planner-meals-label">Meals per day</span>
+            <span class="planner-meals-value" id="meals-per-day-label">3</span>
+          </div>
+        </div>
+        <details class="planner-details" id="customize-details">
+          <summary>Customize days and meals</summary>
+          <div class="planner-custom-panel">
+            <label class="inline-check">
+              <input type="checkbox" id="customize-toggle" />
+              Use a custom day or meal count
+            </label>
+            <div class="planner-custom-fields" id="custom-fields" hidden>
+              <label class="planner-field">
+                Days planned
+                <input id="days-input" type="number" min="1" step="1" value="7" />
+              </label>
+              <label class="planner-field">
+                Meals per day
+                <input id="meals-per-day-input" type="number" min="1" step="1" value="3" />
+              </label>
+            </div>
+          </div>
+        </details>
+        <div class="planner-metrics">
+          <div>
+            <p class="planner-metric-label">Meals needed</p>
+            <p class="planner-metric-value" id="meals-needed">21</p>
+          </div>
+          <div>
+            <p class="planner-metric-label">Meals planned</p>
+            <p class="planner-metric-value" id="meals-planned">0</p>
+          </div>
+          <div>
+            <p class="planner-metric-label">Remaining</p>
+            <p class="planner-metric-value" id="meals-remaining">21</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="planner-panel planner-picker">
+        <div class="planner-panel-header">
+          <h2 class="section-heading">Select recipes</h2>
+        </div>
+        <label class="search-field" aria-label="Search recipes">
+          <span class="search-icon" aria-hidden="true">🔎</span>
+          <input id="planner-search" type="search" placeholder="Search recipes" autocomplete="off" />
+        </label>
+        <ul class="planner-recipe-list" id="planner-recipe-list" aria-live="polite"></ul>
+      </section>
+
+      <section class="planner-panel planner-selected">
+        <div class="planner-panel-header">
+          <h2 class="section-heading">Selected recipes</h2>
+        </div>
+        <div id="selected-recipes" class="planner-selected-list"></div>
+      </section>
+
+      <section class="planner-panel planner-ingredients">
+        <div class="planner-panel-header planner-ingredients-header">
+          <h2 class="section-heading">Required ingredients</h2>
+          <div class="planner-actions">
+            <button class="button" type="button" id="print-ingredients">🖨 Print ingredients</button>
+            <button class="button secondary" type="button" id="print-recipes">🖨 Print all recipes</button>
+          </div>
+        </div>
+        <ul id="ingredients-summary" class="ingredients-summary"></ul>
+      </section>
+    </main>
+  </div>
+  <script src="planner.js" type="module"></script>
+</body>
+</html>
