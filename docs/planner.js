@@ -760,6 +760,7 @@ function buildIngredientListForPrint() {
 
   state.selections.forEach((selection) => {
     const recipeState = selection.state;
+    const recipeId = selection.recipe?.id;
     recipeState.multiplier = selection.batchSize;
     recipeState.restrictions = selection.restrictions;
     const lines = renderIngredientLines(selection.recipe, recipeState);
