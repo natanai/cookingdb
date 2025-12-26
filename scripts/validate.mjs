@@ -139,10 +139,25 @@ export async function validateAll() {
   ingredientCatalogRows.forEach((row) => {
     ensure(row.ingredient_id, 'ingredient_catalog.csv missing ingredient_id');
     ensure(
-      ['nutrition_unit', 'calories_per_unit', 'nutrition_source', 'nutrition_notes'].every((field) =>
-        Object.prototype.hasOwnProperty.call(row, field)
-      ),
-      'ingredient_catalog.csv missing nutrition columns (nutrition_unit, calories_per_unit, nutrition_source, nutrition_notes)'
+      [
+        'nutrition_unit',
+        'calories_per_unit',
+        'nutrition_source',
+        'nutrition_notes',
+        'serving_size',
+        'protein_g',
+        'total_fat_g',
+        'saturated_fat_g',
+        'total_carbs_g',
+        'sugars_g',
+        'fiber_g',
+        'sodium_mg',
+        'calcium_mg',
+        'iron_mg',
+        'potassium_mg',
+        'vitamin_c_mg',
+      ].every((field) => Object.prototype.hasOwnProperty.call(row, field)),
+      'ingredient_catalog.csv missing nutrition columns'
     );
     ensure(!ingredientCatalogIds.has(row.ingredient_id), `ingredient_catalog.csv duplicate ingredient_id ${row.ingredient_id}`);
     ingredientCatalogIds.add(row.ingredient_id);

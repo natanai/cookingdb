@@ -95,6 +95,18 @@ function loadIngredientCatalog(catalogPath) {
       calories_per_unit: row.calories_per_unit || '',
       nutrition_source: row.nutrition_source || '',
       nutrition_notes: row.nutrition_notes || '',
+      serving_size: row.serving_size || '',
+      protein_g: row.protein_g || '',
+      total_fat_g: row.total_fat_g || '',
+      saturated_fat_g: row.saturated_fat_g || '',
+      total_carbs_g: row.total_carbs_g || '',
+      sugars_g: row.sugars_g || '',
+      fiber_g: row.fiber_g || '',
+      sodium_mg: row.sodium_mg || '',
+      calcium_mg: row.calcium_mg || '',
+      iron_mg: row.iron_mg || '',
+      potassium_mg: row.potassium_mg || '',
+      vitamin_c_mg: row.vitamin_c_mg || '',
     });
   }
   return map;
