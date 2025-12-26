@@ -2370,6 +2370,11 @@ body.add-page details.mobile-preview > summary {
   position: relative;
 }
 
+.planner-recipe-row.is-shared-ingredient .recipe-row-link {
+  background: #fff5e4;
+  box-shadow: inset 0 0 0 1px rgba(196, 108, 33, 0.2);
+}
+
 .planner-recipe-row .recipe-row-link {
   padding-left: 6rem;
   position: relative;
@@ -2387,6 +2392,11 @@ body.add-page details.mobile-preview > summary {
 .planner-add-button:hover {
   transform: translateY(-50%);
   box-shadow: none;
+}
+
+.planner-ingredient-flag {
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .planner-selected-list {
