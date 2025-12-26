@@ -1,166 +1,166 @@
 ingredient_id,canonical_name,contains_gluten,contains_egg,contains_dairy,nutrition_unit,calories_per_unit,nutrition_source,nutrition_notes
-egg,Egg,false,true,false,count,72,USDA (large egg),Per 1 large (≈50g).
-egg-replacer,Egg replacer,false,false,false,tbsp,35,Bob’s Red Mill (vegan),Per 1 Tbsp (10g).
-milk,Milk,false,false,true,cup,150,U.S. Dairy (whole milk),Per 1 cup (240ml).
-oat-milk,Oat milk,false,false,false,cup,120,USDA (fortified oat),Per 1 cup (240ml).
-butter,Butter,false,false,true,tbsp,102,USDA (butter),Per 1 Tbsp (14g).
-vegan-butter,Vegan butter,false,false,false,tbsp,102,USDA (80% fat margarine),Per 1 Tbsp (14g).
-wheat-flour,Wheat flour,true,false,false,cup,455,USDA (AP flour),Per 1 cup (125g).
-gf-flour-blend,Gluten-free flour blend,false,false,false,cup,440,Good&Gather GF blend,Per 1 cup (120g).
-water,Water,false,false,false,cup,0,(plain water),Per 1 cup (240ml).
-salt,Salt,false,false,false,tsp,0,AHA / FDA (NaCl),Per 1 tsp (6g).
-sugar,Sugar,false,false,false,tbsp,49,USDA (white sugar),Per 1 Tbsp (12.5g).
-almond-flour,Almond flour,false,false,false,cup,640,Bob’s (almond flour),Per 1 cup (96g).
-oat-flour,Oat flour (gluten-free),false,false,false,cup,420,USDA (oat flour),Per 1 cup (104g).
-rice-flour,Rice flour,false,false,false,cup,578,USDA (rice flour),Per 1 cup (158g).
-tapioca-starch,Tapioca starch,false,false,false,cup,424,USDA (tapioca),Per 1 cup (120g).
-cornstarch,Cornstarch,false,false,false,cup,488,USDA (cornstarch),Per 1 cup (128g).
-white-sugar,Granulated white sugar,false,false,false,tbsp,49,Same as granulated sugar (above),Per 1 Tbsp.
-baking-powder,Baking powder,false,false,false,tsp,2.4,USDA (baking powder),Per 1 tsp (4.6g).
-coconut-milk,Full-fat coconut milk,false,false,false,cup,445,USDA (unsweet. coconut),Per 1 cup (240ml).
-lemon,Lemon,false,false,false,count,17,USDA (raw lemon),Per 1 medium (58g).
-vanilla-extract,Vanilla extract,false,false,false,tsp,12,USDA (vanilla extract),Per 1 tsp (5ml).
-powdered-sugar,Powdered sugar,false,false,false,cup,467,USDA (confectioners),Per 1 cup (unsifted).
-nondairy-yogurt,Non-dairy yogurt,false,false,false,cup,130,WholeSoy unsweetened,Per 1 cup (245g).
-neutral-oil,Neutral oil,false,false,false,tbsp,124,USDA (canola oil),Per 1 Tbsp (14g).
-brisket,Beef brisket,false,false,false,lb,980,USDA (brisket raw avg.),Per 1 lb (raw).
-ground-beef,Ground beef,false,false,false,lb,1150,USDA (80% lean),Per 1 lb (raw).
-baby-potatoes,Baby potatoes,false,false,false,count,26,Fitia (baby potato),Per 1 small (30g).
-carrot,Carrot,false,false,false,count,25,USDA (medium carrot),Per 1 medium (61g).
-shallot,Shallot,false,false,false,count,22,FoodStruct (shallot),Per 1 medium (30g).
-apple-cider,Apple cider,false,false,false,cup,120,WebMD (apple cider),Per 1 cup (240ml).
-beef-broth,Beef broth,false,false,false,cup,10,Campbell’s (broth),Per 1 cup (240ml).
-chicken-broth,Chicken broth,false,false,false,cup,15,Consumer Reports,Per 1 cup (240ml).
-thyme,Thyme,false,false,false,tsp,3,USDA (dried thyme),Per 1 tsp (1g).
-bay-leaf,Bay leaf,false,false,false,count,2,USDA (spices),Per 1 leaf (~0.6g).
-cayenne-pepper,Cayenne pepper,false,false,false,tsp,6,USDA (spices),Per 1 tsp (1.8g).
-sweet-potato,Sweet potato,false,false,false,count,103,USDA (med. sweet potato),Per 1 medium (130g).
-brown-sugar,Brown sugar,false,false,false,tbsp,50,Verywell (brown sugar),Per 1 Tbsp (12g).
-molasses,Molasses,false,false,false,tbsp,58,USDA (molasses),Per 1 Tbsp (20g).
-cream,Cream,false,false,true,tbsp,52,USDA (heavy cream),Per 1 Tbsp (15ml).
-onion,Onion,false,false,false,count,44,USDA (med. onion),Per 1 medium (110g).
-canadian-bacon,Canadian bacon,false,false,false,count,43,USDA (lean ham),Per 1 slice (28g).
-vegetable-oil,Vegetable oil,false,false,false,tbsp,119,USDA (olive/veg oil),Per 1 Tbsp (14g).
-collard-greens,Collard greens,false,false,false,cup,11,USDA (collards),"Per 1 cup, chopped (36g)."
-kale,Kale,false,false,false,cup,7,USDA (kale),"Per 1 cup, chopped (21g)."
-toasted-sesame-oil,Toasted sesame oil,false,false,false,tbsp,120,USDA (sesame oil),Per 1 Tbsp (14g).
-black-pepper,Black pepper,false,false,false,tsp,5,USDA (black pepper),Per 1 tsp (2g).
-pear-halves,Pear halves,false,false,false,count,35,USDA (canned pear),Per 1 half (approx 92g).
-pork-chop,Pork chop,false,false,false,count,210,USDA (pork loin chop),Per 1 chop (boneless ~113g).
-cinnamon,Cinnamon,false,false,false,tsp,6,USDA (ground cinnamon),Per 1 tsp (2.6g).
-tomato-sauce,Tomato sauce,false,false,false,cup,59,USDA (canned tomato sauce),Per 1 cup (245g).
-celery,Celery,false,false,false,count,6,USDA (raw celery),Per 1 stalk (40g).
-diced-tomatoes,Diced tomatoes,false,false,false,cup,48,USDA (canned tomatoes),Per 1 cup (240g).
-mixed-vegetables,Mixed vegetables,false,false,false,cup,118,USDA (mixed veg blend),Per 1 cup (140g).
-salsa,Salsa,false,false,false,tbsp,10,USDA (jarred salsa),Per 2 Tbsp (30g).
-parsley,Parsley,false,false,false,tbsp,1,USDA (parsley),Per 1 Tbsp (4g).
-watercress,Watercress,false,false,false,cup,4,USDA (watercress),Per 1 cup (34g).
-nutmeg,Nutmeg,false,false,false,tsp,12,USDA (ground nutmeg),Per 1 tsp (2.2g).
-leek,Leek,false,false,false,count,50,USDA (raw leek),Per 1 leek (89g).
-potato,Potato,false,false,false,count,164,USDA (med. potato),Per 1 medium (173g).
-rice,Rice,false,false,false,cup,685,USDA (uncooked rice),Per 1 cup (185g).
-brown-rice,Brown rice,false,false,false,cup,685,USDA (uncooked brown rice),Per 1 cup (185g).
-coconut-oil,Coconut oil,false,false,false,tbsp,121,USDA (coconut oil),Per 1 Tbsp (14g).
-ginger,Ginger,false,false,false,tsp,2,USDA (ginger root),Per 1 tsp grated (2g).
-garlic,Garlic,false,false,false,clove,4,USDA (garlic clove),Per 1 clove (3g).
-chicken-breast,Chicken breast,false,false,false,lb,748,USDA (skinless breast),Per 1 lb (454g).
-cooked-chicken,Cooked chicken,false,false,false,cup,231,USDA (roast chicken),Per 1 cup (140g).
-coconut-cream,Coconut cream,false,false,false,tbsp,90,USDA (coconut cream),Per 1 Tbsp (15g).
-coconut-aminos,Coconut aminos,false,false,false,tbsp,15,Mfr. label (coconut aminos),Per 1 Tbsp (15ml).
-lime,Lime,false,false,false,count,20,USDA (raw lime),Per 1 medium (67g).
-turmeric-powder,Turmeric powder,false,false,false,tsp,9,USDA (ground turmeric),Per 1 tsp (3g).
-cilantro,Cilantro,false,false,false,cup,4,USDA (cilantro),Per 1 cup (16g).
-cauliflower-rice,Cauliflower rice,false,false,false,cup,25,USDA (cauliflower),Per 1 cup (107g).
-bread-crumbs,Bread crumbs,true,false,false,cup,427,USDA (bread crumbs),Per 1 cup (120g).
-acorn-squash,Acorn squash,false,false,false,cup,56,USDA (acorn squash),Per 1 cup cubes (140g).
-sausage,Sausage,false,false,false,count,140,USDA (pork sausage avg.),Per 1 link (45g).
-cheese,Cheese,false,false,true,oz,113,USDA (cheddar avg.),Per 1 oz (28g).
-cheddar-mozzarella-cheese,Cheddar mozzarella cheese blend,false,false,true,cup,400,Est. (half cheddar/half mozz),Per 1 cup shredded (112g).
-butternut-squash,Butternut squash,false,false,false,cup,63,USDA (butternut squash),Per 1 cup cubes (140g).
-baking-soda,Baking soda,false,false,false,tsp,0,USDA (baking soda),Per 1 tsp (5g).
-chocolate-chips,Chocolate chips,false,false,true,cup,800,USDA (semisweet chips),Per 1 cup (168g).
-dairy-free-chocolate-chips,Dairy-free chocolate chips,false,false,false,cup,780,Est. (similar to semisweet),Per 1 cup (168g).
-italian_seasoning,Italian seasoning,false,false,false,tsp,5,USDA (Italian herb mix),Per 1 tsp (2g).
-olive_oil,Olive oil,false,false,false,tbsp,119,USDA (olive oil),Per 1 Tbsp (14g).
-parmesan_cheese,Parmesan cheese,false,false,true,oz,111,USDA (Parm. cheese),Per 1 oz (28g).
-beef_bouillon,Beef bouillon,false,false,false,cube,10,USDA (beef bouillon),Per 1 cube (prepared 1 cup).
-soy_sauce,Soy sauce,true,false,false,tbsp,8,USDA (soy sauce),Per 1 Tbsp (15ml).
-worcestershire_sauce,Worcestershire sauce,false,false,false,tbsp,13,USDA (Worcestershire),Per 1 Tbsp (17g).
-teriyaki-sauce,Teriyaki sauce,true,false,false,tbsp,16,USDA (teriyaki sauce),Per 1 Tbsp (18g).
-onion_powder,Onion powder,false,false,false,tsp,10,USDA (onion powder),Per 1 tsp (2.8g).
-dried_thyme,Dried thyme,false,false,false,tsp,3,(duplicate entry),Per 1 tsp.
-mustard_powder,Mustard powder,false,false,false,tsp,6,USDA (dry mustard),Per 1 tsp (2g).
-heavy_cream,Heavy cream,false,false,true,tbsp,52,(duplicate entry),Per 1 Tbsp.
-shortening,Shortening,false,false,false,tbsp,110,Crisco (shortening),Per 1 Tbsp (12g).
-egg-yolk,Egg yolk,false,true,false,count,55,MNT (egg yolk),Per 1 large yolk.
-almond-extract,Almond extract,false,false,false,tsp,12,(similar to vanilla),Per 1 tsp (4.2g).
-food-coloring,Food coloring,false,false,false,tsp,5,(negligible),Per 1 tsp (5g).
-beef,Beef,false,false,false,lb,970,USDA (85% lean beef),Per 1 lb.
-green-beans,Green beans,false,false,false,cup,31,USDA (green beans),Per 1 cup (100g).
-pinto-beans,Pinto beans,false,false,false,cup,245,USDA (cooked pintos),Per 1 cup (171g).
-peas,Peas,false,false,false,cup,134,MNT (green peas),Per 1 cup (160g).
-corn,Corn,false,false,false,cup,177,USDA (yellow corn),Per 1 cup (165g).
-celery-salt,Celery salt,false,false,false,tsp,0,USDA,mostly salt (high sodium); per 1 tsp.
-white-pepper,White pepper,false,false,false,tsp,7,USDA,Per 1 tsp.
-american-cheese,American cheese,false,false,true,oz,106.3,Label,Processed slice (20g); per 1 oz.
-tuna,Tuna,false,false,false,count,164,USDA,"water-packed, drained; per 1 can (5 oz)."
-green-pepper,Green pepper,false,false,false,count,24,USDA,medium (119g); per 1 pepper.
-green-olives,Green olives,false,false,false,oz,41,USDA,"canned, pitted; per 1 oz."
-sweet-pickles,Sweet pickles,false,false,false,oz,30,USDA,in syrup; per 1 oz.
+egg,Egg,false,true,false,count,72,USDA FoodData Central,Large egg.
+egg-replacer,Egg replacer,false,false,false,tbsp,35,Bob's Red Mill,Vegan egg replacer per tablespoon.
+milk,Milk,false,false,true,cup,150,U.S. Dairy,Whole milk per cup.
+oat-milk,Oat milk,false,false,false,cup,120,USDA FoodData Central,Unsweetened oat milk per cup.
+butter,Butter,false,false,true,tbsp,102,USDA FoodData Central,Per tablespoon.
+vegan-butter,Vegan butter,false,false,false,tbsp,102,USDA FoodData Central,Margarine per tablespoon.
+wheat-flour,Wheat flour,true,false,false,cup,455,USDA FoodData Central,All-purpose flour per cup.
+gf-flour-blend,Gluten-free flour blend,false,false,false,cup,440,Good & Gather,Gluten-free flour blend per cup (approx).
+water,Water,false,false,false,cup,0,USDA FoodData Central,Plain water per cup.
+salt,Salt,false,false,false,tsp,0,FDA,Table salt per teaspoon.
+sugar,Sugar,false,false,false,tbsp,49,USDA FoodData Central,Granulated sugar per tablespoon.
+almond-flour,Almond flour,false,false,false,cup,640,Bob's Red Mill,Blanched almond flour per cup.
+oat-flour,Oat flour (gluten-free),false,false,false,cup,420,USDA FoodData Central,Whole grain oat flour per cup.
+rice-flour,Rice flour,false,false,false,cup,578,USDA FoodData Central,White rice flour per cup.
+tapioca-starch,Tapioca starch,false,false,false,cup,424,USDA FoodData Central,Tapioca starch per cup.
+cornstarch,Cornstarch,false,false,false,cup,488,USDA FoodData Central,Cornstarch per cup.
+white-sugar,Granulated white sugar,false,false,false,tbsp,49,USDA FoodData Central,Granulated sugar per tablespoon.
+baking-powder,Baking powder,false,false,false,tsp,2.4,USDA FoodData Central,Baking powder per teaspoon.
+coconut-milk,Full-fat coconut milk,false,false,false,cup,445,USDA FoodData Central,Canned coconut milk per cup.
+lemon,Lemon,false,false,false,count,17,USDA FoodData Central,Medium lemon.
+vanilla-extract,Vanilla extract,false,false,false,tsp,12,USDA FoodData Central,Vanilla extract per teaspoon.
+powdered-sugar,Powdered sugar,false,false,false,cup,467,USDA FoodData Central,Powdered sugar per cup.
+nondairy-yogurt,Non-dairy yogurt,false,false,false,cup,130,WholeSoy,Unsweetened soy yogurt per cup.
+neutral-oil,Neutral oil,false,false,false,tbsp,124,USDA FoodData Central,Canola oil per tablespoon.
+brisket,Beef brisket,false,false,false,lb,980,USDA FoodData Central,Beef brisket per pound (raw).
+ground-beef,Ground beef,false,false,false,lb,1150,USDA FoodData Central,80% lean ground beef per pound.
+baby-potatoes,Baby potatoes,false,false,false,count,26,Fitia,Small baby potato.
+carrot,Carrot,false,false,false,count,25,USDA FoodData Central,Medium carrot.
+shallot,Shallot,false,false,false,count,22,FoodStruct,Medium shallot.
+apple-cider,Apple cider,false,false,false,cup,120,WebMD,Apple cider per cup.
+beef-broth,Beef broth,false,false,false,cup,10,Campbell's,Beef broth per cup.
+chicken-broth,Chicken broth,false,false,false,cup,15,Consumer Reports,Chicken broth per cup.
+thyme,Thyme,false,false,false,tsp,3,USDA FoodData Central,Dried thyme per teaspoon.
+bay-leaf,Bay leaf,false,false,false,count,2,USDA FoodData Central,Dried bay leaf per leaf.
+cayenne-pepper,Cayenne pepper,false,false,false,tsp,6,USDA FoodData Central,Cayenne pepper per teaspoon.
+sweet-potato,Sweet potato,false,false,false,count,103,USDA FoodData Central,Medium sweet potato.
+brown-sugar,Brown sugar,false,false,false,tbsp,50,USDA FoodData Central,Brown sugar per tablespoon.
+molasses,Molasses,false,false,false,tbsp,58,USDA FoodData Central,Molasses per tablespoon.
+cream,Cream,false,false,true,tbsp,52,USDA FoodData Central,Heavy cream per tablespoon.
+onion,Onion,false,false,false,count,44,USDA FoodData Central,Medium onion.
+canadian-bacon,Canadian bacon,false,false,false,count,43,USDA FoodData Central,Slice of Canadian bacon.
+vegetable-oil,Vegetable oil,false,false,false,tbsp,119,USDA FoodData Central,Vegetable oil per tablespoon.
+collard-greens,Collard greens,false,false,false,cup,11,USDA FoodData Central,Chopped collard greens per cup.
+kale,Kale,false,false,false,cup,7,USDA FoodData Central,Chopped kale per cup.
+toasted-sesame-oil,Toasted sesame oil,false,false,false,tbsp,120,USDA FoodData Central,Toasted sesame oil per tablespoon.
+black-pepper,Black pepper,false,false,false,tsp,5,USDA FoodData Central,Ground black pepper per teaspoon.
+pear-halves,Pear halves,false,false,false,count,35,USDA FoodData Central,Canned pear half.
+pork-chop,Pork chop,false,false,false,count,210,USDA FoodData Central,Boneless pork chop (~113g).
+cinnamon,Cinnamon,false,false,false,tsp,6,USDA FoodData Central,Ground cinnamon per teaspoon.
+tomato-sauce,Tomato sauce,false,false,false,cup,59,USDA FoodData Central,Tomato sauce per cup.
+celery,Celery,false,false,false,count,6,USDA FoodData Central,Celery stalk.
+diced-tomatoes,Diced tomatoes,false,false,false,cup,48,USDA FoodData Central,Canned diced tomatoes per cup.
+mixed-vegetables,Mixed vegetables,false,false,false,cup,118,USDA FoodData Central,Frozen mixed vegetables per cup.
+salsa,Salsa,false,false,false,tbsp,5,USDA FoodData Central,Tomato-based salsa per tablespoon.
+parsley,Parsley,false,false,false,tbsp,1,USDA FoodData Central,Fresh parsley per tablespoon.
+watercress,Watercress,false,false,false,cup,4,USDA FoodData Central,Watercress per cup.
+nutmeg,Nutmeg,false,false,false,tsp,12,USDA FoodData Central,Ground nutmeg per teaspoon.
+leek,Leek,false,false,false,count,50,USDA FoodData Central,Raw leek (~89g).
+potato,Potato,false,false,false,count,164,USDA FoodData Central,Medium potato.
+rice,Rice,false,false,false,cup,685,USDA FoodData Central,Dry white rice per cup.
+brown-rice,Brown rice,false,false,false,cup,685,USDA FoodData Central,Dry brown rice per cup.
+coconut-oil,Coconut oil,false,false,false,tbsp,121,USDA FoodData Central,Coconut oil per tablespoon.
+ginger,Ginger,false,false,false,tsp,2,USDA FoodData Central,Grated fresh ginger per teaspoon.
+garlic,Garlic,false,false,false,clove,4,USDA FoodData Central,Garlic clove.
+chicken-breast,Chicken breast,false,false,false,lb,748,USDA FoodData Central,Boneless skinless chicken breast per pound.
+cooked-chicken,Cooked chicken,false,false,false,cup,231,USDA FoodData Central,Cooked shredded chicken per cup.
+coconut-cream,Coconut cream,false,false,false,tbsp,90,USDA FoodData Central,Coconut cream per tablespoon.
+coconut-aminos,Coconut aminos,false,false,false,tbsp,15,Manufacturer,Coconut aminos per tablespoon.
+lime,Lime,false,false,false,count,20,USDA FoodData Central,Medium lime.
+turmeric-powder,Turmeric powder,false,false,false,tsp,9,USDA FoodData Central,Turmeric powder per teaspoon.
+cilantro,Cilantro,false,false,false,cup,4,USDA FoodData Central,Fresh cilantro per cup.
+cauliflower-rice,Cauliflower rice,false,false,false,cup,25,USDA FoodData Central,Cauliflower rice per cup.
+bread-crumbs,Bread crumbs,true,false,false,cup,427,USDA FoodData Central,Dry bread crumbs per cup.
+acorn-squash,Acorn squash,false,false,false,cup,56,USDA FoodData Central,Raw acorn squash cubes per cup.
+sausage,Sausage,false,false,false,count,140,USDA FoodData Central,Pork sausage link.
+cheese,Cheese,false,false,true,oz,113,USDA FoodData Central,Cheddar cheese per ounce.
+cheddar-mozzarella-cheese,Cheddar mozzarella cheese blend,false,false,true,cup,400,Estimate,Shredded cheddar-mozzarella blend per cup.
+butternut-squash,Butternut squash,false,false,false,cup,63,USDA FoodData Central,Butternut squash cubes per cup.
+baking-soda,Baking soda,false,false,false,tsp,0,USDA FoodData Central,Baking soda per teaspoon.
+chocolate-chips,Chocolate chips,false,false,true,cup,800,USDA FoodData Central,Semisweet chocolate chips per cup.
+dairy-free-chocolate-chips,Dairy-free chocolate chips,false,false,false,cup,780,Estimate,Dairy-free chocolate chips per cup.
+italian_seasoning,Italian seasoning,false,false,false,tsp,5,USDA FoodData Central,Italian seasoning per teaspoon.
+olive_oil,Olive oil,false,false,false,tbsp,119,USDA FoodData Central,Per tablespoon.
+parmesan_cheese,Parmesan cheese,false,false,true,oz,111,USDA FoodData Central,Parmesan cheese per ounce.
+beef_bouillon,Beef bouillon,false,false,false,cube,10,USDA FoodData Central,Beef bouillon cube.
+soy_sauce,Soy sauce,true,false,false,tbsp,8,USDA FoodData Central,Soy sauce per tablespoon.
+worcestershire_sauce,Worcestershire sauce,false,false,false,tbsp,13,USDA FoodData Central,Worcestershire sauce per tablespoon.
+teriyaki-sauce,Teriyaki sauce,true,false,false,tbsp,16,USDA FoodData Central,Teriyaki sauce per tablespoon.
+onion_powder,Onion powder,false,false,false,tsp,10,USDA FoodData Central,Onion powder per teaspoon.
+dried_thyme,Dried thyme,false,false,false,tsp,3,USDA FoodData Central,Dried thyme per teaspoon.
+mustard_powder,Mustard powder,false,false,false,tsp,6,USDA FoodData Central,Dry mustard per teaspoon.
+heavy_cream,Heavy cream,false,false,true,tbsp,52,USDA FoodData Central,Heavy cream per tablespoon.
+shortening,Shortening,false,false,false,tbsp,110,Crisco,Vegetable shortening per tablespoon.
+egg-yolk,Egg yolk,false,true,false,count,55,Medical News Today,Large egg yolk.
+almond-extract,Almond extract,false,false,false,tsp,12,USDA FoodData Central,Almond extract per teaspoon.
+food-coloring,Food coloring,false,false,false,tsp,5,USDA FoodData Central,Liquid food coloring per teaspoon.
+beef,Beef,false,false,false,lb,970,USDA FoodData Central,Raw beef per pound (~85% lean).
+green-beans,Green beans,false,false,false,cup,31,USDA FoodData Central,Green beans per cup.
+pinto-beans,Pinto beans,false,false,false,cup,245,USDA FoodData Central,Cooked pinto beans per cup.
+peas,Peas,false,false,false,cup,134,Medical News Today,Cooked green peas per cup.
+corn,Corn,false,false,false,cup,177,USDA FoodData Central,Cooked sweet corn per cup.
+celery-salt,Celery salt,false,false,false,,,,
+white-pepper,White pepper,false,false,false,,,,
+american-cheese,American cheese,false,false,true,,,,
+tuna,Tuna,false,false,false,,,,
+green-pepper,Green pepper,false,false,false,,,,
+green-olives,Green olives,false,false,false,,,,
+sweet-pickles,Sweet pickles,false,false,false,,,,
 nacho-chips,Nacho chips,false,false,false,,,,
-mayonnaise,Mayonnaise,false,true,false,tbsp,90,USDA,full-fat; per 1 Tbsp.
-hot-dog-buns,Hot dog buns,true,false,false,count,140,USDA,enriched wheat; per 1 bun.
-cream-of-tartar,Cream of tartar,false,false,false,tsp,8,USDA,high potassium; per 1 tsp.
-peanut-butter,Peanut butter,false,false,false,tbsp,95,USDA,"creamy, salted; per 1 Tbsp."
-peanuts,Peanuts,false,false,false,oz,161,USDA,"dry-roasted, unsalted; per 1 oz."
-noodles,Noodles,true,false,false,cup,220,USDA,plain pasta; per 1 cup.
-ketchup,Ketchup,false,false,false,tbsp,15,USDA,Per 1 Tbsp.
-vinegar,Vinegar,false,false,false,tbsp,3,USDA,Per 1 Tbsp.
-prepared-mustard,Prepared mustard,false,false,false,tbsp,9,USDA,Per 1 Tbsp.
-hamburger-buns,Hamburger buns,true,false,false,count,150,USDA,enriched wheat; per 1 bun.
+mayonnaise,Mayonnaise,false,true,false,,,,
+hot-dog-buns,Hot dog buns,true,false,false,,,,
+cream-of-tartar,Cream of tartar,false,false,false,,,,
+peanut-butter,Peanut butter,false,false,false,,,,
+peanuts,Peanuts,false,false,false,,,,
+noodles,Noodles,true,false,false,,,,
+ketchup,Ketchup,false,false,false,,,,
+vinegar,Vinegar,false,false,false,,,,
+prepared-mustard,Prepared mustard,false,false,false,,,,
+hamburger-buns,Hamburger buns,true,false,false,,,,
 sesame-seeds,Sesame seeds,false,false,false,,,,
-stew-beef,Stew beef,false,false,false,lb,1000,USDA,raw trim avg.; per 1 lb (454g).
-onion-flakes,Onion flakes,false,false,false,tbsp,17,USDA,dehydrated; per 1 Tbsp.
-egg-noodles,Egg noodles,true,true,false,cup,221,USDA,Per 1 cup.
+stew-beef,Stew beef,false,false,false,,,,
+onion-flakes,Onion flakes,false,false,false,,,,
+egg-noodles,Egg noodles,true,true,false,,,,
 ground-turkey,Ground turkey,false,false,false,lb,640,USDA FoodData Central,93% lean ground turkey per pound.
-crushed-tomatoes,Crushed tomatoes,false,false,false,cup,100,USDA,"canned, salted; per 1 cup."
-stewed-tomatoes,Stewed tomatoes,false,false,false,cup,66,USDA,"canned, salted; per 1 cup."
+crushed-tomatoes,Crushed tomatoes,false,false,false,,,,
+stewed-tomatoes,Stewed tomatoes,false,false,false,,,,
 kidney-beans,Kidney beans,false,false,false,,,,
-chili-powder,Chili powder,false,false,false,tsp,8,USDA,Per 1 tsp.
-paprika,Paprika,false,false,false,tsp,6,USDA,Per 1 tsp.
+chili-powder,Chili powder,false,false,false,,,,
+paprika,Paprika,false,false,false,,,,
 tomatoes,Tomatoes,false,false,false,,,,
-cream-of-celery-soup,Cream of celery soup,true,false,true,count,250,Label,condensed; per 10.5 oz can.
-cream-of-chicken-soup,Cream of chicken soup,true,false,true,count,300,Label,condensed; per 10.5 oz can.
-velveeta,Velveeta,false,false,true,oz,85,USDA,processed cheese; per 1 oz (28g).
-rotel,Rotel tomatoes with green chiles,false,false,false,oz,6,Label,"Diced, salted; per 1 oz (from 10 oz can)."
+cream-of-celery-soup,Cream of celery soup,true,false,true,,,,
+cream-of-chicken-soup,Cream of chicken soup,true,false,true,,,,
+velveeta,Velveeta,false,false,true,,,,
+rotel,Rotel tomatoes with green chiles,false,false,false,,,,
 cheddar-cheese,Cheddar cheese,false,false,true,cup,455,USDA FoodData Central,Shredded cheddar per cup.
-crescent-rolls,Crescent rolls,true,true,true,count,800,Label,refrigerated dough; per 1 can (8 rolls).
-margarine,Margarine,false,false,true,tbsp,100,Label,"stick, salted; per 1 Tbsp."
-turkey,Turkey,false,false,false,cup,250,USDA,roasted mix cuts; per 1 cup.
-mushrooms,Mushrooms,false,false,false,cup,15,USDA,"raw, sliced; per 1 cup."
-pimiento,Pimiento,false,false,false,oz,7,USDA,canned red pepper; per 1 oz.
+crescent-rolls,Crescent rolls,true,true,true,,,,
+margarine,Margarine,false,false,true,,,,
+turkey,Turkey,false,false,false,,,,
+mushrooms,Mushrooms,false,false,false,,,,
+pimiento,Pimiento,false,false,false,,,,
 almonds,Almonds,false,false,false,,,,
-orange-gelatin,Orange gelatin,false,false,false,count,320,Label,sweetened mix; per 1 package (3 oz).
-orange-sherbet,Orange sherbet,false,false,true,cup,214,USDA,Per 1 cup.
-mandarin-oranges,Mandarin oranges,false,false,false,cup,100,USDA,canned in juice; per 1 cup.
-tomato-soup,Tomato soup,false,false,false,count,225,Label,condensed; per 10.75 oz can.
-cream-cheese,Cream cheese,false,false,true,oz,99,USDA,full-fat; per 1 oz.
-whipped-cream,Whipped cream,false,false,true,cup,154,Label,aerosol whipped; per 1 cup.
-pumpkin-puree,Pumpkin puree,false,false,false,cup,83,USDA,canned; per 1 cup.
-pumpkin-spice,Pumpkin spice,false,false,false,tsp,6,USDA,"blend (cinnamon, ginger, etc.); per 1 tsp."
+orange-gelatin,Orange gelatin,false,false,false,,,,
+orange-sherbet,Orange sherbet,false,false,true,,,,
+mandarin-oranges,Mandarin oranges,false,false,false,,,,
+tomato-soup,Tomato soup,false,false,false,,,,
+cream-cheese,Cream cheese,false,false,true,,,,
+whipped-cream,Whipped cream,false,false,true,,,,
+pumpkin-puree,Pumpkin puree,false,false,false,,,,
+pumpkin-spice,Pumpkin spice,false,false,false,,,,
 green-onion,Green onion,false,false,false,,,,
-macaroni,Macaroni,true,false,false,cup,320,USDA,"elbow, uncooked; per 1 cup."
-whole-tomatoes,Whole tomatoes,false,false,false,count,150,USDA,"canned, salted; per 1 can (28 oz)."
-canned-chicken,Canned chicken,false,false,false,count,315,USDA,drained; per 12.5 oz can.
-seasoned-salt,Seasoned salt,false,false,false,tsp,5,Label,salt & spice blend; per 1 tsp.
-tomato-paste,Tomato paste,false,false,false,tbsp,13,USDA,Per 1 Tbsp.
+macaroni,Macaroni,true,false,false,,,,
+whole-tomatoes,Whole tomatoes,false,false,false,,,,
+canned-chicken,Canned chicken,false,false,false,,,,
+seasoned-salt,Seasoned salt,false,false,false,,,,
+tomato-paste,Tomato paste,false,false,false,,,,
 cocoa-powder,Cocoa powder,false,false,false,,,,
 graham-cracker-crumbs,Graham cracker crumbs,true,false,false,,,,
-shredded-coconut,Shredded coconut,false,false,false,cup,283,USDA,unsweetened; per 1 cup.
-vanilla-pudding-powder,Vanilla pudding powder,false,false,true,count,360,Label,instant mix; per 1 package (3.4 oz).
-chopped-nuts,Chopped nuts,false,false,false,cup,800,USDA,approx. mix; per 1 cup.
-basic-roll-dough,Basic Roll Dough,true,true,true,oz,70,USDA,yeast bread dough; per 1 oz.
-active-dry-yeast,Active dry yeast,false,false,false,count,23,USDA,Per 1 packet (7g).
-aquafaba,Aquafaba,false,false,false,tbsp,3,USDA,chickpea brine; per 1 Tbsp.
-psyllium-husk,Psyllium husk,false,false,false,tbsp,16,Label,fiber supplement; per 1 Tbsp.
-xanthan-gum,Xanthan gum,false,false,false,tsp,10,Label,thickener; per 1 tsp.
+shredded-coconut,Shredded coconut,false,false,false,,,,
+vanilla-pudding-powder,Vanilla pudding powder,false,false,true,,,,
+chopped-nuts,Chopped nuts,false,false,false,,,,
+basic-roll-dough,Basic Roll Dough,true,true,true,,,,
+active-dry-yeast,Active dry yeast,false,false,false,,,,
+aquafaba,Aquafaba,false,false,false,,,,
+psyllium-husk,Psyllium husk,false,false,false,,,,
+xanthan-gum,Xanthan gum,false,false,false,,,,
