@@ -12,6 +12,8 @@ import {
   unitOptionsFor,
   convertUnitAmount,
 } from './recipe-utils.js';
+import { estimateServings } from './nutrition-engine.js';
+import { bindNutritionSettingsForm, loadNutritionSettings, MEAL_TYPES } from './nutrition-settings.js';
 
 const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
 
@@ -179,6 +181,14 @@ async function loadRecipes() {
       .map((entry) => [String(entry.id), entry])
   );
   return { recipes: [...built, ...inbox], recipeIndex };
+}
+
+async function loadNutritionPolicy() {
+  const response = await fetch('./built/nutrition_policy.json');
+  if (!response.ok) {
+    throw new Error(`Unable to load nutrition policy (${response.status})`);
+  }
+  return response.json();
 }
 
 function getRecipeIdFromQuery() {
@@ -590,7 +600,7 @@ function setupPanControls(recipe, state, rerender) {
   return true;
 }
 
-function renderRecipe(recipeInput) {
+function renderRecipe(recipeInput, nutritionPolicy) {
   const recipe = normalizeRecipeForPage(recipeInput) || recipeInput;
 
   const titleEl = document.getElementById('recipe-title');
@@ -606,6 +616,11 @@ function renderRecipe(recipeInput) {
   const nutritionEl = document.getElementById('recipe-nutrition');
   const nutritionDetails = document.getElementById('recipe-nutrition-details');
   const nutritionFootnote = document.getElementById('recipe-nutrition-footnote');
+  const nutritionTargets = document.getElementById('recipe-nutrition-targets');
+  const nutritionList = document.getElementById('recipe-nutrition-list');
+  const nutritionIncomplete = document.getElementById('nutrition-incomplete');
+  const nutritionSettingsForm = document.querySelector('[data-nutrition-settings]');
+  const mealTypeSelect = document.getElementById('meal-type-select');
 
   const defaultCompatibility = recipeDefaultCompatibility(recipe);
   const compatibilityPossible = recipe.compatibility_possible || {};
@@ -679,35 +694,106 @@ function renderRecipe(recipeInput) {
     categoryInline.textContent = categories.join(' • ');
   }
 
-  if (nutritionEl) {
-    const estimate = recipe.nutrition_estimate || null;
-    if (estimate) {
-      const hasCalories = Number.isFinite(estimate.calories_total) && estimate.calories_total > 0;
-      const servingsEstimate = estimate.servings_estimate;
-      const caloriesTotal = hasCalories ? Math.round(estimate.calories_total) : null;
-      const caloriesPerServing = estimate.calories_per_serving
-        ? Math.round(estimate.calories_per_serving)
-        : null;
+  const formatValue = (value, decimals = 0) => {
+    if (!Number.isFinite(value)) return '—';
+    const fixed = value.toFixed(decimals);
+    return fixed.replace(/\.0+$/, '').replace(/(\.\d*[1-9])0+$/, '$1');
+  };
+
+  const updateNutrition = (settings) => {
+    if (!nutritionEl) return;
+    const estimateData = recipe.nutrition_estimate || null;
+    const batchTotals = estimateData?.batch_totals || null;
+    const isComplete = estimateData?.is_complete !== false;
+
+    if (!batchTotals) {
+      nutritionEl.hidden = true;
+      return;
+    }
+
+    if (nutritionIncomplete) {
+      nutritionIncomplete.hidden = isComplete;
+    }
+
+    if (!isComplete) {
       if (nutritionDetails) {
-        nutritionDetails.textContent = hasCalories
-          ? (servingsEstimate
-            ? `${servingsEstimate} estimated servings • ${caloriesTotal} calories per batch`
-            : `${caloriesTotal} calories per batch`)
-          : 'Nutrition estimate unavailable (missing ingredient calorie data).';
+        nutritionDetails.textContent = 'Nutrition estimate unavailable (missing ingredient data).';
       }
+      if (nutritionList) nutritionList.innerHTML = '';
+      if (nutritionTargets) nutritionTargets.textContent = '';
       if (nutritionFootnote) {
-        const coverage = estimate.total_ingredients
-          ? Math.round((estimate.coverage_ratio || 0) * 100)
+        const coverage = estimateData.total_ingredients
+          ? Math.round((estimateData.coverage_ratio || 0) * 100)
           : 0;
-        const servingText = caloriesPerServing ? `~${caloriesPerServing} calories per serving` : '';
-        const coverageText = `Coverage: ${estimate.covered_ingredients}/${estimate.total_ingredients} ingredients (${coverage}%).`;
-        nutritionFootnote.textContent = [servingText, coverageText].filter(Boolean).join(' ');
+        nutritionFootnote.textContent =
+          `Coverage: ${estimateData.covered_ingredients}/${estimateData.total_ingredients} ingredients (${coverage}%).`;
       }
       nutritionEl.hidden = false;
-    } else {
-      nutritionEl.hidden = true;
+      return;
+    }
+
+    const mealType = mealTypeSelect?.value || 'dinner';
+    const estimate = estimateServings(batchTotals, settings, nutritionPolicy, mealType);
+    if (!estimate) {
+      nutritionDetails.textContent = 'Nutrition estimate unavailable (missing ingredient data).';
+      nutritionEl.hidden = false;
+      return;
+    }
+
+    if (nutritionDetails) {
+      nutritionDetails.textContent = `Estimated servings (meal-sized): ${estimate.servings_estimate}`;
+    }
+    if (nutritionList) {
+      const perServing = estimate.perServing || {};
+      nutritionList.innerHTML = '';
+      const items = [
+        ['kcal', formatValue(perServing.kcal), 'kcal'],
+        ['Protein', formatValue(perServing.protein_g), 'g'],
+        ['Fat', formatValue(perServing.fat_g), 'g'],
+        ['Sat fat', formatValue(perServing.sat_fat_g), 'g'],
+        ['Carbs', formatValue(perServing.carbs_g), 'g'],
+        ['Sugars', formatValue(perServing.sugars_g), 'g'],
+        ['Fiber', formatValue(perServing.fiber_g), 'g'],
+        ['Sodium', formatValue(perServing.sodium_mg), 'mg'],
+      ];
+      items.forEach(([label, value, unit]) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span>${label}:</span> ${value} ${unit}`;
+        nutritionList.appendChild(li);
+      });
+    }
+    if (nutritionTargets) {
+      const targets = estimate.debugTargets || {};
+      nutritionTargets.textContent =
+        `Based on your targets: ~${formatValue(targets.kcal_target_meal)} kcal/meal, ` +
+        `sodium ≤ ${formatValue(targets.sodium_limit_meal)} mg/meal, ` +
+        `sat fat ≤ ${formatValue(targets.sat_fat_limit_g_meal, 1)} g/meal, ` +
+        `fiber ≥ ${formatValue(targets.fiber_target_g_meal, 1)} g/meal.`;
+    }
+    if (nutritionFootnote) {
+      const coverage = estimateData.total_ingredients
+        ? Math.round((estimateData.coverage_ratio || 0) * 100)
+        : 0;
+      nutritionFootnote.textContent =
+        `Coverage: ${estimateData.covered_ingredients}/${estimateData.total_ingredients} ingredients (${coverage}%).`;
+    }
+    nutritionEl.hidden = false;
+  };
+
+  let nutritionSettings = loadNutritionSettings(nutritionPolicy);
+  bindNutritionSettingsForm(nutritionSettingsForm, nutritionPolicy, (updated) => {
+    nutritionSettings = updated;
+    updateNutrition(nutritionSettings);
+  });
+
+  if (mealTypeSelect) {
+    mealTypeSelect.addEventListener('change', () => updateNutrition(nutritionSettings));
+    if (!MEAL_TYPES.includes(mealTypeSelect.value)) {
+      mealTypeSelect.value = 'dinner';
     }
   }
+
+  updateNutrition(nutritionSettings);
 
   const updateMultiplierHelper = () => {
     if (!multiplierHelper) return;
@@ -831,7 +917,10 @@ async function main() {
     return;
   }
 
-  const { recipes, recipeIndex } = await loadRecipes();
+  const [{ recipes, recipeIndex }, nutritionPolicy] = await Promise.all([
+    loadRecipes(),
+    loadNutritionPolicy(),
+  ]);
 
   const recipe = recipes.find((r) => String(r?.id) === String(recipeId));
   if (!recipe) {
@@ -840,7 +929,7 @@ async function main() {
   }
 
   recipe.recipeIndex = recipeIndex;
-  renderRecipe(recipe);
+  renderRecipe(recipe, nutritionPolicy);
 }
 
 main().catch((err) => {

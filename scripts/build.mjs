@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { UNIT_CONVERSIONS } from '../docs/unit-conversions.js';
+import { computeBatchTotals, estimateServings } from '../docs/nutrition-engine.js';
 import { validateAll } from './validate.mjs';
 
 async function loadPapa() {
@@ -108,10 +109,28 @@ function loadIngredientNutritionFromCatalog(catalogPath) {
   for (const row of parsed) {
     if (!row.ingredient_id || !row.nutrition_unit) continue;
     const calories = Number(row.calories_per_unit);
+    const protein = Number(row.protein_g);
+    const fat = Number(row.fat_g);
+    const satFat = Number(row.sat_fat_g);
+    const carbs = Number(row.carbs_g);
+    const sugars = Number(row.sugars_g);
+    const fiber = Number(row.fiber_g);
+    const sodium = Number(row.sodium_mg);
+    const addedSugar = Number(row.added_sugar_g);
+    const gramsPerUnit = Number(row.grams_per_unit);
     map.set(`${row.ingredient_id}::${row.nutrition_unit}`, {
       ingredient_id: row.ingredient_id,
       unit: row.nutrition_unit,
-      calories_per_unit: Number.isFinite(calories) ? calories : null,
+      kcal: Number.isFinite(calories) ? calories : null,
+      protein_g: Number.isFinite(protein) ? protein : null,
+      fat_g: Number.isFinite(fat) ? fat : null,
+      sat_fat_g: Number.isFinite(satFat) ? satFat : null,
+      carbs_g: Number.isFinite(carbs) ? carbs : null,
+      sugars_g: Number.isFinite(sugars) ? sugars : null,
+      fiber_g: Number.isFinite(fiber) ? fiber : null,
+      sodium_mg: Number.isFinite(sodium) ? sodium : null,
+      added_sugar_g: Number.isFinite(addedSugar) ? addedSugar : null,
+      grams_per_unit: Number.isFinite(gramsPerUnit) ? gramsPerUnit : null,
       source: row.nutrition_source || '',
       notes: row.nutrition_notes || '',
     });
@@ -142,6 +161,33 @@ function loadNutritionGuidelines(guidelinesPath) {
   } catch (err) {
     console.warn(`Unable to read nutrition guidelines at ${guidelinesPath}: ${err?.message || err}`);
     return { meal_calories_target: 600 };
+  }
+}
+
+function loadNutritionPolicy(policyPath, fallbackGuidelines = {}) {
+  if (!fs.existsSync(policyPath)) {
+    return {
+      default_daily_kcal: fallbackGuidelines.meal_calories_target
+        ? fallbackGuidelines.meal_calories_target * 3
+        : 2000,
+      default_meals_per_day: 3,
+      meal_fractions_default: { breakfast: 0.25, lunch: 0.35, dinner: 0.35, snack: 0.05 },
+      sodium_day_max_mg: 2300,
+      sat_fat_max_pct_kcal: 0.1,
+      added_sugar_max_pct_kcal: 0.1,
+      fiber_g_per_1000_kcal_min: 14,
+      amdr: { protein_pct: [0.1, 0.35], fat_pct: [0.2, 0.35], carb_pct: [0.45, 0.65] },
+      protein_rda_g_per_kg_day: 0.8,
+      penalty_weights: { kcal: 1, sodium: 1, sat_fat: 1, added_sugar: 1, fiber: 1, protein: 1 },
+    };
+  }
+  try {
+    const raw = fs.readFileSync(policyPath, 'utf-8');
+    const parsed = JSON.parse(raw);
+    return parsed;
+  } catch (err) {
+    console.warn(`Unable to read nutrition policy at ${policyPath}: ${err?.message || err}`);
+    return loadNutritionPolicy('', fallbackGuidelines);
   }
 }
 
@@ -288,59 +334,32 @@ function selectDefaultOption(tokenData, choice) {
   return withOption || tokenData.options[0];
 }
 
-function computeNutritionEstimate(ingredients, choices, nutritionCatalog, nutritionIndex, guidelines) {
-  const targetMealCalories = Number(guidelines?.meal_calories_target) || 600;
-  let totalCalories = 0;
-  let covered = 0;
-  const tokens = Object.keys(ingredients || {});
-  tokens.forEach((token) => {
-    const tokenData = ingredients[token];
-    const option = selectDefaultOption(tokenData, choices[token]);
-    if (!option || !option.ratio || !option.unit) return;
-    const amount = parseRatioToNumber(option.ratio);
-    if (!Number.isFinite(amount)) return;
-    const normalizedUnit = normalizeUnit(option.unit);
-    if (!normalizedUnit) return;
-    let caloriesForOption = null;
-    const directEntry = nutritionCatalog.get(`${option.ingredient_id}::${normalizedUnit}`);
-    if (directEntry && Number.isFinite(directEntry.calories_per_unit)) {
-      caloriesForOption = amount * directEntry.calories_per_unit;
-    } else {
-      const entries = nutritionIndex.get(option.ingredient_id) || [];
-      for (const entry of entries) {
-        if (!Number.isFinite(entry.calories_per_unit)) continue;
-        const conversion = convertUnitAmount(amount, normalizedUnit, entry.unit);
-        if (!conversion) continue;
-        caloriesForOption = conversion.amount * entry.calories_per_unit;
-        break;
-      }
-    }
-    if (!Number.isFinite(caloriesForOption)) return;
-    totalCalories += caloriesForOption;
-    covered += 1;
-  });
-
-  if (totalCalories <= 0) {
-    return {
-      calories_total: 0,
-      calories_per_serving: null,
-      servings_estimate: null,
-      covered_ingredients: covered,
-      total_ingredients: tokens.length,
-      coverage_ratio: tokens.length ? covered / tokens.length : 0,
-      target_meal_calories: targetMealCalories,
-    };
-  }
-
-  const servingsEstimate = Math.max(1, Math.round(totalCalories / targetMealCalories));
+function computeNutritionEstimate(ingredients, choices, nutritionCatalog, nutritionIndex, policy) {
+  const recipe = { ingredients, choices };
+  const state = {
+    selectedOptions: {},
+    restrictions: { gluten_free: false, egg_free: false, dairy_free: false },
+    nutritionCatalog,
+    nutritionIndex,
+  };
+  const totalsResult = computeBatchTotals(recipe, state);
+  const totals = totalsResult.totals;
+  const defaultSettings = {
+    daily_kcal: policy?.default_daily_kcal || 2000,
+    weight_kg: null,
+    meal_fractions: policy?.meal_fractions_default || { breakfast: 0.25, lunch: 0.35, dinner: 0.35, snack: 0.05 },
+  };
+  const estimate = totalsResult.is_complete ? estimateServings(totals, defaultSettings, policy, 'dinner') : null;
   return {
-    calories_total: totalCalories,
-    calories_per_serving: totalCalories / servingsEstimate,
-    servings_estimate: servingsEstimate,
-    covered_ingredients: covered,
-    total_ingredients: tokens.length,
-    coverage_ratio: tokens.length ? covered / tokens.length : 0,
-    target_meal_calories: targetMealCalories,
+    batch_totals: totals,
+    calories_total: totals?.kcal || 0,
+    calories_per_serving: estimate?.perServing?.kcal || null,
+    servings_estimate: estimate?.servings_estimate || null,
+    covered_ingredients: totalsResult.covered_ingredients,
+    total_ingredients: totalsResult.total_ingredients,
+    coverage_ratio: totalsResult.coverage_ratio,
+    is_complete: totalsResult.is_complete,
+    missing_ingredients: totalsResult.missing_ingredients,
   };
 }
 
@@ -350,6 +369,10 @@ async function build() {
   const catalog = loadIngredientCatalog(catalogPath);
   const nutritionCatalog = loadIngredientNutritionFromCatalog(catalogPath);
   const nutritionGuidelines = loadNutritionGuidelines(path.join(process.cwd(), 'data', 'nutrition_guidelines.json'));
+  const nutritionPolicy = loadNutritionPolicy(
+    path.join(process.cwd(), 'data', 'nutrition_policy.json'),
+    nutritionGuidelines
+  );
   const panCatalog = loadPanCatalog(path.join(process.cwd(), 'data', 'pan-sizes.json'));
   const nutritionIndex = buildNutritionIndex(nutritionCatalog);
   const recipesDir = path.join(process.cwd(), 'recipes');
@@ -465,7 +488,7 @@ async function build() {
       choices,
       nutritionCatalog,
       nutritionIndex,
-      nutritionGuidelines
+      nutritionPolicy
     );
     const metaServingsPerBatch = Number(meta.servings_per_batch);
     const servingsPerBatch =
@@ -530,6 +553,7 @@ async function build() {
   }
   fs.writeFileSync(path.join(builtDir, 'recipes.json'), JSON.stringify(recipeOutputs, null, 2));
   fs.writeFileSync(path.join(builtDir, 'index.json'), JSON.stringify(indexList, null, 2));
+  fs.writeFileSync(path.join(builtDir, 'nutrition_policy.json'), JSON.stringify(nutritionPolicy, null, 2));
   console.log('Build completed');
 }
 
