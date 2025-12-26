@@ -407,7 +407,9 @@ function computeSelectionNutrition(selection) {
   if (!totals.complete) {
     return { totals, estimate: null, perServing: null, plannedTotals: null };
   }
-  const estimate = estimateServings(totals, state.nutritionSettings, selection.mealType, state.nutritionPolicy);
+  const mealTypes = Object.keys(state.nutritionPolicy?.meal_fractions_default || {});
+  const defaultMealType = mealTypes.includes('dinner') ? 'dinner' : (mealTypes[0] || 'dinner');
+  const estimate = estimateServings(totals, state.nutritionSettings, defaultMealType, state.nutritionPolicy);
   const perServing = estimate?.perServing || null;
   const plannedTotals = perServing && selection.plannedServings
     ? scaleNutritionTotals(perServing, selection.plannedServings)
@@ -618,14 +620,11 @@ function addRecipeSelection(recipe) {
     4;
   const batchSize = 1;
   const defaultCompatibility = recipe.compatibility_default || recipeDefaultCompatibility(recipe);
-  const mealTypes = Object.keys(state.nutritionPolicy?.meal_fractions_default || {});
-  const defaultMealType = mealTypes.includes('dinner') ? 'dinner' : (mealTypes[0] || 'dinner');
   const selection = {
     recipe,
     batchSize,
     servingsPerBatch,
     totalServings: batchSize * servingsPerBatch,
-    mealType: defaultMealType,
     plannedServings: 1,
     nutrition: null,
     defaultCompatibility,
@@ -784,20 +783,6 @@ function renderSelections() {
     const nutritionControls = document.createElement('div');
     nutritionControls.className = 'planner-nutrition-controls';
 
-    const mealTypeLabel = document.createElement('label');
-    mealTypeLabel.className = 'planner-field';
-    mealTypeLabel.textContent = 'Meal type';
-    const mealTypeSelect = document.createElement('select');
-    const mealTypes = Object.keys(state.nutritionPolicy?.meal_fractions_default || {});
-    mealTypes.forEach((meal) => {
-      const option = document.createElement('option');
-      option.value = meal;
-      option.textContent = meal.charAt(0).toUpperCase() + meal.slice(1);
-      mealTypeSelect.appendChild(option);
-    });
-    mealTypeSelect.value = selection.mealType;
-    mealTypeLabel.appendChild(mealTypeSelect);
-
     const plannedServingsLabel = document.createElement('label');
     plannedServingsLabel.className = 'planner-field';
     plannedServingsLabel.textContent = 'Planned servings';
@@ -808,7 +793,6 @@ function renderSelections() {
     plannedServingsInput.value = selection.plannedServings;
     plannedServingsLabel.appendChild(plannedServingsInput);
 
-    nutritionControls.appendChild(mealTypeLabel);
     nutritionControls.appendChild(plannedServingsLabel);
 
     const estimateLine = document.createElement('p');
@@ -837,7 +821,9 @@ function renderSelections() {
       }
 
       nutritionWarning.style.display = 'none';
-      estimateLine.textContent = `Estimated servings (${selection.mealType}): ${nutrition.estimate.servings_estimate}`;
+      estimateLine.textContent =
+        `Batch servings: ${selection.servingsPerBatch} • ` +
+        `Estimated meal-sized servings: ${nutrition.estimate.servings_estimate}`;
 
       const renderMetrics = (target, label) => {
         target.innerHTML = '';
@@ -874,11 +860,6 @@ function renderSelections() {
 
       updateNutritionSummary();
     };
-
-    mealTypeSelect.addEventListener('change', () => {
-      selection.mealType = mealTypeSelect.value;
-      updateNutritionDisplay();
-    });
 
     plannedServingsInput.addEventListener('input', () => {
       const value = Number(plannedServingsInput.value);
