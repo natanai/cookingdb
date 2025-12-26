@@ -478,7 +478,12 @@ function renderRecipeList() {
 
 function addRecipeSelection(recipe) {
   if (state.selections.has(recipe.id)) return;
-  const servingsPerBatch = Number(recipe.servings_per_batch) || 4;
+  const servingsFromRecipe = Number(recipe.servings_per_batch);
+  const servingsFromEstimate = Number(recipe.nutrition_estimate?.servings_estimate);
+  const servingsPerBatch =
+    (Number.isFinite(servingsFromRecipe) && servingsFromRecipe > 0 ? servingsFromRecipe : null) ||
+    (Number.isFinite(servingsFromEstimate) && servingsFromEstimate > 0 ? servingsFromEstimate : null) ||
+    4;
   const batchSize = 1;
   const defaultCompatibility = recipe.compatibility_default || recipeDefaultCompatibility(recipe);
   const selection = {
