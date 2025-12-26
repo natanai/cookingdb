@@ -107,7 +107,7 @@ tuna,Tuna,false,false,false,count,164,USDA,"water-packed, drained",1 can (5 oz),
 green-pepper,Green pepper,false,false,false,count,24,USDA,medium (119g),1 pepper,1,0.2,0.07,5.5,2.9,2,4,12,0.4,208,95.7
 green-olives,Green olives,false,false,false,oz,41,USDA,"canned, pitted",1 oz,0.3,4.3,0.6,1.1,0.2,0.9,442,15,0.14,12,0
 sweet-pickles,Sweet pickles,false,false,false,oz,30,USDA,in syrup,1 oz,0,0,0,7,7,0,220,5,0.1,10,0
-nacho-chips,Nacho chips,false,false,false,,,,,,,,,,,,,,,,
+nacho-chips,Nacho chips,false,false,false,oz,147,USDA,Per 1 oz (28g).,1 oz (28g),2.1,7.8,1.1,17.3,0.74,1.4,196.2,38.9,0.33,63.3,0.11
 mayonnaise,Mayonnaise,false,true,false,tbsp,90,USDA,full-fat,1 Tbsp,0,10,1.5,0,0,0,90,0,0,0,0
 hot-dog-buns,Hot dog buns,true,false,false,count,140,USDA,enriched wheat,1 bun,4,2,0.5,26,4,1,230,40,1.4,50,0
 cream-of-tartar,Cream of tartar,false,false,false,tsp,8,USDA,high potassium,1 tsp,0,0,0,1.84,0,0,2,0,0.11,495,0
@@ -118,17 +118,17 @@ ketchup,Ketchup,false,false,false,tbsp,15,USDA,Per 1 Tbsp.,1 Tbsp,0,0,0,4,3.2,0,
 vinegar,Vinegar,false,false,false,tbsp,3,USDA,Per 1 Tbsp.,1 Tbsp,0,0,0,0.1,0,0,0,1,0,0,0
 prepared-mustard,Prepared mustard,false,false,false,tbsp,9,USDA,Per 1 Tbsp.,1 Tbsp,0.5,0.1,0,1.5,0.5,0.5,168,5,0.1,10,0
 hamburger-buns,Hamburger buns,true,false,false,count,150,USDA,enriched wheat,1 bun,5,2.5,0.5,27,4,1,230,40,1.5,50,0
-sesame-seeds,Sesame seeds,false,false,false,,,,,,,,,,,,,,,,
+sesame-seeds,Sesame seeds,false,false,false,tbsp,52,USDA,"Per 1 tbsp (9g), whole dried.",1 tbsp (9g),1.6,4.5,0.63,2.1,0.03,1.1,0.99,87.8,1.3,42.1,0
 stew-beef,Stew beef,false,false,false,lb,1000,USDA,raw trim avg.,1 lb (454g),100,66,25,0,0,0,320,40,12,1100,0
 onion-flakes,Onion flakes,false,false,false,tbsp,17,USDA,dehydrated,1 Tbsp,0.5,0,0,4.2,2,0,1,13,0.08,81,3.8
 egg-noodles,Egg noodles,true,true,false,cup,221,USDA,Per 1 cup.,1 cup,7.3,3.3,0.9,40.3,0.4,2,8,20,0.9,30,0
 ground-turkey,Ground turkey,false,false,false,lb,640,USDA FoodData Central,93% lean ground turkey per pound.,,,,,,,,,,,,
 crushed-tomatoes,Crushed tomatoes,false,false,false,cup,100,USDA,"canned, salted",1 cup,4,0.5,0.1,18,10,4,300,60,2,600,20
 stewed-tomatoes,Stewed tomatoes,false,false,false,cup,66,USDA,"canned, salted",1 cup,2.3,0.5,0.1,16,8,3,500,40,1,370,8
-kidney-beans,Kidney beans,false,false,false,,,,,,,,,,,,,,,,
+kidney-beans,Kidney beans,false,false,false,cup,225,USDA,"Per 1 cup (177g), cooked/boiled without salt.",1 cup (177g),15.3,0.89,0.13,40.4,0.57,13.1,3.5,49.6,5.2,713.3,2.1
 chili-powder,Chili powder,false,false,false,tsp,8,USDA,Per 1 tsp.,1 tsp,0.3,0.44,0.08,1.42,0.19,0.9,26,7,0.37,50,1.7
 paprika,Paprika,false,false,false,tsp,6,USDA,Per 1 tsp.,1 tsp,0.3,0.27,0.04,1.17,0.22,0.79,1,4,0.5,49,1.5
-tomatoes,Tomatoes,false,false,false,,,,,,,,,,,,,,,,
+tomatoes,Tomatoes,false,false,false,count,22,USDA,"Per 1 medium tomato (123g), raw year-round average.",1 medium (123g),1.1,0.25,0.03,4.8,3.2,1.5,6.2,12.3,0.33,291.5,16.9
 cream-of-celery-soup,Cream of celery soup,true,false,true,count,250,Label,condensed,10.5 oz can,2.5,17.5,2.5,20,2,1,2125,40,0.5,200,0
 cream-of-chicken-soup,Cream of chicken soup,true,false,true,count,300,Label,condensed,10.5 oz can,5,20,5,25,2,0,2150,30,1,250,0
 velveeta,Velveeta,false,false,true,oz,85,USDA,processed cheese,1 oz (28g),4.6,6.2,4,2.7,2.3,0,420,130,0.05,94,0
@@ -139,7 +139,7 @@ margarine,Margarine,false,false,true,tbsp,100,Label,"stick, salted",1 Tbsp,0,11,
 turkey,Turkey,false,false,false,cup,250,USDA,roasted mix cuts,1 cup,35,10,3,0,0,0,80,20,2,250,0
 mushrooms,Mushrooms,false,false,false,cup,15,USDA,"raw, sliced",1 cup,2.2,0.2,0.03,2.3,1.4,0.7,5,3,0.5,223,2
 pimiento,Pimiento,false,false,false,oz,7,USDA,canned red pepper,1 oz,0.1,0,0,1.5,1,0.5,50,6,0.1,10,8
-almonds,Almonds,false,false,false,,,,,,,,,,,,,,,,
+almonds,Almonds,false,false,false,oz,164,USDA,"Per 1 oz (28g), raw.",1 oz (28g),6,14.2,1.1,6.1,1.2,3.6,0.28,76.4,1.1,208.2,0
 orange-gelatin,Orange gelatin,false,false,false,count,320,Label,sweetened mix,1 package (3 oz),0,0,0,80,80,0,100,0,0,0,0
 orange-sherbet,Orange sherbet,false,false,true,cup,214,USDA,Per 1 cup.,1 cup,1,3.4,1.7,45,38,0,80,100,0.3,150,0
 mandarin-oranges,Mandarin oranges,false,false,false,cup,100,USDA,canned in juice,1 cup,1,0,0,26,20,2,10,40,0.5,160,27
@@ -148,14 +148,14 @@ cream-cheese,Cream cheese,false,false,true,oz,99,USDA,full-fat,1 oz,1.8,9.9,5.7,
 whipped-cream,Whipped cream,false,false,true,cup,154,Label,aerosol whipped,1 cup,1.6,13,8,7,7,0,20,50,0,40,0
 pumpkin-puree,Pumpkin puree,false,false,false,cup,83,USDA,canned,1 cup,2.7,0.7,0.4,19.8,8,7.1,12,38,1.4,564,10
 pumpkin-spice,Pumpkin spice,false,false,false,tsp,6,USDA,"blend (cinnamon, ginger, etc.)",1 tsp,0.1,0.21,0.11,1.18,0.13,0.25,1,12,0.34,11,0.4
-green-onion,Green onion,false,false,false,,,,,,,,,,,,,,,,
+green-onion,Green onion,false,false,false,count,5,USDA,"Per 1 medium (15g), raw scallion.",1 medium (15g),0.27,0.03,0,1.1,0.35,0.39,2.4,10.8,0.22,41.4,2.8
 macaroni,Macaroni,true,false,false,cup,320,USDA,"elbow, uncooked",1 cup,11,1.5,0.3,65,2,3,5,0,3,0,0
 whole-tomatoes,Whole tomatoes,false,false,false,count,150,USDA,"canned, salted",1 can (28 oz),7,0.5,0.1,35,25,10,1400,100,3.5,1000,30
 canned-chicken,Canned chicken,false,false,false,count,315,USDA,drained,12.5 oz can,60,7,2,0,0,0,1000,20,1.5,300,0
 seasoned-salt,Seasoned salt,false,false,false,tsp,5,Label,salt & spice blend,1 tsp,0.2,0,0,1.1,0.6,0.2,1490,4,0,13,0
 tomato-paste,Tomato paste,false,false,false,tbsp,13,USDA,Per 1 Tbsp.,1 Tbsp,0.7,0.1,0,3,1.5,0.5,4,3,0.4,162,2
-cocoa-powder,Cocoa powder,false,false,false,,,,,,,,,,,,,,,,
-graham-cracker-crumbs,Graham cracker crumbs,true,false,false,,,,,,,,,,,,,,,,
+cocoa-powder,Cocoa powder,false,false,false,tbsp,12,USDA,"Per 1 tbsp (5g), unsweetened cocoa powder.",1 tbsp (5g),1.1,0.74,0.44,3.1,0.09,2,1.1,6.9,0.75,82.3,0
+graham-cracker-crumbs,Graham cracker crumbs,true,false,false,cup,121,USDA,"Per 1/4 cup (28g), computed from plain graham crackers.",1/4 cup (28g),1.9,3.0,0.45,21.7,6.9,1.0,144,21.5,1.06,47.6,0
 shredded-coconut,Shredded coconut,false,false,false,cup,283,USDA,unsweetened,1 cup,2.7,26.8,24,12.2,5,7,16,9,2.3,285,2
 vanilla-pudding-powder,Vanilla pudding powder,false,false,true,count,360,Label,instant mix,1 package (3.4 oz),0,0,0,88,72,0,1400,0,0,0,0
 chopped-nuts,Chopped nuts,false,false,false,cup,800,USDA,approx. mix,1 cup,24,70,10,20,6,12,10,150,5,600,1
