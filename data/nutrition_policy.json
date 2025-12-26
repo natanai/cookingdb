@@ -1,0 +1,28 @@
+{
+  "sodium_day_max_mg": 2300,
+  "sat_fat_max_pct_kcal": 0.10,
+  "added_sugar_max_pct_kcal": 0.10,
+  "fiber_g_per_1000_kcal_min": 14,
+  "amdr": {
+    "protein_pct": [0.10, 0.35],
+    "fat_pct": [0.20, 0.35],
+    "carb_pct": [0.45, 0.65]
+  },
+  "protein_rda_g_per_kg_day": 0.8,
+  "default_daily_kcal": 2000,
+  "default_meals_per_day": 3,
+  "meal_fractions_default": {
+    "breakfast": 0.25,
+    "lunch": 0.35,
+    "dinner": 0.35,
+    "snack": 0.05
+  },
+  "weights": {
+    "calories": 1,
+    "sodium": 1,
+    "sat_fat": 1,
+    "added_sugar": 1,
+    "fiber": 1,
+    "protein": 1
+  }
+}

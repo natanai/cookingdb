@@ -32,8 +32,41 @@
           <div class="category-inline" id="category-inline"></div>
           <div class="recipe-nutrition" id="recipe-nutrition" hidden>
             <p class="recipe-nutrition-title">Nutrition estimate</p>
+            <p class="recipe-nutrition-warning" id="recipe-nutrition-warning" hidden></p>
             <p class="recipe-nutrition-details" id="recipe-nutrition-details"></p>
-            <p class="recipe-nutrition-footnote" id="recipe-nutrition-footnote"></p>
+            <ul class="recipe-nutrition-metrics" id="recipe-nutrition-metrics"></ul>
+            <p class="recipe-nutrition-targets" id="recipe-nutrition-targets"></p>
+            <details class="nutrition-settings" id="recipe-nutrition-settings">
+              <summary>Nutrition settings</summary>
+              <div class="nutrition-settings-grid">
+                <label class="nutrition-field">
+                  Daily calories
+                  <input type="number" id="nutrition-daily-kcal" min="1200" step="50" />
+                </label>
+                <label class="nutrition-field">
+                  Weight (lb, optional)
+                  <input type="number" id="nutrition-weight-lb" min="40" step="1" />
+                </label>
+              </div>
+              <div class="nutrition-settings-grid">
+                <label class="nutrition-field">
+                  Breakfast %
+                  <input type="number" id="nutrition-meal-breakfast" min="0" max="100" step="1" />
+                </label>
+                <label class="nutrition-field">
+                  Lunch %
+                  <input type="number" id="nutrition-meal-lunch" min="0" max="100" step="1" />
+                </label>
+                <label class="nutrition-field">
+                  Dinner %
+                  <input type="number" id="nutrition-meal-dinner" min="0" max="100" step="1" />
+                </label>
+                <label class="nutrition-field">
+                  Snack %
+                  <input type="number" id="nutrition-meal-snack" min="0" max="100" step="1" />
+                </label>
+              </div>
+            </details>
           </div>
         </div>
       </div>

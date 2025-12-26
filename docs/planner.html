@@ -74,6 +74,41 @@
               <p class="planner-metric-value" id="meals-remaining">21</p>
             </div>
           </div>
+          <details class="planner-details" id="nutrition-settings-details">
+            <summary>Nutrition targets</summary>
+            <div class="planner-custom-panel">
+              <div class="nutrition-settings-grid">
+                <label class="nutrition-field">
+                  Daily calories
+                  <input type="number" id="planner-daily-kcal" min="1200" step="50" />
+                </label>
+                <label class="nutrition-field">
+                  Weight (lb, optional)
+                  <input type="number" id="planner-weight-lb" min="40" step="1" />
+                </label>
+                <label class="nutrition-field">
+                  Breakfast %
+                  <input type="number" id="planner-meal-breakfast" min="0" max="100" step="1" />
+                </label>
+                <label class="nutrition-field">
+                  Lunch %
+                  <input type="number" id="planner-meal-lunch" min="0" max="100" step="1" />
+                </label>
+                <label class="nutrition-field">
+                  Dinner %
+                  <input type="number" id="planner-meal-dinner" min="0" max="100" step="1" />
+                </label>
+                <label class="nutrition-field">
+                  Snack %
+                  <input type="number" id="planner-meal-snack" min="0" max="100" step="1" />
+                </label>
+              </div>
+            </div>
+          </details>
+          <div class="planner-nutrition-summary" id="planner-nutrition-summary">
+            <p class="planner-metric-label">Daily nutrition totals</p>
+            <ul class="planner-nutrition-metrics" id="planner-nutrition-metrics"></ul>
+          </div>
         </section>
 
         <section class="planner-panel planner-selected">

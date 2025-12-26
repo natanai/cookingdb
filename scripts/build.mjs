@@ -157,6 +157,24 @@ function loadNutritionGuidelines(guidelinesPath) {
   }
 }
 
+function loadNutritionPolicy(policyPath, guidelinesPath) {
+  if (fs.existsSync(policyPath)) {
+    try {
+      const raw = fs.readFileSync(policyPath, 'utf-8');
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') return parsed;
+    } catch (err) {
+      console.warn(`Unable to read nutrition policy at ${policyPath}: ${err?.message || err}`);
+    }
+  }
+  const guidelines = loadNutritionGuidelines(guidelinesPath);
+  return {
+    default_daily_kcal: Number(guidelines?.meal_calories_target) * 3 || 1800,
+    default_meals_per_day: 3,
+    meal_fractions_default: { breakfast: 0.25, lunch: 0.35, dinner: 0.35, snack: 0.05 },
+  };
+}
+
 function parseRatioToNumber(raw) {
   if (!raw) return null;
   const trimmed = String(raw).trim();
@@ -182,6 +200,12 @@ function parseRatioToNumber(raw) {
     return null;
   }
   return whole + num / den;
+}
+
+function parseNumericField(value) {
+  if (value === null || value === undefined) return null;
+  const num = Number(value);
+  return Number.isFinite(num) ? num : null;
 }
 
 const UNIT_ALIASES = new Map([
@@ -300,8 +324,32 @@ function selectDefaultOption(tokenData, choice) {
   return withOption || tokenData.options[0];
 }
 
-function computeNutritionEstimate(ingredients, choices, nutritionCatalog, nutritionIndex, guidelines) {
-  const targetMealCalories = Number(guidelines?.meal_calories_target) || 600;
+function buildNutritionProfile(entry) {
+  if (!entry) return null;
+  return {
+    unit: entry.nutrition_unit || '',
+    calories_per_unit: parseNumericField(entry.calories_per_unit),
+    protein_g: parseNumericField(entry.protein_g),
+    total_fat_g: parseNumericField(entry.total_fat_g),
+    saturated_fat_g: parseNumericField(entry.saturated_fat_g),
+    total_carbs_g: parseNumericField(entry.total_carbs_g),
+    sugars_g: parseNumericField(entry.sugars_g),
+    fiber_g: parseNumericField(entry.fiber_g),
+    sodium_mg: parseNumericField(entry.sodium_mg),
+  };
+}
+
+function computeNutritionEstimate(ingredients, choices, nutritionCatalog, nutritionIndex, guidelines, policy) {
+  const defaultDailyKcal = Number(policy?.default_daily_kcal);
+  const defaultFractions = policy?.meal_fractions_default || null;
+  const fallbackTarget = Number(guidelines?.meal_calories_target) || 600;
+  const fraction =
+    defaultFractions && typeof defaultFractions === 'object'
+      ? (Number(defaultFractions.dinner) || Number(Object.values(defaultFractions)[0]) || 1 / 3)
+      : 1 / 3;
+  const targetMealCalories =
+    (Number.isFinite(defaultDailyKcal) && defaultDailyKcal > 0 ? defaultDailyKcal * fraction : null) ||
+    fallbackTarget;
   let totalCalories = 0;
   let covered = 0;
   const tokens = Object.keys(ingredients || {});
@@ -362,6 +410,10 @@ async function build() {
   const catalog = loadIngredientCatalog(catalogPath);
   const nutritionCatalog = loadIngredientNutritionFromCatalog(catalogPath);
   const nutritionGuidelines = loadNutritionGuidelines(path.join(process.cwd(), 'data', 'nutrition_guidelines.json'));
+  const nutritionPolicy = loadNutritionPolicy(
+    path.join(process.cwd(), 'data', 'nutrition_policy.json'),
+    path.join(process.cwd(), 'data', 'nutrition_guidelines.json')
+  );
   const panCatalog = loadPanCatalog(path.join(process.cwd(), 'data', 'pan-sizes.json'));
   const nutritionIndex = buildNutritionIndex(nutritionCatalog);
   const recipesDir = path.join(process.cwd(), 'recipes');
@@ -400,6 +452,7 @@ async function build() {
         ingredients[row.token] = { token: row.token, options: [], isChoice: false };
       }
       const flags = catalog.get(row.ingredient_id);
+      const nutritionProfile = buildNutritionProfile(flags);
       const dependency = row.depends_on_token
         ? { token: row.depends_on_token, option: row.depends_on_option || null }
         : null;
@@ -418,6 +471,7 @@ async function build() {
           egg_free: ingredientCompatible(flags, 'egg_free'),
           dairy_free: ingredientCompatible(flags, 'dairy_free'),
         },
+        nutrition: nutritionProfile,
       };
       ingredients[row.token].options.push(optionEntry);
       if (row.section) {
@@ -477,7 +531,8 @@ async function build() {
       choices,
       nutritionCatalog,
       nutritionIndex,
-      nutritionGuidelines
+      nutritionGuidelines,
+      nutritionPolicy
     );
     const metaServingsPerBatch = Number(meta.servings_per_batch);
     const servingsPerBatch =
@@ -540,6 +595,8 @@ async function build() {
   if (!fs.existsSync(builtDir)) {
     fs.mkdirSync(builtDir, { recursive: true });
   }
+  fs.writeFileSync(path.join(builtDir, 'nutrition-policy.json'), JSON.stringify(nutritionPolicy, null, 2));
+  fs.writeFileSync(path.join(builtDir, 'nutrition-guidelines.json'), JSON.stringify(nutritionGuidelines, null, 2));
   fs.writeFileSync(path.join(builtDir, 'recipes.json'), JSON.stringify(recipeOutputs, null, 2));
   fs.writeFileSync(path.join(builtDir, 'index.json'), JSON.stringify(indexList, null, 2));
   console.log('Build completed');

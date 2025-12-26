@@ -2481,6 +2481,61 @@ body.add-page details.mobile-preview > summary {
   font-weight: 600;
 }
 
+.planner-nutrition-block {
+  margin-top: 0.75rem;
+  padding: 0.6rem;
+  border-radius: 12px;
+  background: #fff7ea;
+  border: 1px solid var(--border);
+}
+
+.planner-nutrition-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.planner-nutrition-warning {
+  margin: 0 0 0.5rem;
+  color: #8a4b0f;
+}
+
+.planner-nutrition-metrics {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.6rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.planner-nutrition-metrics li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: baseline;
+  font-size: 0.85rem;
+}
+
+.planner-nutrition-heading {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.planner-nutrition-summary {
+  margin-top: 1rem;
+}
+
+.planner-nutrition-summary .planner-nutrition-metrics li {
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+}
+
+.planner-nutrition-summary .planner-nutrition-metrics em {
+  font-style: normal;
+  color: var(--muted);
+}
+
 .recipe-nutrition {
   padding: 0.5rem 0.75rem;
   border-radius: 10px;
@@ -2495,14 +2550,55 @@ body.add-page details.mobile-preview > summary {
   color: var(--text);
 }
 
-.recipe-nutrition-details {
-  margin: 0;
+.recipe-nutrition-warning {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  color: #8a4b0f;
 }
 
-.recipe-nutrition-footnote {
-  margin: 0.15rem 0 0;
+.recipe-nutrition-details {
+  margin: 0 0 0.4rem;
+  color: var(--text);
+}
+
+.recipe-nutrition-metrics {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.4rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.recipe-nutrition-metrics li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.recipe-nutrition-targets {
+  margin: 0 0 0.5rem;
   font-size: 0.85rem;
   color: var(--muted);
+}
+
+.nutrition-settings {
+  margin-top: 0.4rem;
+}
+
+.nutrition-settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.nutrition-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
 }
 
 .planner-actions {
