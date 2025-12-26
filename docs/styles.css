@@ -2384,6 +2384,11 @@ body.add-page details.mobile-preview > summary {
   transform: translateY(-50%);
 }
 
+.planner-add-button:hover {
+  transform: translateY(-50%);
+  box-shadow: none;
+}
+
 .planner-selected-list {
   display: grid;
   gap: 1rem;
