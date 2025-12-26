@@ -156,8 +156,17 @@ export async function validateAll() {
     ensure(metaRow.id === recipeId, `${recipeId}: meta id must match directory name`);
     ensure(Object.prototype.hasOwnProperty.call(metaRow, 'categories'), `${recipeId}: meta.csv missing categories column`);
     ensure(
+      Object.prototype.hasOwnProperty.call(metaRow, 'servings_per_batch'),
+      `${recipeId}: meta.csv missing servings_per_batch column`
+    );
+    ensure(
       parseCategories(metaRow.categories).length > 0,
       `${recipeId}: meta.csv must include at least one category`
+    );
+    const servingsPerBatch = Number(metaRow.servings_per_batch);
+    ensure(
+      Number.isFinite(servingsPerBatch) && servingsPerBatch > 0,
+      `${recipeId}: servings_per_batch must be a positive number`
     );
 
     const ingredientRows = await parseCSVFile(ingredientsPath);

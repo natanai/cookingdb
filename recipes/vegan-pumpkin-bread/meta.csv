@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes,categories,family
-vegan-pumpkin-bread,Vegan Pumpkin Bread,multiplier,1,"Use gluten-free flour if desired. Streusel topping and vegan cream cheese frosting are optional.",Desserts & Baking,
+id,title,base_kind,default_base,servings_per_batch,notes,categories,family
+vegan-pumpkin-bread,Vegan Pumpkin Bread,multiplier,1,4,Use gluten-free flour if desired. Streusel topping and vegan cream cheese frosting are optional.,Desserts & Baking,

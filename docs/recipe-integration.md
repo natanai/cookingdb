@@ -27,6 +27,7 @@ Optional files:
 - `categories` column must exist and contain at least one category.
 - `base_kind` is required (used by the UI for scaling behavior).
 - `default_base` is required (numeric in the build output).
+- `servings_per_batch` is required (numeric; used by meal prep planner defaults).
 - `notes` is required (empty string is allowed, but column must exist).
 - `family` and/or `byline` are required **when applicable** (for family recipes or attribution).
 

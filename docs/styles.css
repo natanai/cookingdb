@@ -2258,6 +2258,12 @@ body.add-page details.mobile-preview > summary {
   gap: 1.5rem;
 }
 
+.planner-left {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+
 .planner-panel {
   background: var(--card);
   border: 1px solid var(--border);
@@ -2510,10 +2516,7 @@ body.add-page details.mobile-preview > summary {
 
 @media (min-width: 980px) {
   .planner-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .planner-ingredients {
-    grid-column: span 2;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: start;
   }
 }

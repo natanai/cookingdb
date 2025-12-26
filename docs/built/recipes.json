@@ -5,6 +5,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Main Dishes"
     ],
@@ -228,6 +229,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family"
@@ -603,6 +605,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Sides",
       "Family"
@@ -773,6 +776,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family",
@@ -1010,6 +1014,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking"
     ],
@@ -1422,6 +1427,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family",
@@ -1632,6 +1638,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Breakfast & Brunch",
       "Family"
@@ -1994,6 +2001,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Sides"
     ],
@@ -2117,6 +2125,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family",
@@ -2354,6 +2363,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family"
@@ -2522,6 +2532,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family",
@@ -2934,6 +2945,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family",
@@ -3151,6 +3163,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family",
@@ -3561,6 +3574,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking",
       "Family"
@@ -3949,6 +3963,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Sides",
       "Family"
@@ -4137,6 +4152,7 @@
     "byline": "",
     "base_kind": "protein-main",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family"
@@ -4745,6 +4761,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family"
@@ -5009,6 +5026,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking",
       "Family",
@@ -5178,6 +5196,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Sides",
       "Family",
@@ -5472,6 +5491,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family"
@@ -5732,6 +5752,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Appetizers & Snacks",
       "Family",
@@ -5879,6 +5900,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking",
       "Family"
@@ -6460,6 +6482,7 @@
     "byline": "Lorene’s",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family",
@@ -6873,6 +6896,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Sides",
       "Family",
@@ -7038,6 +7062,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Sides",
       "Family",
@@ -7201,6 +7226,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Casseroles",
       "Family",
@@ -7398,6 +7424,7 @@
     "byline": "Mrs. Burrows",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family",
@@ -7635,6 +7662,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking"
     ],
@@ -8031,6 +8059,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking",
       "Family",
@@ -8204,6 +8233,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family",
@@ -8542,6 +8572,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking"
     ],
@@ -8820,6 +8851,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family"
@@ -9073,6 +9105,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Crock-Pot",
       "Soups & Stews"
@@ -9538,6 +9571,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking",
       "Family",
@@ -9811,6 +9845,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking",
       "Family"
@@ -10141,6 +10176,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Breakfast & Brunch",
       "Desserts & Baking"
@@ -10431,6 +10467,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Breads & Pizza"
     ],
@@ -10634,6 +10671,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family"
@@ -10905,6 +10943,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family"
@@ -11319,6 +11358,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking"
     ],
@@ -11889,6 +11929,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Main Dishes"
     ],
@@ -12160,6 +12201,7 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
+    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family"

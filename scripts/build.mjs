@@ -293,6 +293,7 @@ async function build() {
       byline: meta.byline || '',
       base_kind: meta.base_kind,
       default_base: Number(meta.default_base) || 1,
+      servings_per_batch: Number(meta.servings_per_batch) || 1,
       categories: parseCategories(meta.categories),
       family: meta.family || '',
       notes: meta.notes,

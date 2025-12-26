@@ -358,7 +358,7 @@ function renderRecipeList() {
 
 function addRecipeSelection(recipe) {
   if (state.selections.has(recipe.id)) return;
-  const servingsPerBatch = Number(recipe.default_base) || 1;
+  const servingsPerBatch = Number(recipe.servings_per_batch) || 4;
   const batchSize = 1;
   const selection = {
     recipe,
@@ -444,6 +444,16 @@ function renderSelections() {
     batchInput.value = selection.batchSize;
     batchLabel.appendChild(batchInput);
 
+    const servingsPerBatchLabel = document.createElement('label');
+    servingsPerBatchLabel.className = 'planner-field';
+    servingsPerBatchLabel.textContent = 'Servings per batch';
+    const servingsPerBatchInput = document.createElement('input');
+    servingsPerBatchInput.type = 'number';
+    servingsPerBatchInput.min = '1';
+    servingsPerBatchInput.step = '0.5';
+    servingsPerBatchInput.value = selection.servingsPerBatch;
+    servingsPerBatchLabel.appendChild(servingsPerBatchInput);
+
     const servingsLabel = document.createElement('label');
     servingsLabel.className = 'planner-field';
     servingsLabel.textContent = 'Total servings';
@@ -453,10 +463,6 @@ function renderSelections() {
     servingsInput.step = '0.25';
     servingsInput.value = selection.totalServings;
     servingsLabel.appendChild(servingsInput);
-
-    const note = document.createElement('p');
-    note.className = 'planner-note';
-    note.textContent = `Servings per batch: ${selection.servingsPerBatch}`;
 
     const servingSummary = document.createElement('p');
     servingSummary.className = 'planner-serving-summary';
@@ -475,6 +481,16 @@ function renderSelections() {
       updateIngredientsSummary();
     });
 
+    servingsPerBatchInput.addEventListener('input', () => {
+      const value = Number(servingsPerBatchInput.value) || selection.servingsPerBatch;
+      selection.servingsPerBatch = Math.max(0.25, value);
+      selection.totalServings = selection.batchSize * selection.servingsPerBatch;
+      servingsInput.value = selection.totalServings.toFixed(2).replace(/\.0+$/, '').replace(/(\.\d*[1-9])0+$/, '$1');
+      updateServingSummary();
+      updatePlanSummary();
+      updateIngredientsSummary();
+    });
+
     servingsInput.addEventListener('input', () => {
       const value = Number(servingsInput.value) || selection.servingsPerBatch;
       selection.totalServings = Math.max(0.25, value);
@@ -486,6 +502,7 @@ function renderSelections() {
     });
 
     controls.appendChild(batchLabel);
+    controls.appendChild(servingsPerBatchLabel);
     controls.appendChild(servingsLabel);
 
     const dietary = document.createElement('div');
@@ -526,7 +543,6 @@ function renderSelections() {
 
     card.appendChild(header);
     card.appendChild(controls);
-    card.appendChild(note);
     card.appendChild(dietary);
     card.appendChild(servingSummary);
 

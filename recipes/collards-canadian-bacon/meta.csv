@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes,categories,family
-collards-canadian-bacon,Collards with Canadian Bacon,multiplier,1,Simple skillet collards with smoky bacon.,Sides; Family,
+id,title,base_kind,default_base,servings_per_batch,notes,categories,family
+collards-canadian-bacon,Collards with Canadian Bacon,multiplier,1,4,Simple skillet collards with smoky bacon.,Sides; Family,
