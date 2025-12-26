@@ -550,6 +550,23 @@ function renderSelections() {
     controls.appendChild(servingsPerBatchLabel);
     controls.appendChild(servingsLabel);
 
+    const nutritionNote = document.createElement('p');
+    nutritionNote.className = 'planner-note';
+    const estimate = selection.recipe.nutrition_estimate;
+    if (estimate && estimate.servings_estimate) {
+      const coverage = estimate.total_ingredients
+        ? Math.round((estimate.coverage_ratio || 0) * 100)
+        : 0;
+      const caloriesPerServing = estimate.calories_per_serving
+        ? Math.round(estimate.calories_per_serving)
+        : null;
+      nutritionNote.textContent = `Nutrition estimate: ${estimate.servings_estimate} servings` +
+        (caloriesPerServing ? ` (~${caloriesPerServing} cal/serving)` : '') +
+        ` • coverage ${coverage}%`;
+    } else {
+      nutritionNote.textContent = 'Nutrition estimate unavailable; adjust servings per batch as needed.';
+    }
+
     const dietary = document.createElement('div');
     dietary.className = 'planner-dietary';
     const dietaryLabel = document.createElement('p');
@@ -589,6 +606,7 @@ function renderSelections() {
 
     card.appendChild(header);
     card.appendChild(controls);
+    card.appendChild(nutritionNote);
     card.appendChild(dietary);
     card.appendChild(servingSummary);
 

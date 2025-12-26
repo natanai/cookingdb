@@ -102,6 +102,15 @@ in the UI:
   - The category filter matches either `categories` or `family` exactly.
   - Search queries match `title`, `byline`, `categories`, and `family` fields.
 
+## Nutrition estimation inputs
+
+Meal-prep servings estimates are calculated from `data/ingredient_nutrition.csv`:
+
+- Every `ingredient_id` in `data/ingredient_catalog.csv` must be listed in `ingredient_nutrition.csv`.
+- Provide `unit` and `calories_per_unit` entries wherever possible so the build can estimate recipe calories.
+- Missing or incomplete nutrition rows will reduce coverage in the recipe-level nutrition estimate.
+- Serving estimates use `data/nutrition_guidelines.json` to set target calories per meal.
+
 ## Build artifacts
 
 After adding or editing recipes, regenerate build outputs:

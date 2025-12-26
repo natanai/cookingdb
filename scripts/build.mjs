@@ -95,6 +95,66 @@ function loadIngredientCatalog(catalogPath) {
   return map;
 }
 
+function loadIngredientNutrition(nutritionPath) {
+  if (!fs.existsSync(nutritionPath)) return new Map();
+  const rows = fs.readFileSync(nutritionPath, 'utf-8');
+  const parsed = rows ? simpleParseCSV(rows) : [];
+  const map = new Map();
+  for (const row of parsed) {
+    if (!row.ingredient_id || !row.unit) continue;
+    const calories = Number(row.calories_per_unit);
+    map.set(`${row.ingredient_id}::${row.unit}`, {
+      ingredient_id: row.ingredient_id,
+      unit: row.unit,
+      calories_per_unit: Number.isFinite(calories) ? calories : null,
+      source: row.source || '',
+      notes: row.notes || '',
+    });
+  }
+  return map;
+}
+
+function loadNutritionGuidelines(guidelinesPath) {
+  if (!fs.existsSync(guidelinesPath)) {
+    return { meal_calories_target: 600 };
+  }
+  try {
+    const raw = fs.readFileSync(guidelinesPath, 'utf-8');
+    const parsed = JSON.parse(raw);
+    return parsed || { meal_calories_target: 600 };
+  } catch (err) {
+    console.warn(`Unable to read nutrition guidelines at ${guidelinesPath}: ${err?.message || err}`);
+    return { meal_calories_target: 600 };
+  }
+}
+
+function parseRatioToNumber(raw) {
+  if (!raw) return null;
+  const trimmed = String(raw).trim();
+  if (!trimmed) return null;
+  const parts = trimmed.split(' ');
+  let whole = 0;
+  let frac = parts[0];
+  if (parts.length === 2) {
+    whole = Number(parts[0]);
+    frac = parts[1];
+  }
+  let num;
+  let den;
+  if (frac.includes('/')) {
+    const [n, d] = frac.split('/');
+    num = Number(n);
+    den = Number(d);
+  } else {
+    num = Number(frac);
+    den = 1;
+  }
+  if (!Number.isFinite(whole) || !Number.isFinite(num) || !Number.isFinite(den) || den === 0) {
+    return null;
+  }
+  return whole + num / den;
+}
+
 function loadPanCatalog(catalogPath) {
   const raw = fs.existsSync(catalogPath) ? fs.readFileSync(catalogPath, 'utf-8') : '';
   if (!raw) return new Map();
@@ -158,10 +218,64 @@ function computeCompatibility(ingredients, catalog) {
   return result;
 }
 
+function selectDefaultOption(tokenData, choice) {
+  if (!tokenData?.options?.length) return null;
+  if (!tokenData.isChoice) return tokenData.options[0];
+  const preferred = choice?.default_option;
+  if (preferred) {
+    return tokenData.options.find((opt) => opt.option === preferred) || tokenData.options[0];
+  }
+  const withOption = tokenData.options.find((opt) => opt.option);
+  return withOption || tokenData.options[0];
+}
+
+function computeNutritionEstimate(ingredients, choices, nutritionCatalog, guidelines) {
+  const targetMealCalories = Number(guidelines?.meal_calories_target) || 600;
+  let totalCalories = 0;
+  let covered = 0;
+  const tokens = Object.keys(ingredients || {});
+  tokens.forEach((token) => {
+    const tokenData = ingredients[token];
+    const option = selectDefaultOption(tokenData, choices[token]);
+    if (!option || !option.ratio || !option.unit) return;
+    const amount = parseRatioToNumber(option.ratio);
+    if (!Number.isFinite(amount)) return;
+    const entry = nutritionCatalog.get(`${option.ingredient_id}::${option.unit}`);
+    if (!entry || !Number.isFinite(entry.calories_per_unit)) return;
+    totalCalories += amount * entry.calories_per_unit;
+    covered += 1;
+  });
+
+  if (totalCalories <= 0) {
+    return {
+      calories_total: 0,
+      calories_per_serving: null,
+      servings_estimate: null,
+      covered_ingredients: covered,
+      total_ingredients: tokens.length,
+      coverage_ratio: tokens.length ? covered / tokens.length : 0,
+      target_meal_calories: targetMealCalories,
+    };
+  }
+
+  const servingsEstimate = Math.max(1, Math.round(totalCalories / targetMealCalories));
+  return {
+    calories_total: totalCalories,
+    calories_per_serving: totalCalories / servingsEstimate,
+    servings_estimate: servingsEstimate,
+    covered_ingredients: covered,
+    total_ingredients: tokens.length,
+    coverage_ratio: tokens.length ? covered / tokens.length : 0,
+    target_meal_calories: targetMealCalories,
+  };
+}
+
 async function build() {
   await validateAll();
   const catalogPath = path.join(process.cwd(), 'data', 'ingredient_catalog.csv');
   const catalog = loadIngredientCatalog(catalogPath);
+  const nutritionCatalog = loadIngredientNutrition(path.join(process.cwd(), 'data', 'ingredient_nutrition.csv'));
+  const nutritionGuidelines = loadNutritionGuidelines(path.join(process.cwd(), 'data', 'nutrition_guidelines.json'));
   const panCatalog = loadPanCatalog(path.join(process.cwd(), 'data', 'pan-sizes.json'));
   const recipesDir = path.join(process.cwd(), 'recipes');
   const recipeDirs = fs.readdirSync(recipesDir, { withFileTypes: true }).filter((ent) => ent.isDirectory());
@@ -271,6 +385,7 @@ async function build() {
     }
 
     const compatibility = computeCompatibility(ingredients, catalog);
+    const nutritionEstimate = computeNutritionEstimate(ingredients, choices, nutritionCatalog, nutritionGuidelines);
     const uniqueTokenOrder = [];
     const seen = new Set();
     tokensUsed.forEach((token) => {
@@ -297,6 +412,7 @@ async function build() {
       categories: parseCategories(meta.categories),
       family: meta.family || '',
       notes: meta.notes,
+      nutrition_estimate: nutritionEstimate,
       steps_raw: stepsRaw,
       steps,
       step_sections: stepSections,

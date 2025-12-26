@@ -2463,6 +2463,30 @@ body.add-page details.mobile-preview > summary {
   font-weight: 600;
 }
 
+.recipe-nutrition {
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  background: #fff7ea;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.recipe-nutrition-title {
+  margin: 0 0 0.2rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.recipe-nutrition-details {
+  margin: 0;
+}
+
+.recipe-nutrition-footnote {
+  margin: 0.15rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .planner-actions {
   display: flex;
   flex-wrap: wrap;
