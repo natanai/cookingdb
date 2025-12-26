@@ -45,6 +45,8 @@ Every ingredient row must include:
 Additional validations and constraints:
 
 - `ratio` must match the format expected by validation: integers or fractions such as `1`, `1/2`, or `1 1/2`.
+- Ingredient IDs must be unique in `data/ingredient_catalog.csv`. Reuse existing ingredient IDs instead of
+  adding duplicates, and update recipes to point at the canonical ID when consolidating ingredients.
 - Optional grouping columns (`section`, `line_group`) are supported for multi-part ingredient lists.
 - Tokens can define **options** via the `option` column; options with identical `display` values cannot repeat
   for the same token (validation error).
@@ -104,11 +106,13 @@ in the UI:
 
 ## Nutrition estimation inputs
 
-Meal-prep servings estimates are calculated from `data/ingredient_nutrition.csv`:
+Meal-prep servings estimates are calculated from nutrition fields stored directly in
+`data/ingredient_catalog.csv`:
 
-- Every `ingredient_id` in `data/ingredient_catalog.csv` must be listed in `ingredient_nutrition.csv`.
-- Provide `unit` and `calories_per_unit` entries wherever possible so the build can estimate recipe calories.
-- Missing or incomplete nutrition rows will reduce coverage in the recipe-level nutrition estimate.
+- Nutrition columns live alongside each ingredient (`nutrition_unit`, `calories_per_unit`,
+  `nutrition_source`, `nutrition_notes`) so the catalog is the single source of truth.
+- Provide `nutrition_unit` and `calories_per_unit` wherever possible so the build can estimate recipe calories.
+- Missing or incomplete nutrition fields will reduce coverage in the recipe-level nutrition estimate.
 - Serving estimates use `data/nutrition_guidelines.json` to set target calories per meal.
 
 ## Build artifacts

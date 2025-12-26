@@ -1,173 +1,166 @@
-ingredient_id,canonical_name,contains_gluten,contains_egg,contains_dairy
-egg,Egg,false,true,false
-egg-replacer,Egg replacer,false,false,false
-milk,Milk,false,false,true
-oat-milk,Oat milk,false,false,false
-butter,Butter,false,false,true
-vegan-butter,Vegan butter,false,false,false
-wheat-flour,Wheat flour,true,false,false
-gf-flour-blend,Gluten-free flour blend,false,false,false
-water,Water,false,false,false
-salt,Salt,false,false,false
-sugar,Sugar,false,false,false
-almond-flour,Almond flour,false,false,false
-oat-flour,Oat flour (gluten-free),false,false,false
-rice-flour,Rice flour,false,false,false
-tapioca-starch,Tapioca starch,false,false,false
-cornstarch,Cornstarch,false,false,false
-white-sugar,Granulated white sugar,false,false,false
-baking-powder,Baking powder,false,false,false
-coconut-milk,Full-fat coconut milk,false,false,false
-lemon,Lemon,false,false,false
-vanilla-extract,Vanilla extract,false,false,false
-powdered-sugar,Powdered sugar,false,false,false
-nondairy-yogurt,Non-dairy yogurt,false,false,false
-neutral-oil,Neutral oil,false,false,false
-brisket,Beef brisket,false,false,false
-ground-beef,Ground beef,false,false,false
-baby-potatoes,Baby potatoes,false,false,false
-carrot,Carrot,false,false,false
-shallot,Shallot,false,false,false
-apple-cider,Apple cider,false,false,false
-beef-broth,Beef broth,false,false,false
-chicken-broth,Chicken broth,false,false,false
-thyme,Thyme,false,false,false
-bay-leaf,Bay leaf,false,false,false
-cayenne-pepper,Cayenne pepper,false,false,false
-sweet-potato,Sweet potato,false,false,false
-brown-sugar,Brown sugar,false,false,false
-molasses,Molasses,false,false,false
-cream,Cream,false,false,true
-onion,Onion,false,false,false
-canadian-bacon,Canadian bacon,false,false,false
-vegetable-oil,Vegetable oil,false,false,false
-collard-greens,Collard greens,false,false,false
-kale,Kale,false,false,false
-toasted-sesame-oil,Toasted sesame oil,false,false,false
-black-pepper,Black pepper,false,false,false
-pear-halves,Pear halves,false,false,false
-pork-chop,Pork chop,false,false,false
-cinnamon,Cinnamon,false,false,false
-tomato-sauce,Tomato sauce,false,false,false
-celery,Celery,false,false,false
-diced-tomatoes,Diced tomatoes,false,false,false
-mixed-vegetables,Mixed vegetables,false,false,false
-salsa,Salsa,false,false,false
-parsley,Parsley,false,false,false
-watercress,Watercress,false,false,false
-nutmeg,Nutmeg,false,false,false
-leek,Leek,false,false,false
-potato,Potato,false,false,false
-rice,Rice,false,false,false
-brown-rice,Brown rice,false,false,false
-coconut-oil,Coconut oil,false,false,false
-ginger,Ginger,false,false,false
-garlic,Garlic,false,false,false
-chicken-breast,Chicken breast,false,false,false
-cooked-chicken,Cooked chicken,false,false,false
-coconut-cream,Coconut cream,false,false,false
-coconut-aminos,Coconut aminos,false,false,false
-lime,Lime,false,false,false
-turmeric-powder,Turmeric powder,false,false,false
-cilantro,Cilantro,false,false,false
-cauliflower-rice,Cauliflower rice,false,false,false
-bread-crumbs,Bread crumbs,true,false,false
-acorn-squash,Acorn squash,false,false,false
-sausage,Sausage,false,false,false
-cheese,Cheese,false,false,true
-cheddar-mozzarella-cheese,Cheddar mozzarella cheese blend,false,false,true
-butternut-squash,Butternut squash,false,false,false
-baking-soda,Baking soda,false,false,false
-chocolate-chips,Chocolate chips,false,false,true
-dairy-free-chocolate-chips,Dairy-free chocolate chips,false,false,false
-chicken_breast,Chicken breast,false,false,false
-salt,Salt,false,false,false
-black_pepper,Black pepper,false,false,false
-italian_seasoning,Italian seasoning,false,false,false
-olive_oil,Olive oil,false,false,false
-wheat_flour,Wheat flour,true,false,false
-parmesan_cheese,Parmesan cheese,false,false,true
-chicken_broth,Chicken broth,false,false,false
-beef_bouillon,Beef bouillon,false,false,false
-soy_sauce,Soy sauce,true,false,false
-worcestershire_sauce,Worcestershire sauce,false,false,false
-teriyaki-sauce,Teriyaki sauce,true,false,false
-onion_powder,Onion powder,false,false,false
-dried_thyme,Dried thyme,false,false,false
-mustard_powder,Mustard powder,false,false,false
-butter,Butter,false,false,true
-garlic,Garlic,false,false,false
-heavy_cream,Heavy cream,false,false,true
-shortening,Shortening,false,false,false
-egg-yolk,Egg yolk,false,true,false
-almond-extract,Almond extract,false,false,false
-food-coloring,Food coloring,false,false,false
-beef,Beef,false,false,false
-green-beans,Green beans,false,false,false
-pinto-beans,Pinto beans,false,false,false
-peas,Peas,false,false,false
-corn,Corn,false,false,false
-celery-salt,Celery salt,false,false,false
-white-pepper,White pepper,false,false,false
-american-cheese,American cheese,false,false,true
-tuna,Tuna,false,false,false
-green-pepper,Green pepper,false,false,false
-green-olives,Green olives,false,false,false
-sweet-pickles,Sweet pickles,false,false,false
-nacho-chips,Nacho chips,false,false,false
-mayonnaise,Mayonnaise,false,true,false
-hot-dog-buns,Hot dog buns,true,false,false
-cream-of-tartar,Cream of tartar,false,false,false
-peanut-butter,Peanut butter,false,false,false
-peanuts,Peanuts,false,false,false
-noodles,Noodles,true,false,false
-ketchup,Ketchup,false,false,false
-vinegar,Vinegar,false,false,false
-prepared-mustard,Prepared mustard,false,false,false
-hamburger-buns,Hamburger buns,true,false,false
-sesame-seeds,Sesame seeds,false,false,false
-stew-beef,Stew beef,false,false,false
-onion-flakes,Onion flakes,false,false,false
-egg-noodles,Egg noodles,true,true,false
-ground-turkey,Ground turkey,false,false,false
-crushed-tomatoes,Crushed tomatoes,false,false,false
-stewed-tomatoes,Stewed tomatoes,false,false,false
-kidney-beans,Kidney beans,false,false,false
-chili-powder,Chili powder,false,false,false
-paprika,Paprika,false,false,false
-tomatoes,Tomatoes,false,false,false
-cream-of-celery-soup,Cream of celery soup,true,false,true
-cream-of-chicken-soup,Cream of chicken soup,true,false,true
-velveeta,Velveeta,false,false,true
-rotel,Rotel tomatoes with green chiles,false,false,false
-cheddar-cheese,Cheddar cheese,false,false,true
-crescent-rolls,Crescent rolls,true,true,true
-margarine,Margarine,false,false,true
-turkey,Turkey,false,false,false
-mushrooms,Mushrooms,false,false,false
-pimiento,Pimiento,false,false,false
-almonds,Almonds,false,false,false
-orange-gelatin,Orange gelatin,false,false,false
-orange-sherbet,Orange sherbet,false,false,true
-mandarin-oranges,Mandarin oranges,false,false,false
-tomato-soup,Tomato soup,false,false,false
-cream-cheese,Cream cheese,false,false,true
-whipped-cream,Whipped cream,false,false,true
-pumpkin-puree,Pumpkin puree,false,false,false
-pumpkin-spice,Pumpkin spice,false,false,false
-green-onion,Green onion,false,false,false
-macaroni,Macaroni,true,false,false
-whole-tomatoes,Whole tomatoes,false,false,false
-canned-chicken,Canned chicken,false,false,false
-seasoned-salt,Seasoned salt,false,false,false
-tomato-paste,Tomato paste,false,false,false
-cocoa-powder,Cocoa powder,false,false,false
-graham-cracker-crumbs,Graham cracker crumbs,true,false,false
-shredded-coconut,Shredded coconut,false,false,false
-vanilla-pudding-powder,Vanilla pudding powder,false,false,true
-chopped-nuts,Chopped nuts,false,false,false
-basic-roll-dough,Basic Roll Dough,true,true,true
-active-dry-yeast,Active dry yeast,false,false,false
-aquafaba,Aquafaba,false,false,false
-psyllium-husk,Psyllium husk,false,false,false
-xanthan-gum,Xanthan gum,false,false,false
+ingredient_id,canonical_name,contains_gluten,contains_egg,contains_dairy,nutrition_unit,calories_per_unit,nutrition_source,nutrition_notes
+egg,Egg,false,true,false,count,72,USDA FoodData Central,Large egg.
+egg-replacer,Egg replacer,false,false,false,tbsp,35,Bob's Red Mill,Vegan egg replacer per tablespoon.
+milk,Milk,false,false,true,cup,150,U.S. Dairy,Whole milk per cup.
+oat-milk,Oat milk,false,false,false,cup,120,USDA FoodData Central,Unsweetened oat milk per cup.
+butter,Butter,false,false,true,tbsp,102,USDA FoodData Central,Per tablespoon.
+vegan-butter,Vegan butter,false,false,false,tbsp,102,USDA FoodData Central,Margarine per tablespoon.
+wheat-flour,Wheat flour,true,false,false,cup,455,USDA FoodData Central,All-purpose flour per cup.
+gf-flour-blend,Gluten-free flour blend,false,false,false,cup,440,Good & Gather,Gluten-free flour blend per cup (approx).
+water,Water,false,false,false,cup,0,USDA FoodData Central,Plain water per cup.
+salt,Salt,false,false,false,tsp,0,FDA,Table salt per teaspoon.
+sugar,Sugar,false,false,false,tbsp,49,USDA FoodData Central,Granulated sugar per tablespoon.
+almond-flour,Almond flour,false,false,false,cup,640,Bob's Red Mill,Blanched almond flour per cup.
+oat-flour,Oat flour (gluten-free),false,false,false,cup,420,USDA FoodData Central,Whole grain oat flour per cup.
+rice-flour,Rice flour,false,false,false,cup,578,USDA FoodData Central,White rice flour per cup.
+tapioca-starch,Tapioca starch,false,false,false,cup,424,USDA FoodData Central,Tapioca starch per cup.
+cornstarch,Cornstarch,false,false,false,cup,488,USDA FoodData Central,Cornstarch per cup.
+white-sugar,Granulated white sugar,false,false,false,tbsp,49,USDA FoodData Central,Granulated sugar per tablespoon.
+baking-powder,Baking powder,false,false,false,tsp,2.4,USDA FoodData Central,Baking powder per teaspoon.
+coconut-milk,Full-fat coconut milk,false,false,false,cup,445,USDA FoodData Central,Canned coconut milk per cup.
+lemon,Lemon,false,false,false,count,17,USDA FoodData Central,Medium lemon.
+vanilla-extract,Vanilla extract,false,false,false,tsp,12,USDA FoodData Central,Vanilla extract per teaspoon.
+powdered-sugar,Powdered sugar,false,false,false,cup,467,USDA FoodData Central,Powdered sugar per cup.
+nondairy-yogurt,Non-dairy yogurt,false,false,false,cup,130,WholeSoy,Unsweetened soy yogurt per cup.
+neutral-oil,Neutral oil,false,false,false,tbsp,124,USDA FoodData Central,Canola oil per tablespoon.
+brisket,Beef brisket,false,false,false,lb,980,USDA FoodData Central,Beef brisket per pound (raw).
+ground-beef,Ground beef,false,false,false,lb,1150,USDA FoodData Central,80% lean ground beef per pound.
+baby-potatoes,Baby potatoes,false,false,false,count,26,Fitia,Small baby potato.
+carrot,Carrot,false,false,false,count,25,USDA FoodData Central,Medium carrot.
+shallot,Shallot,false,false,false,count,22,FoodStruct,Medium shallot.
+apple-cider,Apple cider,false,false,false,cup,120,WebMD,Apple cider per cup.
+beef-broth,Beef broth,false,false,false,cup,10,Campbell's,Beef broth per cup.
+chicken-broth,Chicken broth,false,false,false,cup,15,Consumer Reports,Chicken broth per cup.
+thyme,Thyme,false,false,false,tsp,3,USDA FoodData Central,Dried thyme per teaspoon.
+bay-leaf,Bay leaf,false,false,false,count,2,USDA FoodData Central,Dried bay leaf per leaf.
+cayenne-pepper,Cayenne pepper,false,false,false,tsp,6,USDA FoodData Central,Cayenne pepper per teaspoon.
+sweet-potato,Sweet potato,false,false,false,count,103,USDA FoodData Central,Medium sweet potato.
+brown-sugar,Brown sugar,false,false,false,tbsp,50,USDA FoodData Central,Brown sugar per tablespoon.
+molasses,Molasses,false,false,false,tbsp,58,USDA FoodData Central,Molasses per tablespoon.
+cream,Cream,false,false,true,tbsp,52,USDA FoodData Central,Heavy cream per tablespoon.
+onion,Onion,false,false,false,count,44,USDA FoodData Central,Medium onion.
+canadian-bacon,Canadian bacon,false,false,false,count,43,USDA FoodData Central,Slice of Canadian bacon.
+vegetable-oil,Vegetable oil,false,false,false,tbsp,119,USDA FoodData Central,Vegetable oil per tablespoon.
+collard-greens,Collard greens,false,false,false,cup,11,USDA FoodData Central,Chopped collard greens per cup.
+kale,Kale,false,false,false,cup,7,USDA FoodData Central,Chopped kale per cup.
+toasted-sesame-oil,Toasted sesame oil,false,false,false,tbsp,120,USDA FoodData Central,Toasted sesame oil per tablespoon.
+black-pepper,Black pepper,false,false,false,tsp,5,USDA FoodData Central,Ground black pepper per teaspoon.
+pear-halves,Pear halves,false,false,false,count,35,USDA FoodData Central,Canned pear half.
+pork-chop,Pork chop,false,false,false,count,210,USDA FoodData Central,Boneless pork chop (~113g).
+cinnamon,Cinnamon,false,false,false,tsp,6,USDA FoodData Central,Ground cinnamon per teaspoon.
+tomato-sauce,Tomato sauce,false,false,false,cup,59,USDA FoodData Central,Tomato sauce per cup.
+celery,Celery,false,false,false,count,6,USDA FoodData Central,Celery stalk.
+diced-tomatoes,Diced tomatoes,false,false,false,cup,48,USDA FoodData Central,Canned diced tomatoes per cup.
+mixed-vegetables,Mixed vegetables,false,false,false,cup,118,USDA FoodData Central,Frozen mixed vegetables per cup.
+salsa,Salsa,false,false,false,tbsp,5,USDA FoodData Central,Tomato-based salsa per tablespoon.
+parsley,Parsley,false,false,false,tbsp,1,USDA FoodData Central,Fresh parsley per tablespoon.
+watercress,Watercress,false,false,false,cup,4,USDA FoodData Central,Watercress per cup.
+nutmeg,Nutmeg,false,false,false,tsp,12,USDA FoodData Central,Ground nutmeg per teaspoon.
+leek,Leek,false,false,false,count,50,USDA FoodData Central,Raw leek (~89g).
+potato,Potato,false,false,false,count,164,USDA FoodData Central,Medium potato.
+rice,Rice,false,false,false,cup,685,USDA FoodData Central,Dry white rice per cup.
+brown-rice,Brown rice,false,false,false,cup,685,USDA FoodData Central,Dry brown rice per cup.
+coconut-oil,Coconut oil,false,false,false,tbsp,121,USDA FoodData Central,Coconut oil per tablespoon.
+ginger,Ginger,false,false,false,tsp,2,USDA FoodData Central,Grated fresh ginger per teaspoon.
+garlic,Garlic,false,false,false,clove,4,USDA FoodData Central,Garlic clove.
+chicken-breast,Chicken breast,false,false,false,lb,748,USDA FoodData Central,Boneless skinless chicken breast per pound.
+cooked-chicken,Cooked chicken,false,false,false,cup,231,USDA FoodData Central,Cooked shredded chicken per cup.
+coconut-cream,Coconut cream,false,false,false,tbsp,90,USDA FoodData Central,Coconut cream per tablespoon.
+coconut-aminos,Coconut aminos,false,false,false,tbsp,15,Manufacturer,Coconut aminos per tablespoon.
+lime,Lime,false,false,false,count,20,USDA FoodData Central,Medium lime.
+turmeric-powder,Turmeric powder,false,false,false,tsp,9,USDA FoodData Central,Turmeric powder per teaspoon.
+cilantro,Cilantro,false,false,false,cup,4,USDA FoodData Central,Fresh cilantro per cup.
+cauliflower-rice,Cauliflower rice,false,false,false,cup,25,USDA FoodData Central,Cauliflower rice per cup.
+bread-crumbs,Bread crumbs,true,false,false,cup,427,USDA FoodData Central,Dry bread crumbs per cup.
+acorn-squash,Acorn squash,false,false,false,cup,56,USDA FoodData Central,Raw acorn squash cubes per cup.
+sausage,Sausage,false,false,false,count,140,USDA FoodData Central,Pork sausage link.
+cheese,Cheese,false,false,true,oz,113,USDA FoodData Central,Cheddar cheese per ounce.
+cheddar-mozzarella-cheese,Cheddar mozzarella cheese blend,false,false,true,cup,400,Estimate,Shredded cheddar-mozzarella blend per cup.
+butternut-squash,Butternut squash,false,false,false,cup,63,USDA FoodData Central,Butternut squash cubes per cup.
+baking-soda,Baking soda,false,false,false,tsp,0,USDA FoodData Central,Baking soda per teaspoon.
+chocolate-chips,Chocolate chips,false,false,true,cup,800,USDA FoodData Central,Semisweet chocolate chips per cup.
+dairy-free-chocolate-chips,Dairy-free chocolate chips,false,false,false,cup,780,Estimate,Dairy-free chocolate chips per cup.
+italian_seasoning,Italian seasoning,false,false,false,tsp,5,USDA FoodData Central,Italian seasoning per teaspoon.
+olive_oil,Olive oil,false,false,false,tbsp,119,USDA FoodData Central,Per tablespoon.
+parmesan_cheese,Parmesan cheese,false,false,true,oz,111,USDA FoodData Central,Parmesan cheese per ounce.
+beef_bouillon,Beef bouillon,false,false,false,cube,10,USDA FoodData Central,Beef bouillon cube.
+soy_sauce,Soy sauce,true,false,false,tbsp,8,USDA FoodData Central,Soy sauce per tablespoon.
+worcestershire_sauce,Worcestershire sauce,false,false,false,tbsp,13,USDA FoodData Central,Worcestershire sauce per tablespoon.
+teriyaki-sauce,Teriyaki sauce,true,false,false,tbsp,16,USDA FoodData Central,Teriyaki sauce per tablespoon.
+onion_powder,Onion powder,false,false,false,tsp,10,USDA FoodData Central,Onion powder per teaspoon.
+dried_thyme,Dried thyme,false,false,false,tsp,3,USDA FoodData Central,Dried thyme per teaspoon.
+mustard_powder,Mustard powder,false,false,false,tsp,6,USDA FoodData Central,Dry mustard per teaspoon.
+heavy_cream,Heavy cream,false,false,true,tbsp,52,USDA FoodData Central,Heavy cream per tablespoon.
+shortening,Shortening,false,false,false,tbsp,110,Crisco,Vegetable shortening per tablespoon.
+egg-yolk,Egg yolk,false,true,false,count,55,Medical News Today,Large egg yolk.
+almond-extract,Almond extract,false,false,false,tsp,12,USDA FoodData Central,Almond extract per teaspoon.
+food-coloring,Food coloring,false,false,false,tsp,5,USDA FoodData Central,Liquid food coloring per teaspoon.
+beef,Beef,false,false,false,lb,970,USDA FoodData Central,Raw beef per pound (~85% lean).
+green-beans,Green beans,false,false,false,cup,31,USDA FoodData Central,Green beans per cup.
+pinto-beans,Pinto beans,false,false,false,cup,245,USDA FoodData Central,Cooked pinto beans per cup.
+peas,Peas,false,false,false,cup,134,Medical News Today,Cooked green peas per cup.
+corn,Corn,false,false,false,cup,177,USDA FoodData Central,Cooked sweet corn per cup.
+celery-salt,Celery salt,false,false,false,,,,
+white-pepper,White pepper,false,false,false,,,,
+american-cheese,American cheese,false,false,true,,,,
+tuna,Tuna,false,false,false,,,,
+green-pepper,Green pepper,false,false,false,,,,
+green-olives,Green olives,false,false,false,,,,
+sweet-pickles,Sweet pickles,false,false,false,,,,
+nacho-chips,Nacho chips,false,false,false,,,,
+mayonnaise,Mayonnaise,false,true,false,,,,
+hot-dog-buns,Hot dog buns,true,false,false,,,,
+cream-of-tartar,Cream of tartar,false,false,false,,,,
+peanut-butter,Peanut butter,false,false,false,,,,
+peanuts,Peanuts,false,false,false,,,,
+noodles,Noodles,true,false,false,,,,
+ketchup,Ketchup,false,false,false,,,,
+vinegar,Vinegar,false,false,false,,,,
+prepared-mustard,Prepared mustard,false,false,false,,,,
+hamburger-buns,Hamburger buns,true,false,false,,,,
+sesame-seeds,Sesame seeds,false,false,false,,,,
+stew-beef,Stew beef,false,false,false,,,,
+onion-flakes,Onion flakes,false,false,false,,,,
+egg-noodles,Egg noodles,true,true,false,,,,
+ground-turkey,Ground turkey,false,false,false,lb,640,USDA FoodData Central,93% lean ground turkey per pound.
+crushed-tomatoes,Crushed tomatoes,false,false,false,,,,
+stewed-tomatoes,Stewed tomatoes,false,false,false,,,,
+kidney-beans,Kidney beans,false,false,false,,,,
+chili-powder,Chili powder,false,false,false,,,,
+paprika,Paprika,false,false,false,,,,
+tomatoes,Tomatoes,false,false,false,,,,
+cream-of-celery-soup,Cream of celery soup,true,false,true,,,,
+cream-of-chicken-soup,Cream of chicken soup,true,false,true,,,,
+velveeta,Velveeta,false,false,true,,,,
+rotel,Rotel tomatoes with green chiles,false,false,false,,,,
+cheddar-cheese,Cheddar cheese,false,false,true,cup,455,USDA FoodData Central,Shredded cheddar per cup.
+crescent-rolls,Crescent rolls,true,true,true,,,,
+margarine,Margarine,false,false,true,,,,
+turkey,Turkey,false,false,false,,,,
+mushrooms,Mushrooms,false,false,false,,,,
+pimiento,Pimiento,false,false,false,,,,
+almonds,Almonds,false,false,false,,,,
+orange-gelatin,Orange gelatin,false,false,false,,,,
+orange-sherbet,Orange sherbet,false,false,true,,,,
+mandarin-oranges,Mandarin oranges,false,false,false,,,,
+tomato-soup,Tomato soup,false,false,false,,,,
+cream-cheese,Cream cheese,false,false,true,,,,
+whipped-cream,Whipped cream,false,false,true,,,,
+pumpkin-puree,Pumpkin puree,false,false,false,,,,
+pumpkin-spice,Pumpkin spice,false,false,false,,,,
+green-onion,Green onion,false,false,false,,,,
+macaroni,Macaroni,true,false,false,,,,
+whole-tomatoes,Whole tomatoes,false,false,false,,,,
+canned-chicken,Canned chicken,false,false,false,,,,
+seasoned-salt,Seasoned salt,false,false,false,,,,
+tomato-paste,Tomato paste,false,false,false,,,,
+cocoa-powder,Cocoa powder,false,false,false,,,,
+graham-cracker-crumbs,Graham cracker crumbs,true,false,false,,,,
+shredded-coconut,Shredded coconut,false,false,false,,,,
+vanilla-pudding-powder,Vanilla pudding powder,false,false,true,,,,
+chopped-nuts,Chopped nuts,false,false,false,,,,
+basic-roll-dough,Basic Roll Dough,true,true,true,,,,
+active-dry-yeast,Active dry yeast,false,false,false,,,,
+aquafaba,Aquafaba,false,false,false,,,,
+psyllium-husk,Psyllium husk,false,false,false,,,,
+xanthan-gum,Xanthan gum,false,false,false,,,,

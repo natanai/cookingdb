@@ -90,25 +90,29 @@ function loadIngredientCatalog(catalogPath) {
       contains_egg: row.contains_egg === 'true',
       contains_dairy: row.contains_dairy === 'true',
       canonical_name: row.canonical_name,
+      nutrition_unit: row.nutrition_unit || '',
+      calories_per_unit: row.calories_per_unit || '',
+      nutrition_source: row.nutrition_source || '',
+      nutrition_notes: row.nutrition_notes || '',
     });
   }
   return map;
 }
 
-function loadIngredientNutrition(nutritionPath) {
-  if (!fs.existsSync(nutritionPath)) return new Map();
-  const rows = fs.readFileSync(nutritionPath, 'utf-8');
+function loadIngredientNutritionFromCatalog(catalogPath) {
+  if (!fs.existsSync(catalogPath)) return new Map();
+  const rows = fs.readFileSync(catalogPath, 'utf-8');
   const parsed = rows ? simpleParseCSV(rows) : [];
   const map = new Map();
   for (const row of parsed) {
-    if (!row.ingredient_id || !row.unit) continue;
+    if (!row.ingredient_id || !row.nutrition_unit) continue;
     const calories = Number(row.calories_per_unit);
-    map.set(`${row.ingredient_id}::${row.unit}`, {
+    map.set(`${row.ingredient_id}::${row.nutrition_unit}`, {
       ingredient_id: row.ingredient_id,
-      unit: row.unit,
+      unit: row.nutrition_unit,
       calories_per_unit: Number.isFinite(calories) ? calories : null,
-      source: row.source || '',
-      notes: row.notes || '',
+      source: row.nutrition_source || '',
+      notes: row.nutrition_notes || '',
     });
   }
   return map;
@@ -274,7 +278,7 @@ async function build() {
   await validateAll();
   const catalogPath = path.join(process.cwd(), 'data', 'ingredient_catalog.csv');
   const catalog = loadIngredientCatalog(catalogPath);
-  const nutritionCatalog = loadIngredientNutrition(path.join(process.cwd(), 'data', 'ingredient_nutrition.csv'));
+  const nutritionCatalog = loadIngredientNutritionFromCatalog(catalogPath);
   const nutritionGuidelines = loadNutritionGuidelines(path.join(process.cwd(), 'data', 'nutrition_guidelines.json'));
   const panCatalog = loadPanCatalog(path.join(process.cwd(), 'data', 'pan-sizes.json'));
   const recipesDir = path.join(process.cwd(), 'recipes');
