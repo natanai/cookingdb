@@ -6,6 +6,7 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "build": "node scripts/build.mjs",
+    "report:missing-portions": "node scripts/report_missing_portions.js",
     "test": "node docs/recipe-utils.test.mjs"
   }
 }

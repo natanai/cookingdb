@@ -1,4 +1,10 @@
-import { convertUnitAmount, getEffectiveMultiplier, parseRatio, selectOptionForToken } from './recipe-utils.js';
+import {
+  convertUnitAmount,
+  getEffectiveMultiplier,
+  parseRatio,
+  selectOptionForToken,
+  unitDefinition,
+} from './recipe-utils.js';
 
 const SETTINGS_KEY = 'cookingdb-nutrition-settings';
 
@@ -28,15 +34,36 @@ const DEFAULT_POLICY = {
 
 const UNIT_ALIASES = new Map([
   ['cloves', 'clove'],
-  ['medium', 'count'],
-  ['large', 'count'],
-  ['small', 'count'],
-  ['piece', 'count'],
-  ['package', 'count'],
-  ['bag', 'count'],
-  ['bunch', 'count'],
-  ['sprig', 'count'],
-  ['can', 'count'],
+  ['clove', 'clove'],
+  ['sprigs', 'sprig'],
+  ['sprig', 'sprig'],
+  ['leaves', 'leaf'],
+  ['leaf', 'leaf'],
+  ['pieces', 'piece'],
+  ['piece', 'piece'],
+  ['packages', 'package'],
+  ['package', 'package'],
+  ['bags', 'bag'],
+  ['bag', 'bag'],
+  ['bunches', 'bunch'],
+  ['bunch', 'bunch'],
+  ['cans', 'can'],
+  ['can', 'can'],
+  ['tablespoons', 'tbsp'],
+  ['tablespoon', 'tbsp'],
+  ['teaspoons', 'tsp'],
+  ['teaspoon', 'tsp'],
+  ['cups', 'cup'],
+  ['ounces', 'oz'],
+  ['ounce', 'oz'],
+  ['pounds', 'lb'],
+  ['pound', 'lb'],
+  ['liters', 'l'],
+  ['liter', 'l'],
+  ['milliliters', 'ml'],
+  ['milliliter', 'ml'],
+  ['ml', 'ml'],
+  ['l', 'l'],
   ['dash', 'tsp'],
   ['drop', 'tsp'],
 ]);
@@ -88,6 +115,46 @@ export async function loadNutritionPolicy() {
   }
 
   return DEFAULT_POLICY;
+}
+
+export async function loadIngredientPortions() {
+  try {
+    const res = await fetch('./built/ingredient-portions.json');
+    if (res.ok) {
+      const parsed = await res.json();
+      const map = new Map();
+      parsed.forEach((entry) => {
+        if (!entry?.ingredient_id || !entry?.unit) return;
+        const normalizedUnit = normalizeUnit(entry.unit);
+        if (!normalizedUnit) return;
+        const grams = Number(entry.grams);
+        if (!Number.isFinite(grams)) return;
+        map.set(`${entry.ingredient_id}::${normalizedUnit}`, {
+          ingredient_id: entry.ingredient_id,
+          unit: normalizedUnit,
+          grams,
+          source: entry.source || '',
+          notes: entry.notes || '',
+        });
+      });
+      return map;
+    }
+  } catch (err) {
+    console.warn('Unable to load ingredient portions', err);
+  }
+  return new Map();
+}
+
+export async function loadNutritionCoverage() {
+  try {
+    const res = await fetch('./built/nutrition-coverage.json');
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (err) {
+    console.warn('Unable to load nutrition coverage', err);
+  }
+  return { missing_count: null, strict: false };
 }
 
 export function normalizeMealFractions(fractions, policy = DEFAULT_POLICY) {
@@ -168,6 +235,50 @@ function ratioToNumber(ratio) {
   return Number.isFinite(value) ? value : null;
 }
 
+function gramsPerUnitFromPortions(ingredientId, unit, portions) {
+  if (!ingredientId || !unit || !portions) return null;
+  const normalizedUnit = normalizeUnit(unit);
+  if (!normalizedUnit) return null;
+  const entry = portions.get(`${ingredientId}::${normalizedUnit}`);
+  return entry?.grams ?? null;
+}
+
+function amountToGrams(ingredientId, amount, unit, portions) {
+  if (!ingredientId || !Number.isFinite(amount)) return null;
+  const normalizedUnit = normalizeUnit(unit);
+  if (!normalizedUnit) return null;
+
+  const def = unitDefinition(normalizedUnit);
+
+  if (def?.group === 'mass') {
+    return convertUnitAmount(amount, normalizedUnit, 'g')?.amount ?? null;
+  }
+
+  if (def?.group === 'volume') {
+    const direct = gramsPerUnitFromPortions(ingredientId, normalizedUnit, portions);
+    if (Number.isFinite(direct)) {
+      return amount * direct;
+    }
+    const asMl = convertUnitAmount(amount, normalizedUnit, 'ml');
+    const gramsPerMl = gramsPerUnitFromPortions(ingredientId, 'ml', portions);
+    if (asMl && Number.isFinite(gramsPerMl)) {
+      return asMl.amount * gramsPerMl;
+    }
+    const asTsp = convertUnitAmount(amount, normalizedUnit, 'tsp');
+    const gramsPerTsp = gramsPerUnitFromPortions(ingredientId, 'tsp', portions);
+    if (asTsp && Number.isFinite(gramsPerTsp)) {
+      return asTsp.amount * gramsPerTsp;
+    }
+    return null;
+  }
+
+  const portion = gramsPerUnitFromPortions(ingredientId, normalizedUnit, portions);
+  if (Number.isFinite(portion)) {
+    return amount * portion;
+  }
+  return null;
+}
+
 export function computeBatchTotals(recipe, state) {
   const totals = {
     kcal: 0,
@@ -178,9 +289,14 @@ export function computeBatchTotals(recipe, state) {
     sugars_g: 0,
     fiber_g: 0,
     sodium_mg: 0,
+    calcium_mg: 0,
+    iron_mg: 0,
+    potassium_mg: 0,
+    vitamin_c_mg: 0,
     added_sugar_g: null,
     grams_total: 0,
     coverage: { covered: 0, total: 0 },
+    missing_details: [],
     missing: false,
   };
 
@@ -199,69 +315,68 @@ export function computeBatchTotals(recipe, state) {
     const amount = ratioToNumber(option.ratio);
     if (!Number.isFinite(amount)) return;
 
-    const nutrition = option.nutrition || null;
-    const nutritionUnit = normalizeUnit(nutrition?.unit);
-    const inputUnit = normalizeUnit(option.unit);
-
     totals.coverage.total += 1;
 
-    if (!nutrition || !nutritionUnit || !inputUnit) {
-      totals.missing = true;
-      return;
-    }
-
     const scaledAmount = amount * multiplier;
-    let converted = convertUnitAmount(scaledAmount, inputUnit, nutritionUnit);
-    if (!converted && state?.unitSelections?.[token]) {
-      const altUnit = normalizeUnit(state.unitSelections[token]);
-      if (altUnit) {
-        converted = convertUnitAmount(scaledAmount, altUnit, nutritionUnit);
-      }
-    }
+    const nutrition = option.nutrition || null;
+    const perGram = nutrition?.per_g || null;
+    const portions = state?.ingredientPortions || null;
+    const selectedUnit = state?.unitSelections?.[token] || option.unit;
+    const grams = amountToGrams(option.ingredient_id, scaledAmount, selectedUnit, portions);
 
-    if (!converted) {
+    if (!Number.isFinite(grams)) {
       totals.missing = true;
+      totals.missing_details.push({
+        ingredient_id: option.ingredient_id,
+        unit: normalizeUnit(selectedUnit) || selectedUnit,
+        reason: 'missing-portion',
+      });
       return;
     }
 
     const requiredFields = [
-      nutrition.calories_per_unit,
-      nutrition.protein_g,
-      nutrition.total_fat_g,
-      nutrition.saturated_fat_g,
-      nutrition.total_carbs_g,
-      nutrition.sugars_g,
-      nutrition.fiber_g,
-      nutrition.sodium_mg,
+      perGram?.kcal,
+      perGram?.protein_g,
+      perGram?.fat_g,
+      perGram?.sat_fat_g,
+      perGram?.carbs_g,
+      perGram?.sugars_g,
+      perGram?.fiber_g,
+      perGram?.sodium_mg,
     ];
 
-    if (requiredFields.some((value) => !Number.isFinite(value))) {
+    if (!perGram || requiredFields.some((value) => !Number.isFinite(value))) {
       totals.missing = true;
+      totals.missing_details.push({
+        ingredient_id: option.ingredient_id,
+        unit: normalizeUnit(selectedUnit) || selectedUnit,
+        reason: 'missing-nutrition-density',
+      });
       return;
     }
 
     totals.coverage.covered += 1;
 
-    const units = converted.amount;
-    totals.kcal += units * nutrition.calories_per_unit;
-    totals.protein_g += units * nutrition.protein_g;
-    totals.fat_g += units * nutrition.total_fat_g;
-    totals.sat_fat_g += units * nutrition.saturated_fat_g;
-    totals.carbs_g += units * nutrition.total_carbs_g;
-    totals.sugars_g += units * nutrition.sugars_g;
-    totals.fiber_g += units * nutrition.fiber_g;
-    totals.sodium_mg += units * nutrition.sodium_mg;
+    totals.kcal += grams * perGram.kcal;
+    totals.protein_g += grams * perGram.protein_g;
+    totals.fat_g += grams * perGram.fat_g;
+    totals.sat_fat_g += grams * perGram.sat_fat_g;
+    totals.carbs_g += grams * perGram.carbs_g;
+    totals.sugars_g += grams * perGram.sugars_g;
+    totals.fiber_g += grams * perGram.fiber_g;
+    totals.sodium_mg += grams * perGram.sodium_mg;
+    if (Number.isFinite(perGram.calcium_mg)) totals.calcium_mg += grams * perGram.calcium_mg;
+    if (Number.isFinite(perGram.iron_mg)) totals.iron_mg += grams * perGram.iron_mg;
+    if (Number.isFinite(perGram.potassium_mg)) totals.potassium_mg += grams * perGram.potassium_mg;
+    if (Number.isFinite(perGram.vitamin_c_mg)) totals.vitamin_c_mg += grams * perGram.vitamin_c_mg;
 
-    if (Number.isFinite(nutrition.added_sugar_g)) {
-      totals.added_sugar_g = (totals.added_sugar_g || 0) + units * nutrition.added_sugar_g;
+    if (Number.isFinite(perGram.added_sugar_g)) {
+      totals.added_sugar_g = (totals.added_sugar_g || 0) + grams * perGram.added_sugar_g;
       hasAddedSugar = true;
     }
 
-    const grams = convertUnitAmount(scaledAmount, inputUnit, 'g');
-    if (grams && Number.isFinite(grams.amount)) {
-      totals.grams_total += grams.amount;
-      gramsCovered += 1;
-    }
+    totals.grams_total += grams;
+    gramsCovered += 1;
   });
 
   if (!hasAddedSugar) {
@@ -286,6 +401,10 @@ function scaleTotals(totals, factor) {
     sugars_g: totals.sugars_g * factor,
     fiber_g: totals.fiber_g * factor,
     sodium_mg: totals.sodium_mg * factor,
+    calcium_mg: totals.calcium_mg * factor,
+    iron_mg: totals.iron_mg * factor,
+    potassium_mg: totals.potassium_mg * factor,
+    vitamin_c_mg: totals.vitamin_c_mg * factor,
     grams_total: totals.grams_total === null ? null : totals.grams_total * factor,
     added_sugar_g: totals.added_sugar_g === null ? null : totals.added_sugar_g * factor,
   };

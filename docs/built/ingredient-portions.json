@@ -1,0 +1,44 @@
+[
+  {
+    "ingredient_id": "salt",
+    "unit": "tsp",
+    "grams": 6,
+    "source": "USDA (table salt)",
+    "notes": "Approx 1 tsp table salt."
+  },
+  {
+    "ingredient_id": "black-pepper",
+    "unit": "tsp",
+    "grams": 2.3,
+    "source": "USDA (ground black pepper)",
+    "notes": "Approx 1 tsp ground black pepper."
+  },
+  {
+    "ingredient_id": "apple-cider",
+    "unit": "ml",
+    "grams": 1,
+    "source": "USDA (apple juice density)",
+    "notes": "Approx 1 ml ≈ 1 g."
+  },
+  {
+    "ingredient_id": "beef-broth",
+    "unit": "ml",
+    "grams": 1,
+    "source": "USDA (broth density)",
+    "notes": "Approx 1 ml ≈ 1 g."
+  },
+  {
+    "ingredient_id": "chicken-broth",
+    "unit": "ml",
+    "grams": 1,
+    "source": "USDA (broth density)",
+    "notes": "Approx 1 ml ≈ 1 g."
+  },
+  {
+    "ingredient_id": "thyme",
+    "unit": "sprig",
+    "grams": 0.2,
+    "source": "USDA (fresh thyme)",
+    "notes": "Approx 1 sprig ~0.2 g."
+  }
+]

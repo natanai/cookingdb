@@ -12,6 +12,8 @@ import {
   computeBatchTotals,
   deriveDailyTargets,
   estimateServings,
+  loadIngredientPortions,
+  loadNutritionCoverage,
   loadNutritionPolicy,
   loadNutritionSettings,
   normalizeMealFractions,
@@ -43,6 +45,8 @@ const state = {
   selections: new Map(),
   nutritionPolicy: null,
   nutritionSettings: null,
+  ingredientPortions: null,
+  nutritionCoverage: null,
   plan: {
     weeks: 1,
     useCustom: false,
@@ -402,6 +406,7 @@ function computeSelectionNutrition(selection) {
   const recipeState = selection.state;
   recipeState.multiplier = selection.batchSize;
   recipeState.restrictions = selection.restrictions;
+  recipeState.ingredientPortions = state.ingredientPortions;
   const totals = computeBatchTotals(selection.recipe, recipeState);
   if (!totals.complete) {
     return { totals, estimate: null, perServing: null };
@@ -814,7 +819,13 @@ function renderSelections() {
         const coverage = nutrition?.totals?.coverage?.total
           ? Math.round((nutrition.totals.coverage.covered / nutrition.totals.coverage.total) * 100)
           : 0;
-        nutritionWarning.textContent = `Nutrition incomplete: ${nutrition?.totals?.coverage?.covered || 0}/${nutrition?.totals?.coverage?.total || 0} ingredients (${coverage}%) have nutrition data.`;
+        const missingSummary = (nutrition?.totals?.missing_details || [])
+          .map((entry) => `${entry.ingredient_id}${entry.unit ? ` (${entry.unit})` : ''}`)
+          .filter(Boolean);
+        const uniqueMissing = [...new Set(missingSummary)];
+        nutritionWarning.textContent =
+          `Nutrition incomplete: ${nutrition?.totals?.coverage?.covered || 0}/${nutrition?.totals?.coverage?.total || 0} ingredients (${coverage}%) have nutrition data.` +
+          (uniqueMissing.length ? ` Missing: ${uniqueMissing.join(', ')}.` : '');
         nutritionWarning.style.display = '';
         estimateLine.textContent = 'Nutrition estimate unavailable for this recipe.';
         perServingList.innerHTML = '';
@@ -1162,15 +1173,27 @@ function setupPrintButtons() {
 }
 
 async function startPlanner() {
-  const [recipesPayload, nutritionPolicy] = await Promise.all([
+  const [recipesPayload, nutritionPolicy, ingredientPortions, nutritionCoverage] = await Promise.all([
     loadRecipes(),
     loadNutritionPolicy(),
+    loadIngredientPortions(),
+    loadNutritionCoverage(),
   ]);
   const { recipes, recipeIndex } = recipesPayload;
   state.recipes = recipes;
   state.recipeIndex = recipeIndex;
   state.nutritionPolicy = nutritionPolicy;
   state.nutritionSettings = loadNutritionSettings(nutritionPolicy);
+  state.ingredientPortions = ingredientPortions;
+  state.nutritionCoverage = nutritionCoverage;
+
+  const nutritionBanner = document.getElementById('planner-nutrition-banner');
+  if (nutritionBanner && nutritionCoverage?.missing_count) {
+    nutritionBanner.hidden = false;
+    nutritionBanner.textContent =
+      `Nutrition data is still filling in (${nutritionCoverage.missing_count} missing portion or density entries). ` +
+      'Totals are estimates until coverage is complete.';
+  }
 
   setupPlanControls();
   setupSearch();

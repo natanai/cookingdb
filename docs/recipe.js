@@ -15,6 +15,8 @@ import {
 import {
   computeBatchTotals,
   estimateServings,
+  loadIngredientPortions,
+  loadNutritionCoverage,
   loadNutritionPolicy,
   loadNutritionSettings,
   normalizeMealFractions,
@@ -609,7 +611,7 @@ function setupPanControls(recipe, state, rerender) {
   return true;
 }
 
-function renderRecipe(recipeInput, nutritionPolicy) {
+function renderRecipe(recipeInput, nutritionPolicy, ingredientPortions, nutritionCoverage) {
   const recipe = normalizeRecipeForPage(recipeInput) || recipeInput;
   recipe.nutritionPolicy = nutritionPolicy;
 
@@ -628,6 +630,8 @@ function renderRecipe(recipeInput, nutritionPolicy) {
   const nutritionDetails = document.getElementById('recipe-nutrition-details');
   const nutritionMetrics = document.getElementById('recipe-nutrition-metrics');
   const nutritionTargets = document.getElementById('recipe-nutrition-targets');
+  const nutritionCoverageBadge = document.getElementById('recipe-nutrition-coverage');
+  const nutritionCoverageBanner = document.getElementById('nutrition-coverage-banner');
   const nutritionDailyInput = document.getElementById('nutrition-daily-kcal');
   const nutritionWeightInput = document.getElementById('nutrition-weight-lb');
   const nutritionMealInputs = {
@@ -663,12 +667,20 @@ function renderRecipe(recipeInput, nutritionPolicy) {
     selectedOptions: {},
     unitSelections: {},
     recipeIndex: recipe.recipeIndex || null,
+    ingredientPortions,
     restrictions: {
       gluten_free: compatibilityPossible.gluten_free ? resolveRestriction('gluten_free') : false,
       egg_free: compatibilityPossible.egg_free ? resolveRestriction('egg_free') : false,
       dairy_free: compatibilityPossible.dairy_free ? resolveRestriction('dairy_free') : false,
     },
   };
+
+  if (nutritionCoverageBanner && nutritionCoverage?.missing_count) {
+    nutritionCoverageBanner.hidden = false;
+    nutritionCoverageBanner.textContent =
+      `Nutrition data is still filling in (${nutritionCoverage.missing_count} missing portion or density entries). ` +
+      'Totals are estimates until coverage is complete.';
+  }
 
   if (multiplierInput) multiplierInput.value = state.multiplier;
 
@@ -766,15 +778,27 @@ function renderRecipe(recipeInput, nutritionPolicy) {
   const updateNutritionEstimate = () => {
     if (!nutritionEl) return;
     const totals = computeBatchTotals(recipe, state);
+    const coverage = totals.coverage.total
+      ? Math.round((totals.coverage.covered / totals.coverage.total) * 100)
+      : 0;
+    if (nutritionCoverageBadge) {
+      nutritionCoverageBadge.textContent =
+        totals.coverage.total > 0
+          ? `Nutrition coverage: ${totals.coverage.covered}/${totals.coverage.total} (${coverage}%)`
+          : 'Nutrition coverage: —';
+    }
     if (!totals.complete) {
       const batchServings = Number.isFinite(Number(recipe.servings_per_batch))
         ? Number(recipe.servings_per_batch)
         : null;
       if (nutritionWarning) {
-        const coverage = totals.coverage.total
-          ? Math.round((totals.coverage.covered / totals.coverage.total) * 100)
-          : 0;
-        nutritionWarning.textContent = `Nutrition incomplete: ${totals.coverage.covered}/${totals.coverage.total} ingredients (${coverage}%) have nutrition data.`;
+        const missingSummary = (totals.missing_details || [])
+          .map((entry) => `${entry.ingredient_id}${entry.unit ? ` (${entry.unit})` : ''}`)
+          .filter(Boolean);
+        const uniqueMissing = [...new Set(missingSummary)];
+        nutritionWarning.textContent =
+          `Nutrition incomplete: ${totals.coverage.covered}/${totals.coverage.total} ingredients (${coverage}%) have nutrition data.` +
+          (uniqueMissing.length ? ` Missing: ${uniqueMissing.join(', ')}.` : '');
         nutritionWarning.hidden = false;
       }
       if (nutritionDetails) {
@@ -959,9 +983,11 @@ async function main() {
     return;
   }
 
-  const [recipesPayload, nutritionPolicy] = await Promise.all([
+  const [recipesPayload, nutritionPolicy, ingredientPortions, nutritionCoverage] = await Promise.all([
     loadRecipes(),
     loadNutritionPolicy(),
+    loadIngredientPortions(),
+    loadNutritionCoverage(),
   ]);
   const { recipes, recipeIndex } = recipesPayload;
 
@@ -972,7 +998,7 @@ async function main() {
   }
 
   recipe.recipeIndex = recipeIndex;
-  renderRecipe(recipe, nutritionPolicy);
+  renderRecipe(recipe, nutritionPolicy, ingredientPortions, nutritionCoverage);
 }
 
 main().catch((err) => {

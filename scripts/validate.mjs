@@ -130,9 +130,11 @@ export async function validateAll() {
   const recipesDir = path.join(process.cwd(), 'recipes');
   const recipeDirs = fs.readdirSync(recipesDir, { withFileTypes: true }).filter((ent) => ent.isDirectory());
   const ingredientCatalogPath = path.join(process.cwd(), 'data', 'ingredient_catalog.csv');
+  const ingredientPortionsPath = path.join(process.cwd(), 'data', 'ingredient_portions.csv');
   const nutritionGuidelinesPath = path.join(process.cwd(), 'data', 'nutrition_guidelines.json');
   const nutritionPolicyPath = path.join(process.cwd(), 'data', 'nutrition_policy.json');
   ensure(fs.existsSync(ingredientCatalogPath), 'Missing ingredient_catalog.csv');
+  ensure(fs.existsSync(ingredientPortionsPath), 'Missing ingredient_portions.csv');
   ensure(fs.existsSync(nutritionGuidelinesPath), 'Missing nutrition_guidelines.json');
   ensure(fs.existsSync(nutritionPolicyPath), 'Missing nutrition_policy.json');
   const ingredientCatalogRows = await parseCSVFile(ingredientCatalogPath);
@@ -163,6 +165,12 @@ export async function validateAll() {
     );
     ensure(!ingredientCatalogIds.has(row.ingredient_id), `ingredient_catalog.csv duplicate ingredient_id ${row.ingredient_id}`);
     ingredientCatalogIds.add(row.ingredient_id);
+  });
+  const ingredientPortionsRows = await parseCSVFile(ingredientPortionsPath);
+  ingredientPortionsRows.forEach((row, idx) => {
+    ensure(row.ingredient_id, `ingredient_portions.csv missing ingredient_id on row ${idx + 2}`);
+    ensure(row.unit, `ingredient_portions.csv missing unit on row ${idx + 2}`);
+    ensure(row.grams, `ingredient_portions.csv missing grams on row ${idx + 2}`);
   });
   const panCatalog = loadPanCatalog(path.join(process.cwd(), 'data', 'pan-sizes.json'));
   const ratioPattern = /^\d+(?: \d+\/\d+|\/\d+)?$/;
