@@ -60,6 +60,20 @@
     }
   },
   {
+    "id": "basic-roll-dough",
+    "title": "Basic Roll Dough",
+    "byline": "",
+    "categories": [
+      "Desserts & Baking"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "beef-noodles",
     "title": "Beef and Noodles",
     "byline": "",
@@ -443,6 +457,20 @@
     "family": "Burrows",
     "compatibility_possible": {
       "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "russian-teacakes",
+    "title": "Russian Teacakes (Mexican Wedding Cakes)",
+    "byline": "",
+    "categories": [
+      "Desserts & Baking"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
       "egg_free": true,
       "dairy_free": true
     }

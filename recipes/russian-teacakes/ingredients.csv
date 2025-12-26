@@ -2,9 +2,9 @@ token,option,display,ratio,unit,ingredient_id
 butter_choice,butter,butter,1,cup,butter
 butter_choice,margarine,margarine,1,cup,margarine
 butter_choice,vegan,vegan butter,1,cup,vegan-butter
-powdered_sugar,,confectioners' sugar, sifted,1/2,cup,powdered-sugar
+powdered_sugar,,"confectioners' sugar, sifted",1/2,cup,powdered-sugar
 vanilla_extract,,vanilla extract,1,tsp,vanilla-extract
-flour,,all-purpose flour (or gluten-free 1:1 blend; if your blend does not include xanthan gum, add 1/4 tsp xanthan gum),2 1/4,cup,wheat-flour
+flour,,"all-purpose flour (or gluten-free 1:1 blend; if your blend does not include xanthan gum, add 1/4 tsp xanthan gum)",2 1/4,cup,wheat-flour
 salt,,salt,1/4,tsp,salt
-nuts,,finely chopped nuts (optional; toasted pepitas or sunflower seeds work well, or omit for nut-free),3/4,cup,chopped-nuts
-rolling_sugar,,confectioners' sugar, for rolling,,,powdered-sugar
+nuts,,"finely chopped nuts (optional; toasted pepitas or sunflower seeds work well, or omit for nut-free)",3/4,cup,chopped-nuts
+rolling_sugar,,"confectioners' sugar, for rolling",,,powdered-sugar
