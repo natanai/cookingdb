@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes,categories,family,byline
-lorenes-vegetable-soup,Vegetable Soup,multiplier,1,,Soups & Stews; Family; Burrows,Burrows,Lorene’s
+id,title,base_kind,default_base,servings_per_batch,notes,categories,family,byline
+lorenes-vegetable-soup,Vegetable Soup,multiplier,1,4,,Soups & Stews; Family; Burrows,Burrows,Lorene’s

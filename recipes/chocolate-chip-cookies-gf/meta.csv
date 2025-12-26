@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes,categories,family
-chocolate-chip-cookies-gf,Chocolate Chip Cookies (Gluten Free),multiplier,1,"Use a gluten-free flour blend with xanthan gum. For dairy-free, choose vegan butter and dairy-free chips.",Desserts & Baking; Family,
+id,title,base_kind,default_base,servings_per_batch,notes,categories,family
+chocolate-chip-cookies-gf,Chocolate Chip Cookies (Gluten Free),multiplier,1,4,"Use a gluten-free flour blend with xanthan gum. For dairy-free, choose vegan butter and dairy-free chips.",Desserts & Baking; Family,

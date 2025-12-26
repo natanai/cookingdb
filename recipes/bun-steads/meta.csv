@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes,categories,family
-bun-steads,Bun-steads (Tuna Cheesies),multiplier,1,,Mains; Family; Burrows,Burrows
+id,title,base_kind,default_base,servings_per_batch,notes,categories,family
+bun-steads,Bun-steads (Tuna Cheesies),multiplier,1,4,,Mains; Family; Burrows,Burrows

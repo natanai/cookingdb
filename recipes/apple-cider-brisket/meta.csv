@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes,categories,family
-apple-cider-brisket,Apple Cider Brisket,multiplier,1,Use a 3–4 lb brisket. This braise layers apple cider with broth and root vegetables.,Mains; Family,
+id,title,base_kind,default_base,servings_per_batch,notes,categories,family
+apple-cider-brisket,Apple Cider Brisket,multiplier,1,4,Use a 3–4 lb brisket. This braise layers apple cider with broth and root vegetables.,Mains; Family,

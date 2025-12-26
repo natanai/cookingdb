@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes,categories,family
-chili-con-carne-turkey,Chili Con Carne (Turkey),multiplier,1,Doubled batch made with ground turkey.,Soups & Stews; Family; Burrows,Burrows
+id,title,base_kind,default_base,servings_per_batch,notes,categories,family
+chili-con-carne-turkey,Chili Con Carne (Turkey),multiplier,1,4,Doubled batch made with ground turkey.,Soups & Stews; Family; Burrows,Burrows

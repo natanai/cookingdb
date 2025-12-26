@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes,categories,family
-gluten-free-peanut-butter-cookies,Gluten-Free Peanut Butter Cookies,multiplier,1,Makes about 24 cookies.,Desserts & Baking; Family; Burrows,Burrows
+id,title,base_kind,default_base,servings_per_batch,notes,categories,family
+gluten-free-peanut-butter-cookies,Gluten-Free Peanut Butter Cookies,multiplier,1,4,Makes about 24 cookies.,Desserts & Baking; Family; Burrows,Burrows

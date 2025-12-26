@@ -992,6 +992,7 @@ function buildRecipeDraft() {
   const familyInput = document.getElementById('family');
   const categoriesSelect = document.getElementById('categories');
   const defaultBaseInput = document.getElementById('default-base');
+  const servingsInput = document.getElementById('servings-per-batch');
 
   const title = titleInput.value.trim();
   const slug = slugInput.value.trim();
@@ -999,6 +1000,7 @@ function buildRecipeDraft() {
   const family = familyInput ? familyInput.value.trim() : '';
   const categories = categoriesSelect ? [...categoriesSelect.selectedOptions].map((opt) => opt.value) : [];
   const defaultBase = Number(defaultBaseInput.value) || 1;
+  const servingsPerBatch = Number(servingsInput?.value) || 1;
 
   if (!title) {
     issues.push('Add a recipe title.');
@@ -1021,6 +1023,10 @@ function buildRecipeDraft() {
   if (!Number.isFinite(defaultBase) || defaultBase <= 0) {
     issues.push('Batch size must be a positive number.');
     markInvalid(defaultBaseInput);
+  }
+  if (!Number.isFinite(servingsPerBatch) || servingsPerBatch <= 0) {
+    issues.push('Servings per batch must be a positive number.');
+    markInvalid(servingsInput);
   }
 
   const { ingredients, token_order: tokenOrder, choices } = buildIngredientsFromForm(issues);
@@ -1112,6 +1118,7 @@ function buildRecipeDraft() {
     title,
     base_kind: 'multiplier',
     default_base: defaultBase,
+    servings_per_batch: servingsPerBatch,
     categories,
     family,
     notes,

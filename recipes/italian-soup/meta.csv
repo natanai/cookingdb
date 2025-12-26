@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes,categories,family
-italian-soup,Italian Soup,multiplier,1,Hearty ground beef and vegetable soup with tomato base.,Soups & Stews; Family,
+id,title,base_kind,default_base,servings_per_batch,notes,categories,family
+italian-soup,Italian Soup,multiplier,1,4,Hearty ground beef and vegetable soup with tomato base.,Soups & Stews; Family,

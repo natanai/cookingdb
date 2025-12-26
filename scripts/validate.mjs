@@ -130,9 +130,18 @@ export async function validateAll() {
   const recipesDir = path.join(process.cwd(), 'recipes');
   const recipeDirs = fs.readdirSync(recipesDir, { withFileTypes: true }).filter((ent) => ent.isDirectory());
   const ingredientCatalogPath = path.join(process.cwd(), 'data', 'ingredient_catalog.csv');
+  const nutritionCatalogPath = path.join(process.cwd(), 'data', 'ingredient_nutrition.csv');
+  const nutritionGuidelinesPath = path.join(process.cwd(), 'data', 'nutrition_guidelines.json');
   ensure(fs.existsSync(ingredientCatalogPath), 'Missing ingredient_catalog.csv');
+  ensure(fs.existsSync(nutritionCatalogPath), 'Missing ingredient_nutrition.csv');
+  ensure(fs.existsSync(nutritionGuidelinesPath), 'Missing nutrition_guidelines.json');
   const ingredientCatalogRows = await parseCSVFile(ingredientCatalogPath);
   const ingredientCatalog = new Set(ingredientCatalogRows.map((row) => row.ingredient_id));
+  const nutritionRows = await parseCSVFile(nutritionCatalogPath);
+  const nutritionIds = new Set(nutritionRows.map((row) => row.ingredient_id).filter(Boolean));
+  ingredientCatalog.forEach((ingredientId) => {
+    ensure(nutritionIds.has(ingredientId), `ingredient_nutrition.csv missing ${ingredientId}`);
+  });
   const panCatalog = loadPanCatalog(path.join(process.cwd(), 'data', 'pan-sizes.json'));
   const ratioPattern = /^\d+(?: \d+\/\d+|\/\d+)?$/;
 
@@ -156,8 +165,17 @@ export async function validateAll() {
     ensure(metaRow.id === recipeId, `${recipeId}: meta id must match directory name`);
     ensure(Object.prototype.hasOwnProperty.call(metaRow, 'categories'), `${recipeId}: meta.csv missing categories column`);
     ensure(
+      Object.prototype.hasOwnProperty.call(metaRow, 'servings_per_batch'),
+      `${recipeId}: meta.csv missing servings_per_batch column`
+    );
+    ensure(
       parseCategories(metaRow.categories).length > 0,
       `${recipeId}: meta.csv must include at least one category`
+    );
+    const servingsPerBatch = Number(metaRow.servings_per_batch);
+    ensure(
+      Number.isFinite(servingsPerBatch) && servingsPerBatch > 0,
+      `${recipeId}: servings_per_batch must be a positive number`
     );
 
     const ingredientRows = await parseCSVFile(ingredientsPath);

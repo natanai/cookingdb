@@ -1,2 +1,2 @@
-id,title,base_kind,default_base,notes,categories,family
-streusel-coffee-cake,Streusel Coffee Cake,multiplier,1,,Breakfast & Brunch; Desserts & Baking,
+id,title,base_kind,default_base,servings_per_batch,notes,categories,family
+streusel-coffee-cake,Streusel Coffee Cake,multiplier,1,4,,Breakfast & Brunch; Desserts & Baking,

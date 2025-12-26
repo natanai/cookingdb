@@ -603,6 +603,9 @@ function renderRecipe(recipeInput) {
   const ingredientsHeading = document.getElementById('ingredients-heading');
   const heroContent = document.querySelector('.hero-content');
   const recipeNoteDetails = document.querySelector('.recipe-note');
+  const nutritionEl = document.getElementById('recipe-nutrition');
+  const nutritionDetails = document.getElementById('recipe-nutrition-details');
+  const nutritionFootnote = document.getElementById('recipe-nutrition-footnote');
 
   const defaultCompatibility = recipeDefaultCompatibility(recipe);
   const compatibilityPossible = recipe.compatibility_possible || {};
@@ -674,6 +677,36 @@ function renderRecipe(recipeInput) {
   if (categoryInline) {
     const categories = Array.isArray(recipe.categories) ? recipe.categories.filter(Boolean) : [];
     categoryInline.textContent = categories.join(' • ');
+  }
+
+  if (nutritionEl) {
+    const estimate = recipe.nutrition_estimate || null;
+    if (estimate) {
+      const hasCalories = Number.isFinite(estimate.calories_total) && estimate.calories_total > 0;
+      const servingsEstimate = estimate.servings_estimate;
+      const caloriesTotal = hasCalories ? Math.round(estimate.calories_total) : null;
+      const caloriesPerServing = estimate.calories_per_serving
+        ? Math.round(estimate.calories_per_serving)
+        : null;
+      if (nutritionDetails) {
+        nutritionDetails.textContent = hasCalories
+          ? (servingsEstimate
+            ? `${servingsEstimate} estimated servings • ${caloriesTotal} calories per batch`
+            : `${caloriesTotal} calories per batch`)
+          : 'Nutrition estimate unavailable (missing ingredient calorie data).';
+      }
+      if (nutritionFootnote) {
+        const coverage = estimate.total_ingredients
+          ? Math.round((estimate.coverage_ratio || 0) * 100)
+          : 0;
+        const servingText = caloriesPerServing ? `~${caloriesPerServing} calories per serving` : '';
+        const coverageText = `Coverage: ${estimate.covered_ingredients}/${estimate.total_ingredients} ingredients (${coverage}%).`;
+        nutritionFootnote.textContent = [servingText, coverageText].filter(Boolean).join(' ');
+      }
+      nutritionEl.hidden = false;
+    } else {
+      nutritionEl.hidden = true;
+    }
   }
 
   const updateMultiplierHelper = () => {
