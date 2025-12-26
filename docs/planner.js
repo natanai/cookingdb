@@ -8,8 +8,6 @@ import {
   convertUnitAmount,
   recipeDefaultCompatibility,
 } from './recipe-utils.js';
-import { estimateServings } from './nutrition-engine.js';
-import { bindNutritionSettingsForm, loadNutritionSettings, MEAL_TYPES } from './nutrition-settings.js';
 
 const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
 
@@ -23,8 +21,6 @@ const state = {
   recipes: [],
   recipeIndex: new Map(),
   selections: new Map(),
-  nutritionPolicy: null,
-  nutritionSettings: null,
   plan: {
     weeks: 1,
     useCustom: false,
@@ -159,14 +155,6 @@ async function loadRecipes() {
   return { recipes: [...built, ...inbox], recipeIndex };
 }
 
-async function loadNutritionPolicy() {
-  const response = await fetch('./built/nutrition_policy.json');
-  if (!response.ok) {
-    throw new Error(`Unable to load nutrition policy (${response.status})`);
-  }
-  return response.json();
-}
-
 function splitRecipeTitle(rawTitle) {
   const title = (rawTitle || '').trim();
   if (!title) return { title: '', name: '' };
@@ -263,81 +251,6 @@ function totalMealsPlanned() {
   return total;
 }
 
-function formatValue(value, decimals = 0) {
-  if (!Number.isFinite(value)) return '—';
-  const fixed = value.toFixed(decimals);
-  return fixed.replace(/\.0+$/, '').replace(/(\.\d*[1-9])0+$/, '$1');
-}
-
-function getSelectionEstimate(selection) {
-  const estimateData = selection.recipe.nutrition_estimate;
-  if (!estimateData?.batch_totals || estimateData.is_complete === false) return null;
-  return estimateServings(
-    estimateData.batch_totals,
-    state.nutritionSettings,
-    state.nutritionPolicy,
-    selection.mealType || 'dinner'
-  );
-}
-
-function computePlannedNutritionTotals() {
-  const totals = {
-    kcal: 0,
-    protein_g: 0,
-    fat_g: 0,
-    sat_fat_g: 0,
-    carbs_g: 0,
-    sugars_g: 0,
-    fiber_g: 0,
-    sodium_mg: 0,
-  };
-  let hasData = false;
-
-  state.selections.forEach((selection) => {
-    const estimate = getSelectionEstimate(selection);
-    if (!estimate) return;
-    const servings = Number(selection.plannedServings) || 0;
-    if (servings <= 0) return;
-    hasData = true;
-    const perServing = estimate.perServing || {};
-    totals.kcal += (perServing.kcal || 0) * servings;
-    totals.protein_g += (perServing.protein_g || 0) * servings;
-    totals.fat_g += (perServing.fat_g || 0) * servings;
-    totals.sat_fat_g += (perServing.sat_fat_g || 0) * servings;
-    totals.carbs_g += (perServing.carbs_g || 0) * servings;
-    totals.sugars_g += (perServing.sugars_g || 0) * servings;
-    totals.fiber_g += (perServing.fiber_g || 0) * servings;
-    totals.sodium_mg += (perServing.sodium_mg || 0) * servings;
-  });
-
-  return { totals, hasData };
-}
-
-function updateNutritionSummary() {
-  const container = document.getElementById('planner-nutrition-summary');
-  if (!container) return;
-  const { totals, hasData } = computePlannedNutritionTotals();
-  if (!hasData || !state.nutritionPolicy || !state.nutritionSettings) {
-    container.textContent = 'Add recipes with nutrition data to see daily totals.';
-    return;
-  }
-
-  const dailyKcal = Number(state.nutritionSettings.daily_kcal) || state.nutritionPolicy.default_daily_kcal || 2000;
-  const sodiumLimit = (state.nutritionPolicy.sodium_day_max_mg || 2300);
-  const satFatLimit = (state.nutritionPolicy.sat_fat_max_pct_kcal || 0.1) * dailyKcal / 9;
-  const addedSugarLimit = (state.nutritionPolicy.added_sugar_max_pct_kcal || 0.1) * dailyKcal / 4;
-  const fiberTarget = (state.nutritionPolicy.fiber_g_per_1000_kcal_min || 14) * (dailyKcal / 1000);
-
-  container.innerHTML = `
-    <div><strong>Daily nutrition totals</strong> (based on planned servings)</div>
-    <div>Calories: ${formatValue(totals.kcal)} / ${formatValue(dailyKcal)} kcal</div>
-    <div>Sodium: ${formatValue(totals.sodium_mg)} / ${formatValue(sodiumLimit)} mg</div>
-    <div>Sat fat: ${formatValue(totals.sat_fat_g, 1)} / ${formatValue(satFatLimit, 1)} g</div>
-    <div>Sugars: ${formatValue(totals.sugars_g, 1)} / ${formatValue(addedSugarLimit, 1)} g</div>
-    <div>Fiber: ${formatValue(totals.fiber_g, 1)} / ${formatValue(fiberTarget, 1)} g</div>
-  `;
-}
-
 function updatePlanSummary() {
   const needed = totalMealsNeeded();
   const planned = totalMealsPlanned();
@@ -356,7 +269,6 @@ function updatePlanSummary() {
     remainingEl.textContent = `+${Math.abs(remaining).toLocaleString()}`;
     remainingEl.classList.add('is-over');
   }
-  updateNutritionSummary();
 }
 
 function updateMealLabels() {
@@ -579,8 +491,6 @@ function addRecipeSelection(recipe) {
     batchSize,
     servingsPerBatch,
     totalServings: batchSize * servingsPerBatch,
-    plannedServings: 1,
-    mealType: 'dinner',
     defaultCompatibility,
     restrictions: { ...defaultCompatibility },
     state: {
@@ -722,101 +632,22 @@ function renderSelections() {
     controls.appendChild(servingsPerBatchLabel);
     controls.appendChild(servingsLabel);
 
-    const nutritionPanel = document.createElement('div');
-    nutritionPanel.className = 'planner-nutrition-panel';
-
-    const nutritionControls = document.createElement('div');
-    nutritionControls.className = 'planner-nutrition-controls';
-
-    const mealTypeLabel = document.createElement('label');
-    mealTypeLabel.className = 'planner-field';
-    mealTypeLabel.textContent = 'Meal type';
-    const mealTypeSelect = document.createElement('select');
-    MEAL_TYPES.forEach((type) => {
-      const option = document.createElement('option');
-      option.value = type;
-      option.textContent = type.charAt(0).toUpperCase() + type.slice(1);
-      if (selection.mealType === type) option.selected = true;
-      mealTypeSelect.appendChild(option);
-    });
-    mealTypeLabel.appendChild(mealTypeSelect);
-
-    const plannedServingsLabel = document.createElement('label');
-    plannedServingsLabel.className = 'planner-field';
-    plannedServingsLabel.textContent = 'Planned servings';
-    const plannedServingsInput = document.createElement('input');
-    plannedServingsInput.type = 'number';
-    plannedServingsInput.min = '0';
-    plannedServingsInput.step = '0.5';
-    plannedServingsInput.value = selection.plannedServings;
-    plannedServingsLabel.appendChild(plannedServingsInput);
-
-    nutritionControls.appendChild(mealTypeLabel);
-    nutritionControls.appendChild(plannedServingsLabel);
-
     const nutritionNote = document.createElement('p');
     nutritionNote.className = 'planner-note';
-
-    const nutritionList = document.createElement('ul');
-    nutritionList.className = 'planner-nutrition-list';
-
-    const plannedTotals = document.createElement('p');
-    plannedTotals.className = 'planner-note planner-nutrition-totals';
-
-    const refreshNutrition = () => {
-      const estimate = getSelectionEstimate(selection);
-      const estimateData = selection.recipe.nutrition_estimate;
-      if (!estimate || !estimateData?.batch_totals || estimateData.is_complete === false) {
-        nutritionNote.textContent = 'Nutrition estimate unavailable (missing ingredient data).';
-        nutritionList.innerHTML = '';
-        plannedTotals.textContent = '';
-        updateNutritionSummary();
-        return;
-      }
-      nutritionNote.textContent =
-        `Estimated servings (meal-sized): ${estimate.servings_estimate}`;
-      nutritionList.innerHTML = '';
-      const perServing = estimate.perServing || {};
-      const items = [
-        ['kcal', formatValue(perServing.kcal), 'kcal'],
-        ['Protein', formatValue(perServing.protein_g), 'g'],
-        ['Fat', formatValue(perServing.fat_g), 'g'],
-        ['Sat fat', formatValue(perServing.sat_fat_g), 'g'],
-        ['Carbs', formatValue(perServing.carbs_g), 'g'],
-        ['Sugars', formatValue(perServing.sugars_g), 'g'],
-        ['Fiber', formatValue(perServing.fiber_g), 'g'],
-        ['Sodium', formatValue(perServing.sodium_mg), 'mg'],
-      ];
-      items.forEach(([label, value, unit]) => {
-        const li = document.createElement('li');
-        li.innerHTML = `<span>${label}:</span> ${value} ${unit}`;
-        nutritionList.appendChild(li);
-      });
-      const plannedServings = Number(selection.plannedServings) || 0;
-      const plannedSummary = [
-        `Planned totals:`,
-        `${formatValue(perServing.kcal * plannedServings)} kcal`,
-        `${formatValue(perServing.protein_g * plannedServings, 1)} g protein`,
-        `${formatValue(perServing.sodium_mg * plannedServings)} mg sodium`,
-      ];
-      plannedTotals.textContent = plannedSummary.join(' • ');
-      updateNutritionSummary();
-    };
-
-    plannedServingsInput.addEventListener('input', () => {
-      selection.plannedServings = Math.max(0, Number(plannedServingsInput.value) || 0);
-      refreshNutrition();
-    });
-
-    mealTypeSelect.addEventListener('change', () => {
-      selection.mealType = mealTypeSelect.value;
-      refreshNutrition();
-    });
-
-    nutritionPanel.appendChild(nutritionControls);
-    nutritionPanel.appendChild(nutritionNote);
-    nutritionPanel.appendChild(nutritionList);
-    nutritionPanel.appendChild(plannedTotals);
+    const estimate = selection.recipe.nutrition_estimate;
+    if (estimate && estimate.servings_estimate) {
+      const coverage = estimate.total_ingredients
+        ? Math.round((estimate.coverage_ratio || 0) * 100)
+        : 0;
+      const caloriesPerServing = estimate.calories_per_serving
+        ? Math.round(estimate.calories_per_serving)
+        : null;
+      nutritionNote.textContent = `Nutrition estimate: ${estimate.servings_estimate} servings` +
+        (caloriesPerServing ? ` (~${caloriesPerServing} cal/serving)` : '') +
+        ` • coverage ${coverage}%`;
+    } else {
+      nutritionNote.textContent = 'Nutrition estimate unavailable; adjust servings per batch as needed.';
+    }
 
     const dietary = document.createElement('div');
     dietary.className = 'planner-dietary';
@@ -869,11 +700,9 @@ function renderSelections() {
 
     card.appendChild(header);
     card.appendChild(controls);
-    card.appendChild(nutritionPanel);
+    card.appendChild(nutritionNote);
     card.appendChild(dietary);
     card.appendChild(servingSummary);
-
-    refreshNutrition();
 
     container.appendChild(card);
   });
@@ -1111,20 +940,9 @@ function setupPrintButtons() {
 }
 
 async function startPlanner() {
-  const [{ recipes, recipeIndex }, nutritionPolicy] = await Promise.all([
-    loadRecipes(),
-    loadNutritionPolicy(),
-  ]);
+  const { recipes, recipeIndex } = await loadRecipes();
   state.recipes = recipes;
   state.recipeIndex = recipeIndex;
-  state.nutritionPolicy = nutritionPolicy;
-  state.nutritionSettings = loadNutritionSettings(nutritionPolicy);
-
-  bindNutritionSettingsForm(document.querySelector('[data-nutrition-settings]'), nutritionPolicy, (settings) => {
-    state.nutritionSettings = settings;
-    renderSelections();
-    updateNutritionSummary();
-  });
 
   setupPlanControls();
   setupSearch();
