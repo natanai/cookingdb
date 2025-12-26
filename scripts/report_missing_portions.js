@@ -57,6 +57,13 @@ const UNIT_ALIASES = new Map([
   ['bunch', 'bunch'],
   ['cans', 'can'],
   ['can', 'can'],
+  ['jars', 'jar'],
+  ['jar', 'jar'],
+  ['bottles', 'bottle'],
+  ['bottle', 'bottle'],
+  ['fl oz', 'fl_oz'],
+  ['fluid ounce', 'fl_oz'],
+  ['fluid ounces', 'fl_oz'],
   ['tablespoons', 'tbsp'],
   ['tablespoon', 'tbsp'],
   ['teaspoons', 'tsp'],
@@ -111,7 +118,7 @@ function gramsPerUnitFromPortions(ingredientId, unit, portions) {
   return entry?.grams ?? null;
 }
 
-function amountToGrams(ingredientId, amount, unit, portions) {
+function amountToGrams(ingredientId, amount, unit, nutrition, portions) {
   if (!ingredientId || !Number.isFinite(amount)) return null;
   const normalizedUnit = normalizeUnit(unit);
   if (!normalizedUnit) return null;
@@ -122,6 +129,18 @@ function amountToGrams(ingredientId, amount, unit, portions) {
   }
 
   if (def?.group === 'volume') {
+    const servingUnit = nutrition?.serving_unit_norm;
+    const servingQty = Number.isFinite(nutrition?.serving_qty) ? nutrition.serving_qty : 1;
+    const servingGrams = Number.isFinite(nutrition?.serving_grams) ? nutrition.serving_grams : null;
+    const servingDef = servingUnit ? unitDefinition(servingUnit) : null;
+    if (Number.isFinite(servingGrams) && servingDef?.group === 'volume') {
+      const qtyInServingUnit = convertUnitAmount(amount, normalizedUnit, servingUnit);
+      if (qtyInServingUnit) {
+        const gramsPerServingUnit = servingGrams / servingQty;
+        return qtyInServingUnit.amount * gramsPerServingUnit;
+      }
+    }
+
     const direct = gramsPerUnitFromPortions(ingredientId, normalizedUnit, portions);
     if (Number.isFinite(direct)) {
       return amount * direct;
@@ -137,6 +156,18 @@ function amountToGrams(ingredientId, amount, unit, portions) {
       return asTsp.amount * gramsPerTsp;
     }
     return null;
+  }
+
+  const servingUnit = nutrition?.serving_unit_norm;
+  const servingQty = Number.isFinite(nutrition?.serving_qty) ? nutrition.serving_qty : 1;
+  const servingGrams = Number.isFinite(nutrition?.serving_grams) ? nutrition.serving_grams : null;
+  if (
+    Number.isFinite(servingGrams)
+    && servingUnit
+    && normalizeUnit(servingUnit) === normalizedUnit
+    && servingQty === 1
+  ) {
+    return amount * servingGrams;
   }
 
   const portion = gramsPerUnitFromPortions(ingredientId, normalizedUnit, portions);
@@ -206,7 +237,7 @@ function loadIngredientPortions(portionsPath) {
   return map;
 }
 
-function generateMissingPortionsReport(recipes, portions) {
+function generateMissingPortionsReport(recipes, portions, recipeIndex) {
   const missing = new Map();
   recipes.forEach((recipe) => {
     const ingredients = recipe.ingredients || {};
@@ -218,7 +249,10 @@ function generateMissingPortionsReport(recipes, portions) {
       const amount = parseRatioToNumber(option.ratio);
       if (!Number.isFinite(amount)) return;
       const normalizedUnit = normalizeUnit(option.unit);
-      const grams = amountToGrams(option.ingredient_id, amount, option.unit, portions);
+      if (normalizedUnit === 'recipe' && recipeIndex.has(option.ingredient_id)) {
+        return;
+      }
+      const grams = amountToGrams(option.ingredient_id, amount, option.unit, option.nutrition, portions);
       const nutrition = option.nutrition;
       let reason = null;
       if (!Number.isFinite(grams)) {
@@ -255,7 +289,12 @@ function main() {
   }
   const recipes = JSON.parse(fs.readFileSync(builtRecipesPath, 'utf-8'));
   const portions = loadIngredientPortions(portionsPath);
-  const missing = generateMissingPortionsReport(recipes, portions);
+  const recipeIndex = new Map(
+    recipes
+      .filter((entry) => entry && entry.id)
+      .map((entry) => [String(entry.id), entry])
+  );
+  const missing = generateMissingPortionsReport(recipes, portions, recipeIndex);
   const outputPath = path.join(process.cwd(), 'docs', 'built', 'missing_portions.csv');
   const missingCsv = [
     'ingredient_id,unit_norm,example_recipe_id,count_occurrences,example_qty,reason',

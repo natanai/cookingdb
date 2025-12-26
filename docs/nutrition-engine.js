@@ -49,6 +49,13 @@ const UNIT_ALIASES = new Map([
   ['bunch', 'bunch'],
   ['cans', 'can'],
   ['can', 'can'],
+  ['jars', 'jar'],
+  ['jar', 'jar'],
+  ['bottles', 'bottle'],
+  ['bottle', 'bottle'],
+  ['fl oz', 'fl_oz'],
+  ['fluid ounce', 'fl_oz'],
+  ['fluid ounces', 'fl_oz'],
   ['tablespoons', 'tbsp'],
   ['tablespoon', 'tbsp'],
   ['teaspoons', 'tsp'],
@@ -243,7 +250,7 @@ function gramsPerUnitFromPortions(ingredientId, unit, portions) {
   return entry?.grams ?? null;
 }
 
-function amountToGrams(ingredientId, amount, unit, portions) {
+function amountToGrams(ingredientId, amount, unit, nutrition, portions) {
   if (!ingredientId || !Number.isFinite(amount)) return null;
   const normalizedUnit = normalizeUnit(unit);
   if (!normalizedUnit) return null;
@@ -255,6 +262,18 @@ function amountToGrams(ingredientId, amount, unit, portions) {
   }
 
   if (def?.group === 'volume') {
+    const servingUnit = nutrition?.serving_unit_norm;
+    const servingQty = Number.isFinite(nutrition?.serving_qty) ? nutrition.serving_qty : 1;
+    const servingGrams = Number.isFinite(nutrition?.serving_grams) ? nutrition.serving_grams : null;
+    const servingDef = servingUnit ? unitDefinition(servingUnit) : null;
+    if (Number.isFinite(servingGrams) && servingDef?.group === 'volume') {
+      const qtyInServingUnit = convertUnitAmount(amount, normalizedUnit, servingUnit);
+      if (qtyInServingUnit) {
+        const gramsPerServingUnit = servingGrams / servingQty;
+        return qtyInServingUnit.amount * gramsPerServingUnit;
+      }
+    }
+
     const direct = gramsPerUnitFromPortions(ingredientId, normalizedUnit, portions);
     if (Number.isFinite(direct)) {
       return amount * direct;
@@ -270,6 +289,18 @@ function amountToGrams(ingredientId, amount, unit, portions) {
       return asTsp.amount * gramsPerTsp;
     }
     return null;
+  }
+
+  const servingUnit = nutrition?.serving_unit_norm;
+  const servingQty = Number.isFinite(nutrition?.serving_qty) ? nutrition.serving_qty : 1;
+  const servingGrams = Number.isFinite(nutrition?.serving_grams) ? nutrition.serving_grams : null;
+  if (
+    Number.isFinite(servingGrams)
+    && servingUnit
+    && normalizeUnit(servingUnit) === normalizedUnit
+    && servingQty === 1
+  ) {
+    return amount * servingGrams;
   }
 
   const portion = gramsPerUnitFromPortions(ingredientId, normalizedUnit, portions);
@@ -315,20 +346,84 @@ export function computeBatchTotals(recipe, state) {
     const amount = ratioToNumber(option.ratio);
     if (!Number.isFinite(amount)) return;
 
-    totals.coverage.total += 1;
-
     const scaledAmount = amount * multiplier;
     const nutrition = option.nutrition || null;
     const perGram = nutrition?.per_g || null;
     const portions = state?.ingredientPortions || null;
     const selectedUnit = state?.unitSelections?.[token] || option.unit;
-    const grams = amountToGrams(option.ingredient_id, scaledAmount, selectedUnit, portions);
+    const normalizedUnit = normalizeUnit(selectedUnit);
+
+    totals.coverage.total += 1;
+
+    if (normalizedUnit === 'recipe' && state?.recipeIndex?.has(option.ingredient_id)) {
+      const referenced = state.recipeIndex.get(option.ingredient_id);
+      const stack = state.recipeStack || new Set();
+      if (stack.has(option.ingredient_id)) {
+        totals.missing = true;
+        totals.missing_details.push({
+          ingredient_id: option.ingredient_id,
+          unit: normalizedUnit,
+          reason: 'recipe-reference-cycle',
+        });
+        return;
+      }
+      const nextStack = new Set(stack);
+      nextStack.add(option.ingredient_id);
+      const referenceState = {
+        ...state,
+        recipeStack: nextStack,
+      };
+      const referenceTotals = computeBatchTotals(referenced, referenceState);
+      if (!referenceTotals.complete) {
+        totals.missing = true;
+        totals.missing_details.push({
+          ingredient_id: option.ingredient_id,
+          unit: normalizedUnit,
+          reason: 'missing-recipe-reference',
+        });
+        return;
+      }
+      totals.coverage.covered += 1;
+      const factor = scaledAmount;
+      totals.kcal += referenceTotals.kcal * factor;
+      totals.protein_g += referenceTotals.protein_g * factor;
+      totals.fat_g += referenceTotals.fat_g * factor;
+      totals.sat_fat_g += referenceTotals.sat_fat_g * factor;
+      totals.carbs_g += referenceTotals.carbs_g * factor;
+      totals.sugars_g += referenceTotals.sugars_g * factor;
+      totals.fiber_g += referenceTotals.fiber_g * factor;
+      totals.sodium_mg += referenceTotals.sodium_mg * factor;
+      totals.calcium_mg += referenceTotals.calcium_mg * factor;
+      totals.iron_mg += referenceTotals.iron_mg * factor;
+      totals.potassium_mg += referenceTotals.potassium_mg * factor;
+      totals.vitamin_c_mg += referenceTotals.vitamin_c_mg * factor;
+      if (Number.isFinite(referenceTotals.added_sugar_g)) {
+        totals.added_sugar_g = (totals.added_sugar_g || 0) + referenceTotals.added_sugar_g * factor;
+        hasAddedSugar = true;
+      }
+      if (Number.isFinite(referenceTotals.grams_total)) {
+        totals.grams_total += referenceTotals.grams_total * factor;
+        gramsCovered += 1;
+      }
+      return;
+    }
+    if (normalizedUnit === 'recipe') {
+      totals.missing = true;
+      totals.missing_details.push({
+        ingredient_id: option.ingredient_id,
+        unit: normalizedUnit,
+        reason: 'missing-recipe-reference',
+      });
+      return;
+    }
+
+    const grams = amountToGrams(option.ingredient_id, scaledAmount, selectedUnit, nutrition, portions);
 
     if (!Number.isFinite(grams)) {
       totals.missing = true;
       totals.missing_details.push({
         ingredient_id: option.ingredient_id,
-        unit: normalizeUnit(selectedUnit) || selectedUnit,
+        unit: normalizedUnit || selectedUnit,
         reason: 'missing-portion',
       });
       return;
@@ -349,7 +444,7 @@ export function computeBatchTotals(recipe, state) {
       totals.missing = true;
       totals.missing_details.push({
         ingredient_id: option.ingredient_id,
-        unit: normalizeUnit(selectedUnit) || selectedUnit,
+        unit: normalizedUnit || selectedUnit,
         reason: 'missing-nutrition-density',
       });
       return;

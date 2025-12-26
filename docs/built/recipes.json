@@ -12,33 +12,17 @@
     "family": "",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 640,
-      "calories_per_serving": 640,
+      "calories_total": 885.0000243461042,
+      "calories_per_serving": 885.0000243461042,
       "servings_estimate": 1,
-      "covered_ingredients": 2,
+      "covered_ingredients": 6,
       "total_ingredients": 7,
-      "coverage_ratio": 0.2857142857142857,
+      "coverage_ratio": 0.8571428571428571,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
-          "ingredient_id": "olive_oil",
-          "unit": "tbsp"
-        },
-        {
           "ingredient_id": "garlic",
           "unit": "clove"
-        },
-        {
-          "ingredient_id": "sweet-potato",
-          "unit": "medium"
-        },
-        {
-          "ingredient_id": "kale",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "thyme",
-          "unit": "tbsp"
         }
       ]
     },
@@ -110,6 +94,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.5,
                 "protein_g": 0,
@@ -153,6 +140,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 453.592,
+              "serving_qty": 1,
+              "serving_unit_norm": null,
+              "serving_grams": 453.592,
               "per_g": {
                 "kcal": 1.4109596289176176,
                 "protein_g": 0,
@@ -196,6 +186,9 @@
             "nutrition": {
               "unit": "clove",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "clove",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 clove (3g).",
@@ -226,6 +219,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 130,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 130,
               "per_g": {
                 "kcal": 0.7923076923076923,
                 "protein_g": 0.01769230769230769,
@@ -269,6 +265,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -312,6 +311,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 21,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 21,
               "per_g": {
                 "kcal": 0.3333333333333333,
                 "protein_g": 0.02857142857142857,
@@ -355,6 +357,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 1,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 1,
               "per_g": {
                 "kcal": 3,
                 "protein_g": 0.1,
@@ -402,18 +407,14 @@
     "family": "",
     "notes": "Use a 3–4 lb brisket. This braise layers apple cider with broth and root vegetables.",
     "nutrition_estimate": {
-      "calories_total": 4520.7696000000005,
-      "calories_per_serving": 753.4616000000001,
-      "servings_estimate": 6,
-      "covered_ingredients": 7,
+      "calories_total": 4773.2696000000005,
+      "calories_per_serving": 681.8956571428572,
+      "servings_estimate": 7,
+      "covered_ingredients": 9,
       "total_ingredients": 12,
-      "coverage_ratio": 0.5833333333333334,
+      "coverage_ratio": 0.75,
       "target_meal_calories": 700,
       "missing_ingredients": [
-        {
-          "ingredient_id": "neutral-oil",
-          "unit": "tbsp"
-        },
         {
           "ingredient_id": "carrot",
           "unit": "count"
@@ -425,10 +426,6 @@
         {
           "ingredient_id": "bay-leaf",
           "unit": "count"
-        },
-        {
-          "ingredient_id": "cayenne-pepper",
-          "unit": "tsp"
         }
       ]
     },
@@ -519,6 +516,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 453.592,
+              "serving_qty": 1,
+              "serving_unit_norm": "lb",
+              "serving_grams": 453.592,
               "per_g": {
                 "kcal": 2.160531931780102,
                 "protein_g": 0.1763699536147022,
@@ -562,6 +562,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -605,6 +608,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,
@@ -648,6 +654,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.857142857142858,
                 "protein_g": 0,
@@ -691,6 +700,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 30,
+              "serving_qty": 1,
+              "serving_unit_norm": "small",
+              "serving_grams": 30,
               "per_g": {
                 "kcal": 0.8666666666666667,
                 "protein_g": 0.02,
@@ -734,6 +746,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 61,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 61,
               "per_g": {
                 "kcal": 0.4098360655737705,
                 "protein_g": 0.00819672131147541,
@@ -777,6 +792,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 30,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 30,
               "per_g": {
                 "kcal": 0.7333333333333333,
                 "protein_g": 0.02666666666666667,
@@ -820,6 +838,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 240,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 240,
               "per_g": {
                 "kcal": 0.5,
                 "protein_g": 0,
@@ -863,6 +884,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 240,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 240,
               "per_g": {
                 "kcal": 0.041666666666666664,
                 "protein_g": 0.008333333333333333,
@@ -900,6 +924,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (240ml).",
@@ -930,6 +957,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 1,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 1,
               "per_g": {
                 "kcal": 3,
                 "protein_g": 0.1,
@@ -973,6 +1003,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 0.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "leaf",
+              "serving_grams": 0.6,
               "per_g": {
                 "kcal": 3.3333333333333335,
                 "protein_g": 0,
@@ -1016,6 +1049,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 1.8,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 1.8,
               "per_g": {
                 "kcal": 3.333333333333333,
                 "protein_g": 0.11111111111111112,
@@ -1069,20 +1105,16 @@
     "family": "",
     "notes": "Sweet potato casserole baked until the brown sugar glaze is sticky.",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 1,
+      "calories_total": 811.5346119511998,
+      "calories_per_serving": 811.5346119511998,
+      "servings_estimate": 1,
+      "covered_ingredients": 2,
       "total_ingredients": 5,
-      "coverage_ratio": 0.2,
+      "coverage_ratio": 0.4,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
           "ingredient_id": "sweet-potato",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "brown-sugar",
           "unit": "cup"
         },
         {
@@ -1153,6 +1185,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 130,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 130,
               "per_g": {
                 "kcal": 0.7923076923076923,
                 "protein_g": 0.01769230769230769,
@@ -1196,6 +1231,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -1239,6 +1277,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 12,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 12,
               "per_g": {
                 "kcal": 4.166666666666667,
                 "protein_g": 0,
@@ -1282,6 +1323,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -1312,6 +1356,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (heavy cream)",
               "notes": "Per 1 Tbsp (15ml).",
@@ -1347,12 +1394,12 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 1150,
-      "calories_per_serving": 575,
+      "calories_total": 1166.3332891497823,
+      "calories_per_serving": 583.1666445748912,
       "servings_estimate": 2,
-      "covered_ingredients": 2,
+      "covered_ingredients": 3,
       "total_ingredients": 8,
-      "coverage_ratio": 0.25,
+      "coverage_ratio": 0.375,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -1366,10 +1413,6 @@
         {
           "ingredient_id": "vinegar",
           "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "sugar",
-          "unit": "tsp"
         },
         {
           "ingredient_id": "prepared-mustard",
@@ -1439,6 +1482,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 453.592,
+              "serving_qty": 1,
+              "serving_unit_norm": "lb",
+              "serving_grams": 453.592,
               "per_g": {
                 "kcal": 2.535318083211344,
                 "protein_g": 0.16975608035415088,
@@ -1482,6 +1528,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "Per 1 Tbsp.",
@@ -1512,6 +1561,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -1555,6 +1607,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 110,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 110,
               "per_g": {
                 "kcal": 0.4,
                 "protein_g": 0.010909090909090908,
@@ -1598,6 +1653,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "Per 1 Tbsp.",
@@ -1628,6 +1686,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 12.5,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 12.5,
               "per_g": {
                 "kcal": 3.92,
                 "protein_g": 0,
@@ -1671,6 +1732,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "Per 1 Tbsp.",
@@ -1701,6 +1765,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "bun",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "enriched wheat",
@@ -1734,12 +1801,12 @@
     "family": "",
     "notes": "Includes gluten-free and dairy/egg alternatives. Makes enough dough to divide into 3 portions (for 3 small coffee cakes) or about 18–24 small rolls.",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 1,
+      "calories_total": 2.4,
+      "calories_per_serving": 2.4,
+      "servings_estimate": 1,
+      "covered_ingredients": 2,
       "total_ingredients": 10,
-      "coverage_ratio": 0.1,
+      "coverage_ratio": 0.2,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -1773,10 +1840,6 @@
         {
           "ingredient_id": "psyllium-husk",
           "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "baking-powder",
-          "unit": "tsp"
         }
       ]
     },
@@ -1854,6 +1917,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "U.S. Dairy (whole milk)",
               "notes": "Per 1 cup (240ml).",
@@ -1884,6 +1950,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Same as granulated sugar (above)",
               "notes": "Per 1 Tbsp.",
@@ -1914,6 +1983,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 7,
+              "serving_qty": 1,
+              "serving_unit_norm": "packet",
+              "serving_grams": 7,
               "per_g": {
                 "kcal": 3.2857142857142856,
                 "protein_g": 0.42857142857142855,
@@ -1957,6 +2029,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -1981,6 +2056,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 7.285714285714286,
                 "protein_g": 0.0071428571428571435,
@@ -2018,6 +2096,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.857142857142858,
                 "protein_g": 0,
@@ -2061,6 +2142,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 50,
+              "serving_qty": 1,
+              "serving_unit_norm": "large",
+              "serving_grams": 50,
               "per_g": {
                 "kcal": 1.44,
                 "protein_g": 0.126,
@@ -2098,6 +2182,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 10,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 10,
               "per_g": {
                 "kcal": 3.5,
                 "protein_g": 0,
@@ -2135,6 +2222,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "chickpea brine",
@@ -2165,6 +2255,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -2208,6 +2301,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -2232,6 +2328,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 120,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 120,
               "per_g": {
                 "kcal": 3.6666666666666665,
                 "protein_g": 0.06666666666666667,
@@ -2278,6 +2377,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Label",
               "notes": "thickener",
@@ -2315,6 +2417,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Label",
               "notes": "fiber supplement",
@@ -2352,6 +2457,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 4.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 4.6,
               "per_g": {
                 "kcal": 0.5217391304347826,
                 "protein_g": 0,
@@ -2499,6 +2607,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 454,
+              "serving_qty": 1,
+              "serving_unit_norm": "lb",
+              "serving_grams": 454,
               "per_g": {
                 "kcal": 2.202643171806167,
                 "protein_g": 0.22026431718061673,
@@ -2542,6 +2653,9 @@
             "nutrition": {
               "unit": "cube",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cube",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (beef bouillon)",
               "notes": "Per 1 cube (prepared 1 cup).",
@@ -2572,6 +2686,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
@@ -2602,6 +2719,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -2645,6 +2765,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,
@@ -2688,6 +2811,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "dehydrated",
@@ -2718,6 +2844,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "Per 1 cup.",
@@ -2752,12 +2881,12 @@
     "family": "",
     "notes": "Crepe/blintz wrapper batter. Uses inline ingredient tokens in steps.",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 1,
+      "calories_total": 795,
+      "calories_per_serving": 795,
+      "servings_estimate": 1,
+      "covered_ingredients": 5,
       "total_ingredients": 8,
-      "coverage_ratio": 0.125,
+      "coverage_ratio": 0.625,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -2771,22 +2900,6 @@
         {
           "ingredient_id": "water",
           "unit": "cup"
-        },
-        {
-          "ingredient_id": "vegan-butter",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "gf-flour-blend",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "sugar",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "vegan-butter",
-          "unit": "tbsp"
         }
       ]
     },
@@ -2868,6 +2981,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 50,
+              "serving_qty": 1,
+              "serving_unit_norm": "large",
+              "serving_grams": 50,
               "per_g": {
                 "kcal": 1.44,
                 "protein_g": 0.126,
@@ -2905,6 +3021,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 10,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 10,
               "per_g": {
                 "kcal": 3.5,
                 "protein_g": 0,
@@ -2948,6 +3067,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "U.S. Dairy (whole milk)",
               "notes": "Per 1 cup (240ml).",
@@ -2972,6 +3094,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (fortified oat)",
               "notes": "Per 1 cup (240ml).",
@@ -3002,6 +3127,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
@@ -3032,6 +3160,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -3056,6 +3187,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 7.285714285714286,
                 "protein_g": 0.0071428571428571435,
@@ -3099,6 +3233,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -3123,6 +3260,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 120,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 120,
               "per_g": {
                 "kcal": 3.6666666666666665,
                 "protein_g": 0.06666666666666667,
@@ -3166,6 +3306,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -3209,6 +3352,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 12.5,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 12.5,
               "per_g": {
                 "kcal": 3.92,
                 "protein_g": 0,
@@ -3252,6 +3398,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -3276,6 +3425,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 7.285714285714286,
                 "protein_g": 0.0071428571428571435,
@@ -3348,18 +3500,14 @@
     "family": "",
     "notes": "Season with salt, soy sauce, or other seasonings to taste. For wild rice, use 8 cups water and boil 40–55 minutes.",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 1,
+      "calories_total": 685,
+      "calories_per_serving": 685,
+      "servings_estimate": 1,
+      "covered_ingredients": 2,
       "total_ingredients": 3,
-      "coverage_ratio": 0.3333333333333333,
+      "coverage_ratio": 0.6666666666666666,
       "target_meal_calories": 700,
       "missing_ingredients": [
-        {
-          "ingredient_id": "brown-rice",
-          "unit": "cup"
-        },
         {
           "ingredient_id": "water",
           "unit": "cup"
@@ -3422,6 +3570,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 185,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 185,
               "per_g": {
                 "kcal": 3.7027027027027026,
                 "protein_g": 0.07945945945945945,
@@ -3465,6 +3616,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
@@ -3495,6 +3649,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -3543,21 +3700,17 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 425.2425,
-      "calories_per_serving": 425.2425,
+      "calories_total": 589.2425000000001,
+      "calories_per_serving": 589.2425000000001,
       "servings_estimate": 1,
-      "covered_ingredients": 1,
+      "covered_ingredients": 2,
       "total_ingredients": 8,
-      "coverage_ratio": 0.125,
+      "coverage_ratio": 0.25,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
           "ingredient_id": "egg",
           "unit": "count"
-        },
-        {
-          "ingredient_id": "tuna",
-          "unit": "can"
         },
         {
           "ingredient_id": "green-pepper",
@@ -3639,6 +3792,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 20,
+              "serving_qty": 1,
+              "serving_unit_norm": "slice",
+              "serving_grams": 20,
               "per_g": {
                 "kcal": 3.75,
                 "protein_g": 0.185,
@@ -3682,6 +3838,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 50,
+              "serving_qty": 1,
+              "serving_unit_norm": "large",
+              "serving_grams": 50,
               "per_g": {
                 "kcal": 1.44,
                 "protein_g": 0.126,
@@ -3724,8 +3883,24 @@
             },
             "nutrition": {
               "unit": "count",
-              "grams_per_unit": null,
-              "per_g": null,
+              "grams_per_unit": 141.7475,
+              "serving_qty": 1,
+              "serving_unit_norm": "can",
+              "serving_grams": 141.7475,
+              "per_g": {
+                "kcal": 1.1569868957124465,
+                "protein_g": 0.2553836928340888,
+                "fat_g": 0.008465757773505705,
+                "sat_fat_g": 0.002116439443376426,
+                "carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 3.379248311257694,
+                "calcium_mg": 0.11287677031340941,
+                "iron_mg": 0.01530891197375615,
+                "potassium_mg": 2.3704121765815973,
+                "vitamin_c_mg": 0
+              },
               "source": "USDA",
               "notes": "water-packed, drained",
               "serving_size": "1 can (5 oz)"
@@ -3755,6 +3930,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "pepper",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "medium (119g)",
@@ -3785,6 +3963,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28.3495,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28.3495,
               "per_g": {
                 "kcal": 1.446233619640558,
                 "protein_g": 0.010582197216882132,
@@ -3828,6 +4009,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28.3495,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28.3495,
               "per_g": {
                 "kcal": 1.0582197216882132,
                 "protein_g": 0,
@@ -3871,6 +4055,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "full-fat",
@@ -3901,6 +4088,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "bun",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "enriched wheat",
@@ -3935,12 +4125,12 @@
     "family": "",
     "notes": "Simple baked casserole; add a little coconut oil if the sausage is lean.",
     "nutrition_estimate": {
-      "calories_total": 1411.1751111111112,
-      "calories_per_serving": 705.5875555555556,
+      "calories_total": 1532.1751111111112,
+      "calories_per_serving": 766.0875555555556,
       "servings_estimate": 2,
-      "covered_ingredients": 2,
+      "covered_ingredients": 3,
       "total_ingredients": 5,
-      "coverage_ratio": 0.4,
+      "coverage_ratio": 0.6,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -3950,10 +4140,6 @@
         {
           "ingredient_id": "onion",
           "unit": "count"
-        },
-        {
-          "ingredient_id": "coconut-oil",
-          "unit": "tbsp"
         }
       ]
     },
@@ -4013,6 +4199,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 140,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 140,
               "per_g": {
                 "kcal": 0.45,
                 "protein_g": 0.01,
@@ -4056,6 +4245,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 45,
+              "serving_qty": 1,
+              "serving_unit_norm": "link",
+              "serving_grams": 45,
               "per_g": {
                 "kcal": 3.111111111111111,
                 "protein_g": 0.13333333333333333,
@@ -4099,6 +4291,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 110,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 110,
               "per_g": {
                 "kcal": 0.4,
                 "protein_g": 0.010909090909090908,
@@ -4142,6 +4337,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -4185,6 +4383,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.642857142857142,
                 "protein_g": 0,
@@ -4233,12 +4434,12 @@
     "family": "Burrows",
     "notes": "Serves 6. Bake in a 2-qt casserole.",
     "nutrition_estimate": {
-      "calories_total": 0.625,
-      "calories_per_serving": 0.625,
+      "calories_total": 1029.125,
+      "calories_per_serving": 1029.125,
       "servings_estimate": 1,
-      "covered_ingredients": 2,
+      "covered_ingredients": 4,
       "total_ingredients": 13,
-      "coverage_ratio": 0.15384615384615385,
+      "coverage_ratio": 0.3076923076923077,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -4255,10 +4456,6 @@
         },
         {
           "ingredient_id": "milk",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "rice",
           "unit": "cup"
         },
         {
@@ -4280,10 +4477,6 @@
         {
           "ingredient_id": "almonds",
           "unit": "cup"
-        },
-        {
-          "ingredient_id": "parsley",
-          "unit": "tbsp"
         }
       ]
     },
@@ -4367,6 +4560,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Label",
               "notes": "stick, salted",
@@ -4391,6 +4587,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -4421,6 +4620,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -4451,6 +4653,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,
@@ -4494,6 +4699,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -4537,6 +4745,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (240ml).",
@@ -4567,6 +4778,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "U.S. Dairy (whole milk)",
               "notes": "Per 1 cup (240ml).",
@@ -4597,6 +4811,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 185,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 185,
               "per_g": {
                 "kcal": 3.7027027027027026,
                 "protein_g": 0.07135135135135134,
@@ -4640,6 +4857,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 453.592,
+              "serving_qty": 1,
+              "serving_unit_norm": "lb",
+              "serving_grams": 453.592,
               "per_g": {
                 "kcal": 1.6490590662974656,
                 "protein_g": 0.20282544665690755,
@@ -4677,6 +4897,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "roasted mix cuts",
@@ -4707,6 +4930,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "raw, sliced",
@@ -4737,6 +4963,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "pepper",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "medium (119g)",
@@ -4767,6 +4996,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28.3495,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28.3495,
               "per_g": {
                 "kcal": 0.2469179350605831,
                 "protein_g": 0.003527399072294044,
@@ -4810,6 +5042,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28,
               "per_g": {
                 "kcal": 5.857142857142857,
                 "protein_g": 0.21428571428571427,
@@ -4853,6 +5088,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 4,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 4,
               "per_g": {
                 "kcal": 0.25,
                 "protein_g": 0.025,
@@ -4995,6 +5233,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 453.592,
+              "serving_qty": 1,
+              "serving_unit_norm": "lb",
+              "serving_grams": 453.592,
               "per_g": {
                 "kcal": 1.6490590662974656,
                 "protein_g": 0.20282544665690755,
@@ -5031,8 +5272,24 @@
             },
             "nutrition": {
               "unit": "count",
-              "grams_per_unit": null,
-              "per_g": null,
+              "grams_per_unit": 354.36875,
+              "serving_qty": 12.5,
+              "serving_unit_norm": "can",
+              "serving_grams": 354.36875,
+              "per_g": {
+                "kcal": 0.8889045662180991,
+                "protein_g": 0.1693151554701141,
+                "fat_g": 0.019753434804846648,
+                "sat_fat_g": 0.005643838515670471,
+                "carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2.8219192578352352,
+                "calcium_mg": 0.056438385156704705,
+                "iron_mg": 0.004232878886752853,
+                "potassium_mg": 0.8465757773505707,
+                "vitamin_c_mg": 0
+              },
               "source": "USDA",
               "notes": "drained",
               "serving_size": "12.5 oz can"
@@ -5061,8 +5318,24 @@
             },
             "nutrition": {
               "unit": "count",
-              "grams_per_unit": null,
-              "per_g": null,
+              "grams_per_unit": 297.66974999999996,
+              "serving_qty": 10.5,
+              "serving_unit_norm": "can",
+              "serving_grams": 297.66974999999996,
+              "per_g": {
+                "kcal": 1.0078283063697269,
+                "protein_g": 0.01679713843949545,
+                "fat_g": 0.0671885537579818,
+                "sat_fat_g": 0.01679713843949545,
+                "carbs_g": 0.08398569219747724,
+                "sugars_g": 0.00671885537579818,
+                "fiber_g": 0,
+                "sodium_mg": 7.222769528983044,
+                "calcium_mg": 0.1007828306369727,
+                "iron_mg": 0.00335942768789909,
+                "potassium_mg": 0.8398569219747725,
+                "vitamin_c_mg": 0
+              },
               "source": "Label",
               "notes": "condensed",
               "serving_size": "10.5 oz can"
@@ -5092,6 +5365,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "U.S. Dairy (whole milk)",
               "notes": "Per 1 cup (240ml).",
@@ -5122,6 +5398,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28,
               "per_g": {
                 "kcal": 3.0357142857142856,
                 "protein_g": 0.16428571428571428,
@@ -5159,6 +5438,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": null,
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA FoodData Central",
               "notes": "Shredded cheddar per cup.",
@@ -5189,6 +5471,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "can",
+              "serving_grams": null,
               "per_g": null,
               "source": "Label",
               "notes": "refrigerated dough",
@@ -5235,12 +5520,12 @@
     "family": "Burrows",
     "notes": "Doubled batch made with ground turkey.",
     "nutrition_estimate": {
-      "calories_total": 3009.7999999999997,
-      "calories_per_serving": 752.4499999999999,
+      "calories_total": 3023.5916665539535,
+      "calories_per_serving": 755.8979166384884,
       "servings_estimate": 4,
-      "covered_ingredients": 3,
+      "covered_ingredients": 6,
       "total_ingredients": 15,
-      "coverage_ratio": 0.2,
+      "coverage_ratio": 0.4,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -5268,15 +5553,7 @@
           "unit": "tbsp"
         },
         {
-          "ingredient_id": "worcestershire_sauce",
-          "unit": "tbsp"
-        },
-        {
           "ingredient_id": "paprika",
-          "unit": "tsp"
-        },
-        {
-          "ingredient_id": "cayenne-pepper",
           "unit": "tsp"
         },
         {
@@ -5286,10 +5563,6 @@
         {
           "ingredient_id": "bay-leaf",
           "unit": "count"
-        },
-        {
-          "ingredient_id": "parsley",
-          "unit": "tsp"
         }
       ]
     },
@@ -5370,6 +5643,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 453.592,
+              "serving_qty": 1,
+              "serving_unit_norm": null,
+              "serving_grams": 453.592,
               "per_g": {
                 "kcal": 1.4109596289176176,
                 "protein_g": 0,
@@ -5413,6 +5689,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 110,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 110,
               "per_g": {
                 "kcal": 0.4,
                 "protein_g": 0.010909090909090908,
@@ -5456,6 +5735,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "pepper",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "medium (119g)",
@@ -5486,6 +5768,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "canned, salted",
@@ -5516,6 +5801,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 245,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 245,
               "per_g": {
                 "kcal": 0.24081632653061225,
                 "protein_g": 0.01183673469387755,
@@ -5559,6 +5847,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "canned, salted",
@@ -5589,6 +5880,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 177,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 177,
               "per_g": {
                 "kcal": 1.271186440677966,
                 "protein_g": 0.08644067796610169,
@@ -5632,6 +5926,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "Per 1 tsp.",
@@ -5662,6 +5959,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -5705,6 +6005,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 17,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 17,
               "per_g": {
                 "kcal": 0.7647058823529411,
                 "protein_g": 0.01764705882352941,
@@ -5748,6 +6051,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "Per 1 tsp.",
@@ -5778,6 +6084,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 1.8,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 1.8,
               "per_g": {
                 "kcal": 3.333333333333333,
                 "protein_g": 0.11111111111111112,
@@ -5821,6 +6130,9 @@
             "nutrition": {
               "unit": "clove",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "clove",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 clove (3g).",
@@ -5851,6 +6163,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 0.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "leaf",
+              "serving_grams": 0.6,
               "per_g": {
                 "kcal": 3.3333333333333335,
                 "protein_g": 0,
@@ -5894,6 +6209,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 4,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 4,
               "per_g": {
                 "kcal": 0.25,
                 "protein_g": 0.025,
@@ -5941,12 +6259,12 @@
     "family": "",
     "notes": "Use a gluten-free flour blend with xanthan gum. For dairy-free, choose vegan butter and dairy-free chips.",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 1,
+      "calories_total": 3329.184239997836,
+      "calories_per_serving": 665.8368479995672,
+      "servings_estimate": 5,
+      "covered_ingredients": 7,
       "total_ingredients": 11,
-      "coverage_ratio": 0.09090909090909091,
+      "coverage_ratio": 0.6363636363636364,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -5958,36 +6276,12 @@
           "unit": "cup"
         },
         {
-          "ingredient_id": "brown-sugar",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "molasses",
-          "unit": "tsp"
-        },
-        {
           "ingredient_id": "vanilla-extract",
           "unit": "tsp"
         },
         {
           "ingredient_id": "egg",
           "unit": "count"
-        },
-        {
-          "ingredient_id": "baking-soda",
-          "unit": "tsp"
-        },
-        {
-          "ingredient_id": "baking-powder",
-          "unit": "tsp"
-        },
-        {
-          "ingredient_id": "gf-flour-blend",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "chocolate-chips",
-          "unit": "cup"
         }
       ]
     },
@@ -6071,6 +6365,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -6095,6 +6392,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 7.285714285714286,
                 "protein_g": 0.0071428571428571435,
@@ -6138,6 +6438,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Same as granulated sugar (above)",
               "notes": "Per 1 Tbsp.",
@@ -6168,6 +6471,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 12,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 12,
               "per_g": {
                 "kcal": 4.166666666666667,
                 "protein_g": 0,
@@ -6211,6 +6517,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 20,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 20,
               "per_g": {
                 "kcal": 2.9,
                 "protein_g": 0,
@@ -6254,6 +6563,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (vanilla extract)",
               "notes": "Per 1 tsp (5ml).",
@@ -6284,6 +6596,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 50,
+              "serving_qty": 1,
+              "serving_unit_norm": "large",
+              "serving_grams": 50,
               "per_g": {
                 "kcal": 1.44,
                 "protein_g": 0.126,
@@ -6321,6 +6636,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 10,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 10,
               "per_g": {
                 "kcal": 3.5,
                 "protein_g": 0,
@@ -6364,6 +6682,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 5,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 5,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -6407,6 +6728,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 4.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 4.6,
               "per_g": {
                 "kcal": 0.5217391304347826,
                 "protein_g": 0,
@@ -6450,6 +6774,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -6493,6 +6820,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 120,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 120,
               "per_g": {
                 "kcal": 3.6666666666666665,
                 "protein_g": 0.06666666666666667,
@@ -6536,6 +6866,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 168,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 168,
               "per_g": {
                 "kcal": 4.761904761904762,
                 "protein_g": 0.05,
@@ -6573,6 +6906,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 168,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 168,
               "per_g": {
                 "kcal": 4.642857142857143,
                 "protein_g": 0.03571428571428571,
@@ -6636,12 +6972,12 @@
     "family": "",
     "notes": "Simple skillet collards with smoky bacon.",
     "nutrition_estimate": {
-      "calories_total": 95.91081944444444,
-      "calories_per_serving": 95.91081944444444,
+      "calories_total": 214.91081944444443,
+      "calories_per_serving": 214.91081944444443,
       "servings_estimate": 1,
-      "covered_ingredients": 3,
+      "covered_ingredients": 4,
       "total_ingredients": 6,
-      "coverage_ratio": 0.5,
+      "coverage_ratio": 0.6666666666666666,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -6651,10 +6987,6 @@
         {
           "ingredient_id": "canadian-bacon",
           "unit": "cup"
-        },
-        {
-          "ingredient_id": "vegetable-oil",
-          "unit": "tbsp"
         }
       ]
     },
@@ -6712,6 +7044,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 110,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 110,
               "per_g": {
                 "kcal": 0.4,
                 "protein_g": 0.010909090909090908,
@@ -6755,6 +7090,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 28,
+              "serving_qty": 1,
+              "serving_unit_norm": "slice",
+              "serving_grams": 28,
               "per_g": {
                 "kcal": 1.5357142857142858,
                 "protein_g": 0.19642857142857142,
@@ -6798,6 +7136,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.5,
                 "protein_g": 0,
@@ -6841,6 +7182,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 36,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 36,
               "per_g": {
                 "kcal": 0.3055555555555556,
                 "protein_g": 0.030555555555555558,
@@ -6884,6 +7228,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -6927,6 +7274,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,
@@ -6974,25 +7324,17 @@
     "family": "",
     "notes": "Garlic cloves are left whole and caramelized. Sauce thickens further as it cools.",
     "nutrition_estimate": {
-      "calories_total": 2.5,
-      "calories_per_serving": 2.5,
+      "calories_total": 387.5,
+      "calories_per_serving": 387.5,
       "servings_estimate": 1,
-      "covered_ingredients": 2,
+      "covered_ingredients": 6,
       "total_ingredients": 18,
-      "coverage_ratio": 0.1111111111111111,
+      "coverage_ratio": 0.3333333333333333,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
           "ingredient_id": "chicken-breast",
           "unit": "piece"
-        },
-        {
-          "ingredient_id": "italian_seasoning",
-          "unit": "tsp"
-        },
-        {
-          "ingredient_id": "olive_oil",
-          "unit": "tbsp"
         },
         {
           "ingredient_id": "wheat-flour",
@@ -7015,15 +7357,7 @@
           "unit": "tsp"
         },
         {
-          "ingredient_id": "onion_powder",
-          "unit": "tsp"
-        },
-        {
           "ingredient_id": "dried_thyme",
-          "unit": "tsp"
-        },
-        {
-          "ingredient_id": "mustard_powder",
           "unit": "tsp"
         },
         {
@@ -7173,6 +7507,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 453.592,
+              "serving_qty": 1,
+              "serving_unit_norm": "lb",
+              "serving_grams": 453.592,
               "per_g": {
                 "kcal": 1.6490590662974656,
                 "protein_g": 0.20282544665690755,
@@ -7217,6 +7554,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -7261,6 +7601,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,
@@ -7305,6 +7648,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2,
               "per_g": {
                 "kcal": 2.5,
                 "protein_g": 0.1,
@@ -7349,6 +7695,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.5,
                 "protein_g": 0,
@@ -7393,6 +7742,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -7424,6 +7776,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28,
               "per_g": {
                 "kcal": 3.9642857142857144,
                 "protein_g": 0.35714285714285715,
@@ -7468,6 +7823,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (240ml).",
@@ -7499,6 +7857,9 @@
             "nutrition": {
               "unit": "cube",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cube",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (beef bouillon)",
               "notes": "Per 1 cube (prepared 1 cup).",
@@ -7523,6 +7884,9 @@
             "nutrition": {
               "unit": "cube",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cube",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (beef bouillon)",
               "notes": "Per 1 cube (prepared 1 cup).",
@@ -7554,6 +7918,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (soy sauce)",
               "notes": "Per 1 Tbsp (15ml).",
@@ -7578,6 +7945,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 17,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 17,
               "per_g": {
                 "kcal": 0.7647058823529411,
                 "protein_g": 0.01764705882352941,
@@ -7622,6 +7992,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.8,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.8,
               "per_g": {
                 "kcal": 3.5714285714285716,
                 "protein_g": 0.10714285714285715,
@@ -7666,6 +8039,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 tsp.",
@@ -7697,6 +8073,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2,
               "per_g": {
                 "kcal": 3,
                 "protein_g": 0.15,
@@ -7741,6 +8120,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -7772,6 +8154,9 @@
             "nutrition": {
               "unit": "clove",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "clove",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 clove (3g).",
@@ -7803,6 +8188,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -7834,6 +8222,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp.",
@@ -7865,6 +8256,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28,
               "per_g": {
                 "kcal": 3.9642857142857144,
                 "protein_g": 0.35714285714285715,
@@ -7902,6 +8296,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28,
               "per_g": {
                 "kcal": 3.9642857142857144,
                 "protein_g": 0.35714285714285715,
@@ -7969,12 +8366,12 @@
     "family": "",
     "notes": "Adjust milk to your preferred thickness; 1 1/2 cups yields a medium body.",
     "nutrition_estimate": {
-      "calories_total": 1.25,
-      "calories_per_serving": 1.25,
+      "calories_total": 2.25,
+      "calories_per_serving": 2.25,
       "servings_estimate": 1,
-      "covered_ingredients": 2,
+      "covered_ingredients": 3,
       "total_ingredients": 9,
-      "coverage_ratio": 0.2222222222222222,
+      "coverage_ratio": 0.3333333333333333,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -8000,10 +8397,6 @@
         {
           "ingredient_id": "milk",
           "unit": "cup"
-        },
-        {
-          "ingredient_id": "parsley",
-          "unit": "tbsp"
         }
       ]
     },
@@ -8071,6 +8464,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 173,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 173,
               "per_g": {
                 "kcal": 0.9479768786127167,
                 "protein_g": 0.024855491329479767,
@@ -8114,6 +8510,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 89,
+              "serving_qty": 1,
+              "serving_unit_norm": "leek",
+              "serving_grams": 89,
               "per_g": {
                 "kcal": 0.5617977528089888,
                 "protein_g": 0.016853932584269662,
@@ -8157,6 +8556,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 40,
+              "serving_qty": 1,
+              "serving_unit_norm": "stalk",
+              "serving_grams": 40,
               "per_g": {
                 "kcal": 0.15,
                 "protein_g": 0.0075,
@@ -8200,6 +8602,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
@@ -8230,6 +8635,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -8260,6 +8668,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "U.S. Dairy (whole milk)",
               "notes": "Per 1 cup (240ml).",
@@ -8290,6 +8701,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -8333,6 +8747,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,
@@ -8376,6 +8793,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 4,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 4,
               "per_g": {
                 "kcal": 0.25,
                 "protein_g": 0.025,
@@ -8424,18 +8844,14 @@
     "family": "Burrows",
     "notes": "Makes about 24 cookies.",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 0,
+      "calories_total": 795.3039197121757,
+      "calories_per_serving": 795.3039197121757,
+      "servings_estimate": 1,
+      "covered_ingredients": 1,
       "total_ingredients": 5,
-      "coverage_ratio": 0,
+      "coverage_ratio": 0.2,
       "target_meal_calories": 700,
       "missing_ingredients": [
-        {
-          "ingredient_id": "sugar",
-          "unit": "cup"
-        },
         {
           "ingredient_id": "peanut-butter",
           "unit": "cup"
@@ -8510,6 +8926,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 12.5,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 12.5,
               "per_g": {
                 "kcal": 3.92,
                 "protein_g": 0,
@@ -8553,6 +8972,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "creamy, salted",
@@ -8583,6 +9005,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 50,
+              "serving_qty": 1,
+              "serving_unit_norm": "large",
+              "serving_grams": 50,
               "per_g": {
                 "kcal": 1.44,
                 "protein_g": 0.126,
@@ -8626,6 +9051,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (vanilla extract)",
               "notes": "Per 1 tsp (5ml).",
@@ -8656,6 +9084,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28.3495,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28.3495,
               "per_g": {
                 "kcal": 5.679112506393411,
                 "protein_g": 0.2575001322774652,
@@ -8809,6 +9240,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 173,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 173,
               "per_g": {
                 "kcal": 0.9479768786127167,
                 "protein_g": 0.024855491329479767,
@@ -8852,6 +9286,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -8882,6 +9319,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28.3495,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28.3495,
               "per_g": {
                 "kcal": 3.492125081571104,
                 "protein_g": 0.06349318330129279,
@@ -8925,6 +9365,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": null,
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA FoodData Central",
               "notes": "Shredded cheddar per cup.",
@@ -8955,6 +9398,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28.3495,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28.3495,
               "per_g": {
                 "kcal": 0.2469179350605831,
                 "protein_g": 0.003527399072294044,
@@ -8998,6 +9444,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "pepper",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "medium (119g)",
@@ -9028,6 +9477,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28,
               "per_g": {
                 "kcal": 3.9642857142857144,
                 "protein_g": 0.35714285714285715,
@@ -9071,6 +9523,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "U.S. Dairy (whole milk)",
               "notes": "Per 1 cup (240ml).",
@@ -9101,6 +9556,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -9144,6 +9602,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 15,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 15,
               "per_g": {
                 "kcal": 0.3333333333333333,
                 "protein_g": 0.018000000000000002,
@@ -9191,12 +9652,12 @@
     "family": "",
     "notes": "Hearty ground beef and vegetable soup with tomato base.",
     "nutrition_estimate": {
-      "calories_total": 1172.5,
-      "calories_per_serving": 586.25,
+      "calories_total": 1572.8224333333333,
+      "calories_per_serving": 786.4112166666666,
       "servings_estimate": 2,
-      "covered_ingredients": 4,
+      "covered_ingredients": 7,
       "total_ingredients": 9,
-      "coverage_ratio": 0.4444444444444444,
+      "coverage_ratio": 0.7777777777777778,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -9204,19 +9665,7 @@
           "unit": "cup"
         },
         {
-          "ingredient_id": "tomato-sauce",
-          "unit": "pint"
-        },
-        {
           "ingredient_id": "celery",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "diced-tomatoes",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "mixed-vegetables",
           "unit": "cup"
         }
       ]
@@ -9281,6 +9730,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 453.592,
+              "serving_qty": 1,
+              "serving_unit_norm": "lb",
+              "serving_grams": 453.592,
               "per_g": {
                 "kcal": 2.535318083211344,
                 "protein_g": 0.16975608035415088,
@@ -9324,6 +9776,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 110,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 110,
               "per_g": {
                 "kcal": 0.4,
                 "protein_g": 0.010909090909090908,
@@ -9367,6 +9822,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 245,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 245,
               "per_g": {
                 "kcal": 0.24081632653061225,
                 "protein_g": 0.01183673469387755,
@@ -9410,6 +9868,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 240,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 240,
               "per_g": {
                 "kcal": 0.041666666666666664,
                 "protein_g": 0.008333333333333333,
@@ -9453,6 +9914,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 40,
+              "serving_qty": 1,
+              "serving_unit_norm": "stalk",
+              "serving_grams": 40,
               "per_g": {
                 "kcal": 0.15,
                 "protein_g": 0.0075,
@@ -9496,6 +9960,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -9539,6 +10006,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,
@@ -9582,6 +10052,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 240,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 240,
               "per_g": {
                 "kcal": 0.2,
                 "protein_g": 0.008333333333333333,
@@ -9625,6 +10098,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 140,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 140,
               "per_g": {
                 "kcal": 0.8428571428571429,
                 "protein_g": 0.03214285714285714,
@@ -9738,6 +10214,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28.3495,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28.3495,
               "per_g": {
                 "kcal": 3.492125081571104,
                 "protein_g": 0.06349318330129279,
@@ -9781,6 +10260,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 30,
+              "serving_qty": 2,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 30,
               "per_g": {
                 "kcal": 0.3333333333333333,
                 "protein_g": 0.016666666666666666,
@@ -9824,6 +10306,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 453.592,
+              "serving_qty": 1,
+              "serving_unit_norm": "lb",
+              "serving_grams": 453.592,
               "per_g": {
                 "kcal": 2.535318083211344,
                 "protein_g": 0.16975608035415088,
@@ -9867,6 +10352,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 112,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 112,
               "per_g": {
                 "kcal": 3.5714285714285716,
                 "protein_g": 0.22321428571428573,
@@ -9914,37 +10402,17 @@
     "family": "",
     "notes": "Bake in an 8x8-inch square pan (stone preferred; glass/metal ok). Use room-temperature full-fat coconut milk and whisk/blend until completely smooth before measuring.",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 1,
+      "calories_total": 906.5224181885645,
+      "calories_per_serving": 906.5224181885645,
+      "servings_estimate": 1,
+      "covered_ingredients": 8,
       "total_ingredients": 16,
-      "coverage_ratio": 0.0625,
+      "coverage_ratio": 0.5,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
-          "ingredient_id": "almond-flour",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "oat-flour",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "tapioca-starch",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "cornstarch",
-          "unit": "tbsp"
-        },
-        {
           "ingredient_id": "white-sugar",
           "unit": "cup"
-        },
-        {
-          "ingredient_id": "baking-powder",
-          "unit": "tsp"
         },
         {
           "ingredient_id": "coconut-milk",
@@ -9963,19 +10431,11 @@
           "unit": "tsp"
         },
         {
-          "ingredient_id": "neutral-oil",
-          "unit": "tsp"
-        },
-        {
           "ingredient_id": "powdered-sugar",
           "unit": "cup"
         },
         {
           "ingredient_id": "lemon",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "nondairy-yogurt",
           "unit": "tbsp"
         },
         {
@@ -10080,6 +10540,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 96,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 96,
               "per_g": {
                 "kcal": 6.666666666666667,
                 "protein_g": 0.25,
@@ -10123,6 +10586,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 104,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 104,
               "per_g": {
                 "kcal": 4.038461538461538,
                 "protein_g": 0.14711538461538462,
@@ -10166,6 +10632,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 120,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 120,
               "per_g": {
                 "kcal": 3.533333333333333,
                 "protein_g": 0,
@@ -10209,6 +10678,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 128,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 128,
               "per_g": {
                 "kcal": 3.8125,
                 "protein_g": 0.00234375,
@@ -10252,6 +10724,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Same as granulated sugar (above)",
               "notes": "Per 1 Tbsp.",
@@ -10282,6 +10757,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 4.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 4.6,
               "per_g": {
                 "kcal": 0.5217391304347826,
                 "protein_g": 0,
@@ -10325,6 +10803,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -10368,6 +10849,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (unsweet. coconut)",
               "notes": "Per 1 cup (240ml).",
@@ -10398,6 +10882,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 58,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 58,
               "per_g": {
                 "kcal": 0.29310344827586204,
                 "protein_g": 0.010344827586206896,
@@ -10441,6 +10928,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 58,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 58,
               "per_g": {
                 "kcal": 0.29310344827586204,
                 "protein_g": 0.010344827586206896,
@@ -10484,6 +10974,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (vanilla extract)",
               "notes": "Per 1 tsp (5ml).",
@@ -10514,6 +11007,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.857142857142858,
                 "protein_g": 0,
@@ -10557,6 +11053,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (confectioners)",
               "notes": "Per 1 cup (unsifted).",
@@ -10587,6 +11086,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 58,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 58,
               "per_g": {
                 "kcal": 0.29310344827586204,
                 "protein_g": 0.010344827586206896,
@@ -10630,6 +11132,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 245,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 245,
               "per_g": {
                 "kcal": 0.5306122448979592,
                 "protein_g": 0.04081632653061224,
@@ -10667,6 +11172,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "U.S. Dairy (whole milk)",
               "notes": "Per 1 cup (240ml).",
@@ -10697,6 +11205,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (vanilla extract)",
               "notes": "Per 1 tsp (5ml).",
@@ -10981,6 +11492,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 453.592,
+              "serving_qty": 1,
+              "serving_unit_norm": "lb",
+              "serving_grams": 453.592,
               "per_g": {
                 "kcal": 2.1384856875782643,
                 "protein_g": 0.16534683151378332,
@@ -11024,6 +11538,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 173,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 173,
               "per_g": {
                 "kcal": 0.9479768786127167,
                 "protein_g": 0.024855491329479767,
@@ -11067,6 +11584,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 40,
+              "serving_qty": 1,
+              "serving_unit_norm": "stalk",
+              "serving_grams": 40,
               "per_g": {
                 "kcal": 0.15,
                 "protein_g": 0.0075,
@@ -11110,6 +11630,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 110,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 110,
               "per_g": {
                 "kcal": 0.4,
                 "protein_g": 0.010909090909090908,
@@ -11153,6 +11676,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 100,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 100,
               "per_g": {
                 "kcal": 0.31,
                 "protein_g": 0.018000000000000002,
@@ -11196,6 +11722,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 171,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 171,
               "per_g": {
                 "kcal": 1.432748538011696,
                 "protein_g": 0.08771929824561403,
@@ -11239,6 +11768,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 61,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 61,
               "per_g": {
                 "kcal": 0.4098360655737705,
                 "protein_g": 0.00819672131147541,
@@ -11282,6 +11814,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 160,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 160,
               "per_g": {
                 "kcal": 0.8375,
                 "protein_g": 0.05375,
@@ -11325,6 +11860,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 165,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 165,
               "per_g": {
                 "kcal": 1.0727272727272728,
                 "protein_g": 0.03272727272727273,
@@ -11368,6 +11906,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 240,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 240,
               "per_g": {
                 "kcal": 0.2,
                 "protein_g": 0.008333333333333333,
@@ -11411,6 +11952,9 @@
             "nutrition": {
               "unit": "cube",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cube",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (beef bouillon)",
               "notes": "Per 1 cube (prepared 1 cup).",
@@ -11441,6 +11985,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "mostly salt (high sodium)",
@@ -11471,6 +12018,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "Per 1 tsp.",
@@ -11501,6 +12051,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -11531,6 +12084,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
@@ -11636,6 +12192,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "elbow, uncooked",
@@ -11666,6 +12225,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28,
               "per_g": {
                 "kcal": 3.0357142857142856,
                 "protein_g": 0.16428571428571428,
@@ -11709,6 +12271,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "U.S. Dairy (whole milk)",
               "notes": "Per 1 cup (240ml).",
@@ -11739,6 +12304,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -11782,6 +12350,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,
@@ -11902,6 +12473,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "elbow, uncooked",
@@ -11932,6 +12506,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 240,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 240,
               "per_g": {
                 "kcal": 0.2,
                 "protein_g": 0.008333333333333333,
@@ -11968,8 +12545,24 @@
             },
             "nutrition": {
               "unit": "count",
-              "grams_per_unit": null,
-              "per_g": null,
+              "grams_per_unit": 793.786,
+              "serving_qty": 1,
+              "serving_unit_norm": "can",
+              "serving_grams": 793.786,
+              "per_g": {
+                "kcal": 0.1889678074443238,
+                "protein_g": 0.00881849768073511,
+                "fat_g": 0.0006298926914810794,
+                "sat_fat_g": 0.00012597853829621588,
+                "carbs_g": 0.04409248840367555,
+                "sugars_g": 0.031494634574053965,
+                "fiber_g": 0.012597853829621586,
+                "sodium_mg": 1.763699536147022,
+                "calcium_mg": 0.12597853829621586,
+                "iron_mg": 0.004409248840367555,
+                "potassium_mg": 1.2597853829621586,
+                "vitamin_c_mg": 0.03779356148886476
+              },
               "source": "USDA",
               "notes": "canned, salted",
               "serving_size": "1 can (28 oz)"
@@ -11999,6 +12592,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 245,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 245,
               "per_g": {
                 "kcal": 0.24081632653061225,
                 "protein_g": 0.01183673469387755,
@@ -12042,6 +12638,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,
@@ -12096,18 +12695,14 @@
     "family": "Burrows",
     "notes": "Use 1/2 can Rotel for a milder version.",
     "nutrition_estimate": {
-      "calories_total": 944.2439285714286,
-      "calories_per_serving": 944.2439285714286,
-      "servings_estimate": 1,
-      "covered_ingredients": 2,
+      "calories_total": 1097.2439285714286,
+      "calories_per_serving": 548.6219642857143,
+      "servings_estimate": 2,
+      "covered_ingredients": 3,
       "total_ingredients": 6,
-      "coverage_ratio": 0.3333333333333333,
+      "coverage_ratio": 0.5,
       "target_meal_calories": 700,
       "missing_ingredients": [
-        {
-          "ingredient_id": "cooked-chicken",
-          "unit": "cup"
-        },
         {
           "ingredient_id": "nacho-chips",
           "unit": "bag"
@@ -12184,6 +12779,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 140,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 140,
               "per_g": {
                 "kcal": 1.65,
                 "protein_g": 0.25,
@@ -12227,6 +12825,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28,
               "per_g": {
                 "kcal": 3.0357142857142856,
                 "protein_g": 0.16428571428571428,
@@ -12270,6 +12871,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28,
               "per_g": {
                 "kcal": 5.25,
                 "protein_g": 0.075,
@@ -12312,8 +12916,24 @@
             },
             "nutrition": {
               "unit": "count",
-              "grams_per_unit": null,
-              "per_g": null,
+              "grams_per_unit": 297.66974999999996,
+              "serving_qty": 10.5,
+              "serving_unit_norm": "can",
+              "serving_grams": 297.66974999999996,
+              "per_g": {
+                "kcal": 0.8398569219747725,
+                "protein_g": 0.008398569219747725,
+                "fat_g": 0.05878998453823407,
+                "sat_fat_g": 0.008398569219747725,
+                "carbs_g": 0.0671885537579818,
+                "sugars_g": 0.00671885537579818,
+                "fiber_g": 0.00335942768789909,
+                "sodium_mg": 7.138783836785566,
+                "calcium_mg": 0.1343771075159636,
+                "iron_mg": 0.001679713843949545,
+                "potassium_mg": 0.671885537579818,
+                "vitamin_c_mg": 0
+              },
               "source": "Label",
               "notes": "condensed",
               "serving_size": "10.5 oz can"
@@ -12342,8 +12962,24 @@
             },
             "nutrition": {
               "unit": "count",
-              "grams_per_unit": null,
-              "per_g": null,
+              "grams_per_unit": 297.66974999999996,
+              "serving_qty": 10.5,
+              "serving_unit_norm": "can",
+              "serving_grams": 297.66974999999996,
+              "per_g": {
+                "kcal": 1.0078283063697269,
+                "protein_g": 0.01679713843949545,
+                "fat_g": 0.0671885537579818,
+                "sat_fat_g": 0.01679713843949545,
+                "carbs_g": 0.08398569219747724,
+                "sugars_g": 0.00671885537579818,
+                "fiber_g": 0,
+                "sodium_mg": 7.222769528983044,
+                "calcium_mg": 0.1007828306369727,
+                "iron_mg": 0.00335942768789909,
+                "potassium_mg": 0.8398569219747725,
+                "vitamin_c_mg": 0
+              },
               "source": "Label",
               "notes": "condensed",
               "serving_size": "10.5 oz can"
@@ -12372,20 +13008,23 @@
             },
             "nutrition": {
               "unit": "oz",
-              "grams_per_unit": 28.3495,
+              "grams_per_unit": 283.495,
+              "serving_qty": 1,
+              "serving_unit_norm": "can",
+              "serving_grams": 283.495,
               "per_g": {
-                "kcal": 2.1164394433764264,
-                "protein_g": 0.10582197216882132,
+                "kcal": 0.21164394433764264,
+                "protein_g": 0.010582197216882132,
                 "fat_g": 0,
                 "sat_fat_g": 0,
-                "carbs_g": 0.4938358701211662,
-                "sugars_g": 0.2645549304220533,
-                "fiber_g": 0.10582197216882132,
-                "sodium_mg": 33.51029118679342,
-                "calcium_mg": 1.0582197216882132,
-                "iron_mg": 0.03527399072294044,
-                "potassium_mg": 24.69179350605831,
-                "vitamin_c_mg": 0.5291098608441066
+                "carbs_g": 0.04938358701211661,
+                "sugars_g": 0.02645549304220533,
+                "fiber_g": 0.010582197216882132,
+                "sodium_mg": 3.351029118679342,
+                "calcium_mg": 0.10582197216882132,
+                "iron_mg": 0.003527399072294044,
+                "potassium_mg": 2.4691793506058306,
+                "vitamin_c_mg": 0.05291098608441066
               },
               "source": "Label",
               "notes": "diced, salted",
@@ -12509,6 +13148,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 453.592,
+              "serving_qty": 1,
+              "serving_unit_norm": "lb",
+              "serving_grams": 453.592,
               "per_g": {
                 "kcal": 2.535318083211344,
                 "protein_g": 0.16975608035415088,
@@ -12552,6 +13194,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 177,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 177,
               "per_g": {
                 "kcal": 1.271186440677966,
                 "protein_g": 0.08644067796610169,
@@ -12595,6 +13240,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 245,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 245,
               "per_g": {
                 "kcal": 0.24081632653061225,
                 "protein_g": 0.01183673469387755,
@@ -12637,8 +13285,24 @@
             },
             "nutrition": {
               "unit": "count",
-              "grams_per_unit": null,
-              "per_g": null,
+              "grams_per_unit": 304.757125,
+              "serving_qty": 10.75,
+              "serving_unit_norm": "can",
+              "serving_grams": 304.757125,
+              "per_g": {
+                "kcal": 0.7382928290848,
+                "protein_g": 0.008203253656497777,
+                "fat_g": 0,
+                "sat_fat_g": 0,
+                "carbs_g": 0.1804715804429511,
+                "sugars_g": 0.09843904387797332,
+                "fiber_g": 0.006562602925198222,
+                "sodium_mg": 3.9375617551189332,
+                "calcium_mg": 0.06562602925198222,
+                "iron_mg": 0.006562602925198222,
+                "potassium_mg": 1.9687808775594666,
+                "vitamin_c_mg": 0
+              },
               "source": "Label",
               "notes": "condensed",
               "serving_size": "10.75 oz can"
@@ -12668,6 +13332,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "Per 1 tsp.",
@@ -12698,6 +13365,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -12741,6 +13411,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,
@@ -12784,6 +13457,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
@@ -12817,12 +13493,12 @@
     "family": "",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 809.9857142857142,
-      "calories_per_serving": 809.9857142857142,
-      "servings_estimate": 1,
-      "covered_ingredients": 1,
+      "calories_total": 1606.9084832418102,
+      "calories_per_serving": 803.4542416209051,
+      "servings_estimate": 2,
+      "covered_ingredients": 4,
       "total_ingredients": 13,
-      "coverage_ratio": 0.07692307692307693,
+      "coverage_ratio": 0.3076923076923077,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -12834,20 +13510,12 @@
           "unit": "cup"
         },
         {
-          "ingredient_id": "cocoa-powder",
-          "unit": "cup"
-        },
-        {
           "ingredient_id": "egg",
           "unit": "count"
         },
         {
           "ingredient_id": "vanilla-extract",
           "unit": "tsp"
-        },
-        {
-          "ingredient_id": "graham-cracker-crumbs",
-          "unit": "cup"
         },
         {
           "ingredient_id": "shredded-coconut",
@@ -12868,10 +13536,6 @@
         {
           "ingredient_id": "powdered-sugar",
           "unit": "cup"
-        },
-        {
-          "ingredient_id": "neutral-oil",
-          "unit": "tbsp"
         }
       ]
     },
@@ -12967,6 +13631,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -12998,6 +13665,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Same as granulated sugar (above)",
               "notes": "Per 1 Tbsp.",
@@ -13029,6 +13699,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 5,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 5,
               "per_g": {
                 "kcal": 2.4,
                 "protein_g": 0.22000000000000003,
@@ -13073,6 +13746,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 50,
+              "serving_qty": 1,
+              "serving_unit_norm": "large",
+              "serving_grams": 50,
               "per_g": {
                 "kcal": 1.44,
                 "protein_g": 0.126,
@@ -13117,6 +13793,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (vanilla extract)",
               "notes": "Per 1 tsp (5ml).",
@@ -13148,6 +13827,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 28,
+              "serving_qty": 0.25,
+              "serving_unit_norm": "cup",
+              "serving_grams": 28,
               "per_g": {
                 "kcal": 4.321428571428571,
                 "protein_g": 0.06785714285714285,
@@ -13192,6 +13874,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "unsweetened",
@@ -13223,6 +13908,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -13254,6 +13942,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "U.S. Dairy (whole milk)",
               "notes": "Per 1 cup (240ml).",
@@ -13284,8 +13975,24 @@
             },
             "nutrition": {
               "unit": "count",
-              "grams_per_unit": null,
-              "per_g": null,
+              "grams_per_unit": 96.3883,
+              "serving_qty": 1,
+              "serving_unit_norm": "package",
+              "serving_grams": 96.3883,
+              "per_g": {
+                "kcal": 3.734893135370164,
+                "protein_g": 0,
+                "fat_g": 0,
+                "sat_fat_g": 0,
+                "carbs_g": 0.912973877534929,
+                "sugars_g": 0.7469786270740328,
+                "fiber_g": 0,
+                "sodium_mg": 14.524584415328416,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0
+              },
               "source": "Label",
               "notes": "instant mix",
               "serving_size": "1 package (3.4 oz)"
@@ -13316,6 +14023,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (confectioners)",
               "notes": "Per 1 cup (unsifted).",
@@ -13347,6 +14057,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 168,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 168,
               "per_g": {
                 "kcal": 4.761904761904762,
                 "protein_g": 0.05,
@@ -13391,6 +14104,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.857142857142858,
                 "protein_g": 0,
@@ -13444,18 +14160,14 @@
     "family": "Burrows",
     "notes": "Dream Whip works well in place of homemade whipped cream.",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 0,
+      "calories_total": 320,
+      "calories_per_serving": 320,
+      "servings_estimate": 1,
+      "covered_ingredients": 1,
       "total_ingredients": 5,
-      "coverage_ratio": 0,
+      "coverage_ratio": 0.2,
       "target_meal_calories": 700,
       "missing_ingredients": [
-        {
-          "ingredient_id": "orange-gelatin",
-          "unit": "package"
-        },
         {
           "ingredient_id": "water",
           "unit": "cup"
@@ -13533,8 +14245,24 @@
             },
             "nutrition": {
               "unit": "count",
-              "grams_per_unit": null,
-              "per_g": null,
+              "grams_per_unit": 85.04849999999999,
+              "serving_qty": 1,
+              "serving_unit_norm": "package",
+              "serving_grams": 85.04849999999999,
+              "per_g": {
+                "kcal": 3.7625590104469806,
+                "protein_g": 0,
+                "fat_g": 0,
+                "sat_fat_g": 0,
+                "carbs_g": 0.9406397526117452,
+                "sugars_g": 0.9406397526117452,
+                "fiber_g": 0,
+                "sodium_mg": 1.1757996907646815,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0
+              },
               "source": "Label",
               "notes": "sweetened mix",
               "serving_size": "1 package (3 oz)"
@@ -13564,6 +14292,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
@@ -13594,6 +14325,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "Per 1 cup.",
@@ -13624,6 +14358,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "canned in juice",
@@ -13654,6 +14391,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "Label",
               "notes": "aerosol whipped",
@@ -13689,12 +14429,12 @@
     "family": "Burrows",
     "notes": "Serves 3.",
     "nutrition_estimate": {
-      "calories_total": 1807.730276422764,
-      "calories_per_serving": 602.576758807588,
+      "calories_total": 1812.8135980339307,
+      "calories_per_serving": 604.2711993446436,
       "servings_estimate": 3,
-      "covered_ingredients": 4,
+      "covered_ingredients": 6,
       "total_ingredients": 12,
-      "coverage_ratio": 0.3333333333333333,
+      "coverage_ratio": 0.5,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -13714,20 +14454,12 @@
           "unit": "tsp"
         },
         {
-          "ingredient_id": "cayenne-pepper",
-          "unit": "tsp"
-        },
-        {
           "ingredient_id": "garlic",
           "unit": "clove"
         },
         {
           "ingredient_id": "bay-leaf",
           "unit": "count"
-        },
-        {
-          "ingredient_id": "worcestershire_sauce",
-          "unit": "tsp"
         }
       ]
     },
@@ -13802,6 +14534,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 453.592,
+              "serving_qty": 1,
+              "serving_unit_norm": "lb",
+              "serving_grams": 453.592,
               "per_g": {
                 "kcal": 2.535318083211344,
                 "protein_g": 0.16975608035415088,
@@ -13845,6 +14580,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 110,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 110,
               "per_g": {
                 "kcal": 0.4,
                 "protein_g": 0.010909090909090908,
@@ -13888,6 +14626,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "pepper",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "medium (119g)",
@@ -13918,6 +14659,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 123,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 123,
               "per_g": {
                 "kcal": 0.17886178861788618,
                 "protein_g": 0.00894308943089431,
@@ -13961,6 +14705,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 177,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 177,
               "per_g": {
                 "kcal": 1.271186440677966,
                 "protein_g": 0.08644067796610169,
@@ -14004,6 +14751,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "Per 1 tsp.",
@@ -14034,6 +14784,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -14077,6 +14830,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "Per 1 tsp.",
@@ -14107,6 +14863,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 1.8,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 1.8,
               "per_g": {
                 "kcal": 3.333333333333333,
                 "protein_g": 0.11111111111111112,
@@ -14150,6 +14909,9 @@
             "nutrition": {
               "unit": "clove",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "clove",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 clove (3g).",
@@ -14180,6 +14942,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 0.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "leaf",
+              "serving_grams": 0.6,
               "per_g": {
                 "kcal": 3.3333333333333335,
                 "protein_g": 0,
@@ -14223,6 +14988,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 17,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 17,
               "per_g": {
                 "kcal": 0.7647058823529411,
                 "protein_g": 0.01764705882352941,
@@ -14384,6 +15152,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -14408,6 +15179,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Label",
               "notes": "stick, salted",
@@ -14432,6 +15206,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 7.285714285714286,
                 "protein_g": 0.0071428571428571435,
@@ -14475,6 +15252,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (confectioners)",
               "notes": "Per 1 cup (unsifted).",
@@ -14505,6 +15285,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (vanilla extract)",
               "notes": "Per 1 tsp (5ml).",
@@ -14535,6 +15318,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -14565,6 +15351,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -14608,6 +15397,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "approx. mix",
@@ -14638,6 +15430,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (confectioners)",
               "notes": "Per 1 cup (unsifted).",
@@ -14678,12 +15473,12 @@
     "family": "",
     "notes": "Stuff the roasted squash with a cheesy sausage and breadcrumb mixture.",
     "nutrition_estimate": {
-      "calories_total": 1411.1751111111112,
-      "calories_per_serving": 705.5875555555556,
+      "calories_total": 1731.4251111111112,
+      "calories_per_serving": 865.7125555555556,
       "servings_estimate": 2,
-      "covered_ingredients": 2,
+      "covered_ingredients": 3,
       "total_ingredients": 8,
-      "coverage_ratio": 0.25,
+      "coverage_ratio": 0.375,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -14700,10 +15495,6 @@
         },
         {
           "ingredient_id": "celery",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "bread-crumbs",
           "unit": "cup"
         },
         {
@@ -14787,6 +15578,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 140,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 140,
               "per_g": {
                 "kcal": 0.4,
                 "protein_g": 0.007857142857142858,
@@ -14830,6 +15624,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
@@ -14860,6 +15657,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 45,
+              "serving_qty": 1,
+              "serving_unit_norm": "link",
+              "serving_grams": 45,
               "per_g": {
                 "kcal": 3.111111111111111,
                 "protein_g": 0.13333333333333333,
@@ -14903,6 +15703,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 110,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 110,
               "per_g": {
                 "kcal": 0.4,
                 "protein_g": 0.010909090909090908,
@@ -14946,6 +15749,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 40,
+              "serving_qty": 1,
+              "serving_unit_norm": "stalk",
+              "serving_grams": 40,
               "per_g": {
                 "kcal": 0.15,
                 "protein_g": 0.0075,
@@ -14989,6 +15795,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 120,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 120,
               "per_g": {
                 "kcal": 3.558333333333333,
                 "protein_g": 0.12000000000000001,
@@ -15032,6 +15841,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28,
               "per_g": {
                 "kcal": 4.035714285714286,
                 "protein_g": 0.25,
@@ -15075,6 +15887,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -15122,12 +15937,12 @@
     "family": "",
     "notes": "Classic slow-cooked beef stew with potatoes, carrots, and peas.",
     "nutrition_estimate": {
-      "calories_total": 1521.1519823788542,
-      "calories_per_serving": 760.5759911894271,
-      "servings_estimate": 2,
-      "covered_ingredients": 4,
+      "calories_total": 2487.151982378854,
+      "calories_per_serving": 621.7879955947135,
+      "servings_estimate": 4,
+      "covered_ingredients": 9,
       "total_ingredients": 15,
-      "coverage_ratio": 0.26666666666666666,
+      "coverage_ratio": 0.6,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -15139,20 +15954,8 @@
           "unit": "tbsp"
         },
         {
-          "ingredient_id": "olive_oil",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "potato",
-          "unit": "medium"
-        },
-        {
           "ingredient_id": "carrot",
           "unit": "large"
-        },
-        {
-          "ingredient_id": "onion",
-          "unit": "medium"
         },
         {
           "ingredient_id": "garlic",
@@ -15165,14 +15968,6 @@
         {
           "ingredient_id": "tomato-paste",
           "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "worcestershire_sauce",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "peas",
-          "unit": "cup"
         }
       ]
     },
@@ -15266,6 +16061,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 454,
+              "serving_qty": 1,
+              "serving_unit_norm": "lb",
+              "serving_grams": 454,
               "per_g": {
                 "kcal": 2.202643171806167,
                 "protein_g": 0.22026431718061673,
@@ -15309,6 +16107,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -15333,6 +16134,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 120,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 120,
               "per_g": {
                 "kcal": 3.6666666666666665,
                 "protein_g": 0.06666666666666667,
@@ -15376,6 +16180,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Label",
               "notes": "salt & spice blend",
@@ -15406,6 +16213,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.5,
                 "protein_g": 0,
@@ -15449,6 +16259,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 173,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 173,
               "per_g": {
                 "kcal": 0.9479768786127167,
                 "protein_g": 0.024855491329479767,
@@ -15492,6 +16305,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 61,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 61,
               "per_g": {
                 "kcal": 0.4098360655737705,
                 "protein_g": 0.00819672131147541,
@@ -15535,6 +16351,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 110,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 110,
               "per_g": {
                 "kcal": 0.4,
                 "protein_g": 0.010909090909090908,
@@ -15578,6 +16397,9 @@
             "nutrition": {
               "unit": "clove",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "clove",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 clove (3g).",
@@ -15608,6 +16430,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 0.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "leaf",
+              "serving_grams": 0.6,
               "per_g": {
                 "kcal": 3.3333333333333335,
                 "protein_g": 0,
@@ -15651,6 +16476,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,
@@ -15694,6 +16522,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 240,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 240,
               "per_g": {
                 "kcal": 0.041666666666666664,
                 "protein_g": 0.008333333333333333,
@@ -15737,6 +16568,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "Per 1 Tbsp.",
@@ -15767,6 +16601,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 17,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 17,
               "per_g": {
                 "kcal": 0.7647058823529411,
                 "protein_g": 0.01764705882352941,
@@ -15804,6 +16641,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 17,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 17,
               "per_g": {
                 "kcal": 0.7647058823529411,
                 "protein_g": 0.01764705882352941,
@@ -15847,6 +16687,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 160,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 160,
               "per_g": {
                 "kcal": 0.8375,
                 "protein_g": 0.05375,
@@ -15890,6 +16733,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -15949,22 +16795,14 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 1,
+      "calories_total": 3088.332025860903,
+      "calories_per_serving": 772.0830064652257,
+      "servings_estimate": 4,
+      "covered_ingredients": 6,
       "total_ingredients": 9,
-      "coverage_ratio": 0.1111111111111111,
+      "coverage_ratio": 0.6666666666666666,
       "target_meal_calories": 700,
       "missing_ingredients": [
-        {
-          "ingredient_id": "shortening",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "sugar",
-          "unit": "cup"
-        },
         {
           "ingredient_id": "egg",
           "unit": "count"
@@ -15975,18 +16813,6 @@
         },
         {
           "ingredient_id": "cream-of-tartar",
-          "unit": "tsp"
-        },
-        {
-          "ingredient_id": "baking-soda",
-          "unit": "tsp"
-        },
-        {
-          "ingredient_id": "sugar",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "cinnamon",
           "unit": "tsp"
         }
       ]
@@ -16063,6 +16889,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 12,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 12,
               "per_g": {
                 "kcal": 9.166666666666666,
                 "protein_g": 0,
@@ -16106,6 +16935,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 12.5,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 12.5,
               "per_g": {
                 "kcal": 3.92,
                 "protein_g": 0,
@@ -16149,6 +16981,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 50,
+              "serving_qty": 1,
+              "serving_unit_norm": "large",
+              "serving_grams": 50,
               "per_g": {
                 "kcal": 1.44,
                 "protein_g": 0.126,
@@ -16192,6 +17027,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -16222,6 +17060,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "high potassium",
@@ -16252,6 +17093,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 5,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 5,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -16295,6 +17139,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -16338,6 +17185,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 12.5,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 12.5,
               "per_g": {
                 "kcal": 3.92,
                 "protein_g": 0,
@@ -16381,6 +17231,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.6,
               "per_g": {
                 "kcal": 2.3076923076923075,
                 "protein_g": 0.038461538461538464,
@@ -16428,18 +17281,14 @@
     "family": "",
     "notes": "Makes about 5 dozen cookies; requires a cookie press.",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 1,
+      "calories_total": 1803.5761462926394,
+      "calories_per_serving": 601.1920487642132,
+      "servings_estimate": 3,
+      "covered_ingredients": 5,
       "total_ingredients": 9,
-      "coverage_ratio": 0.1111111111111111,
+      "coverage_ratio": 0.5555555555555556,
       "target_meal_calories": 700,
       "missing_ingredients": [
-        {
-          "ingredient_id": "shortening",
-          "unit": "cup"
-        },
         {
           "ingredient_id": "white-sugar",
           "unit": "cup"
@@ -16455,18 +17304,6 @@
         {
           "ingredient_id": "wheat-flour",
           "unit": "cup"
-        },
-        {
-          "ingredient_id": "baking-powder",
-          "unit": "tsp"
-        },
-        {
-          "ingredient_id": "almond-extract",
-          "unit": "tsp"
-        },
-        {
-          "ingredient_id": "food-coloring",
-          "unit": "tsp"
         }
       ]
     },
@@ -16548,6 +17385,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 12,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 12,
               "per_g": {
                 "kcal": 9.166666666666666,
                 "protein_g": 0,
@@ -16585,6 +17425,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -16615,6 +17458,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Same as granulated sugar (above)",
               "notes": "Per 1 Tbsp.",
@@ -16645,6 +17491,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 50,
+              "serving_qty": 1,
+              "serving_unit_norm": "large",
+              "serving_grams": 50,
               "per_g": {
                 "kcal": 1.44,
                 "protein_g": 0.126,
@@ -16682,6 +17531,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "large",
+              "serving_grams": null,
               "per_g": null,
               "source": "MNT (egg yolk)",
               "notes": "Per 1 large yolk.",
@@ -16712,6 +17564,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -16746,6 +17601,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -16781,6 +17639,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 4.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 4.6,
               "per_g": {
                 "kcal": 0.5217391304347826,
                 "protein_g": 0,
@@ -16824,6 +17685,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -16867,6 +17731,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 4.2,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 4.2,
               "per_g": {
                 "kcal": 2.857142857142857,
                 "protein_g": 0,
@@ -16910,6 +17777,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 5,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 5,
               "per_g": {
                 "kcal": 1,
                 "protein_g": 0,
@@ -16968,12 +17838,12 @@
     "family": "",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 0,
+      "calories_total": 411.7673059755999,
+      "calories_per_serving": 411.7673059755999,
+      "servings_estimate": 1,
+      "covered_ingredients": 2,
       "total_ingredients": 8,
-      "coverage_ratio": 0,
+      "coverage_ratio": 0.25,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -16985,16 +17855,8 @@
           "unit": "cup"
         },
         {
-          "ingredient_id": "brown-sugar",
-          "unit": "cup"
-        },
-        {
           "ingredient_id": "white-sugar",
           "unit": "cup"
-        },
-        {
-          "ingredient_id": "cinnamon",
-          "unit": "tsp"
         },
         {
           "ingredient_id": "butter",
@@ -17088,6 +17950,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28.3495,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28.3495,
               "per_g": {
                 "kcal": 2.469179350605831,
                 "protein_g": 0.07054798144588088,
@@ -17132,6 +17997,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -17163,6 +18031,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 12,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 12,
               "per_g": {
                 "kcal": 4.166666666666667,
                 "protein_g": 0,
@@ -17207,6 +18078,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Same as granulated sugar (above)",
               "notes": "Per 1 Tbsp.",
@@ -17238,6 +18112,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.6,
               "per_g": {
                 "kcal": 2.3076923076923075,
                 "protein_g": 0.038461538461538464,
@@ -17282,6 +18159,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -17306,6 +18186,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Label",
               "notes": "stick, salted",
@@ -17337,6 +18220,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "approx. mix",
@@ -17368,6 +18254,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (vanilla extract)",
               "notes": "Per 1 tsp (5ml).",
@@ -17412,35 +18301,14 @@
     "family": "",
     "notes": "Arrowroot starch can replace tapioca flour. Add toppings of choice after prebaking the crust.",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 1,
+      "calories_total": 721.5665548552312,
+      "calories_per_serving": 721.5665548552312,
+      "servings_estimate": 1,
+      "covered_ingredients": 6,
       "total_ingredients": 6,
-      "coverage_ratio": 0.16666666666666666,
+      "coverage_ratio": 1,
       "target_meal_calories": 700,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "sweet-potato",
-          "unit": "medium"
-        },
-        {
-          "ingredient_id": "rice-flour",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "tapioca-starch",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "baking-powder",
-          "unit": "tsp"
-        },
-        {
-          "ingredient_id": "neutral-oil",
-          "unit": "tsp"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Preheat the oven to 375°F (190°C).\n2. Peel and chop {{sweet_potato}}. Boil in water until fork-tender, about 10 minutes. Drain well and mash until smooth.\n3. Measure 1 cup mashed sweet potato into a bowl. Mix in {{rice_flour}}, {{tapioca_flour}}, {{baking_powder}}, and {{salt}} to form a shaggy dough.\n4. If the dough feels dry, add a splash of water or oil. If sticky, dust with more rice flour.\n5. Grease parchment with {{oil}}. Roll the dough between two sheets of parchment to 1/4–3/8 inch thick and transfer to a baking sheet.\n6. Bake for 10 minutes. Flip the crust by placing parchment on top, turning it over, and removing the hot parchment.\n7. Add toppings of choice and bake 10–18 minutes more, until the edges are crisp and toppings are done.",
     "steps": [
@@ -17512,6 +18380,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 130,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 130,
               "per_g": {
                 "kcal": 0.7923076923076923,
                 "protein_g": 0.01769230769230769,
@@ -17555,6 +18426,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 158,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 158,
               "per_g": {
                 "kcal": 3.6582278481012658,
                 "protein_g": 0.059493670886075954,
@@ -17598,6 +18472,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 120,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 120,
               "per_g": {
                 "kcal": 3.533333333333333,
                 "protein_g": 0,
@@ -17641,6 +18518,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 4.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 4.6,
               "per_g": {
                 "kcal": 0.5217391304347826,
                 "protein_g": 0,
@@ -17684,6 +18564,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -17727,6 +18610,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.857142857142858,
                 "protein_g": 0,
@@ -17774,12 +18660,12 @@
     "family": "",
     "notes": "Layered bake with sweet potatoes, seared chops, and a pear syrup glaze.",
     "nutrition_estimate": {
-      "calories_total": 1.25,
-      "calories_per_serving": 1.25,
+      "calories_total": 408.5173059755999,
+      "calories_per_serving": 408.5173059755999,
       "servings_estimate": 1,
-      "covered_ingredients": 2,
+      "covered_ingredients": 4,
       "total_ingredients": 8,
-      "coverage_ratio": 0.25,
+      "coverage_ratio": 0.5,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -17795,16 +18681,8 @@
           "unit": "count"
         },
         {
-          "ingredient_id": "brown-sugar",
-          "unit": "cup"
-        },
-        {
           "ingredient_id": "butter",
           "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "cinnamon",
-          "unit": "tsp"
         }
       ]
     },
@@ -17879,6 +18757,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 92,
+              "serving_qty": 1,
+              "serving_unit_norm": "half",
+              "serving_grams": 92,
               "per_g": {
                 "kcal": 0.3804347826086957,
                 "protein_g": 0.002173913043478261,
@@ -17922,6 +18803,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 130,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 130,
               "per_g": {
                 "kcal": 0.7923076923076923,
                 "protein_g": 0.01769230769230769,
@@ -17965,6 +18849,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 113,
+              "serving_qty": 1,
+              "serving_unit_norm": "chop",
+              "serving_grams": 113,
               "per_g": {
                 "kcal": 1.8584070796460177,
                 "protein_g": 0.26548672566371684,
@@ -18008,6 +18895,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -18051,6 +18941,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,
@@ -18094,6 +18987,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 12,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 12,
               "per_g": {
                 "kcal": 4.166666666666667,
                 "protein_g": 0,
@@ -18137,6 +19033,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -18161,6 +19060,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 7.285714285714286,
                 "protein_g": 0.0071428571428571435,
@@ -18204,6 +19106,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.6,
               "per_g": {
                 "kcal": 2.3076923076923075,
                 "protein_g": 0.038461538461538464,
@@ -18257,22 +19162,14 @@
     "family": "",
     "notes": "Bright coconut curry; serve with rice or cauliflower rice and lime wedges.",
     "nutrition_estimate": {
-      "calories_total": 749.25,
-      "calories_per_serving": 749.25,
-      "servings_estimate": 1,
-      "covered_ingredients": 3,
+      "calories_total": 2854.124044089413,
+      "calories_per_serving": 713.5310110223533,
+      "servings_estimate": 4,
+      "covered_ingredients": 9,
       "total_ingredients": 15,
-      "coverage_ratio": 0.2,
+      "coverage_ratio": 0.6,
       "target_meal_calories": 700,
       "missing_ingredients": [
-        {
-          "ingredient_id": "rice",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "coconut-oil",
-          "unit": "tbsp"
-        },
         {
           "ingredient_id": "onion",
           "unit": "count"
@@ -18290,28 +19187,12 @@
           "unit": "cup"
         },
         {
-          "ingredient_id": "coconut-cream",
-          "unit": "cup"
-        },
-        {
           "ingredient_id": "coconut-aminos",
           "unit": "tbsp"
         },
         {
           "ingredient_id": "lime",
           "unit": "count"
-        },
-        {
-          "ingredient_id": "turmeric-powder",
-          "unit": "tsp"
-        },
-        {
-          "ingredient_id": "cilantro",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "cauliflower-rice",
-          "unit": "cup"
         }
       ]
     },
@@ -18397,6 +19278,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 185,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 185,
               "per_g": {
                 "kcal": 3.7027027027027026,
                 "protein_g": 0.07135135135135134,
@@ -18440,6 +19324,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.642857142857142,
                 "protein_g": 0,
@@ -18483,6 +19370,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 110,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 110,
               "per_g": {
                 "kcal": 0.4,
                 "protein_g": 0.010909090909090908,
@@ -18526,6 +19416,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2,
               "per_g": {
                 "kcal": 1,
                 "protein_g": 0,
@@ -18569,6 +19462,9 @@
             "nutrition": {
               "unit": "clove",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "clove",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 clove (3g).",
@@ -18599,6 +19495,9 @@
             "nutrition": {
               "unit": "lb",
               "grams_per_unit": 453.592,
+              "serving_qty": 1,
+              "serving_unit_norm": "lb",
+              "serving_grams": 453.592,
               "per_g": {
                 "kcal": 1.6490590662974656,
                 "protein_g": 0.20282544665690755,
@@ -18642,6 +19541,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (unsweet. coconut)",
               "notes": "Per 1 cup (240ml).",
@@ -18672,6 +19574,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 15,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 15,
               "per_g": {
                 "kcal": 6,
                 "protein_g": 0.05333333333333334,
@@ -18715,6 +19620,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Mfr. label (coconut aminos)",
               "notes": "Per 1 Tbsp (15ml).",
@@ -18745,6 +19653,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 67,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 67,
               "per_g": {
                 "kcal": 0.29850746268656714,
                 "protein_g": 0.007462686567164179,
@@ -18788,6 +19699,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -18831,6 +19745,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 3,
               "per_g": {
                 "kcal": 3,
                 "protein_g": 0.06666666666666667,
@@ -18874,6 +19791,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,
@@ -18917,6 +19837,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 16,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 16,
               "per_g": {
                 "kcal": 0.25,
                 "protein_g": 0.01875,
@@ -18960,6 +19883,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 107,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 107,
               "per_g": {
                 "kcal": 0.2336448598130841,
                 "protein_g": 0.018691588785046728,
@@ -19006,12 +19932,12 @@
     "family": "",
     "notes": "Use gluten-free flour if desired. Streusel topping and vegan cream cheese frosting are optional.",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 1,
+      "calories_total": 2230.4997213731162,
+      "calories_per_serving": 743.499907124372,
+      "servings_estimate": 3,
+      "covered_ingredients": 7,
       "total_ingredients": 21,
-      "coverage_ratio": 0.047619047619047616,
+      "coverage_ratio": 0.3333333333333333,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -19023,14 +19949,6 @@
           "unit": "cup"
         },
         {
-          "ingredient_id": "brown-sugar",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "neutral-oil",
-          "unit": "cup"
-        },
-        {
           "ingredient_id": "vanilla-extract",
           "unit": "tsp"
         },
@@ -19039,27 +19957,11 @@
           "unit": "cup"
         },
         {
-          "ingredient_id": "baking-powder",
-          "unit": "tsp"
-        },
-        {
-          "ingredient_id": "baking-soda",
-          "unit": "tsp"
-        },
-        {
           "ingredient_id": "pumpkin-spice",
           "unit": "tsp"
         },
         {
-          "ingredient_id": "cinnamon",
-          "unit": "tsp"
-        },
-        {
           "ingredient_id": "wheat-flour",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "brown-sugar",
           "unit": "cup"
         },
         {
@@ -19175,6 +20077,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "canned",
@@ -19205,6 +20110,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "Same as granulated sugar (above)",
               "notes": "Per 1 Tbsp.",
@@ -19235,6 +20143,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 12,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 12,
               "per_g": {
                 "kcal": 4.166666666666667,
                 "protein_g": 0,
@@ -19278,6 +20189,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.857142857142858,
                 "protein_g": 0,
@@ -19321,6 +20235,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (vanilla extract)",
               "notes": "Per 1 tsp (5ml).",
@@ -19351,6 +20268,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -19381,6 +20301,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 4.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 4.6,
               "per_g": {
                 "kcal": 0.5217391304347826,
                 "protein_g": 0,
@@ -19424,6 +20347,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 5,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 5,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -19467,6 +20393,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -19510,6 +20439,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "blend (cinnamon, ginger, etc.)",
@@ -19540,6 +20472,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.6,
               "per_g": {
                 "kcal": 2.3076923076923075,
                 "protein_g": 0.038461538461538464,
@@ -19583,6 +20518,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -19613,6 +20551,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 12,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 12,
               "per_g": {
                 "kcal": 4.166666666666667,
                 "protein_g": 0,
@@ -19656,6 +20597,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "blend (cinnamon, ginger, etc.)",
@@ -19686,6 +20630,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -19729,6 +20676,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -19759,6 +20709,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (vanilla extract)",
               "notes": "Per 1 tsp (5ml).",
@@ -19789,6 +20742,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -19819,6 +20775,9 @@
             "nutrition": {
               "unit": "oz",
               "grams_per_unit": 28.3495,
+              "serving_qty": 1,
+              "serving_unit_norm": "oz",
+              "serving_grams": 28.3495,
               "per_g": {
                 "kcal": 3.492125081571104,
                 "protein_g": 0.06349318330129279,
@@ -19862,6 +20821,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (confectioners)",
               "notes": "Per 1 cup (unsifted).",
@@ -19892,6 +20854,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA (vanilla extract)",
               "notes": "Per 1 tsp (5ml).",
@@ -19925,41 +20890,17 @@
     "family": "",
     "notes": "Use your favorite noodle and mixed vegetables. For gluten-free, choose gluten-free teriyaki and noodles.",
     "nutrition_estimate": {
-      "calories_total": 0,
-      "calories_per_serving": null,
-      "servings_estimate": null,
-      "covered_ingredients": 1,
+      "calories_total": 1177.1787161522439,
+      "calories_per_serving": 588.5893580761219,
+      "servings_estimate": 2,
+      "covered_ingredients": 7,
       "total_ingredients": 9,
-      "coverage_ratio": 0.1111111111111111,
+      "coverage_ratio": 0.7777777777777778,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
           "ingredient_id": "noodles",
           "unit": "oz"
-        },
-        {
-          "ingredient_id": "olive_oil",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "onion",
-          "unit": "medium"
-        },
-        {
-          "ingredient_id": "mixed-vegetables",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "teriyaki-sauce",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "toasted-sesame-oil",
-          "unit": "tsp"
-        },
-        {
-          "ingredient_id": "sesame-seeds",
-          "unit": "tsp"
         },
         {
           "ingredient_id": "green-onion",
@@ -20039,6 +20980,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "USDA",
               "notes": "plain pasta",
@@ -20069,6 +21013,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.5,
                 "protein_g": 0,
@@ -20112,6 +21059,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 110,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 110,
               "per_g": {
                 "kcal": 0.4,
                 "protein_g": 0.010909090909090908,
@@ -20155,6 +21105,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -20198,6 +21151,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 140,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 140,
               "per_g": {
                 "kcal": 0.8428571428571429,
                 "protein_g": 0.03214285714285714,
@@ -20241,6 +21197,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 18,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 18,
               "per_g": {
                 "kcal": 0.8888888888888888,
                 "protein_g": 0.03333333333333333,
@@ -20284,6 +21243,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 14,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 14,
               "per_g": {
                 "kcal": 8.571428571428571,
                 "protein_g": 0,
@@ -20327,6 +21289,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 9,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 9,
               "per_g": {
                 "kcal": 5.777777777777778,
                 "protein_g": 0.17777777777777778,
@@ -20370,6 +21335,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 15,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 15,
               "per_g": {
                 "kcal": 0.3333333333333333,
                 "protein_g": 0.018000000000000002,
@@ -20417,12 +21385,12 @@
     "family": "",
     "notes": "Quick green soup; blend greens with milk if you prefer a smoother finish.",
     "nutrition_estimate": {
-      "calories_total": 1.25,
-      "calories_per_serving": 1.25,
+      "calories_total": 51.32673059755999,
+      "calories_per_serving": 51.32673059755999,
       "servings_estimate": 1,
-      "covered_ingredients": 2,
+      "covered_ingredients": 5,
       "total_ingredients": 10,
-      "coverage_ratio": 0.2,
+      "coverage_ratio": 0.5,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -20444,18 +21412,6 @@
         {
           "ingredient_id": "milk",
           "unit": "cup"
-        },
-        {
-          "ingredient_id": "parsley",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "watercress",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "nutmeg",
-          "unit": "tsp"
         }
       ]
     },
@@ -20529,6 +21485,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 Tbsp (14g).",
@@ -20559,6 +21518,9 @@
             "nutrition": {
               "unit": "count",
               "grams_per_unit": 110,
+              "serving_qty": 1,
+              "serving_unit_norm": "medium",
+              "serving_grams": 110,
               "per_g": {
                 "kcal": 0.4,
                 "protein_g": 0.010909090909090908,
@@ -20602,6 +21564,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (125g).",
@@ -20632,6 +21597,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "(duplicate entry)",
               "notes": "Per 1 cup (240ml).",
@@ -20662,6 +21630,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": null,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": null,
               "per_g": null,
               "source": "U.S. Dairy (whole milk)",
               "notes": "Per 1 cup (240ml).",
@@ -20692,6 +21663,9 @@
             "nutrition": {
               "unit": "tbsp",
               "grams_per_unit": 4,
+              "serving_qty": 1,
+              "serving_unit_norm": "tbsp",
+              "serving_grams": 4,
               "per_g": {
                 "kcal": 0.25,
                 "protein_g": 0.025,
@@ -20735,6 +21709,9 @@
             "nutrition": {
               "unit": "cup",
               "grams_per_unit": 34,
+              "serving_qty": 1,
+              "serving_unit_norm": "cup",
+              "serving_grams": 34,
               "per_g": {
                 "kcal": 0.11764705882352941,
                 "protein_g": 0.023529411764705882,
@@ -20778,6 +21755,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.2,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.2,
               "per_g": {
                 "kcal": 5.454545454545454,
                 "protein_g": 0.045454545454545456,
@@ -20821,6 +21801,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 6,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 6,
               "per_g": {
                 "kcal": 0,
                 "protein_g": 0,
@@ -20864,6 +21847,9 @@
             "nutrition": {
               "unit": "tsp",
               "grams_per_unit": 2.3,
+              "serving_qty": 1,
+              "serving_unit_norm": "tsp",
+              "serving_grams": 2.3,
               "per_g": {
                 "kcal": 2.173913043478261,
                 "protein_g": 0.08695652173913045,

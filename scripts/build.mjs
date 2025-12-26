@@ -247,6 +247,13 @@ const UNIT_ALIASES = new Map([
   ['bunch', 'bunch'],
   ['cans', 'can'],
   ['can', 'can'],
+  ['jars', 'jar'],
+  ['jar', 'jar'],
+  ['bottles', 'bottle'],
+  ['bottle', 'bottle'],
+  ['fl oz', 'fl_oz'],
+  ['fluid ounce', 'fl_oz'],
+  ['fluid ounces', 'fl_oz'],
   ['tablespoons', 'tbsp'],
   ['tablespoon', 'tbsp'],
   ['teaspoons', 'tsp'],
@@ -294,20 +301,51 @@ function convertUnitAmount(amount, fromUnit, toUnit) {
 }
 
 function parseServingInfo(servingSize) {
-  if (!servingSize) return { unit: null, grams: null, ml: null };
-  const raw = String(servingSize);
-  const unitMatch = raw.trim().match(/^[\d\s./-]*([a-zA-Z_-]+)/);
-  const unit = unitMatch ? normalizeUnit(unitMatch[1]) : null;
+  if (!servingSize) {
+    return {
+      serving_qty: 1,
+      serving_unit_norm: null,
+      serving_grams: null,
+      serving_ml: null,
+    };
+  }
+
+  const raw = String(servingSize).trim();
   const parenMatch = raw.match(/\(([^)]+)\)/);
   const paren = parenMatch ? parenMatch[1] : '';
   const gramMatch = paren.match(/([0-9]*\.?[0-9]+)\s*g/i);
   const mlMatch = paren.match(/([0-9]*\.?[0-9]+)\s*ml/i);
   const grams = gramMatch ? Number(gramMatch[1]) : null;
   const ml = mlMatch ? Number(mlMatch[1]) : null;
+
+  const qtyMatch = raw.match(/^([\d\s./-]+)/);
+  const servingQty = qtyMatch ? parseRatioToNumber(qtyMatch[1].trim()) : null;
+  const servingQtyValue = Number.isFinite(servingQty) && servingQty > 0 ? servingQty : 1;
+
+  const packageKeywords = ['can', 'package', 'bag', 'pint', 'jar', 'bottle'];
+  const lower = raw.toLowerCase();
+  const packageUnit = packageKeywords.find((keyword) => lower.includes(keyword));
+
+  const unitMatch = raw.match(/^[\d\s./-]*([a-zA-Z_-]+)/);
+  const unitToken = unitMatch ? unitMatch[1] : null;
+  const unit = normalizeUnit(packageUnit || unitToken);
+
+  let servingGrams = Number.isFinite(grams) ? grams : null;
+  if (!Number.isFinite(servingGrams)) {
+    const weightMatch = raw.match(/([0-9]*\.?[0-9]+)\s*(oz|lb|g|kg)\b/i);
+    if (weightMatch) {
+      const weightQty = Number(weightMatch[1]);
+      const weightUnit = normalizeUnit(weightMatch[2]);
+      const converted = convertUnitAmount(weightQty, weightUnit, 'g');
+      servingGrams = converted?.amount ?? null;
+    }
+  }
+
   return {
-    unit,
-    grams: Number.isFinite(grams) ? grams : null,
-    ml: Number.isFinite(ml) ? ml : null,
+    serving_qty: servingQtyValue,
+    serving_unit_norm: unit || null,
+    serving_grams: Number.isFinite(servingGrams) ? servingGrams : null,
+    serving_ml: Number.isFinite(ml) ? ml : null,
   };
 }
 
@@ -319,7 +357,7 @@ function gramsPerUnitFromPortions(ingredientId, unit, portions) {
   return entry?.grams ?? null;
 }
 
-function amountToGrams(ingredientId, amount, unit, portions) {
+function amountToGrams(ingredientId, amount, unit, nutrition, portions) {
   if (!ingredientId || !Number.isFinite(amount)) return null;
   const normalizedUnit = normalizeUnit(unit);
   if (!normalizedUnit) return null;
@@ -330,6 +368,18 @@ function amountToGrams(ingredientId, amount, unit, portions) {
   }
 
   if (def?.group === 'volume') {
+    const servingUnit = nutrition?.serving_unit_norm;
+    const servingQty = Number.isFinite(nutrition?.serving_qty) ? nutrition.serving_qty : 1;
+    const servingGrams = Number.isFinite(nutrition?.serving_grams) ? nutrition.serving_grams : null;
+    const servingDef = servingUnit ? unitDefinition(servingUnit) : null;
+    if (Number.isFinite(servingGrams) && servingDef?.group === 'volume') {
+      const qtyInServingUnit = convertUnitAmount(amount, normalizedUnit, servingUnit);
+      if (qtyInServingUnit) {
+        const gramsPerServingUnit = servingGrams / servingQty;
+        return qtyInServingUnit.amount * gramsPerServingUnit;
+      }
+    }
+
     const direct = gramsPerUnitFromPortions(ingredientId, normalizedUnit, portions);
     if (Number.isFinite(direct)) {
       return amount * direct;
@@ -347,6 +397,18 @@ function amountToGrams(ingredientId, amount, unit, portions) {
     return null;
   }
 
+  const servingUnit = nutrition?.serving_unit_norm;
+  const servingQty = Number.isFinite(nutrition?.serving_qty) ? nutrition.serving_qty : 1;
+  const servingGrams = Number.isFinite(nutrition?.serving_grams) ? nutrition.serving_grams : null;
+  if (
+    Number.isFinite(servingGrams)
+    && servingUnit
+    && normalizeUnit(servingUnit) === normalizedUnit
+    && servingQty === 1
+  ) {
+    return amount * servingGrams;
+  }
+
   const portion = gramsPerUnitFromPortions(ingredientId, normalizedUnit, portions);
   if (Number.isFinite(portion)) {
     return amount * portion;
@@ -359,10 +421,12 @@ function buildNutritionDensity(catalog, portions) {
   for (const [ingredientId, entry] of catalog.entries()) {
     const nutritionUnit = normalizeUnit(entry.nutrition_unit || '');
     const servingInfo = parseServingInfo(entry.serving_size || '');
+    const servingUnitNorm = servingInfo.serving_unit_norm;
+    const servingQty = Number.isFinite(servingInfo.serving_qty) ? servingInfo.serving_qty : 1;
     let gramsPerUnit = null;
 
-    if (Number.isFinite(servingInfo.grams)) {
-      gramsPerUnit = servingInfo.grams;
+    if (Number.isFinite(servingInfo.serving_grams)) {
+      gramsPerUnit = servingInfo.serving_grams;
     } else if (nutritionUnit) {
       const unitDef = unitDefinition(nutritionUnit);
       if (unitDef?.group === 'mass') {
@@ -370,16 +434,16 @@ function buildNutritionDensity(catalog, portions) {
       }
     }
 
-    if (!Number.isFinite(gramsPerUnit) && Number.isFinite(servingInfo.ml)) {
+    if (!Number.isFinite(gramsPerUnit) && Number.isFinite(servingInfo.serving_ml)) {
       const gramsPerMl = gramsPerUnitFromPortions(ingredientId, 'ml', portions);
       if (Number.isFinite(gramsPerMl)) {
-        gramsPerUnit = servingInfo.ml * gramsPerMl;
+        gramsPerUnit = servingInfo.serving_ml * gramsPerMl;
       }
     }
 
-    if (!Number.isFinite(gramsPerUnit) && nutritionUnit) {
-      const gramsFromPortion = gramsPerUnitFromPortions(ingredientId, nutritionUnit, portions);
-      if (Number.isFinite(gramsFromPortion)) gramsPerUnit = gramsFromPortion;
+    if (!Number.isFinite(gramsPerUnit) && servingUnitNorm) {
+      const gramsFromPortion = gramsPerUnitFromPortions(ingredientId, servingUnitNorm, portions);
+      if (Number.isFinite(gramsFromPortion)) gramsPerUnit = gramsFromPortion * servingQty;
     }
 
     const caloriesPerUnit = parseNumericField(entry.calories_per_unit);
@@ -415,6 +479,9 @@ function buildNutritionDensity(catalog, portions) {
       ingredient_id: ingredientId,
       unit: nutritionUnit || null,
       grams_per_unit: Number.isFinite(gramsPerUnit) ? gramsPerUnit : null,
+      serving_qty: servingQty,
+      serving_unit_norm: servingUnitNorm || null,
+      serving_grams: Number.isFinite(gramsPerUnit) ? gramsPerUnit : null,
       per_g: perGram,
       source: entry.nutrition_source || '',
       notes: entry.nutrition_notes || '',
@@ -503,6 +570,9 @@ function buildNutritionProfile(entry) {
   return {
     unit: entry.unit || null,
     grams_per_unit: Number.isFinite(entry.grams_per_unit) ? entry.grams_per_unit : null,
+    serving_qty: Number.isFinite(entry.serving_qty) ? entry.serving_qty : 1,
+    serving_unit_norm: entry.serving_unit_norm || null,
+    serving_grams: Number.isFinite(entry.serving_grams) ? entry.serving_grams : null,
     per_g: entry.per_g || null,
     source: entry.source || '',
     notes: entry.notes || '',
@@ -531,8 +601,8 @@ function computeNutritionEstimate(ingredients, choices, nutritionDensity, portio
     if (!option || !option.ratio || !option.unit) return;
     const amount = parseRatioToNumber(option.ratio);
     if (!Number.isFinite(amount)) return;
-    const grams = amountToGrams(option.ingredient_id, amount, option.unit, portions);
     const nutrition = nutritionDensity.get(option.ingredient_id);
+    const grams = amountToGrams(option.ingredient_id, amount, option.unit, nutrition, portions);
     if (!Number.isFinite(grams) || !nutrition?.per_g || !Number.isFinite(nutrition.per_g.kcal)) {
       missing.push({ ingredient_id: option.ingredient_id, unit: normalizeUnit(option.unit) });
       return;
@@ -580,8 +650,8 @@ function generateMissingPortionsReport(recipes, portions, nutritionDensity) {
       const amount = parseRatioToNumber(option.ratio);
       if (!Number.isFinite(amount)) return;
       const normalizedUnit = normalizeUnit(option.unit);
-      const grams = amountToGrams(option.ingredient_id, amount, option.unit, portions);
       const nutrition = nutritionDensity.get(option.ingredient_id);
+      const grams = amountToGrams(option.ingredient_id, amount, option.unit, nutrition, portions);
       let reason = null;
       if (!Number.isFinite(grams)) {
         reason = 'missing-portion';

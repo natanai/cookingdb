@@ -162,8 +162,6 @@ async function loadRecipes() {
   if (!indexRes.ok) {
     throw new Error(`Unable to load built/index.json (${indexRes.status})`);
   }
-  const indexRaw = await indexRes.json();
-  const indexList = Array.isArray(indexRaw) ? indexRaw : [];
   if (!recipesRes.ok) {
     throw new Error(`Unable to load built/recipes.json (${recipesRes.status})`);
   }
@@ -173,7 +171,7 @@ async function loadRecipes() {
     : [];
   const inbox = loadStoredInboxRecipes();
   const recipeIndex = new Map(
-    indexList
+    [...built, ...inbox]
       .filter((entry) => entry && entry.id)
       .map((entry) => [String(entry.id), entry])
   );
@@ -630,6 +628,8 @@ function addRecipeSelection(recipe) {
           restrictions: recipe.compatibility_default || recipeDefaultCompatibility(recipe),
           selectedOptions: {},
           unitSelections: {},
+          ingredientPortions: state.ingredientPortions,
+          recipeIndex: state.recipeIndex,
         };
         const totals = computeBatchTotals(recipe, recipeState);
         if (!totals.complete) return null;
