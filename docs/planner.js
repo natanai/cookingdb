@@ -193,6 +193,49 @@ function recipeMatchesQuery(recipe, query) {
   return haystack.includes(query);
 }
 
+function buildIngredientKey(value) {
+  const key = String(value || '').trim().toLowerCase();
+  return key || null;
+}
+
+function collectRecipeIngredientKeys(recipe) {
+  const keys = new Set();
+  Object.values(recipe.ingredients || {}).forEach((tokenData) => {
+    (tokenData?.options || []).forEach((option) => {
+      const key = buildIngredientKey(option?.ingredient_id || option?.display || option?.token);
+      if (key) keys.add(key);
+    });
+  });
+  return keys;
+}
+
+function collectSelectedIngredientKeys() {
+  const keys = new Set();
+  state.selections.forEach((selection) => {
+    const recipeState = selection.state;
+    const recipeId = selection.recipe?.id;
+    recipeState.multiplier = selection.batchSize;
+    recipeState.restrictions = selection.restrictions;
+    const lines = renderIngredientLines(selection.recipe, recipeState);
+    lines.forEach((line) => {
+      line.entries.forEach((entry) => {
+        const key = buildIngredientKey(entry.option?.ingredient_id || entry.option?.display || entry.text);
+        if (key) keys.add(key);
+      });
+    });
+  });
+  return keys;
+}
+
+function recipeSharesIngredients(recipe, selectedIngredients) {
+  if (!selectedIngredients.size) return false;
+  const keys = collectRecipeIngredientKeys(recipe);
+  for (const key of keys) {
+    if (selectedIngredients.has(key)) return true;
+  }
+  return false;
+}
+
 function totalMealsNeeded() {
   if (state.plan.useCustom) {
     return Math.max(0, Math.round(state.plan.days * state.plan.mealsPerDay));
@@ -253,6 +296,7 @@ function updateIngredientsSummary() {
 
   state.selections.forEach((selection) => {
     const recipeState = selection.state;
+    const recipeId = selection.recipe?.id;
     recipeState.multiplier = selection.batchSize;
     recipeState.restrictions = selection.restrictions;
     const lines = renderIngredientLines(selection.recipe, recipeState);
@@ -279,6 +323,7 @@ function updateIngredientsSummary() {
             const conversion = convertUnitAmount(baseAmount, baseUnit, existing.unit);
             if (conversion) {
               existing.amount += conversion.amount;
+              if (recipeId) existing.recipeIds.add(recipeId);
               return;
             }
           }
@@ -288,9 +333,11 @@ function updateIngredientsSummary() {
             display,
             unit: baseUnit,
             amount: 0,
+            recipeIds: new Set(recipeId ? [recipeId] : []),
           });
         }
         combined.get(targetKey).amount += baseAmount;
+        if (recipeId) combined.get(targetKey).recipeIds.add(recipeId);
       });
     });
   });
@@ -301,7 +348,16 @@ function updateIngredientsSummary() {
     const amountStr = formatAmountForDisplay(entry.amount);
     const unitLabel = entry.unit ? ` ${formatUnitLabel(entry.unit, entry.amount)}` : '';
     const displayName = pluralize(entry.display, entry.amount, entry.unit || 'count');
-    li.textContent = `${amountStr}${unitLabel} ${displayName}`.trim();
+    const main = document.createElement('span');
+    main.textContent = `${amountStr}${unitLabel} ${displayName}`.trim();
+    li.appendChild(main);
+    const recipeCount = entry.recipeIds?.size || 0;
+    if (recipeCount > 1) {
+      const note = document.createElement('span');
+      note.className = 'ingredients-note';
+      note.textContent = `combined total — used in ${recipeCount} recipes`;
+      li.appendChild(note);
+    }
     container.appendChild(li);
   });
 
@@ -322,6 +378,7 @@ function updateIngredientsSummary() {
 function renderRecipeList() {
   const list = document.getElementById('planner-recipe-list');
   const query = document.getElementById('planner-search')?.value.trim().toLowerCase() || '';
+  const selectedIngredients = collectSelectedIngredientKeys();
 
   list.innerHTML = '';
 
@@ -387,13 +444,24 @@ function renderRecipeList() {
       flagContainer.appendChild(badge);
     });
 
+    const alreadySelected = state.selections.has(recipe.id);
+    const sharesIngredients = !alreadySelected && recipeSharesIngredients(recipe, selectedIngredients);
+    if (sharesIngredients) {
+      li.classList.add('is-shared-ingredient');
+      const sharedBadge = document.createElement('span');
+      sharedBadge.className = 'recipe-flag planner-ingredient-flag';
+      sharedBadge.textContent = 'Shared';
+      sharedBadge.title = 'Shares ingredients with your selected recipes';
+      sharedBadge.setAttribute('aria-label', sharedBadge.title);
+      flagContainer.prepend(sharedBadge);
+    }
+
     link.appendChild(title);
     link.appendChild(flagContainer);
 
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'button secondary button-compact planner-add-button';
-    const alreadySelected = state.selections.has(recipe.id);
     button.textContent = alreadySelected ? 'Added' : 'Add';
     button.disabled = alreadySelected;
     if (!alreadySelected) {
@@ -614,6 +682,7 @@ function renderSelections() {
         selection.state.restrictions = selection.restrictions;
         selection.state.selectedOptions = {};
         updateIngredientsSummary();
+        renderRecipeList();
       });
       label.appendChild(input);
       const span = document.createElement('span');
@@ -716,6 +785,7 @@ function buildIngredientListForPrint() {
             const conversion = convertUnitAmount(baseAmount, baseUnit, existing.unit);
             if (conversion) {
               existing.amount += conversion.amount;
+              if (recipeId) existing.recipeIds.add(recipeId);
               return;
             }
           }
@@ -725,9 +795,11 @@ function buildIngredientListForPrint() {
             display,
             unit: baseUnit,
             amount: 0,
+            recipeIds: new Set(recipeId ? [recipeId] : []),
           });
         }
         combined.get(targetKey).amount += baseAmount;
+        if (recipeId) combined.get(targetKey).recipeIds.add(recipeId);
       });
     });
   });
@@ -737,7 +809,10 @@ function buildIngredientListForPrint() {
     const amountStr = formatAmountForDisplay(entry.amount);
     const unitLabel = entry.unit ? ` ${formatUnitLabel(entry.unit, entry.amount)}` : '';
     const displayName = pluralize(entry.display, entry.amount, entry.unit || 'count');
-    return `${amountStr}${unitLabel} ${displayName}`.trim();
+    const combinedNote = entry.recipeIds?.size > 1
+      ? ` (combined total — used in ${entry.recipeIds.size} recipes)`
+      : '';
+    return `${amountStr}${unitLabel} ${displayName}${combinedNote}`.trim();
   });
 
   if (extras.size) {
