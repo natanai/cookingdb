@@ -1,4 +1,5 @@
-import { convertUnitAmount, getEffectiveMultiplier, parseRatio, selectOptionForToken } from './recipe-utils.js';
+import { getEffectiveMultiplier, parseRatio, selectOptionForToken } from './recipe-utils.js';
+import { convertUnitAmountWithFactors } from './unit-conversions.js';
 
 const SETTINGS_KEY = 'cookingdb-nutrition-settings';
 
@@ -211,11 +212,21 @@ export function computeBatchTotals(recipe, state) {
     }
 
     const scaledAmount = amount * multiplier;
-    let converted = convertUnitAmount(scaledAmount, inputUnit, nutritionUnit);
+    let converted = convertUnitAmountWithFactors(
+      scaledAmount,
+      inputUnit,
+      nutritionUnit,
+      nutrition?.conversions
+    );
     if (!converted && state?.unitSelections?.[token]) {
       const altUnit = normalizeUnit(state.unitSelections[token]);
       if (altUnit) {
-        converted = convertUnitAmount(scaledAmount, altUnit, nutritionUnit);
+        converted = convertUnitAmountWithFactors(
+          scaledAmount,
+          altUnit,
+          nutritionUnit,
+          nutrition?.conversions
+        );
       }
     }
 
@@ -257,7 +268,7 @@ export function computeBatchTotals(recipe, state) {
       hasAddedSugar = true;
     }
 
-    const grams = convertUnitAmount(scaledAmount, inputUnit, 'g');
+    const grams = convertUnitAmountWithFactors(scaledAmount, inputUnit, 'g', nutrition?.conversions);
     if (grams && Number.isFinite(grams.amount)) {
       totals.grams_total += grams.amount;
       gramsCovered += 1;
