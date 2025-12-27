@@ -1,0 +1,122 @@
+[
+  {
+    "ingredient_id": "tomato-soup",
+    "from_unit_norm": "can",
+    "to_unit_norm": "oz",
+    "factor": 10.75,
+    "source": "brandless default",
+    "notes": "Assumed 10.75 oz condensed soup can."
+  },
+  {
+    "ingredient_id": "cream-of-celery-soup",
+    "from_unit_norm": "can",
+    "to_unit_norm": "oz",
+    "factor": 10.5,
+    "source": "brandless default",
+    "notes": "Assumed 10.5 oz condensed soup can."
+  },
+  {
+    "ingredient_id": "cream-of-chicken-soup",
+    "from_unit_norm": "can",
+    "to_unit_norm": "oz",
+    "factor": 10.5,
+    "source": "brandless default",
+    "notes": "Assumed 10.5 oz condensed soup can."
+  },
+  {
+    "ingredient_id": "orange-gelatin",
+    "from_unit_norm": "package",
+    "to_unit_norm": "oz",
+    "factor": 3,
+    "source": "brandless default",
+    "notes": "Assumed 3 oz gelatin package."
+  },
+  {
+    "ingredient_id": "crescent-rolls",
+    "from_unit_norm": "package",
+    "to_unit_norm": "count",
+    "factor": 8,
+    "source": "brandless default",
+    "notes": "Assumed 1 package yields 8 rolls."
+  },
+  {
+    "ingredient_id": "tuna",
+    "from_unit_norm": "can",
+    "to_unit_norm": "oz",
+    "factor": 5,
+    "source": "brandless default",
+    "notes": "Assumed 5 oz tuna can."
+  },
+  {
+    "ingredient_id": "diced-tomatoes",
+    "from_unit_norm": "can",
+    "to_unit_norm": "oz",
+    "factor": 14.5,
+    "source": "brandless default",
+    "notes": "Assumed 14.5 oz can."
+  },
+  {
+    "ingredient_id": "crushed-tomatoes",
+    "from_unit_norm": "can",
+    "to_unit_norm": "oz",
+    "factor": 14.5,
+    "source": "brandless default",
+    "notes": "Assumed 14.5 oz can."
+  },
+  {
+    "ingredient_id": "stewed-tomatoes",
+    "from_unit_norm": "can",
+    "to_unit_norm": "oz",
+    "factor": 14.5,
+    "source": "brandless default",
+    "notes": "Assumed 14.5 oz can."
+  },
+  {
+    "ingredient_id": "whole-tomatoes",
+    "from_unit_norm": "can",
+    "to_unit_norm": "oz",
+    "factor": 28,
+    "source": "brandless default",
+    "notes": "Assumed 28 oz can."
+  },
+  {
+    "ingredient_id": "rotel",
+    "from_unit_norm": "can",
+    "to_unit_norm": "oz",
+    "factor": 10,
+    "source": "brandless default",
+    "notes": "Assumed 10 oz can."
+  },
+  {
+    "ingredient_id": "kidney-beans",
+    "from_unit_norm": "can",
+    "to_unit_norm": "oz",
+    "factor": 15,
+    "source": "brandless default",
+    "notes": "Assumed 15 oz can."
+  },
+  {
+    "ingredient_id": "pinto-beans",
+    "from_unit_norm": "can",
+    "to_unit_norm": "oz",
+    "factor": 15,
+    "source": "brandless default",
+    "notes": "Assumed 15 oz can."
+  },
+  {
+    "ingredient_id": "green-beans",
+    "from_unit_norm": "can",
+    "to_unit_norm": "oz",
+    "factor": 14.5,
+    "source": "brandless default",
+    "notes": "Assumed 14.5 oz can."
+  },
+  {
+    "ingredient_id": "nacho-chips",
+    "from_unit_norm": "bag",
+    "to_unit_norm": "oz",
+    "factor": 10,
+    "source": "brandless default",
+    "notes": "Assumed 10 oz bag."
+  }
+]
