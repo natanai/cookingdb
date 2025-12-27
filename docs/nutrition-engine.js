@@ -504,19 +504,19 @@ export function computeBatchTotals(recipe, state) {
     totals.coverage.covered += 1;
 
     const servingQty = Number.isFinite(selectedVariant.serving_qty) ? selectedVariant.serving_qty : 1;
-    const multiplier = servingQty ? selectedAmount / servingQty : 0;
-    totals.kcal += multiplier * selectedVariant.calories_kcal;
-    totals.protein_g += multiplier * selectedVariant.protein_g;
-    totals.fat_g += multiplier * selectedVariant.total_fat_g;
-    totals.sat_fat_g += multiplier * selectedVariant.saturated_fat_g;
-    totals.carbs_g += multiplier * selectedVariant.total_carbs_g;
-    totals.sugars_g += multiplier * selectedVariant.sugars_g;
-    totals.fiber_g += multiplier * selectedVariant.fiber_g;
-    totals.sodium_mg += multiplier * selectedVariant.sodium_mg;
-    totals.calcium_mg += multiplier * selectedVariant.calcium_mg;
-    totals.iron_mg += multiplier * selectedVariant.iron_mg;
-    totals.potassium_mg += multiplier * selectedVariant.potassium_mg;
-    totals.vitamin_c_mg += multiplier * selectedVariant.vitamin_c_mg;
+    const servingMultiplier = servingQty ? selectedAmount / servingQty : 0;
+    totals.kcal += servingMultiplier * selectedVariant.calories_kcal;
+    totals.protein_g += servingMultiplier * selectedVariant.protein_g;
+    totals.fat_g += servingMultiplier * selectedVariant.total_fat_g;
+    totals.sat_fat_g += servingMultiplier * selectedVariant.saturated_fat_g;
+    totals.carbs_g += servingMultiplier * selectedVariant.total_carbs_g;
+    totals.sugars_g += servingMultiplier * selectedVariant.sugars_g;
+    totals.fiber_g += servingMultiplier * selectedVariant.fiber_g;
+    totals.sodium_mg += servingMultiplier * selectedVariant.sodium_mg;
+    totals.calcium_mg += servingMultiplier * selectedVariant.calcium_mg;
+    totals.iron_mg += servingMultiplier * selectedVariant.iron_mg;
+    totals.potassium_mg += servingMultiplier * selectedVariant.potassium_mg;
+    totals.vitamin_c_mg += servingMultiplier * selectedVariant.vitamin_c_mg;
   });
 
   if (!hasAddedSugar) {
