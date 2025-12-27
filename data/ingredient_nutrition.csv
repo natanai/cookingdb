@@ -1,0 +1,166 @@
+ingredient_id,serving_qty,serving_unit_norm,calories_kcal,protein_g,total_fat_g,saturated_fat_g,total_carbs_g,sugars_g,fiber_g,sodium_mg,calcium_mg,iron_mg,potassium_mg,vitamin_c_mg,source,notes
+egg,1,count,72,6.3,4.8,1.6,0.4,0.2,0,71,0,0,0,0,USDA (large egg),Per 1 large (≈50g).
+egg-replacer,1,tbsp,35,0,0,0,7,0,1,320,0,0,0,0,Bob’s Red Mill (vegan),Per 1 Tbsp (10g).
+milk,1,cup,150,8,8,5,12,12,0,95,0,0,0,0,U.S. Dairy (whole milk),Per 1 cup (240ml).
+oat-milk,1,cup,120,3,5,0,16,7,1.9,101,0,0,0,0,USDA (fortified oat),Per 1 cup (240ml).
+butter,1,tbsp,102,0.1,11.5,7.3,0,0,0,82,0,0,0,0,(duplicate entry),Per 1 Tbsp (14g).
+vegan-butter,1,tbsp,102,0.1,11.4,1.84,0.1,0,0,153,0,0,0,0,USDA (80% fat margarine),Per 1 Tbsp (14g).
+wheat-flour,1,cup,455,12.9,1.2,0.2,95.4,0.3,3.4,2.5,0,0,0,0,(duplicate entry),Per 1 cup (125g).
+gf-flour-blend,1,cup,440,8,4,0,92,0,4,0,0,0,0,0,Good&Gather GF blend,Per 1 cup (120g).
+water,1,cup,0,0,0,0,0,0,0,0,0,0,0,0,(plain water),Per 1 cup (240ml).
+salt,1,tsp,0,0,0,0,0,0,0,2300,0,0,0,0,(duplicate entry),Per 1 tsp (6g).
+sugar,1,tbsp,49,0,0,0,13,13,0,0,0,0,0,0,USDA (white sugar),Per 1 Tbsp (12.5g).
+almond-flour,1,cup,640,24,56,4,22,4,12,0,0,0,0,0,Bob’s (almond flour),Per 1 cup (96g).
+oat-flour,1,cup,420,15.3,9.5,0.9,68.3,0.83,6.8,20,0,0,0,0,USDA (oat flour),Per 1 cup (104g).
+rice-flour,1,cup,578,9.4,2.2,0.61,126.6,0,2,0,0,0,0,0,USDA (rice flour),Per 1 cup (158g).
+tapioca-starch,1,cup,424,0,0,0,105,0,1,11,0,0,0,0,USDA (tapioca),Per 1 cup (120g).
+cornstarch,1,cup,488,0.3,0.05,0,117,0,0,0,0,0,0,0,USDA (cornstarch),Per 1 cup (128g).
+white-sugar,1,tbsp,49,0,0,0,13,13,0,0,0,0,0,0,Same as granulated sugar (above),Per 1 Tbsp.
+baking-powder,1,tsp,2.4,0,0,0,1.1,0,0,363,0,0,0,0,USDA (baking powder),Per 1 tsp (4.6g).
+coconut-milk,1,cup,445,4.6,48,43,6.3,6,0,40,0,0,0,0,USDA (unsweet. coconut),Per 1 cup (240ml).
+lemon,1,count,17,0.6,0.2,0.02,5.4,1.5,1.6,1,0,0,0,0,USDA (raw lemon),Per 1 medium (58g).
+vanilla-extract,1,tsp,12,0,0,0,0.53,0.53,0,0,0,0,0,0,USDA (vanilla extract),Per 1 tsp (5ml).
+powdered-sugar,1,cup,467,0,0,0,119.7,119.7,0,0,0,0,0,0,USDA (confectioners),Per 1 cup (unsifted).
+nondairy-yogurt,1,cup,130,10,6,0.5,7,2,2,60,0,0,0,0,WholeSoy unsweetened,Per 1 cup (245g).
+neutral-oil,1,tbsp,124,0,14,0.99,0,0,0,0,0,0,0,0,USDA (canola oil),Per 1 Tbsp (14g).
+brisket,1,lb,980,80,72,30,0,0,0,0,0,0,0,0,USDA (brisket raw avg.),Per 1 lb (raw).
+ground-beef,1,lb,1150,77,90,36,0,0,0,98,0,0,0,0,USDA (80% lean),Per 1 lb (raw).
+baby-potatoes,1,count,26,0.6,0,0,6,0,1,0,0,0,0,0,Fitia (baby potato),Per 1 small (30g).
+carrot,1,count,25,0.5,0.1,0,6,2.9,1.5,42,0,0,0,0,USDA (medium carrot),Per 1 medium (61g).
+shallot,1,count,22,0.8,0,0,5,1,0.8,1,0,0,0,0,FoodStruct (shallot),Per 1 medium (30g).
+apple-cider,1,cup,120,0,0,0,30,24,0,10,0,0,0,0,WebMD (apple cider),Per 1 cup (240ml).
+beef-broth,1,cup,10,2,0,0,0,0,0,830,0,0,0,0,Campbell’s (broth),Per 1 cup (240ml).
+chicken-broth,1,cup,15,1,0,0,1,0,0,860,0,0,0,0,(duplicate entry),Per 1 cup (240ml).
+thyme,1,tsp,3,0.1,0.1,0,0.9,0,0.6,2,0,0,0,0,USDA (dried thyme),Per 1 tsp (1g).
+bay-leaf,1,count,2,0,0,0,0.5,0,0.3,0,0,0,0,0,USDA (spices),Per 1 leaf (~0.6g).
+cayenne-pepper,1,tsp,6,0.2,0.3,0.1,1.4,0.5,0.5,1,0,0,0,0,USDA (spices),Per 1 tsp (1.8g).
+sweet-potato,1,count,103,2.3,0.2,0,24,7,4,41,0,0,0,0,USDA (med. sweet potato),Per 1 medium (130g).
+brown-sugar,1,tbsp,50,0,0,0,12,12,0,2,0,0,0,0,Verywell (brown sugar),Per 1 Tbsp (12g).
+molasses,1,tbsp,58,0,0,0,15,11.1,0,8,0,0,0,0,USDA (molasses),Per 1 Tbsp (20g).
+cream,1,tbsp,52,0.3,5.5,3.5,0.4,0.4,0,5,0,0,0,0,USDA (heavy cream),Per 1 Tbsp (15ml).
+onion,1,count,44,1.2,0.1,0,10,4.7,1.9,4,0,0,0,0,USDA (med. onion),Per 1 medium (110g).
+canadian-bacon,1,count,43,5.5,1.5,0.5,1,1,0,250,0,0,0,0,USDA (lean ham),Per 1 slice (28g).
+vegetable-oil,1,tbsp,119,0,13.5,1.8,0,0,0,0,0,0,0,0,USDA (olive/veg oil),Per 1 Tbsp (14g).
+collard-greens,1,cup,11,1.1,0.2,0,2,0.1,1.4,6,0,0,0,0,USDA (collards),"Per 1 cup, chopped (36g)."
+kale,1,cup,7,0.6,0.3,0,0.9,0.2,0.8,10,0,0,0,0,USDA (kale),"Per 1 cup, chopped (21g)."
+toasted-sesame-oil,1,tbsp,120,0,14,2,0,0,0,0,0,0,0,0,USDA (sesame oil),Per 1 Tbsp (14g).
+black-pepper,1,tsp,5,0.2,0.1,0,1.3,0,0.5,1,0,0,0,0,(duplicate entry),Per 1 tsp (2g).
+pear-halves,1,count,35,0.2,0,0,9,8,1,2,0,0,0,0,USDA (canned pear),Per 1 half (approx 92g).
+pork-chop,1,count,210,30,9,3.2,0,0,0,59,0,0,0,0,USDA (pork loin chop),Per 1 chop (boneless ~113g).
+cinnamon,1,tsp,6,0.1,0,0,2.1,0,1.4,0.5,0,0,0,0,USDA (ground cinnamon),Per 1 tsp (2.6g).
+tomato-sauce,1,cup,59,2.9,0.3,0,13,8.8,2.7,879,0,0,0,0,USDA (canned tomato sauce),Per 1 cup (245g).
+celery,1,count,6,0.3,0,0,1.2,0.5,0.6,32,0,0,0,0,USDA (raw celery),Per 1 stalk (40g).
+diced-tomatoes,1,cup,48,2,0,0,11,8,3,520,0,0,0,0,USDA (canned tomatoes),Per 1 cup (240g).
+mixed-vegetables,1,cup,118,4.5,0.8,0.1,22,5,7,45,0,0,0,0,USDA (mixed veg blend),Per 1 cup (140g).
+salsa,1,tbsp,10,0.5,0,0,2,1.5,0.5,230,0,0,0,0,USDA (jarred salsa),Per 2 Tbsp (30g).
+parsley,1,tbsp,1,0.1,0,0,0.2,0.1,0.1,2,0,0,0,0,USDA (parsley),Per 1 Tbsp (4g).
+watercress,1,cup,4,0.8,0,0,0.4,0.1,0.2,14,0,0,0,0,USDA (watercress),Per 1 cup (34g).
+nutmeg,1,tsp,12,0.1,0.8,0.7,1.1,0.3,0.5,1,0,0,0,0,USDA (ground nutmeg),Per 1 tsp (2.2g).
+leek,1,count,50,1.5,0.3,0.1,12,3.4,1.6,18,0,0,0,0,USDA (raw leek),Per 1 leek (89g).
+potato,1,count,164,4.3,0.2,0.1,37,1.7,4.7,13,0,0,0,0,USDA (med. potato),Per 1 medium (173g).
+rice,1,cup,685,13.2,1.9,0.4,148,0.1,2.4,9,0,0,0,0,USDA (uncooked rice),Per 1 cup (185g).
+brown-rice,1,cup,685,14.7,5.2,1.1,142,0.7,7.4,14,0,0,0,0,USDA (uncooked brown rice),Per 1 cup (185g).
+coconut-oil,1,tbsp,121,0,13.5,11.8,0,0,0,0,0,0,0,0,USDA (coconut oil),Per 1 Tbsp (14g).
+ginger,1,tsp,2,0,0,0,0.4,0,0.1,0.3,0,0,0,0,USDA (ginger root),Per 1 tsp grated (2g).
+garlic,1,clove,4,0.2,0,0,0.9,0.03,0.1,0.5,0,0,0,0,(duplicate entry),Per 1 clove (3g).
+chicken-breast,1,lb,748,92,16,4,0,0,0,308,0,0,0,0,(duplicate of chicken breast),Per 1 lb (454g).
+cooked-chicken,1,cup,231,35,7,2,0,0,0,70,0,0,0,0,USDA (roast chicken),Per 1 cup (140g).
+coconut-cream,1,tbsp,90,0.8,9.5,8.5,1,1,0,5,0,0,0,0,USDA (coconut cream),Per 1 Tbsp (15g).
+coconut-aminos,1,tbsp,15,0,0,0,3,2,0,270,0,0,0,0,Mfr. label (coconut aminos),Per 1 Tbsp (15ml).
+lime,1,count,20,0.5,0.1,0,7,1.1,1.9,2,0,0,0,0,USDA (raw lime),Per 1 medium (67g).
+turmeric-powder,1,tsp,9,0.2,0.3,0.1,1.8,0.1,0.5,1,0,0,0,0,USDA (ground turmeric),Per 1 tsp (3g).
+cilantro,1,cup,4,0.3,0.1,0,0.7,0.1,0.6,7,0,0,0,0,USDA (cilantro),Per 1 cup (16g).
+cauliflower-rice,1,cup,25,2,0.2,0,5,2,2.5,30,0,0,0,0,USDA (cauliflower),Per 1 cup (107g).
+bread-crumbs,1,cup,427,14.4,6,1.2,78,7,5.3,736,0,0,0,0,USDA (bread crumbs),Per 1 cup (120g).
+acorn-squash,1,cup,56,1.1,0.1,0,15,0,2.3,4,0,0,0,0,USDA (acorn squash),Per 1 cup cubes (140g).
+sausage,1,count,140,6,12,4,1,0,0,330,0,0,0,0,USDA (pork sausage avg.),Per 1 link (45g).
+cheese,1,oz,113,7,9,5,1,0,0,174,0,0,0,0,USDA (cheddar avg.),Per 1 oz (28g).
+cheddar-mozzarella-cheese,1,cup,400,25,32,20,3,2,0,800,0,0,0,0,Est. (half cheddar/half mozz),Per 1 cup shredded (112g).
+butternut-squash,1,cup,63,1.4,0.1,0,16,3.1,2.8,6,0,0,0,0,USDA (butternut squash),Per 1 cup cubes (140g).
+baking-soda,1,tsp,0,0,0,0,0,0,0,1260,0,0,0,0,USDA (baking soda),Per 1 tsp (5g).
+chocolate-chips,1,cup,800,8.4,44,26,108,91,8,8,0,0,0,0,USDA (semisweet chips),Per 1 cup (168g).
+dairy-free-chocolate-chips,1,cup,780,6,42,30,100,75,8,10,0,0,0,0,Est. (similar to semisweet),Per 1 cup (168g).
+italian_seasoning,1,tsp,5,0.2,0.1,0,1,0.1,0.6,1,0,0,0,0,USDA (Italian herb mix),Per 1 tsp (2g).
+olive_oil,1,tbsp,119,0,13.5,1.9,0,0,0,0,0,0,0,0,USDA (olive oil),Per 1 Tbsp (14g).
+parmesan_cheese,1,oz,111,10,7.3,4.8,1,0,0,416,0,0,0,0,USDA (Parm. cheese),Per 1 oz (28g).
+beef_bouillon,1,cube,10,1,0,0,1,1,0,900,0,0,0,0,USDA (beef bouillon),Per 1 cube (prepared 1 cup).
+soy_sauce,1,tbsp,8,1.3,0,0,0.8,0.1,0,879,0,0,0,0,USDA (soy sauce),Per 1 Tbsp (15ml).
+worcestershire_sauce,1,tbsp,13,0.3,0,0,3.1,2.4,0,167,0,0,0,0,USDA (Worcestershire),Per 1 Tbsp (17g).
+teriyaki-sauce,1,tbsp,16,0.6,0,0,3.2,2.8,0,690,0,0,0,0,USDA (teriyaki sauce),Per 1 Tbsp (18g).
+onion_powder,1,tsp,10,0.3,0,0,2.3,0.9,0.4,2,0,0,0,0,USDA (onion powder),Per 1 tsp (2.8g).
+dried_thyme,1,tsp,3,0.1,0.1,0,0.9,0,0.6,2,0,0,0,0,(duplicate entry),Per 1 tsp.
+mustard_powder,1,tsp,6,0.3,0.4,0,0.4,0.2,0.2,0.5,0,0,0,0,USDA (dry mustard),Per 1 tsp (2g).
+heavy_cream,1,tbsp,52,0.3,5.5,3.5,0.4,0.4,0,5,0,0,0,0,(duplicate entry),Per 1 Tbsp.
+shortening,1,tbsp,110,0,12,3.5,0,0,0,0,0,0,0,0,Crisco (shortening),Per 1 Tbsp (12g).
+egg-yolk,1,count,55,2.7,4.5,1.6,0.6,0.1,0,8,0,0,0,0,MNT (egg yolk),Per 1 large yolk.
+almond-extract,1,tsp,12,0,0,0,0.5,0.5,0,0,0,0,0,0,(similar to vanilla),Per 1 tsp (4.2g).
+food-coloring,1,tsp,5,0,0,0,1,1,0,0,0,0,0,0,(negligible),Per 1 tsp (5g).
+beef,1,lb,970,75,64,24,0,0,0,100,0,0,0,0,USDA (85% lean beef),Per 1 lb.
+green-beans,1,cup,31,1.8,0.2,0.1,7,3.3,3.4,6,0,0,0,0,USDA (green beans),Per 1 cup (100g).
+pinto-beans,1,cup,245,15,1.1,0.2,45,0.6,15,2,0,0,0,0,USDA (cooked pintos),Per 1 cup (171g).
+peas,1,cup,134,8.6,0.4,0.1,25,9.5,8.8,5,0,0,0,0,MNT (green peas),Per 1 cup (160g).
+corn,1,cup,177,5.4,2.1,0.32,41.2,5.2,4.6,28,0,0,0,0,USDA (yellow corn),Per 1 cup (165g).
+celery-salt,1,tsp,0,0,0,0,0,0,0,1160,16,0.4,0,0,USDA,mostly salt (high sodium)
+white-pepper,1,tsp,7,0.3,0.05,0.02,1.65,0,0.6,0,6,0.34,2,0.5,USDA,Per 1 tsp.
+american-cheese,1,oz,75,3.7,6.3,3.6,1,1,0,350,200,0.1,20,0,Label,processed slice
+tuna,1,count,164,36.2,1.2,0.3,0,0,0,479,16,2.17,336,0,USDA,"water-packed, drained"
+green-pepper,1,count,24,1,0.2,0.07,5.5,2.9,2,4,12,0.4,208,95.7,USDA,medium (119g)
+green-olives,1,oz,41,0.3,4.3,0.6,1.1,0.2,0.9,442,15,0.14,12,0,USDA,"canned, pitted"
+sweet-pickles,1,oz,30,0,0,0,7,7,0,220,5,0.1,10,0,USDA,in syrup
+nacho-chips,1,oz,147,2.1,7.8,1.1,17.3,0.74,1.4,196.2,38.9,0.33,63.3,0.11,USDA,Per 1 oz (28g).
+mayonnaise,1,tbsp,90,0,10,1.5,0,0,0,90,0,0,0,0,USDA,full-fat
+hot-dog-buns,1,count,140,4,2,0.5,26,4,1,230,40,1.4,50,0,USDA,enriched wheat
+cream-of-tartar,1,tsp,8,0,0,0,1.84,0,0,2,0,0.11,495,0,USDA,high potassium
+peanut-butter,1,tbsp,95,4,8,1.5,3,1.5,1,70,5,0.5,90,0,USDA,"creamy, salted"
+peanuts,1,oz,161,7.3,14,2,4.6,1.3,2.4,5,17,0.6,187,0,USDA,"dry-roasted, unsalted"
+noodles,1,cup,220,8,1.3,0.2,43,0.8,2,0,10,0.7,30,0,USDA,plain pasta
+ketchup,1,tbsp,15,0,0,0,4,3.2,0,160,3,0.1,40,1,USDA,Per 1 Tbsp.
+vinegar,1,tbsp,3,0,0,0,0.1,0,0,0,1,0,0,0,USDA,Per 1 Tbsp.
+prepared-mustard,1,tbsp,9,0.5,0.1,0,1.5,0.5,0.5,168,5,0.1,10,0,USDA,Per 1 Tbsp.
+hamburger-buns,1,count,150,5,2.5,0.5,27,4,1,230,40,1.5,50,0,USDA,enriched wheat
+sesame-seeds,1,tbsp,52,1.6,4.5,0.63,2.1,0.03,1.1,0.99,87.8,1.3,42.1,0,USDA,"Per 1 tbsp (9g), whole dried."
+stew-beef,1,lb,1000,100,66,25,0,0,0,320,40,12,1100,0,USDA,raw trim avg.
+onion-flakes,1,tbsp,17,0.5,0,0,4.2,2,0,1,13,0.08,81,3.8,USDA,dehydrated
+egg-noodles,1,cup,221,7.3,3.3,0.9,40.3,0.4,2,8,20,0.9,30,0,USDA,Per 1 cup.
+ground-turkey,1,lb,640,0,0,0,0,0,0,0,0,0,0,0,USDA FoodData Central,93% lean ground turkey per pound.
+crushed-tomatoes,1,cup,100,4,0.5,0.1,18,10,4,300,60,2,600,20,USDA,"canned, salted"
+stewed-tomatoes,1,cup,66,2.3,0.5,0.1,16,8,3,500,40,1,370,8,USDA,"canned, salted"
+kidney-beans,1,cup,225,15.3,0.89,0.13,40.4,0.57,13.1,3.5,49.6,5.2,713.3,2.1,USDA,"Per 1 cup (177g), cooked/boiled without salt."
+chili-powder,1,tsp,8,0.3,0.44,0.08,1.42,0.19,0.9,26,7,0.37,50,1.7,USDA,Per 1 tsp.
+paprika,1,tsp,6,0.3,0.27,0.04,1.17,0.22,0.79,1,4,0.5,49,1.5,USDA,Per 1 tsp.
+tomatoes,1,count,22,1.1,0.25,0.03,4.8,3.2,1.5,6.2,12.3,0.33,291.5,16.9,USDA,"Per 1 medium tomato (123g), raw year-round average."
+cream-of-celery-soup,1,count,250,2.5,17.5,2.5,20,2,1,2125,40,0.5,200,0,Label,condensed
+cream-of-chicken-soup,1,count,300,5,20,5,25,2,0,2150,30,1,250,0,Label,condensed
+velveeta,1,oz,85,4.6,6.2,4,2.7,2.3,0,420,130,0.05,94,0,USDA,processed cheese
+rotel,1,oz,60,3,0,0,14,7.5,3,950,30,1,700,15,Label,"diced, salted"
+cheddar-cheese,1,cup,455,0,0,0,0,0,0,0,0,0,0,0,USDA FoodData Central,Shredded cheddar per cup.
+crescent-rolls,1,count,800,16,36,16,96,24,4,1760,80,2,320,0,Label,refrigerated dough
+margarine,1,tbsp,100,0,11,2,0,0,0,90,0,0,0,0,Label,"stick, salted"
+turkey,1,cup,250,35,10,3,0,0,0,80,20,2,250,0,USDA,roasted mix cuts
+mushrooms,1,cup,15,2.2,0.2,0.03,2.3,1.4,0.7,5,3,0.5,223,2,USDA,"raw, sliced"
+pimiento,1,oz,7,0.1,0,0,1.5,1,0.5,50,6,0.1,10,8,USDA,canned red pepper
+almonds,1,oz,164,6,14.2,1.1,6.1,1.2,3.6,0.28,76.4,1.1,208.2,0,USDA,"Per 1 oz (28g), raw."
+orange-gelatin,1,count,320,0,0,0,80,80,0,100,0,0,0,0,Label,sweetened mix
+orange-sherbet,1,cup,214,1,3.4,1.7,45,38,0,80,100,0.3,150,0,USDA,Per 1 cup.
+mandarin-oranges,1,cup,100,1,0,0,26,20,2,10,40,0.5,160,27,USDA,canned in juice
+tomato-soup,1,count,225,2.5,0,0,55,30,2,1200,20,2,600,0,Label,condensed
+cream-cheese,1,oz,99,1.8,9.9,5.7,0.8,0.8,0,90,23,0.2,27,0,USDA,full-fat
+whipped-cream,1,cup,154,1.6,13,8,7,7,0,20,50,0,40,0,Label,aerosol whipped
+pumpkin-puree,1,cup,83,2.7,0.7,0.4,19.8,8,7.1,12,38,1.4,564,10,USDA,canned
+pumpkin-spice,1,tsp,6,0.1,0.21,0.11,1.18,0.13,0.25,1,12,0.34,11,0.4,USDA,"blend (cinnamon, ginger, etc.)"
+green-onion,1,count,5,0.27,0.03,0,1.1,0.35,0.39,2.4,10.8,0.22,41.4,2.8,USDA,"Per 1 medium (15g), raw scallion."
+macaroni,1,cup,320,11,1.5,0.3,65,2,3,5,0,3,0,0,USDA,"elbow, uncooked"
+whole-tomatoes,1,count,150,7,0.5,0.1,35,25,10,1400,100,3.5,1000,30,USDA,"canned, salted"
+canned-chicken,1,count,315,60,7,2,0,0,0,1000,20,1.5,300,0,USDA,drained
+seasoned-salt,1,tsp,5,0.2,0,0,1.1,0.6,0.2,1490,4,0,13,0,Label,salt & spice blend
+tomato-paste,1,tbsp,13,0.7,0.1,0,3,1.5,0.5,4,3,0.4,162,2,USDA,Per 1 Tbsp.
+cocoa-powder,1,tbsp,12,1.1,0.74,0.44,3.1,0.09,2,1.1,6.9,0.75,82.3,0,USDA,"Per 1 tbsp (5g), unsweetened cocoa powder."
+graham-cracker-crumbs,1,cup,121,1.9,3.0,0.45,21.7,6.9,1.0,144,21.5,1.06,47.6,0,USDA,"Per 1/4 cup (28g), computed from plain graham crackers."
+shredded-coconut,1,cup,283,2.7,26.8,24,12.2,5,7,16,9,2.3,285,2,USDA,unsweetened
+vanilla-pudding-powder,1,count,360,0,0,0,88,72,0,1400,0,0,0,0,Label,instant mix
+chopped-nuts,1,cup,800,24,70,10,20,6,12,10,150,5,600,1,USDA,approx. mix
+basic-roll-dough,1,oz,70,2,1,0.3,13,2,0.5,150,10,0.4,20,0,USDA,yeast bread dough
+active-dry-yeast,1,count,23,3,0.3,0,2.8,0.3,1.9,4,4,0.3,32,0,USDA,Per 1 packet (7g).
+aquafaba,1,tbsp,3,0.2,0,0,0.3,0,0,20,0,0,5,0,USDA,chickpea brine
+psyllium-husk,1,tbsp,16,0,0,0,4,0,4,5,2,0.1,20,0,Label,fiber supplement
+xanthan-gum,1,tsp,10,0,0,0,3,0,3,0,0,0,0,0,Label,thickener

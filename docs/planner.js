@@ -11,13 +11,16 @@ import {
 import {
   computeBatchTotals,
   deriveDailyTargets,
-  estimateServings,
   loadIngredientPortions,
+  loadIngredientUnitFactors,
   loadNutritionCoverage,
+  loadNutritionGuidelines,
   loadNutritionPolicy,
   loadNutritionSettings,
   normalizeMealFractions,
+  scaleNutritionTotals,
   saveNutritionSettings,
+  suggestServings,
 } from './nutrition-engine.js';
 
 const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
@@ -39,13 +42,20 @@ function formatKcal(value) {
   return `${Math.round(value)}`;
 }
 
+function formatPercentDV(value, total) {
+  if (!Number.isFinite(value) || !Number.isFinite(total) || total <= 0) return '—';
+  return `${Math.round((value / total) * 100)}% DV`;
+}
+
 const state = {
   recipes: [],
   recipeIndex: new Map(),
   selections: new Map(),
   nutritionPolicy: null,
+  nutritionGuidelines: null,
   nutritionSettings: null,
   ingredientPortions: null,
+  ingredientUnitFactors: null,
   nutritionCoverage: null,
   plan: {
     weeks: 1,
@@ -400,18 +410,17 @@ function updateIngredientsSummary() {
 }
 
 function computeSelectionNutrition(selection) {
-  if (!state.nutritionPolicy || !state.nutritionSettings) return null;
+  if (!state.nutritionPolicy || !state.nutritionSettings || !state.nutritionGuidelines) return null;
   const recipeState = selection.state;
   recipeState.multiplier = selection.batchSize;
   recipeState.restrictions = selection.restrictions;
   recipeState.ingredientPortions = state.ingredientPortions;
+  recipeState.ingredientUnitFactors = state.ingredientUnitFactors;
   const totals = computeBatchTotals(selection.recipe, recipeState);
   if (!totals.complete) {
     return { totals, estimate: null, perServing: null };
   }
-  const mealTypes = Object.keys(state.nutritionPolicy?.meal_fractions_default || {});
-  const defaultMealType = mealTypes.includes('dinner') ? 'dinner' : (mealTypes[0] || 'dinner');
-  const estimate = estimateServings(totals, state.nutritionSettings, defaultMealType, state.nutritionPolicy);
+  const estimate = suggestServings(totals, state.nutritionSettings, state.nutritionGuidelines);
   const servingsPerBatch = Number(selection.servingsPerBatch);
   const perServing = Number.isFinite(servingsPerBatch) && servingsPerBatch > 0
     ? scaleNutritionTotals(totals, 1 / servingsPerBatch)
@@ -444,8 +453,16 @@ function updateNutritionSummary() {
 
   const rows = [
     ['Calories', `${formatKcal(totals.kcal)} kcal`, `Target ${formatKcal(dailyTargets.kcal)} kcal`],
-    ['Sodium', `${formatNumber(totals.sodium_mg, { maximumFractionDigits: 0 })} mg`, `≤ ${formatNumber(dailyTargets.sodium_mg, { maximumFractionDigits: 0 })} mg`],
-    ['Sat fat', `${formatNumber(totals.sat_fat_g)} g`, `≤ ${formatNumber(dailyTargets.sat_fat_g)} g`],
+    [
+      'Sodium',
+      `${formatNumber(totals.sodium_mg, { maximumFractionDigits: 0 })} mg`,
+      `≤ ${formatNumber(dailyTargets.sodium_mg, { maximumFractionDigits: 0 })} mg (${formatPercentDV(totals.sodium_mg, dailyTargets.sodium_mg)})`,
+    ],
+    [
+      'Sat fat',
+      `${formatNumber(totals.sat_fat_g)} g`,
+      `≤ ${formatNumber(dailyTargets.sat_fat_g)} g (${formatPercentDV(totals.sat_fat_g, dailyTargets.sat_fat_g)})`,
+    ],
     ['Sugars', `${formatNumber(totals.sugars_g)} g`, `≤ ${formatNumber(dailyTargets.added_sugar_g)} g`],
     ['Fiber', `${formatNumber(totals.fiber_g)} g`, `≥ ${formatNumber(dailyTargets.fiber_g)} g`],
   ];
@@ -620,7 +637,7 @@ function addRecipeSelection(recipe) {
     (Number.isFinite(servingsFromRecipe) && servingsFromRecipe > 0 ? servingsFromRecipe : null) ||
     (Number.isFinite(servingsFromEstimate) && servingsFromEstimate > 0 ? servingsFromEstimate : null) ||
     4;
-  const nutritionDefaults = state.nutritionPolicy && state.nutritionSettings
+  const nutritionDefaults = state.nutritionPolicy && state.nutritionSettings && state.nutritionGuidelines
     ? (() => {
         const recipeState = {
           multiplier: 1,
@@ -629,16 +646,15 @@ function addRecipeSelection(recipe) {
           selectedOptions: {},
           unitSelections: {},
           ingredientPortions: state.ingredientPortions,
+          ingredientUnitFactors: state.ingredientUnitFactors,
           recipeIndex: state.recipeIndex,
         };
         const totals = computeBatchTotals(recipe, recipeState);
         if (!totals.complete) return null;
-        const mealTypes = Object.keys(state.nutritionPolicy?.meal_fractions_default || {});
-        const defaultMealType = mealTypes.includes('dinner') ? 'dinner' : (mealTypes[0] || 'dinner');
-        return estimateServings(totals, state.nutritionSettings, defaultMealType, state.nutritionPolicy);
+        return suggestServings(totals, state.nutritionSettings, state.nutritionGuidelines);
       })()
     : null;
-  const defaultServingsPerBatch = nutritionDefaults?.servings_estimate || servingsPerBatch;
+  const defaultServingsPerBatch = nutritionDefaults?.suggested_servings || servingsPerBatch;
   const batchSize = 1;
   const defaultCompatibility = recipe.compatibility_default || recipeDefaultCompatibility(recipe);
   const selection = {
@@ -655,6 +671,7 @@ function addRecipeSelection(recipe) {
       restrictions: { ...defaultCompatibility },
       selectedOptions: {},
       unitSelections: {},
+      ingredientUnitFactors: state.ingredientUnitFactors,
       recipeIndex: state.recipeIndex,
     },
   };
@@ -836,7 +853,7 @@ function renderSelections() {
 
       nutritionWarning.style.display = 'none';
       estimateLine.textContent =
-        `Estimated servings per batch (nutrition): ${nutrition.estimate.servings_estimate}. ` +
+        `Suggested servings per batch: ${nutrition.estimate.suggested_servings}. ` +
         `Servings per batch (editable): ${selection.servingsPerBatch}.`;
 
       const renderMetrics = (target, label) => {
@@ -1173,25 +1190,36 @@ function setupPrintButtons() {
 }
 
 async function startPlanner() {
-  const [recipesPayload, nutritionPolicy, ingredientPortions, nutritionCoverage] = await Promise.all([
+  const [
+    recipesPayload,
+    nutritionPolicy,
+    nutritionGuidelines,
+    ingredientPortions,
+    ingredientUnitFactors,
+    nutritionCoverage,
+  ] = await Promise.all([
     loadRecipes(),
     loadNutritionPolicy(),
+    loadNutritionGuidelines(),
     loadIngredientPortions(),
+    loadIngredientUnitFactors(),
     loadNutritionCoverage(),
   ]);
   const { recipes, recipeIndex } = recipesPayload;
   state.recipes = recipes;
   state.recipeIndex = recipeIndex;
   state.nutritionPolicy = nutritionPolicy;
+  state.nutritionGuidelines = nutritionGuidelines;
   state.nutritionSettings = loadNutritionSettings(nutritionPolicy);
   state.ingredientPortions = ingredientPortions;
+  state.ingredientUnitFactors = ingredientUnitFactors;
   state.nutritionCoverage = nutritionCoverage;
 
   const nutritionBanner = document.getElementById('planner-nutrition-banner');
   if (nutritionBanner && nutritionCoverage?.missing_count) {
     nutritionBanner.hidden = false;
     nutritionBanner.textContent =
-      `Nutrition data is still filling in (${nutritionCoverage.missing_count} missing portion or density entries). ` +
+      `Nutrition data is still filling in (${nutritionCoverage.missing_count} missing unit matches). ` +
       'Totals are estimates until coverage is complete.';
   }
 
