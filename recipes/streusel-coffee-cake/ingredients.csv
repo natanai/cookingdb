@@ -1,5 +1,5 @@
 token,option,display,ratio,unit,ingredient_id,section
-basic_roll_dough,,Basic Roll Dough (recipe; includes gluten-free options),1,recipe,basic-roll-dough,Dough
+basic_roll_dough,,Basic Roll Dough (recipe; includes gluten-free options) (as 30 oz),30,oz,basic-roll-dough,Dough
 flour,,sifted all-purpose flour (or gluten-free flour blend),1,cup,wheat-flour,Streusel
 brown_sugar,,brown sugar,1/2,cup,brown-sugar,Streusel
 granulated_sugar,,granulated sugar,1/2,cup,white-sugar,Streusel
