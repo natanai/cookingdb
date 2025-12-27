@@ -11,8 +11,7 @@ import {
 import {
   computeBatchTotals,
   deriveDailyTargets,
-  loadIngredientPortions,
-  loadIngredientUnitFactors,
+  loadIngredientDb,
   loadNutritionCoverage,
   loadNutritionGuidelines,
   loadNutritionPolicy,
@@ -54,8 +53,7 @@ const state = {
   nutritionPolicy: null,
   nutritionGuidelines: null,
   nutritionSettings: null,
-  ingredientPortions: null,
-  ingredientUnitFactors: null,
+  ingredientDb: null,
   nutritionCoverage: null,
   plan: {
     weeks: 1,
@@ -414,10 +412,9 @@ function computeSelectionNutrition(selection) {
   const recipeState = selection.state;
   recipeState.multiplier = selection.batchSize;
   recipeState.restrictions = selection.restrictions;
-  recipeState.ingredientPortions = state.ingredientPortions;
-  recipeState.ingredientUnitFactors = state.ingredientUnitFactors;
+  recipeState.ingredientDb = state.ingredientDb;
   const totals = computeBatchTotals(selection.recipe, recipeState);
-  if (!totals.complete) {
+  if (!totals.coverage || totals.coverage.calories <= 0) {
     return { totals, estimate: null, perServing: null };
   }
   const estimate = suggestServings(totals, state.nutritionSettings, state.nutritionGuidelines);
@@ -645,12 +642,11 @@ function addRecipeSelection(recipe) {
           restrictions: recipe.compatibility_default || recipeDefaultCompatibility(recipe),
           selectedOptions: {},
           unitSelections: {},
-          ingredientPortions: state.ingredientPortions,
-          ingredientUnitFactors: state.ingredientUnitFactors,
+          ingredientDb: state.ingredientDb,
           recipeIndex: state.recipeIndex,
         };
         const totals = computeBatchTotals(recipe, recipeState);
-        if (!totals.complete) return null;
+        if (!totals.coverage || totals.coverage.calories <= 0) return null;
         return suggestServings(totals, state.nutritionSettings, state.nutritionGuidelines);
       })()
     : null;
@@ -671,7 +667,7 @@ function addRecipeSelection(recipe) {
       restrictions: { ...defaultCompatibility },
       selectedOptions: {},
       unitSelections: {},
-      ingredientUnitFactors: state.ingredientUnitFactors,
+      ingredientDb: state.ingredientDb,
       recipeIndex: state.recipeIndex,
     },
   };
@@ -832,16 +828,20 @@ function renderSelections() {
     const updateNutritionDisplay = () => {
       selection.nutrition = computeSelectionNutrition(selection);
       const nutrition = selection.nutrition;
-      if (!nutrition || !nutrition.totals?.complete) {
-        const coverage = nutrition?.totals?.coverage?.total
-          ? Math.round((nutrition.totals.coverage.covered / nutrition.totals.coverage.total) * 100)
-          : 0;
+      const coverage = nutrition?.totals?.coverage || { total: 0, calories: 0, macros: 0 };
+      const coveragePercent = coverage.total
+        ? Math.round((coverage.calories / coverage.total) * 100)
+        : 0;
+      const coverageStrength = coverage.calories === coverage.total && coverage.macros === coverage.total
+        ? 'strong'
+        : (coverage.calories > 0 ? 'partial' : 'unavailable');
+      if (!nutrition || coverageStrength === 'unavailable') {
         const missingSummary = (nutrition?.totals?.missing_details || [])
           .map((entry) => `${entry.ingredient_id}${entry.unit ? ` (${entry.unit})` : ''}`)
           .filter(Boolean);
         const uniqueMissing = [...new Set(missingSummary)];
         nutritionWarning.textContent =
-          `Nutrition incomplete: ${nutrition?.totals?.coverage?.covered || 0}/${nutrition?.totals?.coverage?.total || 0} ingredients (${coverage}%) have nutrition data.` +
+          `Nutrition unavailable: ${coverage.calories}/${coverage.total} ingredients (${coveragePercent}%) have calorie coverage.` +
           (uniqueMissing.length ? ` Missing: ${uniqueMissing.join(', ')}.` : '');
         nutritionWarning.style.display = '';
         estimateLine.textContent = 'Nutrition estimate unavailable for this recipe.';
@@ -851,9 +851,20 @@ function renderSelections() {
         return;
       }
 
-      nutritionWarning.style.display = 'none';
+      if (coverageStrength === 'partial') {
+        const missingSummary = (nutrition?.totals?.missing_details || [])
+          .map((entry) => `${entry.ingredient_id}${entry.unit ? ` (${entry.unit})` : ''}`)
+          .filter(Boolean);
+        const uniqueMissing = [...new Set(missingSummary)];
+        nutritionWarning.textContent =
+          `Nutrition estimate is partial: ${coverage.calories}/${coverage.total} ingredients (${coveragePercent}%) have calorie coverage.` +
+          (uniqueMissing.length ? ` Missing: ${uniqueMissing.join(', ')}.` : '');
+        nutritionWarning.style.display = '';
+      } else {
+        nutritionWarning.style.display = 'none';
+      }
       estimateLine.textContent =
-        `Suggested servings per batch: ${nutrition.estimate.suggested_servings}. ` +
+        `Suggested servings (rough estimate): ${nutrition.estimate.suggested_servings}. ` +
         `Servings per batch (editable): ${selection.servingsPerBatch}.`;
 
       const renderMetrics = (target, label) => {
@@ -1194,15 +1205,13 @@ async function startPlanner() {
     recipesPayload,
     nutritionPolicy,
     nutritionGuidelines,
-    ingredientPortions,
-    ingredientUnitFactors,
+    ingredientDb,
     nutritionCoverage,
   ] = await Promise.all([
     loadRecipes(),
     loadNutritionPolicy(),
     loadNutritionGuidelines(),
-    loadIngredientPortions(),
-    loadIngredientUnitFactors(),
+    loadIngredientDb(),
     loadNutritionCoverage(),
   ]);
   const { recipes, recipeIndex } = recipesPayload;
@@ -1211,15 +1220,14 @@ async function startPlanner() {
   state.nutritionPolicy = nutritionPolicy;
   state.nutritionGuidelines = nutritionGuidelines;
   state.nutritionSettings = loadNutritionSettings(nutritionPolicy);
-  state.ingredientPortions = ingredientPortions;
-  state.ingredientUnitFactors = ingredientUnitFactors;
+  state.ingredientDb = ingredientDb;
   state.nutritionCoverage = nutritionCoverage;
 
   const nutritionBanner = document.getElementById('planner-nutrition-banner');
   if (nutritionBanner && nutritionCoverage?.missing_count) {
     nutritionBanner.hidden = false;
     nutritionBanner.textContent =
-      `Nutrition data is still filling in (${nutritionCoverage.missing_count} missing unit matches). ` +
+      `Nutrition data is still filling in (${nutritionCoverage.missing_count} missing mappings). ` +
       'Totals are estimates until coverage is complete.';
   }
 

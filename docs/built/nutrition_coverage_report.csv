@@ -1,64 +1,198 @@
-ingredient_id,unit_norm,example_recipe_id,count_occurrences,example_qty,reason,nutrition_variants_units,suggested_target_unit,unit_world_mismatch_type
-acorn-squash,count,sausage-stuffed-acorn-squash,1,2,missing-cross-factor,cup,cup,count-vs-volume
-active-dry-yeast,tsp,basic-roll-dough,1,2 1/4,missing-cross-factor,count,count,
-almonds,cup,chicken-rice-casserole,1,1/4,missing-cross-factor,oz,oz,volume-vs-mass
-baby-potatoes,lb,apple-cider-brisket,1,1 1/2,missing-cross-factor,count,count,
-basic-roll-dough,recipe,streusel-coffee-cake,1,1,recipe-reference-needed,oz,oz,
-butternut-squash,count,butternut-squash-casserole,1,1,missing-cross-factor,cup,cup,count-vs-volume
-canadian-bacon,cup,collards-canadian-bacon,1,1/2,missing-cross-factor,count,count,
-carrot,large,slow-cooker-beef-stew,1,4,missing-cross-factor,count,count,
-carrot,lb,lorenes-vegetable-soup,1,1,missing-cross-factor,count,count,
-celery,cup,creamy-leek-potato-soup,4,1,missing-cross-factor,count,count,
-cheddar-mozzarella-cheese,oz,layered-dip,1,4,missing-cross-factor,cup,cup,volume-vs-mass
-cheese,cup,sausage-stuffed-acorn-squash,1,1,missing-cross-factor,oz,oz,volume-vs-mass
-chicken-breast,cup,chicken-rice-casserole,1,2,missing-cross-factor,lb,lb,volume-vs-mass
-chicken-breast,piece,creamy-garlic-chicken,1,2,missing-cross-factor,lb,lb,
-chocolate-chips,oz,nanaimo-bars,1,6,missing-cross-factor,cup,cup,volume-vs-mass
-collard-greens,oz,collards-canadian-bacon,1,11,missing-cross-factor,cup,cup,volume-vs-mass
-corn,lb,lorenes-vegetable-soup,1,1,missing-cross-factor,cup,cup,volume-vs-mass
-cream-of-celery-soup,can,mexican-chicken,1,1,missing-cross-factor,count,count,package
-cream-of-chicken-soup,can,chicken-roll-ups,2,1,missing-cross-factor,count,count,package
-crushed-tomatoes,can,chili-con-carne-turkey,1,1,missing-cross-factor,cup,cup,package
-diced-tomatoes,can,lorenes-vegetable-soup,2,1,missing-cross-factor,cup,cup,package
-egg-noodles,lb,beef-noodles,1,2,missing-cross-factor,cup,cup,volume-vs-mass
-garlic,piece,creamy-garlic-chicken,1,10,missing-cross-factor,clove,clove,
-ginger,inch,turmeric-chicken-curry,1,1,missing-cross-factor,tsp,tsp,
-green-beans,can,lorenes-vegetable-soup,1,2,missing-cross-factor,cup,cup,package
-green-olives,tbsp,bun-steads,1,2,missing-cross-factor,oz,oz,volume-vs-mass
-green-onion,bunch,holiday-potatoes,1,1,missing-cross-factor,count,count,package
-green-onion,cup,veggie-teriyaki-stir-fry-noodles,1,1/4,missing-cross-factor,count,count,
-green-pepper,cup,chicken-rice-casserole,1,1/2,missing-cross-factor,count,count,
-green-pepper,tbsp,bun-steads,1,2,missing-cross-factor,count,count,
-kidney-beans,can,mrs-burrows-chili,1,4,missing-cross-factor,cup,cup,package
-kidney-beans,lb,chili-con-carne-turkey,2,3,missing-cross-factor,cup,cup,volume-vs-mass
-leek,cup,creamy-leek-potato-soup,1,1/2,missing-cross-factor,count,count,
-lemon,tbsp,lemon-cake,2,2 1/2,missing-cross-factor,count,count,
-mandarin-oranges,can,orange-sherbet-salad,1,1,missing-cross-factor,cup,cup,package
-milk,can,chicken-roll-ups,1,1/2,missing-cross-factor,cup,cup,package
-noodles,oz,veggie-teriyaki-stir-fry-noodles,1,4,missing-cross-factor,cup,cup,volume-vs-mass
-onion,cup,italian-soup,4,1,missing-cross-factor,count,count,
-onion,medium,slow-cooker-beef-stew,2,1,missing-cross-factor,count,count,
-onion,tbsp,collards-canadian-bacon,1,1,missing-cross-factor,count,count,
-orange-gelatin,package,orange-sherbet-salad,1,1,missing-cross-factor,count,count,package
-parmesan_cheese,cup,creamy-garlic-chicken,2,1/2,missing-cross-factor,oz,oz,volume-vs-mass
-parmesan_cheese,tbsp,creamy-garlic-chicken,1,4,missing-cross-factor,oz,oz,volume-vs-mass
-peanuts,cup,gluten-free-peanut-butter-cookies,1,1/2,missing-cross-factor,oz,oz,volume-vs-mass
-pear-halves,pint,sweet-potatoes-pork-chops-pears,1,1,missing-cross-factor,count,count,
-peas,lb,lorenes-vegetable-soup,1,1,missing-cross-factor,cup,cup,volume-vs-mass
-pimiento,tbsp,chicken-rice-casserole,1,2,missing-cross-factor,oz,oz,volume-vs-mass
-pinto-beans,can,lorenes-vegetable-soup,1,1,missing-cross-factor,cup,cup,package
-potato,cup,creamy-leek-potato-soup,1,3,missing-cross-factor,count,count,
-potato,lb,holiday-potatoes,1,3,missing-cross-factor,count,count,
-potato,medium,slow-cooker-beef-stew,1,4,missing-cross-factor,count,count,
-salsa,oz,layered-dip,1,8,missing-cross-factor,tbsp,tbsp,volume-vs-mass
-sausage,lb,butternut-squash-casserole,2,1,missing-cross-factor,count,count,
-stewed-tomatoes,can,chili-con-carne-turkey,1,1,missing-cross-factor,cup,cup,package
-sweet-pickles,tbsp,bun-steads,1,2,missing-cross-factor,oz,oz,volume-vs-mass
-sweet-potato,cup,baked-sweet-potatoes,1,4,missing-cross-factor,count,count,
-sweet-potato,medium,anti-histamine-turkey-kale-sweet-potato-skillet,2,1,missing-cross-factor,count,count,
-thyme,sprig,apple-cider-brisket,1,6,missing-cross-factor,tsp,tsp,
-tomato-sauce,can,chili-con-carne-turkey,3,1,missing-cross-factor,cup,cup,package
-tomato-soup,can,mrs-burrows-chili,1,2,missing-cross-factor,count,count,package
-tomatoes,lb,original-chili-con-carne,1,1,missing-cross-factor,count,count,
-tuna,can,bun-steads,1,1,missing-cross-factor,count,count,package
-vanilla-pudding-powder,tbsp,nanaimo-bars,1,5,missing-cross-factor,count,count,
+ingredient_id,unit_norm,example_recipe_id,count_occurrences,example_qty,reason,suggested_column_to_fill,notes
+acorn-squash,count,sausage-stuffed-acorn-squash,1,2,missing-grams-mapping,grams_per_count,nutrition unit is cup; recipe uses count
+active-dry-yeast,tsp,basic-roll-dough,1,2 1/4,missing-grams-mapping,grams_per_tsp,nutrition unit is count; recipe uses tsp
+almond-extract,tsp,spritz-cookies,1,1,missing-nutrition,calories_per_unit,
+almond-flour,cup,lemon-cake,1,1/2,missing-nutrition,calories_per_unit,
+almonds,cup,chicken-rice-casserole,1,1/4,missing-grams-mapping,grams_per_cup,nutrition unit is oz; recipe uses cup
+american-cheese,lb,bun-steads,1,1/4,missing-nutrition,calories_per_unit,
+apple-cider,cup,apple-cider-brisket,1,4,missing-nutrition,calories_per_unit,
+baby-potatoes,lb,apple-cider-brisket,1,1 1/2,missing-nutrition,calories_per_unit,
+baking-powder,tsp,basic-roll-dough,6,1,missing-nutrition,calories_per_unit,
+baking-soda,tsp,chocolate-chip-cookies-gf,3,1/2,missing-nutrition,calories_per_unit,
+bay-leaf,count,apple-cider-brisket,4,2,missing-nutrition,calories_per_unit,
+beef,lb,lorenes-vegetable-soup,1,1,missing-nutrition,calories_per_unit,
+beef_bouillon,cube,beef-noodles,3,7,missing-grams-mapping,grams_per_count,nutrition unit is cube; recipe uses cube
+beef-broth,cup,apple-cider-brisket,3,1 1/2,missing-nutrition,calories_per_unit,
+black-pepper,tsp,apple-cider-brisket,14,1/2,missing-nutrition,calories_per_unit,
+bread-crumbs,cup,sausage-stuffed-acorn-squash,1,3/4,missing-nutrition,calories_per_unit,
+brisket,lb,apple-cider-brisket,1,3 1/2,missing-nutrition,calories_per_unit,
+brown-rice,cup,brown-rice,1,1,missing-nutrition,calories_per_unit,
+brown-sugar,cup,baked-sweet-potatoes,6,1,missing-nutrition,calories_per_unit,
+butter,cup,basic-roll-dough,8,1/3,missing-nutrition,calories_per_unit,
+butter,tbsp,creamy-garlic-chicken,4,3,missing-nutrition,calories_per_unit,
+butternut-squash,count,butternut-squash-casserole,1,1,missing-grams-mapping,grams_per_count,nutrition unit is cup; recipe uses count
+canadian-bacon,cup,collards-canadian-bacon,1,1/2,missing-grams-mapping,grams_per_cup,nutrition unit is count; recipe uses cup
+carrot,count,apple-cider-brisket,1,4,missing-nutrition,calories_per_unit,
+carrot,large,slow-cooker-beef-stew,1,4,missing-grams-mapping,grams_per_large,nutrition unit is count; recipe uses large
+carrot,lb,lorenes-vegetable-soup,1,1,missing-nutrition,calories_per_unit,
+cauliflower-rice,cup,turmeric-chicken-curry,1,4,missing-nutrition,calories_per_unit,
+cayenne-pepper,tsp,apple-cider-brisket,3,3/4,missing-nutrition,calories_per_unit,
+celery,cup,creamy-leek-potato-soup,4,1,missing-grams-mapping,grams_per_cup,nutrition unit is count; recipe uses cup
+celery-salt,tsp,lorenes-vegetable-soup,1,1,missing-nutrition,calories_per_unit,
+cheddar-cheese,cup,holiday-potatoes,1,1,missing-nutrition,calories_per_unit,
+cheddar-mozzarella-cheese,oz,layered-dip,1,4,missing-nutrition,calories_per_unit,
+cheese,cup,sausage-stuffed-acorn-squash,1,1,missing-grams-mapping,grams_per_cup,nutrition unit is oz; recipe uses cup
+chicken-breast,cup,chicken-rice-casserole,1,2,missing-grams-mapping,grams_per_cup,nutrition unit is lb; recipe uses cup
+chicken-breast,lb,chicken-roll-ups,2,1/2,missing-nutrition,calories_per_unit,
+chicken-breast,piece,creamy-garlic-chicken,1,2,missing-grams-mapping,grams_per_piece,nutrition unit is lb; recipe uses piece
+chicken-broth,cup,chicken-rice-casserole,3,1,missing-nutrition,calories_per_unit,
+chili-powder,tbsp,chili-con-carne-turkey,3,3,missing-nutrition,calories_per_unit,
+chocolate-chips,cup,chocolate-chip-cookies-gf,1,2,missing-nutrition,calories_per_unit,
+chocolate-chips,oz,nanaimo-bars,1,6,missing-nutrition,calories_per_unit,
+chopped-nuts,cup,russian-teacakes,2,3/4,missing-nutrition,calories_per_unit,
+cilantro,tbsp,turmeric-chicken-curry,1,2,missing-nutrition,calories_per_unit,
+cinnamon,tsp,snickerdoodles,4,2,missing-nutrition,calories_per_unit,
+cocoa-powder,cup,nanaimo-bars,1,1/3,missing-nutrition,calories_per_unit,
+coconut-aminos,tbsp,turmeric-chicken-curry,1,2,missing-nutrition,calories_per_unit,
+coconut-cream,cup,turmeric-chicken-curry,1,1/2,missing-nutrition,calories_per_unit,
+coconut-milk,cup,turmeric-chicken-curry,1,1/2,missing-nutrition,calories_per_unit,
+coconut-milk,tbsp,lemon-cake,1,10,missing-nutrition,calories_per_unit,
+coconut-oil,tbsp,butternut-squash-casserole,2,1,missing-nutrition,calories_per_unit,
+collard-greens,oz,collards-canadian-bacon,1,11,missing-nutrition,calories_per_unit,
+cooked-chicken,cup,mexican-chicken,1,3,missing-nutrition,calories_per_unit,
+corn,lb,lorenes-vegetable-soup,1,1,missing-nutrition,calories_per_unit,
+cornstarch,tbsp,lemon-cake,1,2,missing-nutrition,calories_per_unit,
+cream,cup,baked-sweet-potatoes,1,1/2,missing-nutrition,calories_per_unit,
+cream-cheese,oz,holiday-potatoes,2,6,missing-nutrition,calories_per_unit,
+cream-of-celery-soup,can,mexican-chicken,1,1,missing-nutrition,calories_per_unit,
+cream-of-chicken-soup,can,chicken-roll-ups,2,1,missing-nutrition,calories_per_unit,
+cream-of-tartar,tsp,snickerdoodles,1,2,missing-nutrition,calories_per_unit,
+crescent-rolls,package,chicken-roll-ups,1,1,missing-grams-mapping,grams_per_package,nutrition unit is count; recipe uses package
+crushed-tomatoes,can,chili-con-carne-turkey,1,1,missing-nutrition,calories_per_unit,
+diced-tomatoes,can,lorenes-vegetable-soup,2,1,missing-nutrition,calories_per_unit,
+diced-tomatoes,cup,italian-soup,1,1,missing-nutrition,calories_per_unit,
+dried_thyme,tsp,creamy-garlic-chicken,1,1/2,missing-nutrition,calories_per_unit,
+egg,count,basic-roll-dough,8,1,missing-nutrition,calories_per_unit,
+egg-noodles,lb,beef-noodles,1,2,missing-nutrition,calories_per_unit,
+food-coloring,tsp,spritz-cookies,1,1,missing-nutrition,calories_per_unit,
+garlic,clove,anti-histamine-turkey-kale-sweet-potato-skillet,5,1,missing-nutrition,calories_per_unit,
+garlic,piece,creamy-garlic-chicken,1,10,missing-grams-mapping,grams_per_piece,nutrition unit is clove; recipe uses piece
+gf-flour-blend,cup,blintzes,2,1,missing-nutrition,calories_per_unit,
+ginger,inch,turmeric-chicken-curry,1,1,missing-grams-mapping,grams_per_inch,nutrition unit is tsp; recipe uses inch
+graham-cracker-crumbs,cup,nanaimo-bars,1,1,missing-nutrition,calories_per_unit,
+green-beans,can,lorenes-vegetable-soup,1,2,missing-nutrition,calories_per_unit,
+green-olives,tbsp,bun-steads,1,2,missing-grams-mapping,grams_per_tbsp,nutrition unit is oz; recipe uses tbsp
+green-onion,bunch,holiday-potatoes,1,1,missing-grams-mapping,grams_per_bunch,nutrition unit is count; recipe uses bunch
+green-onion,cup,veggie-teriyaki-stir-fry-noodles,1,1/4,missing-grams-mapping,grams_per_cup,nutrition unit is count; recipe uses cup
+green-pepper,count,chili-con-carne-turkey,3,1,missing-nutrition,calories_per_unit,
+green-pepper,cup,chicken-rice-casserole,1,1/2,missing-grams-mapping,grams_per_cup,nutrition unit is count; recipe uses cup
+green-pepper,tbsp,bun-steads,1,2,missing-grams-mapping,grams_per_tbsp,nutrition unit is count; recipe uses tbsp
+ground-beef,lb,barbecued-hamburger,5,1,missing-nutrition,calories_per_unit,
+ground-turkey,lb,anti-histamine-turkey-kale-sweet-potato-skillet,2,1,missing-nutrition,calories_per_unit,
+hamburger-buns,count,barbecued-hamburger,1,6,missing-nutrition,calories_per_unit,
+heavy_cream,cup,creamy-garlic-chicken,1,1/2,missing-nutrition,calories_per_unit,
+hot-dog-buns,count,bun-steads,1,6,missing-nutrition,calories_per_unit,
+italian_seasoning,tsp,creamy-garlic-chicken,1,3,missing-nutrition,calories_per_unit,
+kale,cup,anti-histamine-turkey-kale-sweet-potato-skillet,1,2,missing-nutrition,calories_per_unit,
+ketchup,cup,barbecued-hamburger,1,3/4,missing-nutrition,calories_per_unit,
+kidney-beans,can,mrs-burrows-chili,1,4,missing-nutrition,calories_per_unit,
+kidney-beans,lb,chili-con-carne-turkey,2,3,missing-nutrition,calories_per_unit,
+leek,cup,creamy-leek-potato-soup,1,1/2,missing-grams-mapping,grams_per_cup,nutrition unit is count; recipe uses cup
+lemon,count,lemon-cake,1,1,missing-nutrition,calories_per_unit,
+lemon,tbsp,lemon-cake,2,2 1/2,missing-grams-mapping,grams_per_tbsp,nutrition unit is count; recipe uses tbsp
+lime,count,turmeric-chicken-curry,1,1,missing-nutrition,calories_per_unit,
+macaroni,cup,mac-and-cheese,2,4,missing-nutrition,calories_per_unit,
+mandarin-oranges,can,orange-sherbet-salad,1,1,missing-grams-mapping,grams_per_can,nutrition unit is cup; recipe uses can
+mayonnaise,cup,bun-steads,1,1/3,missing-nutrition,calories_per_unit,
+milk,can,chicken-roll-ups,1,1/2,missing-grams-mapping,grams_per_can,nutrition unit is cup; recipe uses can
+milk,cup,basic-roll-dough,6,1,missing-nutrition,calories_per_unit,
+milk,tbsp,nanaimo-bars,1,6,missing-nutrition,calories_per_unit,
+mixed-vegetables,cup,italian-soup,2,2,missing-nutrition,calories_per_unit,
+molasses,tsp,chocolate-chip-cookies-gf,1,1,missing-nutrition,calories_per_unit,
+mushrooms,cup,chicken-rice-casserole,1,1/2,missing-nutrition,calories_per_unit,
+mustard_powder,tsp,creamy-garlic-chicken,1,1/2,missing-nutrition,calories_per_unit,
+nacho-chips,bag,mexican-chicken,1,1/2,missing-nutrition,calories_per_unit,
+neutral-oil,cup,vegan-pumpkin-bread,1,2/3,missing-nutrition,calories_per_unit,
+neutral-oil,tbsp,apple-cider-brisket,2,2,missing-nutrition,calories_per_unit,
+neutral-oil,tsp,lemon-cake,2,1,missing-nutrition,calories_per_unit,
+nondairy-yogurt,tbsp,lemon-cake,1,1,missing-nutrition,calories_per_unit,
+noodles,oz,veggie-teriyaki-stir-fry-noodles,1,4,missing-nutrition,calories_per_unit,
+nutmeg,tsp,watercress-parsley-soup,1,1/8,missing-nutrition,calories_per_unit,
+oat-flour,cup,lemon-cake,1,1,missing-nutrition,calories_per_unit,
+oat-milk,cup,blintzes,1,3/4,missing-nutrition,calories_per_unit,
+olive_oil,tbsp,anti-histamine-turkey-kale-sweet-potato-skillet,4,1,missing-nutrition,calories_per_unit,
+onion,count,barbecued-hamburger,5,1,missing-nutrition,calories_per_unit,
+onion,cup,italian-soup,4,1,missing-grams-mapping,grams_per_cup,nutrition unit is count; recipe uses cup
+onion,medium,slow-cooker-beef-stew,2,1,missing-grams-mapping,grams_per_medium,nutrition unit is count; recipe uses medium
+onion,tbsp,collards-canadian-bacon,1,1,missing-grams-mapping,grams_per_tbsp,nutrition unit is count; recipe uses tbsp
+onion_powder,tsp,creamy-garlic-chicken,1,1,missing-nutrition,calories_per_unit,
+onion-flakes,tbsp,beef-noodles,1,1,missing-nutrition,calories_per_unit,
+orange-gelatin,package,orange-sherbet-salad,1,1,missing-nutrition,calories_per_unit,
+orange-sherbet,pint,orange-sherbet-salad,1,1,missing-nutrition,calories_per_unit,
+paprika,tsp,chili-con-carne-turkey,2,1/2,missing-nutrition,calories_per_unit,
+parmesan_cheese,cup,creamy-garlic-chicken,2,1/2,missing-grams-mapping,grams_per_cup,nutrition unit is oz; recipe uses cup
+parmesan_cheese,tbsp,creamy-garlic-chicken,1,4,missing-grams-mapping,grams_per_tbsp,nutrition unit is oz; recipe uses tbsp
+parsley,cup,watercress-parsley-soup,1,2 1/2,missing-nutrition,calories_per_unit,
+parsley,tbsp,chicken-rice-casserole,2,1,missing-nutrition,calories_per_unit,
+parsley,tsp,chili-con-carne-turkey,1,1/8,missing-nutrition,calories_per_unit,
+peanut-butter,cup,gluten-free-peanut-butter-cookies,1,1,missing-nutrition,calories_per_unit,
+peanuts,cup,gluten-free-peanut-butter-cookies,1,1/2,missing-grams-mapping,grams_per_cup,nutrition unit is oz; recipe uses cup
+pear-halves,pint,sweet-potatoes-pork-chops-pears,1,1,missing-grams-mapping,grams_per_pint,nutrition unit is count; recipe uses pint
+peas,cup,slow-cooker-beef-stew,1,1,missing-nutrition,calories_per_unit,
+peas,lb,lorenes-vegetable-soup,1,1,missing-nutrition,calories_per_unit,
+pimiento,oz,holiday-potatoes,1,2,missing-nutrition,calories_per_unit,
+pimiento,tbsp,chicken-rice-casserole,1,2,missing-grams-mapping,grams_per_tbsp,nutrition unit is oz; recipe uses tbsp
+pinto-beans,can,lorenes-vegetable-soup,1,1,missing-nutrition,calories_per_unit,
+pork-chop,count,sweet-potatoes-pork-chops-pears,1,4,missing-nutrition,calories_per_unit,
+potato,count,lorenes-vegetable-soup,1,3,missing-nutrition,calories_per_unit,
+potato,cup,creamy-leek-potato-soup,1,3,missing-grams-mapping,grams_per_cup,nutrition unit is count; recipe uses cup
+potato,lb,holiday-potatoes,1,3,missing-nutrition,calories_per_unit,
+potato,medium,slow-cooker-beef-stew,1,4,missing-grams-mapping,grams_per_medium,nutrition unit is count; recipe uses medium
+powdered-sugar,cup,lemon-cake,3,1,missing-nutrition,calories_per_unit,
+prepared-mustard,tbsp,barbecued-hamburger,1,1,missing-nutrition,calories_per_unit,
+psyllium-husk,tbsp,basic-roll-dough,1,1,missing-nutrition,calories_per_unit,
+pumpkin-puree,cup,vegan-pumpkin-bread,1,1 1/4,missing-nutrition,calories_per_unit,
+pumpkin-spice,tsp,vegan-pumpkin-bread,2,2,missing-nutrition,calories_per_unit,
+rice,cup,chicken-rice-casserole,2,1 1/2,missing-nutrition,calories_per_unit,
+rice-flour,cup,sweet-potato-pizza-crust,1,3/4,missing-nutrition,calories_per_unit,
+rotel,oz,mexican-chicken,1,10,missing-nutrition,calories_per_unit,
+salsa,oz,layered-dip,1,8,missing-nutrition,calories_per_unit,
+salt,tbsp,chili-con-carne-turkey,1,1 1/2,missing-nutrition,calories_per_unit,
+salt,tsp,anti-histamine-turkey-kale-sweet-potato-skillet,31,1/4,missing-nutrition,calories_per_unit,
+sausage,lb,butternut-squash-casserole,2,1,missing-nutrition,calories_per_unit,
+seasoned-salt,tbsp,slow-cooker-beef-stew,1,1,missing-nutrition,calories_per_unit,
+sesame-seeds,tsp,veggie-teriyaki-stir-fry-noodles,1,1,missing-nutrition,calories_per_unit,
+shallot,count,apple-cider-brisket,1,2,missing-nutrition,calories_per_unit,
+shortening,cup,snickerdoodles,2,1,missing-nutrition,calories_per_unit,
+shredded-coconut,cup,nanaimo-bars,1,1,missing-nutrition,calories_per_unit,
+soy_sauce,tsp,creamy-garlic-chicken,1,1,missing-nutrition,calories_per_unit,
+stew-beef,lb,beef-noodles,2,1 1/2,missing-nutrition,calories_per_unit,
+stewed-tomatoes,can,chili-con-carne-turkey,1,1,missing-nutrition,calories_per_unit,
+sugar,cup,gluten-free-peanut-butter-cookies,2,1,missing-nutrition,calories_per_unit,
+sugar,tbsp,blintzes,2,1,missing-nutrition,calories_per_unit,
+sugar,tsp,barbecued-hamburger,1,1,missing-nutrition,calories_per_unit,
+sweet-pickles,tbsp,bun-steads,1,2,missing-grams-mapping,grams_per_tbsp,nutrition unit is oz; recipe uses tbsp
+sweet-potato,count,sweet-potatoes-pork-chops-pears,1,4,missing-nutrition,calories_per_unit,
+sweet-potato,cup,baked-sweet-potatoes,1,4,missing-grams-mapping,grams_per_cup,nutrition unit is count; recipe uses cup
+sweet-potato,medium,anti-histamine-turkey-kale-sweet-potato-skillet,2,1,missing-grams-mapping,grams_per_medium,nutrition unit is count; recipe uses medium
+tapioca-starch,cup,sweet-potato-pizza-crust,1,1/3,missing-nutrition,calories_per_unit,
+tapioca-starch,tbsp,lemon-cake,1,2,missing-nutrition,calories_per_unit,
+teriyaki-sauce,cup,veggie-teriyaki-stir-fry-noodles,1,1/2,missing-nutrition,calories_per_unit,
+thyme,sprig,apple-cider-brisket,1,6,missing-nutrition,calories_per_unit,
+thyme,tbsp,anti-histamine-turkey-kale-sweet-potato-skillet,1,1,missing-nutrition,calories_per_unit,
+toasted-sesame-oil,tsp,veggie-teriyaki-stir-fry-noodles,1,1,missing-nutrition,calories_per_unit,
+tomato-paste,tbsp,slow-cooker-beef-stew,1,2,missing-nutrition,calories_per_unit,
+tomato-sauce,can,chili-con-carne-turkey,3,1,missing-grams-mapping,grams_per_can,nutrition unit is cup; recipe uses can
+tomato-sauce,pint,italian-soup,1,1,missing-nutrition,calories_per_unit,
+tomato-soup,can,mrs-burrows-chili,1,2,missing-nutrition,calories_per_unit,
+tomatoes,lb,original-chili-con-carne,1,1,missing-nutrition,calories_per_unit,
+tuna,can,bun-steads,1,1,missing-nutrition,calories_per_unit,
+turmeric-powder,tsp,turmeric-chicken-curry,1,1/2,missing-nutrition,calories_per_unit,
+vanilla-extract,tsp,chocolate-chip-cookies-gf,8,1,missing-nutrition,calories_per_unit,
+vanilla-pudding-powder,tbsp,nanaimo-bars,1,5,missing-grams-mapping,grams_per_tbsp,nutrition unit is count; recipe uses tbsp
+vegan-butter,tbsp,blintzes,2,2,missing-nutrition,calories_per_unit,
+vegetable-oil,tbsp,collards-canadian-bacon,1,1,missing-nutrition,calories_per_unit,
+velveeta,lb,mac-and-cheese,1,3/4,missing-nutrition,calories_per_unit,
+velveeta,oz,chicken-roll-ups,2,8,missing-nutrition,calories_per_unit,
+vinegar,tbsp,barbecued-hamburger,1,1,missing-nutrition,calories_per_unit,
+water,cup,beef-noodles,8,6,missing-nutrition,calories_per_unit,
+watercress,cup,watercress-parsley-soup,1,2,missing-nutrition,calories_per_unit,
+wheat-flour,cup,basic-roll-dough,12,3 1/2,missing-nutrition,calories_per_unit,
+wheat-flour,tbsp,creamy-garlic-chicken,2,3,missing-nutrition,calories_per_unit,
+wheat-flour,tsp,baked-sweet-potatoes,1,1,missing-nutrition,calories_per_unit,
+whipped-cream,cup,orange-sherbet-salad,1,1,missing-nutrition,calories_per_unit,
+white-pepper,tsp,lorenes-vegetable-soup,1,1/2,missing-nutrition,calories_per_unit,
+white-sugar,cup,basic-roll-dough,7,1/4,missing-nutrition,calories_per_unit,
+worcestershire_sauce,tbsp,chili-con-carne-turkey,2,1,missing-nutrition,calories_per_unit,
+worcestershire_sauce,tsp,original-chili-con-carne,1,1,missing-nutrition,calories_per_unit,
+xanthan-gum,tsp,basic-roll-dough,1,1,missing-nutrition,calories_per_unit,

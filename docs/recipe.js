@@ -15,8 +15,7 @@ import {
 import {
   computeBatchTotals,
   deriveServingTargets,
-  loadIngredientPortions,
-  loadIngredientUnitFactors,
+  loadIngredientDb,
   loadNutritionCoverage,
   loadNutritionGuidelines,
   loadNutritionPolicy,
@@ -613,7 +612,7 @@ function setupPanControls(recipe, state, rerender) {
   return true;
 }
 
-function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredientPortions, ingredientUnitFactors, nutritionCoverage) {
+function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredientDb, nutritionCoverage) {
   const recipe = normalizeRecipeForPage(recipeInput) || recipeInput;
   recipe.nutritionPolicy = nutritionPolicy;
 
@@ -671,8 +670,7 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
     selectedOptions: {},
     unitSelections: {},
     recipeIndex: recipe.recipeIndex || null,
-    ingredientPortions,
-    ingredientUnitFactors,
+    ingredientDb,
     restrictions: {
       gluten_free: compatibilityPossible.gluten_free ? resolveRestriction('gluten_free') : false,
       egg_free: compatibilityPossible.egg_free ? resolveRestriction('egg_free') : false,
@@ -683,7 +681,7 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
   if (nutritionCoverageBanner && nutritionCoverage?.missing_count) {
     nutritionCoverageBanner.hidden = false;
     nutritionCoverageBanner.textContent =
-      `Nutrition data is still filling in (${nutritionCoverage.missing_count} missing unit matches). ` +
+      `Nutrition data is still filling in (${nutritionCoverage.missing_count} missing mappings). ` +
       'Totals are estimates until coverage is complete.';
   }
 
@@ -793,16 +791,20 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
   const updateNutritionEstimate = () => {
     if (!nutritionEl) return;
     const totals = computeBatchTotals(recipe, state);
-    const coverage = totals.coverage.total
-      ? Math.round((totals.coverage.covered / totals.coverage.total) * 100)
+    const coverage = totals.coverage || { total: 0, calories: 0, macros: 0, label: 0 };
+    const coveragePercent = coverage.total
+      ? Math.round((coverage.calories / coverage.total) * 100)
       : 0;
+    const coverageStrength = coverage.calories === coverage.total && coverage.macros === coverage.total
+      ? 'strong'
+      : (coverage.calories > 0 ? 'partial' : 'unavailable');
     if (nutritionCoverageBadge) {
       nutritionCoverageBadge.textContent =
-        totals.coverage.total > 0
-          ? `Nutrition coverage: ${totals.coverage.covered}/${totals.coverage.total} (${coverage}%)`
-          : 'Nutrition coverage: —';
+        coverage.total > 0
+          ? `Nutrition estimate: ${coverageStrength} (${coverage.calories}/${coverage.total}, ${coveragePercent}%)`
+          : 'Nutrition estimate: —';
     }
-    if (!totals.complete) {
+    if (coverageStrength === 'unavailable') {
       const batchServings = Number.isFinite(Number(recipe.servings_per_batch))
         ? Number(recipe.servings_per_batch)
         : null;
@@ -812,7 +814,7 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
           .filter(Boolean);
         const uniqueMissing = [...new Set(missingSummary)];
         nutritionWarning.textContent =
-          `Nutrition incomplete: ${totals.coverage.covered}/${totals.coverage.total} ingredients (${coverage}%) have nutrition data.` +
+          `Nutrition unavailable: ${coverage.calories}/${coverage.total} ingredients (${coveragePercent}%) have calorie coverage.` +
           (uniqueMissing.length ? ` Missing: ${uniqueMissing.join(', ')}.` : '');
         nutritionWarning.hidden = false;
       }
@@ -828,7 +830,20 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
       return;
     }
 
-    if (nutritionWarning) nutritionWarning.hidden = true;
+    if (nutritionWarning) {
+      if (coverageStrength === 'partial') {
+        const missingSummary = (totals.missing_details || [])
+          .map((entry) => `${entry.ingredient_id}${entry.unit ? ` (${entry.unit})` : ''}`)
+          .filter(Boolean);
+        const uniqueMissing = [...new Set(missingSummary)];
+        nutritionWarning.textContent =
+          `Nutrition estimate is partial: ${coverage.calories}/${coverage.total} ingredients (${coveragePercent}%) have calorie coverage.` +
+          (uniqueMissing.length ? ` Missing: ${uniqueMissing.join(', ')}.` : '');
+        nutritionWarning.hidden = false;
+      } else {
+        nutritionWarning.hidden = true;
+      }
+    }
 
     const suggestion = suggestServings(totals, nutritionState.settings, nutritionGuidelines);
     if (!suggestion?.perServing) return;
@@ -849,7 +864,7 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
         ? Number(recipe.servings_per_batch)
         : suggestedServings;
       const parts = [
-        `Suggested servings: ${suggestedServings}.`,
+        `Suggested servings (rough estimate): ${suggestedServings}.`,
       ];
       if (Number.isFinite(Number(recipe.servings_per_batch))) {
         parts.push(`Recipe servings (author): ${batchServings}.`);
@@ -1019,15 +1034,13 @@ async function main() {
     recipesPayload,
     nutritionPolicy,
     nutritionGuidelines,
-    ingredientPortions,
-    ingredientUnitFactors,
+    ingredientDb,
     nutritionCoverage,
   ] = await Promise.all([
     loadRecipes(),
     loadNutritionPolicy(),
     loadNutritionGuidelines(),
-    loadIngredientPortions(),
-    loadIngredientUnitFactors(),
+    loadIngredientDb(),
     loadNutritionCoverage(),
   ]);
   const { recipes, recipeIndex } = recipesPayload;
@@ -1043,8 +1056,7 @@ async function main() {
     recipe,
     nutritionPolicy,
     nutritionGuidelines,
-    ingredientPortions,
-    ingredientUnitFactors,
+    ingredientDb,
     nutritionCoverage
   );
 }
