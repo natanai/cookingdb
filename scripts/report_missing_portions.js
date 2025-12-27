@@ -49,6 +49,12 @@ function csvEscape(value) {
   return text;
 }
 
+function loadIngredientCatalogRows(catalogPath) {
+  if (!fs.existsSync(catalogPath)) return [];
+  const rows = fs.readFileSync(catalogPath, 'utf-8');
+  return rows ? simpleParseCSV(rows) : [];
+}
+
 const UNIT_ALIASES = new Map([
   ['cloves', 'clove'],
   ['clove', 'clove'],
@@ -237,16 +243,14 @@ function selectDefaultOption(tokenData, choice) {
   return withOption || tokenData.options[0];
 }
 
-function loadIngredientUnitFactors(factorsPath) {
-  if (!fs.existsSync(factorsPath)) return new Map();
-  const rows = fs.readFileSync(factorsPath, 'utf-8');
-  const parsed = rows ? simpleParseCSV(rows) : [];
+function buildIngredientUnitFactorsFromCatalog(rows) {
+  const parsed = rows || [];
   const map = new Map();
   parsed.forEach((row) => {
     if (!row?.ingredient_id) return;
-    const fromUnit = normalizeUnit(row.from_unit_norm);
-    const toUnit = normalizeUnit(row.to_unit_norm);
-    const factor = Number(row.factor);
+    const fromUnit = normalizeUnit(row.unit_factor_from_unit_norm);
+    const toUnit = normalizeUnit(row.unit_factor_to_unit_norm);
+    const factor = Number(row.unit_factor);
     if (!fromUnit || !toUnit || !Number.isFinite(factor)) return;
     if (!map.has(row.ingredient_id)) map.set(row.ingredient_id, []);
     map.get(row.ingredient_id).push({
@@ -254,8 +258,8 @@ function loadIngredientUnitFactors(factorsPath) {
       from_unit_norm: fromUnit,
       to_unit_norm: toUnit,
       factor,
-      source: row.source || '',
-      notes: row.notes || '',
+      source: row.unit_factor_source || '',
+      notes: row.unit_factor_notes || '',
     });
   });
   return map;
@@ -356,12 +360,13 @@ function generateNutritionCoverageReport(recipes, unitFactors) {
 
 function main() {
   const builtRecipesPath = path.join(process.cwd(), 'docs', 'built', 'recipes.json');
-  const factorsPath = path.join(process.cwd(), 'data', 'ingredient_unit_factors.csv');
+  const catalogPath = path.join(process.cwd(), 'data', 'ingredient_catalog.csv');
   if (!fs.existsSync(builtRecipesPath)) {
     throw new Error('Missing docs/built/recipes.json. Run the build first.');
   }
   const recipes = JSON.parse(fs.readFileSync(builtRecipesPath, 'utf-8'));
-  const unitFactors = loadIngredientUnitFactors(factorsPath);
+  const catalogRows = loadIngredientCatalogRows(catalogPath);
+  const unitFactors = buildIngredientUnitFactorsFromCatalog(catalogRows);
   const missing = generateNutritionCoverageReport(recipes, unitFactors);
   const outputPath = path.join(process.cwd(), 'docs', 'built', 'nutrition_coverage_report.csv');
   const missingCsv = [

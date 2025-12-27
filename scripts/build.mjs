@@ -110,23 +110,21 @@ function buildIngredientCatalog(rows) {
   return map;
 }
 
-function loadIngredientPortions(portionsPath) {
-  if (!fs.existsSync(portionsPath)) return new Map();
-  const rows = fs.readFileSync(portionsPath, 'utf-8');
-  const parsed = rows ? simpleParseCSV(rows) : [];
+function buildIngredientPortionsFromCatalog(rows) {
+  const parsed = rows || [];
   const map = new Map();
   for (const row of parsed) {
-    if (!row.ingredient_id || !row.unit) continue;
-    const normalizedUnit = normalizeUnit(row.unit);
+    if (!row.ingredient_id || !row.portion_unit) continue;
+    const normalizedUnit = normalizeUnit(row.portion_unit);
     if (!normalizedUnit) continue;
-    const grams = Number(row.grams);
+    const grams = Number(row.portion_grams);
     if (!Number.isFinite(grams)) continue;
     map.set(`${row.ingredient_id}::${normalizedUnit}`, {
       ingredient_id: row.ingredient_id,
       unit: normalizedUnit,
       grams,
-      source: row.source || '',
-      notes: row.notes || '',
+      source: row.portion_source || '',
+      notes: row.portion_notes || '',
     });
   }
   return map;
@@ -409,10 +407,8 @@ function classifyUnitWorldMismatch(normalizedUnit, targetUnit) {
   return '';
 }
 
-function loadIngredientNutritionVariants(nutritionPath) {
-  if (!fs.existsSync(nutritionPath)) return new Map();
-  const rows = fs.readFileSync(nutritionPath, 'utf-8');
-  const parsed = rows ? simpleParseCSV(rows) : [];
+function buildIngredientNutritionVariantsFromCatalog(rows) {
+  const parsed = rows || [];
   const map = new Map();
   parsed.forEach((row) => {
     if (!row?.ingredient_id) return;
@@ -438,23 +434,21 @@ function loadIngredientNutritionVariants(nutritionPath) {
       iron_mg: parseNumericField(row.iron_mg),
       potassium_mg: parseNumericField(row.potassium_mg),
       vitamin_c_mg: parseNumericField(row.vitamin_c_mg),
-      source: row.source || '',
-      notes: row.notes || '',
+      source: row.nutrition_source || '',
+      notes: row.nutrition_notes || '',
     });
   });
   return map;
 }
 
-function loadIngredientUnitFactors(factorsPath) {
-  if (!fs.existsSync(factorsPath)) return new Map();
-  const rows = fs.readFileSync(factorsPath, 'utf-8');
-  const parsed = rows ? simpleParseCSV(rows) : [];
+function buildIngredientUnitFactorsFromCatalog(rows) {
+  const parsed = rows || [];
   const map = new Map();
   parsed.forEach((row) => {
     if (!row?.ingredient_id) return;
-    const fromUnit = normalizeUnit(row.from_unit_norm);
-    const toUnit = normalizeUnit(row.to_unit_norm);
-    const factor = parseNumericField(row.factor);
+    const fromUnit = normalizeUnit(row.unit_factor_from_unit_norm);
+    const toUnit = normalizeUnit(row.unit_factor_to_unit_norm);
+    const factor = parseNumericField(row.unit_factor);
     if (!fromUnit || !toUnit || !Number.isFinite(factor)) return;
     if (!map.has(row.ingredient_id)) map.set(row.ingredient_id, []);
     map.get(row.ingredient_id).push({
@@ -462,8 +456,8 @@ function loadIngredientUnitFactors(factorsPath) {
       from_unit_norm: fromUnit,
       to_unit_norm: toUnit,
       factor,
-      source: row.source || '',
-      notes: row.notes || '',
+      source: row.unit_factor_source || '',
+      notes: row.unit_factor_notes || '',
     });
   });
   return map;
@@ -763,14 +757,9 @@ async function build() {
   const catalogPath = path.join(process.cwd(), 'data', 'ingredient_catalog.csv');
   const catalogRows = loadIngredientCatalogRows(catalogPath);
   const catalog = buildIngredientCatalog(catalogRows);
-  const portionsPath = path.join(process.cwd(), 'data', 'ingredient_portions.csv');
-  const ingredientPortions = loadIngredientPortions(portionsPath);
-  const nutritionVariants = loadIngredientNutritionVariants(
-    path.join(process.cwd(), 'data', 'ingredient_nutrition.csv')
-  );
-  const ingredientUnitFactors = loadIngredientUnitFactors(
-    path.join(process.cwd(), 'data', 'ingredient_unit_factors.csv')
-  );
+  const ingredientPortions = buildIngredientPortionsFromCatalog(catalogRows);
+  const nutritionVariants = buildIngredientNutritionVariantsFromCatalog(catalogRows);
+  const ingredientUnitFactors = buildIngredientUnitFactorsFromCatalog(catalogRows);
   const nutritionGuidelines = loadNutritionGuidelines(path.join(process.cwd(), 'data', 'nutrition_guidelines.json'));
   const nutritionPolicy = loadNutritionPolicy(
     path.join(process.cwd(), 'data', 'nutrition_policy.json'),
