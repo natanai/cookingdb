@@ -212,7 +212,7 @@ function parseNumericField(value) {
 }
 
 const UNIT_ALIASES = new Map([
-  ['cloves', 'clove'],
+  ['cloves', 'count'],
   ['clove', 'count'],
   ['cube', 'count'],
   ['medium', 'count'],
@@ -224,6 +224,8 @@ const UNIT_ALIASES = new Map([
   ['bunch', 'count'],
   ['sprig', 'count'],
   ['can', 'count'],
+  ['inch', 'count'],
+  ['recipe', 'count'],
   ['dash', 'tsp'],
   ['drop', 'tsp'],
 ]);
