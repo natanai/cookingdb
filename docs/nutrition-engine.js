@@ -201,6 +201,8 @@ export async function loadIngredientUnitFactors() {
           from_unit_norm: fromUnit,
           to_unit_norm: toUnit,
           factor,
+          source: entry.source || '',
+          notes: entry.notes || '',
         });
       });
       return map;
@@ -324,9 +326,14 @@ function selectVariantWithFactor(ingredientId, amount, normalizedUnit, variants,
   if (!ingredientId || !unitFactors) return null;
   const factors = unitFactors.get(ingredientId) || [];
   for (const factor of factors) {
-    const fromConversion = convertUnitAmount(amount, normalizedUnit, factor.from_unit_norm);
-    if (!fromConversion || !Number.isFinite(fromConversion.amount)) continue;
-    const bridgedAmount = fromConversion.amount * factor.factor;
+    let bridgedAmount = null;
+    if (normalizedUnit === factor.from_unit_norm) {
+      bridgedAmount = amount * factor.factor;
+    } else {
+      const fromConversion = convertUnitAmount(amount, normalizedUnit, factor.from_unit_norm);
+      if (!fromConversion || !Number.isFinite(fromConversion.amount)) continue;
+      bridgedAmount = fromConversion.amount * factor.factor;
+    }
     const match = selectNutritionVariant(variants, factor.to_unit_norm, bridgedAmount);
     if (match?.variant && Number.isFinite(match.convertedAmount)) {
       return { variant: match.variant, convertedAmount: match.convertedAmount, bridge: factor };

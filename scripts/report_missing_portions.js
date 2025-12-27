@@ -40,6 +40,15 @@ function parseLine(line) {
   return result;
 }
 
+function csvEscape(value) {
+  if (value === null || value === undefined) return '';
+  const text = String(value);
+  if (/[",\n]/.test(text)) {
+    return `"${text.replace(/"/g, '""')}"`;
+  }
+  return text;
+}
+
 const UNIT_ALIASES = new Map([
   ['cloves', 'clove'],
   ['clove', 'clove'],
@@ -139,15 +148,55 @@ function selectVariantWithFactor(ingredientId, amount, normalizedUnit, variants,
   if (!ingredientId || !unitFactors) return null;
   const factors = unitFactors.get(ingredientId) || [];
   for (const factor of factors) {
-    const fromConversion = convertUnitAmount(amount, normalizedUnit, factor.from_unit_norm);
-    if (!fromConversion || !Number.isFinite(fromConversion.amount)) continue;
-    const bridgedAmount = fromConversion.amount * factor.factor;
+    let bridgedAmount = null;
+    if (normalizedUnit === factor.from_unit_norm) {
+      bridgedAmount = amount * factor.factor;
+    } else {
+      const fromConversion = convertUnitAmount(amount, normalizedUnit, factor.from_unit_norm);
+      if (!fromConversion || !Number.isFinite(fromConversion.amount)) continue;
+      bridgedAmount = fromConversion.amount * factor.factor;
+    }
     const match = selectNutritionVariant(variants, factor.to_unit_norm, bridgedAmount);
     if (match?.variant && Number.isFinite(match.convertedAmount)) {
       return { variant: match.variant, convertedAmount: match.convertedAmount, bridge: factor };
     }
   }
   return null;
+}
+
+function listVariantUnits(variants) {
+  if (!Array.isArray(variants)) return [];
+  const seen = new Set();
+  variants.forEach((entry) => {
+    const unit = entry?.serving_unit_norm;
+    if (unit) seen.add(unit);
+  });
+  return [...seen];
+}
+
+function pickSuggestedTargetUnit(normalizedUnit, variants) {
+  const units = listVariantUnits(variants);
+  if (!units.length) return '';
+  const recipeGroup = unitDefinition(normalizedUnit)?.group || null;
+  if (recipeGroup) {
+    const sameGroup = units.find((unit) => unitDefinition(unit)?.group === recipeGroup);
+    if (sameGroup) return sameGroup;
+  }
+  return units[0];
+}
+
+function classifyUnitWorldMismatch(normalizedUnit, targetUnit) {
+  if (!normalizedUnit || !targetUnit) return '';
+  const packageUnits = new Set(['bag', 'bunch', 'can', 'cube', 'jar', 'packet', 'package', 'bottle']);
+  if (packageUnits.has(normalizedUnit)) return 'package';
+  const recipeGroup = unitDefinition(normalizedUnit)?.group || null;
+  const targetGroup = unitDefinition(targetUnit)?.group || null;
+  if (!recipeGroup || !targetGroup || recipeGroup === targetGroup) return '';
+  if (recipeGroup === 'count' && targetGroup === 'volume') return 'count-vs-volume';
+  if (recipeGroup === 'count' && targetGroup === 'mass') return 'count-vs-mass';
+  if (recipeGroup === 'volume' && targetGroup === 'mass') return 'volume-vs-mass';
+  if (recipeGroup === 'mass' && targetGroup === 'volume') return 'volume-vs-mass';
+  return '';
 }
 
 function parseRatioToNumber(raw) {
@@ -205,6 +254,8 @@ function loadIngredientUnitFactors(factorsPath) {
       from_unit_norm: fromUnit,
       to_unit_norm: toUnit,
       factor,
+      source: row.source || '',
+      notes: row.notes || '',
     });
   });
   return map;
@@ -224,8 +275,13 @@ function generateNutritionCoverageReport(recipes, unitFactors) {
       const normalizedUnit = normalizeUnit(option.unit);
       const variants = Array.isArray(option.nutrition) ? option.nutrition : (option.nutrition ? [option.nutrition] : []);
       let reason = null;
+      const variantUnits = listVariantUnits(variants);
+      const suggestedTargetUnit = pickSuggestedTargetUnit(normalizedUnit, variants);
+      const mismatchType = classifyUnitWorldMismatch(normalizedUnit, suggestedTargetUnit);
 
-      if (!variants.length) {
+      if (normalizedUnit === 'recipe') {
+        reason = 'recipe-reference-needed';
+      } else if (!variants.length) {
         reason = 'missing-nutrition-row';
       } else {
         const selection = selectNutritionVariant(variants, normalizedUnit, amount);
@@ -286,6 +342,9 @@ function generateNutritionCoverageReport(recipes, unitFactors) {
           reason,
           example_recipe_id: recipe.id,
           example_qty: option.ratio,
+          nutrition_variants_units: variantUnits.join(','),
+          suggested_target_unit: suggestedTargetUnit,
+          unit_world_mismatch_type: mismatchType,
           count_occurrences: 0,
         });
       }
@@ -306,15 +365,18 @@ function main() {
   const missing = generateNutritionCoverageReport(recipes, unitFactors);
   const outputPath = path.join(process.cwd(), 'docs', 'built', 'nutrition_coverage_report.csv');
   const missingCsv = [
-    'ingredient_id,unit_norm,example_recipe_id,count_occurrences,example_qty,reason',
+    'ingredient_id,unit_norm,example_recipe_id,count_occurrences,example_qty,reason,nutrition_variants_units,suggested_target_unit,unit_world_mismatch_type',
     ...missing.map((row) =>
       [
-        row.ingredient_id,
-        row.unit_norm,
-        row.example_recipe_id,
-        row.count_occurrences,
-        row.example_qty,
-        row.reason,
+        csvEscape(row.ingredient_id),
+        csvEscape(row.unit_norm),
+        csvEscape(row.example_recipe_id),
+        csvEscape(row.count_occurrences),
+        csvEscape(row.example_qty),
+        csvEscape(row.reason),
+        csvEscape(row.nutrition_variants_units),
+        csvEscape(row.suggested_target_unit),
+        csvEscape(row.unit_world_mismatch_type),
       ].join(',')
     ),
   ].join('\n');

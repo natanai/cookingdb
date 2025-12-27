@@ -5116,12 +5116,12 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 1054,
-      "calories_per_serving": 175.66666666666666,
-      "servings_estimate": 6,
-      "covered_ingredients": 2,
+      "calories_total": 7454,
+      "calories_per_serving": 298.16,
+      "servings_estimate": 25,
+      "covered_ingredients": 3,
       "total_ingredients": 5,
-      "coverage_ratio": 0.4,
+      "coverage_ratio": 0.6,
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": [
         {
@@ -5131,10 +5131,6 @@
         {
           "ingredient_id": "milk",
           "unit": "can"
-        },
-        {
-          "ingredient_id": "crescent-rolls",
-          "unit": "package"
         }
       ]
     },
@@ -12537,18 +12533,14 @@
     "family": "Burrows",
     "notes": "Use 1/2 can Rotel for a milder version.",
     "nutrition_estimate": {
-      "calories_total": 1633,
-      "calories_per_serving": 108.86666666666666,
-      "servings_estimate": 15,
-      "covered_ingredients": 3,
+      "calories_total": 2368,
+      "calories_per_serving": 139.2941176470588,
+      "servings_estimate": 17,
+      "covered_ingredients": 4,
       "total_ingredients": 6,
-      "coverage_ratio": 0.5,
+      "coverage_ratio": 0.6666666666666666,
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": [
-        {
-          "ingredient_id": "nacho-chips",
-          "unit": "bag"
-        },
         {
           "ingredient_id": "cream-of-celery-soup",
           "unit": "can"
