@@ -2,7 +2,7 @@ token,option,display,ratio,unit,ingredient_id
 chicken,cooked,chicken,1/2,lb,chicken-breast
 chicken,canned,canned chicken,1,can,canned-chicken
 soup,,cream of chicken soup,1,can,cream-of-chicken-soup
-milk,,milk,1/2,can,milk
+milk,,milk,2/3,cup,milk
 cheese,velveeta,Velveeta,8,oz,velveeta
 cheese,cheddar,cheddar cheese,1,cup,cheddar-cheese
 crescent_rolls,,crescent rolls,1,package,crescent-rolls
