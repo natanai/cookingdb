@@ -22,6 +22,7 @@ Open `docs/index.html` in a browser to view the recipes. Blintzes are included a
 ## Data layout
 
 - Global catalog: `data/ingredient_catalog.csv`
+- Ingredient nutrition + unit mappings live only in `data/ingredient_catalog.csv` (other ingredient data files are generated build artifacts).
 - Recipes: `recipes/<recipe_id>/` containing `meta.csv`, `ingredients.csv`, optional `choices.csv`, and `steps.csv` (preferred) or `steps.md`
 - Ingredients support optional `section` and `line_group` columns so multi-part recipes can group related items; steps can be sectioned via the `section` column in `steps.csv`.
 - Recipe steps must not instruct using more of any ingredient than is listed (avoid double-counting an ingredient across steps unless it is explicitly split into multiple ingredient lines).

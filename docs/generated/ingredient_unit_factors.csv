@@ -1,3 +1,4 @@
+# DO NOT EDIT — generated from ingredient_catalog.csv
 ingredient_id,from_unit_norm,to_unit_norm,factor,source,notes
 tomato-soup,can,oz,10.75,brandless default,Assumed 10.75 oz condensed soup can.
 cream-of-celery-soup,can,oz,10.5,brandless default,Assumed 10.5 oz condensed soup can.

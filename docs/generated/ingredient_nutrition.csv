@@ -1,3 +1,4 @@
+# DO NOT EDIT — generated from ingredient_catalog.csv
 ingredient_id,serving_qty,serving_unit_norm,calories_kcal,protein_g,total_fat_g,saturated_fat_g,total_carbs_g,sugars_g,fiber_g,sodium_mg,calcium_mg,iron_mg,potassium_mg,vitamin_c_mg,source,notes
 egg,1,count,72,6.3,4.8,1.6,0.4,0.2,0,71,0,0,0,0,USDA (large egg),Per 1 large (≈50g).
 egg-replacer,1,tbsp,35,0,0,0,7,0,1,320,0,0,0,0,Bob’s Red Mill (vegan),Per 1 Tbsp (10g).
