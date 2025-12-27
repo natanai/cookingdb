@@ -180,15 +180,9 @@ export async function validateAll() {
   const recipesDir = path.join(process.cwd(), 'recipes');
   const recipeDirs = fs.readdirSync(recipesDir, { withFileTypes: true }).filter((ent) => ent.isDirectory());
   const ingredientCatalogPath = path.join(process.cwd(), 'data', 'ingredient_catalog.csv');
-  const ingredientPortionsPath = path.join(process.cwd(), 'data', 'ingredient_portions.csv');
-  const ingredientNutritionPath = path.join(process.cwd(), 'data', 'ingredient_nutrition.csv');
-  const ingredientUnitFactorsPath = path.join(process.cwd(), 'data', 'ingredient_unit_factors.csv');
   const nutritionGuidelinesPath = path.join(process.cwd(), 'data', 'nutrition_guidelines.json');
   const nutritionPolicyPath = path.join(process.cwd(), 'data', 'nutrition_policy.json');
   ensure(fs.existsSync(ingredientCatalogPath), 'Missing ingredient_catalog.csv');
-  ensure(fs.existsSync(ingredientPortionsPath), 'Missing ingredient_portions.csv');
-  ensure(fs.existsSync(ingredientNutritionPath), 'Missing ingredient_nutrition.csv');
-  ensure(fs.existsSync(ingredientUnitFactorsPath), 'Missing ingredient_unit_factors.csv');
   ensure(fs.existsSync(nutritionGuidelinesPath), 'Missing nutrition_guidelines.json');
   ensure(fs.existsSync(nutritionPolicyPath), 'Missing nutrition_policy.json');
   const ingredientCatalogRows = await parseCSVFile(ingredientCatalogPath);
@@ -198,41 +192,9 @@ export async function validateAll() {
     ensure(row.ingredient_id, 'ingredient_catalog.csv missing ingredient_id');
     ensure(
       [
-        'nutrition_unit',
-        'calories_per_unit',
-        'nutrition_source',
-        'nutrition_notes',
-        'serving_size',
-        'protein_g',
-        'total_fat_g',
-        'saturated_fat_g',
-        'total_carbs_g',
-        'sugars_g',
-        'fiber_g',
-        'sodium_mg',
-        'calcium_mg',
-        'iron_mg',
-        'potassium_mg',
-        'vitamin_c_mg',
-      ].every((field) => Object.prototype.hasOwnProperty.call(row, field)),
-      'ingredient_catalog.csv missing nutrition columns'
-    );
-    ensure(!ingredientCatalogIds.has(row.ingredient_id), `ingredient_catalog.csv duplicate ingredient_id ${row.ingredient_id}`);
-    ingredientCatalogIds.add(row.ingredient_id);
-  });
-  const ingredientPortionsRows = await parseCSVFile(ingredientPortionsPath);
-  ingredientPortionsRows.forEach((row, idx) => {
-    ensure(row.ingredient_id, `ingredient_portions.csv missing ingredient_id on row ${idx + 2}`);
-    ensure(row.unit, `ingredient_portions.csv missing unit on row ${idx + 2}`);
-    ensure(row.grams, `ingredient_portions.csv missing grams on row ${idx + 2}`);
-  });
-  const ingredientNutritionRows = await parseCSVFile(ingredientNutritionPath);
-  ingredientNutritionRows.forEach((row, idx) => {
-    ensure(row.ingredient_id, `ingredient_nutrition.csv missing ingredient_id on row ${idx + 2}`);
-    ensure(
-      [
         'serving_qty',
         'serving_unit_norm',
+        'serving_size',
         'calories_kcal',
         'protein_g',
         'total_fat_g',
@@ -245,15 +207,27 @@ export async function validateAll() {
         'iron_mg',
         'potassium_mg',
         'vitamin_c_mg',
-        'source',
-        'notes',
+        'nutrition_source',
+        'nutrition_notes',
+        'unit_factor_from_unit_norm',
+        'unit_factor_to_unit_norm',
+        'unit_factor',
+        'unit_factor_source',
+        'unit_factor_notes',
+        'portion_unit',
+        'portion_grams',
+        'portion_source',
+        'portion_notes',
       ].every((field) => Object.prototype.hasOwnProperty.call(row, field)),
-      `ingredient_nutrition.csv missing required columns on row ${idx + 2}`
+      'ingredient_catalog.csv missing nutrition columns'
     );
-    ensure(
-      ingredientCatalog.has(row.ingredient_id),
-      `ingredient_nutrition.csv unknown ingredient_id ${row.ingredient_id} on row ${idx + 2}`
-    );
+    ensure(row.serving_qty, 'ingredient_catalog.csv missing serving_qty');
+    ensure(row.serving_unit_norm, 'ingredient_catalog.csv missing serving_unit_norm');
+    ensure(!ingredientCatalogIds.has(row.ingredient_id), `ingredient_catalog.csv duplicate ingredient_id ${row.ingredient_id}`);
+    ingredientCatalogIds.add(row.ingredient_id);
+  });
+  const unitFactorFromUnits = new Map();
+  ingredientCatalogRows.forEach((row, idx) => {
     const numericFields = [
       'serving_qty',
       'calories_kcal',
@@ -272,25 +246,34 @@ export async function validateAll() {
     numericFields.forEach((field) => {
       ensure(
         Number.isFinite(Number(row[field])),
-        `ingredient_nutrition.csv non-numeric ${field} on row ${idx + 2}`
+        `ingredient_catalog.csv non-numeric ${field} on row ${idx + 2}`
       );
     });
-  });
-  const ingredientUnitFactorRows = await parseCSVFile(ingredientUnitFactorsPath);
-  const unitFactorFromUnits = new Map();
-  ingredientUnitFactorRows.forEach((row, idx) => {
-    if (!row.ingredient_id && !row.from_unit_norm && !row.to_unit_norm && !row.factor) return;
-    ensure(row.ingredient_id, `ingredient_unit_factors.csv missing ingredient_id on row ${idx + 2}`);
-    ensure(row.from_unit_norm, `ingredient_unit_factors.csv missing from_unit_norm on row ${idx + 2}`);
-    ensure(row.to_unit_norm, `ingredient_unit_factors.csv missing to_unit_norm on row ${idx + 2}`);
-    ensure(Object.prototype.hasOwnProperty.call(row, 'source'), `ingredient_unit_factors.csv missing source on row ${idx + 2}`);
-    ensure(Object.prototype.hasOwnProperty.call(row, 'notes'), `ingredient_unit_factors.csv missing notes on row ${idx + 2}`);
-    ensure(Number.isFinite(Number(row.factor)), `ingredient_unit_factors.csv non-numeric factor on row ${idx + 2}`);
-    const fromUnit = normalizeUnit(row.from_unit_norm);
-    if (!unitFactorFromUnits.has(row.ingredient_id)) {
-      unitFactorFromUnits.set(row.ingredient_id, new Set());
+    if (row.portion_unit || row.portion_grams || row.portion_source || row.portion_notes) {
+      ensure(row.portion_unit, `ingredient_catalog.csv missing portion_unit on row ${idx + 2}`);
+      ensure(row.portion_grams, `ingredient_catalog.csv missing portion_grams on row ${idx + 2}`);
+      ensure(Number.isFinite(Number(row.portion_grams)), `ingredient_catalog.csv non-numeric portion_grams on row ${idx + 2}`);
     }
-    if (fromUnit) unitFactorFromUnits.get(row.ingredient_id).add(fromUnit);
+    if (
+      row.unit_factor_from_unit_norm ||
+      row.unit_factor_to_unit_norm ||
+      row.unit_factor ||
+      row.unit_factor_source ||
+      row.unit_factor_notes
+    ) {
+      ensure(row.unit_factor_from_unit_norm, `ingredient_catalog.csv missing unit_factor_from_unit_norm on row ${idx + 2}`);
+      ensure(row.unit_factor_to_unit_norm, `ingredient_catalog.csv missing unit_factor_to_unit_norm on row ${idx + 2}`);
+      ensure(row.unit_factor, `ingredient_catalog.csv missing unit_factor on row ${idx + 2}`);
+      ensure(
+        Number.isFinite(Number(row.unit_factor)),
+        `ingredient_catalog.csv non-numeric unit_factor on row ${idx + 2}`
+      );
+      const fromUnit = normalizeUnit(row.unit_factor_from_unit_norm);
+      if (!unitFactorFromUnits.has(row.ingredient_id)) {
+        unitFactorFromUnits.set(row.ingredient_id, new Set());
+      }
+      if (fromUnit) unitFactorFromUnits.get(row.ingredient_id).add(fromUnit);
+    }
   });
 
   const produceHerbPattern =

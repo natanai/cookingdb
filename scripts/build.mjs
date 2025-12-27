@@ -110,23 +110,21 @@ function buildIngredientCatalog(rows) {
   return map;
 }
 
-function loadIngredientPortions(portionsPath) {
-  if (!fs.existsSync(portionsPath)) return new Map();
-  const rows = fs.readFileSync(portionsPath, 'utf-8');
-  const parsed = rows ? simpleParseCSV(rows) : [];
+function buildIngredientPortionsFromCatalog(rows) {
+  const parsed = rows || [];
   const map = new Map();
   for (const row of parsed) {
-    if (!row.ingredient_id || !row.unit) continue;
-    const normalizedUnit = normalizeUnit(row.unit);
+    if (!row.ingredient_id || !row.portion_unit) continue;
+    const normalizedUnit = normalizeUnit(row.portion_unit);
     if (!normalizedUnit) continue;
-    const grams = Number(row.grams);
+    const grams = Number(row.portion_grams);
     if (!Number.isFinite(grams)) continue;
     map.set(`${row.ingredient_id}::${normalizedUnit}`, {
       ingredient_id: row.ingredient_id,
       unit: normalizedUnit,
       grams,
-      source: row.source || '',
-      notes: row.notes || '',
+      source: row.portion_source || '',
+      notes: row.portion_notes || '',
     });
   }
   return map;
@@ -349,6 +347,35 @@ function selectVariantWithFactor(ingredientId, amount, normalizedUnit, variants,
   return null;
 }
 
+function selectVariantWithPortion(ingredientId, amount, normalizedUnit, variants, ingredientPortions) {
+  if (!ingredientId || !Array.isArray(variants) || !ingredientPortions) return null;
+  const portions = [...ingredientPortions.values()].filter((entry) => entry.ingredient_id === ingredientId);
+  if (!portions.length) return null;
+  for (const portion of portions) {
+    let portionAmount = null;
+    if (normalizedUnit === portion.unit) {
+      portionAmount = amount;
+    } else {
+      const converted = convertUnitAmount(amount, normalizedUnit, portion.unit);
+      if (converted && Number.isFinite(converted.amount)) {
+        portionAmount = converted.amount;
+      }
+    }
+    if (!Number.isFinite(portionAmount)) continue;
+    const grams = portionAmount * portion.grams;
+    if (!Number.isFinite(grams)) continue;
+    const match = selectNutritionVariant(variants, 'g', grams);
+    if (match?.variant && Number.isFinite(match.convertedAmount)) {
+      return {
+        variant: match.variant,
+        convertedAmount: match.convertedAmount,
+        bridge: portion,
+      };
+    }
+  }
+  return null;
+}
+
 function deriveServingTargets(settings, guidelines) {
   const dailyCalories = Number(settings?.daily_kcal) || Number(guidelines?.daily_calories_default) || 2000;
   const mealsPerDay = Number(guidelines?.meals_per_day_default) || 3;
@@ -409,10 +436,8 @@ function classifyUnitWorldMismatch(normalizedUnit, targetUnit) {
   return '';
 }
 
-function loadIngredientNutritionVariants(nutritionPath) {
-  if (!fs.existsSync(nutritionPath)) return new Map();
-  const rows = fs.readFileSync(nutritionPath, 'utf-8');
-  const parsed = rows ? simpleParseCSV(rows) : [];
+function buildIngredientNutritionVariantsFromCatalog(rows) {
+  const parsed = rows || [];
   const map = new Map();
   parsed.forEach((row) => {
     if (!row?.ingredient_id) return;
@@ -438,23 +463,21 @@ function loadIngredientNutritionVariants(nutritionPath) {
       iron_mg: parseNumericField(row.iron_mg),
       potassium_mg: parseNumericField(row.potassium_mg),
       vitamin_c_mg: parseNumericField(row.vitamin_c_mg),
-      source: row.source || '',
-      notes: row.notes || '',
+      source: row.nutrition_source || '',
+      notes: row.nutrition_notes || '',
     });
   });
   return map;
 }
 
-function loadIngredientUnitFactors(factorsPath) {
-  if (!fs.existsSync(factorsPath)) return new Map();
-  const rows = fs.readFileSync(factorsPath, 'utf-8');
-  const parsed = rows ? simpleParseCSV(rows) : [];
+function buildIngredientUnitFactorsFromCatalog(rows) {
+  const parsed = rows || [];
   const map = new Map();
   parsed.forEach((row) => {
     if (!row?.ingredient_id) return;
-    const fromUnit = normalizeUnit(row.from_unit_norm);
-    const toUnit = normalizeUnit(row.to_unit_norm);
-    const factor = parseNumericField(row.factor);
+    const fromUnit = normalizeUnit(row.unit_factor_from_unit_norm);
+    const toUnit = normalizeUnit(row.unit_factor_to_unit_norm);
+    const factor = parseNumericField(row.unit_factor);
     if (!fromUnit || !toUnit || !Number.isFinite(factor)) return;
     if (!map.has(row.ingredient_id)) map.set(row.ingredient_id, []);
     map.get(row.ingredient_id).push({
@@ -462,8 +485,8 @@ function loadIngredientUnitFactors(factorsPath) {
       from_unit_norm: fromUnit,
       to_unit_norm: toUnit,
       factor,
-      source: row.source || '',
-      notes: row.notes || '',
+      source: row.unit_factor_source || '',
+      notes: row.unit_factor_notes || '',
     });
   });
   return map;
@@ -585,7 +608,7 @@ function selectDefaultOption(tokenData, choice) {
   return withOption || tokenData.options[0];
 }
 
-function computeNutritionEstimate(ingredients, choices, nutritionVariants, unitFactors, guidelines) {
+function computeNutritionEstimate(ingredients, choices, nutritionVariants, unitFactors, ingredientPortions, guidelines) {
   const targets = deriveServingTargets(null, guidelines);
   let covered = 0;
   const missing = [];
@@ -619,6 +642,18 @@ function computeNutritionEstimate(ingredients, choices, nutritionVariants, unitF
       );
       variant = factorMatch?.variant || null;
       convertedAmount = factorMatch?.convertedAmount ?? null;
+    }
+
+    if (!variant) {
+      const portionMatch = selectVariantWithPortion(
+        option.ingredient_id,
+        amount,
+        normalizedUnit,
+        variants,
+        ingredientPortions
+      );
+      variant = portionMatch?.variant || null;
+      convertedAmount = portionMatch?.convertedAmount ?? null;
     }
 
     if (!variant || !Number.isFinite(convertedAmount)) {
@@ -660,7 +695,7 @@ function computeNutritionEstimate(ingredients, choices, nutritionVariants, unitF
   };
 }
 
-function generateNutritionCoverageReport(recipes, nutritionVariants, unitFactors) {
+function generateNutritionCoverageReport(recipes, nutritionVariants, unitFactors, ingredientPortions) {
   const missing = new Map();
 
   recipes.forEach((recipe) => {
@@ -706,6 +741,18 @@ function generateNutritionCoverageReport(recipes, nutritionVariants, unitFactors
             });
             reason = hasSameGroup ? 'no-convertible-variant' : 'missing-cross-factor';
           }
+        }
+
+        if (!variant) {
+          const portionMatch = selectVariantWithPortion(
+            option.ingredient_id,
+            amount,
+            normalizedUnit,
+            variants,
+            ingredientPortions
+          );
+          variant = portionMatch?.variant || null;
+          convertedAmount = portionMatch?.convertedAmount ?? null;
         }
 
         if (!reason && (!variant || !Number.isFinite(convertedAmount))) {
@@ -763,14 +810,9 @@ async function build() {
   const catalogPath = path.join(process.cwd(), 'data', 'ingredient_catalog.csv');
   const catalogRows = loadIngredientCatalogRows(catalogPath);
   const catalog = buildIngredientCatalog(catalogRows);
-  const portionsPath = path.join(process.cwd(), 'data', 'ingredient_portions.csv');
-  const ingredientPortions = loadIngredientPortions(portionsPath);
-  const nutritionVariants = loadIngredientNutritionVariants(
-    path.join(process.cwd(), 'data', 'ingredient_nutrition.csv')
-  );
-  const ingredientUnitFactors = loadIngredientUnitFactors(
-    path.join(process.cwd(), 'data', 'ingredient_unit_factors.csv')
-  );
+  const ingredientPortions = buildIngredientPortionsFromCatalog(catalogRows);
+  const nutritionVariants = buildIngredientNutritionVariantsFromCatalog(catalogRows);
+  const ingredientUnitFactors = buildIngredientUnitFactorsFromCatalog(catalogRows);
   const nutritionGuidelines = loadNutritionGuidelines(path.join(process.cwd(), 'data', 'nutrition_guidelines.json'));
   const nutritionPolicy = loadNutritionPolicy(
     path.join(process.cwd(), 'data', 'nutrition_policy.json'),
@@ -892,6 +934,7 @@ async function build() {
       choices,
       nutritionVariants,
       ingredientUnitFactors,
+      ingredientPortions,
       nutritionGuidelines
     );
     const metaServingsPerBatch = Number(meta.servings_per_batch);
@@ -967,7 +1010,12 @@ async function build() {
   );
   fs.writeFileSync(path.join(builtDir, 'recipes.json'), JSON.stringify(recipeOutputs, null, 2));
   fs.writeFileSync(path.join(builtDir, 'index.json'), JSON.stringify(indexList, null, 2));
-  const coverageReport = generateNutritionCoverageReport(recipeOutputs, nutritionVariants, ingredientUnitFactors);
+  const coverageReport = generateNutritionCoverageReport(
+    recipeOutputs,
+    nutritionVariants,
+    ingredientUnitFactors,
+    ingredientPortions
+  );
   const coverageCsv = [
     'ingredient_id,unit_norm,example_recipe_id,count_occurrences,example_qty,reason,nutrition_variants_units,suggested_target_unit,unit_world_mismatch_type',
     ...coverageReport.map((row) =>
