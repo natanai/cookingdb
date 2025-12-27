@@ -1,4 +1,4 @@
-import { UNIT_CONVERSIONS, unitDefinition } from './unit-conversions.js';
+import { UNIT_CONVERSIONS, convertUnitAmount, unitDefinition } from './unit-conversions.js';
 export { convertUnitAmount, unitDefinition } from './unit-conversions.js';
 
 export const DIETARY_TAGS = {
