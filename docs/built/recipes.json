@@ -12,8 +12,8 @@
     "family": "",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 885.0000243461042,
-      "calories_per_serving": 885.0000243461042,
+      "calories_total": 885,
+      "calories_per_serving": 885,
       "servings_estimate": 1,
       "covered_ingredients": 6,
       "total_ingredients": 7,
@@ -1105,8 +1105,8 @@
     "family": "",
     "notes": "Sweet potato casserole baked until the brown sugar glaze is sticky.",
     "nutrition_estimate": {
-      "calories_total": 811.5346119511998,
-      "calories_per_serving": 811.5346119511998,
+      "calories_total": 800,
+      "calories_per_serving": 800,
       "servings_estimate": 1,
       "covered_ingredients": 2,
       "total_ingredients": 5,
@@ -1394,8 +1394,8 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 1166.3332891497823,
-      "calories_per_serving": 583.1666445748912,
+      "calories_total": 1166.3333333333333,
+      "calories_per_serving": 583.1666666666666,
       "servings_estimate": 2,
       "covered_ingredients": 3,
       "total_ingredients": 8,
@@ -2531,18 +2531,14 @@
       "calories_total": 1501.1519823788542,
       "calories_per_serving": 750.5759911894271,
       "servings_estimate": 2,
-      "covered_ingredients": 3,
+      "covered_ingredients": 4,
       "total_ingredients": 7,
-      "coverage_ratio": 0.42857142857142855,
+      "coverage_ratio": 0.5714285714285714,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
           "ingredient_id": "beef_bouillon",
           "unit": "cube"
-        },
-        {
-          "ingredient_id": "water",
-          "unit": "cup"
         },
         {
           "ingredient_id": "onion-flakes",
@@ -2685,11 +2681,24 @@
             },
             "nutrition": {
               "unit": "cup",
-              "grams_per_unit": null,
+              "grams_per_unit": 240,
               "serving_qty": 1,
               "serving_unit_norm": "cup",
-              "serving_grams": null,
-              "per_g": null,
+              "serving_grams": 240,
+              "per_g": {
+                "kcal": 0,
+                "protein_g": 0,
+                "fat_g": 0,
+                "sat_fat_g": 0,
+                "carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0
+              },
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
               "serving_size": "1 cup (240ml)"
@@ -2884,9 +2893,9 @@
       "calories_total": 795,
       "calories_per_serving": 795,
       "servings_estimate": 1,
-      "covered_ingredients": 5,
+      "covered_ingredients": 6,
       "total_ingredients": 8,
-      "coverage_ratio": 0.625,
+      "coverage_ratio": 0.75,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -2895,10 +2904,6 @@
         },
         {
           "ingredient_id": "oat-milk",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "water",
           "unit": "cup"
         }
       ]
@@ -3126,11 +3131,24 @@
             },
             "nutrition": {
               "unit": "cup",
-              "grams_per_unit": null,
+              "grams_per_unit": 240,
               "serving_qty": 1,
               "serving_unit_norm": "cup",
-              "serving_grams": null,
-              "per_g": null,
+              "serving_grams": 240,
+              "per_g": {
+                "kcal": 0,
+                "protein_g": 0,
+                "fat_g": 0,
+                "sat_fat_g": 0,
+                "carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0
+              },
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
               "serving_size": "1 cup (240ml)"
@@ -3503,16 +3521,11 @@
       "calories_total": 685,
       "calories_per_serving": 685,
       "servings_estimate": 1,
-      "covered_ingredients": 2,
+      "covered_ingredients": 3,
       "total_ingredients": 3,
-      "coverage_ratio": 0.6666666666666666,
+      "coverage_ratio": 1,
       "target_meal_calories": 700,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "water",
-          "unit": "cup"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Bring {{water}} to a boil in a large pot.\n2. Rinse {{brown_rice}} in a fine mesh strainer under running water to remove excess starch.\n3. Add the rice to the boiling water. Boil\n4. Drain the rice and return it to the pot. Cover and let rest off the heat for 10 minutes.\n5. Fluff and season with {{salt}} or other seasonings to taste.",
     "steps": [
@@ -3615,11 +3628,24 @@
             },
             "nutrition": {
               "unit": "cup",
-              "grams_per_unit": null,
+              "grams_per_unit": 240,
               "serving_qty": 1,
               "serving_unit_norm": "cup",
-              "serving_grams": null,
-              "per_g": null,
+              "serving_grams": 240,
+              "per_g": {
+                "kcal": 0,
+                "protein_g": 0,
+                "fat_g": 0,
+                "sat_fat_g": 0,
+                "carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0
+              },
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
               "serving_size": "1 cup (240ml)"
@@ -5520,8 +5546,8 @@
     "family": "Burrows",
     "notes": "Doubled batch made with ground turkey.",
     "nutrition_estimate": {
-      "calories_total": 3023.5916665539535,
-      "calories_per_serving": 755.8979166384884,
+      "calories_total": 3023.5916666666662,
+      "calories_per_serving": 755.8979166666666,
       "servings_estimate": 4,
       "covered_ingredients": 6,
       "total_ingredients": 15,
@@ -6259,8 +6285,8 @@
     "family": "",
     "notes": "Use a gluten-free flour blend with xanthan gum. For dairy-free, choose vegan butter and dairy-free chips.",
     "nutrition_estimate": {
-      "calories_total": 3329.184239997836,
-      "calories_per_serving": 665.8368479995672,
+      "calories_total": 3320.5333333333333,
+      "calories_per_serving": 664.1066666666667,
       "servings_estimate": 5,
       "covered_ingredients": 7,
       "total_ingredients": 11,
@@ -8369,9 +8395,9 @@
       "calories_total": 2.25,
       "calories_per_serving": 2.25,
       "servings_estimate": 1,
-      "covered_ingredients": 3,
+      "covered_ingredients": 4,
       "total_ingredients": 9,
-      "coverage_ratio": 0.3333333333333333,
+      "coverage_ratio": 0.4444444444444444,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -8384,10 +8410,6 @@
         },
         {
           "ingredient_id": "celery",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "water",
           "unit": "cup"
         },
         {
@@ -8601,11 +8623,24 @@
             },
             "nutrition": {
               "unit": "cup",
-              "grams_per_unit": null,
+              "grams_per_unit": 240,
               "serving_qty": 1,
               "serving_unit_norm": "cup",
-              "serving_grams": null,
-              "per_g": null,
+              "serving_grams": 240,
+              "per_g": {
+                "kcal": 0,
+                "protein_g": 0,
+                "fat_g": 0,
+                "sat_fat_g": 0,
+                "carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0
+              },
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
               "serving_size": "1 cup (240ml)"
@@ -8844,8 +8879,8 @@
     "family": "Burrows",
     "notes": "Makes about 24 cookies.",
     "nutrition_estimate": {
-      "calories_total": 795.3039197121757,
-      "calories_per_serving": 795.3039197121757,
+      "calories_total": 784,
+      "calories_per_serving": 784,
       "servings_estimate": 1,
       "covered_ingredients": 1,
       "total_ingredients": 5,
@@ -9652,8 +9687,8 @@
     "family": "",
     "notes": "Hearty ground beef and vegetable soup with tomato base.",
     "nutrition_estimate": {
-      "calories_total": 1572.8224333333333,
-      "calories_per_serving": 786.4112166666666,
+      "calories_total": 1574.5,
+      "calories_per_serving": 787.25,
       "servings_estimate": 2,
       "covered_ingredients": 7,
       "total_ingredients": 9,
@@ -10402,8 +10437,8 @@
     "family": "",
     "notes": "Bake in an 8x8-inch square pan (stone preferred; glass/metal ok). Use room-temperature full-fat coconut milk and whisk/blend until completely smooth before measuring.",
     "nutrition_estimate": {
-      "calories_total": 906.5224181885645,
-      "calories_per_serving": 906.5224181885645,
+      "calories_total": 908.2583333333333,
+      "calories_per_serving": 908.2583333333333,
       "servings_estimate": 1,
       "covered_ingredients": 8,
       "total_ingredients": 16,
@@ -11361,9 +11396,9 @@
       "calories_total": 2022.3621697466467,
       "calories_per_serving": 674.1207232488822,
       "servings_estimate": 3,
-      "covered_ingredients": 4,
+      "covered_ingredients": 5,
       "total_ingredients": 15,
-      "coverage_ratio": 0.26666666666666666,
+      "coverage_ratio": 0.3333333333333333,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -11405,10 +11440,6 @@
         {
           "ingredient_id": "wheat-flour",
           "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "water",
-          "unit": "cup"
         }
       ]
     },
@@ -12083,11 +12114,24 @@
             },
             "nutrition": {
               "unit": "cup",
-              "grams_per_unit": null,
+              "grams_per_unit": 240,
               "serving_qty": 1,
               "serving_unit_norm": "cup",
-              "serving_grams": null,
-              "per_g": null,
+              "serving_grams": 240,
+              "per_g": {
+                "kcal": 0,
+                "protein_g": 0,
+                "fat_g": 0,
+                "sat_fat_g": 0,
+                "carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0
+              },
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
               "serving_size": "1 cup (240ml)"
@@ -13063,9 +13107,9 @@
       "calories_total": 2302.5,
       "calories_per_serving": 767.5,
       "servings_estimate": 3,
-      "covered_ingredients": 3,
+      "covered_ingredients": 4,
       "total_ingredients": 8,
-      "coverage_ratio": 0.375,
+      "coverage_ratio": 0.5,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
@@ -13083,10 +13127,6 @@
         {
           "ingredient_id": "chili-powder",
           "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "water",
-          "unit": "cup"
         }
       ]
     },
@@ -13456,11 +13496,24 @@
             },
             "nutrition": {
               "unit": "cup",
-              "grams_per_unit": null,
+              "grams_per_unit": 240,
               "serving_qty": 1,
               "serving_unit_norm": "cup",
-              "serving_grams": null,
-              "per_g": null,
+              "serving_grams": 240,
+              "per_g": {
+                "kcal": 0,
+                "protein_g": 0,
+                "fat_g": 0,
+                "sat_fat_g": 0,
+                "carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0
+              },
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
               "serving_size": "1 cup (240ml)"
@@ -13493,8 +13546,8 @@
     "family": "",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 1606.9084832418102,
-      "calories_per_serving": 803.4542416209051,
+      "calories_total": 1605.985714285714,
+      "calories_per_serving": 802.992857142857,
       "servings_estimate": 2,
       "covered_ingredients": 4,
       "total_ingredients": 13,
@@ -14163,15 +14216,11 @@
       "calories_total": 320,
       "calories_per_serving": 320,
       "servings_estimate": 1,
-      "covered_ingredients": 1,
+      "covered_ingredients": 2,
       "total_ingredients": 5,
-      "coverage_ratio": 0.2,
+      "coverage_ratio": 0.4,
       "target_meal_calories": 700,
       "missing_ingredients": [
-        {
-          "ingredient_id": "water",
-          "unit": "cup"
-        },
         {
           "ingredient_id": "orange-sherbet",
           "unit": "pint"
@@ -14291,11 +14340,24 @@
             },
             "nutrition": {
               "unit": "cup",
-              "grams_per_unit": null,
+              "grams_per_unit": 240,
               "serving_qty": 1,
               "serving_unit_norm": "cup",
-              "serving_grams": null,
-              "per_g": null,
+              "serving_grams": 240,
+              "per_g": {
+                "kcal": 0,
+                "protein_g": 0,
+                "fat_g": 0,
+                "sat_fat_g": 0,
+                "carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0
+              },
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
               "serving_size": "1 cup (240ml)"
@@ -14429,8 +14491,8 @@
     "family": "Burrows",
     "notes": "Serves 3.",
     "nutrition_estimate": {
-      "calories_total": 1812.8135980339307,
-      "calories_per_serving": 604.2711993446436,
+      "calories_total": 1812.8136097560973,
+      "calories_per_serving": 604.2712032520325,
       "servings_estimate": 3,
       "covered_ingredients": 6,
       "total_ingredients": 12,
@@ -15476,18 +15538,14 @@
       "calories_total": 1731.4251111111112,
       "calories_per_serving": 865.7125555555556,
       "servings_estimate": 2,
-      "covered_ingredients": 3,
+      "covered_ingredients": 4,
       "total_ingredients": 8,
-      "coverage_ratio": 0.375,
+      "coverage_ratio": 0.5,
       "target_meal_calories": 700,
       "missing_ingredients": [
         {
           "ingredient_id": "acorn-squash",
           "unit": "count"
-        },
-        {
-          "ingredient_id": "water",
-          "unit": "cup"
         },
         {
           "ingredient_id": "onion",
@@ -15623,11 +15681,24 @@
             },
             "nutrition": {
               "unit": "cup",
-              "grams_per_unit": null,
+              "grams_per_unit": 240,
               "serving_qty": 1,
               "serving_unit_norm": "cup",
-              "serving_grams": null,
-              "per_g": null,
+              "serving_grams": 240,
+              "per_g": {
+                "kcal": 0,
+                "protein_g": 0,
+                "fat_g": 0,
+                "sat_fat_g": 0,
+                "carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0
+              },
               "source": "(plain water)",
               "notes": "Per 1 cup (240ml).",
               "serving_size": "1 cup (240ml)"
@@ -16795,8 +16866,8 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 3088.332025860903,
-      "calories_per_serving": 772.0830064652257,
+      "calories_total": 3046,
+      "calories_per_serving": 761.5,
       "servings_estimate": 4,
       "covered_ingredients": 6,
       "total_ingredients": 9,
@@ -17281,8 +17352,8 @@
     "family": "",
     "notes": "Makes about 5 dozen cookies; requires a cookie press.",
     "nutrition_estimate": {
-      "calories_total": 1803.5761462926394,
-      "calories_per_serving": 601.1920487642132,
+      "calories_total": 1778.2,
+      "calories_per_serving": 592.7333333333333,
       "servings_estimate": 3,
       "covered_ingredients": 5,
       "total_ingredients": 9,
@@ -17838,8 +17909,8 @@
     "family": "",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 411.7673059755999,
-      "calories_per_serving": 411.7673059755999,
+      "calories_total": 406,
+      "calories_per_serving": 406,
       "servings_estimate": 1,
       "covered_ingredients": 2,
       "total_ingredients": 8,
@@ -18301,8 +18372,8 @@
     "family": "",
     "notes": "Arrowroot starch can replace tapioca flour. Add toppings of choice after prebaking the crust.",
     "nutrition_estimate": {
-      "calories_total": 721.5665548552312,
-      "calories_per_serving": 721.5665548552312,
+      "calories_total": 721.5666666666666,
+      "calories_per_serving": 721.5666666666666,
       "servings_estimate": 1,
       "covered_ingredients": 6,
       "total_ingredients": 6,
@@ -18660,8 +18731,8 @@
     "family": "",
     "notes": "Layered bake with sweet potatoes, seared chops, and a pear syrup glaze.",
     "nutrition_estimate": {
-      "calories_total": 408.5173059755999,
-      "calories_per_serving": 408.5173059755999,
+      "calories_total": 402.75,
+      "calories_per_serving": 402.75,
       "servings_estimate": 1,
       "covered_ingredients": 4,
       "total_ingredients": 8,
@@ -19162,8 +19233,8 @@
     "family": "",
     "notes": "Bright coconut curry; serve with rice or cauliflower rice and lime wedges.",
     "nutrition_estimate": {
-      "calories_total": 2854.124044089413,
-      "calories_per_serving": 713.5310110223533,
+      "calories_total": 2843.75,
+      "calories_per_serving": 710.9375,
       "servings_estimate": 4,
       "covered_ingredients": 9,
       "total_ingredients": 15,
@@ -19932,8 +20003,8 @@
     "family": "",
     "notes": "Use gluten-free flour if desired. Streusel topping and vegan cream cheese frosting are optional.",
     "nutrition_estimate": {
-      "calories_total": 2230.4997213731162,
-      "calories_per_serving": 743.499907124372,
+      "calories_total": 2198.9333333333334,
+      "calories_per_serving": 732.9777777777778,
       "servings_estimate": 3,
       "covered_ingredients": 7,
       "total_ingredients": 21,
@@ -20890,8 +20961,8 @@
     "family": "",
     "notes": "Use your favorite noodle and mixed vegetables. For gluten-free, choose gluten-free teriyaki and noodles.",
     "nutrition_estimate": {
-      "calories_total": 1177.1787161522439,
-      "calories_per_serving": 588.5893580761219,
+      "calories_total": 1175.3333333333333,
+      "calories_per_serving": 587.6666666666666,
       "servings_estimate": 2,
       "covered_ingredients": 7,
       "total_ingredients": 9,
@@ -21385,8 +21456,8 @@
     "family": "",
     "notes": "Quick green soup; blend greens with milk if you prefer a smoother finish.",
     "nutrition_estimate": {
-      "calories_total": 51.32673059755999,
-      "calories_per_serving": 51.32673059755999,
+      "calories_total": 50.75,
+      "calories_per_serving": 50.75,
       "servings_estimate": 1,
       "covered_ingredients": 5,
       "total_ingredients": 10,

@@ -252,6 +252,7 @@ const UNIT_ALIASES = new Map([
   ['bottles', 'bottle'],
   ['bottle', 'bottle'],
   ['fl oz', 'fl_oz'],
+  ['fl-oz', 'fl_oz'],
   ['fluid ounce', 'fl_oz'],
   ['fluid ounces', 'fl_oz'],
   ['tablespoons', 'tbsp'],
@@ -259,6 +260,11 @@ const UNIT_ALIASES = new Map([
   ['teaspoons', 'tsp'],
   ['teaspoon', 'tsp'],
   ['cups', 'cup'],
+  ['pints', 'pint'],
+  ['pint', 'pint'],
+  ['quarts', 'quart'],
+  ['quart', 'quart'],
+  ['qt', 'quart'],
   ['ounces', 'oz'],
   ['ounce', 'oz'],
   ['pounds', 'lb'],
@@ -357,6 +363,26 @@ function gramsPerUnitFromPortions(ingredientId, unit, portions) {
   return entry?.grams ?? null;
 }
 
+function isVolumeUnit(unit) {
+  const normalizedUnit = normalizeUnit(unit);
+  const def = normalizedUnit ? unitDefinition(normalizedUnit) : null;
+  return def?.group === 'volume';
+}
+
+function gramsPerMlFromNutrition(ingredientId, nutrition, portions) {
+  const servingUnit = nutrition?.serving_unit_norm;
+  const servingQty = Number.isFinite(nutrition?.serving_qty) ? nutrition.serving_qty : 1;
+  const servingGrams = Number.isFinite(nutrition?.serving_grams) ? nutrition.serving_grams : null;
+  if (servingUnit && Number.isFinite(servingGrams) && isVolumeUnit(servingUnit)) {
+    const servingMl = convertUnitAmount(servingQty, servingUnit, 'ml');
+    if (servingMl && Number.isFinite(servingMl.amount) && servingMl.amount > 0) {
+      return servingGrams / servingMl.amount;
+    }
+  }
+  const gramsPerMl = gramsPerUnitFromPortions(ingredientId, 'ml', portions);
+  return Number.isFinite(gramsPerMl) ? gramsPerMl : null;
+}
+
 function amountToGrams(ingredientId, amount, unit, nutrition, portions) {
   if (!ingredientId || !Number.isFinite(amount)) return null;
   const normalizedUnit = normalizeUnit(unit);
@@ -368,33 +394,11 @@ function amountToGrams(ingredientId, amount, unit, nutrition, portions) {
   }
 
   if (def?.group === 'volume') {
-    const servingUnit = nutrition?.serving_unit_norm;
-    const servingQty = Number.isFinite(nutrition?.serving_qty) ? nutrition.serving_qty : 1;
-    const servingGrams = Number.isFinite(nutrition?.serving_grams) ? nutrition.serving_grams : null;
-    const servingDef = servingUnit ? unitDefinition(servingUnit) : null;
-    if (Number.isFinite(servingGrams) && servingDef?.group === 'volume') {
-      const qtyInServingUnit = convertUnitAmount(amount, normalizedUnit, servingUnit);
-      if (qtyInServingUnit) {
-        const gramsPerServingUnit = servingGrams / servingQty;
-        return qtyInServingUnit.amount * gramsPerServingUnit;
-      }
-    }
-
-    const direct = gramsPerUnitFromPortions(ingredientId, normalizedUnit, portions);
-    if (Number.isFinite(direct)) {
-      return amount * direct;
-    }
-    const asMl = convertUnitAmount(amount, normalizedUnit, 'ml');
-    const gramsPerMl = gramsPerUnitFromPortions(ingredientId, 'ml', portions);
-    if (asMl && Number.isFinite(gramsPerMl)) {
-      return asMl.amount * gramsPerMl;
-    }
-    const asTsp = convertUnitAmount(amount, normalizedUnit, 'tsp');
-    const gramsPerTsp = gramsPerUnitFromPortions(ingredientId, 'tsp', portions);
-    if (asTsp && Number.isFinite(gramsPerTsp)) {
-      return asTsp.amount * gramsPerTsp;
-    }
-    return null;
+    const ml = convertUnitAmount(amount, normalizedUnit, 'ml');
+    if (!ml || !Number.isFinite(ml.amount)) return null;
+    if (ingredientId === 'water') return ml.amount;
+    const gramsPerMl = gramsPerMlFromNutrition(ingredientId, nutrition, portions);
+    return Number.isFinite(gramsPerMl) ? ml.amount * gramsPerMl : null;
   }
 
   const servingUnit = nutrition?.serving_unit_norm;
@@ -446,6 +450,10 @@ function buildNutritionDensity(catalog, portions) {
       if (Number.isFinite(gramsFromPortion)) gramsPerUnit = gramsFromPortion * servingQty;
     }
 
+    if (!Number.isFinite(gramsPerUnit) && Number.isFinite(servingInfo.serving_ml) && ingredientId === 'water') {
+      gramsPerUnit = servingInfo.serving_ml;
+    }
+
     const caloriesPerUnit = parseNumericField(entry.calories_per_unit);
     const protein = parseNumericField(entry.protein_g);
     const fat = parseNumericField(entry.total_fat_g);
@@ -489,6 +497,25 @@ function buildNutritionDensity(catalog, portions) {
     });
   }
   return map;
+}
+
+function assertVolumeConversions() {
+  const checks = [
+    ['tsp', 5],
+    ['tbsp', 15],
+    ['cup', 240],
+    ['pint', 480],
+  ];
+  const tolerance = 1e-6;
+  checks.forEach(([unit, expected]) => {
+    const converted = convertUnitAmount(1, unit, 'ml');
+    if (!converted || !Number.isFinite(converted.amount)) {
+      throw new Error(`Unit conversion failed for ${unit} -> ml`);
+    }
+    if (Math.abs(converted.amount - expected) > tolerance) {
+      throw new Error(`Unit conversion ${unit} -> ml expected ${expected} got ${converted.amount}`);
+    }
+  });
 }
 
 function loadPanCatalog(catalogPath) {
@@ -651,6 +678,8 @@ function generateMissingPortionsReport(recipes, portions, nutritionDensity) {
       if (!Number.isFinite(amount)) return;
       const normalizedUnit = normalizeUnit(option.unit);
       const nutrition = nutritionDensity.get(option.ingredient_id);
+      const isVolume = isVolumeUnit(normalizedUnit);
+      const mlAttempt = isVolume ? convertUnitAmount(amount, normalizedUnit, 'ml')?.amount ?? null : null;
       const grams = amountToGrams(option.ingredient_id, amount, option.unit, nutrition, portions);
       let reason = null;
       if (!Number.isFinite(grams)) {
@@ -670,6 +699,12 @@ function generateMissingPortionsReport(recipes, portions, nutritionDensity) {
           reason,
           example_recipe_id: recipe.id,
           example_qty: option.ratio,
+          qty: amount,
+          is_volume_unit: isVolume,
+          ml_attempt: mlAttempt,
+          result_grams_attempt: Number.isFinite(grams) ? grams : null,
+          nutrition_serving_unit: nutrition?.serving_unit_norm || '',
+          nutrition_serving_grams: Number.isFinite(nutrition?.serving_grams) ? nutrition.serving_grams : null,
           count_occurrences: 0,
         });
       }
@@ -683,6 +718,7 @@ function generateMissingPortionsReport(recipes, portions, nutritionDensity) {
 }
 
 async function build() {
+  assertVolumeConversions();
   await validateAll();
   const catalogPath = path.join(process.cwd(), 'data', 'ingredient_catalog.csv');
   const catalog = loadIngredientCatalog(catalogPath);
@@ -884,7 +920,7 @@ async function build() {
   fs.writeFileSync(path.join(builtDir, 'index.json'), JSON.stringify(indexList, null, 2));
   const missingPortions = generateMissingPortionsReport(recipeOutputs, ingredientPortions, nutritionDensity);
   const missingCsv = [
-    'ingredient_id,unit_norm,example_recipe_id,count_occurrences,example_qty,reason',
+    'ingredient_id,unit_norm,example_recipe_id,count_occurrences,example_qty,reason,qty,isVolumeUnit,mlAttempt,resultGramsAttempt,nutritionServingUnit,nutritionServingGrams',
     ...missingPortions.map((row) =>
       [
         row.ingredient_id,
@@ -893,6 +929,12 @@ async function build() {
         row.count_occurrences,
         row.example_qty,
         row.reason,
+        row.qty,
+        row.is_volume_unit,
+        row.ml_attempt,
+        row.result_grams_attempt,
+        row.nutrition_serving_unit,
+        row.nutrition_serving_grams,
       ].join(',')
     ),
   ].join('\n');
