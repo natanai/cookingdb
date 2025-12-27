@@ -1,6 +1,6 @@
 token,option,display,ratio,unit,ingredient_id
 stew_beef,,beef for stew,1 1/2,lb,stew-beef
-bouillon,,beef bouillon cubes,7,cube,beef_bouillon
+bouillon,,beef bouillon cubes (as count),7,count,beef_bouillon
 water,,water,6,cup,water
 salt,,salt,1,tsp,salt
 black_pepper,,black pepper,1/2,tsp,black-pepper
