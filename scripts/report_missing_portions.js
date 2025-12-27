@@ -144,6 +144,35 @@ function gramsPerMlFromNutrition(ingredientId, nutrition, portions) {
   return Number.isFinite(gramsPerMl) ? gramsPerMl : null;
 }
 
+function selectNutritionVariant(variants, normalizedUnit, amount) {
+  if (!Array.isArray(variants) || variants.length === 0) {
+    return { variant: null, convertible: false };
+  }
+  const exact = variants.find((entry) => entry?.serving_unit_norm === normalizedUnit);
+  if (exact) return { variant: exact, convertible: true };
+
+  for (const entry of variants) {
+    const servingUnit = entry?.serving_unit_norm;
+    if (!servingUnit) continue;
+    const conversion = convertUnitAmount(amount, normalizedUnit, servingUnit);
+    if (conversion) {
+      return { variant: entry, convertible: true };
+    }
+  }
+
+  return { variant: null, convertible: false };
+}
+
+function gramsFromVariant(amount, normalizedUnit, variant) {
+  if (!variant?.serving_unit_norm) return null;
+  if (!Number.isFinite(variant.serving_grams)) return null;
+  const servingQty = Number.isFinite(variant.serving_qty) ? variant.serving_qty : 1;
+  const conversion = convertUnitAmount(amount, normalizedUnit, variant.serving_unit_norm);
+  if (!conversion) return null;
+  const gramsPerServingUnit = variant.serving_grams / servingQty;
+  return conversion.amount * gramsPerServingUnit;
+}
+
 function amountToGrams(ingredientId, amount, unit, nutrition, portions) {
   if (!ingredientId || !Number.isFinite(amount)) return null;
   const normalizedUnit = normalizeUnit(unit);
@@ -243,6 +272,7 @@ function loadIngredientPortions(portionsPath) {
 
 function generateMissingPortionsReport(recipes, portions, recipeIndex) {
   const missing = new Map();
+  const packageUnits = new Set(['bag', 'bunch', 'cube', 'packet', 'package']);
   recipes.forEach((recipe) => {
     const ingredients = recipe.ingredients || {};
     const choices = recipe.choices || {};
@@ -258,11 +288,21 @@ function generateMissingPortionsReport(recipes, portions, recipeIndex) {
       if (normalizedUnit === 'recipe' && recipeIndex.has(option.ingredient_id)) {
         return;
       }
-      const grams = amountToGrams(option.ingredient_id, amount, option.unit, option.nutrition, portions);
-      const nutrition = option.nutrition;
+      const nutritionVariants = Array.isArray(option.nutrition) ? option.nutrition : (option.nutrition ? [option.nutrition] : []);
+      const { variant, convertible } = selectNutritionVariant(nutritionVariants, normalizedUnit, amount);
+      const grams = variant ? gramsFromVariant(amount, normalizedUnit, variant) : null;
+      const nutrition = variant;
       let reason = null;
       if (!Number.isFinite(grams)) {
-        reason = 'missing-portion';
+        if (normalizedUnit === 'recipe') {
+          reason = 'recipe-reference-needed';
+        } else if (!convertible) {
+          reason = 'missing-nutrition-variant';
+        } else if (packageUnits.has(normalizedUnit)) {
+          reason = 'package-ambiguous';
+        } else {
+          reason = 'missing-serving-grams';
+        }
       } else if (!nutrition?.per_g) {
         reason = 'missing-nutrition-density';
       } else if (!Number.isFinite(nutrition.per_g.kcal)) {
@@ -328,6 +368,16 @@ function main() {
     ),
   ].join('\n');
   fs.writeFileSync(outputPath, `${missingCsv}\n`);
+  const grouped = new Map();
+  missing.forEach((row) => {
+    const count = grouped.get(row.reason) || 0;
+    grouped.set(row.reason, count + (row.count_occurrences || 0));
+  });
+  const groupedCsv = [
+    'reason,count_occurrences',
+    ...[...grouped.entries()].map(([reason, count]) => `${reason},${count}`),
+  ].join('\n');
+  fs.writeFileSync(path.join(process.cwd(), 'docs', 'built', 'missing_portions_by_reason.csv'), `${groupedCsv}\n`);
   console.log(`Wrote ${missing.length} missing rows to ${outputPath}`);
 }
 

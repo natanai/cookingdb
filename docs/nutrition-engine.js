@@ -276,6 +276,35 @@ function gramsPerMlFromNutrition(ingredientId, nutrition, portions) {
   return Number.isFinite(gramsPerMl) ? gramsPerMl : null;
 }
 
+function selectNutritionVariant(variants, normalizedUnit, amount) {
+  if (!Array.isArray(variants) || variants.length === 0) {
+    return { variant: null, convertible: false };
+  }
+  const exact = variants.find((entry) => entry?.serving_unit_norm === normalizedUnit);
+  if (exact) return { variant: exact, convertible: true };
+
+  for (const entry of variants) {
+    const servingUnit = entry?.serving_unit_norm;
+    if (!servingUnit) continue;
+    const conversion = convertUnitAmount(amount, normalizedUnit, servingUnit);
+    if (conversion) {
+      return { variant: entry, convertible: true };
+    }
+  }
+
+  return { variant: null, convertible: false };
+}
+
+function gramsFromVariant(amount, normalizedUnit, variant) {
+  if (!variant?.serving_unit_norm) return null;
+  if (!Number.isFinite(variant.serving_grams)) return null;
+  const servingQty = Number.isFinite(variant.serving_qty) ? variant.serving_qty : 1;
+  const conversion = convertUnitAmount(amount, normalizedUnit, variant.serving_unit_norm);
+  if (!conversion) return null;
+  const gramsPerServingUnit = variant.serving_grams / servingQty;
+  return conversion.amount * gramsPerServingUnit;
+}
+
 function amountToGrams(ingredientId, amount, unit, nutrition, portions) {
   if (!ingredientId || !Number.isFinite(amount)) return null;
   const normalizedUnit = normalizeUnit(unit);
@@ -340,6 +369,7 @@ export function computeBatchTotals(recipe, state) {
 
   let hasAddedSugar = false;
   let gramsCovered = 0;
+  const packageUnits = new Set(['bag', 'bunch', 'cube', 'packet', 'package']);
 
   tokens.forEach((token) => {
     const tokenData = recipe.ingredients?.[token];
@@ -351,8 +381,7 @@ export function computeBatchTotals(recipe, state) {
     if (!Number.isFinite(amount)) return;
 
     const scaledAmount = amount * multiplier;
-    const nutrition = option.nutrition || null;
-    const perGram = nutrition?.per_g || null;
+    const nutritionVariants = Array.isArray(option.nutrition) ? option.nutrition : (option.nutrition ? [option.nutrition] : []);
     const portions = state?.ingredientPortions || null;
     const selectedUnit = state?.unitSelections?.[token] || option.unit;
     const normalizedUnit = normalizeUnit(selectedUnit);
@@ -367,7 +396,7 @@ export function computeBatchTotals(recipe, state) {
         totals.missing_details.push({
           ingredient_id: option.ingredient_id,
           unit: normalizedUnit,
-          reason: 'recipe-reference-cycle',
+          reason: 'recipe-reference-needed',
         });
         return;
       }
@@ -383,7 +412,7 @@ export function computeBatchTotals(recipe, state) {
         totals.missing_details.push({
           ingredient_id: option.ingredient_id,
           unit: normalizedUnit,
-          reason: 'missing-recipe-reference',
+          reason: 'recipe-reference-needed',
         });
         return;
       }
@@ -416,23 +445,28 @@ export function computeBatchTotals(recipe, state) {
       totals.missing_details.push({
         ingredient_id: option.ingredient_id,
         unit: normalizedUnit,
-        reason: 'missing-recipe-reference',
+        reason: 'recipe-reference-needed',
       });
       return;
     }
 
-    const grams = amountToGrams(option.ingredient_id, scaledAmount, selectedUnit, nutrition, portions);
+    const { variant, convertible } = selectNutritionVariant(nutritionVariants, normalizedUnit, scaledAmount);
+    const grams = variant ? gramsFromVariant(scaledAmount, normalizedUnit, variant) : null;
 
     if (!Number.isFinite(grams)) {
       totals.missing = true;
       totals.missing_details.push({
         ingredient_id: option.ingredient_id,
         unit: normalizedUnit || selectedUnit,
-        reason: 'missing-portion',
+        reason: normalizedUnit === 'recipe'
+          ? 'recipe-reference-needed'
+          : (!convertible ? 'missing-nutrition-variant'
+            : (packageUnits.has(normalizedUnit) ? 'package-ambiguous' : 'missing-serving-grams')),
       });
       return;
     }
 
+    const perGram = variant?.per_g || null;
     const requiredFields = [
       perGram?.kcal,
       perGram?.protein_g,
