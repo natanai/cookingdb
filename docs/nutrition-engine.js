@@ -28,6 +28,8 @@ const DEFAULT_POLICY = {
 
 const UNIT_ALIASES = new Map([
   ['cloves', 'clove'],
+  ['clove', 'count'],
+  ['cube', 'count'],
   ['medium', 'count'],
   ['large', 'count'],
   ['small', 'count'],
@@ -182,6 +184,12 @@ export function computeBatchTotals(recipe, state) {
     grams_total: 0,
     coverage: { covered: 0, total: 0 },
     missing: false,
+    missing_details: {
+      missing_nutrition_row: [],
+      missing_convertible_unit: [],
+      missing_nutrient_field: [],
+      missing_mass_only: [],
+    },
   };
 
   const multiplier = getEffectiveMultiplier(state);
@@ -189,6 +197,12 @@ export function computeBatchTotals(recipe, state) {
 
   let hasAddedSugar = false;
   let gramsCovered = 0;
+
+  const recordMissing = (reason, tokenData, option) => {
+    const id = option?.ingredient_id || tokenData?.ingredient_id || option?.display || tokenData?.token;
+    if (!totals.missing_details[reason]) return;
+    totals.missing_details[reason].push(id || 'unknown');
+  };
 
   tokens.forEach((token) => {
     const tokenData = recipe.ingredients?.[token];
@@ -205,23 +219,27 @@ export function computeBatchTotals(recipe, state) {
 
     totals.coverage.total += 1;
 
-    if (!nutrition || !nutritionUnit || !inputUnit) {
+    if (!nutrition || !nutritionUnit) {
       totals.missing = true;
+      recordMissing('missing_nutrition_row', tokenData, option);
+      return;
+    }
+
+    if (!inputUnit) {
+      totals.missing = true;
+      recordMissing('missing_convertible_unit', tokenData, option);
       return;
     }
 
     const scaledAmount = amount * multiplier;
+    let conversionInputUnit = inputUnit;
     let converted = convertUnitAmount(scaledAmount, inputUnit, nutritionUnit);
     if (!converted && state?.unitSelections?.[token]) {
       const altUnit = normalizeUnit(state.unitSelections[token]);
       if (altUnit) {
+        conversionInputUnit = altUnit;
         converted = convertUnitAmount(scaledAmount, altUnit, nutritionUnit);
       }
-    }
-
-    if (!converted) {
-      totals.missing = true;
-      return;
     }
 
     const requiredFields = [
@@ -237,12 +255,51 @@ export function computeBatchTotals(recipe, state) {
 
     if (requiredFields.some((value) => !Number.isFinite(value))) {
       totals.missing = true;
+      recordMissing('missing_nutrient_field', tokenData, option);
+      return;
+    }
+
+    let fallbackUnits = null;
+    if (!converted) {
+      const gramsPerUnit = coerceNumber(nutrition.grams_per_unit);
+      const gramsPerMl = coerceNumber(nutrition.grams_per_ml);
+      const gramsPerCount = coerceNumber(nutrition.grams_per_count);
+      let grams = null;
+
+      const massConversion = convertUnitAmount(scaledAmount, conversionInputUnit, 'g');
+      if (massConversion && Number.isFinite(massConversion.amount)) {
+        grams = massConversion.amount;
+      }
+
+      if (grams === null && Number.isFinite(gramsPerMl)) {
+        const volumeConversion = convertUnitAmount(scaledAmount, conversionInputUnit, 'ml');
+        if (volumeConversion && Number.isFinite(volumeConversion.amount)) {
+          grams = volumeConversion.amount * gramsPerMl;
+        }
+      }
+
+      if (grams === null && conversionInputUnit === 'count' && Number.isFinite(gramsPerCount)) {
+        grams = scaledAmount * gramsPerCount;
+      }
+
+      if (grams === null && conversionInputUnit === nutritionUnit && Number.isFinite(gramsPerUnit)) {
+        grams = scaledAmount * gramsPerUnit;
+      }
+
+      if (grams !== null && Number.isFinite(gramsPerUnit) && gramsPerUnit > 0) {
+        fallbackUnits = grams / gramsPerUnit;
+      }
+    }
+
+    if (!converted && !Number.isFinite(fallbackUnits)) {
+      totals.missing = true;
+      recordMissing('missing_convertible_unit', tokenData, option);
       return;
     }
 
     totals.coverage.covered += 1;
 
-    const units = converted.amount;
+    const units = converted ? converted.amount : fallbackUnits;
     totals.kcal += units * nutrition.calories_per_unit;
     totals.protein_g += units * nutrition.protein_g;
     totals.fat_g += units * nutrition.total_fat_g;
@@ -257,10 +314,12 @@ export function computeBatchTotals(recipe, state) {
       hasAddedSugar = true;
     }
 
-    const grams = convertUnitAmount(scaledAmount, inputUnit, 'g');
+    const grams = convertUnitAmount(scaledAmount, conversionInputUnit, 'g');
     if (grams && Number.isFinite(grams.amount)) {
       totals.grams_total += grams.amount;
       gramsCovered += 1;
+    } else {
+      recordMissing('missing_mass_only', tokenData, option);
     }
   });
 

@@ -96,6 +96,9 @@ function loadIngredientCatalog(catalogPath) {
       nutrition_source: row.nutrition_source || '',
       nutrition_notes: row.nutrition_notes || '',
       serving_size: row.serving_size || '',
+      grams_per_unit: row.grams_per_unit || '',
+      grams_per_ml: row.grams_per_ml || '',
+      grams_per_count: row.grams_per_count || '',
       protein_g: row.protein_g || '',
       total_fat_g: row.total_fat_g || '',
       saturated_fat_g: row.saturated_fat_g || '',
@@ -210,6 +213,8 @@ function parseNumericField(value) {
 
 const UNIT_ALIASES = new Map([
   ['cloves', 'clove'],
+  ['clove', 'count'],
+  ['cube', 'count'],
   ['medium', 'count'],
   ['large', 'count'],
   ['small', 'count'],
@@ -336,6 +341,9 @@ function buildNutritionProfile(entry) {
     sugars_g: parseNumericField(entry.sugars_g),
     fiber_g: parseNumericField(entry.fiber_g),
     sodium_mg: parseNumericField(entry.sodium_mg),
+    grams_per_unit: parseNumericField(entry.grams_per_unit),
+    grams_per_ml: parseNumericField(entry.grams_per_ml),
+    grams_per_count: parseNumericField(entry.grams_per_count),
   };
 }
 
