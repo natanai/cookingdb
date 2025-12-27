@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { convertUnitAmountWithFactors } from '../docs/unit-conversions.js';
 
 async function loadPapa() {
   const module = await import('papaparse').catch(() => null);
@@ -160,6 +161,7 @@ export async function validateAll() {
         'vitamin_c_mg',
         'grams_per_count',
         'tsp_per_sprig',
+        'grams_per_cup',
       ].every((field) => Object.prototype.hasOwnProperty.call(row, field)),
       'ingredient_catalog.csv missing nutrition columns'
     );
@@ -168,6 +170,40 @@ export async function validateAll() {
   });
   const panCatalog = loadPanCatalog(path.join(process.cwd(), 'data', 'pan-sizes.json'));
   const ratioPattern = /^\d+(?: \d+\/\d+|\/\d+)?$/;
+  const conversionIssues = new Map();
+  const UNIT_ALIASES = new Map([
+    ['cloves', 'clove'],
+    ['medium', 'count'],
+    ['large', 'count'],
+    ['small', 'count'],
+    ['piece', 'count'],
+    ['package', 'count'],
+    ['bag', 'count'],
+    ['bunch', 'count'],
+    ['sprig', 'count'],
+    ['can', 'count'],
+    ['dash', 'tsp'],
+    ['drop', 'tsp'],
+  ]);
+
+  const normalizeUnit = (unit) => {
+    if (!unit) return null;
+    const cleaned = String(unit).trim().toLowerCase();
+    if (!cleaned) return null;
+    return UNIT_ALIASES.get(cleaned) || cleaned;
+  };
+
+  const ingredientConversions = new Map();
+  ingredientCatalogRows.forEach((row) => {
+    ingredientConversions.set(row.ingredient_id, {
+      nutrition_unit: normalizeUnit(row.nutrition_unit || ''),
+      conversions: {
+        grams_per_count: row.grams_per_count ? Number(row.grams_per_count) : null,
+        tsp_per_sprig: row.tsp_per_sprig ? Number(row.tsp_per_sprig) : null,
+        grams_per_cup: row.grams_per_cup ? Number(row.grams_per_cup) : null,
+      },
+    });
+  });
 
   for (const dirEnt of recipeDirs) {
     const recipeId = dirEnt.name;
@@ -235,6 +271,24 @@ export async function validateAll() {
         ingredientCatalog.has(row.ingredient_id),
         `${recipeId}: unknown ingredient_id ${row.ingredient_id} for token ${token} | Row: ${JSON.stringify(row)}`,
       );
+      const conversion = ingredientConversions.get(row.ingredient_id);
+      const nutritionUnit = conversion?.nutrition_unit;
+      const ingredientUnit = normalizeUnit(row.unit);
+      if (nutritionUnit && ingredientUnit) {
+        const canConvert = convertUnitAmountWithFactors(1, ingredientUnit, nutritionUnit, conversion?.conversions);
+        if (!canConvert) {
+          const key = `${row.ingredient_id}::${ingredientUnit}::${nutritionUnit}`;
+          if (!conversionIssues.has(key)) {
+            conversionIssues.set(key, {
+              ingredient_id: row.ingredient_id,
+              from_unit: ingredientUnit,
+              to_unit: nutritionUnit,
+              recipes: new Set(),
+            });
+          }
+          conversionIssues.get(key).recipes.add(recipeId);
+        }
+      }
       ensure(token, `${recipeId}: ingredient row missing token`);
       if (!tokenOptions.has(token)) {
         tokenOptions.set(token, new Set());
@@ -313,6 +367,17 @@ export async function validateAll() {
 
       ensure(defaultCount === 1, `${recipeId}: pans.csv must mark exactly one default pan`);
     }
+  }
+
+  if (conversionIssues.size > 0) {
+    const lines = [];
+    for (const issue of conversionIssues.values()) {
+      const recipes = [...issue.recipes].sort().join(', ');
+      lines.push(`- ${issue.ingredient_id}: ${issue.from_unit} -> ${issue.to_unit} (recipes: ${recipes})`);
+    }
+    throw new Error(
+      `Missing ingredient conversions. Add grams_per_count, tsp_per_sprig, or grams_per_cup in data/ingredient_catalog.csv:\n${lines.join('\n')}`,
+    );
   }
 
   return true;

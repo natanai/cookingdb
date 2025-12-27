@@ -1,10 +1,5 @@
-import {
-  convertUnitAmount,
-  getEffectiveMultiplier,
-  parseRatio,
-  selectOptionForToken,
-  unitDefinition,
-} from './recipe-utils.js';
+import { getEffectiveMultiplier, parseRatio, selectOptionForToken } from './recipe-utils.js';
+import { convertUnitAmountWithFactors } from './unit-conversions.js';
 
 const SETTINGS_KEY = 'cookingdb-nutrition-settings';
 
@@ -172,38 +167,6 @@ function ratioToNumber(ratio) {
   if (!frac) return null;
   const value = frac.num / frac.den;
   return Number.isFinite(value) ? value : null;
-}
-
-function convertUnitAmountWithFactors(amount, fromUnit, toUnit, conversions) {
-  const direct = convertUnitAmount(amount, fromUnit, toUnit);
-  if (direct) return direct;
-  const fromDef = unitDefinition(fromUnit);
-  const toDef = unitDefinition(toUnit);
-  if (!fromDef || !toDef) return null;
-
-  const gramsPerCount = coerceNumber(conversions?.grams_per_count);
-  if (fromDef.group === 'count' && toDef.group === 'mass' && Number.isFinite(gramsPerCount) && gramsPerCount > 0) {
-    const grams = amount * gramsPerCount;
-    return convertUnitAmount(grams, 'g', toUnit);
-  }
-  if (fromDef.group === 'mass' && toDef.group === 'count' && Number.isFinite(gramsPerCount) && gramsPerCount > 0) {
-    const grams = convertUnitAmount(amount, fromUnit, 'g');
-    if (!grams) return null;
-    return { amount: grams.amount / gramsPerCount, unit: toUnit };
-  }
-
-  const tspPerSprig = coerceNumber(conversions?.tsp_per_sprig);
-  if (fromDef.group === 'count' && toDef.group === 'volume' && Number.isFinite(tspPerSprig) && tspPerSprig > 0) {
-    const tsp = amount * tspPerSprig;
-    return convertUnitAmount(tsp, 'tsp', toUnit);
-  }
-  if (fromDef.group === 'volume' && toDef.group === 'count' && Number.isFinite(tspPerSprig) && tspPerSprig > 0) {
-    const tsp = convertUnitAmount(amount, fromUnit, 'tsp');
-    if (!tsp) return null;
-    return { amount: tsp.amount / tspPerSprig, unit: toUnit };
-  }
-
-  return null;
 }
 
 export function computeBatchTotals(recipe, state) {

@@ -1,4 +1,4 @@
-import { UNIT_CONVERSIONS } from './unit-conversions.js';
+import { UNIT_CONVERSIONS, convertUnitAmount, unitDefinition } from './unit-conversions.js';
 
 export const DIETARY_TAGS = {
   gluten_free: { positive: 'Gluten-free ready', negative: 'Contains gluten' },
@@ -92,16 +92,6 @@ export function pluralize(display, amount, unit) {
   return display;
 }
 
-export function unitDefinition(unitId) {
-  if (!unitId) return null;
-  const normalized = String(unitId).toLowerCase();
-  for (const [groupName, group] of Object.entries(UNIT_CONVERSIONS)) {
-    const def = group.units[normalized];
-    if (def) return { ...def, id: normalized, group: groupName };
-  }
-  return null;
-}
-
 export function unitOptionsFor(unitId) {
   const def = unitDefinition(unitId);
   if (!def) return [];
@@ -119,16 +109,6 @@ export function formatUnitLabel(unitId, amount) {
     return def.plural;
   }
   return def.label || unitId;
-}
-
-export function convertUnitAmount(amount, fromUnit, toUnit) {
-  if (!Number.isFinite(amount)) return null;
-  const fromDef = unitDefinition(fromUnit);
-  const toDef = unitDefinition(toUnit);
-  if (!fromDef || !toDef || fromDef.group !== toDef.group) return null;
-  const amountInBase = amount * fromDef.to_base;
-  const converted = amountInBase / toDef.to_base;
-  return { amount: converted, unit: toDef.id };
 }
 
 export function formatAmountForDisplay(amount, options = {}) {
