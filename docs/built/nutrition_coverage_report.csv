@@ -1,5 +1,6 @@
 ingredient_id,unit_norm,example_recipe_id,count_occurrences,example_qty,reason,nutrition_variants_units,suggested_target_unit,unit_world_mismatch_type
 basic-roll-dough,recipe,streusel-coffee-cake,1,1,recipe-reference-needed,oz,oz,
+cheddar-cheese,cup,holiday-potatoes,1,1,missing-cross-factor,oz,oz,volume-vs-mass
 chicken-breast,count,creamy-garlic-chicken,1,2,missing-cross-factor,lb,lb,count-vs-mass
 kidney-beans,can,mrs-burrows-chili,1,4,missing-cross-factor,cup,cup,package
 potato,lb,holiday-potatoes,1,3,missing-cross-factor,count,count,
