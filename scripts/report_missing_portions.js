@@ -317,7 +317,7 @@ function buildIngredientPortionsFromCatalog(rows) {
   return map;
 }
 
-function generateNutritionCoverageReport(recipes, unitFactors, ingredientPortions) {
+function generateNutritionCoverageReport(recipes, unitFactors, ingredientPortions, recipesById = null) {
   const missing = new Map();
   recipes.forEach((recipe) => {
     const ingredients = recipe.ingredients || {};
@@ -336,7 +336,9 @@ function generateNutritionCoverageReport(recipes, unitFactors, ingredientPortion
       const mismatchType = classifyUnitWorldMismatch(normalizedUnit, suggestedTargetUnit);
 
       if (normalizedUnit === 'recipe') {
-        reason = 'recipe-reference-needed';
+        if (!recipesById?.has?.(option.ingredient_id)) {
+          reason = 'recipe-reference-needed';
+        }
       } else if (!variants.length) {
         reason = 'missing-nutrition-row';
       } else {
@@ -429,10 +431,11 @@ function main() {
     throw new Error('Missing docs/built/recipes.json. Run the build first.');
   }
   const recipes = JSON.parse(fs.readFileSync(builtRecipesPath, 'utf-8'));
+  const recipesById = new Map(recipes.map((recipe) => [recipe.id, recipe]));
   const catalogRows = loadIngredientCatalogRows(catalogPath);
   const unitFactors = buildIngredientUnitFactorsFromCatalog(catalogRows);
   const ingredientPortions = buildIngredientPortionsFromCatalog(catalogRows);
-  const missing = generateNutritionCoverageReport(recipes, unitFactors, ingredientPortions);
+  const missing = generateNutritionCoverageReport(recipes, unitFactors, ingredientPortions, recipesById);
   const outputPath = path.join(process.cwd(), 'docs', 'built', 'nutrition_coverage_report.csv');
   const missingCsv = [
     'ingredient_id,unit_norm,example_recipe_id,count_occurrences,example_qty,reason,nutrition_variants_units,suggested_target_unit,unit_world_mismatch_type',

@@ -415,9 +415,15 @@ function renderIngredientsList(recipe, state, onUnitChange) {
       const li = document.createElement('li');
 
       line.entries.forEach((entry, idx) => {
-        const textSpan = document.createElement('span');
-        textSpan.textContent = entry.text;
-        li.appendChild(textSpan);
+        const recipeId = entry.option?.ingredient_id;
+        const recipeIndex = state.recipeIndex;
+        const textEl = recipeId && recipeIndex?.has?.(recipeId) ? document.createElement('a') : document.createElement('span');
+        if (textEl.tagName === 'A') {
+          textEl.href = `recipe.html?id=${encodeURIComponent(recipeId)}`;
+          textEl.className = 'ingredient-link';
+        }
+        textEl.textContent = entry.text;
+        li.appendChild(textEl);
 
         const unitOptions = unitOptionsFor(entry.option?.unit);
         const unitSelections = state.unitSelections || (state.unitSelections = {});
@@ -475,7 +481,7 @@ function renderIngredientsList(recipe, state, onUnitChange) {
             const note = document.createElement('div');
             note.className = 'conversion-note';
             note.textContent = parts.join(' · ');
-            textSpan.title = parts.join(' | ');
+            textEl.title = parts.join(' | ');
             li.appendChild(note);
           }
         }
