@@ -65,6 +65,13 @@ const state = {
   },
 };
 
+const DEFAULT_MEAL_TYPES = ['breakfast', 'lunch', 'dinner', 'snack'];
+
+function getMealTypes() {
+  const mealTypes = Object.keys(state.nutritionPolicy?.meal_fractions_default || {});
+  return mealTypes.length ? mealTypes : DEFAULT_MEAL_TYPES;
+}
+
 function normalizeTitleKey(title) {
   return String(title || '')
     .toLowerCase()
@@ -663,6 +670,7 @@ function addRecipeSelection(recipe) {
     servingsPerBatch: defaultServingsPerBatch,
     totalServings: batchSize * defaultServingsPerBatch,
     nutrition: null,
+    mealType: getMealTypes()[0] || DEFAULT_MEAL_TYPES[0],
     defaultCompatibility,
     restrictions: { ...defaultCompatibility },
     state: {
@@ -697,7 +705,7 @@ function renderSelections() {
   container.innerHTML = '';
 
   if (state.selections.size === 0) {
-    const empty = document.createElement('div');
+    const empty = document.createElement('li');
     empty.className = 'planner-empty-card';
     empty.textContent = 'No recipes selected yet. Add recipes from the list to start planning.';
     container.appendChild(empty);
@@ -706,33 +714,103 @@ function renderSelections() {
   }
 
   state.selections.forEach((selection) => {
-    const card = document.createElement('div');
-    card.className = 'planner-selected-card';
+    const row = document.createElement('li');
+    row.className = 'planner-selected-row';
 
-    const header = document.createElement('div');
-    header.className = 'planner-selected-header';
+    const details = document.createElement('details');
+    details.className = 'planner-selected-details';
 
-    const titleWrap = document.createElement('div');
-    const title = document.createElement('h3');
-    title.textContent = selection.recipe.title;
-    titleWrap.appendChild(title);
+    const header = document.createElement('summary');
+    header.className = 'recipe-row-link planner-selected-summary';
 
-    if (selection.recipe.byline) {
-      const byline = document.createElement('p');
-      byline.className = 'planner-selected-byline';
-      byline.textContent = selection.recipe.byline;
-      titleWrap.appendChild(byline);
+    const title = document.createElement('span');
+    title.className = 'recipe-row-title';
+    const titleText = document.createElement('span');
+    titleText.className = 'recipe-row-title-text';
+    const { title: cleanTitle, name: titleName } = getRecipeTitleParts(selection.recipe);
+    titleText.textContent = cleanTitle;
+    title.appendChild(titleText);
+
+    if (titleName) {
+      const nameEl = document.createElement('span');
+      nameEl.className = 'recipe-row-title-name';
+      nameEl.textContent = ` — ${titleName}`;
+      title.appendChild(nameEl);
     }
+
+    const compatibility = selection.recipe.compatibility_possible || {};
+    const containsGluten = compatibility.gluten_free === false;
+    const containsEgg = compatibility.egg_free === false;
+    const containsDairy = compatibility.dairy_free === false;
+    const flags = [];
+    if (!containsGluten) flags.push({ label: 'GF', title: 'Gluten-free' });
+    if (!containsEgg) flags.push({ label: 'EF', title: 'Egg-free' });
+    if (!containsDairy) flags.push({ label: 'DF', title: 'Dairy-free' });
+
+    const flagContainer = document.createElement('span');
+    flagContainer.className = 'recipe-row-flags';
+    flagContainer.setAttribute('aria-label', 'Dietary-friendly indicators');
+    flags.forEach((flag) => {
+      const badge = document.createElement('span');
+      badge.className = 'recipe-flag';
+      badge.textContent = flag.label;
+      badge.title = flag.title;
+      badge.setAttribute('aria-label', flag.title);
+      flagContainer.appendChild(badge);
+    });
 
     const removeBtn = document.createElement('button');
     removeBtn.type = 'button';
     removeBtn.className = 'icon-button remove-button';
     removeBtn.textContent = '✕';
     removeBtn.setAttribute('aria-label', `Remove ${selection.recipe.title}`);
-    removeBtn.addEventListener('click', () => removeRecipeSelection(selection.recipe.id));
+    removeBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      removeRecipeSelection(selection.recipe.id);
+    });
 
-    header.appendChild(titleWrap);
-    header.appendChild(removeBtn);
+    const actionWrap = document.createElement('span');
+    actionWrap.className = 'planner-selected-actions';
+    actionWrap.appendChild(flagContainer);
+    actionWrap.appendChild(removeBtn);
+
+    header.appendChild(title);
+    header.appendChild(actionWrap);
+
+    const body = document.createElement('div');
+    body.className = 'planner-selected-body';
+
+    if (selection.recipe.byline) {
+      const byline = document.createElement('p');
+      byline.className = 'planner-selected-byline';
+      byline.textContent = selection.recipe.byline;
+      body.appendChild(byline);
+    }
+
+    const mealTypeWrap = document.createElement('div');
+    mealTypeWrap.className = 'recipe-nutrition-fields planner-selected-meal-type';
+    const mealTypeLabel = document.createElement('label');
+    mealTypeLabel.className = 'nutrition-field nutrition-field-inline';
+    mealTypeLabel.textContent = 'Meal type';
+    const mealTypeSelect = document.createElement('select');
+    const mealTypes = getMealTypes();
+    mealTypes.forEach((mealType) => {
+      const option = document.createElement('option');
+      option.value = mealType;
+      option.textContent = mealType.charAt(0).toUpperCase() + mealType.slice(1);
+      mealTypeSelect.appendChild(option);
+    });
+    const selectedMealType = mealTypes.includes(selection.mealType) ? selection.mealType : mealTypes[0];
+    selection.mealType = selectedMealType;
+    mealTypeSelect.value = selectedMealType;
+    mealTypeSelect.addEventListener('change', () => {
+      selection.mealType = mealTypeSelect.value;
+      updatePlanSummary();
+      updateNutritionSummary();
+    });
+    mealTypeLabel.appendChild(mealTypeSelect);
+    mealTypeWrap.appendChild(mealTypeLabel);
 
     const controls = document.createElement('div');
     controls.className = 'planner-selected-controls';
@@ -948,13 +1026,16 @@ function renderSelections() {
 
     updateNutritionDisplay();
 
-    card.appendChild(header);
-    card.appendChild(controls);
-    card.appendChild(nutritionBlock);
-    card.appendChild(dietary);
-    card.appendChild(servingSummary);
+    body.appendChild(mealTypeWrap);
+    body.appendChild(controls);
+    body.appendChild(nutritionBlock);
+    body.appendChild(dietary);
+    body.appendChild(servingSummary);
 
-    container.appendChild(card);
+    details.appendChild(header);
+    details.appendChild(body);
+    row.appendChild(details);
+    container.appendChild(row);
   });
 }
 

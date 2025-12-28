@@ -2412,48 +2412,64 @@ body.add-page details.mobile-preview > summary {
 }
 
 .planner-selected-list {
-  display: grid;
-  gap: 1rem;
-}
-
-.planner-selected-card {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: #fffdf7;
-  padding: 1rem;
-  box-shadow: 0 2px 8px rgba(30, 18, 11, 0.06);
-}
-
-.planner-selected-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
-.planner-selected-header h3 {
+  list-style: none;
   margin: 0;
-  font-family: 'Source Serif 4', var(--font-serif);
+  padding: 0;
+}
+
+.planner-selected-row {
+  margin: 0;
+  padding: 0;
+}
+
+.planner-selected-details {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.planner-selected-summary {
+  cursor: pointer;
+}
+
+.planner-selected-summary::-webkit-details-marker {
+  color: var(--muted);
+}
+
+.planner-selected-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.planner-selected-body {
+  padding: 0.75rem 0.9rem 1rem;
+  border-top: 1px solid var(--border);
+  background: #fffdf7;
 }
 
 .planner-selected-byline {
-  margin: 0.2rem 0 0;
+  margin: 0 0 0.5rem;
   color: var(--muted);
   font-size: 0.9rem;
 }
 
-.remove-button {
+.planner-selected-meal-type {
+  margin-bottom: 0.5rem;
+}
+
+.planner-selected-summary .remove-button {
   border: 1px solid var(--border);
   background: transparent;
-  width: 2rem;
-  height: 2rem;
+  width: 1.75rem;
+  height: 1.75rem;
   border-radius: 999px;
 }
 
 .planner-selected-controls {
   display: grid;
   gap: 0.75rem;
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
   grid-template-columns: 1fr;
 }
 
