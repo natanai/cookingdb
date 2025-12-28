@@ -7130,19 +7130,14 @@
     "family": "",
     "notes": "Garlic cloves are left whole and caramelized. Sauce thickens further as it cools.",
     "nutrition_estimate": {
-      "calories_total": 1780.3791666666666,
-      "calories_per_serving": 161.8526515151515,
+      "calories_total": 2300.3791666666666,
+      "calories_per_serving": 209.1253787878788,
       "servings_estimate": 11,
-      "covered_ingredients": 17,
+      "covered_ingredients": 18,
       "total_ingredients": 18,
-      "coverage_ratio": 0.9444444444444444,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "chicken-breast",
-          "unit": "count"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Combine {{chicken_broth}} with {{bouillon}}, {{soy_sauce}}, {{onion_powder}}, {{mustard_powder}}, and {{thyme}} in a large measuring cup and set aside.\n2. Combine {{flour_dredge}} and {{parmesan_dredge}} on a plate and measure remaining ingredients before cooking.\n3. Slice {{chicken_breast}} in half lengthwise to form thinner cutlets. Cover and pound to an even thickness, then pat dry.\n4. Season both sides of {{chicken_breast}} with {{italian_seasoning}}, {{salt}}, and {{black_pepper}}. Dredge in {{flour_dredge}} mixed with {{parmesan_dredge}}, tapping off excess.\n5. Heat {{olive_oil}} in a large skillet over medium-high heat. Sear {{chicken_breast}} for 4–5 minutes per side until golden. Remove and set aside.\n6. Reduce heat to medium-low and melt {{butter}} in the same skillet. Add {{garlic_cloves}} and cook until softened and caramelized, about 6–7 minutes.\n7. Sprinkle in {{flour_sauce}} and cook for 1–2 minutes, stirring until the raw flour smell is gone.\n8. Gradually whisk in the reserved {{chicken_broth}} mixture with {{bouillon}}, {{soy_sauce}}, {{onion_powder}}, {{mustard_powder}}, and {{thyme}} until smooth.\n9. Stir in {{heavy_cream}} and bring to a gentle boil, then reduce heat to low.\n10. Gradually stir in {{parmesan_finish}} until melted.\n11. Return {{chicken_breast}} and any accumulated juices to the skillet. Spoon sauce over the top, cover partially, and simmer for 5 minutes.",
     "steps": [
@@ -7254,8 +7249,8 @@
           {
             "option": "",
             "display": "boneless skinless chicken breast",
-            "ratio": "2",
-            "unit": "piece",
+            "ratio": "1",
+            "unit": "lb",
             "ingredient_id": "chicken-breast",
             "prep": "",
             "depends_on": null,
@@ -8910,23 +8905,14 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 1672.1,
-      "calories_per_serving": 104.50625,
-      "servings_estimate": 16,
-      "covered_ingredients": 8,
+      "calories_total": 3118.1,
+      "calories_per_serving": 164.11052631578946,
+      "servings_estimate": 19,
+      "covered_ingredients": 10,
       "total_ingredients": 10,
-      "coverage_ratio": 0.8,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "potato",
-          "unit": "lb"
-        },
-        {
-          "ingredient_id": "cheddar-cheese",
-          "unit": "cup"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Mash the cooked {{potatoes}}.\n2. Beat in {{butter}} and {{cream_cheese}} until smooth.\n3. Stir in {{cheddar_cheese}}, {{pimiento}}, {{green_pepper}}, {{parmesan}}, {{milk}}, {{salt}}, and {{green_onions}}.\n4. Spoon into a lightly greased 9x13 baking dish and bake at 350°F for 35 minutes.\n5. Sprinkle with extra {{cheddar_cheese}} and bake until melted.",
     "steps": [
@@ -8984,8 +8970,8 @@
           {
             "option": "",
             "display": "potatoes",
-            "ratio": "3",
-            "unit": "lb",
+            "ratio": "9",
+            "unit": "count",
             "ingredient_id": "potato",
             "prep": "",
             "depends_on": null,
@@ -12647,19 +12633,14 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 2918.5,
-      "calories_per_serving": 265.3181818181818,
+      "calories_total": 4208.5,
+      "calories_per_serving": 382.59090909090907,
       "servings_estimate": 11,
-      "covered_ingredients": 7,
+      "covered_ingredients": 8,
       "total_ingredients": 8,
-      "coverage_ratio": 0.875,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "kidney-beans",
-          "unit": "can"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Brown {{ground_beef}} and drain off grease.\n2. Stir in {{kidney_beans}}, {{tomato_sauce}}, {{tomato_soup}}, {{chili_powder}}, {{salt}}, and {{black_pepper}}.\n3. Add {{water}} as needed and cook until it begins to thicken.",
     "steps": [
@@ -12746,8 +12727,8 @@
           {
             "option": "",
             "display": "kidney beans",
-            "ratio": "4",
-            "unit": "can",
+            "ratio": "6",
+            "unit": "cup",
             "ingredient_id": "kidney-beans",
             "prep": "",
             "depends_on": null,
