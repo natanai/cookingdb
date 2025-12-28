@@ -14,7 +14,6 @@ import {
 } from './recipe-utils.js';
 import {
   computeBatchTotals,
-  deriveServingTargets,
   loadIngredientPortions,
   loadIngredientUnitFactors,
   loadNutritionCoverage,
@@ -24,7 +23,6 @@ import {
   normalizeMealFractions,
   scaleNutritionTotals,
   saveNutritionSettings,
-  suggestServings,
 } from './nutrition-engine.js';
 
 const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
@@ -634,6 +632,7 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
   const heroContent = document.querySelector('.hero-content');
   const recipeNoteDetails = document.querySelector('.recipe-note');
   const nutritionEl = document.getElementById('recipe-nutrition');
+  const nutritionCollapsedSummary = document.getElementById('recipe-nutrition-collapsed');
   const nutritionWarning = document.getElementById('recipe-nutrition-warning');
   const nutritionDetails = document.getElementById('recipe-nutrition-details');
   const nutritionMetrics = document.getElementById('recipe-nutrition-metrics');
@@ -642,6 +641,7 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
   const nutritionCoverageBanner = document.getElementById('nutrition-coverage-banner');
   const nutritionServingsLabel = document.getElementById('recipe-nutrition-servings');
   const nutritionServingsInput = document.getElementById('nutrition-servings-input');
+  const nutritionMealTypeSelect = document.getElementById('nutrition-meal-type');
   const nutritionDailyInput = document.getElementById('nutrition-daily-kcal');
   const nutritionWeightInput = document.getElementById('nutrition-weight-lb');
   const nutritionMealInputs = {
@@ -752,6 +752,7 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
         : '';
     }
     if (nutritionWeightInput) nutritionWeightInput.value = nutritionState.settings.weight_lb ?? '';
+    if (nutritionMealTypeSelect) nutritionMealTypeSelect.value = nutritionState.mealType;
     const fractions = normalizeMealFractions(nutritionState.settings.meal_fractions, recipe.nutritionPolicy);
     Object.entries(nutritionMealInputs).forEach(([meal, input]) => {
       if (!input) return;
@@ -786,6 +787,13 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
   Object.values(nutritionMealInputs).forEach((input) => {
     if (input) input.addEventListener('input', updateSettingsFromInputs);
   });
+  if (nutritionMealTypeSelect) {
+    nutritionMealTypeSelect.addEventListener('change', (event) => {
+      const next = event.target?.value;
+      nutritionState.mealType = next || nutritionState.mealType;
+      updateNutritionEstimate();
+    });
+  }
 
   const updateServingsFromInput = () => {
     if (!nutritionServingsInput) return;
@@ -795,6 +803,55 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
   };
 
   if (nutritionServingsInput) nutritionServingsInput.addEventListener('input', updateServingsFromInput);
+
+  const coerceNumber = (value) => {
+    const num = Number(value);
+    return Number.isFinite(num) ? num : null;
+  };
+
+  const deriveMealTargets = () => {
+    const dailyCalories = coerceNumber(nutritionState.settings?.daily_kcal)
+      || coerceNumber(recipe.nutritionPolicy?.default_daily_kcal)
+      || coerceNumber(nutritionGuidelines?.daily_calories_default)
+      || 2000;
+    const sodiumDaily = coerceNumber(nutritionGuidelines?.daily_sodium_mg_default) || 2300;
+    const satFatDaily = coerceNumber(nutritionGuidelines?.daily_saturated_fat_g_default) || 20;
+    const mealsPerDay = coerceNumber(recipe.nutritionPolicy?.default_meals_per_day)
+      || coerceNumber(nutritionGuidelines?.meals_per_day_default)
+      || 3;
+    const fractions = normalizeMealFractions(nutritionState.settings.meal_fractions, recipe.nutritionPolicy);
+    const fraction = coerceNumber(fractions?.[nutritionState.mealType]);
+    const mealFraction = Number.isFinite(fraction) && fraction > 0 ? fraction : 1 / mealsPerDay;
+    return {
+      calories_kcal: dailyCalories * mealFraction,
+      sodium_mg: sodiumDaily * mealFraction,
+      saturated_fat_g: satFatDaily * mealFraction,
+    };
+  };
+
+  const suggestServingsForMeal = (totals) => {
+    if (!totals || !totals.complete) {
+      return { suggested_servings: null, perServing: null, batchTotals: totals, targets: null };
+    }
+    const targets = deriveMealTargets();
+    const candidates = [];
+    if (Number.isFinite(totals.kcal) && Number.isFinite(targets.calories_kcal)) {
+      candidates.push(Math.ceil(totals.kcal / targets.calories_kcal));
+    }
+    if (Number.isFinite(totals.sodium_mg) && totals.sodium_mg > 0 && Number.isFinite(targets.sodium_mg)) {
+      candidates.push(Math.ceil(totals.sodium_mg / targets.sodium_mg));
+    }
+    if (Number.isFinite(totals.sat_fat_g) && totals.sat_fat_g > 0 && Number.isFinite(targets.saturated_fat_g)) {
+      candidates.push(Math.ceil(totals.sat_fat_g / targets.saturated_fat_g));
+    }
+    const servings = Math.max(1, ...candidates.filter((value) => Number.isFinite(value) && value > 0));
+    return {
+      suggested_servings: servings,
+      perServing: scaleNutritionTotals(totals, 1 / servings),
+      batchTotals: totals,
+      targets,
+    };
+  };
 
   const updateNutritionEstimate = () => {
     if (!nutritionEl) return;
@@ -827,6 +884,9 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
           ? `Recipe servings (author): ${batchServings}. Nutrition estimate unavailable for this recipe.`
           : 'Nutrition estimate unavailable for this recipe.';
       }
+      if (nutritionCollapsedSummary) {
+        nutritionCollapsedSummary.textContent = `Estimated servings per batch: ${batchServings || '—'}.`;
+      }
       if (nutritionServingsLabel) nutritionServingsLabel.textContent = '';
       if (nutritionServingsInput) nutritionServingsInput.value = '';
       if (nutritionMetrics) nutritionMetrics.innerHTML = '';
@@ -836,8 +896,13 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
 
     if (nutritionWarning) nutritionWarning.hidden = true;
 
-    const suggestion = suggestServings(totals, nutritionState.settings, nutritionGuidelines);
-    if (!suggestion?.perServing) return;
+    const suggestion = suggestServingsForMeal(totals);
+    if (!suggestion?.perServing) {
+      if (nutritionCollapsedSummary) {
+        nutritionCollapsedSummary.textContent = 'Estimated servings per batch: —.';
+      }
+      return;
+    }
     const suggestedServings = suggestion.suggested_servings;
     const servingsPerBatch = Number.isFinite(nutritionState.servingsOverride)
       ? nutritionState.servingsOverride
@@ -845,6 +910,9 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
     const perServingTotals = Number.isFinite(servingsPerBatch) && servingsPerBatch > 0
       ? scaleNutritionTotals(totals, 1 / servingsPerBatch)
       : suggestion.perServing;
+    const mealLabel = nutritionState.mealType
+      ? nutritionState.mealType.charAt(0).toUpperCase() + nutritionState.mealType.slice(1)
+      : 'Meal';
 
     if (nutritionServingsInput && !Number.isFinite(nutritionState.servingsOverride)) {
       nutritionServingsInput.value = Number.isFinite(suggestedServings) ? suggestedServings : '';
@@ -855,7 +923,7 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
         ? Number(recipe.servings_per_batch)
         : suggestedServings;
       const parts = [
-        `Suggested servings: ${suggestedServings}.`,
+        `Suggested servings: ${suggestedServings} (${mealLabel.toLowerCase()} target).`,
       ];
       if (Number.isFinite(Number(recipe.servings_per_batch))) {
         parts.push(`Recipe servings (author): ${batchServings}.`);
@@ -866,6 +934,11 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
     if (nutritionServingsLabel) {
       nutritionServingsLabel.textContent =
         `Servings per batch (editable): ${Number.isFinite(servingsPerBatch) ? servingsPerBatch : '—'}.`;
+    }
+
+    if (nutritionCollapsedSummary) {
+      nutritionCollapsedSummary.textContent =
+        `Estimated servings per batch: ${Number.isFinite(servingsPerBatch) ? servingsPerBatch : '—'}.`;
     }
 
     if (nutritionMetrics) {
@@ -888,11 +961,11 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
     }
 
     if (nutritionTargets) {
-      const targets = suggestion.targets || deriveServingTargets(nutritionState.settings, nutritionGuidelines);
+      const targets = suggestion.targets || deriveMealTargets();
       nutritionTargets.textContent =
-        `Based on default targets: ~${formatKcal(targets.calories_kcal)} kcal per meal, ` +
-        `sodium ≤ ${formatNumber(targets.sodium_mg, { maximumFractionDigits: 0 })} mg per meal, ` +
-        `sat fat ≤ ${formatNumber(targets.saturated_fat_g)} g per meal.`;
+        `Based on ${mealLabel.toLowerCase()} targets: ~${formatKcal(targets.calories_kcal)} kcal, ` +
+        `sodium ≤ ${formatNumber(targets.sodium_mg, { maximumFractionDigits: 0 })} mg, ` +
+        `sat fat ≤ ${formatNumber(targets.saturated_fat_g)} g.`;
     }
   };
 
