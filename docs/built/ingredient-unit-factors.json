@@ -1,35 +1,131 @@
 [
   {
-    "ingredient_id": "tomato-soup",
-    "from_unit_norm": "can",
+    "ingredient_id": "acorn-squash",
+    "from_unit_norm": "count",
+    "to_unit_norm": "cup",
+    "factor": 2,
+    "source": "USDA (acorn squash)",
+    "notes": "Approx 1 acorn squash ≈ 2 cups cubes."
+  },
+  {
+    "ingredient_id": "active-dry-yeast",
+    "from_unit_norm": "tsp",
+    "to_unit_norm": "count",
+    "factor": 0.44,
+    "source": "USDA (active dry yeast)",
+    "notes": "1 packet ≈ 2.25 tsp; 1 tsp ≈ 0.44 packet."
+  },
+  {
+    "ingredient_id": "almonds",
+    "from_unit_norm": "cup",
     "to_unit_norm": "oz",
-    "factor": 10.75,
-    "source": "brandless default",
-    "notes": "Assumed 10.75 oz condensed soup can."
+    "factor": 5,
+    "source": "USDA (almonds)",
+    "notes": "Approx 1 cup whole almonds ≈ 5 oz."
+  },
+  {
+    "ingredient_id": "baby-potatoes",
+    "from_unit_norm": "lb",
+    "to_unit_norm": "count",
+    "factor": 15,
+    "source": "Fitia (baby potato)",
+    "notes": "Approx 15 baby potatoes per lb (30g each)."
+  },
+  {
+    "ingredient_id": "butternut-squash",
+    "from_unit_norm": "count",
+    "to_unit_norm": "cup",
+    "factor": 4,
+    "source": "USDA (butternut squash)",
+    "notes": "Approx 1 medium squash ≈ 4 cups cubes."
+  },
+  {
+    "ingredient_id": "canadian-bacon",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "count",
+    "factor": 5,
+    "source": "USDA (lean ham)",
+    "notes": "Approx 1 cup diced ≈ 5 slices."
+  },
+  {
+    "ingredient_id": "carrot",
+    "from_unit_norm": "lb",
+    "to_unit_norm": "count",
+    "factor": 7.4,
+    "source": "USDA (carrot)",
+    "notes": "Approx 7.4 medium carrots per lb."
+  },
+  {
+    "ingredient_id": "celery",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "count",
+    "factor": 2.5,
+    "source": "USDA (celery)",
+    "notes": "Approx 1 cup chopped ≈ 2.5 stalks."
+  },
+  {
+    "ingredient_id": "cheddar-mozzarella-cheese",
+    "from_unit_norm": "oz",
+    "to_unit_norm": "cup",
+    "factor": 0.25,
+    "source": "USDA (shredded cheese)",
+    "notes": "Approx 4 oz shredded cheese ≈ 1 cup."
+  },
+  {
+    "ingredient_id": "cheese",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "oz",
+    "factor": 4,
+    "source": "USDA (shredded cheese)",
+    "notes": "Approx 1 cup shredded cheese ≈ 4 oz."
+  },
+  {
+    "ingredient_id": "chicken-breast",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "lb",
+    "factor": 0.31,
+    "source": "USDA (cooked chicken)",
+    "notes": "Approx 1 cup chopped cooked chicken (140g) ≈ 0.31 lb."
+  },
+  {
+    "ingredient_id": "chocolate-chips",
+    "from_unit_norm": "oz",
+    "to_unit_norm": "cup",
+    "factor": 0.1667,
+    "source": "USDA (chocolate chips)",
+    "notes": "Approx 6 oz chips ≈ 1 cup."
+  },
+  {
+    "ingredient_id": "collard-greens",
+    "from_unit_norm": "oz",
+    "to_unit_norm": "cup",
+    "factor": 0.8,
+    "source": "USDA (collard greens)",
+    "notes": "Approx 1 oz chopped ≈ 0.8 cup."
+  },
+  {
+    "ingredient_id": "corn",
+    "from_unit_norm": "lb",
+    "to_unit_norm": "cup",
+    "factor": 2.7,
+    "source": "USDA (corn kernels)",
+    "notes": "Approx 1 lb corn kernels ≈ 2.7 cups."
   },
   {
     "ingredient_id": "cream-of-celery-soup",
     "from_unit_norm": "can",
-    "to_unit_norm": "oz",
-    "factor": 10.5,
-    "source": "brandless default",
-    "notes": "Assumed 10.5 oz condensed soup can."
+    "to_unit_norm": "count",
+    "factor": 1,
+    "source": "Label",
+    "notes": "1 can counts as 1 unit."
   },
   {
     "ingredient_id": "cream-of-chicken-soup",
     "from_unit_norm": "can",
-    "to_unit_norm": "oz",
-    "factor": 10.5,
-    "source": "brandless default",
-    "notes": "Assumed 10.5 oz condensed soup can."
-  },
-  {
-    "ingredient_id": "orange-gelatin",
-    "from_unit_norm": "package",
-    "to_unit_norm": "oz",
-    "factor": 3,
-    "source": "brandless default",
-    "notes": "Assumed 3 oz gelatin package."
+    "to_unit_norm": "count",
+    "factor": 1,
+    "source": "Label",
+    "notes": "1 can counts as 1 unit."
   },
   {
     "ingredient_id": "crescent-rolls",
@@ -40,44 +136,204 @@
     "notes": "Assumed 1 package yields 8 rolls."
   },
   {
-    "ingredient_id": "tuna",
+    "ingredient_id": "crushed-tomatoes",
     "from_unit_norm": "can",
-    "to_unit_norm": "oz",
-    "factor": 5,
-    "source": "brandless default",
-    "notes": "Assumed 5 oz tuna can."
+    "to_unit_norm": "cup",
+    "factor": 1.7,
+    "source": "USDA (canned tomatoes)",
+    "notes": "Approx 14.5 oz can ≈ 1.7 cups."
   },
   {
     "ingredient_id": "diced-tomatoes",
     "from_unit_norm": "can",
-    "to_unit_norm": "oz",
-    "factor": 14.5,
-    "source": "brandless default",
-    "notes": "Assumed 14.5 oz can."
+    "to_unit_norm": "cup",
+    "factor": 1.7,
+    "source": "USDA (canned tomatoes)",
+    "notes": "Approx 14.5 oz can ≈ 1.7 cups."
   },
   {
-    "ingredient_id": "crushed-tomatoes",
-    "from_unit_norm": "can",
-    "to_unit_norm": "oz",
-    "factor": 14.5,
-    "source": "brandless default",
-    "notes": "Assumed 14.5 oz can."
+    "ingredient_id": "egg-noodles",
+    "from_unit_norm": "lb",
+    "to_unit_norm": "cup",
+    "factor": 4,
+    "source": "USDA (dry egg noodles)",
+    "notes": "Approx 1 lb dry egg noodles ≈ 4 cups."
   },
   {
-    "ingredient_id": "stewed-tomatoes",
-    "from_unit_norm": "can",
-    "to_unit_norm": "oz",
-    "factor": 14.5,
-    "source": "brandless default",
-    "notes": "Assumed 14.5 oz can."
+    "ingredient_id": "garlic",
+    "from_unit_norm": "count",
+    "to_unit_norm": "clove",
+    "factor": 1,
+    "source": "USDA (garlic)",
+    "notes": "Treat 1 piece as 1 clove."
   },
   {
-    "ingredient_id": "whole-tomatoes",
+    "ingredient_id": "ginger",
+    "from_unit_norm": "inch",
+    "to_unit_norm": "tsp",
+    "factor": 3,
+    "source": "USDA (ginger root)",
+    "notes": "Approx 1 inch ginger ≈ 1 tbsp grated (3 tsp)."
+  },
+  {
+    "ingredient_id": "green-beans",
     "from_unit_norm": "can",
+    "to_unit_norm": "cup",
+    "factor": 2,
+    "source": "USDA (canned green beans)",
+    "notes": "Approx 14.5 oz can ≈ 2 cups."
+  },
+  {
+    "ingredient_id": "green-olives",
+    "from_unit_norm": "tbsp",
     "to_unit_norm": "oz",
-    "factor": 28,
+    "factor": 0.3,
+    "source": "USDA (green olives)",
+    "notes": "Approx 1 tbsp chopped olives ≈ 0.3 oz."
+  },
+  {
+    "ingredient_id": "green-onion",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "count",
+    "factor": 6,
+    "source": "USDA (scallions)",
+    "notes": "Approx 1 cup chopped ≈ 6 scallions."
+  },
+  {
+    "ingredient_id": "green-pepper",
+    "from_unit_norm": "tbsp",
+    "to_unit_norm": "count",
+    "factor": 0.0625,
+    "source": "USDA (green pepper)",
+    "notes": "Approx 1 pepper ≈ 1 cup chopped (16 tbsp)."
+  },
+  {
+    "ingredient_id": "kidney-beans",
+    "from_unit_norm": "lb",
+    "to_unit_norm": "cup",
+    "factor": 2.6,
+    "source": "USDA (cooked kidney beans)",
+    "notes": "Approx 1 lb cooked beans ≈ 2.6 cups."
+  },
+  {
+    "ingredient_id": "leek",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "count",
+    "factor": 1,
+    "source": "USDA (leek)",
+    "notes": "Approx 1 cup sliced ≈ 1 leek."
+  },
+  {
+    "ingredient_id": "lemon",
+    "from_unit_norm": "tbsp",
+    "to_unit_norm": "count",
+    "factor": 0.33,
+    "source": "USDA (lemon juice)",
+    "notes": "Approx 1 lemon ≈ 3 tbsp juice."
+  },
+  {
+    "ingredient_id": "mandarin-oranges",
+    "from_unit_norm": "can",
+    "to_unit_norm": "cup",
+    "factor": 1.5,
+    "source": "USDA (canned mandarin)",
+    "notes": "Approx 11 oz can ≈ 1.5 cups."
+  },
+  {
+    "ingredient_id": "milk",
+    "from_unit_norm": "can",
+    "to_unit_norm": "cup",
+    "factor": 1.5,
+    "source": "USDA (evaporated milk)",
+    "notes": "Approx 1 (12 oz) can ≈ 1.5 cups."
+  },
+  {
+    "ingredient_id": "nacho-chips",
+    "from_unit_norm": "bag",
+    "to_unit_norm": "oz",
+    "factor": 10,
     "source": "brandless default",
-    "notes": "Assumed 28 oz can."
+    "notes": "Assumed 10 oz bag."
+  },
+  {
+    "ingredient_id": "noodles",
+    "from_unit_norm": "oz",
+    "to_unit_norm": "cup",
+    "factor": 0.129,
+    "source": "USDA (dry pasta)",
+    "notes": "Approx 7.75 oz dry noodles ≈ 1 cup."
+  },
+  {
+    "ingredient_id": "onion",
+    "from_unit_norm": "tbsp",
+    "to_unit_norm": "count",
+    "factor": 0.09,
+    "source": "USDA (onion)",
+    "notes": "Approx 1 medium onion ≈ 11 tbsp chopped."
+  },
+  {
+    "ingredient_id": "orange-gelatin",
+    "from_unit_norm": "package",
+    "to_unit_norm": "count",
+    "factor": 1,
+    "source": "Label",
+    "notes": "1 package counts as 1 unit."
+  },
+  {
+    "ingredient_id": "parmesan_cheese",
+    "from_unit_norm": "tbsp",
+    "to_unit_norm": "oz",
+    "factor": 0.2,
+    "source": "USDA (parmesan)",
+    "notes": "Approx 1 tbsp grated parmesan ≈ 0.2 oz."
+  },
+  {
+    "ingredient_id": "peanuts",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "oz",
+    "factor": 5,
+    "source": "USDA (peanuts)",
+    "notes": "Approx 1 cup peanuts ≈ 5 oz."
+  },
+  {
+    "ingredient_id": "pear-halves",
+    "from_unit_norm": "pint",
+    "to_unit_norm": "count",
+    "factor": 8,
+    "source": "USDA (canned pears)",
+    "notes": "Approx 1 pint ≈ 8 pear halves."
+  },
+  {
+    "ingredient_id": "peas",
+    "from_unit_norm": "lb",
+    "to_unit_norm": "cup",
+    "factor": 2.8,
+    "source": "USDA (green peas)",
+    "notes": "Approx 1 lb peas ≈ 2.8 cups."
+  },
+  {
+    "ingredient_id": "pimiento",
+    "from_unit_norm": "tbsp",
+    "to_unit_norm": "oz",
+    "factor": 0.3,
+    "source": "USDA (pimiento)",
+    "notes": "Approx 1 tbsp chopped pimiento ≈ 0.3 oz."
+  },
+  {
+    "ingredient_id": "pinto-beans",
+    "from_unit_norm": "can",
+    "to_unit_norm": "cup",
+    "factor": 2.5,
+    "source": "USDA (canned beans)",
+    "notes": "Approx 15 oz can ≈ 2.5 cups."
+  },
+  {
+    "ingredient_id": "potato",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "count",
+    "factor": 0.85,
+    "source": "USDA (potato)",
+    "notes": "Approx 1 cup diced potato (150g) ≈ 0.85 medium."
   },
   {
     "ingredient_id": "rotel",
@@ -88,35 +344,99 @@
     "notes": "Assumed 10 oz can."
   },
   {
-    "ingredient_id": "kidney-beans",
-    "from_unit_norm": "can",
-    "to_unit_norm": "oz",
-    "factor": 15,
-    "source": "brandless default",
-    "notes": "Assumed 15 oz can."
+    "ingredient_id": "salsa",
+    "from_unit_norm": "oz",
+    "to_unit_norm": "tbsp",
+    "factor": 2,
+    "source": "USDA (salsa)",
+    "notes": "Approx 1 oz salsa ≈ 2 tbsp."
   },
   {
-    "ingredient_id": "pinto-beans",
-    "from_unit_norm": "can",
-    "to_unit_norm": "oz",
-    "factor": 15,
-    "source": "brandless default",
-    "notes": "Assumed 15 oz can."
-  },
-  {
-    "ingredient_id": "green-beans",
-    "from_unit_norm": "can",
-    "to_unit_norm": "oz",
-    "factor": 14.5,
-    "source": "brandless default",
-    "notes": "Assumed 14.5 oz can."
-  },
-  {
-    "ingredient_id": "nacho-chips",
-    "from_unit_norm": "bag",
-    "to_unit_norm": "oz",
+    "ingredient_id": "sausage",
+    "from_unit_norm": "lb",
+    "to_unit_norm": "count",
     "factor": 10,
+    "source": "USDA (pork sausage)",
+    "notes": "Approx 10 links per lb (45g each)."
+  },
+  {
+    "ingredient_id": "stewed-tomatoes",
+    "from_unit_norm": "can",
+    "to_unit_norm": "cup",
+    "factor": 1.7,
+    "source": "USDA (canned tomatoes)",
+    "notes": "Approx 14.5 oz can ≈ 1.7 cups."
+  },
+  {
+    "ingredient_id": "sweet-pickles",
+    "from_unit_norm": "tbsp",
+    "to_unit_norm": "oz",
+    "factor": 0.5,
+    "source": "USDA (sweet pickles)",
+    "notes": "Approx 1 tbsp chopped sweet pickles ≈ 0.5 oz."
+  },
+  {
+    "ingredient_id": "sweet-potato",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "count",
+    "factor": 1.08,
+    "source": "USDA (sweet potato, cubes vs medium)",
+    "notes": "Approx 1 cup cubes (~140g) ≈ 1.08 medium (130g)."
+  },
+  {
+    "ingredient_id": "thyme",
+    "from_unit_norm": "sprig",
+    "to_unit_norm": "tsp",
+    "factor": 0.2,
+    "source": "USDA (fresh thyme)",
+    "notes": "Approx 1 sprig fresh thyme ≈ 0.2 tsp dried."
+  },
+  {
+    "ingredient_id": "tomato-sauce",
+    "from_unit_norm": "can",
+    "to_unit_norm": "cup",
+    "factor": 1,
+    "source": "USDA (tomato sauce)",
+    "notes": "Approx 8 oz can ≈ 1 cup."
+  },
+  {
+    "ingredient_id": "tomato-soup",
+    "from_unit_norm": "can",
+    "to_unit_norm": "count",
+    "factor": 1,
+    "source": "Label",
+    "notes": "1 can counts as 1 unit."
+  },
+  {
+    "ingredient_id": "tomatoes",
+    "from_unit_norm": "lb",
+    "to_unit_norm": "count",
+    "factor": 3.7,
+    "source": "USDA (tomato)",
+    "notes": "Approx 3.7 medium tomatoes per lb."
+  },
+  {
+    "ingredient_id": "tuna",
+    "from_unit_norm": "can",
+    "to_unit_norm": "count",
+    "factor": 1,
+    "source": "USDA (canned tuna)",
+    "notes": "1 can counts as 1 unit."
+  },
+  {
+    "ingredient_id": "vanilla-pudding-powder",
+    "from_unit_norm": "tbsp",
+    "to_unit_norm": "count",
+    "factor": 0.09,
+    "source": "Label (pudding mix)",
+    "notes": "Approx 1 package (3.4 oz) ≈ 11 tbsp."
+  },
+  {
+    "ingredient_id": "whole-tomatoes",
+    "from_unit_norm": "can",
+    "to_unit_norm": "oz",
+    "factor": 28,
     "source": "brandless default",
-    "notes": "Assumed 10 oz bag."
+    "notes": "Assumed 28 oz can."
   }
 ]

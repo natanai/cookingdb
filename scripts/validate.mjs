@@ -51,14 +51,14 @@ const UNIT_ALIASES = new Map([
   ['sprig', 'sprig'],
   ['leaves', 'leaf'],
   ['leaf', 'leaf'],
-  ['pieces', 'piece'],
-  ['piece', 'piece'],
+  ['pieces', 'count'],
+  ['piece', 'count'],
   ['packages', 'package'],
   ['package', 'package'],
   ['bags', 'bag'],
   ['bag', 'bag'],
-  ['bunches', 'bunch'],
-  ['bunch', 'bunch'],
+  ['bunches', 'count'],
+  ['bunch', 'count'],
   ['cans', 'can'],
   ['can', 'can'],
   ['jars', 'jar'],
@@ -85,6 +85,9 @@ const UNIT_ALIASES = new Map([
   ['milliliter', 'ml'],
   ['ml', 'ml'],
   ['l', 'l'],
+  ['medium', 'count'],
+  ['large', 'count'],
+  ['small', 'count'],
 ]);
 
 function normalizeUnit(unit) {
