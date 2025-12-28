@@ -31,50 +31,66 @@
           <div class="family-inline" id="family-inline"></div>
           <div class="category-inline" id="category-inline"></div>
           <div class="callout warning" id="nutrition-coverage-banner" hidden></div>
-          <div class="recipe-nutrition" id="recipe-nutrition" hidden>
-            <p class="recipe-nutrition-title">Nutrition &amp; servings</p>
-            <p class="recipe-nutrition-coverage" id="recipe-nutrition-coverage"></p>
-            <p class="recipe-nutrition-warning" id="recipe-nutrition-warning" hidden></p>
-            <p class="recipe-nutrition-details" id="recipe-nutrition-details"></p>
-            <p class="recipe-nutrition-servings" id="recipe-nutrition-servings"></p>
-            <label class="nutrition-field nutrition-field-inline">
-              Servings per batch
-              <input type="number" id="nutrition-servings-input" min="1" step="0.5" />
-            </label>
-            <ul class="recipe-nutrition-metrics" id="recipe-nutrition-metrics"></ul>
-            <p class="recipe-nutrition-targets" id="recipe-nutrition-targets"></p>
-            <details class="nutrition-settings" id="recipe-nutrition-settings">
-              <summary>Nutrition settings</summary>
-              <div class="nutrition-settings-grid">
-                <label class="nutrition-field">
-                  Daily calories
-                  <input type="number" id="nutrition-daily-kcal" min="1200" step="50" />
+          <details class="recipe-nutrition" id="recipe-nutrition" hidden>
+            <summary class="recipe-nutrition-summary">
+              <span class="recipe-nutrition-collapsed" id="recipe-nutrition-collapsed"></span>
+            </summary>
+            <div class="recipe-nutrition-body">
+              <p class="recipe-nutrition-title">Nutrition &amp; servings</p>
+              <p class="recipe-nutrition-coverage" id="recipe-nutrition-coverage"></p>
+              <p class="recipe-nutrition-warning" id="recipe-nutrition-warning" hidden></p>
+              <p class="recipe-nutrition-details" id="recipe-nutrition-details"></p>
+              <p class="recipe-nutrition-servings" id="recipe-nutrition-servings"></p>
+              <div class="recipe-nutrition-fields">
+                <label class="nutrition-field nutrition-field-inline">
+                  Meal type
+                  <select id="nutrition-meal-type">
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="dinner">Dinner</option>
+                    <option value="snack">Snack</option>
+                  </select>
                 </label>
-                <label class="nutrition-field">
-                  Weight (lb, optional)
-                  <input type="number" id="nutrition-weight-lb" min="40" step="1" />
-                </label>
-              </div>
-              <div class="nutrition-settings-grid">
-                <label class="nutrition-field">
-                  Breakfast %
-                  <input type="number" id="nutrition-meal-breakfast" min="0" max="100" step="1" />
-                </label>
-                <label class="nutrition-field">
-                  Lunch %
-                  <input type="number" id="nutrition-meal-lunch" min="0" max="100" step="1" />
-                </label>
-                <label class="nutrition-field">
-                  Dinner %
-                  <input type="number" id="nutrition-meal-dinner" min="0" max="100" step="1" />
-                </label>
-                <label class="nutrition-field">
-                  Snack %
-                  <input type="number" id="nutrition-meal-snack" min="0" max="100" step="1" />
+                <label class="nutrition-field nutrition-field-inline">
+                  Servings per batch
+                  <input type="number" id="nutrition-servings-input" min="1" step="0.5" />
                 </label>
               </div>
-            </details>
-          </div>
+              <ul class="recipe-nutrition-metrics" id="recipe-nutrition-metrics"></ul>
+              <p class="recipe-nutrition-targets" id="recipe-nutrition-targets"></p>
+              <details class="nutrition-settings" id="recipe-nutrition-settings">
+                <summary>Nutrition settings</summary>
+                <div class="nutrition-settings-grid">
+                  <label class="nutrition-field">
+                    Daily calories
+                    <input type="number" id="nutrition-daily-kcal" min="1200" step="50" />
+                  </label>
+                  <label class="nutrition-field">
+                    Weight (lb, optional)
+                    <input type="number" id="nutrition-weight-lb" min="40" step="1" />
+                  </label>
+                </div>
+                <div class="nutrition-settings-grid">
+                  <label class="nutrition-field">
+                    Breakfast %
+                    <input type="number" id="nutrition-meal-breakfast" min="0" max="100" step="1" />
+                  </label>
+                  <label class="nutrition-field">
+                    Lunch %
+                    <input type="number" id="nutrition-meal-lunch" min="0" max="100" step="1" />
+                  </label>
+                  <label class="nutrition-field">
+                    Dinner %
+                    <input type="number" id="nutrition-meal-dinner" min="0" max="100" step="1" />
+                  </label>
+                  <label class="nutrition-field">
+                    Snack %
+                    <input type="number" id="nutrition-meal-snack" min="0" max="100" step="1" />
+                  </label>
+                </div>
+              </details>
+            </div>
+          </details>
         </div>
       </div>
     </section>

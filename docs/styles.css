@@ -2556,6 +2556,31 @@ body.add-page details.mobile-preview > summary {
   color: var(--muted);
 }
 
+.recipe-nutrition-summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.recipe-nutrition-summary::-webkit-details-marker {
+  color: var(--text);
+}
+
+.recipe-nutrition-collapsed {
+  font-size: 0.9rem;
+}
+
+.recipe-nutrition-body {
+  margin-top: 0.4rem;
+}
+
+.recipe-nutrition-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: flex-end;
+}
+
 .recipe-nutrition-title {
   margin: 0 0 0.2rem;
   font-weight: 600;
