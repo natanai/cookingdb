@@ -1,6 +1,11 @@
 {
-  "daily_calories": 2000,
-  "meals_per_day": 3,
-  "meal_calories_target": 600,
-  "notes": "Guideline estimates for meal planning; update as needed based on dietary guidance."
+  "daily_calories_default": 2000,
+  "meals_per_day_default": 3,
+  "daily_sodium_mg_default": 2300,
+  "daily_saturated_fat_g_default": 20,
+  "serving_targets": {
+    "calories_kcal": "daily_calories_default / meals_per_day_default",
+    "sodium_mg": "daily_sodium_mg_default / meals_per_day_default",
+    "saturated_fat_g": "daily_saturated_fat_g_default / meals_per_day_default"
+  }
 }

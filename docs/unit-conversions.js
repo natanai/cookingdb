@@ -3,13 +3,13 @@ export const UNIT_CONVERSIONS = {
     label: 'Volume',
     base: 'ml',
     units: {
-      tsp: { label: 'teaspoon', plural: 'teaspoons', to_base: 4.92892 },
-      tbsp: { label: 'tablespoon', plural: 'tablespoons', to_base: 14.7868 },
+      tsp: { label: 'teaspoon', plural: 'teaspoons', to_base: 5 },
+      tbsp: { label: 'tablespoon', plural: 'tablespoons', to_base: 15 },
       cup: { label: 'cup', plural: 'cups', to_base: 240 },
-      fl_oz: { label: 'fl oz', plural: 'fl oz', to_base: 29.5735 },
-      pint: { label: 'pint', plural: 'pints', to_base: 473.176 },
-      quart: { label: 'quart', plural: 'quarts', to_base: 946.353 },
-      gallon: { label: 'gallon', plural: 'gallons', to_base: 3785.41 },
+      fl_oz: { label: 'fl oz', plural: 'fl oz', to_base: 30 },
+      pint: { label: 'pint', plural: 'pints', to_base: 480 },
+      quart: { label: 'quart', plural: 'quarts', to_base: 960 },
+      gallon: { label: 'gallon', plural: 'gallons', to_base: 3840 },
       ml: { label: 'mL', plural: 'mL', to_base: 1 },
       l: { label: 'liter', plural: 'liters', to_base: 1000 }
     }

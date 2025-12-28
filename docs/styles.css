@@ -908,6 +908,18 @@ main {
   flex-wrap: wrap;
 }
 
+#ingredients-list .ingredient-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
+}
+
+#ingredients-list .ingredient-link:hover,
+#ingredients-list .ingredient-link:focus {
+  color: var(--accent);
+}
+
 #steps-list {
   list-style: none;
   counter-reset: step-counter;
@@ -2550,6 +2562,12 @@ body.add-page details.mobile-preview > summary {
   color: var(--text);
 }
 
+.recipe-nutrition-coverage {
+  margin: 0 0 0.4rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .recipe-nutrition-warning {
   margin: 0 0 0.5rem;
   font-size: 0.9rem;
@@ -2599,6 +2617,17 @@ body.add-page details.mobile-preview > summary {
   flex-direction: column;
   gap: 0.3rem;
   font-size: 0.85rem;
+}
+
+.nutrition-field-inline {
+  max-width: 220px;
+  margin-bottom: 0.5rem;
+}
+
+.recipe-nutrition-servings {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+  color: var(--muted);
 }
 
 .planner-actions {

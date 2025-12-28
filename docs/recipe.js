@@ -14,11 +14,17 @@ import {
 } from './recipe-utils.js';
 import {
   computeBatchTotals,
-  estimateServings,
+  deriveServingTargets,
+  loadIngredientPortions,
+  loadIngredientUnitFactors,
+  loadNutritionCoverage,
+  loadNutritionGuidelines,
   loadNutritionPolicy,
   loadNutritionSettings,
   normalizeMealFractions,
+  scaleNutritionTotals,
   saveNutritionSettings,
+  suggestServings,
 } from './nutrition-engine.js';
 
 const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
@@ -184,8 +190,6 @@ async function loadRecipes() {
   if (!indexRes.ok) {
     throw new Error(`Unable to load built/index.json (${indexRes.status})`);
   }
-  const indexRaw = await indexRes.json();
-  const indexList = Array.isArray(indexRaw) ? indexRaw : [];
   if (!recipesRes.ok) {
     throw new Error(`Unable to load built/recipes.json (${recipesRes.status})`);
   }
@@ -193,7 +197,7 @@ async function loadRecipes() {
   const built = Array.isArray(builtRaw) ? builtRaw.map(normalizeRecipeForPage).filter(Boolean) : [];
   const inbox = loadStoredInboxRecipes();
   const recipeIndex = new Map(
-    indexList
+    [...built, ...inbox]
       .filter((entry) => entry && entry.id)
       .map((entry) => [String(entry.id), entry])
   );
@@ -411,9 +415,15 @@ function renderIngredientsList(recipe, state, onUnitChange) {
       const li = document.createElement('li');
 
       line.entries.forEach((entry, idx) => {
-        const textSpan = document.createElement('span');
-        textSpan.textContent = entry.text;
-        li.appendChild(textSpan);
+        const recipeId = entry.option?.ingredient_id;
+        const recipeIndex = state.recipeIndex;
+        const textEl = recipeId && recipeIndex?.has?.(recipeId) ? document.createElement('a') : document.createElement('span');
+        if (textEl.tagName === 'A') {
+          textEl.href = `recipe.html?id=${encodeURIComponent(recipeId)}`;
+          textEl.className = 'ingredient-link';
+        }
+        textEl.textContent = entry.text;
+        li.appendChild(textEl);
 
         const unitOptions = unitOptionsFor(entry.option?.unit);
         const unitSelections = state.unitSelections || (state.unitSelections = {});
@@ -471,7 +481,7 @@ function renderIngredientsList(recipe, state, onUnitChange) {
             const note = document.createElement('div');
             note.className = 'conversion-note';
             note.textContent = parts.join(' · ');
-            textSpan.title = parts.join(' | ');
+            textEl.title = parts.join(' | ');
             li.appendChild(note);
           }
         }
@@ -609,7 +619,7 @@ function setupPanControls(recipe, state, rerender) {
   return true;
 }
 
-function renderRecipe(recipeInput, nutritionPolicy) {
+function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredientPortions, ingredientUnitFactors, nutritionCoverage) {
   const recipe = normalizeRecipeForPage(recipeInput) || recipeInput;
   recipe.nutritionPolicy = nutritionPolicy;
 
@@ -628,6 +638,10 @@ function renderRecipe(recipeInput, nutritionPolicy) {
   const nutritionDetails = document.getElementById('recipe-nutrition-details');
   const nutritionMetrics = document.getElementById('recipe-nutrition-metrics');
   const nutritionTargets = document.getElementById('recipe-nutrition-targets');
+  const nutritionCoverageBadge = document.getElementById('recipe-nutrition-coverage');
+  const nutritionCoverageBanner = document.getElementById('nutrition-coverage-banner');
+  const nutritionServingsLabel = document.getElementById('recipe-nutrition-servings');
+  const nutritionServingsInput = document.getElementById('nutrition-servings-input');
   const nutritionDailyInput = document.getElementById('nutrition-daily-kcal');
   const nutritionWeightInput = document.getElementById('nutrition-weight-lb');
   const nutritionMealInputs = {
@@ -663,12 +677,21 @@ function renderRecipe(recipeInput, nutritionPolicy) {
     selectedOptions: {},
     unitSelections: {},
     recipeIndex: recipe.recipeIndex || null,
+    ingredientPortions,
+    ingredientUnitFactors,
     restrictions: {
       gluten_free: compatibilityPossible.gluten_free ? resolveRestriction('gluten_free') : false,
       egg_free: compatibilityPossible.egg_free ? resolveRestriction('egg_free') : false,
       dairy_free: compatibilityPossible.dairy_free ? resolveRestriction('dairy_free') : false,
     },
   };
+
+  if (nutritionCoverageBanner && nutritionCoverage?.missing_count) {
+    nutritionCoverageBanner.hidden = false;
+    nutritionCoverageBanner.textContent =
+      `Nutrition data is still filling in (${nutritionCoverage.missing_count} missing unit matches). ` +
+      'Totals are estimates until coverage is complete.';
+  }
 
   if (multiplierInput) multiplierInput.value = state.multiplier;
 
@@ -715,6 +738,7 @@ function renderRecipe(recipeInput, nutritionPolicy) {
   const nutritionState = {
     settings: nutritionSettings,
     mealType: defaultMealType,
+    servingsOverride: null,
   };
 
   if (nutritionEl) {
@@ -763,18 +787,39 @@ function renderRecipe(recipeInput, nutritionPolicy) {
     if (input) input.addEventListener('input', updateSettingsFromInputs);
   });
 
+  const updateServingsFromInput = () => {
+    if (!nutritionServingsInput) return;
+    const value = Number(nutritionServingsInput.value);
+    nutritionState.servingsOverride = Number.isFinite(value) && value > 0 ? value : null;
+    updateNutritionEstimate();
+  };
+
+  if (nutritionServingsInput) nutritionServingsInput.addEventListener('input', updateServingsFromInput);
+
   const updateNutritionEstimate = () => {
     if (!nutritionEl) return;
     const totals = computeBatchTotals(recipe, state);
+    const coverage = totals.coverage.total
+      ? Math.round((totals.coverage.covered / totals.coverage.total) * 100)
+      : 0;
+    if (nutritionCoverageBadge) {
+      nutritionCoverageBadge.textContent =
+        totals.coverage.total > 0
+          ? `Nutrition coverage: ${totals.coverage.covered}/${totals.coverage.total} (${coverage}%)`
+          : 'Nutrition coverage: —';
+    }
     if (!totals.complete) {
       const batchServings = Number.isFinite(Number(recipe.servings_per_batch))
         ? Number(recipe.servings_per_batch)
         : null;
       if (nutritionWarning) {
-        const coverage = totals.coverage.total
-          ? Math.round((totals.coverage.covered / totals.coverage.total) * 100)
-          : 0;
-        nutritionWarning.textContent = `Nutrition incomplete: ${totals.coverage.covered}/${totals.coverage.total} ingredients (${coverage}%) have nutrition data.`;
+        const missingSummary = (totals.missing_details || [])
+          .map((entry) => `${entry.ingredient_id}${entry.unit ? ` (${entry.unit})` : ''}`)
+          .filter(Boolean);
+        const uniqueMissing = [...new Set(missingSummary)];
+        nutritionWarning.textContent =
+          `Nutrition incomplete: ${totals.coverage.covered}/${totals.coverage.total} ingredients (${coverage}%) have nutrition data.` +
+          (uniqueMissing.length ? ` Missing: ${uniqueMissing.join(', ')}.` : '');
         nutritionWarning.hidden = false;
       }
       if (nutritionDetails) {
@@ -782,6 +827,8 @@ function renderRecipe(recipeInput, nutritionPolicy) {
           ? `Recipe servings (author): ${batchServings}. Nutrition estimate unavailable for this recipe.`
           : 'Nutrition estimate unavailable for this recipe.';
       }
+      if (nutritionServingsLabel) nutritionServingsLabel.textContent = '';
+      if (nutritionServingsInput) nutritionServingsInput.value = '';
       if (nutritionMetrics) nutritionMetrics.innerHTML = '';
       if (nutritionTargets) nutritionTargets.textContent = '';
       return;
@@ -789,15 +836,26 @@ function renderRecipe(recipeInput, nutritionPolicy) {
 
     if (nutritionWarning) nutritionWarning.hidden = true;
 
-    const estimate = estimateServings(totals, nutritionState.settings, nutritionState.mealType, recipe.nutritionPolicy);
-    if (!estimate?.perServing) return;
+    const suggestion = suggestServings(totals, nutritionState.settings, nutritionGuidelines);
+    if (!suggestion?.perServing) return;
+    const suggestedServings = suggestion.suggested_servings;
+    const servingsPerBatch = Number.isFinite(nutritionState.servingsOverride)
+      ? nutritionState.servingsOverride
+      : suggestedServings;
+    const perServingTotals = Number.isFinite(servingsPerBatch) && servingsPerBatch > 0
+      ? scaleNutritionTotals(totals, 1 / servingsPerBatch)
+      : suggestion.perServing;
+
+    if (nutritionServingsInput && !Number.isFinite(nutritionState.servingsOverride)) {
+      nutritionServingsInput.value = Number.isFinite(suggestedServings) ? suggestedServings : '';
+    }
 
     if (nutritionDetails) {
       const batchServings = Number.isFinite(Number(recipe.servings_per_batch))
         ? Number(recipe.servings_per_batch)
-        : estimate.servings_estimate;
+        : suggestedServings;
       const parts = [
-        `Estimated servings per batch (nutrition): ${estimate.servings_estimate}.`,
+        `Suggested servings: ${suggestedServings}.`,
       ];
       if (Number.isFinite(Number(recipe.servings_per_batch))) {
         parts.push(`Recipe servings (author): ${batchServings}.`);
@@ -805,17 +863,22 @@ function renderRecipe(recipeInput, nutritionPolicy) {
       nutritionDetails.textContent = parts.join(' ');
     }
 
+    if (nutritionServingsLabel) {
+      nutritionServingsLabel.textContent =
+        `Servings per batch (editable): ${Number.isFinite(servingsPerBatch) ? servingsPerBatch : '—'}.`;
+    }
+
     if (nutritionMetrics) {
       nutritionMetrics.innerHTML = '';
       const metrics = [
-        ['Calories', `${formatKcal(estimate.perServing.kcal)} kcal`],
-        ['Protein', `${formatNumber(estimate.perServing.protein_g)} g`],
-        ['Fat', `${formatNumber(estimate.perServing.fat_g)} g`],
-        ['Sat fat', `${formatNumber(estimate.perServing.sat_fat_g)} g`],
-        ['Carbs', `${formatNumber(estimate.perServing.carbs_g)} g`],
-        ['Sugars', `${formatNumber(estimate.perServing.sugars_g)} g`],
-        ['Fiber', `${formatNumber(estimate.perServing.fiber_g)} g`],
-        ['Sodium', `${formatNumber(estimate.perServing.sodium_mg, { maximumFractionDigits: 0 })} mg`],
+        ['Calories', `${formatKcal(perServingTotals.kcal)} kcal`],
+        ['Protein', `${formatNumber(perServingTotals.protein_g)} g`],
+        ['Fat', `${formatNumber(perServingTotals.fat_g)} g`],
+        ['Sat fat', `${formatNumber(perServingTotals.sat_fat_g)} g`],
+        ['Carbs', `${formatNumber(perServingTotals.carbs_g)} g`],
+        ['Sugars', `${formatNumber(perServingTotals.sugars_g)} g`],
+        ['Fiber', `${formatNumber(perServingTotals.fiber_g)} g`],
+        ['Sodium', `${formatNumber(perServingTotals.sodium_mg, { maximumFractionDigits: 0 })} mg`],
       ];
       metrics.forEach(([label, value]) => {
         const li = document.createElement('li');
@@ -825,12 +888,11 @@ function renderRecipe(recipeInput, nutritionPolicy) {
     }
 
     if (nutritionTargets) {
-      const targets = estimate.debugTargets || {};
+      const targets = suggestion.targets || deriveServingTargets(nutritionState.settings, nutritionGuidelines);
       nutritionTargets.textContent =
-        `Based on your targets: ~${formatKcal(targets.kcal_target_meal)} kcal per meal, ` +
-        `sodium ≤ ${formatNumber(targets.sodium_limit_meal, { maximumFractionDigits: 0 })} mg per meal, ` +
-        `sat fat ≤ ${formatNumber(targets.sat_fat_limit_g_meal)} g per meal, ` +
-        `fiber ≥ ${formatNumber(targets.fiber_target_g_meal)} g per meal.`;
+        `Based on default targets: ~${formatKcal(targets.calories_kcal)} kcal per meal, ` +
+        `sodium ≤ ${formatNumber(targets.sodium_mg, { maximumFractionDigits: 0 })} mg per meal, ` +
+        `sat fat ≤ ${formatNumber(targets.saturated_fat_g)} g per meal.`;
     }
   };
 
@@ -959,9 +1021,20 @@ async function main() {
     return;
   }
 
-  const [recipesPayload, nutritionPolicy] = await Promise.all([
+  const [
+    recipesPayload,
+    nutritionPolicy,
+    nutritionGuidelines,
+    ingredientPortions,
+    ingredientUnitFactors,
+    nutritionCoverage,
+  ] = await Promise.all([
     loadRecipes(),
     loadNutritionPolicy(),
+    loadNutritionGuidelines(),
+    loadIngredientPortions(),
+    loadIngredientUnitFactors(),
+    loadNutritionCoverage(),
   ]);
   const { recipes, recipeIndex } = recipesPayload;
 
@@ -972,7 +1045,14 @@ async function main() {
   }
 
   recipe.recipeIndex = recipeIndex;
-  renderRecipe(recipe, nutritionPolicy);
+  renderRecipe(
+    recipe,
+    nutritionPolicy,
+    nutritionGuidelines,
+    ingredientPortions,
+    ingredientUnitFactors,
+    nutritionCoverage
+  );
 }
 
 main().catch((err) => {

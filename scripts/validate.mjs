@@ -44,6 +44,59 @@ function parseLine(line) {
   return result;
 }
 
+const UNIT_ALIASES = new Map([
+  ['cloves', 'clove'],
+  ['clove', 'clove'],
+  ['sprigs', 'sprig'],
+  ['sprig', 'sprig'],
+  ['leaves', 'leaf'],
+  ['leaf', 'leaf'],
+  ['pieces', 'count'],
+  ['piece', 'count'],
+  ['packages', 'package'],
+  ['package', 'package'],
+  ['bags', 'bag'],
+  ['bag', 'bag'],
+  ['bunches', 'count'],
+  ['bunch', 'count'],
+  ['cans', 'can'],
+  ['can', 'can'],
+  ['jars', 'jar'],
+  ['jar', 'jar'],
+  ['bottles', 'bottle'],
+  ['bottle', 'bottle'],
+  ['tablespoons', 'tbsp'],
+  ['tablespoon', 'tbsp'],
+  ['teaspoons', 'tsp'],
+  ['teaspoon', 'tsp'],
+  ['cups', 'cup'],
+  ['pints', 'pint'],
+  ['pint', 'pint'],
+  ['quarts', 'quart'],
+  ['quart', 'quart'],
+  ['qt', 'quart'],
+  ['ounces', 'oz'],
+  ['ounce', 'oz'],
+  ['pounds', 'lb'],
+  ['pound', 'lb'],
+  ['liters', 'l'],
+  ['liter', 'l'],
+  ['milliliters', 'ml'],
+  ['milliliter', 'ml'],
+  ['ml', 'ml'],
+  ['l', 'l'],
+  ['medium', 'count'],
+  ['large', 'count'],
+  ['small', 'count'],
+]);
+
+function normalizeUnit(unit) {
+  if (!unit) return null;
+  const cleaned = String(unit).trim().toLowerCase();
+  if (!cleaned) return null;
+  return UNIT_ALIASES.get(cleaned) || cleaned;
+}
+
 function ensureNoExtraColumns(content, filePath, label) {
   const lines = content.replace(/\r\n/g, '\n').split(/\n/).filter((line) => line.trim() !== '');
   if (lines.length === 0) return;
@@ -142,11 +195,10 @@ export async function validateAll() {
     ensure(row.ingredient_id, 'ingredient_catalog.csv missing ingredient_id');
     ensure(
       [
-        'nutrition_unit',
-        'calories_per_unit',
-        'nutrition_source',
-        'nutrition_notes',
+        'serving_qty',
+        'serving_unit_norm',
         'serving_size',
+        'calories_kcal',
         'protein_g',
         'total_fat_g',
         'saturated_fat_g',
@@ -158,14 +210,87 @@ export async function validateAll() {
         'iron_mg',
         'potassium_mg',
         'vitamin_c_mg',
+        'nutrition_source',
+        'nutrition_notes',
+        'unit_factor_from_unit_norm',
+        'unit_factor_to_unit_norm',
+        'unit_factor',
+        'unit_factor_source',
+        'unit_factor_notes',
+        'portion_unit',
+        'portion_grams',
+        'portion_source',
+        'portion_notes',
       ].every((field) => Object.prototype.hasOwnProperty.call(row, field)),
       'ingredient_catalog.csv missing nutrition columns'
     );
+    ensure(row.serving_qty, 'ingredient_catalog.csv missing serving_qty');
+    ensure(row.serving_unit_norm, 'ingredient_catalog.csv missing serving_unit_norm');
     ensure(!ingredientCatalogIds.has(row.ingredient_id), `ingredient_catalog.csv duplicate ingredient_id ${row.ingredient_id}`);
     ingredientCatalogIds.add(row.ingredient_id);
   });
+  const unitFactorFromUnits = new Map();
+  ingredientCatalogRows.forEach((row, idx) => {
+    const numericFields = [
+      'serving_qty',
+      'calories_kcal',
+      'protein_g',
+      'total_fat_g',
+      'saturated_fat_g',
+      'total_carbs_g',
+      'sugars_g',
+      'fiber_g',
+      'sodium_mg',
+      'calcium_mg',
+      'iron_mg',
+      'potassium_mg',
+      'vitamin_c_mg',
+    ];
+    numericFields.forEach((field) => {
+      ensure(
+        Number.isFinite(Number(row[field])),
+        `ingredient_catalog.csv non-numeric ${field} on row ${idx + 2}`
+      );
+    });
+    if (row.portion_unit || row.portion_grams || row.portion_source || row.portion_notes) {
+      ensure(row.portion_unit, `ingredient_catalog.csv missing portion_unit on row ${idx + 2}`);
+      ensure(row.portion_grams, `ingredient_catalog.csv missing portion_grams on row ${idx + 2}`);
+      ensure(Number.isFinite(Number(row.portion_grams)), `ingredient_catalog.csv non-numeric portion_grams on row ${idx + 2}`);
+    }
+    if (
+      row.unit_factor_from_unit_norm ||
+      row.unit_factor_to_unit_norm ||
+      row.unit_factor ||
+      row.unit_factor_source ||
+      row.unit_factor_notes
+    ) {
+      ensure(row.unit_factor_from_unit_norm, `ingredient_catalog.csv missing unit_factor_from_unit_norm on row ${idx + 2}`);
+      ensure(row.unit_factor_to_unit_norm, `ingredient_catalog.csv missing unit_factor_to_unit_norm on row ${idx + 2}`);
+      ensure(row.unit_factor, `ingredient_catalog.csv missing unit_factor on row ${idx + 2}`);
+      ensure(
+        Number.isFinite(Number(row.unit_factor)),
+        `ingredient_catalog.csv non-numeric unit_factor on row ${idx + 2}`
+      );
+      const fromUnit = normalizeUnit(row.unit_factor_from_unit_norm);
+      if (!unitFactorFromUnits.has(row.ingredient_id)) {
+        unitFactorFromUnits.set(row.ingredient_id, new Set());
+      }
+      if (fromUnit) unitFactorFromUnits.get(row.ingredient_id).add(fromUnit);
+    }
+  });
+
+  const produceHerbPattern =
+    /(basil|parsley|cilantro|coriander|thyme|rosemary|oregano|sage|dill|mint|chive|bay|garlic|onion|shallot|leek|scallion|carrot|celery|pepper|potato|tomato|squash|zucchini|cucumber|lettuce|spinach|kale|cabbage|broccoli|cauliflower|mushroom|lemon|lime|orange|apple|pear|banana|berry|herb)/;
+  const produceHerbIds = new Set();
+  ingredientCatalogRows.forEach((row) => {
+    const name = `${row.canonical_name || ''} ${row.ingredient_id || ''}`.toLowerCase();
+    if (produceHerbPattern.test(name)) {
+      produceHerbIds.add(row.ingredient_id);
+    }
+  });
   const panCatalog = loadPanCatalog(path.join(process.cwd(), 'data', 'pan-sizes.json'));
   const ratioPattern = /^\d+(?: \d+\/\d+|\/\d+)?$/;
+  const unitLintWarnings = [];
 
   for (const dirEnt of recipeDirs) {
     const recipeId = dirEnt.name;
@@ -252,6 +377,17 @@ export async function validateAll() {
         displayEntry.options.add(row.option);
       }
       ensure(stepTokenSet.has(token), `${recipeId}: ingredient token ${token} not found in steps`);
+      const normalizedUnit = normalizeUnit(row.unit);
+      const disallowedUnits = new Set(['sprig', 'bunch', 'medium', 'large', 'piece']);
+      if (normalizedUnit && disallowedUnits.has(normalizedUnit) && produceHerbIds.has(row.ingredient_id)) {
+        const allowedUnits = unitFactorFromUnits.get(row.ingredient_id) || new Set();
+        if (!allowedUnits.has(normalizedUnit)) {
+          unitLintWarnings.push(
+            `${recipeId}: ${row.ingredient_id} uses "${row.unit}" (token ${token}). ` +
+            'Prefer mass/volume units for produce/herbs or add an explicit unit factor.'
+          );
+        }
+      }
     }
 
     const ingredientTokenSet = new Set([...tokenOptions.keys()]);
@@ -311,6 +447,10 @@ export async function validateAll() {
 
       ensure(defaultCount === 1, `${recipeId}: pans.csv must mark exactly one default pan`);
     }
+  }
+
+  if (unitLintWarnings.length) {
+    unitLintWarnings.forEach((warning) => console.warn(`Unit lint: ${warning}`));
   }
 
   return true;

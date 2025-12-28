@@ -1,4 +1,10 @@
-import { convertUnitAmount, getEffectiveMultiplier, parseRatio, selectOptionForToken } from './recipe-utils.js';
+import {
+  convertUnitAmount,
+  getEffectiveMultiplier,
+  parseRatio,
+  selectOptionForToken,
+  unitDefinition,
+} from './recipe-utils.js';
 
 const SETTINGS_KEY = 'cookingdb-nutrition-settings';
 
@@ -26,17 +32,63 @@ const DEFAULT_POLICY = {
   },
 };
 
+const DEFAULT_GUIDELINES = {
+  daily_calories_default: 2000,
+  meals_per_day_default: 3,
+  daily_sodium_mg_default: 2300,
+  daily_saturated_fat_g_default: 20,
+  serving_targets: {
+    calories_kcal: 'daily_calories_default / meals_per_day_default',
+    sodium_mg: 'daily_sodium_mg_default / meals_per_day_default',
+    saturated_fat_g: 'daily_saturated_fat_g_default / meals_per_day_default',
+  },
+};
+
 const UNIT_ALIASES = new Map([
   ['cloves', 'clove'],
-  ['medium', 'count'],
-  ['large', 'count'],
-  ['small', 'count'],
-  ['piece', 'count'],
-  ['package', 'count'],
-  ['bag', 'count'],
-  ['bunch', 'count'],
-  ['sprig', 'count'],
-  ['can', 'count'],
+  ['clove', 'clove'],
+  ['sprigs', 'sprig'],
+  ['sprig', 'sprig'],
+  ['leaves', 'leaf'],
+  ['leaf', 'leaf'],
+  ['pieces', 'piece'],
+  ['piece', 'piece'],
+  ['packages', 'package'],
+  ['package', 'package'],
+  ['bags', 'bag'],
+  ['bag', 'bag'],
+  ['bunches', 'bunch'],
+  ['bunch', 'bunch'],
+  ['cans', 'can'],
+  ['can', 'can'],
+  ['jars', 'jar'],
+  ['jar', 'jar'],
+  ['bottles', 'bottle'],
+  ['bottle', 'bottle'],
+  ['fl oz', 'fl_oz'],
+  ['fl-oz', 'fl_oz'],
+  ['fluid ounce', 'fl_oz'],
+  ['fluid ounces', 'fl_oz'],
+  ['tablespoons', 'tbsp'],
+  ['tablespoon', 'tbsp'],
+  ['teaspoons', 'tsp'],
+  ['teaspoon', 'tsp'],
+  ['cups', 'cup'],
+  ['pints', 'pint'],
+  ['pint', 'pint'],
+  ['quarts', 'quart'],
+  ['quart', 'quart'],
+  ['qt', 'quart'],
+  ['ounces', 'oz'],
+  ['ounce', 'oz'],
+  ['pounds', 'lb'],
+  ['pound', 'lb'],
+  ['liters', 'l'],
+  ['liter', 'l'],
+  ['milliliters', 'ml'],
+  ['milliliter', 'ml'],
+  ['ml', 'ml'],
+  ['l', 'l'],
   ['dash', 'tsp'],
   ['drop', 'tsp'],
 ]);
@@ -88,6 +140,89 @@ export async function loadNutritionPolicy() {
   }
 
   return DEFAULT_POLICY;
+}
+
+export async function loadNutritionGuidelines() {
+  try {
+    const res = await fetch('./built/nutrition-guidelines.json');
+    if (res.ok) {
+      const parsed = await res.json();
+      return { ...DEFAULT_GUIDELINES, ...(parsed || {}) };
+    }
+  } catch (err) {
+    console.warn('Unable to load nutrition guidelines', err);
+  }
+  return DEFAULT_GUIDELINES;
+}
+
+export async function loadIngredientPortions() {
+  try {
+    const res = await fetch('./built/ingredient-portions.json');
+    if (res.ok) {
+      const parsed = await res.json();
+      const map = new Map();
+      parsed.forEach((entry) => {
+        if (!entry?.ingredient_id || !entry?.unit) return;
+        const normalizedUnit = normalizeUnit(entry.unit);
+        if (!normalizedUnit) return;
+        const grams = Number(entry.grams);
+        if (!Number.isFinite(grams)) return;
+        map.set(`${entry.ingredient_id}::${normalizedUnit}`, {
+          ingredient_id: entry.ingredient_id,
+          unit: normalizedUnit,
+          grams,
+          source: entry.source || '',
+          notes: entry.notes || '',
+        });
+      });
+      return map;
+    }
+  } catch (err) {
+    console.warn('Unable to load ingredient portions', err);
+  }
+  return new Map();
+}
+
+export async function loadIngredientUnitFactors() {
+  try {
+    const res = await fetch('./built/ingredient-unit-factors.json');
+    if (res.ok) {
+      const parsed = await res.json();
+      const map = new Map();
+      parsed.forEach((entry) => {
+        if (!entry?.ingredient_id) return;
+        const fromUnit = normalizeUnit(entry.from_unit_norm);
+        const toUnit = normalizeUnit(entry.to_unit_norm);
+        const factor = Number(entry.factor);
+        if (!fromUnit || !toUnit || !Number.isFinite(factor)) return;
+        if (!map.has(entry.ingredient_id)) map.set(entry.ingredient_id, []);
+        map.get(entry.ingredient_id).push({
+          ingredient_id: entry.ingredient_id,
+          from_unit_norm: fromUnit,
+          to_unit_norm: toUnit,
+          factor,
+          source: entry.source || '',
+          notes: entry.notes || '',
+        });
+      });
+      return map;
+    }
+  } catch (err) {
+    console.warn('Unable to load ingredient unit factors', err);
+  }
+  return new Map();
+}
+
+export async function loadNutritionCoverage() {
+  try {
+    const res = await fetch('./built/nutrition-coverage.json');
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (err) {
+    console.warn('Unable to load nutrition coverage', err);
+  }
+  return { missing_count: null, strict: false };
 }
 
 export function normalizeMealFractions(fractions, policy = DEFAULT_POLICY) {
@@ -168,6 +303,64 @@ function ratioToNumber(ratio) {
   return Number.isFinite(value) ? value : null;
 }
 
+function selectNutritionVariant(variants, normalizedUnit, amount) {
+  if (!Array.isArray(variants) || variants.length === 0) {
+    return { variant: null, convertedAmount: null, convertible: false };
+  }
+  const exact = variants.find((entry) => entry?.serving_unit_norm === normalizedUnit);
+  if (exact) return { variant: exact, convertedAmount: amount, convertible: true };
+
+  for (const entry of variants) {
+    const servingUnit = entry?.serving_unit_norm;
+    if (!servingUnit) continue;
+    const conversion = convertUnitAmount(amount, normalizedUnit, servingUnit);
+    if (conversion && Number.isFinite(conversion.amount)) {
+      return { variant: entry, convertedAmount: conversion.amount, convertible: true };
+    }
+  }
+
+  return { variant: null, convertedAmount: null, convertible: false };
+}
+
+function selectVariantWithFactor(ingredientId, amount, normalizedUnit, variants, unitFactors) {
+  if (!ingredientId || !unitFactors) return null;
+  const factors = unitFactors.get(ingredientId) || [];
+  for (const factor of factors) {
+    let bridgedAmount = null;
+    if (normalizedUnit === factor.from_unit_norm) {
+      bridgedAmount = amount * factor.factor;
+    } else {
+      const fromConversion = convertUnitAmount(amount, normalizedUnit, factor.from_unit_norm);
+      if (!fromConversion || !Number.isFinite(fromConversion.amount)) continue;
+      bridgedAmount = fromConversion.amount * factor.factor;
+    }
+    const match = selectNutritionVariant(variants, factor.to_unit_norm, bridgedAmount);
+    if (match?.variant && Number.isFinite(match.convertedAmount)) {
+      return { variant: match.variant, convertedAmount: match.convertedAmount, bridge: factor };
+    }
+  }
+  return null;
+}
+
+function hasNumericNutrients(variant) {
+  if (!variant) return false;
+  const required = [
+    variant.calories_kcal,
+    variant.protein_g,
+    variant.total_fat_g,
+    variant.saturated_fat_g,
+    variant.total_carbs_g,
+    variant.sugars_g,
+    variant.fiber_g,
+    variant.sodium_mg,
+    variant.calcium_mg,
+    variant.iron_mg,
+    variant.potassium_mg,
+    variant.vitamin_c_mg,
+  ];
+  return required.every((value) => Number.isFinite(value));
+}
+
 export function computeBatchTotals(recipe, state) {
   const totals = {
     kcal: 0,
@@ -178,9 +371,13 @@ export function computeBatchTotals(recipe, state) {
     sugars_g: 0,
     fiber_g: 0,
     sodium_mg: 0,
+    calcium_mg: 0,
+    iron_mg: 0,
+    potassium_mg: 0,
+    vitamin_c_mg: 0,
     added_sugar_g: null,
-    grams_total: 0,
     coverage: { covered: 0, total: 0 },
+    missing_details: [],
     missing: false,
   };
 
@@ -188,7 +385,6 @@ export function computeBatchTotals(recipe, state) {
   const tokens = recipe?.token_order || Object.keys(recipe?.ingredients || {});
 
   let hasAddedSugar = false;
-  let gramsCovered = 0;
 
   tokens.forEach((token) => {
     const tokenData = recipe.ingredients?.[token];
@@ -199,77 +395,139 @@ export function computeBatchTotals(recipe, state) {
     const amount = ratioToNumber(option.ratio);
     if (!Number.isFinite(amount)) return;
 
-    const nutrition = option.nutrition || null;
-    const nutritionUnit = normalizeUnit(nutrition?.unit);
-    const inputUnit = normalizeUnit(option.unit);
+    const scaledAmount = amount * multiplier;
+    const nutritionVariants = Array.isArray(option.nutrition) ? option.nutrition : (option.nutrition ? [option.nutrition] : []);
+    const unitFactors = state?.ingredientUnitFactors || null;
+    const selectedUnit = state?.unitSelections?.[token] || option.unit;
+    const normalizedUnit = normalizeUnit(selectedUnit);
 
     totals.coverage.total += 1;
 
-    if (!nutrition || !nutritionUnit || !inputUnit) {
-      totals.missing = true;
-      return;
-    }
-
-    const scaledAmount = amount * multiplier;
-    let converted = convertUnitAmount(scaledAmount, inputUnit, nutritionUnit);
-    if (!converted && state?.unitSelections?.[token]) {
-      const altUnit = normalizeUnit(state.unitSelections[token]);
-      if (altUnit) {
-        converted = convertUnitAmount(scaledAmount, altUnit, nutritionUnit);
+    if (normalizedUnit === 'recipe' && state?.recipeIndex?.has(option.ingredient_id)) {
+      const referenced = state.recipeIndex.get(option.ingredient_id);
+      const stack = state.recipeStack || new Set();
+      if (stack.has(option.ingredient_id)) {
+        totals.missing = true;
+        totals.missing_details.push({
+          ingredient_id: option.ingredient_id,
+          unit: normalizedUnit,
+          reason: 'recipe-reference-needed',
+        });
+        return;
       }
+      const nextStack = new Set(stack);
+      nextStack.add(option.ingredient_id);
+      const referenceState = {
+        ...state,
+        recipeStack: nextStack,
+      };
+      const referenceTotals = computeBatchTotals(referenced, referenceState);
+      if (!referenceTotals.complete) {
+        totals.missing = true;
+        totals.missing_details.push({
+          ingredient_id: option.ingredient_id,
+          unit: normalizedUnit,
+          reason: 'recipe-reference-needed',
+        });
+        return;
+      }
+      totals.coverage.covered += 1;
+      const factor = scaledAmount;
+      totals.kcal += referenceTotals.kcal * factor;
+      totals.protein_g += referenceTotals.protein_g * factor;
+      totals.fat_g += referenceTotals.fat_g * factor;
+      totals.sat_fat_g += referenceTotals.sat_fat_g * factor;
+      totals.carbs_g += referenceTotals.carbs_g * factor;
+      totals.sugars_g += referenceTotals.sugars_g * factor;
+      totals.fiber_g += referenceTotals.fiber_g * factor;
+      totals.sodium_mg += referenceTotals.sodium_mg * factor;
+      totals.calcium_mg += referenceTotals.calcium_mg * factor;
+      totals.iron_mg += referenceTotals.iron_mg * factor;
+      totals.potassium_mg += referenceTotals.potassium_mg * factor;
+      totals.vitamin_c_mg += referenceTotals.vitamin_c_mg * factor;
+      if (Number.isFinite(referenceTotals.added_sugar_g)) {
+        totals.added_sugar_g = (totals.added_sugar_g || 0) + referenceTotals.added_sugar_g * factor;
+        hasAddedSugar = true;
+      }
+      return;
     }
-
-    if (!converted) {
+    if (normalizedUnit === 'recipe') {
       totals.missing = true;
+      totals.missing_details.push({
+        ingredient_id: option.ingredient_id,
+        unit: normalizedUnit,
+        reason: 'recipe-reference-needed',
+      });
       return;
     }
 
-    const requiredFields = [
-      nutrition.calories_per_unit,
-      nutrition.protein_g,
-      nutrition.total_fat_g,
-      nutrition.saturated_fat_g,
-      nutrition.total_carbs_g,
-      nutrition.sugars_g,
-      nutrition.fiber_g,
-      nutrition.sodium_mg,
-    ];
+    const { variant, convertedAmount } = selectNutritionVariant(
+      nutritionVariants,
+      normalizedUnit,
+      scaledAmount
+    );
+    let selectedVariant = variant;
+    let selectedAmount = convertedAmount;
+    if (!selectedVariant) {
+      const factorMatch = selectVariantWithFactor(
+        option.ingredient_id,
+        scaledAmount,
+        normalizedUnit,
+        nutritionVariants,
+        unitFactors
+      );
+      selectedVariant = factorMatch?.variant || null;
+      selectedAmount = factorMatch?.convertedAmount ?? null;
+    }
 
-    if (requiredFields.some((value) => !Number.isFinite(value))) {
+    if (!selectedVariant || !Number.isFinite(selectedAmount)) {
       totals.missing = true;
+      const unitGroup = normalizedUnit ? unitDefinition(normalizedUnit)?.group : null;
+      const hasSameGroup = nutritionVariants.some((entry) => {
+        const servingGroup = unitDefinition(entry?.serving_unit_norm)?.group;
+        return servingGroup && unitGroup && servingGroup === unitGroup;
+      });
+      totals.missing_details.push({
+        ingredient_id: option.ingredient_id,
+        unit: normalizedUnit || selectedUnit,
+        reason: normalizedUnit === 'recipe'
+          ? 'recipe-reference-needed'
+          : (nutritionVariants.length === 0 ? 'missing-nutrition-row'
+            : (hasSameGroup ? 'no-convertible-variant' : 'missing-cross-factor')),
+      });
+      return;
+    }
+
+    if (!hasNumericNutrients(selectedVariant)) {
+      totals.missing = true;
+      totals.missing_details.push({
+        ingredient_id: option.ingredient_id,
+        unit: normalizedUnit || selectedUnit,
+        reason: 'non-numeric-fields',
+      });
       return;
     }
 
     totals.coverage.covered += 1;
 
-    const units = converted.amount;
-    totals.kcal += units * nutrition.calories_per_unit;
-    totals.protein_g += units * nutrition.protein_g;
-    totals.fat_g += units * nutrition.total_fat_g;
-    totals.sat_fat_g += units * nutrition.saturated_fat_g;
-    totals.carbs_g += units * nutrition.total_carbs_g;
-    totals.sugars_g += units * nutrition.sugars_g;
-    totals.fiber_g += units * nutrition.fiber_g;
-    totals.sodium_mg += units * nutrition.sodium_mg;
-
-    if (Number.isFinite(nutrition.added_sugar_g)) {
-      totals.added_sugar_g = (totals.added_sugar_g || 0) + units * nutrition.added_sugar_g;
-      hasAddedSugar = true;
-    }
-
-    const grams = convertUnitAmount(scaledAmount, inputUnit, 'g');
-    if (grams && Number.isFinite(grams.amount)) {
-      totals.grams_total += grams.amount;
-      gramsCovered += 1;
-    }
+    const servingQty = Number.isFinite(selectedVariant.serving_qty) ? selectedVariant.serving_qty : 1;
+    const servingMultiplier = servingQty ? selectedAmount / servingQty : 0;
+    totals.kcal += servingMultiplier * selectedVariant.calories_kcal;
+    totals.protein_g += servingMultiplier * selectedVariant.protein_g;
+    totals.fat_g += servingMultiplier * selectedVariant.total_fat_g;
+    totals.sat_fat_g += servingMultiplier * selectedVariant.saturated_fat_g;
+    totals.carbs_g += servingMultiplier * selectedVariant.total_carbs_g;
+    totals.sugars_g += servingMultiplier * selectedVariant.sugars_g;
+    totals.fiber_g += servingMultiplier * selectedVariant.fiber_g;
+    totals.sodium_mg += servingMultiplier * selectedVariant.sodium_mg;
+    totals.calcium_mg += servingMultiplier * selectedVariant.calcium_mg;
+    totals.iron_mg += servingMultiplier * selectedVariant.iron_mg;
+    totals.potassium_mg += servingMultiplier * selectedVariant.potassium_mg;
+    totals.vitamin_c_mg += servingMultiplier * selectedVariant.vitamin_c_mg;
   });
 
   if (!hasAddedSugar) {
     totals.added_sugar_g = null;
-  }
-
-  if (!gramsCovered) {
-    totals.grams_total = null;
   }
 
   return { ...totals, complete: !totals.missing && totals.coverage.total > 0 };
@@ -286,67 +544,54 @@ function scaleTotals(totals, factor) {
     sugars_g: totals.sugars_g * factor,
     fiber_g: totals.fiber_g * factor,
     sodium_mg: totals.sodium_mg * factor,
-    grams_total: totals.grams_total === null ? null : totals.grams_total * factor,
+    calcium_mg: totals.calcium_mg * factor,
+    iron_mg: totals.iron_mg * factor,
+    potassium_mg: totals.potassium_mg * factor,
+    vitamin_c_mg: totals.vitamin_c_mg * factor,
     added_sugar_g: totals.added_sugar_g === null ? null : totals.added_sugar_g * factor,
   };
   return scaled;
 }
 
-export function estimateServings(totals, settings, mealType, policy = DEFAULT_POLICY) {
-  if (!totals || !totals.complete) {
-    return { servings_estimate: null, perServing: null, batchTotals: totals, debugTargets: null };
-  }
-
-  const fractions = normalizeMealFractions(settings?.meal_fractions, policy);
-  const fallbackFraction = 1 / (policy.default_meals_per_day || DEFAULT_POLICY.default_meals_per_day);
-  const mealFraction = Number.isFinite(fractions?.[mealType]) ? fractions[mealType] : fallbackFraction;
-
-  const dailyKcal = coerceNumber(settings?.daily_kcal) || policy.default_daily_kcal || DEFAULT_POLICY.default_daily_kcal;
-  const sodiumLimitMeal = (policy.sodium_day_max_mg || DEFAULT_POLICY.sodium_day_max_mg) * mealFraction;
-  const kcalTargetMeal = dailyKcal * mealFraction;
-  const satFatLimitMeal = (kcalTargetMeal * (policy.sat_fat_max_pct_kcal || DEFAULT_POLICY.sat_fat_max_pct_kcal)) / 9;
-  const addedSugarLimitMeal = (kcalTargetMeal * (policy.added_sugar_max_pct_kcal || DEFAULT_POLICY.added_sugar_max_pct_kcal)) / 4;
-  const fiberTargetMeal =
-    (kcalTargetMeal / 1000) * (policy.fiber_g_per_1000_kcal_min || DEFAULT_POLICY.fiber_g_per_1000_kcal_min);
-  const weightKg = settings?.weight_lb ? settings.weight_lb / 2.20462 : null;
-  const proteinFloorMeal = weightKg
-    ? weightKg * (policy.protein_rda_g_per_kg_day || DEFAULT_POLICY.protein_rda_g_per_kg_day) * mealFraction
-    : 0;
-
-  const weights = policy.weights || DEFAULT_POLICY.weights;
-  let best = { servings: 1, penalty: Number.POSITIVE_INFINITY, perServing: null };
-
-  for (let servings = 1; servings <= 20; servings += 1) {
-    const perServing = scaleTotals(totals, 1 / servings);
-    const penalty =
-      (weights.calories || 0) * Math.abs(perServing.kcal - kcalTargetMeal) +
-      (weights.sodium || 0) * Math.max(0, perServing.sodium_mg - sodiumLimitMeal) +
-      (weights.sat_fat || 0) * Math.max(0, perServing.sat_fat_g - satFatLimitMeal) +
-      (weights.fiber || 0) * Math.max(0, fiberTargetMeal - perServing.fiber_g) +
-      (weights.protein || 0) * Math.max(0, proteinFloorMeal - perServing.protein_g);
-
-    const penaltyWithSugar = Number.isFinite(perServing.added_sugar_g)
-      ? penalty + (weights.added_sugar || 0) * Math.max(0, perServing.added_sugar_g - addedSugarLimitMeal)
-      : penalty;
-
-    if (penaltyWithSugar < best.penalty) {
-      best = { servings, penalty: penaltyWithSugar, perServing };
-    }
-  }
-
+export function deriveServingTargets(settings, guidelines = DEFAULT_GUIDELINES) {
+  const dailyCalories = coerceNumber(settings?.daily_kcal)
+    || coerceNumber(guidelines?.daily_calories_default)
+    || DEFAULT_GUIDELINES.daily_calories_default;
+  const mealsPerDay = coerceNumber(guidelines?.meals_per_day_default)
+    || DEFAULT_GUIDELINES.meals_per_day_default;
+  const sodiumDaily = coerceNumber(guidelines?.daily_sodium_mg_default)
+    || DEFAULT_GUIDELINES.daily_sodium_mg_default;
+  const satFatDaily = coerceNumber(guidelines?.daily_saturated_fat_g_default)
+    || DEFAULT_GUIDELINES.daily_saturated_fat_g_default;
+  const meals = mealsPerDay > 0 ? mealsPerDay : DEFAULT_GUIDELINES.meals_per_day_default;
   return {
-    servings_estimate: best.servings,
-    perServing: best.perServing,
+    calories_kcal: dailyCalories / meals,
+    sodium_mg: sodiumDaily / meals,
+    saturated_fat_g: satFatDaily / meals,
+  };
+}
+
+export function suggestServings(totals, settings, guidelines = DEFAULT_GUIDELINES) {
+  if (!totals || !totals.complete) {
+    return { suggested_servings: null, perServing: null, batchTotals: totals, targets: null };
+  }
+  const targets = deriveServingTargets(settings, guidelines);
+  const candidates = [];
+  if (Number.isFinite(totals.kcal) && Number.isFinite(targets.calories_kcal)) {
+    candidates.push(Math.ceil(totals.kcal / targets.calories_kcal));
+  }
+  if (Number.isFinite(totals.sodium_mg) && totals.sodium_mg > 0 && Number.isFinite(targets.sodium_mg)) {
+    candidates.push(Math.ceil(totals.sodium_mg / targets.sodium_mg));
+  }
+  if (Number.isFinite(totals.sat_fat_g) && totals.sat_fat_g > 0 && Number.isFinite(targets.saturated_fat_g)) {
+    candidates.push(Math.ceil(totals.sat_fat_g / targets.saturated_fat_g));
+  }
+  const servings = Math.max(1, ...candidates.filter((value) => Number.isFinite(value) && value > 0));
+  return {
+    suggested_servings: servings,
+    perServing: scaleTotals(totals, 1 / servings),
     batchTotals: totals,
-    debugTargets: {
-      meal_fraction: mealFraction,
-      kcal_target_meal: kcalTargetMeal,
-      sodium_limit_meal: sodiumLimitMeal,
-      sat_fat_limit_g_meal: satFatLimitMeal,
-      added_sugar_limit_g_meal: addedSugarLimitMeal,
-      fiber_target_g_meal: fiberTargetMeal,
-      protein_floor_g_meal: proteinFloorMeal,
-    },
+    targets,
   };
 }
 
