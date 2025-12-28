@@ -271,6 +271,13 @@ const UNIT_ALIASES = new Map([
   ['milliliter', 'ml'],
   ['ml', 'ml'],
   ['l', 'l'],
+  ['medium', 'count'],
+  ['large', 'count'],
+  ['small', 'count'],
+  ['piece', 'count'],
+  ['pieces', 'count'],
+  ['bunch', 'count'],
+  ['bunches', 'count'],
   ['dash', 'tsp'],
   ['drop', 'tsp'],
 ]);

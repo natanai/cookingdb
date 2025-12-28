@@ -12,19 +12,14 @@
     "family": "",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 786,
-      "calories_per_serving": 393,
+      "calories_total": 898,
+      "calories_per_serving": 449,
       "servings_estimate": 2,
-      "covered_ingredients": 6,
+      "covered_ingredients": 7,
       "total_ingredients": 7,
-      "coverage_ratio": 0.8571428571428571,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "sweet-potato",
-          "unit": "medium"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Heat {{olive_oil}} in a large skillet or Dutch oven over medium heat.\n2. Add {{ground_turkey}} and {{garlic}}. Cook\n3. Add {{sweet_potato}} and {{sea_salt}} to the skillet. Cook for 6–8 minutes\n4. Stir in {{kale}} and cook until tender\n5. Return the turkey to the skillet and cook for 3–4 minutes to heat through.\n6. Garnish with {{thyme}} and serve.",
     "steps": [
@@ -221,12 +216,12 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 103,
-                "protein_g": 2.3,
-                "total_fat_g": 0.2,
+                "calories_kcal": 112,
+                "protein_g": 2,
+                "total_fat_g": 0.1,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 24,
-                "sugars_g": 7,
+                "total_carbs_g": 26,
+                "sugars_g": 5,
                 "fiber_g": 4,
                 "sodium_mg": 41,
                 "calcium_mg": 0,
@@ -234,7 +229,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (med. sweet potato)",
-                "notes": "Per 1 medium (130g)."
+                "notes": "Per 1 medium baked sweet potato (130g)."
               }
             ]
           }
@@ -392,23 +387,14 @@
     "family": "",
     "notes": "Use a 3–4 lb brisket. This braise layers apple cider with broth and root vegetables.",
     "nutrition_estimate": {
-      "calories_total": 4328,
-      "calories_per_serving": 254.58823529411765,
+      "calories_total": 5231.6,
+      "calories_per_serving": 307.74117647058824,
       "servings_estimate": 17,
-      "covered_ingredients": 10,
+      "covered_ingredients": 12,
       "total_ingredients": 12,
-      "coverage_ratio": 0.8333333333333334,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "baby-potatoes",
-          "unit": "lb"
-        },
-        {
-          "ingredient_id": "thyme",
-          "unit": "sprig"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Preheat the oven to 325°F (163°C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}.\n2. In a large Dutch oven over medium-high heat, heat {{neutral_oil}}. Sear the {{brisket}}, turning occasionally, until browned, about 5 minutes per side. Transfer to a large baking dish or plate.\n3. Reduce heat to medium. In the same pot, arrange {{baby_potatoes}} cut side down and cook undisturbed until lightly softened, about 5 minutes. Add {{carrots}} and {{shallots}}, season with more {{kosher_salt}} and {{black_pepper}}, and stir to release the potatoes.\n4. Return {{brisket}} and any accumulated juices to the pot. Pour in {{apple_cider}} and {{broth_choice}}, then add {{thyme}}, {{bay_leaves}}, and {{cayenne}}. Season to taste with {{kosher_salt}} and {{black_pepper}}, cover, and bring to a boil.\n5. Once boiling, transfer the covered pot to the oven and roast until the brisket is easily shreddable, 2 1/2 to 3 hours.\n6. Discard {{thyme}} and {{bay_leaves}}. Shred {{brisket}} with two forks. Arrange the meat on a platter with the vegetables and spoon the cooking juices over the top.",
     "steps": [
@@ -666,20 +652,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 26,
-                "protein_g": 0.6,
+                "calories_kcal": 40,
+                "protein_g": 1,
                 "total_fat_g": 0,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 6,
-                "sugars_g": 0,
+                "total_carbs_g": 9,
+                "sugars_g": 1,
                 "fiber_g": 1,
                 "sodium_mg": 0,
                 "calcium_mg": 0,
                 "iron_mg": 0,
-                "potassium_mg": 0,
+                "potassium_mg": 210,
                 "vitamin_c_mg": 0,
                 "source": "Fitia (baby potato)",
-                "notes": "Per 1 small (30g)."
+                "notes": "Per 1 small potato (50g), raw with skin."
               }
             ]
           }
@@ -709,12 +695,12 @@
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
                 "calories_kcal": 25,
-                "protein_g": 0.5,
+                "protein_g": 0.6,
                 "total_fat_g": 0.1,
                 "saturated_fat_g": 0,
                 "total_carbs_g": 6,
                 "sugars_g": 2.9,
-                "fiber_g": 1.5,
+                "fiber_g": 1.7,
                 "sodium_mg": 42,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -1047,19 +1033,14 @@
     "family": "",
     "notes": "Sweet potato casserole baked until the brown sugar glaze is sticky.",
     "nutrition_estimate": {
-      "calories_total": 1225.4791666666665,
-      "calories_per_serving": 245.0958333333333,
+      "calories_total": 1709.319166666667,
+      "calories_per_serving": 341.8638333333334,
       "servings_estimate": 5,
-      "covered_ingredients": 4,
+      "covered_ingredients": 5,
       "total_ingredients": 5,
-      "coverage_ratio": 0.8,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "sweet-potato",
-          "unit": "cup"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Preheat the oven to 350°F (177°C). Peel and cut {{sweet_potatoes}}.\n2. Boil {{sweet_potatoes}} in salted water until almost tender, then drain well.\n3. Spread {{sweet_potatoes}} in a greased casserole dish. Sprinkle with {{salt}}, {{brown_sugar}}, and {{flour}}, then pour {{cream}} over the top.\n4. Bake for 20–30 minutes, or until the sauce is sticky and bubbling around the edges.",
     "steps": [
@@ -1120,12 +1101,12 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 103,
-                "protein_g": 2.3,
-                "total_fat_g": 0.2,
+                "calories_kcal": 112,
+                "protein_g": 2,
+                "total_fat_g": 0.1,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 24,
-                "sugars_g": 7,
+                "total_carbs_g": 26,
+                "sugars_g": 5,
                 "fiber_g": 4,
                 "sodium_mg": 41,
                 "calcium_mg": 0,
@@ -1133,7 +1114,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (med. sweet potato)",
-                "notes": "Per 1 medium (130g)."
+                "notes": "Per 1 medium baked sweet potato (130g)."
               }
             ]
           }
@@ -1740,19 +1721,14 @@
     "family": "",
     "notes": "Includes gluten-free and dairy/egg alternatives. Makes enough dough to divide into 3 portions (for 3 small coffee cakes) or about 18–24 small rolls.",
     "nutrition_estimate": {
-      "calories_total": 2582.9,
-      "calories_per_serving": 368.9857142857143,
+      "calories_total": 2605.67,
+      "calories_per_serving": 372.23857142857145,
       "servings_estimate": 7,
-      "covered_ingredients": 9,
+      "covered_ingredients": 10,
       "total_ingredients": 10,
-      "coverage_ratio": 0.9,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "active-dry-yeast",
-          "unit": "tsp"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. In a large bowl, stir together {{milk}} and {{sugar}}. Sprinkle in {{yeast}} and let sit 5–10 minutes until foamy.\n2. Stir in {{fat}} and {{egg_style}}, then add {{salt}}.\n3. Add {{flour_base}} and mix until a soft dough forms. If using the gluten-free option, add {{psyllium}}, {{baking_powder}}, and {{xanthan}} (if needed for your blend) and mix 2–3 minutes until thick and smooth; if it’s dry/crumbly, add 1–2 Tbsp warm water; if it’s soupy, add 1–2 Tbsp flour blend.\n4. If using wheat flour, knead 6–8 minutes (by hand or mixer with dough hook) until smooth and elastic. Gluten-free dough is a thick batter and is not kneaded.\n5. Place dough in a lightly greased bowl, cover, and let rise until doubled (about 60–90 minutes for wheat, 45–75 minutes for gluten-free).\n6. Use immediately for rolls or coffee cake. If making rolls: shape, let rise again 30–45 minutes (skip long second rise for gluten-free), then bake at 375°F until golden.",
     "steps": [
@@ -1832,7 +1808,7 @@
                 "calories_kcal": 150,
                 "protein_g": 8,
                 "total_fat_g": 8,
-                "saturated_fat_g": 5,
+                "saturated_fat_g": 4.5,
                 "total_carbs_g": 12,
                 "sugars_g": 12,
                 "fiber_g": 0,
@@ -2470,19 +2446,14 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 1589.5,
-      "calories_per_serving": 132.45833333333334,
-      "servings_estimate": 12,
-      "covered_ingredients": 6,
+      "calories_total": 4949.5,
+      "calories_per_serving": 380.7307692307692,
+      "servings_estimate": 13,
+      "covered_ingredients": 7,
       "total_ingredients": 7,
-      "coverage_ratio": 0.8571428571428571,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "egg-noodles",
-          "unit": "lb"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Combine {{stew_beef}}, {{bouillon}}, and enough {{water}} to cover in a pot. Season with {{salt}}, {{black_pepper}}, and {{onion_flakes}} if using. Simmer about 2 hours until tender.\n2. Add {{egg_noodles}} and enough {{water}} to cover. Cook 30 to 60 minutes on low, stirring often.",
     "steps": [
@@ -2788,14 +2759,14 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
-                "serving_unit_norm": "cup",
-                "calories_kcal": 221,
-                "protein_g": 7.3,
-                "total_fat_g": 3.3,
-                "saturated_fat_g": 0.9,
-                "total_carbs_g": 40.3,
-                "sugars_g": 0.4,
+                "serving_qty": 2,
+                "serving_unit_norm": "oz",
+                "calories_kcal": 210,
+                "protein_g": 8,
+                "total_fat_g": 2,
+                "saturated_fat_g": 0.4,
+                "total_carbs_g": 40,
+                "sugars_g": 1,
                 "fiber_g": 2,
                 "sodium_mg": 8,
                 "calcium_mg": 20,
@@ -2803,7 +2774,7 @@
                 "potassium_mg": 30,
                 "vitamin_c_mg": 0,
                 "source": "USDA",
-                "notes": "Per 1 cup."
+                "notes": "Per 2 oz dry (about 1 cup cooked)."
               }
             ]
           }
@@ -3004,7 +2975,7 @@
                 "calories_kcal": 150,
                 "protein_g": 8,
                 "total_fat_g": 8,
-                "saturated_fat_g": 5,
+                "saturated_fat_g": 4.5,
                 "total_carbs_g": 12,
                 "sugars_g": 12,
                 "fiber_g": 0,
@@ -3040,10 +3011,10 @@
                 "calories_kcal": 120,
                 "protein_g": 3,
                 "total_fat_g": 5,
-                "saturated_fat_g": 0,
+                "saturated_fat_g": 0.5,
                 "total_carbs_g": 16,
                 "sugars_g": 7,
-                "fiber_g": 1.9,
+                "fiber_g": 2,
                 "sodium_mg": 101,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -3663,31 +3634,14 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 1836,
-      "calories_per_serving": 367.2,
-      "servings_estimate": 5,
-      "covered_ingredients": 4,
+      "calories_total": 2007.6,
+      "calories_per_serving": 334.59999999999997,
+      "servings_estimate": 6,
+      "covered_ingredients": 8,
       "total_ingredients": 8,
-      "coverage_ratio": 0.5,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "tuna",
-          "unit": "can"
-        },
-        {
-          "ingredient_id": "green-pepper",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "green-olives",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "sweet-pickles",
-          "unit": "tbsp"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Mix {{american_cheese}}, {{eggs}}, {{tuna}}, {{green_pepper}}, {{green_olives}}, {{sweet_pickles}}, and {{mayonnaise}} lightly.\n2. Fill the {{buns}} with the mixture.\n3. Wrap each bun in foil and bake at 350°F for about 30 minutes, until the filling is heated and the cheese is melted.",
     "steps": [
@@ -3832,10 +3786,10 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 164,
-                "protein_g": 36.2,
-                "total_fat_g": 1.2,
-                "saturated_fat_g": 0.3,
+                "calories_kcal": 110,
+                "protein_g": 25,
+                "total_fat_g": 1,
+                "saturated_fat_g": 0.2,
                 "total_carbs_g": 0,
                 "sugars_g": 0,
                 "fiber_g": 0,
@@ -3845,7 +3799,7 @@
                 "potassium_mg": 336,
                 "vitamin_c_mg": 0,
                 "source": "USDA",
-                "notes": "water-packed, drained"
+                "notes": "Per 5 oz can tuna in water, drained."
               }
             ]
           }
@@ -3879,7 +3833,7 @@
                 "total_fat_g": 0.2,
                 "saturated_fat_g": 0.07,
                 "total_carbs_g": 5.5,
-                "sugars_g": 2.9,
+                "sugars_g": 3,
                 "fiber_g": 2,
                 "sodium_mg": 4,
                 "calcium_mg": 12,
@@ -3958,20 +3912,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "oz",
-                "calories_kcal": 30,
+                "calories_kcal": 34,
                 "protein_g": 0,
                 "total_fat_g": 0,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 7,
+                "total_carbs_g": 8,
                 "sugars_g": 7,
                 "fiber_g": 0,
-                "sodium_mg": 220,
+                "sodium_mg": 170,
                 "calcium_mg": 5,
                 "iron_mg": 0.1,
                 "potassium_mg": 10,
                 "vitamin_c_mg": 0,
                 "source": "USDA",
-                "notes": "in syrup"
+                "notes": "Per 1 oz sweet pickles."
               }
             ]
           }
@@ -4087,23 +4041,14 @@
     "family": "",
     "notes": "Simple baked casserole; add a little coconut oil if the sausage is lean.",
     "nutrition_estimate": {
-      "calories_total": 165,
-      "calories_per_serving": 82.5,
-      "servings_estimate": 2,
-      "covered_ingredients": 3,
+      "calories_total": 1267,
+      "calories_per_serving": 211.16666666666666,
+      "servings_estimate": 6,
+      "covered_ingredients": 5,
       "total_ingredients": 5,
-      "coverage_ratio": 0.6,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "butternut-squash",
-          "unit": "count"
-        },
-        {
-          "ingredient_id": "sausage",
-          "unit": "lb"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Heat the oven to 350–400°F (177–204°C).\n2. Dice {{butternut_squash}} into 1-inch cubes and place in a baking dish. Add {{sausage}} (broken into pieces) and {{onion}}. Season with {{salt}}.\n3. If the sausage is lean, drizzle with {{coconut_oil}} for extra fat.\n4. Bake until the squash is tender and the sausage is cooked through, stirring occasionally.",
     "steps": [
@@ -4204,11 +4149,11 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 140,
-                "protein_g": 6,
-                "total_fat_g": 12,
-                "saturated_fat_g": 4,
-                "total_carbs_g": 1,
+                "calories_kcal": 85,
+                "protein_g": 4.2,
+                "total_fat_g": 7.4,
+                "saturated_fat_g": 2.5,
+                "total_carbs_g": 0,
                 "sugars_g": 0,
                 "fiber_g": 0,
                 "sodium_mg": 330,
@@ -4217,7 +4162,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (pork sausage avg.)",
-                "notes": "Per 1 link (45g)."
+                "notes": "Per small pork sausage link (55g)."
               }
             ]
           }
@@ -4376,31 +4321,14 @@
     "family": "Burrows",
     "notes": "Serves 6. Bake in a 2-qt casserole.",
     "nutrition_estimate": {
-      "calories_total": 1836.2916666666665,
-      "calories_per_serving": 262.3273809523809,
+      "calories_total": 2382.3416666666667,
+      "calories_per_serving": 340.33452380952383,
       "servings_estimate": 7,
-      "covered_ingredients": 9,
+      "covered_ingredients": 13,
       "total_ingredients": 13,
-      "coverage_ratio": 0.6923076923076923,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "chicken-breast",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "green-pepper",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "pimiento",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "almonds",
-          "unit": "cup"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Melt {{fat}} in a saucepan over low heat. Whisk in {{flour}}, {{pepper}}, and {{salt}} if using.\n2. Cook, stirring constantly, until bubbly. Remove from heat.\n3. Stir in {{chicken_broth}} and {{milk}}. Bring to a boil, stirring constantly, and cook 1 minute.\n4. Stir in {{rice}} and {{poultry}}. Add {{mushrooms}}, {{green_pepper}}, {{pimiento}}, and {{almonds}} if desired.\n5. Pour into an ungreased 2-qt casserole dish and bake uncovered at 350°F for 40 to 45 minutes.\n6. Garnish with {{parsley}} before serving.",
     "steps": [
@@ -4732,7 +4660,7 @@
                 "calories_kcal": 150,
                 "protein_g": 8,
                 "total_fat_g": 8,
-                "saturated_fat_g": 5,
+                "saturated_fat_g": 4.5,
                 "total_carbs_g": 12,
                 "sugars_g": 12,
                 "fiber_g": 0,
@@ -4813,10 +4741,10 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "lb",
-                "calories_kcal": 748,
-                "protein_g": 92,
-                "total_fat_g": 16,
-                "saturated_fat_g": 4,
+                "calories_kcal": 520,
+                "protein_g": 96,
+                "total_fat_g": 14,
+                "saturated_fat_g": 3,
                 "total_carbs_g": 0,
                 "sugars_g": 0,
                 "fiber_g": 0,
@@ -4826,7 +4754,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "(duplicate of chicken breast)",
-                "notes": "Per 1 lb (454g)."
+                "notes": "Per 1 lb raw boneless skinless breast (~453g)."
               }
             ]
           },
@@ -4938,7 +4866,7 @@
                 "total_fat_g": 0.2,
                 "saturated_fat_g": 0.07,
                 "total_carbs_g": 5.5,
-                "sugars_g": 2.9,
+                "sugars_g": 3,
                 "fiber_g": 2,
                 "sodium_mg": 4,
                 "calcium_mg": 12,
@@ -4975,12 +4903,12 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "oz",
-                "calories_kcal": 7,
-                "protein_g": 0.1,
+                "calories_kcal": 9,
+                "protein_g": 0,
                 "total_fat_g": 0,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 1.5,
-                "sugars_g": 1,
+                "total_carbs_g": 2,
+                "sugars_g": 0.5,
                 "fiber_g": 0.5,
                 "sodium_mg": 50,
                 "calcium_mg": 6,
@@ -5017,13 +4945,13 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "oz",
-                "calories_kcal": 164,
+                "calories_kcal": 165,
                 "protein_g": 6,
-                "total_fat_g": 14.2,
+                "total_fat_g": 14,
                 "saturated_fat_g": 1.1,
-                "total_carbs_g": 6.1,
+                "total_carbs_g": 6,
                 "sugars_g": 1.2,
-                "fiber_g": 3.6,
+                "fiber_g": 3.5,
                 "sodium_mg": 0.28,
                 "calcium_mg": 76.4,
                 "iron_mg": 1.1,
@@ -5116,23 +5044,14 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 7454,
-      "calories_per_serving": 298.16,
-      "servings_estimate": 25,
-      "covered_ingredients": 3,
+      "calories_total": 7752.5,
+      "calories_per_serving": 298.1730769230769,
+      "servings_estimate": 26,
+      "covered_ingredients": 5,
       "total_ingredients": 5,
-      "coverage_ratio": 0.6,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "cream-of-chicken-soup",
-          "unit": "can"
-        },
-        {
-          "ingredient_id": "milk",
-          "unit": "can"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Cut {{chicken}} into small pieces.\n2. Combine {{soup}}, {{milk}}, and {{cheese}} in a saucepan; cook until the cheese melts.\n3. Spread half of the sauce in the bottom of a baking dish.\n4. Spoon some {{chicken}} onto the wide end of each {{crescent_rolls}}, roll up, and place on the sauce.\n5. Cover with the remaining sauce and bake at 350°F for 30 minutes.",
     "steps": [
@@ -5196,10 +5115,10 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "lb",
-                "calories_kcal": 748,
-                "protein_g": 92,
-                "total_fat_g": 16,
-                "saturated_fat_g": 4,
+                "calories_kcal": 520,
+                "protein_g": 96,
+                "total_fat_g": 14,
+                "saturated_fat_g": 3,
                 "total_carbs_g": 0,
                 "sugars_g": 0,
                 "fiber_g": 0,
@@ -5209,7 +5128,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "(duplicate of chicken breast)",
-                "notes": "Per 1 lb (454g)."
+                "notes": "Per 1 lb raw boneless skinless breast (~453g)."
               }
             ]
           },
@@ -5319,7 +5238,7 @@
                 "calories_kcal": 150,
                 "protein_g": 8,
                 "total_fat_g": 8,
-                "saturated_fat_g": 5,
+                "saturated_fat_g": 4.5,
                 "total_carbs_g": 12,
                 "sugars_g": 12,
                 "fiber_g": 0,
@@ -5393,21 +5312,21 @@
             "nutrition": [
               {
                 "serving_qty": 1,
-                "serving_unit_norm": "cup",
-                "calories_kcal": 455,
-                "protein_g": 0,
-                "total_fat_g": 0,
-                "saturated_fat_g": 0,
-                "total_carbs_g": 0,
-                "sugars_g": 0,
+                "serving_unit_norm": "oz",
+                "calories_kcal": 114,
+                "protein_g": 7.1,
+                "total_fat_g": 9.4,
+                "saturated_fat_g": 6,
+                "total_carbs_g": 0.4,
+                "sugars_g": 0.1,
                 "fiber_g": 0,
-                "sodium_mg": 0,
-                "calcium_mg": 0,
+                "sodium_mg": 176,
+                "calcium_mg": 204,
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "USDA FoodData Central",
-                "notes": "Shredded cheddar per cup."
+                "source": "USDA (cheddar cheese)",
+                "notes": "Per 1 oz (28g)."
               }
             ]
           }
@@ -5493,31 +5412,14 @@
     "family": "Burrows",
     "notes": "Doubled batch made with ground turkey.",
     "nutrition_estimate": {
-      "calories_total": 1542.7916666666667,
-      "calories_per_serving": 102.85277777777779,
-      "servings_estimate": 15,
-      "covered_ingredients": 11,
+      "calories_total": 3431.7916666666665,
+      "calories_per_serving": 190.65509259259258,
+      "servings_estimate": 18,
+      "covered_ingredients": 15,
       "total_ingredients": 15,
-      "coverage_ratio": 0.7333333333333333,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "crushed-tomatoes",
-          "unit": "can"
-        },
-        {
-          "ingredient_id": "tomato-sauce",
-          "unit": "can"
-        },
-        {
-          "ingredient_id": "stewed-tomatoes",
-          "unit": "can"
-        },
-        {
-          "ingredient_id": "kidney-beans",
-          "unit": "lb"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Brown the {{ground_turkey}} in a large pot.\n2. Add {{onion}} and {{green_pepper}}; cook 2 to 3 minutes.\n3. Pour off excess fat and stir in {{crushed_tomatoes}}, {{tomato_sauce}}, {{stewed_tomatoes}}, {{kidney_beans}}, {{chili_powder}}, {{salt}}, {{worcestershire}}, {{paprika}}, {{cayenne}}, {{garlic}}, {{bay_leaves}}, and {{parsley}}.\n4. Simmer for 1 hour, then remove the {{bay_leaves}} before serving.",
     "steps": [
@@ -5686,7 +5588,7 @@
                 "total_fat_g": 0.2,
                 "saturated_fat_g": 0.07,
                 "total_carbs_g": 5.5,
-                "sugars_g": 2.9,
+                "sugars_g": 3,
                 "fiber_g": 2,
                 "sodium_mg": 4,
                 "calcium_mg": 12,
@@ -5723,20 +5625,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 100,
-                "protein_g": 4,
-                "total_fat_g": 0.5,
-                "saturated_fat_g": 0.1,
-                "total_carbs_g": 18,
-                "sugars_g": 10,
-                "fiber_g": 4,
-                "sodium_mg": 300,
+                "calories_kcal": 45,
+                "protein_g": 2,
+                "total_fat_g": 0.2,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 10,
+                "sugars_g": 7,
+                "fiber_g": 2,
+                "sodium_mg": 600,
                 "calcium_mg": 60,
                 "iron_mg": 2,
                 "potassium_mg": 600,
                 "vitamin_c_mg": 20,
                 "source": "USDA",
-                "notes": "canned, salted"
+                "notes": "Per 1 cup canned crushed tomatoes (240g)."
               }
             ]
           }
@@ -5766,12 +5668,12 @@
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
                 "calories_kcal": 59,
-                "protein_g": 2.9,
-                "total_fat_g": 0.3,
+                "protein_g": 2,
+                "total_fat_g": 0,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 13,
+                "total_carbs_g": 14,
                 "sugars_g": 8.8,
-                "fiber_g": 2.7,
+                "fiber_g": 3,
                 "sodium_mg": 879,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -5807,20 +5709,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 66,
-                "protein_g": 2.3,
-                "total_fat_g": 0.5,
-                "saturated_fat_g": 0.1,
-                "total_carbs_g": 16,
-                "sugars_g": 8,
-                "fiber_g": 3,
-                "sodium_mg": 500,
+                "calories_kcal": 45,
+                "protein_g": 2,
+                "total_fat_g": 0.2,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 10,
+                "sugars_g": 7,
+                "fiber_g": 2,
+                "sodium_mg": 600,
                 "calcium_mg": 40,
                 "iron_mg": 1,
                 "potassium_mg": 370,
                 "vitamin_c_mg": 8,
                 "source": "USDA",
-                "notes": "canned, salted"
+                "notes": "Per 1 cup canned stewed tomatoes (240g)."
               }
             ]
           }
@@ -5849,13 +5751,13 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 225,
-                "protein_g": 15.3,
-                "total_fat_g": 0.89,
-                "saturated_fat_g": 0.13,
-                "total_carbs_g": 40.4,
-                "sugars_g": 0.57,
-                "fiber_g": 13.1,
+                "calories_kcal": 215,
+                "protein_g": 13,
+                "total_fat_g": 0.8,
+                "saturated_fat_g": 0.1,
+                "total_carbs_g": 37,
+                "sugars_g": 1,
+                "fiber_g": 13,
                 "sodium_mg": 3.5,
                 "calcium_mg": 49.6,
                 "iron_mg": 5.2,
@@ -6230,9 +6132,9 @@
     "family": "",
     "notes": "Use a gluten-free flour blend with xanthan gum. For dairy-free, choose vegan butter and dairy-free chips.",
     "nutrition_estimate": {
-      "calories_total": 5624.533333333333,
-      "calories_per_serving": 216.3282051282051,
-      "servings_estimate": 26,
+      "calories_total": 5634.533333333333,
+      "calories_per_serving": 208.6864197530864,
+      "servings_estimate": 27,
       "covered_ingredients": 11,
       "total_ingredients": 11,
       "coverage_ratio": 1,
@@ -6812,13 +6714,13 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 800,
-                "protein_g": 8.4,
-                "total_fat_g": 44,
-                "saturated_fat_g": 26,
-                "total_carbs_g": 108,
-                "sugars_g": 91,
-                "fiber_g": 8,
+                "calories_kcal": 805,
+                "protein_g": 7,
+                "total_fat_g": 50,
+                "saturated_fat_g": 30,
+                "total_carbs_g": 106,
+                "sugars_g": 92,
+                "fiber_g": 4,
                 "sodium_mg": 8,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -6909,27 +6811,14 @@
     "family": "",
     "notes": "Simple skillet collards with smoky bacon.",
     "nutrition_estimate": {
-      "calories_total": 119.625,
-      "calories_per_serving": 119.625,
-      "servings_estimate": 1,
-      "covered_ingredients": 3,
+      "calories_total": 777.9850000000001,
+      "calories_per_serving": 388.99250000000006,
+      "servings_estimate": 2,
+      "covered_ingredients": 6,
       "total_ingredients": 6,
-      "coverage_ratio": 0.5,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "onion",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "canadian-bacon",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "collard-greens",
-          "unit": "oz"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. In a skillet, heat {{vegetable_oil}} over medium heat. Sauté {{onion}} and {{canadian_bacon}} for about 5 minutes.\n2. Add {{collard_greens}} and toss to coat in the fat. Cover and reduce heat.\n3. Simmer for 10–15 minutes, stirring frequently, until the greens are tender. Season with {{salt}} and {{black_pepper}} to taste.",
     "steps": [
@@ -7028,12 +6917,12 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 43,
-                "protein_g": 5.5,
-                "total_fat_g": 1.5,
-                "saturated_fat_g": 0.5,
+                "calories_kcal": 40,
+                "protein_g": 7,
+                "total_fat_g": 0.5,
+                "saturated_fat_g": 0.2,
                 "total_carbs_g": 1,
-                "sugars_g": 1,
+                "sugars_g": 0,
                 "fiber_g": 0,
                 "sodium_mg": 250,
                 "calcium_mg": 0,
@@ -7112,20 +7001,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 11,
-                "protein_g": 1.1,
-                "total_fat_g": 0.2,
-                "saturated_fat_g": 0,
-                "total_carbs_g": 2,
-                "sugars_g": 0.1,
-                "fiber_g": 1.4,
+                "calories_kcal": 63,
+                "protein_g": 5.1,
+                "total_fat_g": 1.4,
+                "saturated_fat_g": 0.3,
+                "total_carbs_g": 10.7,
+                "sugars_g": 0.4,
+                "fiber_g": 8,
                 "sodium_mg": 6,
                 "calcium_mg": 0,
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "USDA (collards)",
-                "notes": "Per 1 cup, chopped (36g)."
+                "source": "USDA (collards, cooked)",
+                "notes": "Per 1 cup cooked, chopped (190g)."
               }
             ]
           }
@@ -7241,29 +7130,17 @@
     "family": "",
     "notes": "Garlic cloves are left whole and caramelized. Sauce thickens further as it cools.",
     "nutrition_estimate": {
-      "calories_total": 1473.9791666666665,
-      "calories_per_serving": 163.77546296296293,
-      "servings_estimate": 9,
-      "covered_ingredients": 14,
+      "calories_total": 1780.3791666666666,
+      "calories_per_serving": 161.8526515151515,
+      "servings_estimate": 11,
+      "covered_ingredients": 17,
       "total_ingredients": 18,
-      "coverage_ratio": 0.7777777777777778,
+      "coverage_ratio": 0.9444444444444444,
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": [
         {
           "ingredient_id": "chicken-breast",
-          "unit": "piece"
-        },
-        {
-          "ingredient_id": "parmesan_cheese",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "garlic",
-          "unit": "piece"
-        },
-        {
-          "ingredient_id": "parmesan_cheese",
-          "unit": "cup"
+          "unit": "count"
         }
       ]
     },
@@ -7393,10 +7270,10 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "lb",
-                "calories_kcal": 748,
-                "protein_g": 92,
-                "total_fat_g": 16,
-                "saturated_fat_g": 4,
+                "calories_kcal": 520,
+                "protein_g": 96,
+                "total_fat_g": 14,
+                "saturated_fat_g": 3,
                 "total_carbs_g": 0,
                 "sugars_g": 0,
                 "fiber_g": 0,
@@ -7406,7 +7283,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "(duplicate of chicken breast)",
-                "notes": "Per 1 lb (454g)."
+                "notes": "Per 1 lb raw boneless skinless breast (~453g)."
               }
             ]
           }
@@ -8297,27 +8174,14 @@
     "family": "",
     "notes": "Adjust milk to your preferred thickness; 1 1/2 cups yields a medium body.",
     "nutrition_estimate": {
-      "calories_total": 431.25,
-      "calories_per_serving": 107.8125,
+      "calories_total": 753.75,
+      "calories_per_serving": 188.4375,
       "servings_estimate": 4,
-      "covered_ingredients": 6,
+      "covered_ingredients": 9,
       "total_ingredients": 9,
-      "coverage_ratio": 0.6666666666666666,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "potato",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "leek",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "celery",
-          "unit": "cup"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. In a pot, combine {{potatoes}}, {{leeks}}, {{celery}}, and {{water}}. Cook until the vegetables are tender.\n2. Mash the soup slightly if you prefer a smoother texture.\n3. Stir in {{butter}}, {{milk}}, and {{salt}}. Season with {{black_pepper}} and {{parsley}} to taste.\n4. Heat gently until warmed through, then serve.",
     "steps": [
@@ -8384,20 +8248,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 164,
-                "protein_g": 4.3,
-                "total_fat_g": 0.2,
-                "saturated_fat_g": 0.1,
-                "total_carbs_g": 37,
-                "sugars_g": 1.7,
-                "fiber_g": 4.7,
+                "calories_kcal": 110,
+                "protein_g": 3,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 26,
+                "sugars_g": 1.5,
+                "fiber_g": 2,
                 "sodium_mg": 13,
                 "calcium_mg": 0,
                 "iron_mg": 0,
-                "potassium_mg": 0,
-                "vitamin_c_mg": 0,
+                "potassium_mg": 620,
+                "vitamin_c_mg": 20,
                 "source": "USDA (med. potato)",
-                "notes": "Per 1 medium (173g)."
+                "notes": "Per 1 medium russet potato (150g), raw with skin."
               }
             ]
           }
@@ -8426,13 +8290,13 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 50,
-                "protein_g": 1.5,
+                "calories_kcal": 54,
+                "protein_g": 1,
                 "total_fat_g": 0.3,
                 "saturated_fat_g": 0.1,
-                "total_carbs_g": 12,
-                "sugars_g": 3.4,
-                "fiber_g": 1.6,
+                "total_carbs_g": 13,
+                "sugars_g": 3.5,
+                "fiber_g": 2,
                 "sodium_mg": 18,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -8470,7 +8334,7 @@
                 "serving_unit_norm": "count",
                 "calories_kcal": 6,
                 "protein_g": 0.3,
-                "total_fat_g": 0,
+                "total_fat_g": 0.1,
                 "saturated_fat_g": 0,
                 "total_carbs_g": 1.2,
                 "sugars_g": 0.5,
@@ -8597,7 +8461,7 @@
                 "calories_kcal": 150,
                 "protein_g": 8,
                 "total_fat_g": 8,
-                "saturated_fat_g": 5,
+                "saturated_fat_g": 4.5,
                 "total_carbs_g": 12,
                 "sugars_g": 12,
                 "fiber_g": 0,
@@ -8766,19 +8630,14 @@
     "family": "Burrows",
     "notes": "Makes about 24 cookies.",
     "nutrition_estimate": {
-      "calories_total": 2388,
-      "calories_per_serving": 597,
-      "servings_estimate": 4,
-      "covered_ingredients": 4,
+      "calories_total": 2788,
+      "calories_per_serving": 557.6,
+      "servings_estimate": 5,
+      "covered_ingredients": 5,
       "total_ingredients": 5,
-      "coverage_ratio": 0.8,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "peanuts",
-          "unit": "cup"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Beat {{sugar}}, {{peanut_butter}}, {{egg}}, and {{vanilla}} until well blended.\n2. Fold in {{peanuts}} if using.\n3. Form cookies and place on a parchment-lined baking sheet. Flatten with a fork in a criss-cross pattern.\n4. Bake at 325°F for 10 to 12 minutes, until lightly browned. Cool 2 minutes on the pan.",
     "steps": [
@@ -9005,13 +8864,13 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "oz",
-                "calories_kcal": 161,
-                "protein_g": 7.3,
+                "calories_kcal": 160,
+                "protein_g": 6.5,
                 "total_fat_g": 14,
                 "saturated_fat_g": 2,
-                "total_carbs_g": 4.6,
-                "sugars_g": 1.3,
-                "fiber_g": 2.4,
+                "total_carbs_g": 6,
+                "sugars_g": 1,
+                "fiber_g": 2,
                 "sodium_mg": 5,
                 "calcium_mg": 17,
                 "iron_mg": 0.6,
@@ -9051,12 +8910,12 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 1940.5,
-      "calories_per_serving": 129.36666666666667,
-      "servings_estimate": 15,
-      "covered_ingredients": 7,
+      "calories_total": 1672.1,
+      "calories_per_serving": 104.50625,
+      "servings_estimate": 16,
+      "covered_ingredients": 8,
       "total_ingredients": 10,
-      "coverage_ratio": 0.7,
+      "coverage_ratio": 0.8,
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": [
         {
@@ -9064,12 +8923,8 @@
           "unit": "lb"
         },
         {
-          "ingredient_id": "parmesan_cheese",
+          "ingredient_id": "cheddar-cheese",
           "unit": "cup"
-        },
-        {
-          "ingredient_id": "green-onion",
-          "unit": "bunch"
         }
       ]
     },
@@ -9145,20 +9000,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 164,
-                "protein_g": 4.3,
-                "total_fat_g": 0.2,
-                "saturated_fat_g": 0.1,
-                "total_carbs_g": 37,
-                "sugars_g": 1.7,
-                "fiber_g": 4.7,
+                "calories_kcal": 110,
+                "protein_g": 3,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 26,
+                "sugars_g": 1.5,
+                "fiber_g": 2,
                 "sodium_mg": 13,
                 "calcium_mg": 0,
                 "iron_mg": 0,
-                "potassium_mg": 0,
-                "vitamin_c_mg": 0,
+                "potassium_mg": 620,
+                "vitamin_c_mg": 20,
                 "source": "USDA (med. potato)",
-                "notes": "Per 1 medium (173g)."
+                "notes": "Per 1 medium russet potato (150g), raw with skin."
               }
             ]
           }
@@ -9270,21 +9125,21 @@
             "nutrition": [
               {
                 "serving_qty": 1,
-                "serving_unit_norm": "cup",
-                "calories_kcal": 455,
-                "protein_g": 0,
-                "total_fat_g": 0,
-                "saturated_fat_g": 0,
-                "total_carbs_g": 0,
-                "sugars_g": 0,
+                "serving_unit_norm": "oz",
+                "calories_kcal": 114,
+                "protein_g": 7.1,
+                "total_fat_g": 9.4,
+                "saturated_fat_g": 6,
+                "total_carbs_g": 0.4,
+                "sugars_g": 0.1,
                 "fiber_g": 0,
-                "sodium_mg": 0,
-                "calcium_mg": 0,
+                "sodium_mg": 176,
+                "calcium_mg": 204,
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "USDA FoodData Central",
-                "notes": "Shredded cheddar per cup."
+                "source": "USDA (cheddar cheese)",
+                "notes": "Per 1 oz (28g)."
               }
             ]
           }
@@ -9313,12 +9168,12 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "oz",
-                "calories_kcal": 7,
-                "protein_g": 0.1,
+                "calories_kcal": 9,
+                "protein_g": 0,
                 "total_fat_g": 0,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 1.5,
-                "sugars_g": 1,
+                "total_carbs_g": 2,
+                "sugars_g": 0.5,
                 "fiber_g": 0.5,
                 "sodium_mg": 50,
                 "calcium_mg": 6,
@@ -9360,7 +9215,7 @@
                 "total_fat_g": 0.2,
                 "saturated_fat_g": 0.07,
                 "total_carbs_g": 5.5,
-                "sugars_g": 2.9,
+                "sugars_g": 3,
                 "fiber_g": 2,
                 "sodium_mg": 4,
                 "calcium_mg": 12,
@@ -9442,7 +9297,7 @@
                 "calories_kcal": 150,
                 "protein_g": 8,
                 "total_fat_g": 8,
-                "saturated_fat_g": 5,
+                "saturated_fat_g": 4.5,
                 "total_carbs_g": 12,
                 "sugars_g": 12,
                 "fiber_g": 0,
@@ -9528,8 +9383,8 @@
                 "total_fat_g": 0.03,
                 "saturated_fat_g": 0,
                 "total_carbs_g": 1.1,
-                "sugars_g": 0.35,
-                "fiber_g": 0.39,
+                "sugars_g": 0.4,
+                "fiber_g": 0.4,
                 "sodium_mg": 2.4,
                 "calcium_mg": 10.8,
                 "iron_mg": 0.22,
@@ -9568,23 +9423,14 @@
     "family": "",
     "notes": "Hearty ground beef and vegetable soup with tomato base.",
     "nutrition_estimate": {
-      "calories_total": 1574.5,
-      "calories_per_serving": 174.94444444444446,
+      "calories_total": 1649.86,
+      "calories_per_serving": 183.31777777777776,
       "servings_estimate": 9,
-      "covered_ingredients": 7,
+      "covered_ingredients": 9,
       "total_ingredients": 9,
-      "coverage_ratio": 0.7777777777777778,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "onion",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "celery",
-          "unit": "cup"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. In a soup pot, brown {{ground_beef}} with {{onion}}. Drain excess fat if needed.\n2. Add {{tomato_sauce}}, {{beef_broth}}, {{celery}}, {{salt}}, and {{black_pepper}}. Simmer for 20 minutes.\n3. Stir in {{diced_tomatoes}} and {{mixed_vegetables}}. Continue simmering for about 15 minutes, or until the vegetables are tender.",
     "steps": [
@@ -9732,12 +9578,12 @@
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
                 "calories_kcal": 59,
-                "protein_g": 2.9,
-                "total_fat_g": 0.3,
+                "protein_g": 2,
+                "total_fat_g": 0,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 13,
+                "total_carbs_g": 14,
                 "sugars_g": 8.8,
-                "fiber_g": 2.7,
+                "fiber_g": 3,
                 "sodium_mg": 879,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -9817,7 +9663,7 @@
                 "serving_unit_norm": "count",
                 "calories_kcal": 6,
                 "protein_g": 0.3,
-                "total_fat_g": 0,
+                "total_fat_g": 0.1,
                 "saturated_fat_g": 0,
                 "total_carbs_g": 1.2,
                 "sugars_g": 0.5,
@@ -9941,20 +9787,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 48,
+                "calories_kcal": 45,
                 "protein_g": 2,
-                "total_fat_g": 0,
+                "total_fat_g": 0.2,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 11,
-                "sugars_g": 8,
-                "fiber_g": 3,
-                "sodium_mg": 520,
+                "total_carbs_g": 10,
+                "sugars_g": 7,
+                "fiber_g": 2,
+                "sodium_mg": 600,
                 "calcium_mg": 0,
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (canned tomatoes)",
-                "notes": "Per 1 cup (240g)."
+                "notes": "Per 1 cup canned diced tomatoes (240g)."
               }
             ]
           }
@@ -10029,23 +9875,14 @@
     "family": "Burrows",
     "notes": "Use up to 8 oz cream cheese, depending on how thick you want the base layer.",
     "nutrition_estimate": {
-      "calories_total": 1367,
-      "calories_per_serving": 136.7,
-      "servings_estimate": 10,
-      "covered_ingredients": 2,
+      "calories_total": 1815,
+      "calories_per_serving": 151.25,
+      "servings_estimate": 12,
+      "covered_ingredients": 4,
       "total_ingredients": 4,
-      "coverage_ratio": 0.5,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "salsa",
-          "unit": "oz"
-        },
-        {
-          "ingredient_id": "cheddar-mozzarella-cheese",
-          "unit": "oz"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Spread {{cream_cheese}} in the bottom of a square pan.\n2. Layer {{salsa}} evenly over the cream cheese.\n3. Scatter {{ground_beef}} over the salsa.\n4. Finish with {{cheese_blend}}. Chill until ready to serve.",
     "steps": [
@@ -10146,20 +9983,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "tbsp",
-                "calories_kcal": 10,
-                "protein_g": 0.5,
+                "calories_kcal": 5,
+                "protein_g": 0,
                 "total_fat_g": 0,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 2,
-                "sugars_g": 1.5,
-                "fiber_g": 0.5,
-                "sodium_mg": 230,
+                "total_carbs_g": 1,
+                "sugars_g": 0.5,
+                "fiber_g": 0.2,
+                "sodium_mg": 80,
                 "calcium_mg": 0,
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (jarred salsa)",
-                "notes": "Per 2 Tbsp (30g)."
+                "notes": "Per 1 Tbsp jarred salsa."
               }
             ]
           }
@@ -10229,21 +10066,21 @@
             "nutrition": [
               {
                 "serving_qty": 1,
-                "serving_unit_norm": "cup",
-                "calories_kcal": 400,
-                "protein_g": 25,
-                "total_fat_g": 32,
-                "saturated_fat_g": 20,
-                "total_carbs_g": 3,
-                "sugars_g": 2,
+                "serving_unit_norm": "oz",
+                "calories_kcal": 92,
+                "protein_g": 6,
+                "total_fat_g": 6.5,
+                "saturated_fat_g": 3.8,
+                "total_carbs_g": 0.5,
+                "sugars_g": 0.2,
                 "fiber_g": 0,
-                "sodium_mg": 800,
+                "sodium_mg": 180,
                 "calcium_mg": 0,
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "Est. (half cheddar/half mozz)",
-                "notes": "Per 1 cup shredded (112g)."
+                "notes": "Per 1 oz blend (approx)."
               }
             ]
           }
@@ -10275,23 +10112,14 @@
     "family": "",
     "notes": "Bake in an 8x8-inch square pan (stone preferred; glass/metal ok). Use room-temperature full-fat coconut milk and whisk/blend until completely smooth before measuring.",
     "nutrition_estimate": {
-      "calories_total": 2273.383333333333,
-      "calories_per_serving": 454.6766666666666,
+      "calories_total": 2293.0183333333334,
+      "calories_per_serving": 458.6036666666667,
       "servings_estimate": 5,
-      "covered_ingredients": 14,
+      "covered_ingredients": 16,
       "total_ingredients": 16,
-      "coverage_ratio": 0.875,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "lemon",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "lemon",
-          "unit": "tbsp"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Preheat the oven to 350°F (177°C). Lightly grease an 8x8-inch square baking dish (stone preferred; glass or metal ok) with {{neutral_oil}}, then wipe off any excess.\n2. Make sure {{coconut_milk}} is fully smooth before measuring: whisk or blend room-temperature full-fat coconut milk until completely mixed and smooth, then measure out {{coconut_milk}}.\n3. In a large bowl, whisk together {{oat_flour}}, {{almond_flour}}, {{tapioca_starch}}, {{cornstarch}}, {{sugar}}, {{baking_powder}}, and {{salt}} until no lumps remain.\n4. In a separate bowl, whisk together {{coconut_milk}}, {{lemon_juice}}, zest of {{lemon_for_zest}}, and {{vanilla_extract}}.\n5. Pour the wet mixture into the dry mixture and whisk until smooth. Pour the batter into the prepared pan.\n6. Bake for 20–25 minutes, or until a toothpick comes out completely clean. Cool completely (about 45 minutes) before glazing.\n7. For a full glaze, whisk together {{powdered_sugar}}, {{lemon_juice_glaze}}, {{glaze_thickener}}, and {{vanilla_glaze}} until completely smooth. For a light drizzle, make half this glaze by halving those four ingredients.\n8. Spread the glaze over the cooled cake. Let it set for about 15 minutes, then slice and serve.",
     "steps": [
@@ -11017,7 +10845,7 @@
                 "calories_kcal": 150,
                 "protein_g": 8,
                 "total_fat_g": 8,
-                "saturated_fat_g": 5,
+                "saturated_fat_g": 4.5,
                 "total_carbs_g": 12,
                 "sugars_g": 12,
                 "fiber_g": 0,
@@ -11217,47 +11045,14 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 1602.375,
-      "calories_per_serving": 133.53125,
-      "servings_estimate": 12,
-      "covered_ingredients": 7,
+      "calories_total": 3196.035,
+      "calories_per_serving": 228.28821428571428,
+      "servings_estimate": 14,
+      "covered_ingredients": 15,
       "total_ingredients": 15,
-      "coverage_ratio": 0.4666666666666667,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "celery",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "onion",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "green-beans",
-          "unit": "can"
-        },
-        {
-          "ingredient_id": "pinto-beans",
-          "unit": "can"
-        },
-        {
-          "ingredient_id": "carrot",
-          "unit": "lb"
-        },
-        {
-          "ingredient_id": "peas",
-          "unit": "lb"
-        },
-        {
-          "ingredient_id": "corn",
-          "unit": "lb"
-        },
-        {
-          "ingredient_id": "diced-tomatoes",
-          "unit": "can"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Brown the {{beef}} in a large pot.\n2. Add {{potatoes}}, {{celery}}, {{onion}}, {{green_beans}}, {{pinto_beans}}, {{carrots}}, {{peas}}, {{corn}}, and {{diced_tomatoes}}.\n3. Stir in {{bouillon}}, {{celery_salt}}, and {{white_pepper}}.\n4. Add {{water}} to reach the desired consistency and simmer for 2 hours.\n5. Whisk {{flour}} with a splash of hot broth and stir it in quickly to avoid lumps.",
     "steps": [
@@ -11382,20 +11177,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 164,
-                "protein_g": 4.3,
-                "total_fat_g": 0.2,
-                "saturated_fat_g": 0.1,
-                "total_carbs_g": 37,
-                "sugars_g": 1.7,
-                "fiber_g": 4.7,
+                "calories_kcal": 110,
+                "protein_g": 3,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 26,
+                "sugars_g": 1.5,
+                "fiber_g": 2,
                 "sodium_mg": 13,
                 "calcium_mg": 0,
                 "iron_mg": 0,
-                "potassium_mg": 0,
-                "vitamin_c_mg": 0,
+                "potassium_mg": 620,
+                "vitamin_c_mg": 20,
                 "source": "USDA (med. potato)",
-                "notes": "Per 1 medium (173g)."
+                "notes": "Per 1 medium russet potato (150g), raw with skin."
               }
             ]
           }
@@ -11426,7 +11221,7 @@
                 "serving_unit_norm": "count",
                 "calories_kcal": 6,
                 "protein_g": 0.3,
-                "total_fat_g": 0,
+                "total_fat_g": 0.1,
                 "saturated_fat_g": 0,
                 "total_carbs_g": 1.2,
                 "sugars_g": 0.5,
@@ -11508,20 +11303,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 31,
-                "protein_g": 1.8,
-                "total_fat_g": 0.2,
-                "saturated_fat_g": 0.1,
-                "total_carbs_g": 7,
-                "sugars_g": 3.3,
-                "fiber_g": 3.4,
+                "calories_kcal": 30,
+                "protein_g": 1.5,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 6.5,
+                "sugars_g": 2,
+                "fiber_g": 3,
                 "sodium_mg": 6,
                 "calcium_mg": 0,
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "USDA (green beans)",
-                "notes": "Per 1 cup (100g)."
+                "source": "USDA (canned green beans)",
+                "notes": "Per 1 cup canned, drained (150g)."
               }
             ]
           }
@@ -11550,13 +11345,13 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 245,
-                "protein_g": 15,
-                "total_fat_g": 1.1,
+                "calories_kcal": 195,
+                "protein_g": 12,
+                "total_fat_g": 1,
                 "saturated_fat_g": 0.2,
-                "total_carbs_g": 45,
-                "sugars_g": 0.6,
-                "fiber_g": 15,
+                "total_carbs_g": 35,
+                "sugars_g": 1,
+                "fiber_g": 12,
                 "sodium_mg": 2,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -11593,12 +11388,12 @@
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
                 "calories_kcal": 25,
-                "protein_g": 0.5,
+                "protein_g": 0.6,
                 "total_fat_g": 0.1,
                 "saturated_fat_g": 0,
                 "total_carbs_g": 6,
                 "sugars_g": 2.9,
-                "fiber_g": 1.5,
+                "fiber_g": 1.7,
                 "sodium_mg": 42,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -11634,13 +11429,13 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 134,
-                "protein_g": 8.6,
-                "total_fat_g": 0.4,
+                "calories_kcal": 118,
+                "protein_g": 8,
+                "total_fat_g": 0.5,
                 "saturated_fat_g": 0.1,
-                "total_carbs_g": 25,
-                "sugars_g": 9.5,
-                "fiber_g": 8.8,
+                "total_carbs_g": 21,
+                "sugars_g": 8,
+                "fiber_g": 7,
                 "sodium_mg": 5,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -11718,20 +11513,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 48,
+                "calories_kcal": 45,
                 "protein_g": 2,
-                "total_fat_g": 0,
+                "total_fat_g": 0.2,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 11,
-                "sugars_g": 8,
-                "fiber_g": 3,
-                "sodium_mg": 520,
+                "total_carbs_g": 10,
+                "sugars_g": 7,
+                "fiber_g": 2,
+                "sodium_mg": 600,
                 "calcium_mg": 0,
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (canned tomatoes)",
-                "notes": "Per 1 cup (240g)."
+                "notes": "Per 1 cup canned diced tomatoes (240g)."
               }
             ]
           }
@@ -12123,7 +11918,7 @@
                 "calories_kcal": 150,
                 "protein_g": 8,
                 "total_fat_g": 8,
-                "saturated_fat_g": 5,
+                "saturated_fat_g": 4.5,
                 "total_carbs_g": 12,
                 "sugars_g": 12,
                 "fiber_g": 0,
@@ -12250,23 +12045,14 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 641.25,
-      "calories_per_serving": 641.25,
-      "servings_estimate": 1,
-      "covered_ingredients": 2,
+      "calories_total": 776.75,
+      "calories_per_serving": 258.9166666666667,
+      "servings_estimate": 3,
+      "covered_ingredients": 4,
       "total_ingredients": 4,
-      "coverage_ratio": 0.5,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "diced-tomatoes",
-          "unit": "can"
-        },
-        {
-          "ingredient_id": "tomato-sauce",
-          "unit": "can"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Cook and drain the {{macaroni}}.\n2. Stir in {{tomatoes}}, {{tomato_sauce}}, and {{black_pepper}}.\n3. Heat through before serving.",
     "steps": [
@@ -12361,20 +12147,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 48,
+                "calories_kcal": 45,
                 "protein_g": 2,
-                "total_fat_g": 0,
+                "total_fat_g": 0.2,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 11,
-                "sugars_g": 8,
-                "fiber_g": 3,
-                "sodium_mg": 520,
+                "total_carbs_g": 10,
+                "sugars_g": 7,
+                "fiber_g": 2,
+                "sodium_mg": 600,
                 "calcium_mg": 0,
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (canned tomatoes)",
-                "notes": "Per 1 cup (240g)."
+                "notes": "Per 1 cup canned diced tomatoes (240g)."
               }
             ]
           },
@@ -12440,12 +12226,12 @@
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
                 "calories_kcal": 59,
-                "protein_g": 2.9,
-                "total_fat_g": 0.3,
+                "protein_g": 2,
+                "total_fat_g": 0,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 13,
+                "total_carbs_g": 14,
                 "sugars_g": 8.8,
-                "fiber_g": 2.7,
+                "fiber_g": 3,
                 "sodium_mg": 879,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -12533,23 +12319,14 @@
     "family": "Burrows",
     "notes": "Use 1/2 can Rotel for a milder version.",
     "nutrition_estimate": {
-      "calories_total": 2368,
-      "calories_per_serving": 139.2941176470588,
-      "servings_estimate": 17,
-      "covered_ingredients": 4,
+      "calories_total": 2918,
+      "calories_per_serving": 132.63636363636363,
+      "servings_estimate": 22,
+      "covered_ingredients": 6,
       "total_ingredients": 6,
-      "coverage_ratio": 0.6666666666666666,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "cream-of-celery-soup",
-          "unit": "can"
-        },
-        {
-          "ingredient_id": "cream-of-chicken-soup",
-          "unit": "can"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Preheat the oven to 350°F (175°C).\n2. Combine {{celery_soup}}, {{chicken_soup}}, and {{rotel}} in a bowl.\n3. In a baking dish, layer {{cooked_chicken}}, {{velveeta}}, and {{nacho_chips}}.\n4. Pour the soup mixture evenly over the top.\n5. Bake for 30 minutes, until bubbly and hot throughout.",
     "steps": [
@@ -12870,24 +12647,16 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 2350.5,
-      "calories_per_serving": 213.6818181818182,
+      "calories_total": 2918.5,
+      "calories_per_serving": 265.3181818181818,
       "servings_estimate": 11,
-      "covered_ingredients": 5,
+      "covered_ingredients": 7,
       "total_ingredients": 8,
-      "coverage_ratio": 0.625,
+      "coverage_ratio": 0.875,
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": [
         {
           "ingredient_id": "kidney-beans",
-          "unit": "can"
-        },
-        {
-          "ingredient_id": "tomato-sauce",
-          "unit": "can"
-        },
-        {
-          "ingredient_id": "tomato-soup",
           "unit": "can"
         }
       ]
@@ -12993,13 +12762,13 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 225,
-                "protein_g": 15.3,
-                "total_fat_g": 0.89,
-                "saturated_fat_g": 0.13,
-                "total_carbs_g": 40.4,
-                "sugars_g": 0.57,
-                "fiber_g": 13.1,
+                "calories_kcal": 215,
+                "protein_g": 13,
+                "total_fat_g": 0.8,
+                "saturated_fat_g": 0.1,
+                "total_carbs_g": 37,
+                "sugars_g": 1,
+                "fiber_g": 13,
                 "sodium_mg": 3.5,
                 "calcium_mg": 49.6,
                 "iron_mg": 5.2,
@@ -13036,12 +12805,12 @@
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
                 "calories_kcal": 59,
-                "protein_g": 2.9,
-                "total_fat_g": 0.3,
+                "protein_g": 2,
+                "total_fat_g": 0,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 13,
+                "total_carbs_g": 14,
                 "sugars_g": 8.8,
-                "fiber_g": 2.7,
+                "fiber_g": 3,
                 "sodium_mg": 879,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -13078,19 +12847,19 @@
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
                 "calories_kcal": 225,
-                "protein_g": 2.5,
+                "protein_g": 5,
                 "total_fat_g": 0,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 55,
+                "total_carbs_g": 50,
                 "sugars_g": 30,
-                "fiber_g": 2,
+                "fiber_g": 2.5,
                 "sodium_mg": 1200,
                 "calcium_mg": 20,
                 "iron_mg": 2,
                 "potassium_mg": 600,
                 "vitamin_c_mg": 0,
                 "source": "Label",
-                "notes": "condensed"
+                "notes": "Per 10.5 oz can condensed (2.5 servings at 90 kcal each)."
               }
             ]
           }
@@ -13289,23 +13058,14 @@
     "family": "",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 4097.25,
-      "calories_per_serving": 178.1413043478261,
-      "servings_estimate": 23,
-      "covered_ingredients": 11,
+      "calories_total": 5070.2609999999995,
+      "calories_per_serving": 187.78744444444442,
+      "servings_estimate": 27,
+      "covered_ingredients": 13,
       "total_ingredients": 13,
-      "coverage_ratio": 0.8461538461538461,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "vanilla-pudding-powder",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "chocolate-chips",
-          "unit": "oz"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. In a saucepan, melt {{butter_base}}, then stir in {{sugar_base}} and {{cocoa_powder}} until smooth.\n2. Stir in {{egg_base}}, then bring to a boil and cook 2 minutes, stirring constantly.\n3. Remove from heat and stir in {{vanilla_base}}.\n4. Stir in {{coconut}} and {{graham_crumbs}}. Press into a lined 3x9 pan. Refrigerate.\n5. In a mixer, stir together {{pudding_powder}} and {{milk_middle}}. Add {{powdered_sugar}} and {{butter_middle}}. Beat on high (whisk attachment) for 5 minutes.\n6. Spread the middle layer over the chilled base. Refrigerate a couple hours\n7. Melt {{chocolate_chips}} with {{oil_top}} in a microwave-safe bowl, stirring until smooth.\n8. Spread chocolate over the set middle layer. Refrigerate until set. For easy cutting",
     "steps": [
@@ -13747,7 +13507,7 @@
                 "calories_kcal": 150,
                 "protein_g": 8,
                 "total_fat_g": 8,
-                "saturated_fat_g": 5,
+                "saturated_fat_g": 4.5,
                 "total_carbs_g": 12,
                 "sugars_g": 12,
                 "fiber_g": 0,
@@ -13787,12 +13547,12 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 360,
+                "calories_kcal": 373,
                 "protein_g": 0,
                 "total_fat_g": 0,
                 "saturated_fat_g": 0,
                 "total_carbs_g": 88,
-                "sugars_g": 72,
+                "sugars_g": 88,
                 "fiber_g": 0,
                 "sodium_mg": 1400,
                 "calcium_mg": 0,
@@ -13800,7 +13560,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "Label",
-                "notes": "instant mix"
+                "notes": "Per 1 package (99g) instant dry mix."
               }
             ]
           }
@@ -13873,13 +13633,13 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 800,
-                "protein_g": 8.4,
-                "total_fat_g": 44,
-                "saturated_fat_g": 26,
-                "total_carbs_g": 108,
-                "sugars_g": 91,
-                "fiber_g": 8,
+                "calories_kcal": 805,
+                "protein_g": 7,
+                "total_fat_g": 50,
+                "saturated_fat_g": 30,
+                "total_carbs_g": 106,
+                "sugars_g": 92,
+                "fiber_g": 4,
                 "sodium_mg": 8,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -13967,23 +13727,14 @@
     "family": "Burrows",
     "notes": "Dream Whip works well in place of homemade whipped cream.",
     "nutrition_estimate": {
-      "calories_total": 582,
-      "calories_per_serving": 291,
+      "calories_total": 1172,
+      "calories_per_serving": 586,
       "servings_estimate": 2,
-      "covered_ingredients": 3,
+      "covered_ingredients": 5,
       "total_ingredients": 5,
-      "coverage_ratio": 0.6,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "orange-gelatin",
-          "unit": "package"
-        },
-        {
-          "ingredient_id": "mandarin-oranges",
-          "unit": "can"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Combine {{orange_gelatin}} with {{boiling_water}} and stir until dissolved.\n2. Add {{orange_sherbet}} and mix until melted and smooth.\n3. Chill until the mixture is partially set, then fold in {{mandarin_oranges}}.\n4. Fold in {{whipped_cream}}.\n5. Pour into a buttered mold and chill until fully set.",
     "steps": [
@@ -14170,22 +13921,22 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
+                "serving_qty": 0.5,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 100,
-                "protein_g": 1,
+                "calories_kcal": 90,
+                "protein_g": 0.5,
                 "total_fat_g": 0,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 26,
+                "total_carbs_g": 22,
                 "sugars_g": 20,
-                "fiber_g": 2,
+                "fiber_g": 1,
                 "sodium_mg": 10,
                 "calcium_mg": 40,
                 "iron_mg": 0.5,
                 "potassium_mg": 160,
                 "vitamin_c_mg": 27,
                 "source": "USDA",
-                "notes": "canned in juice"
+                "notes": "Per 1/2 cup canned mandarin oranges, light syrup."
               }
             ]
           }
@@ -14260,23 +14011,14 @@
     "family": "Burrows",
     "notes": "Serves 3.",
     "nutrition_estimate": {
-      "calories_total": 1256.0833333333333,
-      "calories_per_serving": 209.3472222222222,
+      "calories_total": 1896.4833333333333,
+      "calories_per_serving": 316.0805555555556,
       "servings_estimate": 6,
-      "covered_ingredients": 10,
+      "covered_ingredients": 12,
       "total_ingredients": 12,
-      "coverage_ratio": 0.8333333333333334,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "tomatoes",
-          "unit": "lb"
-        },
-        {
-          "ingredient_id": "kidney-beans",
-          "unit": "lb"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Brown the {{ground_beef}} in a large pot.\n2. Add {{onion}} and {{green_pepper}}; cook 2 to 3 minutes.\n3. Pour off fat and stir in {{tomatoes}}, {{kidney_beans}}, {{chili_powder}}, {{salt}}, {{paprika}}, {{cayenne}}, {{garlic}}, {{bay_leaf}}, and {{worcestershire}}.\n4. Simmer for 1 hour, then remove the {{bay_leaf}} before serving.",
     "steps": [
@@ -14439,7 +14181,7 @@
                 "total_fat_g": 0.2,
                 "saturated_fat_g": 0.07,
                 "total_carbs_g": 5.5,
-                "sugars_g": 2.9,
+                "sugars_g": 3,
                 "fiber_g": 2,
                 "sodium_mg": 4,
                 "calcium_mg": 12,
@@ -14518,13 +14260,13 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 225,
-                "protein_g": 15.3,
-                "total_fat_g": 0.89,
-                "saturated_fat_g": 0.13,
-                "total_carbs_g": 40.4,
-                "sugars_g": 0.57,
-                "fiber_g": 13.1,
+                "calories_kcal": 215,
+                "protein_g": 13,
+                "total_fat_g": 0.8,
+                "saturated_fat_g": 0.1,
+                "total_carbs_g": 37,
+                "sugars_g": 1,
+                "fiber_g": 13,
                 "sodium_mg": 3.5,
                 "calcium_mg": 49.6,
                 "iron_mg": 5.2,
@@ -15326,35 +15068,14 @@
     "family": "",
     "notes": "Stuff the roasted squash with a cheesy sausage and breadcrumb mixture.",
     "nutrition_estimate": {
-      "calories_total": 320.25,
-      "calories_per_serving": 106.75,
-      "servings_estimate": 3,
-      "covered_ingredients": 3,
+      "calories_total": 1924.61,
+      "calories_per_serving": 240.57625,
+      "servings_estimate": 8,
+      "covered_ingredients": 8,
       "total_ingredients": 8,
-      "coverage_ratio": 0.375,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "acorn-squash",
-          "unit": "count"
-        },
-        {
-          "ingredient_id": "sausage",
-          "unit": "lb"
-        },
-        {
-          "ingredient_id": "onion",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "celery",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "cheese",
-          "unit": "cup"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Heat the oven to 375°F (191°C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom.\n2. Roast for about 35 minutes, until the squash is tender.\n3. While the squash roasts, brown {{sausage}} in a skillet. Drain off all but 2 tablespoons of drippings.\n4. Add {{onion}} and {{celery}} to the skillet and sauté for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}.\n5. Quickly fold {{sausage}} and {{cheese}} into the breadcrumb mixture.\n6. Turn the squash halves cut side up, sprinkle with {{salt}}, and fill the cavities with the sausage mixture.\n7. Bake at 350°F (177°C) for 20–30 minutes, until the stuffing is browned and heated through.",
     "steps": [
@@ -15516,11 +15237,11 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 140,
-                "protein_g": 6,
-                "total_fat_g": 12,
-                "saturated_fat_g": 4,
-                "total_carbs_g": 1,
+                "calories_kcal": 85,
+                "protein_g": 4.2,
+                "total_fat_g": 7.4,
+                "saturated_fat_g": 2.5,
+                "total_carbs_g": 0,
                 "sugars_g": 0,
                 "fiber_g": 0,
                 "sodium_mg": 330,
@@ -15529,7 +15250,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (pork sausage avg.)",
-                "notes": "Per 1 link (45g)."
+                "notes": "Per small pork sausage link (55g)."
               }
             ]
           }
@@ -15602,7 +15323,7 @@
                 "serving_unit_norm": "count",
                 "calories_kcal": 6,
                 "protein_g": 0.3,
-                "total_fat_g": 0,
+                "total_fat_g": 0.1,
                 "saturated_fat_g": 0,
                 "total_carbs_g": 1.2,
                 "sugars_g": 0.5,
@@ -15771,27 +15492,14 @@
     "family": "",
     "notes": "Classic slow-cooked beef stew with potatoes, carrots, and peas.",
     "nutrition_estimate": {
-      "calories_total": 1957.25,
-      "calories_per_serving": 163.10416666666666,
-      "servings_estimate": 12,
-      "covered_ingredients": 12,
+      "calories_total": 2525.25,
+      "calories_per_serving": 194.25,
+      "servings_estimate": 13,
+      "covered_ingredients": 15,
       "total_ingredients": 15,
-      "coverage_ratio": 0.8,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "potato",
-          "unit": "medium"
-        },
-        {
-          "ingredient_id": "carrot",
-          "unit": "large"
-        },
-        {
-          "ingredient_id": "onion",
-          "unit": "medium"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Add {{stew_beef}} to a medium bowl with {{flour}} and {{seasoned_salt}}. Stir to coat.\n2. Heat {{olive_oil}} in a large skillet over medium-high heat. Add the coated beef and cook until browned, stirring as needed; it does not need to cook through.\n3. Transfer the beef to the slow cooker.\n4. Peel and dice {{potatoes}}, {{carrots}}, and {{onion}}. Mince {{garlic}} and add the vegetables to the slow cooker with the {{bay_leaf}}.\n5. Sprinkle in {{black_pepper}}. Pour in {{beef_broth}}, then stir in {{tomato_paste}} and {{worcestershire}}.\n6. Cover and cook on LOW for 8–10 hours or HIGH for 4–6 hours, until the beef and vegetables are tender.\n7. Remove the {{bay_leaf}}, stir in {{peas}}, and season with {{salt}} and more {{black_pepper}} to taste before serving.",
     "steps": [
@@ -16088,20 +15796,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 164,
-                "protein_g": 4.3,
-                "total_fat_g": 0.2,
-                "saturated_fat_g": 0.1,
-                "total_carbs_g": 37,
-                "sugars_g": 1.7,
-                "fiber_g": 4.7,
+                "calories_kcal": 110,
+                "protein_g": 3,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 26,
+                "sugars_g": 1.5,
+                "fiber_g": 2,
                 "sodium_mg": 13,
                 "calcium_mg": 0,
                 "iron_mg": 0,
-                "potassium_mg": 0,
-                "vitamin_c_mg": 0,
+                "potassium_mg": 620,
+                "vitamin_c_mg": 20,
                 "source": "USDA (med. potato)",
-                "notes": "Per 1 medium (173g)."
+                "notes": "Per 1 medium russet potato (150g), raw with skin."
               }
             ]
           }
@@ -16131,12 +15839,12 @@
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
                 "calories_kcal": 25,
-                "protein_g": 0.5,
+                "protein_g": 0.6,
                 "total_fat_g": 0.1,
                 "saturated_fat_g": 0,
                 "total_carbs_g": 6,
                 "sugars_g": 2.9,
-                "fiber_g": 1.5,
+                "fiber_g": 1.7,
                 "sodium_mg": 42,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -16502,13 +16210,13 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "cup",
-                "calories_kcal": 134,
-                "protein_g": 8.6,
-                "total_fat_g": 0.4,
+                "calories_kcal": 118,
+                "protein_g": 8,
+                "total_fat_g": 0.5,
                 "saturated_fat_g": 0.1,
-                "total_carbs_g": 25,
-                "sugars_g": 9.5,
-                "fiber_g": 8.8,
+                "total_carbs_g": 21,
+                "sugars_g": 8,
+                "fiber_g": 7,
                 "sodium_mg": 5,
                 "calcium_mg": 0,
                 "iron_mg": 0,
@@ -18110,19 +17818,14 @@
     "family": "",
     "notes": "Arrowroot starch can replace tapioca flour. Add toppings of choice after prebaking the crust.",
     "nutrition_estimate": {
-      "calories_total": 618.5666666666666,
-      "calories_per_serving": 309.2833333333333,
-      "servings_estimate": 2,
-      "covered_ingredients": 5,
+      "calories_total": 730.5666666666666,
+      "calories_per_serving": 243.5222222222222,
+      "servings_estimate": 3,
+      "covered_ingredients": 6,
       "total_ingredients": 6,
-      "coverage_ratio": 0.8333333333333334,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "sweet-potato",
-          "unit": "medium"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Preheat the oven to 375°F (190°C).\n2. Peel and chop {{sweet_potato}}. Boil in water until fork-tender, about 10 minutes. Drain well and mash until smooth.\n3. Measure 1 cup mashed sweet potato into a bowl. Mix in {{rice_flour}}, {{tapioca_flour}}, {{baking_powder}}, and {{salt}} to form a shaggy dough.\n4. If the dough feels dry, add a splash of water or oil. If sticky, dust with more rice flour.\n5. Grease parchment with {{oil}}. Roll the dough between two sheets of parchment to 1/4–3/8 inch thick and transfer to a baking sheet.\n6. Bake for 10 minutes. Flip the crust by placing parchment on top, turning it over, and removing the hot parchment.\n7. Add toppings of choice and bake 10–18 minutes more, until the edges are crisp and toppings are done.",
     "steps": [
@@ -18195,12 +17898,12 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 103,
-                "protein_g": 2.3,
-                "total_fat_g": 0.2,
+                "calories_kcal": 112,
+                "protein_g": 2,
+                "total_fat_g": 0.1,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 24,
-                "sugars_g": 7,
+                "total_carbs_g": 26,
+                "sugars_g": 5,
                 "fiber_g": 4,
                 "sodium_mg": 41,
                 "calcium_mg": 0,
@@ -18208,7 +17911,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (med. sweet potato)",
-                "notes": "Per 1 medium (130g)."
+                "notes": "Per 1 medium baked sweet potato (130g)."
               }
             ]
           }
@@ -18450,19 +18153,14 @@
     "family": "",
     "notes": "Layered bake with sweet potatoes, seared chops, and a pear syrup glaze.",
     "nutrition_estimate": {
-      "calories_total": 1858.75,
-      "calories_per_serving": 371.75,
+      "calories_total": 2454.75,
+      "calories_per_serving": 490.95,
       "servings_estimate": 5,
-      "covered_ingredients": 7,
+      "covered_ingredients": 8,
       "total_ingredients": 8,
-      "coverage_ratio": 0.875,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "pear-halves",
-          "unit": "pint"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Preheat the oven to 350°F (177°C). Drain {{pear_halves}}, reserving the syrup.\n2. Peel and thickly slice {{sweet_potatoes}}. Arrange them in the bottom of a shallow baking dish.\n3. Trim excess fat from {{pork_chops}}, season with {{salt}} and {{black_pepper}}, and brown lightly in a skillet. Place the chops on top of the sweet potatoes.\n4. In a small saucepan, combine the reserved pear syrup with {{brown_sugar}}, {{butter_choice}}, and {{cinnamon}}. Heat just until the sugar dissolves.\n5. Spoon half of the syrup over the chops. Bake for 30 minutes.\n6. Remove the dish from the oven, arrange {{pear_halves}} around the chops, and spoon the remaining syrup over everything. Bake for another 30 minutes, or until the chops are tender.",
     "steps": [
@@ -18536,20 +18234,20 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 35,
-                "protein_g": 0.2,
+                "calories_kcal": 70,
+                "protein_g": 0.3,
                 "total_fat_g": 0,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 9,
-                "sugars_g": 8,
-                "fiber_g": 1,
+                "total_carbs_g": 18,
+                "sugars_g": 13,
+                "fiber_g": 2,
                 "sodium_mg": 2,
                 "calcium_mg": 0,
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (canned pear)",
-                "notes": "Per 1 half (approx 92g)."
+                "notes": "Per 1 canned pear half in syrup (128g)."
               }
             ]
           }
@@ -18578,12 +18276,12 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "count",
-                "calories_kcal": 103,
-                "protein_g": 2.3,
-                "total_fat_g": 0.2,
+                "calories_kcal": 112,
+                "protein_g": 2,
+                "total_fat_g": 0.1,
                 "saturated_fat_g": 0,
-                "total_carbs_g": 24,
-                "sugars_g": 7,
+                "total_carbs_g": 26,
+                "sugars_g": 5,
                 "fiber_g": 4,
                 "sodium_mg": 41,
                 "calcium_mg": 0,
@@ -18591,7 +18289,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (med. sweet potato)",
-                "notes": "Per 1 medium (130g)."
+                "notes": "Per 1 medium baked sweet potato (130g)."
               }
             ]
           }
@@ -18917,19 +18615,14 @@
     "family": "",
     "notes": "Bright coconut curry; serve with rice or cauliflower rice and lime wedges.",
     "nutrition_estimate": {
-      "calories_total": 3168.25,
-      "calories_per_serving": 176.01388888888889,
+      "calories_total": 2946.25,
+      "calories_per_serving": 163.68055555555554,
       "servings_estimate": 18,
-      "covered_ingredients": 14,
+      "covered_ingredients": 15,
       "total_ingredients": 15,
-      "coverage_ratio": 0.9333333333333333,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "ginger",
-          "unit": "inch"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Cook {{rice}} according to package directions.\n2. In a large pan over medium heat, melt {{coconut_oil}}. Add {{white_onion}}, {{ginger}}, and {{garlic}}; sauté for 3–4 minutes until the onion is translucent. Remove to a plate, leaving the oil in the pan.\n3. Lightly salt {{chicken_breast}} with part of the {{sea_salt}} and sauté in the same pan until the internal temperature reaches 165°F (74°C).\n4. Return the aromatics to the pan. Stir in {{coconut_milk}}, {{coconut_cream}}, {{coconut_aminos}}, juice from half of the {{lime}}, {{sea_salt}}, {{turmeric}}, and {{black_pepper}}. Simmer for about 5 minutes, stirring, until the sauce thickens slightly.\n5. Adjust seasoning to taste. Top with {{cilantro}} and serve with {{cauliflower_rice}} and lime wedges from the remaining {{lime}}.",
     "steps": [
@@ -19224,10 +18917,10 @@
               {
                 "serving_qty": 1,
                 "serving_unit_norm": "lb",
-                "calories_kcal": 748,
-                "protein_g": 92,
-                "total_fat_g": 16,
-                "saturated_fat_g": 4,
+                "calories_kcal": 520,
+                "protein_g": 96,
+                "total_fat_g": 14,
+                "saturated_fat_g": 3,
                 "total_carbs_g": 0,
                 "sugars_g": 0,
                 "fiber_g": 0,
@@ -19237,7 +18930,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "(duplicate of chicken breast)",
-                "notes": "Per 1 lb (454g)."
+                "notes": "Per 1 lb raw boneless skinless breast (~453g)."
               }
             ]
           }
@@ -20647,27 +20340,14 @@
     "family": "",
     "notes": "Use your favorite noodle and mixed vegetables. For gluten-free, choose gluten-free teriyaki and noodles.",
     "nutrition_estimate": {
-      "calories_total": 1131.3333333333333,
-      "calories_per_serving": 113.13333333333333,
+      "calories_total": 1582.8333333333333,
+      "calories_per_serving": 158.28333333333333,
       "servings_estimate": 10,
-      "covered_ingredients": 6,
+      "covered_ingredients": 9,
       "total_ingredients": 9,
-      "coverage_ratio": 0.6666666666666666,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "noodles",
-          "unit": "oz"
-        },
-        {
-          "ingredient_id": "onion",
-          "unit": "medium"
-        },
-        {
-          "ingredient_id": "green-onion",
-          "unit": "cup"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Cook {{noodles}} in boiling water until al dente. Drain and rinse to remove excess starch.\n2. Heat {{olive_oil}} in a large skillet over medium heat. Add {{onion}} and {{sea_salt}}; cook until tender\n3. Add {{mixed_vegetables}} and cook\n4. Stir in the noodles and {{teriyaki_sauce}}. Cook until warmed through\n5. Remove from heat. Toss with {{sesame_oil}} and {{sesame_seeds}}.\n6. Serve topped with {{green_onion}} and extra sesame seeds if desired.",
     "steps": [
@@ -20740,22 +20420,22 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
-                "serving_unit_norm": "cup",
-                "calories_kcal": 220,
-                "protein_g": 8,
-                "total_fat_g": 1.3,
+                "serving_qty": 2,
+                "serving_unit_norm": "oz",
+                "calories_kcal": 200,
+                "protein_g": 7,
+                "total_fat_g": 1,
                 "saturated_fat_g": 0.2,
-                "total_carbs_g": 43,
-                "sugars_g": 0.8,
-                "fiber_g": 2,
+                "total_carbs_g": 42,
+                "sugars_g": 1,
+                "fiber_g": 2.5,
                 "sodium_mg": 0,
                 "calcium_mg": 10,
                 "iron_mg": 0.7,
                 "potassium_mg": 30,
                 "vitamin_c_mg": 0,
                 "source": "USDA",
-                "notes": "plain pasta"
+                "notes": "Per 2 oz dry pasta."
               }
             ]
           }
@@ -21083,8 +20763,8 @@
                 "total_fat_g": 0.03,
                 "saturated_fat_g": 0,
                 "total_carbs_g": 1.1,
-                "sugars_g": 0.35,
-                "fiber_g": 0.39,
+                "sugars_g": 0.4,
+                "fiber_g": 0.4,
                 "sodium_mg": 2.4,
                 "calcium_mg": 10.8,
                 "iron_mg": 0.22,
@@ -21123,19 +20803,14 @@
     "family": "",
     "notes": "Quick green soup; blend greens with milk if you prefer a smoother finish.",
     "nutrition_estimate": {
-      "calories_total": 702.25,
-      "calories_per_serving": 175.5625,
+      "calories_total": 733.9300000000001,
+      "calories_per_serving": 183.48250000000002,
       "servings_estimate": 4,
-      "covered_ingredients": 9,
+      "covered_ingredients": 10,
       "total_ingredients": 10,
-      "coverage_ratio": 0.9,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "onion",
-          "unit": "cup"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. In a pot, melt {{butter}} and briefly sauté {{onion}} until translucent.\n2. Stir in {{wheat_flour}} and cook for about 3 minutes to form a roux.\n3. Gradually whisk in {{chicken_broth}} and {{milk}}. Bring to a boil while whisking constantly.\n4. Lower the heat, then add {{parsley}}, {{watercress}}, {{nutmeg}}, {{salt}}, and {{black_pepper}}. Cover and cook for about 5 minutes, keeping the greens bright.\n5. For an extra smooth soup, blend some of the hot liquid with the greens before adding, or purée briefly after cooking. Serve hot; add cooked chicken if desired.",
     "steps": [
@@ -21379,7 +21054,7 @@
                 "calories_kcal": 150,
                 "protein_g": 8,
                 "total_fat_g": 8,
-                "saturated_fat_g": 5,
+                "saturated_fat_g": 4.5,
                 "total_carbs_g": 12,
                 "sugars_g": 12,
                 "fiber_g": 0,
