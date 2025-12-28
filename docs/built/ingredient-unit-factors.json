@@ -64,6 +64,14 @@
     "notes": "Approx 1 cup chopped ≈ 2.5 stalks."
   },
   {
+    "ingredient_id": "cheddar-cheese",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "oz",
+    "factor": 4,
+    "source": "USDA (cheddar cheese)",
+    "notes": "Approx 1 cup shredded cheddar ≈ 4 oz."
+  },
+  {
     "ingredient_id": "cheddar-mozzarella-cheese",
     "from_unit_norm": "oz",
     "to_unit_norm": "cup",

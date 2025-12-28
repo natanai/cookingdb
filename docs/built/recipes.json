@@ -5,7 +5,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Main Dishes"
     ],
@@ -14,6 +13,8 @@
     "nutrition_estimate": {
       "calories_total": 898,
       "calories_per_serving": 449,
+      "sodium_total_mg": 642.5,
+      "sat_fat_total_g": 1.9,
       "servings_estimate": 2,
       "covered_ingredients": 7,
       "total_ingredients": 7,
@@ -367,6 +368,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -379,7 +381,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family"
@@ -389,6 +390,8 @@
     "nutrition_estimate": {
       "calories_total": 5231.6,
       "calories_per_serving": 307.74117647058824,
+      "sodium_total_mg": 3758.65,
+      "sat_fat_total_g": 107.055,
       "servings_estimate": 17,
       "covered_ingredients": 12,
       "total_ingredients": 12,
@@ -1013,6 +1016,7 @@
     },
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -1025,7 +1029,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Sides",
       "Family"
@@ -1035,6 +1038,8 @@
     "nutrition_estimate": {
       "calories_total": 1709.319166666667,
       "calories_per_serving": 341.8638333333334,
+      "sodium_total_mg": 2549.1720833333334,
+      "sat_fat_total_g": 28.004166666666666,
       "servings_estimate": 5,
       "covered_ingredients": 5,
       "total_ingredients": 5,
@@ -1294,6 +1299,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -1306,7 +1312,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family",
@@ -1317,6 +1322,8 @@
     "nutrition_estimate": {
       "calories_total": 2302.333333333333,
       "calories_per_serving": 287.79166666666663,
+      "sodium_total_mg": 5870,
+      "sat_fat_total_g": 39,
       "servings_estimate": 8,
       "covered_ingredients": 8,
       "total_ingredients": 8,
@@ -1702,6 +1709,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -1714,7 +1722,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking"
     ],
@@ -1723,6 +1730,8 @@
     "nutrition_estimate": {
       "calories_total": 2605.67,
       "calories_per_serving": 372.23857142857145,
+      "sodium_total_mg": 3284.043333333333,
+      "sat_fat_total_g": 45.733333333333334,
       "servings_estimate": 7,
       "covered_ingredients": 10,
       "total_ingredients": 10,
@@ -2425,6 +2434,7 @@
     },
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -2437,7 +2447,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family",
@@ -2448,6 +2457,8 @@
     "nutrition_estimate": {
       "calories_total": 4949.5,
       "calories_per_serving": 380.7307692307692,
+      "sodium_total_mg": 9209.5,
+      "sat_fat_total_g": 43.9,
       "servings_estimate": 13,
       "covered_ingredients": 7,
       "total_ingredients": 7,
@@ -2786,6 +2797,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": false,
@@ -2798,7 +2810,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Breakfast & Brunch",
       "Family"
@@ -2808,6 +2819,8 @@
     "nutrition_estimate": {
       "calories_total": 1101,
       "calories_per_serving": 275.25,
+      "sodium_total_mg": 3047.75,
+      "sat_fat_total_g": 10.695,
       "servings_estimate": 4,
       "covered_ingredients": 8,
       "total_ingredients": 8,
@@ -3419,6 +3432,7 @@
     },
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -3431,7 +3445,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Sides"
     ],
@@ -3440,6 +3453,8 @@
     "nutrition_estimate": {
       "calories_total": 685,
       "calories_per_serving": 342.5,
+      "sodium_total_mg": 589,
+      "sat_fat_total_g": 1.1,
       "servings_estimate": 2,
       "covered_ingredients": 3,
       "total_ingredients": 3,
@@ -3613,6 +3628,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -3625,7 +3641,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family",
@@ -3636,6 +3651,8 @@
     "nutrition_estimate": {
       "calories_total": 2007.6,
       "calories_per_serving": 334.59999999999997,
+      "sodium_total_mg": 4387.7,
+      "sat_fat_total_g": 30.76875,
       "servings_estimate": 6,
       "covered_ingredients": 8,
       "total_ingredients": 8,
@@ -4021,6 +4038,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": false,
@@ -4033,7 +4051,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family"
@@ -4043,6 +4060,8 @@
     "nutrition_estimate": {
       "calories_total": 1267,
       "calories_per_serving": 211.16666666666666,
+      "sodium_total_mg": 4478,
+      "sat_fat_total_g": 36.8,
       "servings_estimate": 6,
       "covered_ingredients": 5,
       "total_ingredients": 5,
@@ -4300,6 +4319,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -4312,7 +4332,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family",
@@ -4323,6 +4342,8 @@
     "nutrition_estimate": {
       "calories_total": 2382.3416666666667,
       "calories_per_serving": 340.33452380952383,
+      "sodium_total_mg": 5022.768333333334,
+      "sat_fat_total_g": 39.901666666666664,
       "servings_estimate": 7,
       "covered_ingredients": 13,
       "total_ingredients": 13,
@@ -5023,6 +5044,7 @@
     },
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -5035,7 +5057,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family",
@@ -5046,6 +5067,8 @@
     "nutrition_estimate": {
       "calories_total": 7752.5,
       "calories_per_serving": 298.1730769230769,
+      "sodium_total_mg": 19815.25,
+      "sat_fat_total_g": 169.875,
       "servings_estimate": 26,
       "covered_ingredients": 5,
       "total_ingredients": 5,
@@ -5391,6 +5414,7 @@
     },
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": false,
@@ -5403,7 +5427,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family",
@@ -5414,6 +5437,8 @@
     "nutrition_estimate": {
       "calories_total": 3431.7916666666665,
       "calories_per_serving": 190.65509259259258,
+      "sodium_total_mg": 13715.508333333333,
+      "sat_fat_total_g": 1.6025,
       "servings_estimate": 18,
       "covered_ingredients": 15,
       "total_ingredients": 15,
@@ -6112,6 +6137,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -6124,7 +6150,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking",
       "Family"
@@ -6134,6 +6159,8 @@
     "nutrition_estimate": {
       "calories_total": 5634.533333333333,
       "calories_per_serving": 208.6864197530864,
+      "sodium_total_mg": 3387.166666666667,
+      "sat_fat_total_g": 178.39999999999998,
       "servings_estimate": 27,
       "covered_ingredients": 11,
       "total_ingredients": 11,
@@ -6791,6 +6818,7 @@
     },
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -6803,7 +6831,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Sides",
       "Family"
@@ -6813,6 +6840,8 @@
     "nutrition_estimate": {
       "calories_total": 777.9850000000001,
       "calories_per_serving": 388.99250000000006,
+      "sodium_total_mg": 1253.2849999999999,
+      "sat_fat_total_g": 4.9399999999999995,
       "servings_estimate": 2,
       "covered_ingredients": 6,
       "total_ingredients": 6,
@@ -7110,6 +7139,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -7122,7 +7152,6 @@
     "byline": "",
     "base_kind": "protein-main",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family"
@@ -7130,19 +7159,16 @@
     "family": "",
     "notes": "Garlic cloves are left whole and caramelized. Sauce thickens further as it cools.",
     "nutrition_estimate": {
-      "calories_total": 1780.3791666666666,
-      "calories_per_serving": 161.8526515151515,
+      "calories_total": 2300.3791666666666,
+      "calories_per_serving": 209.1253787878788,
+      "sodium_total_mg": 7248.868750000001,
+      "sat_fat_total_g": 70.2575,
       "servings_estimate": 11,
-      "covered_ingredients": 17,
+      "covered_ingredients": 18,
       "total_ingredients": 18,
-      "coverage_ratio": 0.9444444444444444,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "chicken-breast",
-          "unit": "count"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Combine {{chicken_broth}} with {{bouillon}}, {{soy_sauce}}, {{onion_powder}}, {{mustard_powder}}, and {{thyme}} in a large measuring cup and set aside.\n2. Combine {{flour_dredge}} and {{parmesan_dredge}} on a plate and measure remaining ingredients before cooking.\n3. Slice {{chicken_breast}} in half lengthwise to form thinner cutlets. Cover and pound to an even thickness, then pat dry.\n4. Season both sides of {{chicken_breast}} with {{italian_seasoning}}, {{salt}}, and {{black_pepper}}. Dredge in {{flour_dredge}} mixed with {{parmesan_dredge}}, tapping off excess.\n5. Heat {{olive_oil}} in a large skillet over medium-high heat. Sear {{chicken_breast}} for 4–5 minutes per side until golden. Remove and set aside.\n6. Reduce heat to medium-low and melt {{butter}} in the same skillet. Add {{garlic_cloves}} and cook until softened and caramelized, about 6–7 minutes.\n7. Sprinkle in {{flour_sauce}} and cook for 1–2 minutes, stirring until the raw flour smell is gone.\n8. Gradually whisk in the reserved {{chicken_broth}} mixture with {{bouillon}}, {{soy_sauce}}, {{onion_powder}}, {{mustard_powder}}, and {{thyme}} until smooth.\n9. Stir in {{heavy_cream}} and bring to a gentle boil, then reduce heat to low.\n10. Gradually stir in {{parmesan_finish}} until melted.\n11. Return {{chicken_breast}} and any accumulated juices to the skillet. Spoon sauce over the top, cover partially, and simmer for 5 minutes.",
     "steps": [
@@ -7254,8 +7280,8 @@
           {
             "option": "",
             "display": "boneless skinless chicken breast",
-            "ratio": "2",
-            "unit": "piece",
+            "ratio": "1",
+            "unit": "lb",
             "ingredient_id": "chicken-breast",
             "prep": "",
             "depends_on": null,
@@ -8154,6 +8180,7 @@
     },
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -8166,7 +8193,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family"
@@ -8176,6 +8202,8 @@
     "nutrition_estimate": {
       "calories_total": 753.75,
       "calories_per_serving": 188.4375,
+      "sodium_total_mg": 2730.9,
+      "sat_fat_total_g": 21.4,
       "servings_estimate": 4,
       "covered_ingredients": 9,
       "total_ingredients": 9,
@@ -8609,6 +8637,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -8621,7 +8650,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking",
       "Family",
@@ -8632,6 +8660,8 @@
     "nutrition_estimate": {
       "calories_total": 2788,
       "calories_per_serving": 557.6,
+      "sodium_total_mg": 1203.5,
+      "sat_fat_total_g": 30.6,
       "servings_estimate": 5,
       "covered_ingredients": 5,
       "total_ingredients": 5,
@@ -8889,6 +8919,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": false,
@@ -8901,7 +8932,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Sides",
       "Family",
@@ -8910,23 +8940,16 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 1672.1,
-      "calories_per_serving": 104.50625,
-      "servings_estimate": 16,
-      "covered_ingredients": 8,
+      "calories_total": 3118.1,
+      "calories_per_serving": 164.11052631578946,
+      "sodium_total_mg": 5112.75,
+      "sat_fat_total_g": 125.475,
+      "servings_estimate": 19,
+      "covered_ingredients": 10,
       "total_ingredients": 10,
-      "coverage_ratio": 0.8,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "potato",
-          "unit": "lb"
-        },
-        {
-          "ingredient_id": "cheddar-cheese",
-          "unit": "cup"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Mash the cooked {{potatoes}}.\n2. Beat in {{butter}} and {{cream_cheese}} until smooth.\n3. Stir in {{cheddar_cheese}}, {{pimiento}}, {{green_pepper}}, {{parmesan}}, {{milk}}, {{salt}}, and {{green_onions}}.\n4. Spoon into a lightly greased 9x13 baking dish and bake at 350°F for 35 minutes.\n5. Sprinkle with extra {{cheddar_cheese}} and bake until melted.",
     "steps": [
@@ -8984,8 +9007,8 @@
           {
             "option": "",
             "display": "potatoes",
-            "ratio": "3",
-            "unit": "lb",
+            "ratio": "9",
+            "unit": "count",
             "ingredient_id": "potato",
             "prep": "",
             "depends_on": null,
@@ -9403,6 +9426,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -9415,7 +9439,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family"
@@ -9425,6 +9448,8 @@
     "nutrition_estimate": {
       "calories_total": 1649.86,
       "calories_per_serving": 183.31777777777776,
+      "sodium_total_mg": 6592.26,
+      "sat_fat_total_g": 36.2,
       "servings_estimate": 9,
       "covered_ingredients": 9,
       "total_ingredients": 9,
@@ -9854,6 +9879,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -9866,7 +9892,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Appetizers & Snacks",
       "Family",
@@ -9877,6 +9902,8 @@
     "nutrition_estimate": {
       "calories_total": 1815,
       "calories_per_serving": 151.25,
+      "sodium_total_mg": 2769,
+      "sat_fat_total_g": 78.8,
       "servings_estimate": 12,
       "covered_ingredients": 4,
       "total_ingredients": 4,
@@ -10092,6 +10119,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -10104,7 +10132,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking",
       "Family"
@@ -10114,6 +10141,8 @@
     "nutrition_estimate": {
       "calories_total": 2293.0183333333334,
       "calories_per_serving": 458.6036666666667,
+      "sodium_total_mg": 1928.28,
+      "sat_fat_total_g": 30.179349999999996,
       "servings_estimate": 5,
       "covered_ingredients": 16,
       "total_ingredients": 16,
@@ -11024,6 +11053,7 @@
       }
     ],
     "default_pan": "sq_8",
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -11036,7 +11066,6 @@
     "byline": "Lorene’s",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family",
@@ -11047,6 +11076,8 @@
     "nutrition_estimate": {
       "calories_total": 3196.035,
       "calories_per_serving": 228.28821428571428,
+      "sodium_total_mg": 10034.4725,
+      "sat_fat_total_g": 25.679000000000002,
       "servings_estimate": 14,
       "covered_ingredients": 15,
       "total_ingredients": 15,
@@ -11748,6 +11779,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -11760,7 +11792,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Sides",
       "Family",
@@ -11771,6 +11802,8 @@
     "nutrition_estimate": {
       "calories_total": 2376.25,
       "calories_per_serving": 264.02777777777777,
+      "sodium_total_mg": 6257.749999999999,
+      "sat_fat_total_g": 51.449999999999996,
       "servings_estimate": 9,
       "covered_ingredients": 5,
       "total_ingredients": 5,
@@ -12024,6 +12057,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -12036,7 +12070,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Sides",
       "Family",
@@ -12047,6 +12080,8 @@
     "nutrition_estimate": {
       "calories_total": 776.75,
       "calories_per_serving": 258.9166666666667,
+      "sodium_total_mg": 1909.25,
+      "sat_fat_total_g": 0.6,
       "servings_estimate": 3,
       "covered_ingredients": 4,
       "total_ingredients": 4,
@@ -12298,6 +12333,7 @@
     },
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -12310,7 +12346,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Casseroles",
       "Family",
@@ -12321,6 +12356,8 @@
     "nutrition_estimate": {
       "calories_total": 2918,
       "calories_per_serving": 132.63636363636363,
+      "sodium_total_mg": 16646,
+      "sat_fat_total_g": 35,
       "servings_estimate": 22,
       "covered_ingredients": 6,
       "total_ingredients": 6,
@@ -12626,6 +12663,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -12638,7 +12676,6 @@
     "byline": "Mrs. Burrows",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family",
@@ -12647,19 +12684,16 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 2918.5,
-      "calories_per_serving": 265.3181818181818,
+      "calories_total": 4208.5,
+      "calories_per_serving": 382.59090909090907,
+      "sodium_total_mg": 6831.5,
+      "sat_fat_total_g": 73.08,
       "servings_estimate": 11,
-      "covered_ingredients": 7,
+      "covered_ingredients": 8,
       "total_ingredients": 8,
-      "coverage_ratio": 0.875,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "kidney-beans",
-          "unit": "can"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Brown {{ground_beef}} and drain off grease.\n2. Stir in {{kidney_beans}}, {{tomato_sauce}}, {{tomato_soup}}, {{chili_powder}}, {{salt}}, and {{black_pepper}}.\n3. Add {{water}} as needed and cook until it begins to thicken.",
     "steps": [
@@ -12746,8 +12780,8 @@
           {
             "option": "",
             "display": "kidney beans",
-            "ratio": "4",
-            "unit": "can",
+            "ratio": "6",
+            "unit": "cup",
             "ingredient_id": "kidney-beans",
             "prep": "",
             "depends_on": null,
@@ -13039,6 +13073,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -13051,7 +13086,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking"
     ],
@@ -13060,6 +13094,8 @@
     "nutrition_estimate": {
       "calories_total": 5070.2609999999995,
       "calories_per_serving": 187.78744444444442,
+      "sodium_total_mg": 2222.493266666667,
+      "sat_fat_total_g": 178.87016666666665,
       "servings_estimate": 27,
       "covered_ingredients": 13,
       "total_ingredients": 13,
@@ -13706,6 +13742,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": false,
@@ -13718,7 +13755,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking",
       "Family",
@@ -13729,6 +13765,8 @@
     "nutrition_estimate": {
       "calories_total": 1172,
       "calories_per_serving": 586,
+      "sodium_total_mg": 310,
+      "sat_fat_total_g": 11.4,
       "servings_estimate": 2,
       "covered_ingredients": 5,
       "total_ingredients": 5,
@@ -13990,6 +14028,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -14002,7 +14041,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family",
@@ -14013,6 +14051,8 @@
     "nutrition_estimate": {
       "calories_total": 1896.4833333333333,
       "calories_per_serving": 316.0805555555556,
+      "sodium_total_mg": 2572.8316666666665,
+      "sat_fat_total_g": 36.7135,
       "servings_estimate": 6,
       "covered_ingredients": 12,
       "total_ingredients": 12,
@@ -14579,6 +14619,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -14591,7 +14632,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking"
     ],
@@ -14600,10 +14640,12 @@
     "nutrition_estimate": {
       "calories_total": 3501.25,
       "calories_per_serving": 184.27631578947367,
+      "sodium_total_mg": 1900.125,
+      "sat_fat_total_g": 124.75,
       "servings_estimate": 19,
       "covered_ingredients": 6,
-      "total_ingredients": 7,
-      "coverage_ratio": 0.8571428571428571,
+      "total_ingredients": 6,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
@@ -15048,6 +15090,7 @@
     },
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -15060,7 +15103,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family"
@@ -15070,6 +15112,8 @@
     "nutrition_estimate": {
       "calories_total": 1924.61,
       "calories_per_serving": 240.57625,
+      "sodium_total_mg": 5799.76,
+      "sat_fat_total_g": 45.9,
       "servings_estimate": 8,
       "covered_ingredients": 8,
       "total_ingredients": 8,
@@ -15472,6 +15516,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -15484,7 +15529,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Crock-Pot",
       "Soups & Stews"
@@ -15494,6 +15538,8 @@
     "nutrition_estimate": {
       "calories_total": 2525.25,
       "calories_per_serving": 194.25,
+      "sodium_total_mg": 9316.625,
+      "sat_fat_total_g": 39.55,
       "servings_estimate": 13,
       "covered_ingredients": 15,
       "total_ingredients": 15,
@@ -16288,6 +16334,7 @@
     },
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -16300,7 +16347,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking",
       "Family",
@@ -16311,6 +16357,8 @@
     "nutrition_estimate": {
       "calories_total": 4457.25,
       "calories_per_serving": 495.25,
+      "sodium_total_mg": 1988.875,
+      "sat_fat_total_g": 59.75,
       "servings_estimate": 9,
       "covered_ingredients": 9,
       "total_ingredients": 9,
@@ -16752,6 +16800,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": false,
@@ -16764,7 +16813,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking",
       "Family"
@@ -16774,6 +16822,8 @@
     "nutrition_estimate": {
       "calories_total": 3461.95,
       "calories_per_serving": 384.6611111111111,
+      "sodium_total_mg": 2558.125,
+      "sat_fat_total_g": 58.05,
       "servings_estimate": 9,
       "covered_ingredients": 9,
       "total_ingredients": 9,
@@ -17313,6 +17363,7 @@
     },
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": false,
@@ -17325,7 +17376,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Breakfast & Brunch",
       "Desserts & Baking"
@@ -17333,19 +17383,16 @@
     "family": "",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 2287,
-      "calories_per_serving": 228.7,
-      "servings_estimate": 10,
-      "covered_ingredients": 7,
-      "total_ingredients": 8,
-      "coverage_ratio": 0.875,
+      "calories_total": 4892.67,
+      "calories_per_serving": 287.80411764705883,
+      "sodium_total_mg": 3961.543333333333,
+      "sat_fat_total_g": 106.83333333333334,
+      "servings_estimate": 17,
+      "covered_ingredients": 17,
+      "total_ingredients": 17,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "basic-roll-dough",
-          "unit": "recipe"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Make {{basic_roll_dough}} (use the gluten-free options there if needed; the dough recipe is printable on its own).\n2. Grease three 8 1/2-inch round pans.\n3. If using wheat dough: turn out onto a floured surface, divide into thirds, and pat each third into a prepared pan. If using gluten-free dough: divide dough into thirds and spread each portion into a prepared pan with damp hands or an oiled spatula.\n4. Make the streusel: mix {{flour}}, {{brown_sugar}}, {{granulated_sugar}}, and {{cinnamon}}. Cut in {{streusel_fat}} until crumbly, then stir in {{nuts}}.\n5. Sprinkle 1/3 of the streusel topping over each pan.\n6. Rise: Wheat dough: cover and let rise until doubled (30–45 minutes). Gluten-free dough: let rest 10–20 minutes while the oven preheats (don’t wait for “double”; just a short puff is enough).\n7. Bake at 375°F until done: Wheat dough: about 20 minutes. Gluten-free dough: start checking at 22 minutes; may take closer to 25–30 minutes.\n8. Immediately drizzle {{vanilla}} over each coffee cake. Serve warm.",
     "steps": [
@@ -17799,6 +17846,7 @@
     },
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": false,
@@ -17811,7 +17859,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Breads & Pizza"
     ],
@@ -17820,6 +17867,8 @@
     "nutrition_estimate": {
       "calories_total": 730.5666666666666,
       "calories_per_serving": 243.5222222222222,
+      "sodium_total_mg": 1557.6666666666667,
+      "sat_fat_total_g": 0.7875,
       "servings_estimate": 3,
       "covered_ingredients": 6,
       "total_ingredients": 6,
@@ -18133,6 +18182,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -18145,7 +18195,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family"
@@ -18155,6 +18204,8 @@
     "nutrition_estimate": {
       "calories_total": 2454.75,
       "calories_per_serving": 490.95,
+      "sodium_total_mg": 1746.375,
+      "sat_fat_total_g": 27.4,
       "servings_estimate": 5,
       "covered_ingredients": 8,
       "total_ingredients": 8,
@@ -18595,6 +18646,7 @@
     },
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -18607,7 +18659,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Mains",
       "Family"
@@ -18617,6 +18668,8 @@
     "nutrition_estimate": {
       "calories_total": 2946.25,
       "calories_per_serving": 163.68055555555554,
+      "sodium_total_mg": 3351.025,
+      "sat_fat_total_g": 116.75,
       "servings_estimate": 18,
       "covered_ingredients": 15,
       "total_ingredients": 15,
@@ -19320,6 +19373,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -19332,7 +19386,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Desserts & Baking"
     ],
@@ -19341,10 +19394,12 @@
     "nutrition_estimate": {
       "calories_total": 3862.183333333333,
       "calories_per_serving": 643.6972222222222,
+      "sodium_total_mg": 1493.9166666666667,
+      "sat_fat_total_g": 11.889999999999999,
       "servings_estimate": 6,
       "covered_ingredients": 14,
-      "total_ingredients": 21,
-      "coverage_ratio": 0.6666666666666666,
+      "total_ingredients": 14,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
@@ -20321,6 +20376,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -20333,7 +20389,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Main Dishes"
     ],
@@ -20342,6 +20397,8 @@
     "nutrition_estimate": {
       "calories_total": 1582.8333333333333,
       "calories_per_serving": 158.28333333333333,
+      "sodium_total_mg": 6947.93,
+      "sat_fat_total_g": 5.676666666666668,
       "servings_estimate": 10,
       "covered_ingredients": 9,
       "total_ingredients": 9,
@@ -20783,6 +20840,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,
@@ -20795,7 +20853,6 @@
     "byline": "",
     "base_kind": "multiplier",
     "default_base": 1,
-    "servings_per_batch": 4,
     "categories": [
       "Soups & Stews",
       "Family"
@@ -20805,6 +20862,8 @@
     "nutrition_estimate": {
       "calories_total": 733.9300000000001,
       "calories_per_serving": 183.48250000000002,
+      "sodium_total_mg": 2975.88,
+      "sat_fat_total_g": 23.737499999999997,
       "servings_estimate": 4,
       "covered_ingredients": 10,
       "total_ingredients": 10,
@@ -21286,6 +21345,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
+    "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": false,
       "egg_free": true,

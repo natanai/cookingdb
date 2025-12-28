@@ -908,6 +908,18 @@ main {
   flex-wrap: wrap;
 }
 
+#ingredients-list .ingredient-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
+}
+
+#ingredients-list .ingredient-link:hover,
+#ingredients-list .ingredient-link:focus {
+  color: var(--accent);
+}
+
 #steps-list {
   list-style: none;
   counter-reset: step-counter;
