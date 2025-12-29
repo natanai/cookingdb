@@ -12,5 +12,8 @@
   { "id": "round_9", "label": "9-inch round", "shape": "round", "width": 9, "height": null, "unit": "in" },
   { "id": "round_10", "label": "10-inch round", "shape": "round", "width": 10, "height": null, "unit": "in" },
   { "id": "springform_9", "label": "9-inch springform", "shape": "round", "width": 9, "height": null, "unit": "in" },
-  { "id": "bundt_10cup", "label": "10-cup Bundt", "shape": "round", "width": 9.5, "height": null, "unit": "in" }
+  { "id": "bundt_10cup", "label": "10-cup Bundt", "shape": "round", "width": 9.5, "height": null, "unit": "in" },
+  { "id": "muffin_6", "label": "6-cup muffin pan", "shape": "muffin", "width": 6, "height": null, "unit": "count", "cups": 6 },
+  { "id": "muffin_12", "label": "12-cup muffin pan", "shape": "muffin", "width": 12, "height": null, "unit": "count", "cups": 12 },
+  { "id": "mini_muffin_24", "label": "24-cup mini muffin pan", "shape": "muffin", "width": 24, "height": null, "unit": "count", "cups": 24 }
 ]
