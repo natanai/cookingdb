@@ -16,7 +16,6 @@ Each recipe lives in `recipes/<recipe_id>/` and must include:
 Optional files:
 
 - `choices.csv` (required if any ingredient token has multiple options).
-- `pans.csv` (required only if the recipe is pan-scalable).
 
 ## `meta.csv` requirements
 
@@ -80,13 +79,13 @@ Use `choices.csv` when a token has multiple `option` values in `ingredients.csv`
 - `default_option` must match one of the options listed for that token in `ingredients.csv`.
 - Choices must provide **at least two options** for the token.
 
-## Pan scaling (`pans.csv`) requirements
+## Pan scaling requirements
 
 If a recipe can be scaled for different pan sizes:
 
-- `pans.csv` must include at least one row.
-- Each row must reference a valid pan `id` in `data/pan-sizes.json`.
-- Exactly **one** row must set `default` to a truthy value.
+- Add a `default_pan` column to `meta.csv` with a valid pan `id` from `data/pan-sizes.json`.
+- The pan selector uses the shared list from `data/pan-sizes.json` for every recipe.
+- The default pan must exist in that list so the scaling math can anchor to the 1-batch size.
 - Pan entries must have valid dimensions in the catalog (width, and height for rectangle/square shapes).
 
 ## Compatibility and filtering expectations

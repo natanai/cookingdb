@@ -6,7 +6,6 @@
   { "id": "rect_9x5", "label": "9x5-inch loaf", "shape": "rectangle", "width": 9, "height": 5, "unit": "in" },
   { "id": "rect_8x4", "label": "8x4-inch loaf", "shape": "rectangle", "width": 8, "height": 4, "unit": "in" },
   { "id": "sheet_half", "label": "Half sheet (18x13)", "shape": "rectangle", "width": 18, "height": 13, "unit": "in" },
-  { "id": "sheet_quarter", "label": "Quarter sheet (13x9)", "shape": "rectangle", "width": 13, "height": 9, "unit": "in" },
   { "id": "round_6", "label": "6-inch round", "shape": "round", "width": 6, "height": null, "unit": "in" },
   { "id": "round_8", "label": "8-inch round", "shape": "round", "width": 8, "height": null, "unit": "in" },
   { "id": "round_9", "label": "9-inch round", "shape": "round", "width": 9, "height": null, "unit": "in" },

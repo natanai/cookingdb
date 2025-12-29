@@ -428,24 +428,14 @@ export async function validateAll() {
       ensure(options.has(row.default_option), `${recipeId}: default option ${row.default_option} for ${row.token} not found among ingredient options`);
     }
 
-    const pansPath = path.join(baseDir, 'pans.csv');
-    if (fs.existsSync(pansPath)) {
-      const panRows = await parseCSVFile(pansPath);
-      ensure(panRows.length > 0, `${recipeId}: pans.csv must include at least one pan option`);
-      let defaultCount = 0;
-
-      for (const row of panRows) {
-        ensure(row.id, `${recipeId}: pan row missing id: ${JSON.stringify(row)}`);
-        ensure(panCatalog.has(row.id), `${recipeId}: pan ${row.id} not found in pan catalog`);
-        const panDef = panCatalog.get(row.id);
-        ensure(Number.isFinite(panDef.width) && panDef.width > 0, `${recipeId}: pan ${row.id} missing width`);
-        if (['rectangle', 'square'].includes((panDef.shape || '').toLowerCase())) {
-          ensure(Number.isFinite(panDef.height) && panDef.height > 0, `${recipeId}: pan ${row.id} missing height`);
-        }
-        if (parseBoolean(row.default)) defaultCount += 1;
+    const defaultPanId = String(metaRow.default_pan || '').trim();
+    if (defaultPanId) {
+      ensure(panCatalog.has(defaultPanId), `${recipeId}: default pan ${defaultPanId} not found in pan catalog`);
+      const panDef = panCatalog.get(defaultPanId);
+      ensure(Number.isFinite(panDef.width) && panDef.width > 0, `${recipeId}: pan ${defaultPanId} missing width`);
+      if (['rectangle', 'square'].includes((panDef.shape || '').toLowerCase())) {
+        ensure(Number.isFinite(panDef.height) && panDef.height > 0, `${recipeId}: pan ${defaultPanId} missing height`);
       }
-
-      ensure(defaultCount === 1, `${recipeId}: pans.csv must mark exactly one default pan`);
     }
   }
 
