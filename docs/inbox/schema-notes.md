@@ -14,7 +14,7 @@ Inbox payloads should map cleanly to the CSV recipe schema used by `scripts/buil
 
 - `token_order`, `ingredients`, and option data map to `recipes/<id>/ingredients.csv` (tokens, options, ratios, units, dependencies).
 - `steps_raw` and/or `steps` map to `recipes/<id>/steps.md` or `recipes/<id>/steps.csv` (including step sections).
-- `choices`, `pan_sizes`, and `default_pan` map to `choices.csv` and `pans.csv` where applicable.
+- `choices` maps to `choices.csv`. `pan_sizes` and `default_pan` are derived from `meta.csv` and the shared `data/pan-sizes.json` list.
 
 Published recipes must pass `scripts/validate.mjs` and be rebuilt via `scripts/build.mjs` to appear in `docs/built/recipes.json`.
 Missing steps or ingredients will produce incomplete or non-rendering recipes in `docs/recipe.js` and `docs/app.js`.

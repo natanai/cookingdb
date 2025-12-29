@@ -543,7 +543,7 @@ function assertVolumeConversions() {
 
 function loadPanCatalog(catalogPath) {
   const raw = fs.existsSync(catalogPath) ? fs.readFileSync(catalogPath, 'utf-8') : '';
-  if (!raw) return new Map();
+  if (!raw) return { panCatalog: new Map(), panList: [] };
   let parsed;
   try {
     parsed = JSON.parse(raw);
@@ -551,18 +551,21 @@ function loadPanCatalog(catalogPath) {
     throw new Error(`Unable to parse pan catalog at ${catalogPath}: ${err?.message || err}`);
   }
   const map = new Map();
+  const list = [];
   parsed.forEach((entry) => {
     if (!entry?.id) return;
-    map.set(entry.id, {
+    const normalized = {
       id: entry.id,
       label: entry.label || entry.id,
       shape: (entry.shape || 'rectangle').toLowerCase(),
       width: Number(entry.width),
       height: entry.height === null || entry.height === undefined ? null : Number(entry.height),
       unit: entry.unit || 'in',
-    });
+    };
+    map.set(entry.id, normalized);
+    list.push(normalized);
   });
-  return map;
+  return { panCatalog: map, panList: list };
 }
 
 function ingredientCompatible(flags, restriction) {
@@ -874,7 +877,7 @@ async function build() {
     path.join(process.cwd(), 'data', 'nutrition_policy.json'),
     path.join(process.cwd(), 'data', 'nutrition_guidelines.json')
   );
-  const panCatalog = loadPanCatalog(path.join(process.cwd(), 'data', 'pan-sizes.json'));
+  const { panCatalog, panList } = loadPanCatalog(path.join(process.cwd(), 'data', 'pan-sizes.json'));
   const recipesDir = path.join(process.cwd(), 'recipes');
   const recipeDirs = fs.readdirSync(recipesDir, { withFileTypes: true }).filter((ent) => ent.isDirectory());
 
@@ -962,27 +965,18 @@ async function build() {
       };
     }
 
-    const pansPath = path.join(baseDir, 'pans.csv');
     let panSizes = [];
-    let defaultPanId = null;
-    if (fs.existsSync(pansPath)) {
-      const panRows = await parseCSVFile(pansPath);
-      panSizes = panRows
-        .map((row) => {
-          const catalogEntry = panCatalog.get(row.id);
-          if (!catalogEntry) {
-            console.warn(`Unknown pan id "${row.id}" in ${recipeId}; skipping.`);
-            return null;
-          }
-          return {
-            ...catalogEntry,
-            label: row.label || catalogEntry.label,
-            is_default: parseBoolean(row.default),
-          };
-        })
-        .filter(Boolean);
-      const defaultPan = panSizes.find((p) => p.is_default) || panSizes[0];
-      defaultPanId = defaultPan?.id || null;
+    let defaultPanId = String(meta.default_pan || '').trim() || null;
+    if (defaultPanId) {
+      if (!panCatalog.has(defaultPanId)) {
+        console.warn(`Unknown default pan id "${defaultPanId}" in ${recipeId}; disabling pan scaling.`);
+        defaultPanId = null;
+      } else {
+        panSizes = panList.map((pan) => ({
+          ...pan,
+          is_default: pan.id === defaultPanId,
+        }));
+      }
     }
 
     const compatibility = computeCompatibility(ingredients, catalog);

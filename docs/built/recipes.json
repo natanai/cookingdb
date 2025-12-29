@@ -4771,15 +4771,6 @@
     },
     "pan_sizes": [
       {
-        "id": "rect_9x13",
-        "label": "9x13-inch rectangle",
-        "shape": "rectangle",
-        "width": 9,
-        "height": 13,
-        "unit": "in",
-        "is_default": true
-      },
-      {
         "id": "sq_8",
         "label": "8x8-inch square",
         "shape": "square",
@@ -4798,11 +4789,38 @@
         "is_default": false
       },
       {
+        "id": "rect_9x13",
+        "label": "9x13-inch rectangle",
+        "shape": "rectangle",
+        "width": 9,
+        "height": 13,
+        "unit": "in",
+        "is_default": true
+      },
+      {
         "id": "rect_9x12",
         "label": "9x12-inch rectangle",
         "shape": "rectangle",
         "width": 9,
         "height": 12,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "rect_9x5",
+        "label": "9x5-inch loaf",
+        "shape": "rectangle",
+        "width": 9,
+        "height": 5,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "rect_8x4",
+        "label": "8x4-inch loaf",
+        "shape": "rectangle",
+        "width": 8,
+        "height": 4,
         "unit": "in",
         "is_default": false
       },
@@ -4816,19 +4834,10 @@
         "is_default": false
       },
       {
-        "id": "sheet_quarter",
-        "label": "Quarter sheet (13x9)",
-        "shape": "rectangle",
-        "width": 13,
-        "height": 9,
-        "unit": "in",
-        "is_default": false
-      },
-      {
-        "id": "round_9",
-        "label": "9-inch round",
+        "id": "round_6",
+        "label": "6-inch round",
         "shape": "round",
-        "width": 9,
+        "width": 6,
         "height": null,
         "unit": "in",
         "is_default": false
@@ -4843,19 +4852,19 @@
         "is_default": false
       },
       {
-        "id": "round_10",
-        "label": "10-inch round",
+        "id": "round_9",
+        "label": "9-inch round",
         "shape": "round",
-        "width": 10,
+        "width": 9,
         "height": null,
         "unit": "in",
         "is_default": false
       },
       {
-        "id": "round_6",
-        "label": "6-inch round",
+        "id": "round_10",
+        "label": "10-inch round",
         "shape": "round",
-        "width": 6,
+        "width": 10,
         "height": null,
         "unit": "in",
         "is_default": false
@@ -4879,21 +4888,30 @@
         "is_default": false
       },
       {
-        "id": "rect_9x5",
-        "label": "9x5-inch loaf",
-        "shape": "rectangle",
-        "width": 9,
-        "height": 5,
-        "unit": "in",
+        "id": "muffin_6",
+        "label": "6-cup muffin pan",
+        "shape": "muffin",
+        "width": 6,
+        "height": null,
+        "unit": "count",
         "is_default": false
       },
       {
-        "id": "rect_8x4",
-        "label": "8x4-inch loaf",
-        "shape": "rectangle",
-        "width": 8,
-        "height": 4,
-        "unit": "in",
+        "id": "muffin_12",
+        "label": "12-cup muffin pan",
+        "shape": "muffin",
+        "width": 12,
+        "height": null,
+        "unit": "count",
+        "is_default": false
+      },
+      {
+        "id": "mini_muffin_24",
+        "label": "24-cup mini muffin pan",
+        "shape": "muffin",
+        "width": 24,
+        "height": null,
+        "unit": "count",
         "is_default": false
       }
     ],
@@ -12787,6 +12805,15 @@
         "is_default": true
       },
       {
+        "id": "sq_9",
+        "label": "9x9-inch square",
+        "shape": "square",
+        "width": 9,
+        "height": 9,
+        "unit": "in",
+        "is_default": false
+      },
+      {
         "id": "rect_9x13",
         "label": "9x13-inch rectangle",
         "shape": "rectangle",
@@ -12796,47 +12823,11 @@
         "is_default": false
       },
       {
-        "id": "round_9",
-        "label": "9-inch round",
-        "shape": "round",
+        "id": "rect_9x12",
+        "label": "9x12-inch rectangle",
+        "shape": "rectangle",
         "width": 9,
-        "height": null,
-        "unit": "in",
-        "is_default": false
-      },
-      {
-        "id": "round_8",
-        "label": "8-inch round",
-        "shape": "round",
-        "width": 8,
-        "height": null,
-        "unit": "in",
-        "is_default": false
-      },
-      {
-        "id": "round_10",
-        "label": "10-inch round",
-        "shape": "round",
-        "width": 10,
-        "height": null,
-        "unit": "in",
-        "is_default": false
-      },
-      {
-        "id": "sheet_half",
-        "label": "Half sheet (18x13)",
-        "shape": "rectangle",
-        "width": 18,
-        "height": 13,
-        "unit": "in",
-        "is_default": false
-      },
-      {
-        "id": "sheet_quarter",
-        "label": "Quarter sheet (13x9)",
-        "shape": "rectangle",
-        "width": 13,
-        "height": 9,
+        "height": 12,
         "unit": "in",
         "is_default": false
       },
@@ -12859,10 +12850,46 @@
         "is_default": false
       },
       {
+        "id": "sheet_half",
+        "label": "Half sheet (18x13)",
+        "shape": "rectangle",
+        "width": 18,
+        "height": 13,
+        "unit": "in",
+        "is_default": false
+      },
+      {
         "id": "round_6",
         "label": "6-inch round",
         "shape": "round",
         "width": 6,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "round_8",
+        "label": "8-inch round",
+        "shape": "round",
+        "width": 8,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "round_9",
+        "label": "9-inch round",
+        "shape": "round",
+        "width": 9,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "round_10",
+        "label": "10-inch round",
+        "shape": "round",
+        "width": 10,
         "height": null,
         "unit": "in",
         "is_default": false
@@ -12883,6 +12910,33 @@
         "width": 9.5,
         "height": null,
         "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "muffin_6",
+        "label": "6-cup muffin pan",
+        "shape": "muffin",
+        "width": 6,
+        "height": null,
+        "unit": "count",
+        "is_default": false
+      },
+      {
+        "id": "muffin_12",
+        "label": "12-cup muffin pan",
+        "shape": "muffin",
+        "width": 12,
+        "height": null,
+        "unit": "count",
+        "is_default": false
+      },
+      {
+        "id": "mini_muffin_24",
+        "label": "24-cup mini muffin pan",
+        "shape": "muffin",
+        "width": 24,
+        "height": null,
+        "unit": "count",
         "is_default": false
       }
     ],
