@@ -187,7 +187,7 @@
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "(duplicate entry)",
+                "source": "USDA (garlic)",
                 "notes": "Per 1 clove (3g)."
               }
             ]
@@ -4769,8 +4769,135 @@
         "default_option": "wheat"
       }
     },
-    "pan_sizes": [],
-    "default_pan": null,
+    "pan_sizes": [
+      {
+        "id": "rect_9x13",
+        "label": "9x13-inch rectangle",
+        "shape": "rectangle",
+        "width": 9,
+        "height": 13,
+        "unit": "in",
+        "is_default": true
+      },
+      {
+        "id": "sq_8",
+        "label": "8x8-inch square",
+        "shape": "square",
+        "width": 8,
+        "height": 8,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "sq_9",
+        "label": "9x9-inch square",
+        "shape": "square",
+        "width": 9,
+        "height": 9,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "rect_9x12",
+        "label": "9x12-inch rectangle",
+        "shape": "rectangle",
+        "width": 9,
+        "height": 12,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "sheet_half",
+        "label": "Half sheet (18x13)",
+        "shape": "rectangle",
+        "width": 18,
+        "height": 13,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "sheet_quarter",
+        "label": "Quarter sheet (13x9)",
+        "shape": "rectangle",
+        "width": 13,
+        "height": 9,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "round_9",
+        "label": "9-inch round",
+        "shape": "round",
+        "width": 9,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "round_8",
+        "label": "8-inch round",
+        "shape": "round",
+        "width": 8,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "round_10",
+        "label": "10-inch round",
+        "shape": "round",
+        "width": 10,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "round_6",
+        "label": "6-inch round",
+        "shape": "round",
+        "width": 6,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "springform_9",
+        "label": "9-inch springform",
+        "shape": "round",
+        "width": 9,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "bundt_10cup",
+        "label": "10-cup Bundt",
+        "shape": "round",
+        "width": 9.5,
+        "height": null,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "rect_9x5",
+        "label": "9x5-inch loaf",
+        "shape": "rectangle",
+        "width": 9,
+        "height": 5,
+        "unit": "in",
+        "is_default": false
+      },
+      {
+        "id": "rect_8x4",
+        "label": "8x4-inch loaf",
+        "shape": "rectangle",
+        "width": 8,
+        "height": 4,
+        "unit": "in",
+        "is_default": false
+      }
+    ],
+    "default_pan": "rect_9x13",
     "servings_per_batch": 4,
     "compatibility_possible": {
       "gluten_free": true,
@@ -6773,7 +6900,7 @@
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "(duplicate entry)",
+                "source": "USDA (garlic)",
                 "notes": "Per 1 clove (3g)."
               }
             ]
@@ -8715,7 +8842,7 @@
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "(duplicate entry)",
+                "source": "USDA (garlic)",
                 "notes": "Per 1 clove (3g)."
               }
             ]
@@ -9371,6 +9498,980 @@
     "pan_sizes": [],
     "default_pan": null,
     "servings_per_batch": 4,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "crockpot-hearty-chicken-and-rice-soup",
+    "title": "Crockpot Hearty Chicken and Rice Soup",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Crock-Pot",
+      "Soups & Stews"
+    ],
+    "family": "",
+    "notes": "Slow-cooked chicken and rice soup with fresh herbs, spinach, and lemon.",
+    "nutrition_estimate": {
+      "calories_total": 2425.22,
+      "calories_per_serving": 173.23,
+      "sodium_total_mg": 10176.66,
+      "sat_fat_total_g": 47.413199999999996,
+      "servings_estimate": 14,
+      "covered_ingredients": 16,
+      "total_ingredients": 19,
+      "coverage_ratio": 0.8421052631578947,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": [
+        {
+          "ingredient_id": "shallot",
+          "unit": "tbsp"
+        },
+        {
+          "ingredient_id": "carrot",
+          "unit": "cup"
+        },
+        {
+          "ingredient_id": "parmesan_cheese",
+          "unit": "count"
+        }
+      ]
+    },
+    "steps_raw": "1. In the crockpot, combine {{butter}}, {{chicken}}, {{onion}}, {{shallot}}, {{garlic}}, {{celery}}, and {{carrot}}. Pour in {{chicken_broth}}. Stir in {{thyme}}, {{sage}}, {{rosemary}}, and {{bay_leaf}}; season with {{salt}} and {{black_pepper}}. Add {{parmesan_rind}} if using.\n2. Cover and cook on low for 4–6 hours or on high for 2–4 hours. Shred the {{chicken}}.\n3. About 20 minutes before serving, stir in {{rice}}, {{spinach}}, {{parsley}}, and {{lemon_juice}}. Cook for 15–20 minutes, until the rice is tender.\n4. Ladle into bowls and top with extra {{parsley}} if desired.\n5. In a Dutch oven, combine {{butter}}, {{chicken}}, {{onion}}, {{shallot}}, {{garlic}}, {{celery}}, and {{carrot}}. Pour in {{chicken_broth}}. Stir in {{thyme}}, {{sage}}, {{rosemary}}, and {{bay_leaf}}; season with {{salt}} and {{black_pepper}}. Add {{parmesan_rind}} if using.\n6. Bring to a boil over high heat. Cook for 5 minutes, then reduce to low, cover, and simmer for 30 minutes or longer. Shred the {{chicken}}.\n7. About 20 minutes before serving, stir in {{rice}}, {{spinach}}, {{parsley}}, and {{lemon_juice}}. Cook for 15–20 minutes, until the rice is tender.\n8. Ladle into bowls and top with extra {{parsley}} if desired.",
+    "steps": [
+      {
+        "section": "Crockpot",
+        "text": "In the crockpot, combine {{butter}}, {{chicken}}, {{onion}}, {{shallot}}, {{garlic}}, {{celery}}, and {{carrot}}. Pour in {{chicken_broth}}. Stir in {{thyme}}, {{sage}}, {{rosemary}}, and {{bay_leaf}}; season with {{salt}} and {{black_pepper}}. Add {{parmesan_rind}} if using."
+      },
+      {
+        "section": "Crockpot",
+        "text": "Cover and cook on low for 4–6 hours or on high for 2–4 hours. Shred the {{chicken}}."
+      },
+      {
+        "section": "Crockpot",
+        "text": "About 20 minutes before serving, stir in {{rice}}, {{spinach}}, {{parsley}}, and {{lemon_juice}}. Cook for 15–20 minutes, until the rice is tender."
+      },
+      {
+        "section": "Crockpot",
+        "text": "Ladle into bowls and top with extra {{parsley}} if desired."
+      },
+      {
+        "section": "Stove",
+        "text": "In a Dutch oven, combine {{butter}}, {{chicken}}, {{onion}}, {{shallot}}, {{garlic}}, {{celery}}, and {{carrot}}. Pour in {{chicken_broth}}. Stir in {{thyme}}, {{sage}}, {{rosemary}}, and {{bay_leaf}}; season with {{salt}} and {{black_pepper}}. Add {{parmesan_rind}} if using."
+      },
+      {
+        "section": "Stove",
+        "text": "Bring to a boil over high heat. Cook for 5 minutes, then reduce to low, cover, and simmer for 30 minutes or longer. Shred the {{chicken}}."
+      },
+      {
+        "section": "Stove",
+        "text": "About 20 minutes before serving, stir in {{rice}}, {{spinach}}, {{parsley}}, and {{lemon_juice}}. Cook for 15–20 minutes, until the rice is tender."
+      },
+      {
+        "section": "Stove",
+        "text": "Ladle into bowls and top with extra {{parsley}} if desired."
+      }
+    ],
+    "step_sections": [
+      "Crockpot",
+      "Stove"
+    ],
+    "tokens_used": [
+      "butter",
+      "chicken",
+      "onion",
+      "shallot",
+      "garlic",
+      "celery",
+      "carrot",
+      "chicken_broth",
+      "thyme",
+      "sage",
+      "rosemary",
+      "bay_leaf",
+      "salt",
+      "black_pepper",
+      "parmesan_rind",
+      "chicken",
+      "rice",
+      "spinach",
+      "parsley",
+      "lemon_juice",
+      "parsley",
+      "butter",
+      "chicken",
+      "onion",
+      "shallot",
+      "garlic",
+      "celery",
+      "carrot",
+      "chicken_broth",
+      "thyme",
+      "sage",
+      "rosemary",
+      "bay_leaf",
+      "salt",
+      "black_pepper",
+      "parmesan_rind",
+      "chicken",
+      "rice",
+      "spinach",
+      "parsley",
+      "lemon_juice",
+      "parsley"
+    ],
+    "token_order": [
+      "butter",
+      "chicken",
+      "onion",
+      "shallot",
+      "garlic",
+      "celery",
+      "carrot",
+      "chicken_broth",
+      "thyme",
+      "sage",
+      "rosemary",
+      "bay_leaf",
+      "salt",
+      "black_pepper",
+      "parmesan_rind",
+      "rice",
+      "spinach",
+      "parsley",
+      "lemon_juice"
+    ],
+    "ingredients": {
+      "butter": {
+        "token": "butter",
+        "options": [
+          {
+            "option": "",
+            "display": "salted butter",
+            "ratio": "6",
+            "unit": "tbsp",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.5,
+                "saturated_fat_g": 7.3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 82,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "chicken": {
+        "token": "chicken",
+        "options": [
+          {
+            "option": "",
+            "display": "boneless chicken breasts or thighs",
+            "ratio": "1",
+            "unit": "lb",
+            "ingredient_id": "chicken-breast",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "lb",
+                "calories_kcal": 520,
+                "protein_g": 96,
+                "total_fat_g": 14,
+                "saturated_fat_g": 3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 308,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate of chicken breast)",
+                "notes": "Per 1 lb raw boneless skinless breast (~453g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "onion": {
+        "token": "onion",
+        "options": [
+          {
+            "option": "",
+            "display": "yellow onion",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "onion",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 44,
+                "protein_g": 1.2,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 10,
+                "sugars_g": 4.7,
+                "fiber_g": 1.9,
+                "sodium_mg": 4,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (med. onion)",
+                "notes": "Per 1 medium (110g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "shallot": {
+        "token": "shallot",
+        "options": [
+          {
+            "option": "",
+            "display": "shallots",
+            "ratio": "4",
+            "unit": "tbsp",
+            "ingredient_id": "shallot",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 22,
+                "protein_g": 0.8,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 5,
+                "sugars_g": 1,
+                "fiber_g": 0.8,
+                "sodium_mg": 1,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "FoodStruct (shallot)",
+                "notes": "Per 1 medium (30g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "garlic": {
+        "token": "garlic",
+        "options": [
+          {
+            "option": "",
+            "display": "garlic cloves",
+            "ratio": "4",
+            "unit": "piece",
+            "ingredient_id": "garlic",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "clove",
+                "calories_kcal": 4,
+                "protein_g": 0.2,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.9,
+                "sugars_g": 0.03,
+                "fiber_g": 0.1,
+                "sodium_mg": 0.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (garlic)",
+                "notes": "Per 1 clove (3g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "celery": {
+        "token": "celery",
+        "options": [
+          {
+            "option": "",
+            "display": "celery",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "celery",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 6,
+                "protein_g": 0.3,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.2,
+                "sugars_g": 0.5,
+                "fiber_g": 0.6,
+                "sodium_mg": 32,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (raw celery)",
+                "notes": "Per 1 stalk (40g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "carrot": {
+        "token": "carrot",
+        "options": [
+          {
+            "option": "",
+            "display": "carrots",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "carrot",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 25,
+                "protein_g": 0.6,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 6,
+                "sugars_g": 2.9,
+                "fiber_g": 1.7,
+                "sodium_mg": 42,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (medium carrot)",
+                "notes": "Per 1 medium (61g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "thyme": {
+        "token": "thyme",
+        "options": [
+          {
+            "option": "",
+            "display": "fresh thyme leaves",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "thyme",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 3,
+                "protein_g": 0.1,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.9,
+                "sugars_g": 0,
+                "fiber_g": 0.6,
+                "sodium_mg": 2,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (dried thyme)",
+                "notes": "Per 1 tsp (1g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "sage": {
+        "token": "sage",
+        "options": [
+          {
+            "option": "",
+            "display": "fresh sage",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "sage",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 2,
+                "protein_g": 0.1,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.4,
+                "sugars_g": 0,
+                "fiber_g": 0.3,
+                "sodium_mg": 1,
+                "calcium_mg": 21,
+                "iron_mg": 0.4,
+                "potassium_mg": 25,
+                "vitamin_c_mg": 1,
+                "source": "USDA (fresh sage)",
+                "notes": "Per 1 Tbsp chopped (0.7g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "rosemary": {
+        "token": "rosemary",
+        "options": [
+          {
+            "option": "",
+            "display": "fresh rosemary",
+            "ratio": "2",
+            "unit": "tsp",
+            "ingredient_id": "rosemary",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 4,
+                "protein_g": 0.1,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.8,
+                "sugars_g": 0,
+                "fiber_g": 0.6,
+                "sodium_mg": 1,
+                "calcium_mg": 3,
+                "iron_mg": 0.2,
+                "potassium_mg": 13,
+                "vitamin_c_mg": 0.3,
+                "source": "USDA (fresh rosemary)",
+                "notes": "Per 1 tsp chopped (1g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "bay_leaf": {
+        "token": "bay_leaf",
+        "options": [
+          {
+            "option": "",
+            "display": "bay leaf",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "bay-leaf",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 2,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.5,
+                "sugars_g": 0,
+                "fiber_g": 0.3,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (spices)",
+                "notes": "Per 1 leaf (~0.6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "chicken_broth": {
+        "token": "chicken_broth",
+        "options": [
+          {
+            "option": "",
+            "display": "low-sodium chicken broth",
+            "ratio": "8",
+            "unit": "cup",
+            "ingredient_id": "chicken-broth",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 15,
+                "protein_g": 1,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 860,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "black_pepper": {
+        "token": "black_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "black pepper",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "black-pepper",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 5,
+                "protein_g": 0.2,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.3,
+                "sugars_g": 0,
+                "fiber_g": 0.5,
+                "sodium_mg": 1,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (2g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "parmesan_rind": {
+        "token": "parmesan_rind",
+        "options": [
+          {
+            "option": "",
+            "display": "parmesan rind (optional)",
+            "ratio": "1",
+            "unit": "piece",
+            "ingredient_id": "parmesan_cheese",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "oz",
+                "calories_kcal": 111,
+                "protein_g": 10,
+                "total_fat_g": 7.3,
+                "saturated_fat_g": 4.8,
+                "total_carbs_g": 1,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 416,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (Parm. cheese)",
+                "notes": "Per 1 oz (28g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Soup"
+      },
+      "rice": {
+        "token": "rice",
+        "options": [
+          {
+            "option": "",
+            "display": "dry basmati rice",
+            "ratio": "1 1/2",
+            "unit": "cup",
+            "ingredient_id": "rice",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Finish",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 685,
+                "protein_g": 13.2,
+                "total_fat_g": 1.9,
+                "saturated_fat_g": 0.4,
+                "total_carbs_g": 148,
+                "sugars_g": 0.1,
+                "fiber_g": 2.4,
+                "sodium_mg": 9,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (uncooked rice)",
+                "notes": "Per 1 cup (185g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Finish"
+      },
+      "spinach": {
+        "token": "spinach",
+        "options": [
+          {
+            "option": "",
+            "display": "baby spinach",
+            "ratio": "3",
+            "unit": "cup",
+            "ingredient_id": "spinach",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Finish",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 7,
+                "protein_g": 0.9,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.1,
+                "sugars_g": 0.1,
+                "fiber_g": 0.7,
+                "sodium_mg": 24,
+                "calcium_mg": 30,
+                "iron_mg": 0.8,
+                "potassium_mg": 167,
+                "vitamin_c_mg": 8.4,
+                "source": "USDA (raw spinach)",
+                "notes": "Per 1 cup (30g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Finish"
+      },
+      "parsley": {
+        "token": "parsley",
+        "options": [
+          {
+            "option": "",
+            "display": "parsley",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "parsley",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Finish",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 1,
+                "protein_g": 0.1,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.2,
+                "sugars_g": 0.1,
+                "fiber_g": 0.1,
+                "sodium_mg": 2,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (parsley)",
+                "notes": "Per 1 Tbsp (4g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Finish"
+      },
+      "lemon_juice": {
+        "token": "lemon_juice",
+        "options": [
+          {
+            "option": "",
+            "display": "fresh lemon juice",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "lemon",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Finish",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 17,
+                "protein_g": 0.6,
+                "total_fat_g": 0.2,
+                "saturated_fat_g": 0.02,
+                "total_carbs_g": 5.4,
+                "sugars_g": 1.5,
+                "fiber_g": 1.6,
+                "sodium_mg": 1,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (raw lemon)",
+                "notes": "Per 1 medium (58g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Finish"
+      }
+    },
+    "ingredient_sections": [
+      "Soup",
+      "Finish"
+    ],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": 6,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
@@ -15255,7 +16356,7 @@
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "(duplicate entry)",
+                "source": "USDA (garlic)",
                 "notes": "Per 1 clove (3g)."
               }
             ]
@@ -16713,7 +17814,7 @@
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "(duplicate entry)",
+                "source": "USDA (garlic)",
                 "notes": "Per 1 clove (3g)."
               }
             ]
@@ -19673,7 +20774,7 @@
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "(duplicate entry)",
+                "source": "USDA (garlic)",
                 "notes": "Per 1 clove (3g)."
               }
             ]

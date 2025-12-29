@@ -272,6 +272,21 @@
     }
   },
   {
+    "id": "crockpot-hearty-chicken-and-rice-soup",
+    "title": "Crockpot Hearty Chicken and Rice Soup",
+    "byline": "",
+    "categories": [
+      "Crock-Pot",
+      "Soups & Stews"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "gluten-free-peanut-butter-cookies",
     "title": "Gluten-Free Peanut Butter Cookies",
     "byline": "",
