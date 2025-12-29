@@ -319,11 +319,14 @@ export async function validateAll() {
       parseCategories(metaRow.categories).length > 0,
       `${recipeId}: meta.csv must include at least one category`
     );
-    const servingsPerBatch = Number(metaRow.servings_per_batch);
-    ensure(
-      Number.isFinite(servingsPerBatch) && servingsPerBatch > 0,
-      `${recipeId}: servings_per_batch must be a positive number`
-    );
+    const servingsRaw = String(metaRow.servings_per_batch || '').trim();
+    if (servingsRaw) {
+      const servingsPerBatch = Number(servingsRaw);
+      ensure(
+        Number.isFinite(servingsPerBatch) && servingsPerBatch > 0,
+        `${recipeId}: servings_per_batch must be a positive number`
+      );
+    }
 
     const ingredientRows = await parseCSVFile(ingredientsPath);
     const stepsRaw = fs.existsSync(stepsCsvPath)

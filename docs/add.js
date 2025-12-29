@@ -1000,7 +1000,8 @@ function buildRecipeDraft() {
   const family = familyInput ? familyInput.value.trim() : '';
   const categories = categoriesSelect ? [...categoriesSelect.selectedOptions].map((opt) => opt.value) : [];
   const defaultBase = Number(defaultBaseInput.value) || 1;
-  const servingsPerBatch = Number(servingsInput?.value) || 1;
+  const servingsRaw = servingsInput?.value?.trim() || '';
+  const servingsPerBatch = servingsRaw ? Number(servingsRaw) : null;
 
   if (!title) {
     issues.push('Add a recipe title.');
@@ -1024,7 +1025,7 @@ function buildRecipeDraft() {
     issues.push('Batch size must be a positive number.');
     markInvalid(defaultBaseInput);
   }
-  if (!Number.isFinite(servingsPerBatch) || servingsPerBatch <= 0) {
+  if (servingsRaw && (!Number.isFinite(servingsPerBatch) || servingsPerBatch <= 0)) {
     issues.push('Servings per batch must be a positive number.');
     markInvalid(servingsInput);
   }
@@ -1118,7 +1119,7 @@ function buildRecipeDraft() {
     title,
     base_kind: 'multiplier',
     default_base: defaultBase,
-    servings_per_batch: servingsPerBatch,
+    servings_per_batch: Number.isFinite(servingsPerBatch) && servingsPerBatch > 0 ? servingsPerBatch : null,
     categories,
     family,
     notes,
