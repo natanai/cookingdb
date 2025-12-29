@@ -47,6 +47,8 @@ Additional validations and constraints:
 - `ratio` must match the format expected by validation: integers or fractions such as `1`, `1/2`, or `1 1/2`.
 - Ingredient IDs must be unique in `data/ingredient_catalog.csv`. Reuse existing ingredient IDs instead of
   adding duplicates, and update recipes to point at the canonical ID when consolidating ingredients.
+- Produce/herb ingredients should avoid count-style units (`sprig`, `bunch`, `medium`, `large`, `piece`) unless
+  the catalog includes a matching `unit_factor_from_unit_norm` entry for the ingredient.
 - Optional grouping columns (`section`, `line_group`) are supported for multi-part ingredient lists.
 - Tokens can define **options** via the `option` column; options with identical `display` values cannot repeat
   for the same token (validation error).
@@ -109,11 +111,21 @@ in the UI:
 Meal-prep servings estimates are calculated from nutrition fields stored directly in
 `data/ingredient_catalog.csv`:
 
-- Nutrition columns live alongside each ingredient (`nutrition_unit`, `calories_per_unit`,
-  `nutrition_source`, `nutrition_notes`) so the catalog is the single source of truth.
-- Provide `nutrition_unit` and `calories_per_unit` wherever possible so the build can estimate recipe calories.
-- Missing or incomplete nutrition fields will reduce coverage in the recipe-level nutrition estimate.
-- Serving estimates use `data/nutrition_guidelines.json` to set target calories per meal.
+- Nutrition columns live alongside each ingredient and must include the full nutrient profile:
+  `serving_qty`, `serving_unit_norm`, `serving_size`, `calories_kcal`, `protein_g`, `total_fat_g`,
+  `saturated_fat_g`, `total_carbs_g`, `sugars_g`, `fiber_g`, `sodium_mg`, `calcium_mg`, `iron_mg`,
+  `potassium_mg`, `vitamin_c_mg`, plus `nutrition_source` and `nutrition_notes`.
+- All nutrition numeric fields must be parseable numbers. `serving_qty` and `serving_unit_norm` are required
+  for every ingredient catalog entry.
+- Optional conversions:
+  - Unit factors (`unit_factor_from_unit_norm`, `unit_factor_to_unit_norm`, `unit_factor`, plus source/notes)
+    are required together when converting between unit systems.
+  - Portions (`portion_unit`, `portion_grams`, plus source/notes) are required together when providing a
+    default portion size.
+- Missing or incomplete nutrition fields will reduce coverage in the recipe-level nutrition estimate and
+  trigger warnings in the nutrition coverage report.
+- Serving estimates use `data/nutrition_guidelines.json` and `data/nutrition_policy.json` to set target
+  calories per meal and UI defaults.
 
 ## Build artifacts
 
