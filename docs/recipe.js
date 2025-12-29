@@ -1055,7 +1055,9 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
     if (adjustDetails) adjustDetails.remove();
   } else {
     if (adjustSummary) {
-      adjustSummary.textContent = adjustmentCount ? `Adjust recipe (${adjustmentCount})` : 'Adjust recipe';
+      adjustSummary.textContent = swapResult.swapGroupCount
+        ? `Adjust recipe (${swapResult.swapGroupCount})`
+        : 'Adjust recipe';
     }
 
     if (adjustDetails && !adjustDetails.dataset.initialized) {
