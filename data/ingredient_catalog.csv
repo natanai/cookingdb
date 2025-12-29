@@ -137,7 +137,7 @@ stew-beef,Stew beef,false,false,false,1,lb,1 lb (454g),1000,100,66,25,0,0,0,320,
 stewed-tomatoes,Stewed tomatoes,false,false,false,1,cup,1 cup (240g),45,2,0.2,0,10,7,2,600,40,1,370,8,USDA,Per 1 cup canned stewed tomatoes (240g).,can,cup,1.7,USDA (canned tomatoes),Approx 14.5 oz can ≈ 1.7 cups.,,,,
 sugar,Sugar,false,false,false,1,tbsp,1 Tbsp (12.5g),49,0,0,0,13,13,0,0,0,0,0,0,USDA (white sugar),Per 1 Tbsp (12.5g).,,,,,,,,,
 sweet-pickles,Sweet pickles,false,false,false,1,oz,1 oz,34,0,0,0,8,7,0,170,5,0.1,10,0,USDA,Per 1 oz sweet pickles.,tbsp,oz,0.5,USDA (sweet pickles),Approx 1 tbsp chopped sweet pickles ≈ 0.5 oz.,,,,
-sweet-potato,Sweet potato,false,false,false,1,count,1 medium (130g),112,2,0.1,0,26,5,4,41,0,0,0,0,USDA (med. sweet potato),Per 1 medium baked sweet potato (130g).,cup,count,1.08,"USDA (sweet potato, cubes vs medium)",Approx 1 cup cubes (~140g) ≈ 1.08 medium (130g).,,,,
+sweet-potato,Sweet potato,false,false,false,1,count,1 medium (130g),112,2,0.1,0,26,5,4,41,0,0,0,0,USDA (med. sweet potato),Per 1 medium baked sweet potato (130g).,cup,count,1.08,"USDA (sweet potato, cubes vs medium)",Approx 1 cup cubes (~140g) ≈ 1.08 medium (130g).,count,130,USDA (med. sweet potato),1 medium sweet potato (130g).
 tapioca-starch,Tapioca starch,false,false,false,1,cup,1 cup (120g),424,0,0,0,105,0,1,11,0,0,0,0,USDA (tapioca),Per 1 cup (120g).,,,,,,,,,
 teriyaki-sauce,Teriyaki sauce,true,false,false,1,tbsp,1 Tbsp (18g),16,0.6,0,0,3.2,2.8,0,690,0,0,0,0,USDA (teriyaki sauce),Per 1 Tbsp (18g).,,,,,,,,,
 thyme,Thyme,false,false,false,1,tsp,1 tsp (1g),3,0.1,0.1,0,0.9,0,0.6,2,0,0,0,0,USDA (dried thyme),Per 1 tsp (1g).,sprig,tsp,0.2,USDA (fresh thyme),Approx 1 sprig fresh thyme ≈ 0.2 tsp dried.,sprig,0.2,USDA (fresh thyme),Approx 1 sprig ~0.2 g.
