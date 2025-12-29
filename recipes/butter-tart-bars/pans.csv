@@ -1,0 +1,15 @@
+id,label,default
+rect_9x13,9x13-inch rectangle,true
+sq_8,8x8-inch square,false
+sq_9,9x9-inch square,false
+rect_9x12,9x12-inch rectangle,false
+sheet_half,Half sheet (18x13),false
+sheet_quarter,Quarter sheet (13x9),false
+round_9,9-inch round,false
+round_8,8-inch round,false
+round_10,10-inch round,false
+round_6,6-inch round,false
+springform_9,9-inch springform,false
+bundt_10cup,10-cup Bundt,false
+rect_9x5,9x5-inch loaf,false
+rect_8x4,8x4-inch loaf,false
