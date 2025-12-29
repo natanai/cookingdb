@@ -1,0 +1,20 @@
+token,display,ingredient_id,ratio,unit,option,section
+butter,salted butter,butter,6,tbsp,,Soup
+chicken,boneless chicken breasts or thighs,chicken-breast,1,lb,,Soup
+onion,yellow onion,onion,1,count,,Soup
+shallot,shallots,shallot,4,tbsp,,Soup
+garlic,garlic cloves,garlic,4,piece,,Soup
+celery,celery,celery,1,cup,,Soup
+carrot,carrots,carrot,1,cup,,Soup
+thyme,fresh thyme leaves,thyme,2,tbsp,,Soup
+sage,fresh sage,sage,2,tbsp,,Soup
+rosemary,fresh rosemary,rosemary,2,tsp,,Soup
+bay_leaf,bay leaf,bay-leaf,1,count,,Soup
+chicken_broth,low-sodium chicken broth,chicken-broth,8,cup,,Soup
+salt,salt,salt,1,tsp,,Soup
+black_pepper,black pepper,black-pepper,1/2,tsp,,Soup
+parmesan_rind,parmesan rind (optional),parmesan_cheese,1,piece,,Soup
+rice,dry basmati rice,rice,1 1/2,cup,,Finish
+spinach,baby spinach,spinach,3,cup,,Finish
+parsley,parsley,parsley,1/4,cup,,Finish
+lemon_juice,fresh lemon juice,lemon,2,tbsp,,Finish
