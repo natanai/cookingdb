@@ -24,7 +24,7 @@ butter,Butter,false,false,true,1,tbsp,1 Tbsp,102,0.1,11.5,7.3,0,0,0,82,0,0,0,0,(
 butternut-squash,Butternut squash,false,false,false,1,cup,1 cup cubes (140g),63,1.4,0.1,0,16,3.1,2.8,6,0,0,0,0,USDA (butternut squash),Per 1 cup cubes (140g).,count,cup,4,USDA (butternut squash),Approx 1 medium squash ≈ 4 cups cubes.,,,,
 canadian-bacon,Canadian bacon,false,false,false,1,count,1 slice (28g),40,7,0.5,0.2,1,0,0,250,0,0,0,0,USDA (lean ham),Per 1 slice (28g).,cup,count,5,USDA (lean ham),Approx 1 cup diced ≈ 5 slices.,,,,
 canned-chicken,Canned chicken,false,false,false,1,count,12.5 oz can,315,60,7,2,0,0,0,1000,20,1.5,300,0,USDA,drained,,,,,,,,,
-carrot,Carrot,false,false,false,1,count,1 medium (61g),25,0.6,0.1,0,6,2.9,1.7,42,0,0,0,0,USDA (medium carrot),Per 1 medium (61g).,lb,count,7.4,USDA (carrot),Approx 7.4 medium carrots per lb.,,,,
+carrot,Carrot,false,false,false,61,g,1 medium (61g),25,0.6,0.1,0,6,2.9,1.7,42,0,0,0,0,USDA (medium carrot),Per 61 g (1 medium).,cup,g,128,USDA (carrot, chopped),1 cup chopped carrot ≈ 128 g.,count,61,USDA (medium carrot),1 medium carrot ≈ 61 g.
 cauliflower-rice,Cauliflower rice,false,false,false,1,cup,1 cup (107g),25,2,0.2,0,5,2,2.5,30,0,0,0,0,USDA (cauliflower),Per 1 cup (107g).,,,,,,,,,
 cayenne-pepper,Cayenne pepper,false,false,false,1,tsp,1 tsp (1.8g),6,0.2,0.3,0.1,1.4,0.5,0.5,1,0,0,0,0,USDA (spices),Per 1 tsp (1.8g).,,,,,,,,,
 celery,Celery,false,false,false,1,count,1 stalk (40g),6,0.3,0.1,0,1.2,0.5,0.6,32,0,0,0,0,USDA (raw celery),Per 1 stalk (40g).,cup,count,2.5,USDA (celery),Approx 1 cup chopped ≈ 2.5 stalks.,,,,
@@ -106,7 +106,7 @@ onion_powder,Onion powder,false,false,false,1,tsp,1 tsp (2.8g),10,0.3,0,0,2.3,0.
 orange-gelatin,Orange gelatin,false,false,false,1,count,1 package (3 oz),320,0,0,0,80,80,0,100,0,0,0,0,Label,sweetened mix,package,count,1,Label,1 package counts as 1 unit.,,,,
 orange-sherbet,Orange sherbet,false,false,true,1,cup,1 cup,214,1,3.4,1.7,45,38,0,80,100,0.3,150,0,USDA,Per 1 cup.,,,,,,,,,
 paprika,Paprika,false,false,false,1,tsp,1 tsp,6,0.3,0.27,0.04,1.17,0.22,0.79,1,4,0.5,49,1.5,USDA,Per 1 tsp.,,,,,,,,,
-parmesan_cheese,Parmesan cheese,false,false,true,1,oz,1 oz (28g),111,10,7.3,4.8,1,0,0,416,0,0,0,0,USDA (Parm. cheese),Per 1 oz (28g).,tbsp,oz,0.2,USDA (parmesan),Approx 1 tbsp grated parmesan ≈ 0.2 oz.,,,,
+parmesan_cheese,Parmesan cheese,false,false,true,28,g,1 oz (28g),111,10,7.3,4.8,1,0,0,416,0,0,0,0,USDA (Parm. cheese),Per 28 g (1 oz).,tbsp,g,5.67,USDA (parmesan),1 tbsp grated parmesan ≈ 5.7 g.,count,28,USDA (parmesan),Assume 1 rind piece ≈ 1 oz (28 g).
 parsley,Parsley,false,false,false,1,tbsp,1 Tbsp (4g),1,0.1,0,0,0.2,0.1,0.1,2,0,0,0,0,USDA (parsley),Per 1 Tbsp (4g).,,,,,,,,,
 peanut-butter,Peanut butter,false,false,false,1,tbsp,1 Tbsp,95,4,8,1.5,3,1.5,1,70,5,0.5,90,0,USDA,"creamy, salted",,,,,,,,,
 peanuts,Peanuts,false,false,false,1,oz,1 oz,160,6.5,14,2,6,1,2,5,17,0.6,187,0,USDA,"dry-roasted, unsalted",cup,oz,5,USDA (peanuts),Approx 1 cup peanuts ≈ 5 oz.,,,,
@@ -131,7 +131,7 @@ salt,Salt,false,false,false,1,tsp,1 tsp,0,0,0,0,0,0,0,2300,0,0,0,0,(duplicate en
 sausage,Sausage,false,false,false,1,count,1 link (55g),85,4.2,7.4,2.5,0,0,0,330,0,0,0,0,USDA (pork sausage avg.),Per small pork sausage link (55g).,lb,count,10,USDA (pork sausage),Approx 10 links per lb (45g each).,,,,
 seasoned-salt,Seasoned salt,false,false,false,1,tsp,1 tsp,5,0.2,0,0,1.1,0.6,0.2,1490,4,0,13,0,Label,salt & spice blend,,,,,,,,,
 sesame-seeds,Sesame seeds,false,false,false,1,tbsp,1 tbsp (9g),52,1.6,4.5,0.63,2.1,0.03,1.1,0.99,87.8,1.3,42.1,0,USDA,"Per 1 tbsp (9g), whole dried.",,,,,,,,,
-shallot,Shallot,false,false,false,1,count,1 medium (30g),22,0.8,0,0,5,1,0.8,1,0,0,0,0,FoodStruct (shallot),Per 1 medium (30g).,,,,,,,,,
+shallot,Shallot,false,false,false,30,g,1 medium (30g),22,0.8,0,0,5,1,0.8,1,0,0,0,0,FoodStruct (shallot),Per 30 g (1 medium).,tbsp,g,10,USDA (shallot, chopped),1 tbsp chopped shallot ≈ 10 g.,count,30,FoodStruct (shallot),1 medium shallot ≈ 30 g.
 shortening,Shortening,false,false,false,1,tbsp,1 Tbsp (12g),110,0,12,3.5,0,0,0,0,0,0,0,0,Crisco (shortening),Per 1 Tbsp (12g).,,,,,,,,,
 shredded-coconut,Shredded coconut,false,false,false,1,cup,1 cup,283,2.7,26.8,24,12.2,5,7,16,9,2.3,285,2,USDA,unsweetened,,,,,,,,,
 spinach,Spinach,false,false,false,1,cup,"1 cup (30g)",7,0.9,0.1,0,1.1,0.1,0.7,24,30,0.8,167,8.4,USDA (raw spinach),Per 1 cup (30g).,,,,,,,,,
