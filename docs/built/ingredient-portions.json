@@ -35,6 +35,13 @@
     "notes": "Approx 1 tsp table salt."
   },
   {
+    "ingredient_id": "sweet-potato",
+    "unit": "count",
+    "grams": 130,
+    "source": "USDA (med. sweet potato)",
+    "notes": "1 medium sweet potato (130g)."
+  },
+  {
     "ingredient_id": "thyme",
     "unit": "sprig",
     "grams": 0.2,
