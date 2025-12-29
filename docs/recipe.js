@@ -871,9 +871,8 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
           : 'Nutrition coverage: —';
     }
     if (!totals.complete) {
-      const batchServings = Number.isFinite(Number(recipe.servings_per_batch))
-        ? Number(recipe.servings_per_batch)
-        : null;
+      const authorServings = Number(recipe.servings_per_batch);
+      const hasAuthorServings = Number.isFinite(authorServings) && authorServings > 0;
       if (nutritionWarning) {
         const missingSummary = (totals.missing_details || [])
           .map((entry) => `${entry.ingredient_id}${entry.unit ? ` (${entry.unit})` : ''}`)
@@ -885,12 +884,12 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
         nutritionWarning.hidden = false;
       }
       if (nutritionDetails) {
-        nutritionDetails.textContent = batchServings
-          ? `Recipe servings (author): ${batchServings}. Nutrition estimate unavailable for this recipe.`
+        nutritionDetails.textContent = hasAuthorServings
+          ? `Recipe servings (author): ${authorServings}. Nutrition estimate unavailable for this recipe.`
           : 'Nutrition estimate unavailable for this recipe.';
       }
       if (nutritionCollapsedSummary) {
-        nutritionCollapsedSummary.textContent = `Estimated servings per batch: ${batchServings || '—'}.`;
+        nutritionCollapsedSummary.textContent = `Estimated servings per batch: ${hasAuthorServings ? authorServings : '—'}.`;
       }
       if (nutritionServingsLabel) nutritionServingsLabel.textContent = '';
       if (nutritionServingsInput) nutritionServingsInput.value = '';
@@ -924,14 +923,13 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
     }
 
     if (nutritionDetails) {
-      const batchServings = Number.isFinite(Number(recipe.servings_per_batch))
-        ? Number(recipe.servings_per_batch)
-        : suggestedServings;
+      const authorServings = Number(recipe.servings_per_batch);
+      const hasAuthorServings = Number.isFinite(authorServings) && authorServings > 0;
       const parts = [
         `Suggested servings: ${suggestedServings} (${mealLabel.toLowerCase()} target).`,
       ];
-      if (Number.isFinite(Number(recipe.servings_per_batch))) {
-        parts.push(`Recipe servings (author): ${batchServings}.`);
+      if (hasAuthorServings) {
+        parts.push(`Recipe servings (author): ${authorServings}.`);
       }
       nutritionDetails.textContent = parts.join(' ');
     }

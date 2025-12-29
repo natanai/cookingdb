@@ -980,7 +980,9 @@ async function build() {
     }
 
     const compatibility = computeCompatibility(ingredients, catalog);
-    const metaServingsPerBatch = Number(meta.servings_per_batch);
+    const metaServingsPerBatchRaw = Number(meta.servings_per_batch);
+    const metaServingsPerBatch =
+      Number.isFinite(metaServingsPerBatchRaw) && metaServingsPerBatchRaw > 0 ? metaServingsPerBatchRaw : null;
     metaServingsPerBatchById.set(meta.id, metaServingsPerBatch);
     const uniqueTokenOrder = [];
     const seen = new Set();
@@ -1045,11 +1047,7 @@ async function build() {
     );
     const metaServingsPerBatch = metaServingsPerBatchById.get(recipe.id);
     const servingsPerBatch =
-      (Number.isFinite(metaServingsPerBatch) && metaServingsPerBatch > 0 ? metaServingsPerBatch : null) ||
-      (Number.isFinite(nutritionEstimate.servings_estimate) && nutritionEstimate.servings_estimate > 0
-        ? nutritionEstimate.servings_estimate
-        : null) ||
-      4;
+      Number.isFinite(metaServingsPerBatch) && metaServingsPerBatch > 0 ? metaServingsPerBatch : null;
     recipe.nutrition_estimate = nutritionEstimate;
     recipe.servings_per_batch = servingsPerBatch;
   });
