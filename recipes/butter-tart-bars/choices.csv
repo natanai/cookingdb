@@ -1,0 +1,6 @@
+token,label,default_option
+crust_flour_choice,Crust flour,wheat
+crust_butter_choice,Crust butter,butter
+filling_butter_choice,Filling butter,butter
+filling_egg_choice,Eggs,egg
+filling_flour_choice,Filling thickener,wheat

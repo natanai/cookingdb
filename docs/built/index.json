@@ -135,6 +135,20 @@
     }
   },
   {
+    "id": "butter-tart-bars",
+    "title": "Butter Tart Bars",
+    "byline": "",
+    "categories": [
+      "Desserts & Baking"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "butternut-squash-casserole",
     "title": "Butternut Squash Casserole",
     "byline": "",

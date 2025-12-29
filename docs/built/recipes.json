@@ -4046,6 +4046,739 @@
     }
   },
   {
+    "id": "butter-tart-bars",
+    "title": "Butter Tart Bars",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Desserts & Baking"
+    ],
+    "family": "",
+    "notes": "Bake in a 13x9-inch pan at 350°F. Cool to room temperature, then chill at least 2 hours before slicing. Egg-free option: use 1 cup aquafaba; for flax eggs, use 4 Tbsp ground flax + 10 Tbsp water, gel 10 minutes.",
+    "nutrition_estimate": {
+      "calories_total": 5705.4375,
+      "calories_per_serving": 203.765625,
+      "sodium_total_mg": 2321.15625,
+      "sat_fat_total_g": 182.0125,
+      "servings_estimate": 28,
+      "covered_ingredients": 9,
+      "total_ingredients": 9,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Preheat oven to 350°F. Grease or line a 13x9-inch pan.\n2. Combine {{crust_flour_choice}} and {{crust_sugar}} in a bowl.\n3. Work {{crust_butter_choice}} into the flour mixture until a cohesive crumb forms.\n4. Press the crust evenly into the pan. Bake 10 to 15 minutes, until lightly golden.\n5. Whisk {{filling_butter_choice}} and {{filling_brown_sugar}} together until glossy.\n6. Whisk in {{filling_egg_choice}} (add eggs one at a time if using eggs) until combined.\n7. Stir in {{filling_flour_choice}}, {{vinegar}}, and {{vanilla_extract}} just until smooth.\n8. Pour the filling over the hot crust. Bake about 30 minutes, until the center is just set and slightly jiggly.\n9. Cool to room temperature, then refrigerate at least 2 hours before slicing.",
+    "steps": [
+      {
+        "section": "Crust",
+        "text": "Preheat oven to 350°F. Grease or line a 13x9-inch pan."
+      },
+      {
+        "section": "Crust",
+        "text": "Combine {{crust_flour_choice}} and {{crust_sugar}} in a bowl."
+      },
+      {
+        "section": "Crust",
+        "text": "Work {{crust_butter_choice}} into the flour mixture until a cohesive crumb forms."
+      },
+      {
+        "section": "Crust",
+        "text": "Press the crust evenly into the pan. Bake 10 to 15 minutes, until lightly golden."
+      },
+      {
+        "section": "Filling",
+        "text": "Whisk {{filling_butter_choice}} and {{filling_brown_sugar}} together until glossy."
+      },
+      {
+        "section": "Filling",
+        "text": "Whisk in {{filling_egg_choice}} (add eggs one at a time if using eggs) until combined."
+      },
+      {
+        "section": "Filling",
+        "text": "Stir in {{filling_flour_choice}}, {{vinegar}}, and {{vanilla_extract}} just until smooth."
+      },
+      {
+        "section": "Filling",
+        "text": "Pour the filling over the hot crust. Bake about 30 minutes, until the center is just set and slightly jiggly."
+      },
+      {
+        "section": "Filling",
+        "text": "Cool to room temperature, then refrigerate at least 2 hours before slicing."
+      }
+    ],
+    "step_sections": [
+      "Crust",
+      "Filling"
+    ],
+    "tokens_used": [
+      "crust_flour_choice",
+      "crust_sugar",
+      "crust_butter_choice",
+      "filling_butter_choice",
+      "filling_brown_sugar",
+      "filling_egg_choice",
+      "filling_flour_choice",
+      "vinegar",
+      "vanilla_extract"
+    ],
+    "token_order": [
+      "crust_flour_choice",
+      "crust_sugar",
+      "crust_butter_choice",
+      "filling_butter_choice",
+      "filling_brown_sugar",
+      "filling_egg_choice",
+      "filling_flour_choice",
+      "vinegar",
+      "vanilla_extract"
+    ],
+    "ingredients": {
+      "crust_flour_choice": {
+        "token": "crust_flour_choice",
+        "options": [
+          {
+            "option": "wheat",
+            "display": "all-purpose flour",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Crust",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 455,
+                "protein_g": 12.9,
+                "total_fat_g": 1.2,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 95.4,
+                "sugars_g": 0.3,
+                "fiber_g": 3.4,
+                "sodium_mg": 2.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 cup (125g)."
+              }
+            ]
+          },
+          {
+            "option": "gf",
+            "display": "gluten-free 1:1 flour blend",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "gf-flour-blend",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Crust",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 440,
+                "protein_g": 8,
+                "total_fat_g": 4,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 92,
+                "sugars_g": 0,
+                "fiber_g": 4,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Good&Gather GF blend",
+                "notes": "Per 1 cup (120g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": true,
+        "section": "Crust"
+      },
+      "crust_sugar": {
+        "token": "crust_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "granulated sugar",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "white-sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Crust",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 49,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13,
+                "sugars_g": 13,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Same as granulated sugar (above)",
+                "notes": "Per 1 Tbsp."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Crust"
+      },
+      "crust_butter_choice": {
+        "token": "crust_butter_choice",
+        "options": [
+          {
+            "option": "butter",
+            "display": "cold salted butter, cubed",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Crust",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.5,
+                "saturated_fat_g": 7.3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 82,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          },
+          {
+            "option": "vegan",
+            "display": "cold vegan butter, cubed",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "vegan-butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Crust",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.4,
+                "saturated_fat_g": 1.84,
+                "total_carbs_g": 0.1,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 153,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (80% fat margarine)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": true,
+        "section": "Crust"
+      },
+      "filling_butter_choice": {
+        "token": "filling_butter_choice",
+        "options": [
+          {
+            "option": "butter",
+            "display": "salted butter, melted",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Filling",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.5,
+                "saturated_fat_g": 7.3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 82,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          },
+          {
+            "option": "vegan",
+            "display": "vegan butter, melted",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "vegan-butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Filling",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.4,
+                "saturated_fat_g": 1.84,
+                "total_carbs_g": 0.1,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 153,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (80% fat margarine)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": true,
+        "section": "Filling"
+      },
+      "filling_brown_sugar": {
+        "token": "filling_brown_sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "packed brown sugar",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "brown-sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Filling",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 50,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 12,
+                "sugars_g": 12,
+                "fiber_g": 0,
+                "sodium_mg": 2,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Verywell (brown sugar)",
+                "notes": "Per 1 Tbsp (12g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Filling"
+      },
+      "filling_egg_choice": {
+        "token": "filling_egg_choice",
+        "options": [
+          {
+            "option": "egg",
+            "display": "eggs",
+            "ratio": "4",
+            "unit": "count",
+            "ingredient_id": "egg",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Filling",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": false,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 72,
+                "protein_g": 6.3,
+                "total_fat_g": 4.8,
+                "saturated_fat_g": 1.6,
+                "total_carbs_g": 0.4,
+                "sugars_g": 0.2,
+                "fiber_g": 0,
+                "sodium_mg": 71,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (large egg)",
+                "notes": "Per 1 large (≈50g)."
+              }
+            ]
+          },
+          {
+            "option": "aquafaba",
+            "display": "aquafaba",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "aquafaba",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Filling",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 3,
+                "protein_g": 0.2,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.3,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 20,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 5,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "chickpea brine"
+              }
+            ]
+          }
+        ],
+        "isChoice": true,
+        "section": "Filling"
+      },
+      "filling_flour_choice": {
+        "token": "filling_flour_choice",
+        "options": [
+          {
+            "option": "wheat",
+            "display": "all-purpose flour",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "wheat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Filling",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 455,
+                "protein_g": 12.9,
+                "total_fat_g": 1.2,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 95.4,
+                "sugars_g": 0.3,
+                "fiber_g": 3.4,
+                "sodium_mg": 2.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 cup (125g)."
+              }
+            ]
+          },
+          {
+            "option": "gf",
+            "display": "gluten-free 1:1 flour blend",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "gf-flour-blend",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Filling",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 440,
+                "protein_g": 8,
+                "total_fat_g": 4,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 92,
+                "sugars_g": 0,
+                "fiber_g": 4,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Good&Gather GF blend",
+                "notes": "Per 1 cup (120g)."
+              }
+            ]
+          },
+          {
+            "option": "cornstarch",
+            "display": "cornstarch",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "cornstarch",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Filling",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 488,
+                "protein_g": 0.3,
+                "total_fat_g": 0.05,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 117,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (cornstarch)",
+                "notes": "Per 1 cup (128g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": true,
+        "section": "Filling"
+      },
+      "vinegar": {
+        "token": "vinegar",
+        "options": [
+          {
+            "option": "",
+            "display": "white vinegar",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "vinegar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Filling",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 3,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.1,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 1,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "Per 1 Tbsp."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Filling"
+      },
+      "vanilla_extract": {
+        "token": "vanilla_extract",
+        "options": [
+          {
+            "option": "",
+            "display": "vanilla extract",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "vanilla-extract",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Filling",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 12,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.53,
+                "sugars_g": 0.53,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (vanilla extract)",
+                "notes": "Per 1 tsp (5ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Filling"
+      }
+    },
+    "ingredient_sections": [
+      "Crust",
+      "Filling"
+    ],
+    "choices": {
+      "crust_flour_choice": {
+        "token": "crust_flour_choice",
+        "label": "Crust flour",
+        "default_option": "wheat"
+      },
+      "crust_butter_choice": {
+        "token": "crust_butter_choice",
+        "label": "Crust butter",
+        "default_option": "butter"
+      },
+      "filling_butter_choice": {
+        "token": "filling_butter_choice",
+        "label": "Filling butter",
+        "default_option": "butter"
+      },
+      "filling_egg_choice": {
+        "token": "filling_egg_choice",
+        "label": "Eggs",
+        "default_option": "egg"
+      },
+      "filling_flour_choice": {
+        "token": "filling_flour_choice",
+        "label": "Filling thickener",
+        "default_option": "wheat"
+      }
+    },
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": 4,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "butternut-squash-casserole",
     "title": "Butternut Squash Casserole",
     "byline": "",

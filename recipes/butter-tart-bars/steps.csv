@@ -1,0 +1,10 @@
+section,text
+Crust,"Preheat oven to 350°F. Grease or line a 13x9-inch pan."
+Crust,"Combine {{crust_flour_choice}} and {{crust_sugar}} in a bowl."
+Crust,"Work {{crust_butter_choice}} into the flour mixture until a cohesive crumb forms."
+Crust,"Press the crust evenly into the pan. Bake 10 to 15 minutes, until lightly golden."
+Filling,"Whisk {{filling_butter_choice}} and {{filling_brown_sugar}} together until glossy."
+Filling,"Whisk in {{filling_egg_choice}} (add eggs one at a time if using eggs) until combined."
+Filling,"Stir in {{filling_flour_choice}}, {{vinegar}}, and {{vanilla_extract}} just until smooth."
+Filling,"Pour the filling over the hot crust. Bake about 30 minutes, until the center is just set and slightly jiggly."
+Filling,"Cool to room temperature, then refrigerate at least 2 hours before slicing."

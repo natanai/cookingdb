@@ -1,0 +1,16 @@
+token,option,display,ratio,unit,ingredient_id,section
+crust_flour_choice,wheat,all-purpose flour,2,cup,wheat-flour,Crust
+crust_flour_choice,gf,gluten-free 1:1 flour blend,2,cup,gf-flour-blend,Crust
+crust_sugar,,granulated sugar,1/2,cup,white-sugar,Crust
+crust_butter_choice,butter,"cold salted butter, cubed",1,cup,butter,Crust
+crust_butter_choice,vegan,"cold vegan butter, cubed",1,cup,vegan-butter,Crust
+filling_butter_choice,butter,"salted butter, melted",1/2,cup,butter,Filling
+filling_butter_choice,vegan,"vegan butter, melted",1/2,cup,vegan-butter,Filling
+filling_brown_sugar,,"packed brown sugar",2,cup,brown-sugar,Filling
+filling_egg_choice,egg,eggs,4,count,egg,Filling
+filling_egg_choice,aquafaba,aquafaba,1,cup,aquafaba,Filling
+filling_flour_choice,wheat,all-purpose flour,1,tbsp,wheat-flour,Filling
+filling_flour_choice,gf,gluten-free 1:1 flour blend,1,tbsp,gf-flour-blend,Filling
+filling_flour_choice,cornstarch,cornstarch,1,tbsp,cornstarch,Filling
+vinegar,,white vinegar,1,tbsp,vinegar,Filling
+vanilla_extract,,vanilla extract,1,tbsp,vanilla-extract,Filling
