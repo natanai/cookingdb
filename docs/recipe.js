@@ -301,6 +301,11 @@ function panArea(pan) {
     return Math.PI * radius * radius;
   }
 
+  if (shape === 'muffin') {
+    const cups = Number(pan.cups) || width;
+    return Number.isFinite(cups) && cups > 0 ? cups : null;
+  }
+
   const height = Number(pan.height) || (shape === 'square' ? width : null);
   if (!Number.isFinite(height) || height <= 0) return null;
   return width * height;
