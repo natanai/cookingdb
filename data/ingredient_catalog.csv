@@ -64,6 +64,7 @@ egg-replacer,Egg replacer,false,false,false,1,tbsp,1 Tbsp (10g),35,0,0,0,7,0,1,3
 egg-yolk,Egg yolk,false,true,false,1,count,1 large yolk,55,2.7,4.5,1.6,0.6,0.1,0,8,0,0,0,0,MNT (egg yolk),Per 1 large yolk.,,,,,,,,,
 food-coloring,Food coloring,false,false,false,1,tsp,1 tsp (5g),5,0,0,0,1,1,0,0,0,0,0,0,(negligible),Per 1 tsp (5g).,,,,,,,,,
 garlic,Garlic,false,false,false,1,clove,1 clove,4,0.2,0,0,0.9,0.03,0.1,0.5,0,0,0,0,(duplicate entry),Per 1 clove (3g).,piece,clove,1,USDA (garlic),Treat 1 piece as 1 clove.,,,,
+garlic,Garlic,false,false,false,1,piece,1 piece (1 clove),4,0.2,0,0,0.9,0.03,0.1,0.5,0,0,0,0,USDA (garlic),Per 1 piece (1 clove, 3g).,,,,,,,,,
 gf-flour-blend,Gluten-free flour blend,false,false,false,1,cup,1 cup (120g),440,8,4,0,92,0,4,0,0,0,0,0,Good&Gather GF blend,Per 1 cup (120g).,,,,,,,,,
 ginger,Ginger,false,false,false,1,tsp,1 tsp grated (2g),2,0,0,0,0.4,0,0.1,0.3,0,0,0,0,USDA (ginger root),Per 1 tsp grated (2g).,inch,tsp,3,USDA (ginger root),Approx 1 inch ginger ≈ 1 tbsp grated (3 tsp).,,,,
 graham-cracker-crumbs,Graham cracker crumbs,true,false,false,1,cup,1/4 cup (28g),121,1.9,3.0,0.45,21.7,6.9,1.0,144,21.5,1.06,47.6,0,USDA,"Per 1/4 cup (28g), computed from plain graham crackers.",,,,,,,,,
