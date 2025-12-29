@@ -6,8 +6,67 @@ export const DIETARY_TAGS = {
   dairy_free: { positive: 'Dairy-free ready', negative: 'Contains dairy' },
 };
 
+export const UNIT_ALIASES = new Map([
+  ['cloves', 'clove'],
+  ['clove', 'clove'],
+  ['sprigs', 'sprig'],
+  ['sprig', 'sprig'],
+  ['leaves', 'leaf'],
+  ['leaf', 'leaf'],
+  ['pieces', 'count'],
+  ['piece', 'count'],
+  ['packages', 'package'],
+  ['package', 'package'],
+  ['bags', 'bag'],
+  ['bag', 'bag'],
+  ['bunches', 'count'],
+  ['bunch', 'count'],
+  ['cans', 'can'],
+  ['can', 'can'],
+  ['jars', 'jar'],
+  ['jar', 'jar'],
+  ['bottles', 'bottle'],
+  ['bottle', 'bottle'],
+  ['fl oz', 'fl_oz'],
+  ['fl-oz', 'fl_oz'],
+  ['fluid ounce', 'fl_oz'],
+  ['fluid ounces', 'fl_oz'],
+  ['tablespoons', 'tbsp'],
+  ['tablespoon', 'tbsp'],
+  ['teaspoons', 'tsp'],
+  ['teaspoon', 'tsp'],
+  ['cups', 'cup'],
+  ['pints', 'pint'],
+  ['pint', 'pint'],
+  ['quarts', 'quart'],
+  ['quart', 'quart'],
+  ['qt', 'quart'],
+  ['ounces', 'oz'],
+  ['ounce', 'oz'],
+  ['pounds', 'lb'],
+  ['pound', 'lb'],
+  ['liters', 'l'],
+  ['liter', 'l'],
+  ['milliliters', 'ml'],
+  ['milliliter', 'ml'],
+  ['ml', 'ml'],
+  ['l', 'l'],
+  ['medium', 'count'],
+  ['large', 'count'],
+  ['small', 'count'],
+  ['dash', 'tsp'],
+  ['drop', 'tsp'],
+]);
+
 export function restrictionsActive(prefs) {
   return prefs.gluten_free || prefs.egg_free || prefs.dairy_free;
+}
+
+export function normalizeUnit(unit) {
+  if (!unit) return null;
+  const cleaned = String(unit).trim().toLowerCase();
+  if (!cleaned) return null;
+  return UNIT_ALIASES.get(cleaned) || cleaned;
 }
 
 export function parseRatio(str) {
