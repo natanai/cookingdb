@@ -24,7 +24,7 @@ butter,Butter,false,false,true,1,tbsp,1 Tbsp,102,0.1,11.5,7.3,0,0,0,82,0,0,0,0,(
 butternut-squash,Butternut squash,false,false,false,1,cup,1 cup cubes (140g),63,1.4,0.1,0,16,3.1,2.8,6,0,0,0,0,USDA (butternut squash),Per 1 cup cubes (140g).,count,cup,4,USDA (butternut squash),Approx 1 medium squash ≈ 4 cups cubes.,,,,
 canadian-bacon,Canadian bacon,false,false,false,1,count,1 slice (28g),40,7,0.5,0.2,1,0,0,250,0,0,0,0,USDA (lean ham),Per 1 slice (28g).,cup,count,5,USDA (lean ham),Approx 1 cup diced ≈ 5 slices.,,,,
 canned-chicken,Canned chicken,false,false,false,1,count,12.5 oz can,315,60,7,2,0,0,0,1000,20,1.5,300,0,USDA,drained,,,,,,,,,
-carrot,Carrot,false,false,false,61,g,1 medium (61g),25,0.6,0.1,0,6,2.9,1.7,42,0,0,0,0,USDA (medium carrot),Per 61 g (1 medium).,cup,g,128,USDA (carrot, chopped),1 cup chopped carrot ≈ 128 g.,count,61,USDA (medium carrot),1 medium carrot ≈ 61 g.
+carrot,Carrot,false,false,false,61,g,1 medium (61g),25,0.6,0.1,0,6,2.9,1.7,42,0,0,0,0,USDA (medium carrot),Per 61 g (1 medium).,cup,g,128,"USDA (carrot, chopped)",1 cup chopped carrot ≈ 128 g.,count,61,USDA (medium carrot),1 medium carrot ≈ 61 g.
 cauliflower-rice,Cauliflower rice,false,false,false,1,cup,1 cup (107g),25,2,0.2,0,5,2,2.5,30,0,0,0,0,USDA (cauliflower),Per 1 cup (107g).,,,,,,,,,
 cayenne-pepper,Cayenne pepper,false,false,false,1,tsp,1 tsp (1.8g),6,0.2,0.3,0.1,1.4,0.5,0.5,1,0,0,0,0,USDA (spices),Per 1 tsp (1.8g).,,,,,,,,,
 celery,Celery,false,false,false,1,count,1 stalk (40g),6,0.3,0.1,0,1.2,0.5,0.6,32,0,0,0,0,USDA (raw celery),Per 1 stalk (40g).,cup,count,2.5,USDA (celery),Approx 1 cup chopped ≈ 2.5 stalks.,,,,
