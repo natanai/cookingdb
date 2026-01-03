@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bread maker</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon.svg" />
+</head>
+<body class="page-bread-maker">
+  <header class="site-header">
+    <div class="inner">
+      <h1 class="site-title">Bread maker</h1>
+      <nav class="nav-links">
+        <a href="index.html">← Back to recipes</a>
+        <a href="planner.html">Meal prep planner</a>
+        <a href="add.html" class="button secondary">Add recipe</a>
+      </nav>
+    </div>
+  </header>
+  <div class="page-shell">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Bread journal</p>
+        <h2 class="hero-title">Bread maker recipes and experiments.</h2>
+        <p class="hero-subtitle">Review the default programs, then log your own bread maker creations and notes.</p>
+        <div class="bread-maker-guidance">
+          <div class="form-panel">
+            <h3>Operation (important)</h3>
+            <ul class="guidance-list">
+              <li>Always place liquids and salt first, then dry ingredients, and finally yeast on top.</li>
+              <li>Make a small indentation in the dry ingredients for the yeast.</li>
+              <li>Yeast must not touch liquids or salt until the program starts.</li>
+              <li>Follow the recipe order and use the exact ingredient quantities.</li>
+              <li>No recipes are listed for programs 8 (Bake), 11 (Mix Stir), or 13 (Home Made).</li>
+            </ul>
+          </div>
+          <div class="form-panel">
+            <h3>Hints &amp; tips</h3>
+            <ul class="guidance-list">
+              <li>Center the appliance on the counter so it does not walk during kneading.</li>
+              <li>Use a scale for better measurement accuracy.</li>
+              <li>Remove bread right after baking to avoid a dark crust or soggy loaf.</li>
+              <li>Avoid opening the lid during rising or baking to prevent collapse.</li>
+              <li>If the dough is too wet, add flour 1 tsp at a time; if too dry, add liquid 1 tsp at a time.</li>
+              <li>At high altitude, reduce yeast by 1/4–1/2 tsp if the loaf rises too high.</li>
+              <li>Let cold ingredients warm to room temperature before adding them.</li>
+              <li>Warm liquids and butter gently on defrost so they do not overheat.</li>
+              <li>A pinch of powdered ginger or vitamin C can help yeast activity.</li>
+              <li>Whole wheat loaves are denser and shorter than white flour breads.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout">
+          <strong>Cleaning &amp; maintenance:</strong>
+          Clean the appliance after every use. Let all parts cool completely, then wipe down the bread pan and
+          exterior. Leave servicing or repairs to qualified personnel.
+        </div>
+        <div class="callout warning">
+          <strong>Warning:</strong> Always switch off and unplug the appliance before cleaning.
+        </div>
+      </div>
+    </section>
+    <main>
+      <section>
+        <h2 class="section-heading">Default bread maker recipes</h2>
+        <ul id="bread-default-list" class="recipe-list" aria-live="polite"></ul>
+      </section>
+      <section class="bread-maker-personal">
+        <h2 class="section-heading">Personal bread journal</h2>
+        <div class="bread-maker-personal-grid">
+          <form id="personal-recipe-form" class="form-panel" autocomplete="off">
+            <h3>Add a personal recipe</h3>
+            <label class="field">
+              Recipe name
+              <input type="text" id="personal-title" name="title" required />
+            </label>
+            <label class="field">
+              Loaf size or program
+              <input type="text" id="personal-loaf" name="loaf" placeholder="e.g., 1.5 lb, Program 5" />
+            </label>
+            <label class="field">
+              Ingredients (one per line)
+              <textarea id="personal-ingredients" name="ingredients" rows="6" required></textarea>
+            </label>
+            <label class="field">
+              Steps (one per line)
+              <textarea id="personal-steps" name="steps" rows="6" required></textarea>
+            </label>
+            <label class="field">
+              Notes (editable anytime)
+              <textarea id="personal-notes" name="notes" rows="3" placeholder="What worked, what to tweak next time…"></textarea>
+            </label>
+            <div class="form-actions">
+              <button type="submit" class="button">Save recipe</button>
+              <button type="reset" class="button secondary">Clear</button>
+            </div>
+          </form>
+          <div class="bread-maker-personal-list" id="bread-personal-list"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="bread-maker.js" type="module"></script>
+</body>
+</html>

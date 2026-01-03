@@ -3,6 +3,7 @@ import { recipeDefaultCompatibility } from './recipe-utils.js';
 
 const STORAGE_KEY = 'cookingdb-inbox-recipes';
 const HAPTICS_KEY = 'cookingdb-ruffle-haptics';
+const HIDDEN_HOME_CATEGORIES = new Set(['Bread maker']);
 let userInteracted = false;
 let ruffleObserver = null;
 let lastHapticAt = 0;
@@ -317,6 +318,12 @@ function recipeSummary(recipe, source = 'built') {
 }
 
 function recipeVisible(recipe, filters) {
+  if (
+    filters.category === 'all' &&
+    (recipe.categories || []).some((category) => HIDDEN_HOME_CATEGORIES.has(category))
+  ) {
+    return false;
+  }
   const matchesCategory =
     filters.category === 'all' ||
     (recipe.categories || []).includes(filters.category) ||

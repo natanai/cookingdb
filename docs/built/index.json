@@ -105,6 +105,146 @@
     }
   },
   {
+    "id": "bread-maker-basic",
+    "title": "Bread Maker Basic",
+    "byline": "",
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "bread-maker-cake",
+    "title": "Bread Maker Cake",
+    "byline": "",
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "bread-maker-dough",
+    "title": "Bread Maker Dough",
+    "byline": "",
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "bread-maker-french",
+    "title": "Bread Maker French",
+    "byline": "",
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "bread-maker-gluten-free",
+    "title": "Bread Maker Gluten Free",
+    "byline": "",
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": false,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "bread-maker-jam",
+    "title": "Bread Maker Jam",
+    "byline": "",
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "bread-maker-quick",
+    "title": "Bread Maker Quick",
+    "byline": "",
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "bread-maker-sandwich",
+    "title": "Bread Maker Sandwich",
+    "byline": "",
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "bread-maker-ultra-fast",
+    "title": "Bread Maker Ultra Fast",
+    "byline": "",
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "bread-maker-whole-wheat",
+    "title": "Bread Maker Whole Wheat",
+    "byline": "",
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "brown-rice",
     "title": "Brown Rice",
     "byline": "",

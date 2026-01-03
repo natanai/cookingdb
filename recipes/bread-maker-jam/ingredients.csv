@@ -1,0 +1,6 @@
+token,option,display,ratio,unit,ingredient_id,depends_on_token,depends_on_option
+water,,water,1,fl_oz,water,,
+fruit_pulp,,fruit pulp,1,cup,apple-cider,,
+starch,,starch,3 1/2,tbsp,cornstarch,,
+sugar,,sugar,16 1/2,tbsp,sugar,,
+lemon_juice,,lemon juice,1,tbsp,lemon,,

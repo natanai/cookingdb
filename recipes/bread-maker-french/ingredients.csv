@@ -1,0 +1,6 @@
+token,option,display,ratio,unit,ingredient_id,depends_on_token,depends_on_option
+water,,water,7,fl_oz,water,,
+sugar,,sugar,3,tbsp,sugar,,
+salt,,salt,1/2,tsp,salt,,
+flour,,high gluten flour,2 1/2,cup,wheat-flour,,
+yeast,,yeast,1 1/2,tsp,active-dry-yeast,,

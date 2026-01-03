@@ -1,4 +1,6 @@
 ingredient_id,unit_norm,example_recipe_id,count_occurrences,example_qty,reason,nutrition_variants_units,suggested_target_unit,unit_world_mismatch_type
-carrot,cup,crockpot-hearty-chicken-and-rice-soup,1,1,missing-cross-factor,count,count,
-parmesan_cheese,count,crockpot-hearty-chicken-and-rice-soup,1,1,missing-cross-factor,oz,oz,count-vs-mass
-shallot,tbsp,crockpot-hearty-chicken-and-rice-soup,1,4,missing-cross-factor,count,count,
+butter,g,bread-maker-cake,1,100,missing-cross-factor,tbsp,tbsp,volume-vs-mass
+carrot,count,apple-cider-brisket,2,4,missing-cross-factor,g,g,count-vs-mass
+egg,fl_oz,bread-maker-cake,1,3 1/2,missing-cross-factor,count,count,
+parmesan_cheese,count,crockpot-hearty-chicken-and-rice-soup,1,1,missing-cross-factor,g,g,count-vs-mass
+shallot,count,apple-cider-brisket,1,2,missing-cross-factor,g,g,count-vs-mass

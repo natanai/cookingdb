@@ -1,0 +1,9 @@
+token,option,display,ratio,unit,ingredient_id,depends_on_token,depends_on_option
+milk,,milk,11,tbsp,milk,,
+egg_whites,,egg whites,3 1/2,fl_oz,egg,,
+butter,,butter,100,g,butter,,
+sugar,,sugar,10,tbsp,sugar,,
+salt,,salt,1/2,tsp,salt,,
+baking_powder,,baking powder,1,tsp,baking-powder,,
+flour,,low gluten flour,2 1/4,cup,wheat-flour,,
+yeast,,yeast,1 1/4,tsp,active-dry-yeast,,

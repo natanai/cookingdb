@@ -22,7 +22,7 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Heat {{olive_oil}} in a large skillet or Dutch oven over medium heat.\n2. Add {{ground_turkey}} and {{garlic}}. Cook\n3. Add {{sweet_potato}} and {{sea_salt}} to the skillet. Cook for 6\u20138 minutes\n4. Stir in {{kale}} and cook until tender\n5. Return the turkey to the skillet and cook for 3\u20134 minutes to heat through.\n6. Garnish with {{thyme}} and serve.",
+    "steps_raw": "1. Heat {{olive_oil}} in a large skillet or Dutch oven over medium heat.\n2. Add {{ground_turkey}} and {{garlic}}. Cook\n3. Add {{sweet_potato}} and {{sea_salt}} to the skillet. Cook for 6–8 minutes\n4. Stir in {{kale}} and cook until tender\n5. Return the turkey to the skillet and cook for 3–4 minutes to heat through.\n6. Garnish with {{thyme}} and serve.",
     "steps": [
       {
         "section": null,
@@ -34,7 +34,7 @@
       },
       {
         "section": null,
-        "text": "Add {{sweet_potato}} and {{sea_salt}} to the skillet. Cook for 6\u20138 minutes"
+        "text": "Add {{sweet_potato}} and {{sea_salt}} to the skillet. Cook for 6–8 minutes"
       },
       {
         "section": null,
@@ -42,7 +42,7 @@
       },
       {
         "section": null,
-        "text": "Return the turkey to the skillet and cook for 3\u20134 minutes to heat through."
+        "text": "Return the turkey to the skillet and cook for 3–4 minutes to heat through."
       },
       {
         "section": null,
@@ -386,7 +386,7 @@
       "Family"
     ],
     "family": "",
-    "notes": "Use a 3\u20134 lb brisket. This braise layers apple cider with broth and root vegetables.",
+    "notes": "Use a 3–4 lb brisket. This braise layers apple cider with broth and root vegetables.",
     "nutrition_estimate": {
       "calories_total": 5231.6,
       "calories_per_serving": 307.74117647058824,
@@ -399,11 +399,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Preheat the oven to 325\u00b0F (163\u00b0C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}.\n2. In a large Dutch oven over medium-high heat, heat {{neutral_oil}}. Sear the {{brisket}}, turning occasionally, until browned, about 5 minutes per side. Transfer to a large baking dish or plate.\n3. Reduce heat to medium. In the same pot, arrange {{baby_potatoes}} cut side down and cook undisturbed until lightly softened, about 5 minutes. Add {{carrots}} and {{shallots}}, season with more {{kosher_salt}} and {{black_pepper}}, and stir to release the potatoes.\n4. Return {{brisket}} and any accumulated juices to the pot. Pour in {{apple_cider}} and {{broth_choice}}, then add {{thyme}}, {{bay_leaves}}, and {{cayenne}}. Season to taste with {{kosher_salt}} and {{black_pepper}}, cover, and bring to a boil.\n5. Once boiling, transfer the covered pot to the oven and roast until the brisket is easily shreddable, 2 1/2 to 3 hours.\n6. Discard {{thyme}} and {{bay_leaves}}. Shred {{brisket}} with two forks. Arrange the meat on a platter with the vegetables and spoon the cooking juices over the top.",
+    "steps_raw": "1. Preheat the oven to 325°F (163°C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}.\n2. In a large Dutch oven over medium-high heat, heat {{neutral_oil}}. Sear the {{brisket}}, turning occasionally, until browned, about 5 minutes per side. Transfer to a large baking dish or plate.\n3. Reduce heat to medium. In the same pot, arrange {{baby_potatoes}} cut side down and cook undisturbed until lightly softened, about 5 minutes. Add {{carrots}} and {{shallots}}, season with more {{kosher_salt}} and {{black_pepper}}, and stir to release the potatoes.\n4. Return {{brisket}} and any accumulated juices to the pot. Pour in {{apple_cider}} and {{broth_choice}}, then add {{thyme}}, {{bay_leaves}}, and {{cayenne}}. Season to taste with {{kosher_salt}} and {{black_pepper}}, cover, and bring to a boil.\n5. Once boiling, transfer the covered pot to the oven and roast until the brisket is easily shreddable, 2 1/2 to 3 hours.\n6. Discard {{thyme}} and {{bay_leaves}}. Shred {{brisket}} with two forks. Arrange the meat on a platter with the vegetables and spoon the cooking juices over the top.",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 325\u00b0F (163\u00b0C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}."
+        "text": "Preheat the oven to 325°F (163°C). Pat {{brisket}} dry with paper towels and season all over with {{kosher_salt}} and {{black_pepper}}."
       },
       {
         "section": null,
@@ -695,8 +695,8 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
-                "serving_unit_norm": "count",
+                "serving_qty": 61,
+                "serving_unit_norm": "g",
                 "calories_kcal": 25,
                 "protein_g": 0.6,
                 "total_fat_g": 0.1,
@@ -710,7 +710,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (medium carrot)",
-                "notes": "Per 1 medium (61g)."
+                "notes": "Per 61 g (1 medium)."
               }
             ]
           }
@@ -737,8 +737,8 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
-                "serving_unit_norm": "count",
+                "serving_qty": 30,
+                "serving_unit_norm": "g",
                 "calories_kcal": 22,
                 "protein_g": 0.8,
                 "total_fat_g": 0,
@@ -752,7 +752,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "FoodStruct (shallot)",
-                "notes": "Per 1 medium (30g)."
+                "notes": "Per 30 g (1 medium)."
               }
             ]
           }
@@ -835,7 +835,7 @@
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "Campbell\u2019s (broth)",
+                "source": "Campbell’s (broth)",
                 "notes": "Per 1 cup (240ml)."
               }
             ]
@@ -1047,11 +1047,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Preheat the oven to 350\u00b0F (177\u00b0C). Peel and cut {{sweet_potatoes}}.\n2. Boil {{sweet_potatoes}} in salted water until almost tender, then drain well.\n3. Spread {{sweet_potatoes}} in a greased casserole dish. Sprinkle with {{salt}}, {{brown_sugar}}, and {{flour}}, then pour {{cream}} over the top.\n4. Bake for 20\u201330 minutes, or until the sauce is sticky and bubbling around the edges.",
+    "steps_raw": "1. Preheat the oven to 350°F (177°C). Peel and cut {{sweet_potatoes}}.\n2. Boil {{sweet_potatoes}} in salted water until almost tender, then drain well.\n3. Spread {{sweet_potatoes}} in a greased casserole dish. Sprinkle with {{salt}}, {{brown_sugar}}, and {{flour}}, then pour {{cream}} over the top.\n4. Bake for 20–30 minutes, or until the sauce is sticky and bubbling around the edges.",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 350\u00b0F (177\u00b0C). Peel and cut {{sweet_potatoes}}."
+        "text": "Preheat the oven to 350°F (177°C). Peel and cut {{sweet_potatoes}}."
       },
       {
         "section": null,
@@ -1063,7 +1063,7 @@
       },
       {
         "section": null,
-        "text": "Bake for 20\u201330 minutes, or until the sauce is sticky and bubbling around the edges."
+        "text": "Bake for 20–30 minutes, or until the sauce is sticky and bubbling around the edges."
       }
     ],
     "step_sections": [],
@@ -1726,7 +1726,7 @@
       "Desserts & Baking"
     ],
     "family": "",
-    "notes": "Includes gluten-free and dairy/egg alternatives. Makes enough dough to divide into 3 portions (for 3 small coffee cakes) or about 18\u201324 small rolls.",
+    "notes": "Includes gluten-free and dairy/egg alternatives. Makes enough dough to divide into 3 portions (for 3 small coffee cakes) or about 18–24 small rolls.",
     "nutrition_estimate": {
       "calories_total": 2605.67,
       "calories_per_serving": 372.23857142857145,
@@ -1739,11 +1739,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. In a large bowl, stir together {{milk}} and {{sugar}}. Sprinkle in {{yeast}} and let sit 5\u201310 minutes until foamy.\n2. Stir in {{fat}} and {{egg_style}}, then add {{salt}}.\n3. Add {{flour_base}} and mix until a soft dough forms. If using the gluten-free option, add {{psyllium}}, {{baking_powder}}, and {{xanthan}} (if needed for your blend) and mix 2\u20133 minutes until thick and smooth; if it\u2019s dry/crumbly, add 1\u20132 Tbsp warm water; if it\u2019s soupy, add 1\u20132 Tbsp flour blend.\n4. If using wheat flour, knead 6\u20138 minutes (by hand or mixer with dough hook) until smooth and elastic. Gluten-free dough is a thick batter and is not kneaded.\n5. Place dough in a lightly greased bowl, cover, and let rise until doubled (about 60\u201390 minutes for wheat, 45\u201375 minutes for gluten-free).\n6. Use immediately for rolls or coffee cake. If making rolls: shape, let rise again 30\u201345 minutes (skip long second rise for gluten-free), then bake at 375\u00b0F until golden.",
+    "steps_raw": "1. In a large bowl, stir together {{milk}} and {{sugar}}. Sprinkle in {{yeast}} and let sit 5–10 minutes until foamy.\n2. Stir in {{fat}} and {{egg_style}}, then add {{salt}}.\n3. Add {{flour_base}} and mix until a soft dough forms. If using the gluten-free option, add {{psyllium}}, {{baking_powder}}, and {{xanthan}} (if needed for your blend) and mix 2–3 minutes until thick and smooth; if it’s dry/crumbly, add 1–2 Tbsp warm water; if it’s soupy, add 1–2 Tbsp flour blend.\n4. If using wheat flour, knead 6–8 minutes (by hand or mixer with dough hook) until smooth and elastic. Gluten-free dough is a thick batter and is not kneaded.\n5. Place dough in a lightly greased bowl, cover, and let rise until doubled (about 60–90 minutes for wheat, 45–75 minutes for gluten-free).\n6. Use immediately for rolls or coffee cake. If making rolls: shape, let rise again 30–45 minutes (skip long second rise for gluten-free), then bake at 375°F until golden.",
     "steps": [
       {
         "section": null,
-        "text": "In a large bowl, stir together {{milk}} and {{sugar}}. Sprinkle in {{yeast}} and let sit 5\u201310 minutes until foamy."
+        "text": "In a large bowl, stir together {{milk}} and {{sugar}}. Sprinkle in {{yeast}} and let sit 5–10 minutes until foamy."
       },
       {
         "section": null,
@@ -1751,19 +1751,19 @@
       },
       {
         "section": null,
-        "text": "Add {{flour_base}} and mix until a soft dough forms. If using the gluten-free option, add {{psyllium}}, {{baking_powder}}, and {{xanthan}} (if needed for your blend) and mix 2\u20133 minutes until thick and smooth; if it\u2019s dry/crumbly, add 1\u20132 Tbsp warm water; if it\u2019s soupy, add 1\u20132 Tbsp flour blend."
+        "text": "Add {{flour_base}} and mix until a soft dough forms. If using the gluten-free option, add {{psyllium}}, {{baking_powder}}, and {{xanthan}} (if needed for your blend) and mix 2–3 minutes until thick and smooth; if it’s dry/crumbly, add 1–2 Tbsp warm water; if it’s soupy, add 1–2 Tbsp flour blend."
       },
       {
         "section": null,
-        "text": "If using wheat flour, knead 6\u20138 minutes (by hand or mixer with dough hook) until smooth and elastic. Gluten-free dough is a thick batter and is not kneaded."
+        "text": "If using wheat flour, knead 6–8 minutes (by hand or mixer with dough hook) until smooth and elastic. Gluten-free dough is a thick batter and is not kneaded."
       },
       {
         "section": null,
-        "text": "Place dough in a lightly greased bowl, cover, and let rise until doubled (about 60\u201390 minutes for wheat, 45\u201375 minutes for gluten-free)."
+        "text": "Place dough in a lightly greased bowl, cover, and let rise until doubled (about 60–90 minutes for wheat, 45–75 minutes for gluten-free)."
       },
       {
         "section": null,
-        "text": "Use immediately for rolls or coffee cake. If making rolls: shape, let rise again 30\u201345 minutes (skip long second rise for gluten-free), then bake at 375\u00b0F until golden."
+        "text": "Use immediately for rolls or coffee cake. If making rolls: shape, let rise again 30–45 minutes (skip long second rise for gluten-free), then bake at 375°F until golden."
       }
     ],
     "step_sections": [],
@@ -2067,7 +2067,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (large egg)",
-                "notes": "Per 1 large (\u224850g)."
+                "notes": "Per 1 large (≈50g)."
               }
             ]
           },
@@ -2102,7 +2102,7 @@
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "Bob\u2019s Red Mill (vegan)",
+                "source": "Bob’s Red Mill (vegan)",
                 "notes": "Per 1 Tbsp (10g)."
               }
             ]
@@ -2920,7 +2920,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (large egg)",
-                "notes": "Per 1 large (\u224850g)."
+                "notes": "Per 1 large (≈50g)."
               }
             ]
           },
@@ -2955,7 +2955,7 @@
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "Bob\u2019s Red Mill (vegan)",
+                "source": "Bob’s Red Mill (vegan)",
                 "notes": "Per 1 Tbsp (10g)."
               }
             ]
@@ -3440,6 +3440,3607 @@
     }
   },
   {
+    "id": "bread-maker-basic",
+    "title": "Bread Maker Basic",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "notes": "2.0 lb option uses water 7 fl oz; milk powder 2 1/2 tsp; egg 1; butter or oil 3 tbsp; sugar 6 1/2 tbsp; salt 1/2 tsp; high gluten flour 2 1/2 cups; yeast 1 tsp.",
+    "nutrition_estimate": {
+      "calories_total": 1612.12,
+      "calories_per_serving": 403.03,
+      "sodium_total_mg": 1437.3433333333332,
+      "sat_fat_total_g": 20.4875,
+      "servings_estimate": 4,
+      "covered_ingredients": 8,
+      "total_ingredients": 8,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Add {{water}}, {{milk_powder}}, {{egg}}, {{fat}}, {{sugar}}, {{salt}}, and {{flour}} to the bread pan in the order listed.\n2. Make a small well in the flour and add {{yeast}}.\n3. Select program 1 (Basic) and the loaf size, then start.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Add {{water}}, {{milk_powder}}, {{egg}}, {{fat}}, {{sugar}}, {{salt}}, and {{flour}} to the bread pan in the order listed."
+      },
+      {
+        "section": null,
+        "text": "Make a small well in the flour and add {{yeast}}."
+      },
+      {
+        "section": null,
+        "text": "Select program 1 (Basic) and the loaf size, then start."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "water",
+      "milk_powder",
+      "egg",
+      "fat",
+      "sugar",
+      "salt",
+      "flour",
+      "yeast"
+    ],
+    "token_order": [
+      "water",
+      "milk_powder",
+      "egg",
+      "fat",
+      "sugar",
+      "salt",
+      "flour",
+      "yeast"
+    ],
+    "ingredients": {
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "5 1/2",
+            "unit": "fl_oz",
+            "ingredient_id": "water",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(plain water)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "milk_powder": {
+        "token": "milk_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "milk powder",
+            "ratio": "2",
+            "unit": "tsp",
+            "ingredient_id": "milk",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 150,
+                "protein_g": 8,
+                "total_fat_g": 8,
+                "saturated_fat_g": 4.5,
+                "total_carbs_g": 12,
+                "sugars_g": 12,
+                "fiber_g": 0,
+                "sodium_mg": 95,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "U.S. Dairy (whole milk)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "egg": {
+        "token": "egg",
+        "options": [
+          {
+            "option": "",
+            "display": "egg",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "egg",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": false,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 72,
+                "protein_g": 6.3,
+                "total_fat_g": 4.8,
+                "saturated_fat_g": 1.6,
+                "total_carbs_g": 0.4,
+                "sugars_g": 0.2,
+                "fiber_g": 0,
+                "sodium_mg": 71,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (large egg)",
+                "notes": "Per 1 large (≈50g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "fat": {
+        "token": "fat",
+        "options": [
+          {
+            "option": "",
+            "display": "butter or vegetable oil",
+            "ratio": "2 1/2",
+            "unit": "tbsp",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.5,
+                "saturated_fat_g": 7.3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 82,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "sugar": {
+        "token": "sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "sugar",
+            "ratio": "5",
+            "unit": "tbsp",
+            "ingredient_id": "sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 49,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13,
+                "sugars_g": 13,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (white sugar)",
+                "notes": "Per 1 Tbsp (12.5g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "",
+            "display": "high gluten flour",
+            "ratio": "2 1/4",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 455,
+                "protein_g": 12.9,
+                "total_fat_g": 1.2,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 95.4,
+                "sugars_g": 0.3,
+                "fiber_g": 3.4,
+                "sodium_mg": 2.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 cup (125g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "yeast": {
+        "token": "yeast",
+        "options": [
+          {
+            "option": "",
+            "display": "yeast",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "active-dry-yeast",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 23,
+                "protein_g": 3,
+                "total_fat_g": 0.3,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.8,
+                "sugars_g": 0.3,
+                "fiber_g": 1.9,
+                "sodium_mg": 4,
+                "calcium_mg": 4,
+                "iron_mg": 0.3,
+                "potassium_mg": 32,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "Per 1 packet (7g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "bread-maker-cake",
+    "title": "Bread Maker Cake",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "notes": "Use program 6 (Cake) and keep the lid closed during baking.",
+    "nutrition_estimate": {
+      "calories_total": 1631.9250000000002,
+      "calories_per_serving": 543.975,
+      "sodium_total_mg": 1586.1375,
+      "sat_fat_total_g": 3.54375,
+      "servings_estimate": 3,
+      "covered_ingredients": 6,
+      "total_ingredients": 8,
+      "coverage_ratio": 0.75,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": [
+        {
+          "ingredient_id": "egg",
+          "unit": "fl_oz"
+        },
+        {
+          "ingredient_id": "butter",
+          "unit": "g"
+        }
+      ]
+    },
+    "steps_raw": "1. Whisk {{milk}}, {{egg_whites}}, and {{butter}} together until smooth.\n2. Add {{sugar}}, {{salt}}, {{baking_powder}}, and {{flour}} to the bread pan, then pour in the liquid mixture.\n3. Make a small well in the dry ingredients and add {{yeast}}.\n4. Select program 6 (Cake) and start.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Whisk {{milk}}, {{egg_whites}}, and {{butter}} together until smooth."
+      },
+      {
+        "section": null,
+        "text": "Add {{sugar}}, {{salt}}, {{baking_powder}}, and {{flour}} to the bread pan, then pour in the liquid mixture."
+      },
+      {
+        "section": null,
+        "text": "Make a small well in the dry ingredients and add {{yeast}}."
+      },
+      {
+        "section": null,
+        "text": "Select program 6 (Cake) and start."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "milk",
+      "egg_whites",
+      "butter",
+      "sugar",
+      "salt",
+      "baking_powder",
+      "flour",
+      "yeast"
+    ],
+    "token_order": [
+      "milk",
+      "egg_whites",
+      "butter",
+      "sugar",
+      "salt",
+      "baking_powder",
+      "flour",
+      "yeast"
+    ],
+    "ingredients": {
+      "milk": {
+        "token": "milk",
+        "options": [
+          {
+            "option": "",
+            "display": "milk",
+            "ratio": "11",
+            "unit": "tbsp",
+            "ingredient_id": "milk",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 150,
+                "protein_g": 8,
+                "total_fat_g": 8,
+                "saturated_fat_g": 4.5,
+                "total_carbs_g": 12,
+                "sugars_g": 12,
+                "fiber_g": 0,
+                "sodium_mg": 95,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "U.S. Dairy (whole milk)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "egg_whites": {
+        "token": "egg_whites",
+        "options": [
+          {
+            "option": "",
+            "display": "egg whites",
+            "ratio": "3 1/2",
+            "unit": "fl_oz",
+            "ingredient_id": "egg",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": false,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 72,
+                "protein_g": 6.3,
+                "total_fat_g": 4.8,
+                "saturated_fat_g": 1.6,
+                "total_carbs_g": 0.4,
+                "sugars_g": 0.2,
+                "fiber_g": 0,
+                "sodium_mg": 71,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (large egg)",
+                "notes": "Per 1 large (≈50g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "butter": {
+        "token": "butter",
+        "options": [
+          {
+            "option": "",
+            "display": "butter",
+            "ratio": "100",
+            "unit": "g",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.5,
+                "saturated_fat_g": 7.3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 82,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "sugar": {
+        "token": "sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "sugar",
+            "ratio": "10",
+            "unit": "tbsp",
+            "ingredient_id": "sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 49,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13,
+                "sugars_g": 13,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (white sugar)",
+                "notes": "Per 1 Tbsp (12.5g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "baking_powder": {
+        "token": "baking_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "baking powder",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "baking-powder",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 2.4,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.1,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 363,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (baking powder)",
+                "notes": "Per 1 tsp (4.6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "",
+            "display": "low gluten flour",
+            "ratio": "2 1/4",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 455,
+                "protein_g": 12.9,
+                "total_fat_g": 1.2,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 95.4,
+                "sugars_g": 0.3,
+                "fiber_g": 3.4,
+                "sodium_mg": 2.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 cup (125g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "yeast": {
+        "token": "yeast",
+        "options": [
+          {
+            "option": "",
+            "display": "yeast",
+            "ratio": "1 1/4",
+            "unit": "tsp",
+            "ingredient_id": "active-dry-yeast",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 23,
+                "protein_g": 3,
+                "total_fat_g": 0.3,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.8,
+                "sugars_g": 0.3,
+                "fiber_g": 1.9,
+                "sodium_mg": 4,
+                "calcium_mg": 4,
+                "iron_mg": 0.3,
+                "potassium_mg": 32,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "Per 1 packet (7g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "bread-maker-dough",
+    "title": "Bread Maker Dough",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "notes": "Use program 7 (Dough) and remove the dough as soon as it finishes kneading.",
+    "nutrition_estimate": {
+      "calories_total": 1443.75,
+      "calories_per_serving": 288.75,
+      "sodium_total_mg": 3456.25,
+      "sat_fat_total_g": 3.65,
+      "servings_estimate": 5,
+      "covered_ingredients": 5,
+      "total_ingredients": 5,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Add {{water}}, {{sugar}}, {{salt}}, {{vegetable_oil}}, and {{flour}} to the bread pan in the order listed.\n2. Select program 7 (Dough) and start.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Add {{water}}, {{sugar}}, {{salt}}, {{vegetable_oil}}, and {{flour}} to the bread pan in the order listed."
+      },
+      {
+        "section": null,
+        "text": "Select program 7 (Dough) and start."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "water",
+      "sugar",
+      "salt",
+      "vegetable_oil",
+      "flour"
+    ],
+    "token_order": [
+      "water",
+      "sugar",
+      "salt",
+      "vegetable_oil",
+      "flour"
+    ],
+    "ingredients": {
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "7 1/2",
+            "unit": "fl_oz",
+            "ingredient_id": "water",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(plain water)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "sugar": {
+        "token": "sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "sugar",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 49,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13,
+                "sugars_g": 13,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (white sugar)",
+                "notes": "Per 1 Tbsp (12.5g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1 1/2",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "vegetable_oil": {
+        "token": "vegetable_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "vegetable oil",
+            "ratio": "1 3/4",
+            "unit": "tbsp",
+            "ingredient_id": "vegetable-oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.8,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive/veg oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "",
+            "display": "flour",
+            "ratio": "2 1/2",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 455,
+                "protein_g": 12.9,
+                "total_fat_g": 1.2,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 95.4,
+                "sugars_g": 0.3,
+                "fiber_g": 3.4,
+                "sodium_mg": 2.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 cup (125g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "bread-maker-french",
+    "title": "Bread Maker French",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "notes": "2.0 lb option uses water 9 fl oz; sugar 4 tbsp; salt 3/4 tsp; high gluten flour 3 cups; yeast 1 1/2 tsp.",
+    "nutrition_estimate": {
+      "calories_total": 1299.68,
+      "calories_per_serving": 649.84,
+      "sodium_total_mg": 1158.89,
+      "sat_fat_total_g": 0.5,
+      "servings_estimate": 2,
+      "covered_ingredients": 5,
+      "total_ingredients": 5,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Add {{water}}, {{sugar}}, {{salt}}, and {{flour}} to the bread pan in the order listed.\n2. Make a small well in the flour and add {{yeast}}.\n3. Select program 3 (French) and the loaf size, then start.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Add {{water}}, {{sugar}}, {{salt}}, and {{flour}} to the bread pan in the order listed."
+      },
+      {
+        "section": null,
+        "text": "Make a small well in the flour and add {{yeast}}."
+      },
+      {
+        "section": null,
+        "text": "Select program 3 (French) and the loaf size, then start."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "water",
+      "sugar",
+      "salt",
+      "flour",
+      "yeast"
+    ],
+    "token_order": [
+      "water",
+      "sugar",
+      "salt",
+      "flour",
+      "yeast"
+    ],
+    "ingredients": {
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "7",
+            "unit": "fl_oz",
+            "ingredient_id": "water",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(plain water)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "sugar": {
+        "token": "sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "sugar",
+            "ratio": "3",
+            "unit": "tbsp",
+            "ingredient_id": "sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 49,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13,
+                "sugars_g": 13,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (white sugar)",
+                "notes": "Per 1 Tbsp (12.5g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "",
+            "display": "high gluten flour",
+            "ratio": "2 1/2",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 455,
+                "protein_g": 12.9,
+                "total_fat_g": 1.2,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 95.4,
+                "sugars_g": 0.3,
+                "fiber_g": 3.4,
+                "sodium_mg": 2.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 cup (125g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "yeast": {
+        "token": "yeast",
+        "options": [
+          {
+            "option": "",
+            "display": "yeast",
+            "ratio": "1 1/2",
+            "unit": "tsp",
+            "ingredient_id": "active-dry-yeast",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 23,
+                "protein_g": 3,
+                "total_fat_g": 0.3,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.8,
+                "sugars_g": 0.3,
+                "fiber_g": 1.9,
+                "sodium_mg": 4,
+                "calcium_mg": 4,
+                "iron_mg": 0.3,
+                "potassium_mg": 32,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "Per 1 packet (7g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "bread-maker-gluten-free",
+    "title": "Bread Maker Gluten Free",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "notes": "2.0 lb option uses water 5 1/2 fl oz; milk powder 3 3/4 tsp; egg 1; butter or oil 2 1/2 tbsp; sugar 4 tbsp; salt 1/2 tsp; low gluten flour 2 1/2 cups; yeast 1 tsp.",
+    "nutrition_estimate": {
+      "calories_total": 1430.9325,
+      "calories_per_serving": 476.97749999999996,
+      "sodium_total_mg": 1391.7079166666667,
+      "sat_fat_total_g": 16.434375,
+      "servings_estimate": 3,
+      "covered_ingredients": 8,
+      "total_ingredients": 8,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Add {{water}}, {{milk_powder}}, {{egg}}, {{fat}}, {{sugar}}, {{salt}}, and {{flour}} to the bread pan in the order listed.\n2. Make a small well in the flour and add {{yeast}}.\n3. Select program 12 (Gluten Free) and the loaf size, then start.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Add {{water}}, {{milk_powder}}, {{egg}}, {{fat}}, {{sugar}}, {{salt}}, and {{flour}} to the bread pan in the order listed."
+      },
+      {
+        "section": null,
+        "text": "Make a small well in the flour and add {{yeast}}."
+      },
+      {
+        "section": null,
+        "text": "Select program 12 (Gluten Free) and the loaf size, then start."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "water",
+      "milk_powder",
+      "egg",
+      "fat",
+      "sugar",
+      "salt",
+      "flour",
+      "yeast"
+    ],
+    "token_order": [
+      "water",
+      "milk_powder",
+      "egg",
+      "fat",
+      "sugar",
+      "salt",
+      "flour",
+      "yeast"
+    ],
+    "ingredients": {
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "4 1/4",
+            "unit": "fl_oz",
+            "ingredient_id": "water",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(plain water)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "milk_powder": {
+        "token": "milk_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "milk powder",
+            "ratio": "2 1/2",
+            "unit": "tsp",
+            "ingredient_id": "milk",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 150,
+                "protein_g": 8,
+                "total_fat_g": 8,
+                "saturated_fat_g": 4.5,
+                "total_carbs_g": 12,
+                "sugars_g": 12,
+                "fiber_g": 0,
+                "sodium_mg": 95,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "U.S. Dairy (whole milk)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "egg": {
+        "token": "egg",
+        "options": [
+          {
+            "option": "",
+            "display": "egg",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "egg",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": false,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 72,
+                "protein_g": 6.3,
+                "total_fat_g": 4.8,
+                "saturated_fat_g": 1.6,
+                "total_carbs_g": 0.4,
+                "sugars_g": 0.2,
+                "fiber_g": 0,
+                "sodium_mg": 71,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (large egg)",
+                "notes": "Per 1 large (≈50g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "fat": {
+        "token": "fat",
+        "options": [
+          {
+            "option": "",
+            "display": "butter or vegetable oil",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.5,
+                "saturated_fat_g": 7.3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 82,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "sugar": {
+        "token": "sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "sugar",
+            "ratio": "3",
+            "unit": "tbsp",
+            "ingredient_id": "sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 49,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13,
+                "sugars_g": 13,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (white sugar)",
+                "notes": "Per 1 Tbsp (12.5g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "",
+            "display": "low gluten flour",
+            "ratio": "2 1/4",
+            "unit": "cup",
+            "ingredient_id": "gf-flour-blend",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 440,
+                "protein_g": 8,
+                "total_fat_g": 4,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 92,
+                "sugars_g": 0,
+                "fiber_g": 4,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Good&Gather GF blend",
+                "notes": "Per 1 cup (120g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "yeast": {
+        "token": "yeast",
+        "options": [
+          {
+            "option": "",
+            "display": "yeast",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "active-dry-yeast",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 23,
+                "protein_g": 3,
+                "total_fat_g": 0.3,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.8,
+                "sugars_g": 0.3,
+                "fiber_g": 1.9,
+                "sodium_mg": 4,
+                "calcium_mg": 4,
+                "iron_mg": 0.3,
+                "potassium_mg": 32,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "Per 1 packet (7g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": false,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "bread-maker-jam",
+    "title": "Bread Maker Jam",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "notes": "Use program 10 (Jam) and let the jam cool before storing.",
+    "nutrition_estimate": {
+      "calories_total": 1040.86,
+      "calories_per_serving": 520.43,
+      "sodium_total_mg": 10.33,
+      "sat_fat_total_g": 0.006600000000000001,
+      "servings_estimate": 2,
+      "covered_ingredients": 5,
+      "total_ingredients": 5,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Whisk {{water}}, {{fruit_pulp}}, {{starch}}, {{sugar}}, and {{lemon_juice}} together in the bread pan.\n2. Select program 10 (Jam) and start.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Whisk {{water}}, {{fruit_pulp}}, {{starch}}, {{sugar}}, and {{lemon_juice}} together in the bread pan."
+      },
+      {
+        "section": null,
+        "text": "Select program 10 (Jam) and start."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "water",
+      "fruit_pulp",
+      "starch",
+      "sugar",
+      "lemon_juice"
+    ],
+    "token_order": [
+      "water",
+      "fruit_pulp",
+      "starch",
+      "sugar",
+      "lemon_juice"
+    ],
+    "ingredients": {
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "1",
+            "unit": "fl_oz",
+            "ingredient_id": "water",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(plain water)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "fruit_pulp": {
+        "token": "fruit_pulp",
+        "options": [
+          {
+            "option": "",
+            "display": "fruit pulp",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "apple-cider",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 120,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 30,
+                "sugars_g": 24,
+                "fiber_g": 0,
+                "sodium_mg": 10,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "WebMD (apple cider)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "starch": {
+        "token": "starch",
+        "options": [
+          {
+            "option": "",
+            "display": "starch",
+            "ratio": "3 1/2",
+            "unit": "tbsp",
+            "ingredient_id": "cornstarch",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 488,
+                "protein_g": 0.3,
+                "total_fat_g": 0.05,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 117,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (cornstarch)",
+                "notes": "Per 1 cup (128g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "sugar": {
+        "token": "sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "sugar",
+            "ratio": "16 1/2",
+            "unit": "tbsp",
+            "ingredient_id": "sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 49,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13,
+                "sugars_g": 13,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (white sugar)",
+                "notes": "Per 1 Tbsp (12.5g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "lemon_juice": {
+        "token": "lemon_juice",
+        "options": [
+          {
+            "option": "",
+            "display": "lemon juice",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "lemon",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 17,
+                "protein_g": 0.6,
+                "total_fat_g": 0.2,
+                "saturated_fat_g": 0.02,
+                "total_carbs_g": 5.4,
+                "sugars_g": 1.5,
+                "fiber_g": 1.6,
+                "sodium_mg": 1,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (raw lemon)",
+                "notes": "Per 1 medium (58g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
+    "id": "bread-maker-quick",
+    "title": "Bread Maker Quick",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "notes": "Quick program does not use eggs.",
+    "nutrition_estimate": {
+      "calories_total": 1421.2425,
+      "calories_per_serving": 473.7475,
+      "sodium_total_mg": 731.7129166666666,
+      "sat_fat_total_g": 13.459375,
+      "servings_estimate": 3,
+      "covered_ingredients": 7,
+      "total_ingredients": 7,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Add {{water}}, {{milk_powder}}, {{fat}}, {{sugar}}, {{salt}}, and {{flour}} to the bread pan in the order listed.\n2. Make a small well in the flour and add {{yeast}}.\n3. Select program 2 (Quick) and start.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Add {{water}}, {{milk_powder}}, {{fat}}, {{sugar}}, {{salt}}, and {{flour}} to the bread pan in the order listed."
+      },
+      {
+        "section": null,
+        "text": "Make a small well in the flour and add {{yeast}}."
+      },
+      {
+        "section": null,
+        "text": "Select program 2 (Quick) and start."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "water",
+      "milk_powder",
+      "fat",
+      "sugar",
+      "salt",
+      "flour",
+      "yeast"
+    ],
+    "token_order": [
+      "water",
+      "milk_powder",
+      "fat",
+      "sugar",
+      "salt",
+      "flour",
+      "yeast"
+    ],
+    "ingredients": {
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "6",
+            "unit": "fl_oz",
+            "ingredient_id": "water",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(plain water)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "milk_powder": {
+        "token": "milk_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "milk powder",
+            "ratio": "2 1/2",
+            "unit": "tsp",
+            "ingredient_id": "milk",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 150,
+                "protein_g": 8,
+                "total_fat_g": 8,
+                "saturated_fat_g": 4.5,
+                "total_carbs_g": 12,
+                "sugars_g": 12,
+                "fiber_g": 0,
+                "sodium_mg": 95,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "U.S. Dairy (whole milk)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "fat": {
+        "token": "fat",
+        "options": [
+          {
+            "option": "",
+            "display": "butter or vegetable oil",
+            "ratio": "1 3/4",
+            "unit": "tbsp",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.5,
+                "saturated_fat_g": 7.3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 82,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "sugar": {
+        "token": "sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "sugar",
+            "ratio": "4",
+            "unit": "tbsp",
+            "ingredient_id": "sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 49,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13,
+                "sugars_g": 13,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (white sugar)",
+                "notes": "Per 1 Tbsp (12.5g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "",
+            "display": "high gluten flour",
+            "ratio": "2 1/4",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 455,
+                "protein_g": 12.9,
+                "total_fat_g": 1.2,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 95.4,
+                "sugars_g": 0.3,
+                "fiber_g": 3.4,
+                "sodium_mg": 2.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 cup (125g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "yeast": {
+        "token": "yeast",
+        "options": [
+          {
+            "option": "",
+            "display": "yeast",
+            "ratio": "1 1/2",
+            "unit": "tsp",
+            "ingredient_id": "active-dry-yeast",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 23,
+                "protein_g": 3,
+                "total_fat_g": 0.3,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.8,
+                "sugars_g": 0.3,
+                "fiber_g": 1.9,
+                "sodium_mg": 4,
+                "calcium_mg": 4,
+                "iron_mg": 0.3,
+                "potassium_mg": 32,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "Per 1 packet (7g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "bread-maker-sandwich",
+    "title": "Bread Maker Sandwich",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "notes": "2.0 lb option uses water 12 fl oz; milk powder 2 tbsp; butter 30 g; sugar 2 tbsp; salt 2 tsp; bread flour 4 cups; yeast 1 1/2 tsp.",
+    "nutrition_estimate": {
+      "calories_total": 1625.4025,
+      "calories_per_serving": 325.0805,
+      "sodium_total_mg": 3590.72625,
+      "sat_fat_total_g": 11.971874999999999,
+      "servings_estimate": 5,
+      "covered_ingredients": 7,
+      "total_ingredients": 7,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Add {{water}}, {{milk_powder}}, {{butter}}, {{sugar}}, {{salt}}, and {{flour}} to the bread pan in the order listed.\n2. Make a small well in the flour and add {{yeast}}.\n3. Select program 9 (Sandwich) and the loaf size, then start.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Add {{water}}, {{milk_powder}}, {{butter}}, {{sugar}}, {{salt}}, and {{flour}} to the bread pan in the order listed."
+      },
+      {
+        "section": null,
+        "text": "Make a small well in the flour and add {{yeast}}."
+      },
+      {
+        "section": null,
+        "text": "Select program 9 (Sandwich) and the loaf size, then start."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "water",
+      "milk_powder",
+      "butter",
+      "sugar",
+      "salt",
+      "flour",
+      "yeast"
+    ],
+    "token_order": [
+      "water",
+      "milk_powder",
+      "butter",
+      "sugar",
+      "salt",
+      "flour",
+      "yeast"
+    ],
+    "ingredients": {
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "9",
+            "unit": "fl_oz",
+            "ingredient_id": "water",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(plain water)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "milk_powder": {
+        "token": "milk_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "milk powder",
+            "ratio": "1 1/2",
+            "unit": "tbsp",
+            "ingredient_id": "milk",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 150,
+                "protein_g": 8,
+                "total_fat_g": 8,
+                "saturated_fat_g": 4.5,
+                "total_carbs_g": 12,
+                "sugars_g": 12,
+                "fiber_g": 0,
+                "sodium_mg": 95,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "U.S. Dairy (whole milk)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "butter": {
+        "token": "butter",
+        "options": [
+          {
+            "option": "",
+            "display": "butter (about 20 g)",
+            "ratio": "1 1/2",
+            "unit": "tbsp",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.5,
+                "saturated_fat_g": 7.3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 82,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "sugar": {
+        "token": "sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "sugar",
+            "ratio": "1 3/4",
+            "unit": "tbsp",
+            "ingredient_id": "sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 49,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13,
+                "sugars_g": 13,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (white sugar)",
+                "notes": "Per 1 Tbsp (12.5g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1 1/2",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "",
+            "display": "bread flour",
+            "ratio": "3",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 455,
+                "protein_g": 12.9,
+                "total_fat_g": 1.2,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 95.4,
+                "sugars_g": 0.3,
+                "fiber_g": 3.4,
+                "sodium_mg": 2.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 cup (125g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "yeast": {
+        "token": "yeast",
+        "options": [
+          {
+            "option": "",
+            "display": "yeast",
+            "ratio": "3/4",
+            "unit": "tsp",
+            "ingredient_id": "active-dry-yeast",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 23,
+                "protein_g": 3,
+                "total_fat_g": 0.3,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.8,
+                "sugars_g": 0.3,
+                "fiber_g": 1.9,
+                "sodium_mg": 4,
+                "calcium_mg": 4,
+                "iron_mg": 0.3,
+                "potassium_mg": 32,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "Per 1 packet (7g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "bread-maker-ultra-fast",
+    "title": "Bread Maker Ultra Fast",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "notes": "Ultra fast program does not use eggs.",
+    "nutrition_estimate": {
+      "calories_total": 1534.9925,
+      "calories_per_serving": 511.6641666666667,
+      "sodium_total_mg": 732.3379166666666,
+      "sat_fat_total_g": 13.509375,
+      "servings_estimate": 3,
+      "covered_ingredients": 7,
+      "total_ingredients": 7,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Add {{water}}, {{milk_powder}}, {{fat}}, {{sugar}}, {{salt}}, and {{flour}} to the bread pan in the order listed.\n2. Make a small well in the flour and add {{yeast}}.\n3. Select program 4 (Ultra Fast) and start.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Add {{water}}, {{milk_powder}}, {{fat}}, {{sugar}}, {{salt}}, and {{flour}} to the bread pan in the order listed."
+      },
+      {
+        "section": null,
+        "text": "Make a small well in the flour and add {{yeast}}."
+      },
+      {
+        "section": null,
+        "text": "Select program 4 (Ultra Fast) and start."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "water",
+      "milk_powder",
+      "fat",
+      "sugar",
+      "salt",
+      "flour",
+      "yeast"
+    ],
+    "token_order": [
+      "water",
+      "milk_powder",
+      "fat",
+      "sugar",
+      "salt",
+      "flour",
+      "yeast"
+    ],
+    "ingredients": {
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "6",
+            "unit": "fl_oz",
+            "ingredient_id": "water",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(plain water)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "milk_powder": {
+        "token": "milk_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "milk powder",
+            "ratio": "2 1/2",
+            "unit": "tsp",
+            "ingredient_id": "milk",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 150,
+                "protein_g": 8,
+                "total_fat_g": 8,
+                "saturated_fat_g": 4.5,
+                "total_carbs_g": 12,
+                "sugars_g": 12,
+                "fiber_g": 0,
+                "sodium_mg": 95,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "U.S. Dairy (whole milk)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "fat": {
+        "token": "fat",
+        "options": [
+          {
+            "option": "",
+            "display": "butter or vegetable oil",
+            "ratio": "1 3/4",
+            "unit": "tbsp",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.5,
+                "saturated_fat_g": 7.3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 82,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "sugar": {
+        "token": "sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "sugar",
+            "ratio": "4",
+            "unit": "tbsp",
+            "ingredient_id": "sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 49,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13,
+                "sugars_g": 13,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (white sugar)",
+                "notes": "Per 1 Tbsp (12.5g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "",
+            "display": "high gluten flour",
+            "ratio": "2 1/2",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 455,
+                "protein_g": 12.9,
+                "total_fat_g": 1.2,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 95.4,
+                "sugars_g": 0.3,
+                "fiber_g": 3.4,
+                "sodium_mg": 2.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 cup (125g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "yeast": {
+        "token": "yeast",
+        "options": [
+          {
+            "option": "",
+            "display": "yeast",
+            "ratio": "1 1/2",
+            "unit": "tsp",
+            "ingredient_id": "active-dry-yeast",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 23,
+                "protein_g": 3,
+                "total_fat_g": 0.3,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.8,
+                "sugars_g": 0.3,
+                "fiber_g": 1.9,
+                "sodium_mg": 4,
+                "calcium_mg": 4,
+                "iron_mg": 0.3,
+                "potassium_mg": 32,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "Per 1 packet (7g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
+    "id": "bread-maker-whole-wheat",
+    "title": "Bread Maker Whole Wheat",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "notes": "2.0 lb option uses water 7 fl oz; milk powder 2 tsp; egg 1; butter or oil 3 tbsp; sugar 6 1/2 tbsp; salt 3/4 tsp; high gluten flour 2 cups; warm wheat 1 cup; yeast 1 tsp.",
+    "nutrition_estimate": {
+      "calories_total": 1663.12,
+      "calories_per_serving": 415.78,
+      "sodium_total_mg": 1478.3433333333332,
+      "sat_fat_total_g": 24.1375,
+      "servings_estimate": 4,
+      "covered_ingredients": 9,
+      "total_ingredients": 9,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Add {{water}}, {{milk_powder}}, {{egg}}, {{fat}}, {{sugar}}, {{salt}}, {{flour}}, and {{warm_wheat}} to the bread pan in the order listed.\n2. Make a small well in the dry ingredients and add {{yeast}}.\n3. Select program 5 (Whole Wheat) and the loaf size, then start.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Add {{water}}, {{milk_powder}}, {{egg}}, {{fat}}, {{sugar}}, {{salt}}, {{flour}}, and {{warm_wheat}} to the bread pan in the order listed."
+      },
+      {
+        "section": null,
+        "text": "Make a small well in the dry ingredients and add {{yeast}}."
+      },
+      {
+        "section": null,
+        "text": "Select program 5 (Whole Wheat) and the loaf size, then start."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "water",
+      "milk_powder",
+      "egg",
+      "fat",
+      "sugar",
+      "salt",
+      "flour",
+      "warm_wheat",
+      "yeast"
+    ],
+    "token_order": [
+      "water",
+      "milk_powder",
+      "egg",
+      "fat",
+      "sugar",
+      "salt",
+      "flour",
+      "warm_wheat",
+      "yeast"
+    ],
+    "ingredients": {
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "6",
+            "unit": "fl_oz",
+            "ingredient_id": "water",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(plain water)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "milk_powder": {
+        "token": "milk_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "milk powder",
+            "ratio": "2",
+            "unit": "tsp",
+            "ingredient_id": "milk",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 150,
+                "protein_g": 8,
+                "total_fat_g": 8,
+                "saturated_fat_g": 4.5,
+                "total_carbs_g": 12,
+                "sugars_g": 12,
+                "fiber_g": 0,
+                "sodium_mg": 95,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "U.S. Dairy (whole milk)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "egg": {
+        "token": "egg",
+        "options": [
+          {
+            "option": "",
+            "display": "egg",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "egg",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": false,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 72,
+                "protein_g": 6.3,
+                "total_fat_g": 4.8,
+                "saturated_fat_g": 1.6,
+                "total_carbs_g": 0.4,
+                "sugars_g": 0.2,
+                "fiber_g": 0,
+                "sodium_mg": 71,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (large egg)",
+                "notes": "Per 1 large (≈50g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "fat": {
+        "token": "fat",
+        "options": [
+          {
+            "option": "",
+            "display": "butter or vegetable oil",
+            "ratio": "3",
+            "unit": "tbsp",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.5,
+                "saturated_fat_g": 7.3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 82,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "sugar": {
+        "token": "sugar",
+        "options": [
+          {
+            "option": "",
+            "display": "sugar",
+            "ratio": "5",
+            "unit": "tbsp",
+            "ingredient_id": "sugar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 49,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13,
+                "sugars_g": 13,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (white sugar)",
+                "notes": "Per 1 Tbsp (12.5g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "",
+            "display": "high gluten flour",
+            "ratio": "1 1/2",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 455,
+                "protein_g": 12.9,
+                "total_fat_g": 1.2,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 95.4,
+                "sugars_g": 0.3,
+                "fiber_g": 3.4,
+                "sodium_mg": 2.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 cup (125g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "warm_wheat": {
+        "token": "warm_wheat",
+        "options": [
+          {
+            "option": "",
+            "display": "warm wheat",
+            "ratio": "3/4",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 455,
+                "protein_g": 12.9,
+                "total_fat_g": 1.2,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 95.4,
+                "sugars_g": 0.3,
+                "fiber_g": 3.4,
+                "sodium_mg": 2.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 cup (125g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "yeast": {
+        "token": "yeast",
+        "options": [
+          {
+            "option": "",
+            "display": "yeast",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "active-dry-yeast",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 23,
+                "protein_g": 3,
+                "total_fat_g": 0.3,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.8,
+                "sugars_g": 0.3,
+                "fiber_g": 1.9,
+                "sodium_mg": 4,
+                "calcium_mg": 4,
+                "iron_mg": 0.3,
+                "potassium_mg": 32,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "Per 1 packet (7g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": null,
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": false,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "brown-rice",
     "title": "Brown Rice",
     "byline": "",
@@ -3449,7 +7050,7 @@
       "Sides"
     ],
     "family": "",
-    "notes": "Season with salt, soy sauce, or other seasonings to taste. For wild rice, use 8 cups water and boil 40\u201355 minutes.",
+    "notes": "Season with salt, soy sauce, or other seasonings to taste. For wild rice, use 8 cups water and boil 40–55 minutes.",
     "nutrition_estimate": {
       "calories_total": 685,
       "calories_per_serving": 342.5,
@@ -3660,7 +7261,7 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Mix {{american_cheese}}, {{eggs}}, {{tuna}}, {{green_pepper}}, {{green_olives}}, {{sweet_pickles}}, and {{mayonnaise}} lightly.\n2. Fill the {{buns}} with the mixture.\n3. Wrap each bun in foil and bake at 350\u00b0F for about 30 minutes, until the filling is heated and the cheese is melted.",
+    "steps_raw": "1. Mix {{american_cheese}}, {{eggs}}, {{tuna}}, {{green_pepper}}, {{green_olives}}, {{sweet_pickles}}, and {{mayonnaise}} lightly.\n2. Fill the {{buns}} with the mixture.\n3. Wrap each bun in foil and bake at 350°F for about 30 minutes, until the filling is heated and the cheese is melted.",
     "steps": [
       {
         "section": null,
@@ -3672,7 +7273,7 @@
       },
       {
         "section": null,
-        "text": "Wrap each bun in foil and bake at 350\u00b0F for about 30 minutes, until the filling is heated and the cheese is melted."
+        "text": "Wrap each bun in foil and bake at 350°F for about 30 minutes, until the filling is heated and the cheese is melted."
       }
     ],
     "step_sections": [],
@@ -3774,7 +7375,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (large egg)",
-                "notes": "Per 1 large (\u224850g)."
+                "notes": "Per 1 large (≈50g)."
               }
             ]
           }
@@ -4055,7 +7656,7 @@
       "Desserts & Baking"
     ],
     "family": "",
-    "notes": "Bake in a 13x9-inch pan at 350\u00b0F. Cool to room temperature, then chill at least 2 hours before slicing. Egg-free option: use 1 cup aquafaba; for flax eggs, use 4 Tbsp ground flax + 10 Tbsp water, gel 10 minutes.",
+    "notes": "Bake in a 13x9-inch pan at 350°F. Cool to room temperature, then chill at least 2 hours before slicing. Egg-free option: use 1 cup aquafaba; for flax eggs, use 4 Tbsp ground flax + 10 Tbsp water, gel 10 minutes.",
     "nutrition_estimate": {
       "calories_total": 5705.4375,
       "calories_per_serving": 203.765625,
@@ -4068,11 +7669,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Preheat oven to 350\u00b0F. Grease or line a 13x9-inch pan.\n2. Combine {{crust_flour_choice}} and {{crust_sugar}} in a bowl.\n3. Work {{crust_butter_choice}} into the flour mixture until a cohesive crumb forms.\n4. Press the crust evenly into the pan. Bake 10 to 15 minutes, until lightly golden.\n5. Whisk {{filling_butter_choice}} and {{filling_brown_sugar}} together until glossy.\n6. Whisk in {{filling_egg_choice}} (add eggs one at a time if using eggs) until combined.\n7. Stir in {{filling_flour_choice}}, {{vinegar}}, and {{vanilla_extract}} just until smooth.\n8. Pour the filling over the hot crust. Bake about 30 minutes, until the center is just set and slightly jiggly.\n9. Cool to room temperature, then refrigerate at least 2 hours before slicing.",
+    "steps_raw": "1. Preheat oven to 350°F. Grease or line a 13x9-inch pan.\n2. Combine {{crust_flour_choice}} and {{crust_sugar}} in a bowl.\n3. Work {{crust_butter_choice}} into the flour mixture until a cohesive crumb forms.\n4. Press the crust evenly into the pan. Bake 10 to 15 minutes, until lightly golden.\n5. Whisk {{filling_butter_choice}} and {{filling_brown_sugar}} together until glossy.\n6. Whisk in {{filling_egg_choice}} (add eggs one at a time if using eggs) until combined.\n7. Stir in {{filling_flour_choice}}, {{vinegar}}, and {{vanilla_extract}} just until smooth.\n8. Pour the filling over the hot crust. Bake about 30 minutes, until the center is just set and slightly jiggly.\n9. Cool to room temperature, then refrigerate at least 2 hours before slicing.",
     "steps": [
       {
         "section": "Crust",
-        "text": "Preheat oven to 350\u00b0F. Grease or line a 13x9-inch pan."
+        "text": "Preheat oven to 350°F. Grease or line a 13x9-inch pan."
       },
       {
         "section": "Crust",
@@ -4492,7 +8093,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (large egg)",
-                "notes": "Per 1 large (\u224850g)."
+                "notes": "Per 1 large (≈50g)."
               }
             ]
           },
@@ -4947,11 +8548,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Heat the oven to 350\u2013400\u00b0F (177\u2013204\u00b0C).\n2. Dice {{butternut_squash}} into 1-inch cubes and place in a baking dish. Add {{sausage}} (broken into pieces) and {{onion}}. Season with {{salt}}.\n3. If the sausage is lean, drizzle with {{coconut_oil}} for extra fat.\n4. Bake until the squash is tender and the sausage is cooked through, stirring occasionally.",
+    "steps_raw": "1. Heat the oven to 350–400°F (177–204°C).\n2. Dice {{butternut_squash}} into 1-inch cubes and place in a baking dish. Add {{sausage}} (broken into pieces) and {{onion}}. Season with {{salt}}.\n3. If the sausage is lean, drizzle with {{coconut_oil}} for extra fat.\n4. Bake until the squash is tender and the sausage is cooked through, stirring occasionally.",
     "steps": [
       {
         "section": null,
-        "text": "Heat the oven to 350\u2013400\u00b0F (177\u2013204\u00b0C)."
+        "text": "Heat the oven to 350–400°F (177–204°C)."
       },
       {
         "section": null,
@@ -5229,7 +8830,7 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Melt {{fat}} in a saucepan over low heat. Whisk in {{flour}}, {{pepper}}, and {{salt}} if using.\n2. Cook, stirring constantly, until bubbly. Remove from heat.\n3. Stir in {{chicken_broth}} and {{milk}}. Bring to a boil, stirring constantly, and cook 1 minute.\n4. Stir in {{rice}} and {{poultry}}. Add {{mushrooms}}, {{green_pepper}}, {{pimiento}}, and {{almonds}} if desired.\n5. Pour into an ungreased 2-qt casserole dish and bake uncovered at 350\u00b0F for 40 to 45 minutes.\n6. Garnish with {{parsley}} before serving.",
+    "steps_raw": "1. Melt {{fat}} in a saucepan over low heat. Whisk in {{flour}}, {{pepper}}, and {{salt}} if using.\n2. Cook, stirring constantly, until bubbly. Remove from heat.\n3. Stir in {{chicken_broth}} and {{milk}}. Bring to a boil, stirring constantly, and cook 1 minute.\n4. Stir in {{rice}} and {{poultry}}. Add {{mushrooms}}, {{green_pepper}}, {{pimiento}}, and {{almonds}} if desired.\n5. Pour into an ungreased 2-qt casserole dish and bake uncovered at 350°F for 40 to 45 minutes.\n6. Garnish with {{parsley}} before serving.",
     "steps": [
       {
         "section": null,
@@ -5249,7 +8850,7 @@
       },
       {
         "section": null,
-        "text": "Pour into an ungreased 2-qt casserole dish and bake uncovered at 350\u00b0F for 40 to 45 minutes."
+        "text": "Pour into an ungreased 2-qt casserole dish and bake uncovered at 350°F for 40 to 45 minutes."
       },
       {
         "section": null,
@@ -5954,7 +9555,7 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Cut {{chicken}} into small pieces.\n2. Combine {{soup}}, {{milk}}, and {{cheese}} in a saucepan; cook until the cheese melts.\n3. Spread half of the sauce in the bottom of a baking dish.\n4. Spoon some {{chicken}} onto the wide end of each {{crescent_rolls}}, roll up, and place on the sauce.\n5. Cover with the remaining sauce and bake at 350\u00b0F for 30 minutes.",
+    "steps_raw": "1. Cut {{chicken}} into small pieces.\n2. Combine {{soup}}, {{milk}}, and {{cheese}} in a saucepan; cook until the cheese melts.\n3. Spread half of the sauce in the bottom of a baking dish.\n4. Spoon some {{chicken}} onto the wide end of each {{crescent_rolls}}, roll up, and place on the sauce.\n5. Cover with the remaining sauce and bake at 350°F for 30 minutes.",
     "steps": [
       {
         "section": null,
@@ -5974,7 +9575,7 @@
       },
       {
         "section": null,
-        "text": "Cover with the remaining sauce and bake at 350\u00b0F for 30 minutes."
+        "text": "Cover with the remaining sauce and bake at 350°F for 30 minutes."
       }
     ],
     "step_sections": [],
@@ -7046,11 +10647,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Preheat the oven to 375\u00b0F (190\u00b0C). Line baking sheets with parchment.\n2. In a large bowl, beat {{butter_choice}}, {{white_sugar}}, and {{brown_sugar}} until creamy.\n3. Add {{egg_choice}}, {{molasses}}, and {{vanilla_extract}} to the bowl and mix until fully combined.\n4. Mix in {{gf_flour}}, {{baking_soda}}, {{baking_powder}}, and {{salt}} until a smooth dough forms.\n5. Stir in {{chocolate_chips}}.\n6. Drop rounded tablespoons of dough (about 1 1/2 tablespoons) onto the prepared sheets, spacing 2 inches apart.\n7. Bake for 8\u201310 minutes, until the edges just start to turn golden and the centers are soft. Cool briefly on the sheet before transferring to a rack.",
+    "steps_raw": "1. Preheat the oven to 375°F (190°C). Line baking sheets with parchment.\n2. In a large bowl, beat {{butter_choice}}, {{white_sugar}}, and {{brown_sugar}} until creamy.\n3. Add {{egg_choice}}, {{molasses}}, and {{vanilla_extract}} to the bowl and mix until fully combined.\n4. Mix in {{gf_flour}}, {{baking_soda}}, {{baking_powder}}, and {{salt}} until a smooth dough forms.\n5. Stir in {{chocolate_chips}}.\n6. Drop rounded tablespoons of dough (about 1 1/2 tablespoons) onto the prepared sheets, spacing 2 inches apart.\n7. Bake for 8–10 minutes, until the edges just start to turn golden and the centers are soft. Cool briefly on the sheet before transferring to a rack.",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 375\u00b0F (190\u00b0C). Line baking sheets with parchment."
+        "text": "Preheat the oven to 375°F (190°C). Line baking sheets with parchment."
       },
       {
         "section": null,
@@ -7074,7 +10675,7 @@
       },
       {
         "section": null,
-        "text": "Bake for 8\u201310 minutes, until the edges just start to turn golden and the centers are soft. Cool briefly on the sheet before transferring to a rack."
+        "text": "Bake for 8–10 minutes, until the edges just start to turn golden and the centers are soft. Cool briefly on the sheet before transferring to a rack."
       }
     ],
     "step_sections": [],
@@ -7386,7 +10987,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (large egg)",
-                "notes": "Per 1 large (\u224850g)."
+                "notes": "Per 1 large (≈50g)."
               }
             ]
           },
@@ -7421,7 +11022,7 @@
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "Bob\u2019s Red Mill (vegan)",
+                "source": "Bob’s Red Mill (vegan)",
                 "notes": "Per 1 Tbsp (10g)."
               }
             ]
@@ -7727,11 +11328,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. In a skillet, heat {{vegetable_oil}} over medium heat. Saut\u00e9 {{onion}} and {{canadian_bacon}} for about 5 minutes.\n2. Add {{collard_greens}} and toss to coat in the fat. Cover and reduce heat.\n3. Simmer for 10\u201315 minutes, stirring frequently, until the greens are tender. Season with {{salt}} and {{black_pepper}} to taste.",
+    "steps_raw": "1. In a skillet, heat {{vegetable_oil}} over medium heat. Sauté {{onion}} and {{canadian_bacon}} for about 5 minutes.\n2. Add {{collard_greens}} and toss to coat in the fat. Cover and reduce heat.\n3. Simmer for 10–15 minutes, stirring frequently, until the greens are tender. Season with {{salt}} and {{black_pepper}} to taste.",
     "steps": [
       {
         "section": null,
-        "text": "In a skillet, heat {{vegetable_oil}} over medium heat. Saut\u00e9 {{onion}} and {{canadian_bacon}} for about 5 minutes."
+        "text": "In a skillet, heat {{vegetable_oil}} over medium heat. Sauté {{onion}} and {{canadian_bacon}} for about 5 minutes."
       },
       {
         "section": null,
@@ -7739,7 +11340,7 @@
       },
       {
         "section": null,
-        "text": "Simmer for 10\u201315 minutes, stirring frequently, until the greens are tender. Season with {{salt}} and {{black_pepper}} to taste."
+        "text": "Simmer for 10–15 minutes, stirring frequently, until the greens are tender. Season with {{salt}} and {{black_pepper}} to taste."
       }
     ],
     "step_sections": [],
@@ -8037,10 +11638,10 @@
     "family": "",
     "notes": "Garlic cloves are left whole and caramelized. Sauce thickens further as it cools.",
     "nutrition_estimate": {
-      "calories_total": 2300.3791666666666,
-      "calories_per_serving": 209.1253787878788,
-      "sodium_total_mg": 7248.868750000001,
-      "sat_fat_total_g": 70.2575,
+      "calories_total": 2303.709166666667,
+      "calories_per_serving": 209.4281060606061,
+      "sodium_total_mg": 7261.34875,
+      "sat_fat_total_g": 70.4015,
       "servings_estimate": 11,
       "covered_ingredients": 18,
       "total_ingredients": 18,
@@ -8048,7 +11649,7 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Combine {{chicken_broth}} with {{bouillon}}, {{soy_sauce}}, {{onion_powder}}, {{mustard_powder}}, and {{thyme}} in a large measuring cup and set aside.\n2. Combine {{flour_dredge}} and {{parmesan_dredge}} on a plate and measure remaining ingredients before cooking.\n3. Slice {{chicken_breast}} in half lengthwise to form thinner cutlets. Cover and pound to an even thickness, then pat dry.\n4. Season both sides of {{chicken_breast}} with {{italian_seasoning}}, {{salt}}, and {{black_pepper}}. Dredge in {{flour_dredge}} mixed with {{parmesan_dredge}}, tapping off excess.\n5. Heat {{olive_oil}} in a large skillet over medium-high heat. Sear {{chicken_breast}} for 4\u20135 minutes per side until golden. Remove and set aside.\n6. Reduce heat to medium-low and melt {{butter}} in the same skillet. Add {{garlic_cloves}} and cook until softened and caramelized, about 6\u20137 minutes.\n7. Sprinkle in {{flour_sauce}} and cook for 1\u20132 minutes, stirring until the raw flour smell is gone.\n8. Gradually whisk in the reserved {{chicken_broth}} mixture with {{bouillon}}, {{soy_sauce}}, {{onion_powder}}, {{mustard_powder}}, and {{thyme}} until smooth.\n9. Stir in {{heavy_cream}} and bring to a gentle boil, then reduce heat to low.\n10. Gradually stir in {{parmesan_finish}} until melted.\n11. Return {{chicken_breast}} and any accumulated juices to the skillet. Spoon sauce over the top, cover partially, and simmer for 5 minutes.",
+    "steps_raw": "1. Combine {{chicken_broth}} with {{bouillon}}, {{soy_sauce}}, {{onion_powder}}, {{mustard_powder}}, and {{thyme}} in a large measuring cup and set aside.\n2. Combine {{flour_dredge}} and {{parmesan_dredge}} on a plate and measure remaining ingredients before cooking.\n3. Slice {{chicken_breast}} in half lengthwise to form thinner cutlets. Cover and pound to an even thickness, then pat dry.\n4. Season both sides of {{chicken_breast}} with {{italian_seasoning}}, {{salt}}, and {{black_pepper}}. Dredge in {{flour_dredge}} mixed with {{parmesan_dredge}}, tapping off excess.\n5. Heat {{olive_oil}} in a large skillet over medium-high heat. Sear {{chicken_breast}} for 4–5 minutes per side until golden. Remove and set aside.\n6. Reduce heat to medium-low and melt {{butter}} in the same skillet. Add {{garlic_cloves}} and cook until softened and caramelized, about 6–7 minutes.\n7. Sprinkle in {{flour_sauce}} and cook for 1–2 minutes, stirring until the raw flour smell is gone.\n8. Gradually whisk in the reserved {{chicken_broth}} mixture with {{bouillon}}, {{soy_sauce}}, {{onion_powder}}, {{mustard_powder}}, and {{thyme}} until smooth.\n9. Stir in {{heavy_cream}} and bring to a gentle boil, then reduce heat to low.\n10. Gradually stir in {{parmesan_finish}} until melted.\n11. Return {{chicken_breast}} and any accumulated juices to the skillet. Spoon sauce over the top, cover partially, and simmer for 5 minutes.",
     "steps": [
       {
         "section": "Prep Work",
@@ -8068,15 +11669,15 @@
       },
       {
         "section": "Cook the Chicken",
-        "text": "Heat {{olive_oil}} in a large skillet over medium-high heat. Sear {{chicken_breast}} for 4\u20135 minutes per side until golden. Remove and set aside."
+        "text": "Heat {{olive_oil}} in a large skillet over medium-high heat. Sear {{chicken_breast}} for 4–5 minutes per side until golden. Remove and set aside."
       },
       {
         "section": "Make the Sauce",
-        "text": "Reduce heat to medium-low and melt {{butter}} in the same skillet. Add {{garlic_cloves}} and cook until softened and caramelized, about 6\u20137 minutes."
+        "text": "Reduce heat to medium-low and melt {{butter}} in the same skillet. Add {{garlic_cloves}} and cook until softened and caramelized, about 6–7 minutes."
       },
       {
         "section": "Make the Sauce",
-        "text": "Sprinkle in {{flour_sauce}} and cook for 1\u20132 minutes, stirring until the raw flour smell is gone."
+        "text": "Sprinkle in {{flour_sauce}} and cook for 1–2 minutes, stirring until the raw flour smell is gone."
       },
       {
         "section": "Make the Sauce",
@@ -8430,8 +12031,8 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
-                "serving_unit_norm": "oz",
+                "serving_qty": 28,
+                "serving_unit_norm": "g",
                 "calories_kcal": 111,
                 "protein_g": 10,
                 "total_fat_g": 7.3,
@@ -8445,7 +12046,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (Parm. cheese)",
-                "notes": "Per 1 oz (28g)."
+                "notes": "Per 28 g (1 oz)."
               }
             ]
           }
@@ -8975,8 +12576,8 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
-                "serving_unit_norm": "oz",
+                "serving_qty": 28,
+                "serving_unit_norm": "g",
                 "calories_kcal": 111,
                 "protein_g": 10,
                 "total_fat_g": 7.3,
@@ -8990,7 +12591,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (Parm. cheese)",
-                "notes": "Per 1 oz (28g)."
+                "notes": "Per 28 g (1 oz)."
               }
             ]
           },
@@ -9011,8 +12612,8 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
-                "serving_unit_norm": "oz",
+                "serving_qty": 28,
+                "serving_unit_norm": "g",
                 "calories_kcal": 111,
                 "protein_g": 10,
                 "total_fat_g": 7.3,
@@ -9026,7 +12627,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (Parm. cheese)",
-                "notes": "Per 1 oz (28g)."
+                "notes": "Per 28 g (1 oz)."
               }
             ]
           }
@@ -9535,31 +13136,18 @@
     "family": "",
     "notes": "Slow-cooked chicken and rice soup with fresh herbs, spinach, and lemon.",
     "nutrition_estimate": {
-      "calories_total": 2425.22,
-      "calories_per_serving": 173.23,
-      "sodium_total_mg": 10176.66,
-      "sat_fat_total_g": 47.413199999999996,
+      "calories_total": 2618.0123497267755,
+      "calories_per_serving": 187.0008821233411,
+      "sodium_total_mg": 10682.124480874318,
+      "sat_fat_total_g": 52.21319999999999,
       "servings_estimate": 14,
-      "covered_ingredients": 16,
+      "covered_ingredients": 19,
       "total_ingredients": 19,
-      "coverage_ratio": 0.8421052631578947,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "shallot",
-          "unit": "tbsp"
-        },
-        {
-          "ingredient_id": "carrot",
-          "unit": "cup"
-        },
-        {
-          "ingredient_id": "parmesan_cheese",
-          "unit": "count"
-        }
-      ]
+      "missing_ingredients": []
     },
-    "steps_raw": "1. In the crockpot, combine {{butter}}, {{chicken}}, {{onion}}, {{shallot}}, {{garlic}}, {{celery}}, and {{carrot}}. Pour in {{chicken_broth}}. Stir in {{thyme}}, {{sage}}, {{rosemary}}, and {{bay_leaf}}; season with {{salt}} and {{black_pepper}}. Add {{parmesan_rind}} if using.\n2. Cover and cook on low for 4\u20136 hours or on high for 2\u20134 hours. Shred the {{chicken}}.\n3. About 20 minutes before serving, stir in {{rice}}, {{spinach}}, {{parsley}}, and {{lemon_juice}}. Cook for 15\u201320 minutes, until the rice is tender.\n4. Ladle into bowls and top with extra {{parsley}} if desired.\n5. In a Dutch oven, combine {{butter}}, {{chicken}}, {{onion}}, {{shallot}}, {{garlic}}, {{celery}}, and {{carrot}}. Pour in {{chicken_broth}}. Stir in {{thyme}}, {{sage}}, {{rosemary}}, and {{bay_leaf}}; season with {{salt}} and {{black_pepper}}. Add {{parmesan_rind}} if using.\n6. Bring to a boil over high heat. Cook for 5 minutes, then reduce to low, cover, and simmer for 30 minutes or longer. Shred the {{chicken}}.\n7. About 20 minutes before serving, stir in {{rice}}, {{spinach}}, {{parsley}}, and {{lemon_juice}}. Cook for 15\u201320 minutes, until the rice is tender.\n8. Ladle into bowls and top with extra {{parsley}} if desired.",
+    "steps_raw": "1. In the crockpot, combine {{butter}}, {{chicken}}, {{onion}}, {{shallot}}, {{garlic}}, {{celery}}, and {{carrot}}. Pour in {{chicken_broth}}. Stir in {{thyme}}, {{sage}}, {{rosemary}}, and {{bay_leaf}}; season with {{salt}} and {{black_pepper}}. Add {{parmesan_rind}} if using.\n2. Cover and cook on low for 4–6 hours or on high for 2–4 hours. Shred the {{chicken}}.\n3. About 20 minutes before serving, stir in {{rice}}, {{spinach}}, {{parsley}}, and {{lemon_juice}}. Cook for 15–20 minutes, until the rice is tender.\n4. Ladle into bowls and top with extra {{parsley}} if desired.\n5. In a Dutch oven, combine {{butter}}, {{chicken}}, {{onion}}, {{shallot}}, {{garlic}}, {{celery}}, and {{carrot}}. Pour in {{chicken_broth}}. Stir in {{thyme}}, {{sage}}, {{rosemary}}, and {{bay_leaf}}; season with {{salt}} and {{black_pepper}}. Add {{parmesan_rind}} if using.\n6. Bring to a boil over high heat. Cook for 5 minutes, then reduce to low, cover, and simmer for 30 minutes or longer. Shred the {{chicken}}.\n7. About 20 minutes before serving, stir in {{rice}}, {{spinach}}, {{parsley}}, and {{lemon_juice}}. Cook for 15–20 minutes, until the rice is tender.\n8. Ladle into bowls and top with extra {{parsley}} if desired.",
     "steps": [
       {
         "section": "Crockpot",
@@ -9567,11 +13155,11 @@
       },
       {
         "section": "Crockpot",
-        "text": "Cover and cook on low for 4\u20136 hours or on high for 2\u20134 hours. Shred the {{chicken}}."
+        "text": "Cover and cook on low for 4–6 hours or on high for 2–4 hours. Shred the {{chicken}}."
       },
       {
         "section": "Crockpot",
-        "text": "About 20 minutes before serving, stir in {{rice}}, {{spinach}}, {{parsley}}, and {{lemon_juice}}. Cook for 15\u201320 minutes, until the rice is tender."
+        "text": "About 20 minutes before serving, stir in {{rice}}, {{spinach}}, {{parsley}}, and {{lemon_juice}}. Cook for 15–20 minutes, until the rice is tender."
       },
       {
         "section": "Crockpot",
@@ -9587,7 +13175,7 @@
       },
       {
         "section": "Stove",
-        "text": "About 20 minutes before serving, stir in {{rice}}, {{spinach}}, {{parsley}}, and {{lemon_juice}}. Cook for 15\u201320 minutes, until the rice is tender."
+        "text": "About 20 minutes before serving, stir in {{rice}}, {{spinach}}, {{parsley}}, and {{lemon_juice}}. Cook for 15–20 minutes, until the rice is tender."
       },
       {
         "section": "Stove",
@@ -9813,8 +13401,8 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
-                "serving_unit_norm": "count",
+                "serving_qty": 30,
+                "serving_unit_norm": "g",
                 "calories_kcal": 22,
                 "protein_g": 0.8,
                 "total_fat_g": 0,
@@ -9828,7 +13416,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "FoodStruct (shallot)",
-                "notes": "Per 1 medium (30g)."
+                "notes": "Per 30 g (1 medium)."
               }
             ]
           }
@@ -9942,8 +13530,8 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
-                "serving_unit_norm": "count",
+                "serving_qty": 61,
+                "serving_unit_norm": "g",
                 "calories_kcal": 25,
                 "protein_g": 0.6,
                 "total_fat_g": 0.1,
@@ -9957,7 +13545,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (medium carrot)",
-                "notes": "Per 1 medium (61g)."
+                "notes": "Per 61 g (1 medium)."
               }
             ]
           }
@@ -10286,8 +13874,8 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
-                "serving_unit_norm": "oz",
+                "serving_qty": 28,
+                "serving_unit_norm": "g",
                 "calories_kcal": 111,
                 "protein_g": 10,
                 "total_fat_g": 7.3,
@@ -10301,7 +13889,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (Parm. cheese)",
-                "notes": "Per 1 oz (28g)."
+                "notes": "Per 28 g (1 oz)."
               }
             ]
           }
@@ -10521,7 +14109,7 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Beat {{sugar}}, {{peanut_butter}}, {{egg}}, and {{vanilla}} until well blended.\n2. Fold in {{peanuts}} if using.\n3. Form cookies and place on a parchment-lined baking sheet. Flatten with a fork in a criss-cross pattern.\n4. Bake at 325\u00b0F for 10 to 12 minutes, until lightly browned. Cool 2 minutes on the pan.",
+    "steps_raw": "1. Beat {{sugar}}, {{peanut_butter}}, {{egg}}, and {{vanilla}} until well blended.\n2. Fold in {{peanuts}} if using.\n3. Form cookies and place on a parchment-lined baking sheet. Flatten with a fork in a criss-cross pattern.\n4. Bake at 325°F for 10 to 12 minutes, until lightly browned. Cool 2 minutes on the pan.",
     "steps": [
       {
         "section": null,
@@ -10537,7 +14125,7 @@
       },
       {
         "section": null,
-        "text": "Bake at 325\u00b0F for 10 to 12 minutes, until lightly browned. Cool 2 minutes on the pan."
+        "text": "Bake at 325°F for 10 to 12 minutes, until lightly browned. Cool 2 minutes on the pan."
       }
     ],
     "step_sections": [],
@@ -10675,7 +14263,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (large egg)",
-                "notes": "Per 1 large (\u224850g)."
+                "notes": "Per 1 large (≈50g)."
               }
             ]
           }
@@ -10792,10 +14380,10 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 3118.1,
-      "calories_per_serving": 164.11052631578946,
-      "sodium_total_mg": 5112.75,
-      "sat_fat_total_g": 125.475,
+      "calories_total": 3120.32,
+      "calories_per_serving": 164.22736842105263,
+      "sodium_total_mg": 5121.07,
+      "sat_fat_total_g": 125.57099999999998,
       "servings_estimate": 19,
       "covered_ingredients": 10,
       "total_ingredients": 10,
@@ -10803,7 +14391,7 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Mash the cooked {{potatoes}}.\n2. Beat in {{butter}} and {{cream_cheese}} until smooth.\n3. Stir in {{cheddar_cheese}}, {{pimiento}}, {{green_pepper}}, {{parmesan}}, {{milk}}, {{salt}}, and {{green_onions}}.\n4. Spoon into a lightly greased 9x13 baking dish and bake at 350\u00b0F for 35 minutes.\n5. Sprinkle with extra {{cheddar_cheese}} and bake until melted.",
+    "steps_raw": "1. Mash the cooked {{potatoes}}.\n2. Beat in {{butter}} and {{cream_cheese}} until smooth.\n3. Stir in {{cheddar_cheese}}, {{pimiento}}, {{green_pepper}}, {{parmesan}}, {{milk}}, {{salt}}, and {{green_onions}}.\n4. Spoon into a lightly greased 9x13 baking dish and bake at 350°F for 35 minutes.\n5. Sprinkle with extra {{cheddar_cheese}} and bake until melted.",
     "steps": [
       {
         "section": null,
@@ -10819,7 +14407,7 @@
       },
       {
         "section": null,
-        "text": "Spoon into a lightly greased 9x13 baking dish and bake at 350\u00b0F for 35 minutes."
+        "text": "Spoon into a lightly greased 9x13 baking dish and bake at 350°F for 35 minutes."
       },
       {
         "section": null,
@@ -11125,8 +14713,8 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
-                "serving_unit_norm": "oz",
+                "serving_qty": 28,
+                "serving_unit_norm": "g",
                 "calories_kcal": 111,
                 "protein_g": 10,
                 "total_fat_g": 7.3,
@@ -11140,7 +14728,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (Parm. cheese)",
-                "notes": "Per 1 oz (28g)."
+                "notes": "Per 28 g (1 oz)."
               }
             ]
           }
@@ -11508,7 +15096,7 @@
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "Campbell\u2019s (broth)",
+                "source": "Campbell’s (broth)",
                 "notes": "Per 1 cup (240ml)."
               }
             ]
@@ -12002,11 +15590,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Preheat the oven to 350\u00b0F (177\u00b0C). Lightly grease an 8x8-inch square baking dish (stone preferred; glass or metal ok) with {{neutral_oil}}, then wipe off any excess.\n2. Make sure {{coconut_milk}} is fully smooth before measuring: whisk or blend room-temperature full-fat coconut milk until completely mixed and smooth, then measure out {{coconut_milk}}.\n3. In a large bowl, whisk together {{oat_flour}}, {{almond_flour}}, {{tapioca_starch}}, {{cornstarch}}, {{sugar}}, {{baking_powder}}, and {{salt}} until no lumps remain.\n4. In a separate bowl, whisk together {{coconut_milk}}, {{lemon_juice}}, zest of {{lemon_for_zest}}, and {{vanilla_extract}}.\n5. Pour the wet mixture into the dry mixture and whisk until smooth. Pour the batter into the prepared pan.\n6. Bake for 20\u201325 minutes, or until a toothpick comes out completely clean. Cool completely (about 45 minutes) before glazing.\n7. For a full glaze, whisk together {{powdered_sugar}}, {{lemon_juice_glaze}}, {{glaze_thickener}}, and {{vanilla_glaze}} until completely smooth. For a light drizzle, make half this glaze by halving those four ingredients.\n8. Spread the glaze over the cooled cake. Let it set for about 15 minutes, then slice and serve.",
+    "steps_raw": "1. Preheat the oven to 350°F (177°C). Lightly grease an 8x8-inch square baking dish (stone preferred; glass or metal ok) with {{neutral_oil}}, then wipe off any excess.\n2. Make sure {{coconut_milk}} is fully smooth before measuring: whisk or blend room-temperature full-fat coconut milk until completely mixed and smooth, then measure out {{coconut_milk}}.\n3. In a large bowl, whisk together {{oat_flour}}, {{almond_flour}}, {{tapioca_starch}}, {{cornstarch}}, {{sugar}}, {{baking_powder}}, and {{salt}} until no lumps remain.\n4. In a separate bowl, whisk together {{coconut_milk}}, {{lemon_juice}}, zest of {{lemon_for_zest}}, and {{vanilla_extract}}.\n5. Pour the wet mixture into the dry mixture and whisk until smooth. Pour the batter into the prepared pan.\n6. Bake for 20–25 minutes, or until a toothpick comes out completely clean. Cool completely (about 45 minutes) before glazing.\n7. For a full glaze, whisk together {{powdered_sugar}}, {{lemon_juice_glaze}}, {{glaze_thickener}}, and {{vanilla_glaze}} until completely smooth. For a light drizzle, make half this glaze by halving those four ingredients.\n8. Spread the glaze over the cooled cake. Let it set for about 15 minutes, then slice and serve.",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 350\u00b0F (177\u00b0C). Lightly grease an 8x8-inch square baking dish (stone preferred; glass or metal ok) with {{neutral_oil}}, then wipe off any excess."
+        "text": "Preheat the oven to 350°F (177°C). Lightly grease an 8x8-inch square baking dish (stone preferred; glass or metal ok) with {{neutral_oil}}, then wipe off any excess."
       },
       {
         "section": null,
@@ -12026,7 +15614,7 @@
       },
       {
         "section": null,
-        "text": "Bake for 20\u201325 minutes, or until a toothpick comes out completely clean. Cool completely (about 45 minutes) before glazing."
+        "text": "Bake for 20–25 minutes, or until a toothpick comes out completely clean. Cool completely (about 45 minutes) before glazing."
       },
       {
         "section": null,
@@ -12111,7 +15699,7 @@
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "Bob\u2019s (almond flour)",
+                "source": "Bob’s (almond flour)",
                 "notes": "Per 1 cup (96g)."
               }
             ]
@@ -12951,7 +16539,7 @@
   {
     "id": "lorenes-vegetable-soup",
     "title": "Vegetable Soup",
-    "byline": "Lorene\u2019s",
+    "byline": "Lorene’s",
     "base_kind": "multiplier",
     "default_base": 1,
     "categories": [
@@ -12962,9 +16550,9 @@
     "family": "Burrows",
     "notes": "",
     "nutrition_estimate": {
-      "calories_total": 3196.035,
-      "calories_per_serving": 228.28821428571428,
-      "sodium_total_mg": 10034.4725,
+      "calories_total": 3196.933360655738,
+      "calories_per_serving": 228.3523829039813,
+      "sodium_total_mg": 10035.98174590164,
       "sat_fat_total_g": 25.679000000000002,
       "servings_estimate": 14,
       "covered_ingredients": 15,
@@ -13304,8 +16892,8 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
-                "serving_unit_norm": "count",
+                "serving_qty": 61,
+                "serving_unit_norm": "g",
                 "calories_kcal": 25,
                 "protein_g": 0.6,
                 "total_fat_g": 0.1,
@@ -13319,7 +16907,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (medium carrot)",
-                "notes": "Per 1 medium (61g)."
+                "notes": "Per 61 g (1 medium)."
               }
             ]
           }
@@ -13686,7 +17274,7 @@
       "Burrows"
     ],
     "family": "Burrows",
-    "notes": "Let stand for 1 hour or bake at 350\u00b0F for 30 minutes.",
+    "notes": "Let stand for 1 hour or bake at 350°F for 30 minutes.",
     "nutrition_estimate": {
       "calories_total": 2376.25,
       "calories_per_serving": 264.02777777777777,
@@ -13699,7 +17287,7 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Cook the {{macaroni}} and drain.\n2. Stir in {{velveeta}}, {{milk}}, {{salt}}, and {{black_pepper}}.\n3. Heat on low until smooth, then let stand or bake at 350\u00b0F for about 30 minutes.",
+    "steps_raw": "1. Cook the {{macaroni}} and drain.\n2. Stir in {{velveeta}}, {{milk}}, {{salt}}, and {{black_pepper}}.\n3. Heat on low until smooth, then let stand or bake at 350°F for about 30 minutes.",
     "steps": [
       {
         "section": null,
@@ -13711,7 +17299,7 @@
       },
       {
         "section": null,
-        "text": "Heat on low until smooth, then let stand or bake at 350\u00b0F for about 30 minutes."
+        "text": "Heat on low until smooth, then let stand or bake at 350°F for about 30 minutes."
       }
     ],
     "step_sections": [],
@@ -14253,11 +17841,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Preheat the oven to 350\u00b0F (175\u00b0C).\n2. Combine {{celery_soup}}, {{chicken_soup}}, and {{rotel}} in a bowl.\n3. In a baking dish, layer {{cooked_chicken}}, {{velveeta}}, and {{nacho_chips}}.\n4. Pour the soup mixture evenly over the top.\n5. Bake for 30 minutes, until bubbly and hot throughout.",
+    "steps_raw": "1. Preheat the oven to 350°F (175°C).\n2. Combine {{celery_soup}}, {{chicken_soup}}, and {{rotel}} in a bowl.\n3. In a baking dish, layer {{cooked_chicken}}, {{velveeta}}, and {{nacho_chips}}.\n4. Pour the soup mixture evenly over the top.\n5. Bake for 30 minutes, until bubbly and hot throughout.",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 350\u00b0F (175\u00b0C)."
+        "text": "Preheat the oven to 350°F (175°C)."
       },
       {
         "section": null,
@@ -15226,7 +18814,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (large egg)",
-                "notes": "Per 1 large (\u224850g)."
+                "notes": "Per 1 large (≈50g)."
               }
             ]
           }
@@ -16537,7 +20125,7 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Cream {{butter_choice}}, {{powdered_sugar}}, and {{vanilla_extract}} together until very smooth.\n2. In a separate bowl, stir together {{flour}} and {{salt}}.\n3. Mix the flour mixture into the butter mixture until combined (it will look crumbly at first, then come together).\n4. Stir in {{nuts}}.\n5. Chill the dough until firm enough to roll, about 30 to 60 minutes.\n6. Preheat the oven to 400\u00b0F. Line a baking sheet if desired.\n7. Roll dough into 1-inch balls and place on the baking sheet.\n8. Bake 10 to 12 minutes\n9. While still warm, roll the cookies in {{rolling_sugar}} to coat. Let cool.\n10. Roll in {{rolling_sugar}} again for a thicker coating.",
+    "steps_raw": "1. Cream {{butter_choice}}, {{powdered_sugar}}, and {{vanilla_extract}} together until very smooth.\n2. In a separate bowl, stir together {{flour}} and {{salt}}.\n3. Mix the flour mixture into the butter mixture until combined (it will look crumbly at first, then come together).\n4. Stir in {{nuts}}.\n5. Chill the dough until firm enough to roll, about 30 to 60 minutes.\n6. Preheat the oven to 400°F. Line a baking sheet if desired.\n7. Roll dough into 1-inch balls and place on the baking sheet.\n8. Bake 10 to 12 minutes\n9. While still warm, roll the cookies in {{rolling_sugar}} to coat. Let cool.\n10. Roll in {{rolling_sugar}} again for a thicker coating.",
     "steps": [
       {
         "section": null,
@@ -16561,7 +20149,7 @@
       },
       {
         "section": null,
-        "text": "Preheat the oven to 400\u00b0F. Line a baking sheet if desired."
+        "text": "Preheat the oven to 400°F. Line a baking sheet if desired."
       },
       {
         "section": null,
@@ -17009,11 +20597,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Heat the oven to 375\u00b0F (191\u00b0C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom.\n2. Roast for about 35 minutes, until the squash is tender.\n3. While the squash roasts, brown {{sausage}} in a skillet. Drain off all but 2 tablespoons of drippings.\n4. Add {{onion}} and {{celery}} to the skillet and saut\u00e9 for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}.\n5. Quickly fold {{sausage}} and {{cheese}} into the breadcrumb mixture.\n6. Turn the squash halves cut side up, sprinkle with {{salt}}, and fill the cavities with the sausage mixture.\n7. Bake at 350\u00b0F (177\u00b0C) for 20\u201330 minutes, until the stuffing is browned and heated through.",
+    "steps_raw": "1. Heat the oven to 375°F (191°C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom.\n2. Roast for about 35 minutes, until the squash is tender.\n3. While the squash roasts, brown {{sausage}} in a skillet. Drain off all but 2 tablespoons of drippings.\n4. Add {{onion}} and {{celery}} to the skillet and sauté for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}.\n5. Quickly fold {{sausage}} and {{cheese}} into the breadcrumb mixture.\n6. Turn the squash halves cut side up, sprinkle with {{salt}}, and fill the cavities with the sausage mixture.\n7. Bake at 350°F (177°C) for 20–30 minutes, until the stuffing is browned and heated through.",
     "steps": [
       {
         "section": null,
-        "text": "Heat the oven to 375\u00b0F (191\u00b0C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom."
+        "text": "Heat the oven to 375°F (191°C). Halve {{acorn_squash}} lengthwise and scoop out the seeds. Place cut side down in a baking pan with about {{roasting_water}} added to the bottom."
       },
       {
         "section": null,
@@ -17025,7 +20613,7 @@
       },
       {
         "section": null,
-        "text": "Add {{onion}} and {{celery}} to the skillet and saut\u00e9 for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}."
+        "text": "Add {{onion}} and {{celery}} to the skillet and sauté for about 5 minutes. Remove from heat and stir in {{bread_crumbs}}."
       },
       {
         "section": null,
@@ -17037,7 +20625,7 @@
       },
       {
         "section": null,
-        "text": "Bake at 350\u00b0F (177\u00b0C) for 20\u201330 minutes, until the stuffing is browned and heated through."
+        "text": "Bake at 350°F (177°C) for 20–30 minutes, until the stuffing is browned and heated through."
       }
     ],
     "step_sections": [],
@@ -17435,7 +21023,7 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Add {{stew_beef}} to a medium bowl with {{flour}} and {{seasoned_salt}}. Stir to coat.\n2. Heat {{olive_oil}} in a large skillet over medium-high heat. Add the coated beef and cook until browned, stirring as needed; it does not need to cook through.\n3. Transfer the beef to the slow cooker.\n4. Peel and dice {{potatoes}}, {{carrots}}, and {{onion}}. Mince {{garlic}} and add the vegetables to the slow cooker with the {{bay_leaf}}.\n5. Sprinkle in {{black_pepper}}. Pour in {{beef_broth}}, then stir in {{tomato_paste}} and {{worcestershire}}.\n6. Cover and cook on LOW for 8\u201310 hours or HIGH for 4\u20136 hours, until the beef and vegetables are tender.\n7. Remove the {{bay_leaf}}, stir in {{peas}}, and season with {{salt}} and more {{black_pepper}} to taste before serving.",
+    "steps_raw": "1. Add {{stew_beef}} to a medium bowl with {{flour}} and {{seasoned_salt}}. Stir to coat.\n2. Heat {{olive_oil}} in a large skillet over medium-high heat. Add the coated beef and cook until browned, stirring as needed; it does not need to cook through.\n3. Transfer the beef to the slow cooker.\n4. Peel and dice {{potatoes}}, {{carrots}}, and {{onion}}. Mince {{garlic}} and add the vegetables to the slow cooker with the {{bay_leaf}}.\n5. Sprinkle in {{black_pepper}}. Pour in {{beef_broth}}, then stir in {{tomato_paste}} and {{worcestershire}}.\n6. Cover and cook on LOW for 8–10 hours or HIGH for 4–6 hours, until the beef and vegetables are tender.\n7. Remove the {{bay_leaf}}, stir in {{peas}}, and season with {{salt}} and more {{black_pepper}} to taste before serving.",
     "steps": [
       {
         "section": null,
@@ -17459,7 +21047,7 @@
       },
       {
         "section": null,
-        "text": "Cover and cook on LOW for 8\u201310 hours or HIGH for 4\u20136 hours, until the beef and vegetables are tender."
+        "text": "Cover and cook on LOW for 8–10 hours or HIGH for 4–6 hours, until the beef and vegetables are tender."
       },
       {
         "section": null,
@@ -17770,8 +21358,8 @@
             },
             "nutrition": [
               {
-                "serving_qty": 1,
-                "serving_unit_norm": "count",
+                "serving_qty": 61,
+                "serving_unit_norm": "g",
                 "calories_kcal": 25,
                 "protein_g": 0.6,
                 "total_fat_g": 0.1,
@@ -17785,7 +21373,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (medium carrot)",
-                "notes": "Per 1 medium (61g)."
+                "notes": "Per 61 g (1 medium)."
               }
             ]
           }
@@ -17994,7 +21582,7 @@
                 "iron_mg": 0,
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
-                "source": "Campbell\u2019s (broth)",
+                "source": "Campbell’s (broth)",
                 "notes": "Per 1 cup (240ml)."
               }
             ]
@@ -18254,11 +21842,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Preheat the oven to 400\u00b0F.\n2. Cream {{shortening}} and {{sugar}} together, then beat in the {{eggs}}.\n3. Stir in {{flour}}, {{cream_of_tartar}}, {{baking_soda}}, and {{salt}} to make a soft dough.\n4. Combine {{coating_sugar}} and {{cinnamon}} in a small bowl.\n5. Roll dough into balls and coat with the cinnamon sugar.\n6. Bake 8 to 10 minutes until set.",
+    "steps_raw": "1. Preheat the oven to 400°F.\n2. Cream {{shortening}} and {{sugar}} together, then beat in the {{eggs}}.\n3. Stir in {{flour}}, {{cream_of_tartar}}, {{baking_soda}}, and {{salt}} to make a soft dough.\n4. Combine {{coating_sugar}} and {{cinnamon}} in a small bowl.\n5. Roll dough into balls and coat with the cinnamon sugar.\n6. Bake 8 to 10 minutes until set.",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 400\u00b0F."
+        "text": "Preheat the oven to 400°F."
       },
       {
         "section": null,
@@ -18424,7 +22012,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (large egg)",
-                "notes": "Per 1 large (\u224850g)."
+                "notes": "Per 1 large (≈50g)."
               }
             ]
           }
@@ -18719,11 +22307,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Preheat the oven to 400\u00b0F.\n2. Cream {{fat}}, then gradually beat in {{sugar}} until smooth.\n3. Add {{egg_component}} unbeaten (do not pre-whisk separately) and beat well.\n4. Mix in {{almond_extract}} and {{food_coloring}} (if using).\n5. Whisk together {{flour_base}}, {{baking_powder}}, and {{salt}}. Stir into the dough{{#if egg_component=whole}}, then add up to {{flour_adjust}} only if needed so the dough is not too dry{{/if}}.\n6. {{#if fat=butter}}Cover and refrigerate the dough for about 1 hour to firm it before pressing. {{/if}}Fit a cookie press disk (number side up)\u2014a cookie press is required\u2014pack the press firmly, and press cookies onto an ungreased shiny cookie sheet.\n7. Bake for 10\u201312 minutes.",
+    "steps_raw": "1. Preheat the oven to 400°F.\n2. Cream {{fat}}, then gradually beat in {{sugar}} until smooth.\n3. Add {{egg_component}} unbeaten (do not pre-whisk separately) and beat well.\n4. Mix in {{almond_extract}} and {{food_coloring}} (if using).\n5. Whisk together {{flour_base}}, {{baking_powder}}, and {{salt}}. Stir into the dough{{#if egg_component=whole}}, then add up to {{flour_adjust}} only if needed so the dough is not too dry{{/if}}.\n6. {{#if fat=butter}}Cover and refrigerate the dough for about 1 hour to firm it before pressing. {{/if}}Fit a cookie press disk (number side up)—a cookie press is required—pack the press firmly, and press cookies onto an ungreased shiny cookie sheet.\n7. Bake for 10–12 minutes.",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 400\u00b0F."
+        "text": "Preheat the oven to 400°F."
       },
       {
         "section": null,
@@ -18743,11 +22331,11 @@
       },
       {
         "section": null,
-        "text": "{{#if fat=butter}}Cover and refrigerate the dough for about 1 hour to firm it before pressing. {{/if}}Fit a cookie press disk (number side up)\u2014a cookie press is required\u2014pack the press firmly, and press cookies onto an ungreased shiny cookie sheet."
+        "text": "{{#if fat=butter}}Cover and refrigerate the dough for about 1 hour to firm it before pressing. {{/if}}Fit a cookie press disk (number side up)—a cookie press is required—pack the press firmly, and press cookies onto an ungreased shiny cookie sheet."
       },
       {
         "section": null,
-        "text": "Bake for 10\u201312 minutes."
+        "text": "Bake for 10–12 minutes."
       }
     ],
     "step_sections": [],
@@ -18931,7 +22519,7 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (large egg)",
-                "notes": "Per 1 large (\u224850g)."
+                "notes": "Per 1 large (≈50g)."
               }
             ]
           },
@@ -19282,7 +22870,7 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Make {{basic_roll_dough}} (use the gluten-free options there if needed; the dough recipe is printable on its own).\n2. Grease three 8 1/2-inch round pans.\n3. If using wheat dough: turn out onto a floured surface, divide into thirds, and pat each third into a prepared pan. If using gluten-free dough: divide dough into thirds and spread each portion into a prepared pan with damp hands or an oiled spatula.\n4. Make the streusel: mix {{flour}}, {{brown_sugar}}, {{granulated_sugar}}, and {{cinnamon}}. Cut in {{streusel_fat}} until crumbly, then stir in {{nuts}}.\n5. Sprinkle 1/3 of the streusel topping over each pan.\n6. Rise: Wheat dough: cover and let rise until doubled (30\u201345 minutes). Gluten-free dough: let rest 10\u201320 minutes while the oven preheats (don\u2019t wait for \u201cdouble\u201d; just a short puff is enough).\n7. Bake at 375\u00b0F until done: Wheat dough: about 20 minutes. Gluten-free dough: start checking at 22 minutes; may take closer to 25\u201330 minutes.\n8. Immediately drizzle {{vanilla}} over each coffee cake. Serve warm.",
+    "steps_raw": "1. Make {{basic_roll_dough}} (use the gluten-free options there if needed; the dough recipe is printable on its own).\n2. Grease three 8 1/2-inch round pans.\n3. If using wheat dough: turn out onto a floured surface, divide into thirds, and pat each third into a prepared pan. If using gluten-free dough: divide dough into thirds and spread each portion into a prepared pan with damp hands or an oiled spatula.\n4. Make the streusel: mix {{flour}}, {{brown_sugar}}, {{granulated_sugar}}, and {{cinnamon}}. Cut in {{streusel_fat}} until crumbly, then stir in {{nuts}}.\n5. Sprinkle 1/3 of the streusel topping over each pan.\n6. Rise: Wheat dough: cover and let rise until doubled (30–45 minutes). Gluten-free dough: let rest 10–20 minutes while the oven preheats (don’t wait for “double”; just a short puff is enough).\n7. Bake at 375°F until done: Wheat dough: about 20 minutes. Gluten-free dough: start checking at 22 minutes; may take closer to 25–30 minutes.\n8. Immediately drizzle {{vanilla}} over each coffee cake. Serve warm.",
     "steps": [
       {
         "section": null,
@@ -19306,11 +22894,11 @@
       },
       {
         "section": null,
-        "text": "Rise: Wheat dough: cover and let rise until doubled (30\u201345 minutes). Gluten-free dough: let rest 10\u201320 minutes while the oven preheats (don\u2019t wait for \u201cdouble\u201d; just a short puff is enough)."
+        "text": "Rise: Wheat dough: cover and let rise until doubled (30–45 minutes). Gluten-free dough: let rest 10–20 minutes while the oven preheats (don’t wait for “double”; just a short puff is enough)."
       },
       {
         "section": null,
-        "text": "Bake at 375\u00b0F until done: Wheat dough: about 20 minutes. Gluten-free dough: start checking at 22 minutes; may take closer to 25\u201330 minutes."
+        "text": "Bake at 375°F until done: Wheat dough: about 20 minutes. Gluten-free dough: start checking at 22 minutes; may take closer to 25–30 minutes."
       },
       {
         "section": null,
@@ -19764,11 +23352,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Preheat the oven to 375\u00b0F (190\u00b0C).\n2. Peel and chop {{sweet_potato}}. Boil in water until fork-tender, about 10 minutes. Drain well and mash until smooth.\n3. Measure 1 cup mashed sweet potato into a bowl. Mix in {{rice_flour}}, {{tapioca_flour}}, {{baking_powder}}, and {{salt}} to form a shaggy dough.\n4. If the dough feels dry, add a splash of water or oil. If sticky, dust with more rice flour.\n5. Grease parchment with {{oil}}. Roll the dough between two sheets of parchment to 1/4\u20133/8 inch thick and transfer to a baking sheet.\n6. Bake for 10 minutes. Flip the crust by placing parchment on top, turning it over, and removing the hot parchment.\n7. Add toppings of choice and bake 10\u201318 minutes more, until the edges are crisp and toppings are done.",
+    "steps_raw": "1. Preheat the oven to 375°F (190°C).\n2. Peel and chop {{sweet_potato}}. Boil in water until fork-tender, about 10 minutes. Drain well and mash until smooth.\n3. Measure 1 cup mashed sweet potato into a bowl. Mix in {{rice_flour}}, {{tapioca_flour}}, {{baking_powder}}, and {{salt}} to form a shaggy dough.\n4. If the dough feels dry, add a splash of water or oil. If sticky, dust with more rice flour.\n5. Grease parchment with {{oil}}. Roll the dough between two sheets of parchment to 1/4–3/8 inch thick and transfer to a baking sheet.\n6. Bake for 10 minutes. Flip the crust by placing parchment on top, turning it over, and removing the hot parchment.\n7. Add toppings of choice and bake 10–18 minutes more, until the edges are crisp and toppings are done.",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 375\u00b0F (190\u00b0C)."
+        "text": "Preheat the oven to 375°F (190°C)."
       },
       {
         "section": null,
@@ -19784,7 +23372,7 @@
       },
       {
         "section": null,
-        "text": "Grease parchment with {{oil}}. Roll the dough between two sheets of parchment to 1/4\u20133/8 inch thick and transfer to a baking sheet."
+        "text": "Grease parchment with {{oil}}. Roll the dough between two sheets of parchment to 1/4–3/8 inch thick and transfer to a baking sheet."
       },
       {
         "section": null,
@@ -19792,7 +23380,7 @@
       },
       {
         "section": null,
-        "text": "Add toppings of choice and bake 10\u201318 minutes more, until the edges are crisp and toppings are done."
+        "text": "Add toppings of choice and bake 10–18 minutes more, until the edges are crisp and toppings are done."
       }
     ],
     "step_sections": [],
@@ -20101,11 +23689,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Preheat the oven to 350\u00b0F (177\u00b0C). Drain {{pear_halves}}, reserving the syrup.\n2. Peel and thickly slice {{sweet_potatoes}}. Arrange them in the bottom of a shallow baking dish.\n3. Trim excess fat from {{pork_chops}}, season with {{salt}} and {{black_pepper}}, and brown lightly in a skillet. Place the chops on top of the sweet potatoes.\n4. In a small saucepan, combine the reserved pear syrup with {{brown_sugar}}, {{butter_choice}}, and {{cinnamon}}. Heat just until the sugar dissolves.\n5. Spoon half of the syrup over the chops. Bake for 30 minutes.\n6. Remove the dish from the oven, arrange {{pear_halves}} around the chops, and spoon the remaining syrup over everything. Bake for another 30 minutes, or until the chops are tender.",
+    "steps_raw": "1. Preheat the oven to 350°F (177°C). Drain {{pear_halves}}, reserving the syrup.\n2. Peel and thickly slice {{sweet_potatoes}}. Arrange them in the bottom of a shallow baking dish.\n3. Trim excess fat from {{pork_chops}}, season with {{salt}} and {{black_pepper}}, and brown lightly in a skillet. Place the chops on top of the sweet potatoes.\n4. In a small saucepan, combine the reserved pear syrup with {{brown_sugar}}, {{butter_choice}}, and {{cinnamon}}. Heat just until the sugar dissolves.\n5. Spoon half of the syrup over the chops. Bake for 30 minutes.\n6. Remove the dish from the oven, arrange {{pear_halves}} around the chops, and spoon the remaining syrup over everything. Bake for another 30 minutes, or until the chops are tender.",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 350\u00b0F (177\u00b0C). Drain {{pear_halves}}, reserving the syrup."
+        "text": "Preheat the oven to 350°F (177°C). Drain {{pear_halves}}, reserving the syrup."
       },
       {
         "section": null,
@@ -20565,7 +24153,7 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Cook {{rice}} according to package directions.\n2. In a large pan over medium heat, melt {{coconut_oil}}. Add {{white_onion}}, {{ginger}}, and {{garlic}}; saut\u00e9 for 3\u20134 minutes until the onion is translucent. Remove to a plate, leaving the oil in the pan.\n3. Lightly salt {{chicken_breast}} with part of the {{sea_salt}} and saut\u00e9 in the same pan until the internal temperature reaches 165\u00b0F (74\u00b0C).\n4. Return the aromatics to the pan. Stir in {{coconut_milk}}, {{coconut_cream}}, {{coconut_aminos}}, juice from half of the {{lime}}, {{sea_salt}}, {{turmeric}}, and {{black_pepper}}. Simmer for about 5 minutes, stirring, until the sauce thickens slightly.\n5. Adjust seasoning to taste. Top with {{cilantro}} and serve with {{cauliflower_rice}} and lime wedges from the remaining {{lime}}.",
+    "steps_raw": "1. Cook {{rice}} according to package directions.\n2. In a large pan over medium heat, melt {{coconut_oil}}. Add {{white_onion}}, {{ginger}}, and {{garlic}}; sauté for 3–4 minutes until the onion is translucent. Remove to a plate, leaving the oil in the pan.\n3. Lightly salt {{chicken_breast}} with part of the {{sea_salt}} and sauté in the same pan until the internal temperature reaches 165°F (74°C).\n4. Return the aromatics to the pan. Stir in {{coconut_milk}}, {{coconut_cream}}, {{coconut_aminos}}, juice from half of the {{lime}}, {{sea_salt}}, {{turmeric}}, and {{black_pepper}}. Simmer for about 5 minutes, stirring, until the sauce thickens slightly.\n5. Adjust seasoning to taste. Top with {{cilantro}} and serve with {{cauliflower_rice}} and lime wedges from the remaining {{lime}}.",
     "steps": [
       {
         "section": null,
@@ -20573,11 +24161,11 @@
       },
       {
         "section": null,
-        "text": "In a large pan over medium heat, melt {{coconut_oil}}. Add {{white_onion}}, {{ginger}}, and {{garlic}}; saut\u00e9 for 3\u20134 minutes until the onion is translucent. Remove to a plate, leaving the oil in the pan."
+        "text": "In a large pan over medium heat, melt {{coconut_oil}}. Add {{white_onion}}, {{ginger}}, and {{garlic}}; sauté for 3–4 minutes until the onion is translucent. Remove to a plate, leaving the oil in the pan."
       },
       {
         "section": null,
-        "text": "Lightly salt {{chicken_breast}} with part of the {{sea_salt}} and saut\u00e9 in the same pan until the internal temperature reaches 165\u00b0F (74\u00b0C)."
+        "text": "Lightly salt {{chicken_breast}} with part of the {{sea_salt}} and sauté in the same pan until the internal temperature reaches 165°F (74°C)."
       },
       {
         "section": null,
@@ -21291,11 +24879,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. Preheat the oven to 350\u00b0F (175\u00b0C). Line a 9-inch loaf pan with parchment, leaving an overhang.\n2. Whisk {{pumpkin_puree}}, {{granulated_sugar}}, {{brown_sugar}}, {{oil}}, and {{vanilla_extract}} in a large bowl.\n3. Add {{flour}}, {{baking_powder}}, {{baking_soda}}, {{sea_salt}}, {{pumpkin_spice}}, and {{cinnamon}}. Whisk just until combined.\n4. Combine {{streusel_flour}}, {{streusel_sugar}}, {{streusel_spice}}, and {{streusel_salt}}. Stir in {{streusel_butter}} and {{streusel_vanilla}} until crumbly.\n5. Pour the batter into the prepared pan. Sprinkle streusel on top if using.\n6. Bake until a toothpick comes out clean: about 65 minutes without streusel or up to 80 minutes with streusel (cover loosely with foil after 60 minutes if needed).\n7. Cool completely before slicing.\n8. Beat {{frosting_butter}} and {{frosting_cream_cheese}} until fluffy. Mix in {{powdered_sugar}} and {{frosting_vanilla}}, then spread on cooled bread.",
+    "steps_raw": "1. Preheat the oven to 350°F (175°C). Line a 9-inch loaf pan with parchment, leaving an overhang.\n2. Whisk {{pumpkin_puree}}, {{granulated_sugar}}, {{brown_sugar}}, {{oil}}, and {{vanilla_extract}} in a large bowl.\n3. Add {{flour}}, {{baking_powder}}, {{baking_soda}}, {{sea_salt}}, {{pumpkin_spice}}, and {{cinnamon}}. Whisk just until combined.\n4. Combine {{streusel_flour}}, {{streusel_sugar}}, {{streusel_spice}}, and {{streusel_salt}}. Stir in {{streusel_butter}} and {{streusel_vanilla}} until crumbly.\n5. Pour the batter into the prepared pan. Sprinkle streusel on top if using.\n6. Bake until a toothpick comes out clean: about 65 minutes without streusel or up to 80 minutes with streusel (cover loosely with foil after 60 minutes if needed).\n7. Cool completely before slicing.\n8. Beat {{frosting_butter}} and {{frosting_cream_cheese}} until fluffy. Mix in {{powdered_sugar}} and {{frosting_vanilla}}, then spread on cooled bread.",
     "steps": [
       {
         "section": null,
-        "text": "Preheat the oven to 350\u00b0F (175\u00b0C). Line a 9-inch loaf pan with parchment, leaving an overhang."
+        "text": "Preheat the oven to 350°F (175°C). Line a 9-inch loaf pan with parchment, leaving an overhang."
       },
       {
         "section": null,
@@ -22759,11 +26347,11 @@
       "target_meal_calories": 666.6666666666666,
       "missing_ingredients": []
     },
-    "steps_raw": "1. In a pot, melt {{butter}} and briefly saut\u00e9 {{onion}} until translucent.\n2. Stir in {{wheat_flour}} and cook for about 3 minutes to form a roux.\n3. Gradually whisk in {{chicken_broth}} and {{milk}}. Bring to a boil while whisking constantly.\n4. Lower the heat, then add {{parsley}}, {{watercress}}, {{nutmeg}}, {{salt}}, and {{black_pepper}}. Cover and cook for about 5 minutes, keeping the greens bright.\n5. For an extra smooth soup, blend some of the hot liquid with the greens before adding, or pur\u00e9e briefly after cooking. Serve hot; add cooked chicken if desired.",
+    "steps_raw": "1. In a pot, melt {{butter}} and briefly sauté {{onion}} until translucent.\n2. Stir in {{wheat_flour}} and cook for about 3 minutes to form a roux.\n3. Gradually whisk in {{chicken_broth}} and {{milk}}. Bring to a boil while whisking constantly.\n4. Lower the heat, then add {{parsley}}, {{watercress}}, {{nutmeg}}, {{salt}}, and {{black_pepper}}. Cover and cook for about 5 minutes, keeping the greens bright.\n5. For an extra smooth soup, blend some of the hot liquid with the greens before adding, or purée briefly after cooking. Serve hot; add cooked chicken if desired.",
     "steps": [
       {
         "section": null,
-        "text": "In a pot, melt {{butter}} and briefly saut\u00e9 {{onion}} until translucent."
+        "text": "In a pot, melt {{butter}} and briefly sauté {{onion}} until translucent."
       },
       {
         "section": null,
@@ -22779,7 +26367,7 @@
       },
       {
         "section": null,
-        "text": "For an extra smooth soup, blend some of the hot liquid with the greens before adding, or pur\u00e9e briefly after cooking. Serve hot; add cooked chicken if desired."
+        "text": "For an extra smooth soup, blend some of the hot liquid with the greens before adding, or purée briefly after cooking. Serve hot; add cooked chicken if desired."
       }
     ],
     "step_sections": [],
