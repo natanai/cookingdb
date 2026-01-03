@@ -3859,25 +3859,16 @@
     "family": "",
     "notes": "Use program 6 (Cake) and keep the lid closed during baking.",
     "nutrition_estimate": {
-      "calories_total": 1631.9250000000002,
-      "calories_per_serving": 543.975,
-      "sodium_total_mg": 1586.1375,
-      "sat_fat_total_g": 3.54375,
-      "servings_estimate": 3,
-      "covered_ingredients": 6,
+      "calories_total": 2561.925,
+      "calories_per_serving": 284.65833333333336,
+      "sodium_total_mg": 2373.1375,
+      "sat_fat_total_g": 59.44375000000001,
+      "servings_estimate": 9,
+      "covered_ingredients": 8,
       "total_ingredients": 8,
-      "coverage_ratio": 0.75,
+      "coverage_ratio": 1,
       "target_meal_calories": 666.6666666666666,
-      "missing_ingredients": [
-        {
-          "ingredient_id": "egg",
-          "unit": "fl_oz"
-        },
-        {
-          "ingredient_id": "butter",
-          "unit": "g"
-        }
-      ]
+      "missing_ingredients": []
     },
     "steps_raw": "1. Whisk {{milk}}, {{egg_whites}}, and {{butter}} together until smooth.\n2. Add {{sugar}}, {{salt}}, {{baking_powder}}, and {{flour}} to the bread pan, then pour in the liquid mixture.\n3. Make a small well in the dry ingredients and add {{yeast}}.\n4. Select program 6 (Cake) and start.",
     "steps": [
@@ -3968,8 +3959,8 @@
           {
             "option": "",
             "display": "egg whites",
-            "ratio": "3 1/2",
-            "unit": "fl_oz",
+            "ratio": "3",
+            "unit": "count",
             "ingredient_id": "egg",
             "prep": "",
             "depends_on": null,
@@ -4010,8 +4001,8 @@
           {
             "option": "",
             "display": "butter",
-            "ratio": "100",
-            "unit": "g",
+            "ratio": "7",
+            "unit": "tbsp",
             "ingredient_id": "butter",
             "prep": "",
             "depends_on": null,
