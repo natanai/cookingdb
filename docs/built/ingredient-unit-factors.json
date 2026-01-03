@@ -49,11 +49,11 @@
   },
   {
     "ingredient_id": "carrot",
-    "from_unit_norm": "lb",
-    "to_unit_norm": "count",
-    "factor": 7.4,
-    "source": "USDA (carrot)",
-    "notes": "Approx 7.4 medium carrots per lb."
+    "from_unit_norm": "cup",
+    "to_unit_norm": "g",
+    "factor": 128,
+    "source": "USDA (carrot, chopped)",
+    "notes": "1 cup chopped carrot ≈ 128 g."
   },
   {
     "ingredient_id": "celery",
@@ -290,10 +290,10 @@
   {
     "ingredient_id": "parmesan_cheese",
     "from_unit_norm": "tbsp",
-    "to_unit_norm": "oz",
-    "factor": 0.2,
+    "to_unit_norm": "g",
+    "factor": 5.67,
     "source": "USDA (parmesan)",
-    "notes": "Approx 1 tbsp grated parmesan ≈ 0.2 oz."
+    "notes": "1 tbsp grated parmesan ≈ 5.7 g."
   },
   {
     "ingredient_id": "peanuts",
@@ -366,6 +366,14 @@
     "factor": 10,
     "source": "USDA (pork sausage)",
     "notes": "Approx 10 links per lb (45g each)."
+  },
+  {
+    "ingredient_id": "shallot",
+    "from_unit_norm": "tbsp",
+    "to_unit_norm": "g",
+    "factor": 10,
+    "source": "USDA (shallot, chopped)",
+    "notes": "1 tbsp chopped shallot ≈ 10 g."
   },
   {
     "ingredient_id": "stewed-tomatoes",

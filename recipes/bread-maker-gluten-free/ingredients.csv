@@ -1,0 +1,9 @@
+token,option,display,ratio,unit,ingredient_id,depends_on_token,depends_on_option
+water,,water,4 1/4,fl_oz,water,,
+milk_powder,,milk powder,2 1/2,tsp,milk,,
+egg,,egg,1,count,egg,,
+fat,,butter or vegetable oil,2,tbsp,butter,,
+sugar,,sugar,3,tbsp,sugar,,
+salt,,salt,1/2,tsp,salt,,
+flour,,low gluten flour,2 1/4,cup,gf-flour-blend,,
+yeast,,yeast,1,tsp,active-dry-yeast,,

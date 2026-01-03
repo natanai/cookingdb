@@ -1,0 +1,10 @@
+token,option,display,ratio,unit,ingredient_id,depends_on_token,depends_on_option
+water,,water,6,fl_oz,water,,
+milk_powder,,milk powder,2,tsp,milk,,
+egg,,egg,1,count,egg,,
+fat,,butter or vegetable oil,3,tbsp,butter,,
+sugar,,sugar,5,tbsp,sugar,,
+salt,,salt,1/2,tsp,salt,,
+flour,,high gluten flour,1 1/2,cup,wheat-flour,,
+warm_wheat,,warm wheat,3/4,cup,wheat-flour,,
+yeast,,yeast,1,tsp,active-dry-yeast,,

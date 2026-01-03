@@ -1,0 +1,6 @@
+token,option,display,ratio,unit,ingredient_id,depends_on_token,depends_on_option
+water,,water,7 1/2,fl_oz,water,,
+sugar,,sugar,2,tbsp,sugar,,
+salt,,salt,1 1/2,tsp,salt,,
+vegetable_oil,,vegetable oil,1 3/4,tbsp,vegetable-oil,,
+flour,,flour,2 1/2,cup,wheat-flour,,
