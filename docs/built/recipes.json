@@ -24121,6 +24121,952 @@
     }
   },
   {
+    "id": "thai-chicken-spring-rolls",
+    "title": "Thai Chicken Spring Rolls",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Main Dishes"
+    ],
+    "family": "",
+    "notes": "Serve with the no peanut sauce.",
+    "nutrition_estimate": {
+      "calories_total": 2225.5013661202183,
+      "calories_per_serving": 445.1002732240437,
+      "sodium_total_mg": 3699.1956284153007,
+      "sat_fat_total_g": 26.616666666666667,
+      "servings_estimate": 5,
+      "covered_ingredients": 19,
+      "total_ingredients": 19,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Heat {{sesame_oil_chicken}} in a skillet over medium heat. Add {{ginger}} and {{shallots}}; cook 4–5 minutes until soft.\n2. Add {{ground_chicken}} and cook until browned. Stir in {{coconut_aminos_chicken}}, {{sriracha_chicken}}, and {{sea_salt}}. Transfer to a bowl to cool.\n3. Blend {{almond_butter}}, {{coconut_milk}}, {{coconut_aminos_sauce}}, {{rice_wine_vinegar}}, {{lime_juice}}, {{sriracha_sauce}}, and {{sesame_oil_sauce}} until smooth and airy.\n4. Set out warm water for dipping and arrange {{rice_paper_wrappers}}, {{thai_basil}}, {{cilantro}}, {{purple_cabbage}}, {{carrots}}, and the cooled {{ground_chicken}}.\n5. Dip one {{rice_paper_wrappers}} briefly to moisten. Add a small handful of {{thai_basil}} and {{cilantro}} with {{purple_cabbage}} and {{carrots}}, then add some {{ground_chicken}}.\n6. Fold the top and bottom toward the center, tuck in one side, and roll tightly until the wrapper seals itself.\n7. If wrappers tear, dry the surface between rolls and keep the water warm but not hot.\n8. Serve the rolls with the no peanut sauce.",
+    "steps": [
+      {
+        "section": "Ginger Chicken",
+        "text": "Heat {{sesame_oil_chicken}} in a skillet over medium heat. Add {{ginger}} and {{shallots}}; cook 4–5 minutes until soft."
+      },
+      {
+        "section": "Ginger Chicken",
+        "text": "Add {{ground_chicken}} and cook until browned. Stir in {{coconut_aminos_chicken}}, {{sriracha_chicken}}, and {{sea_salt}}. Transfer to a bowl to cool."
+      },
+      {
+        "section": "No Peanut Sauce",
+        "text": "Blend {{almond_butter}}, {{coconut_milk}}, {{coconut_aminos_sauce}}, {{rice_wine_vinegar}}, {{lime_juice}}, {{sriracha_sauce}}, and {{sesame_oil_sauce}} until smooth and airy."
+      },
+      {
+        "section": "Spring Rolls",
+        "text": "Set out warm water for dipping and arrange {{rice_paper_wrappers}}, {{thai_basil}}, {{cilantro}}, {{purple_cabbage}}, {{carrots}}, and the cooled {{ground_chicken}}."
+      },
+      {
+        "section": "Spring Rolls",
+        "text": "Dip one {{rice_paper_wrappers}} briefly to moisten. Add a small handful of {{thai_basil}} and {{cilantro}} with {{purple_cabbage}} and {{carrots}}, then add some {{ground_chicken}}."
+      },
+      {
+        "section": "Spring Rolls",
+        "text": "Fold the top and bottom toward the center, tuck in one side, and roll tightly until the wrapper seals itself."
+      },
+      {
+        "section": "Spring Rolls",
+        "text": "If wrappers tear, dry the surface between rolls and keep the water warm but not hot."
+      },
+      {
+        "section": "Spring Rolls",
+        "text": "Serve the rolls with the no peanut sauce."
+      }
+    ],
+    "step_sections": [
+      "Ginger Chicken",
+      "No Peanut Sauce",
+      "Spring Rolls"
+    ],
+    "tokens_used": [
+      "sesame_oil_chicken",
+      "ginger",
+      "shallots",
+      "ground_chicken",
+      "coconut_aminos_chicken",
+      "sriracha_chicken",
+      "sea_salt",
+      "almond_butter",
+      "coconut_milk",
+      "coconut_aminos_sauce",
+      "rice_wine_vinegar",
+      "lime_juice",
+      "sriracha_sauce",
+      "sesame_oil_sauce",
+      "rice_paper_wrappers",
+      "thai_basil",
+      "cilantro",
+      "purple_cabbage",
+      "carrots",
+      "ground_chicken",
+      "rice_paper_wrappers",
+      "thai_basil",
+      "cilantro",
+      "purple_cabbage",
+      "carrots",
+      "ground_chicken"
+    ],
+    "token_order": [
+      "sesame_oil_chicken",
+      "ginger",
+      "shallots",
+      "ground_chicken",
+      "coconut_aminos_chicken",
+      "sriracha_chicken",
+      "sea_salt",
+      "almond_butter",
+      "coconut_milk",
+      "coconut_aminos_sauce",
+      "rice_wine_vinegar",
+      "lime_juice",
+      "sriracha_sauce",
+      "sesame_oil_sauce",
+      "rice_paper_wrappers",
+      "thai_basil",
+      "cilantro",
+      "purple_cabbage",
+      "carrots"
+    ],
+    "ingredients": {
+      "rice_paper_wrappers": {
+        "token": "rice_paper_wrappers",
+        "options": [
+          {
+            "option": "",
+            "display": "rice paper wrappers",
+            "ratio": "15",
+            "unit": "count",
+            "ingredient_id": "rice-paper-wrappers",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Spring Rolls",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 35,
+                "protein_g": 0.3,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 8,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 7,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Label (rice paper)",
+                "notes": "Per 1 wrapper (8.5g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Spring Rolls"
+      },
+      "thai_basil": {
+        "token": "thai_basil",
+        "options": [
+          {
+            "option": "",
+            "display": "Thai basil",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "thai-basil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Spring Rolls",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 6,
+                "protein_g": 0.6,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1,
+                "sugars_g": 0.2,
+                "fiber_g": 0.6,
+                "sodium_mg": 3,
+                "calcium_mg": 30,
+                "iron_mg": 0.9,
+                "potassium_mg": 120,
+                "vitamin_c_mg": 2.6,
+                "source": "USDA (basil)",
+                "notes": "Per 1 cup (24g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Spring Rolls"
+      },
+      "cilantro": {
+        "token": "cilantro",
+        "options": [
+          {
+            "option": "",
+            "display": "cilantro",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "cilantro",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Spring Rolls",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 4,
+                "protein_g": 0.3,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.7,
+                "sugars_g": 0.1,
+                "fiber_g": 0.6,
+                "sodium_mg": 7,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (cilantro)",
+                "notes": "Per 1 cup (16g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Spring Rolls"
+      },
+      "purple_cabbage": {
+        "token": "purple_cabbage",
+        "options": [
+          {
+            "option": "",
+            "display": "purple cabbage",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "purple-cabbage",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Spring Rolls",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 22,
+                "protein_g": 1,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 5.2,
+                "sugars_g": 2.8,
+                "fiber_g": 1.9,
+                "sodium_mg": 24,
+                "calcium_mg": 30,
+                "iron_mg": 0.6,
+                "potassium_mg": 216,
+                "vitamin_c_mg": 50,
+                "source": "USDA (red cabbage)",
+                "notes": "Per 1 cup shredded (70g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Spring Rolls"
+      },
+      "carrots": {
+        "token": "carrots",
+        "options": [
+          {
+            "option": "",
+            "display": "carrots",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "carrot",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Spring Rolls",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 61,
+                "serving_unit_norm": "g",
+                "calories_kcal": 25,
+                "protein_g": 0.6,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 6,
+                "sugars_g": 2.9,
+                "fiber_g": 1.7,
+                "sodium_mg": 42,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (medium carrot)",
+                "notes": "Per 61 g (1 medium)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Spring Rolls"
+      },
+      "ground_chicken": {
+        "token": "ground_chicken",
+        "options": [
+          {
+            "option": "",
+            "display": "ground chicken",
+            "ratio": "1",
+            "unit": "lb",
+            "ingredient_id": "ground-chicken",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Ginger Chicken",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "lb",
+                "calories_kcal": 680,
+                "protein_g": 84,
+                "total_fat_g": 36,
+                "saturated_fat_g": 10,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 320,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (ground chicken)",
+                "notes": "Per 1 lb (raw)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Ginger Chicken"
+      },
+      "sesame_oil_chicken": {
+        "token": "sesame_oil_chicken",
+        "options": [
+          {
+            "option": "",
+            "display": "sesame oil",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "toasted-sesame-oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Ginger Chicken",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 120,
+                "protein_g": 0,
+                "total_fat_g": 14,
+                "saturated_fat_g": 2,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (sesame oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Ginger Chicken"
+      },
+      "shallots": {
+        "token": "shallots",
+        "options": [
+          {
+            "option": "",
+            "display": "shallots",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "shallot",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Ginger Chicken",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 30,
+                "serving_unit_norm": "g",
+                "calories_kcal": 22,
+                "protein_g": 0.8,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 5,
+                "sugars_g": 1,
+                "fiber_g": 0.8,
+                "sodium_mg": 1,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "FoodStruct (shallot)",
+                "notes": "Per 30 g (1 medium)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Ginger Chicken"
+      },
+      "ginger": {
+        "token": "ginger",
+        "options": [
+          {
+            "option": "",
+            "display": "ginger",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "ginger",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Ginger Chicken",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 2,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.4,
+                "sugars_g": 0,
+                "fiber_g": 0.1,
+                "sodium_mg": 0.3,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (ginger root)",
+                "notes": "Per 1 tsp grated (2g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Ginger Chicken"
+      },
+      "coconut_aminos_chicken": {
+        "token": "coconut_aminos_chicken",
+        "options": [
+          {
+            "option": "",
+            "display": "coconut aminos",
+            "ratio": "1/3",
+            "unit": "cup",
+            "ingredient_id": "coconut-aminos",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Ginger Chicken",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 15,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 3,
+                "sugars_g": 2,
+                "fiber_g": 0,
+                "sodium_mg": 270,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Mfr. label (coconut aminos)",
+                "notes": "Per 1 Tbsp (15ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Ginger Chicken"
+      },
+      "sriracha_chicken": {
+        "token": "sriracha_chicken",
+        "options": [
+          {
+            "option": "",
+            "display": "sriracha",
+            "ratio": "1/2",
+            "unit": "tbsp",
+            "ingredient_id": "sriracha",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Ginger Chicken",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 6,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.2,
+                "sugars_g": 1,
+                "fiber_g": 0,
+                "sodium_mg": 80,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Label (sriracha)",
+                "notes": "Per 1 tsp (5g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Ginger Chicken"
+      },
+      "sea_salt": {
+        "token": "sea_salt",
+        "options": [
+          {
+            "option": "",
+            "display": "sea salt",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Ginger Chicken",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Ginger Chicken"
+      },
+      "almond_butter": {
+        "token": "almond_butter",
+        "options": [
+          {
+            "option": "",
+            "display": "almond butter",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "almond-butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "No Peanut Sauce",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 98,
+                "protein_g": 3.4,
+                "total_fat_g": 9,
+                "saturated_fat_g": 0.8,
+                "total_carbs_g": 3.4,
+                "sugars_g": 0.7,
+                "fiber_g": 1.6,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (almond butter)",
+                "notes": "Per 1 Tbsp (16g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "No Peanut Sauce"
+      },
+      "coconut_milk": {
+        "token": "coconut_milk",
+        "options": [
+          {
+            "option": "",
+            "display": "coconut milk",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "coconut-milk",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "No Peanut Sauce",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 445,
+                "protein_g": 4.6,
+                "total_fat_g": 48,
+                "saturated_fat_g": 43,
+                "total_carbs_g": 6.3,
+                "sugars_g": 6,
+                "fiber_g": 0,
+                "sodium_mg": 40,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (unsweet. coconut)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "No Peanut Sauce"
+      },
+      "coconut_aminos_sauce": {
+        "token": "coconut_aminos_sauce",
+        "options": [
+          {
+            "option": "",
+            "display": "coconut aminos",
+            "ratio": "3",
+            "unit": "tbsp",
+            "ingredient_id": "coconut-aminos",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "No Peanut Sauce",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 15,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 3,
+                "sugars_g": 2,
+                "fiber_g": 0,
+                "sodium_mg": 270,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Mfr. label (coconut aminos)",
+                "notes": "Per 1 Tbsp (15ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "No Peanut Sauce"
+      },
+      "rice_wine_vinegar": {
+        "token": "rice_wine_vinegar",
+        "options": [
+          {
+            "option": "",
+            "display": "rice wine vinegar",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "rice-wine-vinegar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "No Peanut Sauce",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 3,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.1,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (rice vinegar)",
+                "notes": "Per 1 Tbsp (15ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "No Peanut Sauce"
+      },
+      "lime_juice": {
+        "token": "lime_juice",
+        "options": [
+          {
+            "option": "",
+            "display": "fresh lime juice",
+            "ratio": "1/2",
+            "unit": "tbsp",
+            "ingredient_id": "lime-juice",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "No Peanut Sauce",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 4,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.3,
+                "sugars_g": 0.2,
+                "fiber_g": 0.1,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 2.5,
+                "source": "USDA (lime juice)",
+                "notes": "Per 1 Tbsp (15ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "No Peanut Sauce"
+      },
+      "sriracha_sauce": {
+        "token": "sriracha_sauce",
+        "options": [
+          {
+            "option": "",
+            "display": "sriracha",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "sriracha",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "No Peanut Sauce",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 6,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.2,
+                "sugars_g": 1,
+                "fiber_g": 0,
+                "sodium_mg": 80,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Label (sriracha)",
+                "notes": "Per 1 tsp (5g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "No Peanut Sauce"
+      },
+      "sesame_oil_sauce": {
+        "token": "sesame_oil_sauce",
+        "options": [
+          {
+            "option": "",
+            "display": "sesame oil",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "toasted-sesame-oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "No Peanut Sauce",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 120,
+                "protein_g": 0,
+                "total_fat_g": 14,
+                "saturated_fat_g": 2,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (sesame oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "No Peanut Sauce"
+      }
+    },
+    "ingredient_sections": [
+      "Spring Rolls",
+      "Ginger Chicken",
+      "No Peanut Sauce"
+    ],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": 4,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "turmeric-chicken-curry",
     "title": "Turmeric Chicken Curry",
     "byline": "",
