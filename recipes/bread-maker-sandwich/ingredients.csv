@@ -1,0 +1,8 @@
+token,option,display,ratio,unit,ingredient_id,depends_on_token,depends_on_option
+water,,water,9,fl_oz,water,,
+milk_powder,,milk powder,1 1/2,tbsp,milk,,
+butter,,butter (about 20 g),1 1/2,tbsp,butter,,
+sugar,,sugar,1 3/4,tbsp,sugar,,
+salt,,salt,1 1/2,tsp,salt,,
+flour,,bread flour,3,cup,wheat-flour,,
+yeast,,yeast,3/4,tsp,active-dry-yeast,,

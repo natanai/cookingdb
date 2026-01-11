@@ -21,6 +21,13 @@
     "notes": "Approx 1 tsp ground black pepper."
   },
   {
+    "ingredient_id": "carrot",
+    "unit": "count",
+    "grams": 61,
+    "source": "USDA (medium carrot)",
+    "notes": "1 medium carrot ≈ 61 g."
+  },
+  {
     "ingredient_id": "chicken-broth",
     "unit": "ml",
     "grams": 1,
@@ -28,11 +35,25 @@
     "notes": "Approx 1 ml ≈ 1 g."
   },
   {
+    "ingredient_id": "parmesan_cheese",
+    "unit": "count",
+    "grams": 28,
+    "source": "USDA (parmesan)",
+    "notes": "Assume 1 rind piece ≈ 1 oz (28 g)."
+  },
+  {
     "ingredient_id": "salt",
     "unit": "tsp",
     "grams": 6,
     "source": "USDA (table salt)",
     "notes": "Approx 1 tsp table salt."
+  },
+  {
+    "ingredient_id": "shallot",
+    "unit": "count",
+    "grams": 30,
+    "source": "FoodStruct (shallot)",
+    "notes": "1 medium shallot ≈ 30 g."
   },
   {
     "ingredient_id": "sweet-potato",
