@@ -1,0 +1,8 @@
+token,option,display,ratio,unit,ingredient_id,depends_on_token,depends_on_option
+water,,lukewarm water,1 1/2,cup,water,,
+maple_syrup,,maple syrup,2,tbsp,maple-syrup,,
+olive_oil,,olive oil,2,tbsp,olive_oil,,
+psyllium,,psyllium husks,2,tbsp,psyllium-husk,,
+flour,,GF baking flour,3,cup,gf-flour-blend,,
+yeast,,active dry yeast,1 1/2,tsp,active-dry-yeast,,
+salt,,salt,1 1/4,tsp,salt,,

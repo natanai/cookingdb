@@ -5216,6 +5216,379 @@
     }
   },
   {
+    "id": "bread-maker-gluten-free-vegan",
+    "title": "Bread Maker Gluten Free Vegan",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "notes": "Date: 1/7/26. Use program 12 (Gluten Free) with the 2.0 lb preset.",
+    "nutrition_estimate": {
+      "calories_total": 1709.18,
+      "calories_per_serving": 427.295,
+      "sodium_total_mg": 2891.64,
+      "sat_fat_total_g": 3.8,
+      "servings_estimate": 4,
+      "covered_ingredients": 7,
+      "total_ingredients": 7,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Put {{water}}, {{salt}}, {{maple_syrup}}, and {{olive_oil}} in the bread pan. Sprinkle {{psyllium}} over the surface and whisk vigorously for about 30 seconds until combined. Let sit 5 to 10 minutes to thicken (do not skip).\n2. Add {{flour}}. Make a small crater in the flour and add {{yeast}} into the crater.\n3. Select program 12 (Gluten Free) with the 2.0 lb preset, then start.\n4. Bread is done when the crust is golden brown and sounds hollow when tapped. Rest in the pan, covered gently, for 5 to 10 minutes. Cool completely on a wire rack for at least 2 to 3 hours before slicing (do not skip).",
+    "steps": [
+      {
+        "section": "Activate the psyllium",
+        "text": "Put {{water}}, {{salt}}, {{maple_syrup}}, and {{olive_oil}} in the bread pan. Sprinkle {{psyllium}} over the surface and whisk vigorously for about 30 seconds until combined. Let sit 5 to 10 minutes to thicken (do not skip)."
+      },
+      {
+        "section": "Add dry ingredients",
+        "text": "Add {{flour}}. Make a small crater in the flour and add {{yeast}} into the crater."
+      },
+      {
+        "section": "Bake",
+        "text": "Select program 12 (Gluten Free) with the 2.0 lb preset, then start."
+      },
+      {
+        "section": "Cool before slicing",
+        "text": "Bread is done when the crust is golden brown and sounds hollow when tapped. Rest in the pan, covered gently, for 5 to 10 minutes. Cool completely on a wire rack for at least 2 to 3 hours before slicing (do not skip)."
+      }
+    ],
+    "step_sections": [
+      "Activate the psyllium",
+      "Add dry ingredients",
+      "Bake",
+      "Cool before slicing"
+    ],
+    "tokens_used": [
+      "water",
+      "salt",
+      "maple_syrup",
+      "olive_oil",
+      "psyllium",
+      "flour",
+      "yeast"
+    ],
+    "token_order": [
+      "water",
+      "salt",
+      "maple_syrup",
+      "olive_oil",
+      "psyllium",
+      "flour",
+      "yeast"
+    ],
+    "ingredients": {
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "lukewarm water",
+            "ratio": "1 1/2",
+            "unit": "cup",
+            "ingredient_id": "water",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(plain water)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "maple_syrup": {
+        "token": "maple_syrup",
+        "options": [
+          {
+            "option": "",
+            "display": "maple syrup",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "maple-syrup",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 52,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13.4,
+                "sugars_g": 12.1,
+                "fiber_g": 0,
+                "sodium_mg": 2,
+                "calcium_mg": 20,
+                "iron_mg": 0.2,
+                "potassium_mg": 42,
+                "vitamin_c_mg": 0,
+                "source": "USDA (maple syrup)",
+                "notes": "Per 1 Tbsp (20g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "olive_oil": {
+        "token": "olive_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "olive oil",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "olive_oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.9,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "psyllium": {
+        "token": "psyllium",
+        "options": [
+          {
+            "option": "",
+            "display": "psyllium husks",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "psyllium-husk",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 16,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 4,
+                "sugars_g": 0,
+                "fiber_g": 4,
+                "sodium_mg": 5,
+                "calcium_mg": 2,
+                "iron_mg": 0.1,
+                "potassium_mg": 20,
+                "vitamin_c_mg": 0,
+                "source": "Label",
+                "notes": "fiber supplement"
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "",
+            "display": "GF baking flour",
+            "ratio": "3",
+            "unit": "cup",
+            "ingredient_id": "gf-flour-blend",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 440,
+                "protein_g": 8,
+                "total_fat_g": 4,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 92,
+                "sugars_g": 0,
+                "fiber_g": 4,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Good&Gather GF blend",
+                "notes": "Per 1 cup (120g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "yeast": {
+        "token": "yeast",
+        "options": [
+          {
+            "option": "",
+            "display": "active dry yeast",
+            "ratio": "1 1/2",
+            "unit": "tsp",
+            "ingredient_id": "active-dry-yeast",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 23,
+                "protein_g": 3,
+                "total_fat_g": 0.3,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.8,
+                "sugars_g": 0.3,
+                "fiber_g": 1.9,
+                "sodium_mg": 4,
+                "calcium_mg": 4,
+                "iron_mg": 0.3,
+                "potassium_mg": 32,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "Per 1 packet (7g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1 1/4",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": null,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "bread-maker-jam",
     "title": "Bread Maker Jam",
     "byline": "",
