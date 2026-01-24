@@ -175,6 +175,20 @@
     }
   },
   {
+    "id": "bread-maker-gluten-free-vegan",
+    "title": "Bread Maker Gluten Free Vegan",
+    "byline": "",
+    "categories": [
+      "Bread maker"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "bread-maker-jam",
     "title": "Bread Maker Jam",
     "byline": "",
