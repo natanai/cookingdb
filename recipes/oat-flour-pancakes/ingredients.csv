@@ -1,0 +1,16 @@
+token,option,display,ratio,unit,ingredient_id,section
+oat_flour,,oat flour,1 1/4,cup,oat-flour,Pancakes
+baking_powder,,baking powder,2,tsp,baking-powder,Pancakes
+salt,,salt,1/4,tsp,salt,Pancakes
+maple_syrup,,maple syrup,1,tbsp,maple-syrup,Pancakes
+almond_milk,,unsweetened almond milk,3/4,cup,almond-milk,Pancakes
+flaxseed_meal,,flaxseed meal,2,tbsp,flaxseed-meal,Flax eggs
+flax_water,,water,6,tbsp,water,Flax eggs
+batter_fat,oil,neutral oil (optional),2,tbsp,neutral-oil,Pancakes
+batter_fat,vegan_butter,vegan butter (optional),2,tbsp,vegan-butter,Pancakes
+pan_fat,oil,neutral oil,2,tbsp,neutral-oil,Cooking
+pan_fat,vegan_butter,vegan butter,2,tbsp,vegan-butter,Cooking
+berries,,mixed berries,1/2,cup,mixed-berries,Optional toppings
+cinnamon,,ground cinnamon,1/4,tsp,cinnamon,Optional toppings
+whipped_topping,vegan_whipped_cream,vegan whipped cream,1/2,cup,vegan-whipped-cream,Optional toppings
+whipped_topping,whipped_cream,whipped cream,1/2,cup,whipped-cream,Optional toppings

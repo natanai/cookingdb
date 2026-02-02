@@ -5455,7 +5455,7 @@
         "options": [
           {
             "option": "",
-            "display": "GF baking flour",
+            "display": "GF Bread Flour",
             "ratio": "3",
             "unit": "cup",
             "ingredient_id": "gf-flour-blend",
@@ -19587,6 +19587,752 @@
       "gluten_free": false,
       "egg_free": false,
       "dairy_free": false
+    }
+  },
+  {
+    "id": "oat-flour-pancakes",
+    "title": "Oat Flour Pancakes (Dairy Free and Vegan)",
+    "byline": "Aubrey",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Breakfast & Brunch",
+      "Vegan",
+      "Gluten-Free"
+    ],
+    "family": "",
+    "notes": "To make oat flour, blend oats in a food processor until finely ground. For flax eggs, combine 1 Tbsp flaxseed meal with 3 Tbsp water per egg and let thicken about 10 minutes.",
+    "nutrition_estimate": {
+      "calories_total": 1410.8,
+      "calories_per_serving": 352.7,
+      "sodium_total_mg": 1482.125,
+      "sat_fat_total_g": 23.384999999999998,
+      "servings_estimate": 4,
+      "covered_ingredients": 12,
+      "total_ingredients": 12,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Whisk {{flaxseed_meal}} with {{flax_water}} in a small bowl. Let thicken for 10 minutes.\n2. In a large bowl, whisk {{oat_flour}}, {{baking_powder}}, and {{salt}}.\n3. Whisk {{almond_milk}} and {{maple_syrup}} into the flax mixture, then stir in {{batter_fat}} if using.\n4. Combine wet and dry ingredients until just mixed. Let the batter rest for 5 minutes to thicken.\n5. Heat a skillet or griddle over medium-high heat and coat with {{pan_fat}}.\n6. Pour about 1/4 cup batter per pancake. Cook until golden brown, flipping halfway through.\n7. Serve with {{berries}}, a sprinkle of {{cinnamon}}, and {{whipped_topping}} if desired.",
+    "steps": [
+      {
+        "section": "Pancakes",
+        "text": "Whisk {{flaxseed_meal}} with {{flax_water}} in a small bowl. Let thicken for 10 minutes."
+      },
+      {
+        "section": "Pancakes",
+        "text": "In a large bowl, whisk {{oat_flour}}, {{baking_powder}}, and {{salt}}."
+      },
+      {
+        "section": "Pancakes",
+        "text": "Whisk {{almond_milk}} and {{maple_syrup}} into the flax mixture, then stir in {{batter_fat}} if using."
+      },
+      {
+        "section": "Pancakes",
+        "text": "Combine wet and dry ingredients until just mixed. Let the batter rest for 5 minutes to thicken."
+      },
+      {
+        "section": "Pancakes",
+        "text": "Heat a skillet or griddle over medium-high heat and coat with {{pan_fat}}."
+      },
+      {
+        "section": "Pancakes",
+        "text": "Pour about 1/4 cup batter per pancake. Cook until golden brown, flipping halfway through."
+      },
+      {
+        "section": "Optional toppings",
+        "text": "Serve with {{berries}}, a sprinkle of {{cinnamon}}, and {{whipped_topping}} if desired."
+      }
+    ],
+    "step_sections": [
+      "Pancakes",
+      "Optional toppings"
+    ],
+    "tokens_used": [
+      "flaxseed_meal",
+      "flax_water",
+      "oat_flour",
+      "baking_powder",
+      "salt",
+      "almond_milk",
+      "maple_syrup",
+      "batter_fat",
+      "pan_fat",
+      "berries",
+      "cinnamon",
+      "whipped_topping"
+    ],
+    "token_order": [
+      "flaxseed_meal",
+      "flax_water",
+      "oat_flour",
+      "baking_powder",
+      "salt",
+      "almond_milk",
+      "maple_syrup",
+      "batter_fat",
+      "pan_fat",
+      "berries",
+      "cinnamon",
+      "whipped_topping"
+    ],
+    "ingredients": {
+      "oat_flour": {
+        "token": "oat_flour",
+        "options": [
+          {
+            "option": "",
+            "display": "oat flour",
+            "ratio": "1 1/4",
+            "unit": "cup",
+            "ingredient_id": "oat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Pancakes",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 420,
+                "protein_g": 15.3,
+                "total_fat_g": 9.5,
+                "saturated_fat_g": 0.9,
+                "total_carbs_g": 68.3,
+                "sugars_g": 0.83,
+                "fiber_g": 6.8,
+                "sodium_mg": 20,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (oat flour)",
+                "notes": "Per 1 cup (104g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Pancakes"
+      },
+      "baking_powder": {
+        "token": "baking_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "baking powder",
+            "ratio": "2",
+            "unit": "tsp",
+            "ingredient_id": "baking-powder",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Pancakes",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 2.4,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.1,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 363,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (baking powder)",
+                "notes": "Per 1 tsp (4.6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Pancakes"
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Pancakes",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Pancakes"
+      },
+      "maple_syrup": {
+        "token": "maple_syrup",
+        "options": [
+          {
+            "option": "",
+            "display": "maple syrup",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "maple-syrup",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Pancakes",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 52,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13.4,
+                "sugars_g": 12.1,
+                "fiber_g": 0,
+                "sodium_mg": 2,
+                "calcium_mg": 20,
+                "iron_mg": 0.2,
+                "potassium_mg": 42,
+                "vitamin_c_mg": 0,
+                "source": "USDA (maple syrup)",
+                "notes": "Per 1 Tbsp (20g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Pancakes"
+      },
+      "almond_milk": {
+        "token": "almond_milk",
+        "options": [
+          {
+            "option": "",
+            "display": "unsweetened almond milk",
+            "ratio": "3/4",
+            "unit": "cup",
+            "ingredient_id": "almond-milk",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Pancakes",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 30,
+                "protein_g": 1,
+                "total_fat_g": 2.5,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 1,
+                "sugars_g": 0.2,
+                "fiber_g": 0.5,
+                "sodium_mg": 170,
+                "calcium_mg": 450,
+                "iron_mg": 0.2,
+                "potassium_mg": 170,
+                "vitamin_c_mg": 0,
+                "source": "USDA (unsweetened almond milk)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Pancakes"
+      },
+      "flaxseed_meal": {
+        "token": "flaxseed_meal",
+        "options": [
+          {
+            "option": "",
+            "display": "flaxseed meal",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "flaxseed-meal",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Flax eggs",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 37,
+                "protein_g": 1.3,
+                "total_fat_g": 3,
+                "saturated_fat_g": 0.3,
+                "total_carbs_g": 2,
+                "sugars_g": 0.2,
+                "fiber_g": 2,
+                "sodium_mg": 3,
+                "calcium_mg": 18,
+                "iron_mg": 0.4,
+                "potassium_mg": 57,
+                "vitamin_c_mg": 0,
+                "source": "USDA (ground flaxseed)",
+                "notes": "Per 1 Tbsp (7g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Flax eggs"
+      },
+      "flax_water": {
+        "token": "flax_water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "6",
+            "unit": "tbsp",
+            "ingredient_id": "water",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Flax eggs",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(plain water)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Flax eggs"
+      },
+      "batter_fat": {
+        "token": "batter_fat",
+        "options": [
+          {
+            "option": "oil",
+            "display": "neutral oil (optional)",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "neutral-oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Pancakes",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 124,
+                "protein_g": 0,
+                "total_fat_g": 14,
+                "saturated_fat_g": 0.99,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (canola oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          },
+          {
+            "option": "vegan_butter",
+            "display": "vegan butter (optional)",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "vegan-butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Pancakes",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.4,
+                "saturated_fat_g": 1.84,
+                "total_carbs_g": 0.1,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 153,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (80% fat margarine)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": true,
+        "section": "Pancakes"
+      },
+      "pan_fat": {
+        "token": "pan_fat",
+        "options": [
+          {
+            "option": "oil",
+            "display": "neutral oil",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "neutral-oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Cooking",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 124,
+                "protein_g": 0,
+                "total_fat_g": 14,
+                "saturated_fat_g": 0.99,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (canola oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          },
+          {
+            "option": "vegan_butter",
+            "display": "vegan butter",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "vegan-butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Cooking",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.4,
+                "saturated_fat_g": 1.84,
+                "total_carbs_g": 0.1,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 153,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (80% fat margarine)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": true,
+        "section": "Cooking"
+      },
+      "berries": {
+        "token": "berries",
+        "options": [
+          {
+            "option": "",
+            "display": "mixed berries",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "mixed-berries",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Optional toppings",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 70,
+                "protein_g": 1,
+                "total_fat_g": 0.5,
+                "saturated_fat_g": 0.1,
+                "total_carbs_g": 17,
+                "sugars_g": 10,
+                "fiber_g": 5,
+                "sodium_mg": 1,
+                "calcium_mg": 24,
+                "iron_mg": 0.5,
+                "potassium_mg": 220,
+                "vitamin_c_mg": 24,
+                "source": "USDA (mixed berries)",
+                "notes": "Per 1 cup (140g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Optional toppings"
+      },
+      "cinnamon": {
+        "token": "cinnamon",
+        "options": [
+          {
+            "option": "",
+            "display": "ground cinnamon",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "cinnamon",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Optional toppings",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 6,
+                "protein_g": 0.1,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.1,
+                "sugars_g": 0,
+                "fiber_g": 1.4,
+                "sodium_mg": 0.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (ground cinnamon)",
+                "notes": "Per 1 tsp (2.6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Optional toppings"
+      },
+      "whipped_topping": {
+        "token": "whipped_topping",
+        "options": [
+          {
+            "option": "vegan_whipped_cream",
+            "display": "vegan whipped cream",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "vegan-whipped-cream",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Optional toppings",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 400,
+                "protein_g": 2,
+                "total_fat_g": 40,
+                "saturated_fat_g": 35,
+                "total_carbs_g": 6,
+                "sugars_g": 3,
+                "fiber_g": 0,
+                "sodium_mg": 40,
+                "calcium_mg": 40,
+                "iron_mg": 1,
+                "potassium_mg": 200,
+                "vitamin_c_mg": 0,
+                "source": "Label (coconut-based)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          },
+          {
+            "option": "whipped_cream",
+            "display": "whipped cream",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "whipped-cream",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Optional toppings",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 154,
+                "protein_g": 1.6,
+                "total_fat_g": 13,
+                "saturated_fat_g": 8,
+                "total_carbs_g": 7,
+                "sugars_g": 7,
+                "fiber_g": 0,
+                "sodium_mg": 20,
+                "calcium_mg": 50,
+                "iron_mg": 0,
+                "potassium_mg": 40,
+                "vitamin_c_mg": 0,
+                "source": "Label",
+                "notes": "aerosol whipped"
+              }
+            ]
+          }
+        ],
+        "isChoice": true,
+        "section": "Optional toppings"
+      }
+    },
+    "ingredient_sections": [
+      "Pancakes",
+      "Flax eggs",
+      "Cooking",
+      "Optional toppings"
+    ],
+    "choices": {
+      "batter_fat": {
+        "token": "batter_fat",
+        "label": "Batter fat",
+        "default_option": "oil"
+      },
+      "pan_fat": {
+        "token": "pan_fat",
+        "label": "Cooking fat",
+        "default_option": "oil"
+      },
+      "whipped_topping": {
+        "token": "whipped_topping",
+        "label": "Whipped topping",
+        "default_option": "vegan_whipped_cream"
+      }
+    },
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": 6,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
     }
   },
   {

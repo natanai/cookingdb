@@ -613,6 +613,22 @@
     }
   },
   {
+    "id": "oat-flour-pancakes",
+    "title": "Oat Flour Pancakes (Dairy Free and Vegan)",
+    "byline": "Aubrey",
+    "categories": [
+      "Breakfast & Brunch",
+      "Vegan",
+      "Gluten-Free"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "orange-sherbet-salad",
     "title": "Orange Sherbet Salad",
     "byline": "",
