@@ -436,7 +436,7 @@ function renderIngredientsList(recipe, state, onUnitChange) {
         if (unitOptions.length > 1 && entry.option?.ratio) {
           const unitSelect = document.createElement('select');
           unitSelect.className = 'unit-select';
-          const currentUnit = selectedUnit || entry.option.unit;
+          const currentUnit = selectedUnit || display?.displayUnit || entry.option.unit;
           unitOptions.forEach((unit) => {
             const opt = document.createElement('option');
             opt.value = unit.id;
@@ -444,11 +444,6 @@ function renderIngredientsList(recipe, state, onUnitChange) {
             if (unit.id === currentUnit) opt.selected = true;
             unitSelect.appendChild(opt);
           });
-
-          if (!unitSelections[entry.token]) {
-            unitSelections[entry.token] = currentUnit;
-          }
-
           unitSelect.addEventListener('change', () => {
             unitSelections[entry.token] = unitSelect.value;
             if (typeof onUnitChange === 'function') onUnitChange();

@@ -174,7 +174,7 @@ export function unitOptionsFor(unitId) {
 export function formatUnitLabel(unitId, amount) {
   const def = unitDefinition(unitId);
   if (!def) return unitId || '';
-  if (Number.isFinite(amount) && Math.abs(amount - 1) > 1e-9 && def.plural) {
+  if (Number.isFinite(amount) && amount > 1 + 1e-9 && def.plural) {
     return def.plural;
   }
   return def.label || unitId;
@@ -205,6 +205,35 @@ export function formatAmountForDisplay(amount, options = {}) {
 
   const fixed = amount.toFixed(decimalPrecision);
   return fixed.replace(/\.0+$/, '').replace(/(\.\d*[1-9])0+$/, '$1');
+}
+
+export function amountFormatsAsCookingFraction(amount, options = {}) {
+  if (!Number.isFinite(amount)) return false;
+  const { fractionTolerance = 0.015, allowedDenominators } = options;
+  const frac = decimalToFraction(amount, { allowedDenominators });
+  if (allowedDenominators?.length && frac.den !== 1 && !allowedDenominators.includes(frac.den)) {
+    return false;
+  }
+  const approx = frac.num / frac.den;
+  return Math.abs(approx - amount) <= fractionTolerance;
+}
+
+const CUP_PREFERRED_INGREDIENTS = new Set(['parsley', 'cilantro']);
+
+export function defaultDisplayUnitForOption(option, baseAmount) {
+  if (!option?.unit || !Number.isFinite(baseAmount)) return option?.unit || null;
+  const normalizedUnit = normalizeUnit(option.unit);
+  if (normalizedUnit !== 'tbsp') return normalizedUnit || option.unit;
+
+  const cupConversion = convertUnitAmount(baseAmount, normalizedUnit, 'cup');
+  if (!cupConversion || !Number.isFinite(cupConversion.amount)) return normalizedUnit;
+
+  const isCupSizedAmount = cupConversion.amount >= 1 && amountFormatsAsCookingFraction(cupConversion.amount);
+  const isCupPreferredIngredient =
+    CUP_PREFERRED_INGREDIENTS.has(String(option.ingredient_id || '').toLowerCase()) &&
+    amountFormatsAsCookingFraction(cupConversion.amount, { allowedDenominators: [2, 3, 4, 6, 8] });
+
+  return isCupSizedAmount || isCupPreferredIngredient ? 'cup' : normalizedUnit;
 }
 
 export function getEffectiveMultiplier(state) {
@@ -363,7 +392,8 @@ export function ingredientDisplay(option, multiplier, selectedUnit, includePrep 
   const scaled = multiplyFraction(baseFraction, multiplier);
   const baseAmount = scaled ? scaled.num / scaled.den : null;
 
-  const targetUnit = selectedUnit || option.unit;
+  const defaultUnit = defaultDisplayUnitForOption(option, baseAmount);
+  const targetUnit = selectedUnit || defaultUnit || option.unit;
   let displayAmount = baseAmount;
   let displayUnit = option.unit;
   let conversionFactor = null;
