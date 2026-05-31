@@ -62,7 +62,8 @@ Additional validations and constraints:
 
 - At least one step is required.
 - `steps.csv` must have a non-empty `text` value for every row.
-- Step sections are supported by adding a `section` column in `steps.csv`.
+- Step sections are supported by adding a `section` column in `steps.csv`, but avoid adding section labels unless the original recipe explicitly uses them and the grouping meaningfully helps the cook.
+- In general, leave step sections blank for short recipes, recipes with only one or two steps per potential section, or recipes whose steps must be followed in order. Reserve section labels for specific cases such as parallel workstreams that different people can handle at the same time or a large time gap between groups of steps.
 - If using `steps.md`, include one instruction per line (numbering is optional and stripped in the build).
 - Step text must be complete and should not instruct using more of an ingredient than is listed in
   `ingredients.csv` (avoid double-counting unless split into multiple ingredient lines).
