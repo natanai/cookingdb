@@ -29,9 +29,22 @@ function runTests() {
 
   const sugar = { ratio: '1', unit: 'cup', display: 'sugar' };
   const sugarDisplay = ingredientDisplay(sugar, 1, 'tbsp');
-  assert.equal(sugarDisplay.amountStr, '16', 'exact unit conversions should display as clean whole numbers');
+  assert.equal(sugarDisplay.amountStr, '16', 'explicit unit conversions should display as clean whole numbers');
   assert.equal(sugarDisplay.convertedUnitLabel, 'tablespoons', 'converted unit label should pluralize');
   assert.equal(sugarDisplay.baseUnitLabel, 'cup', 'base unit label should stay singular');
+
+  const oil = { ratio: '16', unit: 'tbsp', display: 'oil' };
+  const oilDisplay = ingredientDisplay(oil, 1);
+  assert.equal(oilDisplay.text, '1 cup oil', 'cup-sized tablespoon amounts should default to cups');
+  assert.equal(oilDisplay.displayUnit, 'cup', 'default display unit should upgrade tablespoons to cups');
+
+  const cilantro = { ratio: '2', unit: 'tbsp', display: 'fresh cilantro', ingredient_id: 'cilantro' };
+  const cilantroDisplay = ingredientDisplay(cilantro, 1);
+  assert.equal(cilantroDisplay.text, '1/8 cup fresh cilantro', 'cilantro should default to cups when the cup fraction is readable');
+
+  const parsley = { ratio: '1', unit: 'tbsp', display: 'parsley', ingredient_id: 'parsley' };
+  const parsleyDisplay = ingredientDisplay(parsley, 1);
+  assert.equal(parsleyDisplay.text, '1 tablespoon parsley', 'tiny herb amounts should stay in tablespoons when cups would be awkward');
 
   const recipe = {
     token_order: ['egg', 'flour_base', 'flour_adjust'],
