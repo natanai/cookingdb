@@ -1,0 +1,19 @@
+token,option,display,ratio,unit,ingredient_id,section
+pepitas,,raw pepitas,1/3,cup,pepitas,Roasted topping
+topping_olive_oil,,extra virgin olive oil,1,tbsp,olive_oil,Roasted topping
+maple_syrup,,real maple syrup,1,tbsp,maple-syrup,Roasted topping
+cinnamon,,ground cinnamon,1/4,tsp,cinnamon,Roasted topping
+topping_salt,,kosher salt,1/16,tsp,salt,Roasted topping
+prosciutto,,thinly sliced prosciutto,3,oz,prosciutto,Roasted topping
+kale,,shredded kale (about 2 heads),12,cup,kale,Salad
+apples,,Honeycrisp apples,2,count,apples,Salad
+pomegranate_arils,,pomegranate arils,1,cup,pomegranate-arils,Salad
+feta,,crumbled feta cheese,1/2,cup,feta-cheese,Salad
+vinaigrette_olive_oil,,extra virgin olive oil,1/3,cup,olive_oil,Cider vinaigrette
+shallot,,thinly sliced shallot,3,tbsp,shallot,Cider vinaigrette
+apple_cider_vinegar,,apple cider vinegar,2,tbsp,apple-cider-vinegar,Cider vinaigrette
+fig_preserves,,fig preserves,1,tbsp,fig-preserves,Cider vinaigrette
+thyme,,fresh thyme leaves,1,tbsp,thyme,Cider vinaigrette
+vinaigrette_salt,,kosher salt,1/4,tsp,salt,Cider vinaigrette
+black_pepper,,black pepper,1/4,tsp,black-pepper,Cider vinaigrette
+red_pepper_flakes,,crushed red pepper flakes,1/16,tsp,crushed-red-pepper-flakes,Cider vinaigrette

@@ -103,5 +103,19 @@
     "grams": 230,
     "source": "USDA FoodData Central (grapefruit common measure)",
     "notes": "Approx 1 medium grapefruit edible portion ≈ 230 g."
+  },
+  {
+    "ingredient_id": "apples",
+    "unit": "count",
+    "grams": 182,
+    "source": "USDA FoodData Central common measure",
+    "notes": "Approx 1 medium apple with skin ≈ 182 g."
+  },
+  {
+    "ingredient_id": "pomegranate-arils",
+    "unit": "count",
+    "grams": 174,
+    "source": "USDA FoodData Central common measure",
+    "notes": "Approx arils from 1 medium pomegranate ≈ 1 cup / 174 g."
   }
 ]

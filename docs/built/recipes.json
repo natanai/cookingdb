@@ -18299,6 +18299,897 @@
     }
   },
   {
+    "id": "fall-harvest-honeycrisp-apple-kale-salad",
+    "title": "Fall Harvest Honeycrisp Apple and Kale Salad",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Salads",
+      "Sides",
+      "Gluten-Free",
+      "Egg-Free",
+      "Fall"
+    ],
+    "family": "",
+    "notes": "Prep time: 15 minutes. Cook time: 15 minutes. Total time: 30 minutes. Serves 6. Use Honeycrisp apples for their crisp sweet-tart bite; the generic apples nutrition entry is used for estimates.",
+    "nutrition_estimate": {
+      "calories_total": 1962.0142116666664,
+      "calories_per_serving": 392.4028423333333,
+      "sodium_total_mg": 3154.35325,
+      "sat_fat_total_g": 31.634616333333334,
+      "servings_estimate": 5,
+      "covered_ingredients": 18,
+      "total_ingredients": 18,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Preheat the oven to 350°F. Line a baking sheet with parchment paper.\n2. On the prepared baking sheet, toss together {{pepitas}}, {{topping_olive_oil}}, {{maple_syrup}}, {{cinnamon}}, and a pinch of {{topping_salt}}. Arrange in a single layer. Lay {{prosciutto}} flat around the pepitas. Bake for 10–15 minutes, until the pepitas are toasted and the prosciutto is crisp.\n3. Meanwhile, in a large salad bowl, combine {{kale}}, thinly sliced {{apples}}, and {{pomegranate_arils}}.\n4. Heat {{vinaigrette_olive_oil}} in a medium skillet over high heat. When the oil shimmers, add {{shallot}} and cook until fragrant, 2–3 minutes. Remove from the heat and let cool slightly.\n5. Stir {{apple_cider_vinegar}}, {{fig_preserves}}, and {{thyme}} into the warm shallot oil. Season with {{vinaigrette_salt}}, {{black_pepper}}, and a pinch of {{red_pepper_flakes}}.\n6. Pour the cider vinaigrette over the salad and toss to combine. Top with the toasted pepitas, crisp prosciutto, and {{feta}}. Serve immediately.",
+    "steps": [
+      {
+        "section": "Roasted topping",
+        "text": "Preheat the oven to 350°F. Line a baking sheet with parchment paper."
+      },
+      {
+        "section": "Roasted topping",
+        "text": "On the prepared baking sheet, toss together {{pepitas}}, {{topping_olive_oil}}, {{maple_syrup}}, {{cinnamon}}, and a pinch of {{topping_salt}}. Arrange in a single layer. Lay {{prosciutto}} flat around the pepitas. Bake for 10–15 minutes, until the pepitas are toasted and the prosciutto is crisp."
+      },
+      {
+        "section": "Salad",
+        "text": "Meanwhile, in a large salad bowl, combine {{kale}}, thinly sliced {{apples}}, and {{pomegranate_arils}}."
+      },
+      {
+        "section": "Cider vinaigrette",
+        "text": "Heat {{vinaigrette_olive_oil}} in a medium skillet over high heat. When the oil shimmers, add {{shallot}} and cook until fragrant, 2–3 minutes. Remove from the heat and let cool slightly."
+      },
+      {
+        "section": "Cider vinaigrette",
+        "text": "Stir {{apple_cider_vinegar}}, {{fig_preserves}}, and {{thyme}} into the warm shallot oil. Season with {{vinaigrette_salt}}, {{black_pepper}}, and a pinch of {{red_pepper_flakes}}."
+      },
+      {
+        "section": "Serve",
+        "text": "Pour the cider vinaigrette over the salad and toss to combine. Top with the toasted pepitas, crisp prosciutto, and {{feta}}. Serve immediately."
+      }
+    ],
+    "step_sections": [
+      "Roasted topping",
+      "Salad",
+      "Cider vinaigrette",
+      "Serve"
+    ],
+    "tokens_used": [
+      "pepitas",
+      "topping_olive_oil",
+      "maple_syrup",
+      "cinnamon",
+      "topping_salt",
+      "prosciutto",
+      "kale",
+      "apples",
+      "pomegranate_arils",
+      "vinaigrette_olive_oil",
+      "shallot",
+      "apple_cider_vinegar",
+      "fig_preserves",
+      "thyme",
+      "vinaigrette_salt",
+      "black_pepper",
+      "red_pepper_flakes",
+      "feta"
+    ],
+    "token_order": [
+      "pepitas",
+      "topping_olive_oil",
+      "maple_syrup",
+      "cinnamon",
+      "topping_salt",
+      "prosciutto",
+      "kale",
+      "apples",
+      "pomegranate_arils",
+      "vinaigrette_olive_oil",
+      "shallot",
+      "apple_cider_vinegar",
+      "fig_preserves",
+      "thyme",
+      "vinaigrette_salt",
+      "black_pepper",
+      "red_pepper_flakes",
+      "feta"
+    ],
+    "ingredients": {
+      "pepitas": {
+        "token": "pepitas",
+        "options": [
+          {
+            "option": "",
+            "display": "raw pepitas",
+            "ratio": "1/3",
+            "unit": "cup",
+            "ingredient_id": "pepitas",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Roasted topping",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 559,
+                "protein_g": 30.2,
+                "total_fat_g": 49,
+                "saturated_fat_g": 8.7,
+                "total_carbs_g": 10.7,
+                "sugars_g": 1.4,
+                "fiber_g": 6,
+                "sodium_mg": 7,
+                "calcium_mg": 46,
+                "iron_mg": 8.8,
+                "potassium_mg": 809,
+                "vitamin_c_mg": 1.9,
+                "source": "USDA FoodData Central",
+                "notes": "Approx per 100g (raw pumpkin seeds/pepitas)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Roasted topping"
+      },
+      "topping_olive_oil": {
+        "token": "topping_olive_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "extra virgin olive oil",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "olive_oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Roasted topping",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.9,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Roasted topping"
+      },
+      "maple_syrup": {
+        "token": "maple_syrup",
+        "options": [
+          {
+            "option": "",
+            "display": "real maple syrup",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "maple-syrup",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Roasted topping",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 52,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13.4,
+                "sugars_g": 12.1,
+                "fiber_g": 0,
+                "sodium_mg": 2,
+                "calcium_mg": 20,
+                "iron_mg": 0.2,
+                "potassium_mg": 42,
+                "vitamin_c_mg": 0,
+                "source": "USDA (maple syrup)",
+                "notes": "Per 1 Tbsp (20g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Roasted topping"
+      },
+      "cinnamon": {
+        "token": "cinnamon",
+        "options": [
+          {
+            "option": "",
+            "display": "ground cinnamon",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "cinnamon",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Roasted topping",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 6,
+                "protein_g": 0.1,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.1,
+                "sugars_g": 0,
+                "fiber_g": 1.4,
+                "sodium_mg": 0.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (ground cinnamon)",
+                "notes": "Per 1 tsp (2.6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Roasted topping"
+      },
+      "topping_salt": {
+        "token": "topping_salt",
+        "options": [
+          {
+            "option": "",
+            "display": "kosher salt",
+            "ratio": "1/16",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Roasted topping",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Roasted topping"
+      },
+      "prosciutto": {
+        "token": "prosciutto",
+        "options": [
+          {
+            "option": "",
+            "display": "thinly sliced prosciutto",
+            "ratio": "3",
+            "unit": "oz",
+            "ingredient_id": "prosciutto",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Roasted topping",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 247,
+                "protein_g": 26,
+                "total_fat_g": 15,
+                "saturated_fat_g": 5.3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 1700,
+                "calcium_mg": 10,
+                "iron_mg": 0.7,
+                "potassium_mg": 300,
+                "vitamin_c_mg": 0,
+                "source": "USDA FoodData Central",
+                "notes": "Approx per 100g; sodium varies by brand/cure, adjust if desired."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Roasted topping"
+      },
+      "kale": {
+        "token": "kale",
+        "options": [
+          {
+            "option": "",
+            "display": "shredded kale (about 2 heads)",
+            "ratio": "12",
+            "unit": "cup",
+            "ingredient_id": "kale",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 7,
+                "protein_g": 0.6,
+                "total_fat_g": 0.3,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.9,
+                "sugars_g": 0.2,
+                "fiber_g": 0.8,
+                "sodium_mg": 10,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (kale)",
+                "notes": "Per 1 cup, chopped (21g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "apples": {
+        "token": "apples",
+        "options": [
+          {
+            "option": "",
+            "display": "Honeycrisp apples",
+            "ratio": "2",
+            "unit": "count",
+            "ingredient_id": "apples",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 52,
+                "protein_g": 0.3,
+                "total_fat_g": 0.2,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 13.8,
+                "sugars_g": 10.4,
+                "fiber_g": 2.4,
+                "sodium_mg": 1,
+                "calcium_mg": 6,
+                "iron_mg": 0.1,
+                "potassium_mg": 107,
+                "vitamin_c_mg": 4.6,
+                "source": "USDA FoodData Central",
+                "notes": "Use for Honeycrisp apples (variety differences are minor)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "pomegranate_arils": {
+        "token": "pomegranate_arils",
+        "options": [
+          {
+            "option": "",
+            "display": "pomegranate arils",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "pomegranate-arils",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 83,
+                "protein_g": 1.7,
+                "total_fat_g": 1.2,
+                "saturated_fat_g": 0.1,
+                "total_carbs_g": 18.7,
+                "sugars_g": 13.7,
+                "fiber_g": 4,
+                "sodium_mg": 3,
+                "calcium_mg": 10,
+                "iron_mg": 0.3,
+                "potassium_mg": 236,
+                "vitamin_c_mg": 10.2,
+                "source": "USDA FoodData Central",
+                "notes": "Approx per 100g (arils)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "feta": {
+        "token": "feta",
+        "options": [
+          {
+            "option": "",
+            "display": "crumbled feta cheese",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "feta-cheese",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 264,
+                "protein_g": 14.2,
+                "total_fat_g": 21.3,
+                "saturated_fat_g": 14.9,
+                "total_carbs_g": 4.1,
+                "sugars_g": 4.1,
+                "fiber_g": 0,
+                "sodium_mg": 1116,
+                "calcium_mg": 493,
+                "iron_mg": 0.7,
+                "potassium_mg": 62,
+                "vitamin_c_mg": 0,
+                "source": "USDA FoodData Central",
+                "notes": "Approx per 100g; sodium varies by brand/brine, adjust if desired."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "vinaigrette_olive_oil": {
+        "token": "vinaigrette_olive_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "extra virgin olive oil",
+            "ratio": "1/3",
+            "unit": "cup",
+            "ingredient_id": "olive_oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Cider vinaigrette",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.9,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Cider vinaigrette"
+      },
+      "shallot": {
+        "token": "shallot",
+        "options": [
+          {
+            "option": "",
+            "display": "thinly sliced shallot",
+            "ratio": "3",
+            "unit": "tbsp",
+            "ingredient_id": "shallot",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Cider vinaigrette",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 30,
+                "serving_unit_norm": "g",
+                "calories_kcal": 22,
+                "protein_g": 0.8,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 5,
+                "sugars_g": 1,
+                "fiber_g": 0.8,
+                "sodium_mg": 1,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "FoodStruct (shallot)",
+                "notes": "Per 30 g (1 medium)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Cider vinaigrette"
+      },
+      "apple_cider_vinegar": {
+        "token": "apple_cider_vinegar",
+        "options": [
+          {
+            "option": "",
+            "display": "apple cider vinegar",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "apple-cider-vinegar",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Cider vinaigrette",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 21,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.9,
+                "sugars_g": 0.4,
+                "fiber_g": 0,
+                "sodium_mg": 5,
+                "calcium_mg": 7,
+                "iron_mg": 0.2,
+                "potassium_mg": 73,
+                "vitamin_c_mg": 0,
+                "source": "USDA FoodData Central",
+                "notes": "Approx per 100g (plain, distilled/ACV)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Cider vinaigrette"
+      },
+      "fig_preserves": {
+        "token": "fig_preserves",
+        "options": [
+          {
+            "option": "",
+            "display": "fig preserves",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "fig-preserves",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Cider vinaigrette",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 249,
+                "protein_g": 0.3,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 64,
+                "sugars_g": 49,
+                "fiber_g": 1,
+                "sodium_mg": 50,
+                "calcium_mg": 20,
+                "iron_mg": 0.3,
+                "potassium_mg": 120,
+                "vitamin_c_mg": 0,
+                "source": "USDA FoodData Central / generic jam data",
+                "notes": "Approx per 100g; varies by brand/recipe, adjust if desired."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Cider vinaigrette"
+      },
+      "thyme": {
+        "token": "thyme",
+        "options": [
+          {
+            "option": "",
+            "display": "fresh thyme leaves",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "thyme",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Cider vinaigrette",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 3,
+                "protein_g": 0.1,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.9,
+                "sugars_g": 0,
+                "fiber_g": 0.6,
+                "sodium_mg": 2,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (dried thyme)",
+                "notes": "Per 1 tsp (1g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Cider vinaigrette"
+      },
+      "vinaigrette_salt": {
+        "token": "vinaigrette_salt",
+        "options": [
+          {
+            "option": "",
+            "display": "kosher salt",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Cider vinaigrette",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Cider vinaigrette"
+      },
+      "black_pepper": {
+        "token": "black_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "black pepper",
+            "ratio": "1/4",
+            "unit": "tsp",
+            "ingredient_id": "black-pepper",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Cider vinaigrette",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 5,
+                "protein_g": 0.2,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.3,
+                "sugars_g": 0,
+                "fiber_g": 0.5,
+                "sodium_mg": 1,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (2g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Cider vinaigrette"
+      },
+      "red_pepper_flakes": {
+        "token": "red_pepper_flakes",
+        "options": [
+          {
+            "option": "",
+            "display": "crushed red pepper flakes",
+            "ratio": "1/16",
+            "unit": "tsp",
+            "ingredient_id": "crushed-red-pepper-flakes",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Cider vinaigrette",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 318,
+                "protein_g": 12,
+                "total_fat_g": 17,
+                "saturated_fat_g": 3.3,
+                "total_carbs_g": 56.6,
+                "sugars_g": 10.3,
+                "fiber_g": 27.2,
+                "sodium_mg": 30,
+                "calcium_mg": 148,
+                "iron_mg": 7.8,
+                "potassium_mg": 2014,
+                "vitamin_c_mg": 0,
+                "source": "USDA FoodData Central",
+                "notes": "Approx per 100g; used in pinch amounts, so totals minimally affected."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Cider vinaigrette"
+      }
+    },
+    "ingredient_sections": [
+      "Roasted topping",
+      "Salad",
+      "Cider vinaigrette"
+    ],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": 6,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "gluten-free-peanut-butter-cookies",
     "title": "Gluten-Free Peanut Butter Cookies",
     "byline": "",

@@ -527,6 +527,24 @@
     }
   },
   {
+    "id": "fall-harvest-honeycrisp-apple-kale-salad",
+    "title": "Fall Harvest Honeycrisp Apple and Kale Salad",
+    "byline": "",
+    "categories": [
+      "Salads",
+      "Sides",
+      "Gluten-Free",
+      "Egg-Free",
+      "Fall"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": false
+    }
+  },
+  {
     "id": "gluten-free-peanut-butter-cookies",
     "title": "Gluten-Free Peanut Butter Cookies",
     "byline": "",
