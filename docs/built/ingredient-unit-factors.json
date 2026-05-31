@@ -502,5 +502,61 @@
     "factor": 15,
     "source": "USDA FoodData Central",
     "notes": "Approx 1 Tbsp lemon juice = 15g."
+  },
+  {
+    "ingredient_id": "pepitas",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "g",
+    "factor": 129,
+    "source": "USDA FoodData Central common measure",
+    "notes": "Approx 1 cup pumpkin seed kernels ≈ 129 g."
+  },
+  {
+    "ingredient_id": "apples",
+    "from_unit_norm": "count",
+    "to_unit_norm": "g",
+    "factor": 182,
+    "source": "USDA FoodData Central common measure",
+    "notes": "Approx 1 medium apple with skin ≈ 182 g."
+  },
+  {
+    "ingredient_id": "pomegranate-arils",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "g",
+    "factor": 174,
+    "source": "USDA FoodData Central common measure",
+    "notes": "Approx 1 cup pomegranate arils ≈ 174 g."
+  },
+  {
+    "ingredient_id": "feta-cheese",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "g",
+    "factor": 150,
+    "source": "USDA FoodData Central common measure",
+    "notes": "Approx 1 cup crumbled feta ≈ 150 g."
+  },
+  {
+    "ingredient_id": "apple-cider-vinegar",
+    "from_unit_norm": "tbsp",
+    "to_unit_norm": "g",
+    "factor": 15,
+    "source": "USDA FoodData Central density estimate",
+    "notes": "Approx 1 Tbsp apple cider vinegar ≈ 15 g."
+  },
+  {
+    "ingredient_id": "fig-preserves",
+    "from_unit_norm": "tbsp",
+    "to_unit_norm": "g",
+    "factor": 20,
+    "source": "Generic jam/preserves label average",
+    "notes": "Approx 1 Tbsp preserves ≈ 20 g."
+  },
+  {
+    "ingredient_id": "crushed-red-pepper-flakes",
+    "from_unit_norm": "tsp",
+    "to_unit_norm": "g",
+    "factor": 1.8,
+    "source": "USDA FoodData Central spice estimate",
+    "notes": "Approx 1 tsp crushed red pepper flakes ≈ 1.8 g."
   }
 ]
