@@ -454,5 +454,37 @@
     "factor": 28,
     "source": "brandless default",
     "notes": "Assumed 28 oz can."
+  },
+  {
+    "ingredient_id": "fennel-bulb",
+    "from_unit_norm": "count",
+    "to_unit_norm": "g",
+    "factor": 234,
+    "source": "USDA FoodData Central (fennel bulb common measure)",
+    "notes": "Approx 1 raw fennel bulb ≈ 234 g edible portion."
+  },
+  {
+    "ingredient_id": "fresh-mint",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "g",
+    "factor": 24,
+    "source": "USDA FoodData Central (fresh mint common measure)",
+    "notes": "Approx 1 cup fresh mint leaves ≈ 24 g."
+  },
+  {
+    "ingredient_id": "navel-orange",
+    "from_unit_norm": "count",
+    "to_unit_norm": "g",
+    "factor": 140,
+    "source": "USDA FoodData Central (navel orange common measure)",
+    "notes": "Approx 1 medium navel orange edible portion ≈ 140 g."
+  },
+  {
+    "ingredient_id": "red-grapefruit",
+    "from_unit_norm": "count",
+    "to_unit_norm": "g",
+    "factor": 230,
+    "source": "USDA FoodData Central (grapefruit common measure)",
+    "notes": "Approx 1 medium grapefruit edible portion ≈ 230 g."
   }
 ]

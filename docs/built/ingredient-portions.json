@@ -68,5 +68,40 @@
     "grams": 0.2,
     "source": "USDA (fresh thyme)",
     "notes": "Approx 1 sprig ~0.2 g."
+  },
+  {
+    "ingredient_id": "arugula",
+    "unit": "cup",
+    "grams": 20,
+    "source": "USDA FoodData Central (raw arugula)",
+    "notes": "Approx 1 cup raw arugula ≈ 20 g."
+  },
+  {
+    "ingredient_id": "fennel-bulb",
+    "unit": "count",
+    "grams": 234,
+    "source": "USDA FoodData Central (fennel bulb common measure)",
+    "notes": "Approx 1 raw fennel bulb ≈ 234 g edible portion."
+  },
+  {
+    "ingredient_id": "fresh-mint",
+    "unit": "cup",
+    "grams": 24,
+    "source": "USDA FoodData Central (fresh mint common measure)",
+    "notes": "Approx 1 cup fresh mint leaves ≈ 24 g."
+  },
+  {
+    "ingredient_id": "navel-orange",
+    "unit": "count",
+    "grams": 140,
+    "source": "USDA FoodData Central (navel orange common measure)",
+    "notes": "Approx 1 medium navel orange edible portion ≈ 140 g."
+  },
+  {
+    "ingredient_id": "red-grapefruit",
+    "unit": "count",
+    "grams": 230,
+    "source": "USDA FoodData Central (grapefruit common measure)",
+    "notes": "Approx 1 medium grapefruit edible portion ≈ 230 g."
   }
 ]

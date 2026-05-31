@@ -1,0 +1,9 @@
+token,option,display,ratio,unit,ingredient_id,section
+grapefruit,,red grapefruits,2,count,red-grapefruit,Salad
+orange,,navel orange,1,count,navel-orange,Salad
+olive_oil,,olive oil,3,tbsp,olive_oil,Dressing
+salt,,salt,1/8,tsp,salt,Dressing
+black_pepper,,black pepper,1/8,tsp,black-pepper,Dressing
+fennel,,fennel bulb,1,count,fennel-bulb,Salad
+arugula,,arugula,5,oz,arugula,Salad
+mint,,fresh mint leaves,1/4,cup,fresh-mint,Finish

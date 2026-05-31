@@ -1024,6 +1024,442 @@
     }
   },
   {
+    "id": "arugula-fennel-citrus-salad",
+    "title": "Arugula, Fennel and Citrus Salad",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Salads",
+      "Gluten-Free",
+      "Dairy-Free",
+      "Easy"
+    ],
+    "family": "",
+    "notes": "Prep time: 25 minutes. Total time: 25 minutes. Difficulty: easy. To supreme grapefruit and orange: trim the ends, set one end flat on a cutting board, slice off the peel in sections, then hold the fruit over a bowl and cut along the membranes to release segments. Squeeze the membranes for juice.",
+    "nutrition_estimate": {
+      "calories_total": 730.0418749999999,
+      "calories_per_serving": 365.02093749999995,
+      "sodium_total_mg": 449.376825,
+      "sat_fat_total_g": 6.164362849999999,
+      "servings_estimate": 2,
+      "covered_ingredients": 8,
+      "total_ingredients": 8,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Supreme {{grapefruit}} and {{orange}} over a bowl, reserving the citrus segments and at least 3 tablespoons of the collected juices.\n2. In a small bowl, whisk 3 tablespoons of the reserved citrus juices with {{olive_oil}}, {{salt}}, and {{black_pepper}}.\n3. Trim, halve, and core {{fennel}}, then thinly slice it.\n4. In a large serving bowl, combine the sliced fennel, {{arugula}}, and the citrus segments from the grapefruit and orange.\n5. Drizzle the dressing over the salad and toss to combine. Sprinkle with {{mint}} and serve.",
+    "steps": [
+      {
+        "section": "Prep",
+        "text": "Supreme {{grapefruit}} and {{orange}} over a bowl, reserving the citrus segments and at least 3 tablespoons of the collected juices."
+      },
+      {
+        "section": "Dressing",
+        "text": "In a small bowl, whisk 3 tablespoons of the reserved citrus juices with {{olive_oil}}, {{salt}}, and {{black_pepper}}."
+      },
+      {
+        "section": "Prep",
+        "text": "Trim, halve, and core {{fennel}}, then thinly slice it."
+      },
+      {
+        "section": "Assemble",
+        "text": "In a large serving bowl, combine the sliced fennel, {{arugula}}, and the citrus segments from the grapefruit and orange."
+      },
+      {
+        "section": "Serve",
+        "text": "Drizzle the dressing over the salad and toss to combine. Sprinkle with {{mint}} and serve."
+      }
+    ],
+    "step_sections": [
+      "Prep",
+      "Dressing",
+      "Assemble",
+      "Serve"
+    ],
+    "tokens_used": [
+      "grapefruit",
+      "orange",
+      "olive_oil",
+      "salt",
+      "black_pepper",
+      "fennel",
+      "arugula",
+      "mint"
+    ],
+    "token_order": [
+      "grapefruit",
+      "orange",
+      "olive_oil",
+      "salt",
+      "black_pepper",
+      "fennel",
+      "arugula",
+      "mint"
+    ],
+    "ingredients": {
+      "grapefruit": {
+        "token": "grapefruit",
+        "options": [
+          {
+            "option": "",
+            "display": "red grapefruits",
+            "ratio": "2",
+            "unit": "count",
+            "ingredient_id": "red-grapefruit",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 42,
+                "protein_g": 0.77,
+                "total_fat_g": 0.14,
+                "saturated_fat_g": 0.021,
+                "total_carbs_g": 10.66,
+                "sugars_g": 6.89,
+                "fiber_g": 1.6,
+                "sodium_mg": 0,
+                "calcium_mg": 22,
+                "iron_mg": 0.08,
+                "potassium_mg": 135,
+                "vitamin_c_mg": 31.2,
+                "source": "USDA FoodData Central (raw pink/red grapefruit)",
+                "notes": "Per 100 g raw pink/red grapefruit."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "orange": {
+        "token": "orange",
+        "options": [
+          {
+            "option": "",
+            "display": "navel orange",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "navel-orange",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 49,
+                "protein_g": 0.91,
+                "total_fat_g": 0.15,
+                "saturated_fat_g": 0.017,
+                "total_carbs_g": 12.54,
+                "sugars_g": 8.5,
+                "fiber_g": 2.2,
+                "sodium_mg": 0,
+                "calcium_mg": 43,
+                "iron_mg": 0.13,
+                "potassium_mg": 166,
+                "vitamin_c_mg": 59.1,
+                "source": "USDA FoodData Central (raw navel orange)",
+                "notes": "Per 100 g raw navel orange."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "olive_oil": {
+        "token": "olive_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "olive oil",
+            "ratio": "3",
+            "unit": "tbsp",
+            "ingredient_id": "olive_oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dressing",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.9,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Dressing"
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/8",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dressing",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Dressing"
+      },
+      "black_pepper": {
+        "token": "black_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "black pepper",
+            "ratio": "1/8",
+            "unit": "tsp",
+            "ingredient_id": "black-pepper",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dressing",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 5,
+                "protein_g": 0.2,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.3,
+                "sugars_g": 0,
+                "fiber_g": 0.5,
+                "sodium_mg": 1,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (2g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Dressing"
+      },
+      "fennel": {
+        "token": "fennel",
+        "options": [
+          {
+            "option": "",
+            "display": "fennel bulb",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "fennel-bulb",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 31,
+                "protein_g": 1.24,
+                "total_fat_g": 0.2,
+                "saturated_fat_g": 0.09,
+                "total_carbs_g": 7.3,
+                "sugars_g": 3.93,
+                "fiber_g": 3.1,
+                "sodium_mg": 52,
+                "calcium_mg": 49,
+                "iron_mg": 0.73,
+                "potassium_mg": 414,
+                "vitamin_c_mg": 12,
+                "source": "USDA FoodData Central (raw fennel bulb)",
+                "notes": "Per 100 g raw fennel bulb."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "arugula": {
+        "token": "arugula",
+        "options": [
+          {
+            "option": "",
+            "display": "arugula",
+            "ratio": "5",
+            "unit": "oz",
+            "ingredient_id": "arugula",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 25,
+                "protein_g": 2.58,
+                "total_fat_g": 0.66,
+                "saturated_fat_g": 0.086,
+                "total_carbs_g": 3.65,
+                "sugars_g": 2.05,
+                "fiber_g": 1.6,
+                "sodium_mg": 27,
+                "calcium_mg": 160,
+                "iron_mg": 1.46,
+                "potassium_mg": 369,
+                "vitamin_c_mg": 15,
+                "source": "USDA FoodData Central (raw arugula)",
+                "notes": "Per 100 g raw arugula."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "mint": {
+        "token": "mint",
+        "options": [
+          {
+            "option": "",
+            "display": "fresh mint leaves",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "fresh-mint",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Finish",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 44,
+                "protein_g": 3.29,
+                "total_fat_g": 0.73,
+                "saturated_fat_g": 0.191,
+                "total_carbs_g": 8.41,
+                "sugars_g": 0,
+                "fiber_g": 6.8,
+                "sodium_mg": 30,
+                "calcium_mg": 199,
+                "iron_mg": 11.87,
+                "potassium_mg": 458,
+                "vitamin_c_mg": 13.3,
+                "source": "USDA FoodData Central (fresh spearmint)",
+                "notes": "Per 100 g fresh spearmint; used as fresh mint estimate."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Finish"
+      }
+    },
+    "ingredient_sections": [
+      "Salad",
+      "Dressing",
+      "Finish"
+    ],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": 10,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "baked-sweet-potatoes",
     "title": "Baked Sweet Potatoes",
     "byline": "",
