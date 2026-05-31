@@ -14449,6 +14449,761 @@
     }
   },
   {
+    "id": "crunchy-chicken-salad",
+    "title": "Crunchy Chicken Salad",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Main Dishes",
+      "Salads",
+      "Gluten-Free",
+      "Dairy-Free"
+    ],
+    "family": "",
+    "notes": "Toasted almonds, crisp vegetables, tamari, and lime make a crunchy gluten-free chicken salad.",
+    "nutrition_estimate": {
+      "calories_total": 1416.2090163934427,
+      "calories_per_serving": 354.05225409836066,
+      "sodium_total_mg": 2892.6611475409836,
+      "sat_fat_total_g": 11.990000000000002,
+      "servings_estimate": 4,
+      "covered_ingredients": 15,
+      "total_ingredients": 15,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Preheat the oven to 350°F. Arrange {{almonds}} on a sheet pan and toast until lightly golden, about 8 minutes; set aside.\n2. Increase the oven temperature to 450°F and line a sheet pan with foil. Coat both sides of {{chicken_breasts}} with {{olive_oil_chicken}}, then season with {{salt_chicken}} and {{black_pepper_chicken}}.\n3. Arrange the chicken skin-side up on the prepared sheet pan. Roast until the chicken reaches an internal temperature of 160°F, about 35 minutes.\n4. Remove the chicken from the oven and let it rest, loosely tented with foil, for 10 minutes. When cool enough to handle, shred the meat into bite-size pieces, discarding the skin and bones.\n5. Meanwhile, combine {{red_bell_peppers}}, {{scallions}}, {{red_cabbage}}, {{carrot}}, toasted {{almonds}}, {{sesame_seeds}}, {{tamari}}, {{olive_oil_dressing}}, and {{lime_juice}} in a medium bowl.\n6. Season the vegetables with {{salt_salad}} and {{black_pepper_salad}}, then toss to combine. Add the shredded {{chicken_breasts}}, toss again, and serve.",
+    "steps": [
+      {
+        "section": "Prep",
+        "text": "Preheat the oven to 350°F. Arrange {{almonds}} on a sheet pan and toast until lightly golden, about 8 minutes; set aside."
+      },
+      {
+        "section": "Chicken",
+        "text": "Increase the oven temperature to 450°F and line a sheet pan with foil. Coat both sides of {{chicken_breasts}} with {{olive_oil_chicken}}, then season with {{salt_chicken}} and {{black_pepper_chicken}}."
+      },
+      {
+        "section": "Chicken",
+        "text": "Arrange the chicken skin-side up on the prepared sheet pan. Roast until the chicken reaches an internal temperature of 160°F, about 35 minutes."
+      },
+      {
+        "section": "Chicken",
+        "text": "Remove the chicken from the oven and let it rest, loosely tented with foil, for 10 minutes. When cool enough to handle, shred the meat into bite-size pieces, discarding the skin and bones."
+      },
+      {
+        "section": "Salad",
+        "text": "Meanwhile, combine {{red_bell_peppers}}, {{scallions}}, {{red_cabbage}}, {{carrot}}, toasted {{almonds}}, {{sesame_seeds}}, {{tamari}}, {{olive_oil_dressing}}, and {{lime_juice}} in a medium bowl."
+      },
+      {
+        "section": "Salad",
+        "text": "Season the vegetables with {{salt_salad}} and {{black_pepper_salad}}, then toss to combine. Add the shredded {{chicken_breasts}}, toss again, and serve."
+      }
+    ],
+    "step_sections": [
+      "Prep",
+      "Chicken",
+      "Salad"
+    ],
+    "tokens_used": [
+      "almonds",
+      "chicken_breasts",
+      "olive_oil_chicken",
+      "salt_chicken",
+      "black_pepper_chicken",
+      "red_bell_peppers",
+      "scallions",
+      "red_cabbage",
+      "carrot",
+      "almonds",
+      "sesame_seeds",
+      "tamari",
+      "olive_oil_dressing",
+      "lime_juice",
+      "salt_salad",
+      "black_pepper_salad",
+      "chicken_breasts"
+    ],
+    "token_order": [
+      "almonds",
+      "chicken_breasts",
+      "olive_oil_chicken",
+      "salt_chicken",
+      "black_pepper_chicken",
+      "red_bell_peppers",
+      "scallions",
+      "red_cabbage",
+      "carrot",
+      "sesame_seeds",
+      "tamari",
+      "olive_oil_dressing",
+      "lime_juice",
+      "salt_salad",
+      "black_pepper_salad"
+    ],
+    "ingredients": {
+      "almonds": {
+        "token": "almonds",
+        "options": [
+          {
+            "option": "",
+            "display": "sliced or slivered almonds",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "almonds",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "oz",
+                "calories_kcal": 165,
+                "protein_g": 6,
+                "total_fat_g": 14,
+                "saturated_fat_g": 1.1,
+                "total_carbs_g": 6,
+                "sugars_g": 1.2,
+                "fiber_g": 3.5,
+                "sodium_mg": 0.28,
+                "calcium_mg": 76.4,
+                "iron_mg": 1.1,
+                "potassium_mg": 208.2,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "Per 1 oz (28g), raw."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "chicken_breasts": {
+        "token": "chicken_breasts",
+        "options": [
+          {
+            "option": "",
+            "display": "bone-in, skin-on chicken breasts",
+            "ratio": "3/4",
+            "unit": "lb",
+            "ingredient_id": "chicken-breast",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Chicken",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "lb",
+                "calories_kcal": 520,
+                "protein_g": 96,
+                "total_fat_g": 14,
+                "saturated_fat_g": 3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 308,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate of chicken breast)",
+                "notes": "Per 1 lb raw boneless skinless breast (~453g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Chicken"
+      },
+      "olive_oil_chicken": {
+        "token": "olive_oil_chicken",
+        "options": [
+          {
+            "option": "",
+            "display": "extra-virgin olive oil",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "olive_oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Chicken",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.9,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Chicken"
+      },
+      "salt_chicken": {
+        "token": "salt_chicken",
+        "options": [
+          {
+            "option": "",
+            "display": "kosher salt",
+            "ratio": "1/8",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Chicken",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Chicken"
+      },
+      "black_pepper_chicken": {
+        "token": "black_pepper_chicken",
+        "options": [
+          {
+            "option": "",
+            "display": "freshly ground black pepper",
+            "ratio": "1/8",
+            "unit": "tsp",
+            "ingredient_id": "black-pepper",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Chicken",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 5,
+                "protein_g": 0.2,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.3,
+                "sugars_g": 0,
+                "fiber_g": 0.5,
+                "sodium_mg": 1,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (2g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Chicken"
+      },
+      "red_bell_peppers": {
+        "token": "red_bell_peppers",
+        "options": [
+          {
+            "option": "",
+            "display": "sliced red bell peppers",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "red-bell-pepper",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 29,
+                "protein_g": 0.9,
+                "total_fat_g": 0.3,
+                "saturated_fat_g": 0.03,
+                "total_carbs_g": 5.5,
+                "sugars_g": 3.8,
+                "fiber_g": 1.6,
+                "sodium_mg": 2,
+                "calcium_mg": 6,
+                "iron_mg": 0.4,
+                "potassium_mg": 194,
+                "vitamin_c_mg": 117,
+                "source": "USDA (raw red sweet pepper)",
+                "notes": "Per 1 cup sliced raw red bell pepper."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "scallions": {
+        "token": "scallions",
+        "options": [
+          {
+            "option": "",
+            "display": "scallions",
+            "ratio": "4",
+            "unit": "count",
+            "ingredient_id": "green-onion",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 5,
+                "protein_g": 0.27,
+                "total_fat_g": 0.03,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.1,
+                "sugars_g": 0.4,
+                "fiber_g": 0.4,
+                "sodium_mg": 2.4,
+                "calcium_mg": 10.8,
+                "iron_mg": 0.22,
+                "potassium_mg": 41.4,
+                "vitamin_c_mg": 2.8,
+                "source": "USDA",
+                "notes": "Per 1 medium (15g), raw scallion."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "red_cabbage": {
+        "token": "red_cabbage",
+        "options": [
+          {
+            "option": "",
+            "display": "thinly sliced red cabbage",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "purple-cabbage",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 22,
+                "protein_g": 1,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 5.2,
+                "sugars_g": 2.8,
+                "fiber_g": 1.9,
+                "sodium_mg": 24,
+                "calcium_mg": 30,
+                "iron_mg": 0.6,
+                "potassium_mg": 216,
+                "vitamin_c_mg": 50,
+                "source": "USDA (red cabbage)",
+                "notes": "Per 1 cup shredded (70g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "carrot": {
+        "token": "carrot",
+        "options": [
+          {
+            "option": "",
+            "display": "thinly sliced carrot",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "carrot",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 61,
+                "serving_unit_norm": "g",
+                "calories_kcal": 25,
+                "protein_g": 0.6,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 6,
+                "sugars_g": 2.9,
+                "fiber_g": 1.7,
+                "sodium_mg": 42,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (medium carrot)",
+                "notes": "Per 61 g (1 medium)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "sesame_seeds": {
+        "token": "sesame_seeds",
+        "options": [
+          {
+            "option": "",
+            "display": "sesame seeds",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "sesame-seeds",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 52,
+                "protein_g": 1.6,
+                "total_fat_g": 4.5,
+                "saturated_fat_g": 0.63,
+                "total_carbs_g": 2.1,
+                "sugars_g": 0.03,
+                "fiber_g": 1.1,
+                "sodium_mg": 0.99,
+                "calcium_mg": 87.8,
+                "iron_mg": 1.3,
+                "potassium_mg": 42.1,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "Per 1 tbsp (9g), whole dried."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "tamari": {
+        "token": "tamari",
+        "options": [
+          {
+            "option": "",
+            "display": "tamari",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "tamari",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 10,
+                "protein_g": 2,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 980,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Label average",
+                "notes": "Per 1 Tbsp gluten-free tamari."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "olive_oil_dressing": {
+        "token": "olive_oil_dressing",
+        "options": [
+          {
+            "option": "",
+            "display": "extra-virgin olive oil",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "olive_oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.9,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "lime_juice": {
+        "token": "lime_juice",
+        "options": [
+          {
+            "option": "",
+            "display": "fresh lime juice",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "lime-juice",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 4,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.3,
+                "sugars_g": 0.2,
+                "fiber_g": 0.1,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 2.5,
+                "source": "USDA (lime juice)",
+                "notes": "Per 1 Tbsp (15ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "salt_salad": {
+        "token": "salt_salad",
+        "options": [
+          {
+            "option": "",
+            "display": "kosher salt",
+            "ratio": "1/8",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "black_pepper_salad": {
+        "token": "black_pepper_salad",
+        "options": [
+          {
+            "option": "",
+            "display": "freshly ground black pepper",
+            "ratio": "1/8",
+            "unit": "tsp",
+            "ingredient_id": "black-pepper",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 5,
+                "protein_g": 0.2,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.3,
+                "sugars_g": 0,
+                "fiber_g": 0.5,
+                "sodium_mg": 1,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (2g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      }
+    },
+    "ingredient_sections": [
+      "Salad",
+      "Chicken"
+    ],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": 2,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "gluten-free-peanut-butter-cookies",
     "title": "Gluten-Free Peanut Butter Cookies",
     "byline": "",
