@@ -21,12 +21,6 @@
   <div class="page-shell">
     <section class="hero">
       <div class="hero-content">
-        <details class="recipe-note">
-          <summary>Cook’s note</summary>
-          <div class="recipe-note-body" id="recipe-notes">
-            <p class="notes" id="notes"></p>
-          </div>
-        </details>
         <div class="recipe-meta">
           <div class="dietary-badges" id="dietary-badges" aria-label="Dietary options"></div>
           <div class="family-inline" id="family-inline"></div>
@@ -126,6 +120,12 @@
         <h2>Steps</h2>
         <ol id="steps-list"></ol>
       </section>
+      <details class="recipe-note" open>
+        <summary>Cook’s note</summary>
+        <div class="recipe-note-body" id="recipe-notes">
+          <p class="notes" id="notes"></p>
+        </div>
+      </details>
     </main>
   </div>
   <script src="recipe.js" type="module"></script>
