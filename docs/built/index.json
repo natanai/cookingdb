@@ -29,6 +29,23 @@
     }
   },
   {
+    "id": "arugula-fennel-citrus-salad",
+    "title": "Arugula, Fennel and Citrus Salad",
+    "byline": "",
+    "categories": [
+      "Salads",
+      "Gluten-Free",
+      "Dairy-Free",
+      "Easy"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "baked-sweet-potatoes",
     "title": "Baked Sweet Potatoes",
     "byline": "",
