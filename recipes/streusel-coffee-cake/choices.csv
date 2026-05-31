@@ -1,2 +1,4 @@
 token,label,default_option
+flour,Flour,wheat
 streusel_fat,Streusel fat,butter
+nuts,Nuts,include

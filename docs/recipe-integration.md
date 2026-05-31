@@ -51,6 +51,12 @@ Additional validations and constraints:
 - Optional grouping columns (`section`, `line_group`) are supported for multi-part ingredient lists.
 - Tokens can define **options** via the `option` column; options with identical `display` values cannot repeat
   for the same token (validation error).
+- Model true substitute ingredients as separate option rows, not prose inside `display`: create multiple
+  `ingredients.csv` rows with the same `token`, distinct non-empty `option` values, and the ingredient name
+  for that option only. Do not write displays such as `milk (or oat milk)` or `flour (or gluten-free blend)`.
+  The recipe UI renders the alternatives in parentheses, for example `1 cup unsalted butter (or 1 cup vegan butter)`.
+- Use `recipes/chocolate-chip-cookies-gf/ingredients.csv` with its matching `choices.csv` as the reference
+  pattern for ingredient alternatives.
 
 ## Steps requirements (`steps.csv` or `steps.md`)
 
@@ -72,7 +78,9 @@ All ingredient tokens must be in sync with step placeholders:
 
 ## Choices (`choices.csv`) requirements
 
-Use `choices.csv` when a token has multiple `option` values in `ingredients.csv`.
+Use `choices.csv` when a token has multiple `option` values in `ingredients.csv`. This includes every
+substitute ingredient modeled with shared-token option rows so the default selection and parenthetical
+alternatives render consistently.
 
 - Any token with **two or more** options must be listed in `choices.csv`.
 - `choices.csv` rows must include `token`, `label`, and `default_option`.

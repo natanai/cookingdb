@@ -6,8 +6,9 @@ maple_syrup,,maple syrup,1,tbsp,maple-syrup,Pancakes
 almond_milk,,unsweetened almond milk,3/4,cup,almond-milk,Pancakes
 flaxseed_meal,,flaxseed meal,2,tbsp,flaxseed-meal,Flax eggs
 flax_water,,water,6,tbsp,water,Flax eggs
-batter_fat,oil,neutral oil (optional),2,tbsp,neutral-oil,Pancakes
-batter_fat,vegan_butter,vegan butter (optional),2,tbsp,vegan-butter,Pancakes
+batter_fat,oil,neutral oil,2,tbsp,neutral-oil,Pancakes
+batter_fat,vegan_butter,vegan butter,2,tbsp,vegan-butter,Pancakes
+batter_fat,omit,No batter fat,0,tbsp,neutral-oil,Pancakes
 pan_fat,oil,neutral oil,2,tbsp,neutral-oil,Cooking
 pan_fat,vegan_butter,vegan butter,2,tbsp,vegan-butter,Cooking
 berries,,mixed berries,1/2,cup,mixed-berries,Optional toppings

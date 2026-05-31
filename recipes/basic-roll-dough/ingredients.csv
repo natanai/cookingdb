@@ -1,5 +1,7 @@
 token,option,display,ratio,unit,ingredient_id,depends_on_token,depends_on_option
-milk,,"warm milk (or unsweetened plant milk, or warm water)",1,cup,milk,,
+milk,dairy,warm milk,1,cup,milk,,
+milk,oat,warm oat milk,1,cup,oat-milk,,
+milk,water,warm water,1,cup,water,,
 sugar,,granulated sugar,1/4,cup,white-sugar,,
 yeast,,active dry yeast,2 1/4,tsp,active-dry-yeast,,
 fat,butter,"butter, melted",1/3,cup,butter,,
@@ -9,8 +11,8 @@ egg_style,egg,egg,1,count,egg,,
 egg_style,flax_egg,"flax egg (1 Tbsp ground flax + 3 Tbsp warm water, mixed and rested 5 min)",1,count,egg-replacer,,
 egg_style,aquafaba,aquafaba,3,tbsp,aquafaba,,
 salt,,salt,1,tsp,salt,,
-flour_base,wheat,"all-purpose flour",3 1/2,cup,wheat-flour,,
-flour_base,gluten_free,"gluten-free flour blend meant for yeast baking (with xanthan gum already in it)",2 3/4,cup,gf-flour-blend,,
-xanthan,add,"xanthan gum (if needed for your blend)",1,tsp,xanthan-gum,flour_base,gluten_free
-psyllium,,"psyllium husk (optional but strongly recommended)",1,tbsp,psyllium-husk,flour_base,gluten_free
-baking_powder,,"baking powder (optional but helpful for lift)",1,tsp,baking-powder,flour_base,gluten_free
+flour_base,wheat,all-purpose flour,3 1/2,cup,wheat-flour,,
+flour_base,gluten_free,gluten-free flour blend meant for yeast baking with xanthan gum,2 3/4,cup,gf-flour-blend,,
+xanthan,add,xanthan gum,1,tsp,xanthan-gum,flour_base,gluten_free
+psyllium,,psyllium husk,1,tbsp,psyllium-husk,flour_base,gluten_free
+baking_powder,,baking powder,1,tsp,baking-powder,flour_base,gluten_free

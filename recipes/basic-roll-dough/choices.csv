@@ -1,4 +1,5 @@
 token,label,default_option
+milk,Liquid,dairy
 flour_base,Flour base,wheat
 fat,Fat,butter
 egg_style,Egg,egg

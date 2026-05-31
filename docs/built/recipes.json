@@ -2232,8 +2232,8 @@
         "token": "milk",
         "options": [
           {
-            "option": "",
-            "display": "warm milk (or unsweetened plant milk, or warm water)",
+            "option": "dairy",
+            "display": "warm milk",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "milk",
@@ -2266,9 +2266,81 @@
                 "notes": "Per 1 cup (240ml)."
               }
             ]
+          },
+          {
+            "option": "oat",
+            "display": "warm oat milk",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "oat-milk",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 120,
+                "protein_g": 3,
+                "total_fat_g": 5,
+                "saturated_fat_g": 0.5,
+                "total_carbs_g": 16,
+                "sugars_g": 7,
+                "fiber_g": 2,
+                "sodium_mg": 101,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (fortified oat)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          },
+          {
+            "option": "water",
+            "display": "warm water",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "water",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(plain water)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
           }
         ],
-        "isChoice": false
+        "isChoice": true
       },
       "sugar": {
         "token": "sugar",
@@ -2665,7 +2737,7 @@
           },
           {
             "option": "gluten_free",
-            "display": "gluten-free flour blend meant for yeast baking (with xanthan gum already in it)",
+            "display": "gluten-free flour blend meant for yeast baking with xanthan gum",
             "ratio": "2 3/4",
             "unit": "cup",
             "ingredient_id": "gf-flour-blend",
@@ -2707,7 +2779,7 @@
         "options": [
           {
             "option": "add",
-            "display": "xanthan gum (if needed for your blend)",
+            "display": "xanthan gum",
             "ratio": "1",
             "unit": "tsp",
             "ingredient_id": "xanthan-gum",
@@ -2756,7 +2828,7 @@
         "options": [
           {
             "option": "",
-            "display": "psyllium husk (optional but strongly recommended)",
+            "display": "psyllium husk",
             "ratio": "1",
             "unit": "tbsp",
             "ingredient_id": "psyllium-husk",
@@ -2805,7 +2877,7 @@
         "options": [
           {
             "option": "",
-            "display": "baking powder (optional but helpful for lift)",
+            "display": "baking powder",
             "ratio": "1",
             "unit": "tsp",
             "ingredient_id": "baking-powder",
@@ -2852,6 +2924,11 @@
     },
     "ingredient_sections": [],
     "choices": {
+      "milk": {
+        "token": "milk",
+        "label": "Liquid",
+        "default_option": "dairy"
+      },
       "flour_base": {
         "token": "flour_base",
         "label": "Flour base",
@@ -2874,7 +2951,7 @@
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,
-      "dairy_free": false
+      "dairy_free": true
     }
   },
   {
@@ -4065,8 +4142,8 @@
         "token": "fat",
         "options": [
           {
-            "option": "",
-            "display": "butter or vegetable oil",
+            "option": "butter",
+            "display": "butter",
             "ratio": "2 1/2",
             "unit": "tbsp",
             "ingredient_id": "butter",
@@ -4099,9 +4176,45 @@
                 "notes": "Per 1 Tbsp (14g)."
               }
             ]
+          },
+          {
+            "option": "oil",
+            "display": "vegetable oil",
+            "ratio": "2 1/2",
+            "unit": "tbsp",
+            "ingredient_id": "vegetable-oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.8,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive/veg oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
           }
         ],
-        "isChoice": false
+        "isChoice": true
       },
       "sugar": {
         "token": "sugar",
@@ -4273,7 +4386,13 @@
       }
     },
     "ingredient_sections": [],
-    "choices": {},
+    "choices": {
+      "fat": {
+        "token": "fat",
+        "label": "Fat",
+        "default_option": "butter"
+      }
+    },
     "pan_sizes": [],
     "default_pan": null,
     "servings_per_batch": null,
@@ -5433,8 +5552,8 @@
         "token": "fat",
         "options": [
           {
-            "option": "",
-            "display": "butter or vegetable oil",
+            "option": "butter",
+            "display": "butter",
             "ratio": "2",
             "unit": "tbsp",
             "ingredient_id": "butter",
@@ -5467,9 +5586,45 @@
                 "notes": "Per 1 Tbsp (14g)."
               }
             ]
+          },
+          {
+            "option": "oil",
+            "display": "vegetable oil",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "vegetable-oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.8,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive/veg oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
           }
         ],
-        "isChoice": false
+        "isChoice": true
       },
       "sugar": {
         "token": "sugar",
@@ -5641,7 +5796,13 @@
       }
     },
     "ingredient_sections": [],
-    "choices": {},
+    "choices": {
+      "fat": {
+        "token": "fat",
+        "label": "Fat",
+        "default_option": "butter"
+      }
+    },
     "pan_sizes": [],
     "default_pan": null,
     "servings_per_batch": null,
@@ -6442,8 +6603,8 @@
         "token": "fat",
         "options": [
           {
-            "option": "",
-            "display": "butter or vegetable oil",
+            "option": "butter",
+            "display": "butter",
             "ratio": "1 3/4",
             "unit": "tbsp",
             "ingredient_id": "butter",
@@ -6476,9 +6637,45 @@
                 "notes": "Per 1 Tbsp (14g)."
               }
             ]
+          },
+          {
+            "option": "oil",
+            "display": "vegetable oil",
+            "ratio": "1 3/4",
+            "unit": "tbsp",
+            "ingredient_id": "vegetable-oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.8,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive/veg oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
           }
         ],
-        "isChoice": false
+        "isChoice": true
       },
       "sugar": {
         "token": "sugar",
@@ -6650,7 +6847,13 @@
       }
     },
     "ingredient_sections": [],
-    "choices": {},
+    "choices": {
+      "fat": {
+        "token": "fat",
+        "label": "Fat",
+        "default_option": "butter"
+      }
+    },
     "pan_sizes": [],
     "default_pan": null,
     "servings_per_batch": null,
@@ -7170,8 +7373,8 @@
         "token": "fat",
         "options": [
           {
-            "option": "",
-            "display": "butter or vegetable oil",
+            "option": "butter",
+            "display": "butter",
             "ratio": "1 3/4",
             "unit": "tbsp",
             "ingredient_id": "butter",
@@ -7204,9 +7407,45 @@
                 "notes": "Per 1 Tbsp (14g)."
               }
             ]
+          },
+          {
+            "option": "oil",
+            "display": "vegetable oil",
+            "ratio": "1 3/4",
+            "unit": "tbsp",
+            "ingredient_id": "vegetable-oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.8,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive/veg oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
           }
         ],
-        "isChoice": false
+        "isChoice": true
       },
       "sugar": {
         "token": "sugar",
@@ -7378,7 +7617,13 @@
       }
     },
     "ingredient_sections": [],
-    "choices": {},
+    "choices": {
+      "fat": {
+        "token": "fat",
+        "label": "Fat",
+        "default_option": "butter"
+      }
+    },
     "pan_sizes": [],
     "default_pan": null,
     "servings_per_batch": null,
@@ -7580,8 +7825,8 @@
         "token": "fat",
         "options": [
           {
-            "option": "",
-            "display": "butter or vegetable oil",
+            "option": "butter",
+            "display": "butter",
             "ratio": "3",
             "unit": "tbsp",
             "ingredient_id": "butter",
@@ -7614,9 +7859,45 @@
                 "notes": "Per 1 Tbsp (14g)."
               }
             ]
+          },
+          {
+            "option": "oil",
+            "display": "vegetable oil",
+            "ratio": "3",
+            "unit": "tbsp",
+            "ingredient_id": "vegetable-oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.8,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive/veg oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
           }
         ],
-        "isChoice": false
+        "isChoice": true
       },
       "sugar": {
         "token": "sugar",
@@ -7830,7 +8111,13 @@
       }
     },
     "ingredient_sections": [],
-    "choices": {},
+    "choices": {
+      "fat": {
+        "token": "fat",
+        "label": "Fat",
+        "default_option": "butter"
+      }
+    },
     "pan_sizes": [],
     "default_pan": null,
     "servings_per_batch": null,
@@ -15823,8 +16110,44 @@
         "token": "mango",
         "options": [
           {
-            "option": "",
-            "display": "cubed mango (fresh or thawed frozen)",
+            "option": "fresh",
+            "display": "fresh cubed mango",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "mango",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dressing",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 99,
+                "protein_g": 1.4,
+                "total_fat_g": 0.6,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 25,
+                "sugars_g": 22.5,
+                "fiber_g": 2.6,
+                "sodium_mg": 2,
+                "calcium_mg": 18,
+                "iron_mg": 0.3,
+                "potassium_mg": 277,
+                "vitamin_c_mg": 60,
+                "source": "USDA (raw mango)",
+                "notes": "Per 1 cup pieces (165g)."
+              }
+            ]
+          },
+          {
+            "option": "frozen",
+            "display": "thawed frozen mango",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "mango",
@@ -15859,7 +16182,7 @@
             ]
           }
         ],
-        "isChoice": false,
+        "isChoice": true,
         "section": "Dressing"
       },
       "coconut_cream": {
@@ -16082,7 +16405,13 @@
       "Salad",
       "Dressing"
     ],
-    "choices": {},
+    "choices": {
+      "mango": {
+        "token": "mango",
+        "label": "Mango",
+        "default_option": "fresh"
+      }
+    },
     "pan_sizes": [],
     "default_pan": null,
     "servings_per_batch": 4,
@@ -16268,8 +16597,8 @@
         "token": "chicken",
         "options": [
           {
-            "option": "",
-            "display": "boneless chicken breasts or thighs",
+            "option": "breasts",
+            "display": "boneless chicken breasts",
             "ratio": "1",
             "unit": "lb",
             "ingredient_id": "chicken-breast",
@@ -16302,9 +16631,45 @@
                 "notes": "Per 1 lb raw boneless skinless breast (~453g)."
               }
             ]
+          },
+          {
+            "option": "thighs",
+            "display": "boneless chicken thighs",
+            "ratio": "1",
+            "unit": "lb",
+            "ingredient_id": "chicken-thighs",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 177,
+                "protein_g": 24,
+                "total_fat_g": 8,
+                "saturated_fat_g": 2.2,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 74,
+                "calcium_mg": 12,
+                "iron_mg": 1,
+                "potassium_mg": 223,
+                "vitamin_c_mg": 0,
+                "source": "User-provided reference",
+                "notes": "Per 100 g raw meat only; boneless/skinless reference."
+              }
+            ]
           }
         ],
-        "isChoice": false,
+        "isChoice": true,
         "section": "Soup"
       },
       "onion": {
@@ -16827,9 +17192,81 @@
         "token": "parmesan_rind",
         "options": [
           {
-            "option": "",
-            "display": "parmesan rind or grated parmesan (optional)",
+            "option": "rind",
+            "display": "parmesan rind",
             "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "parmesan_cheese",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 28,
+                "serving_unit_norm": "g",
+                "calories_kcal": 111,
+                "protein_g": 10,
+                "total_fat_g": 7.3,
+                "saturated_fat_g": 4.8,
+                "total_carbs_g": 1,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 416,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (Parm. cheese)",
+                "notes": "Per 28 g (1 oz)."
+              }
+            ]
+          },
+          {
+            "option": "grated",
+            "display": "grated parmesan",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "parmesan_cheese",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Soup",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 28,
+                "serving_unit_norm": "g",
+                "calories_kcal": 111,
+                "protein_g": 10,
+                "total_fat_g": 7.3,
+                "saturated_fat_g": 4.8,
+                "total_carbs_g": 1,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 416,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (Parm. cheese)",
+                "notes": "Per 28 g (1 oz)."
+              }
+            ]
+          },
+          {
+            "option": "omit",
+            "display": "No parmesan",
+            "ratio": "0",
             "unit": "tbsp",
             "ingredient_id": "parmesan_cheese",
             "prep": "",
@@ -16863,7 +17300,7 @@
             ]
           }
         ],
-        "isChoice": false,
+        "isChoice": true,
         "section": "Soup"
       },
       "rice": {
@@ -17043,7 +17480,18 @@
       "Soup",
       "Finish"
     ],
-    "choices": {},
+    "choices": {
+      "chicken": {
+        "token": "chicken",
+        "label": "Chicken",
+        "default_option": "breasts"
+      },
+      "parmesan_rind": {
+        "token": "parmesan_rind",
+        "label": "Parmesan",
+        "default_option": "rind"
+      }
+    },
     "pan_sizes": [],
     "default_pan": null,
     "servings_per_batch": null,
@@ -17152,8 +17600,44 @@
         "token": "almonds",
         "options": [
           {
-            "option": "",
-            "display": "sliced or slivered almonds",
+            "option": "sliced",
+            "display": "sliced almonds",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "almonds",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "oz",
+                "calories_kcal": 165,
+                "protein_g": 6,
+                "total_fat_g": 14,
+                "saturated_fat_g": 1.1,
+                "total_carbs_g": 6,
+                "sugars_g": 1.2,
+                "fiber_g": 3.5,
+                "sodium_mg": 0.28,
+                "calcium_mg": 76.4,
+                "iron_mg": 1.1,
+                "potassium_mg": 208.2,
+                "vitamin_c_mg": 0,
+                "source": "USDA",
+                "notes": "Per 1 oz (28g), raw."
+              }
+            ]
+          },
+          {
+            "option": "slivered",
+            "display": "slivered almonds",
             "ratio": "1/2",
             "unit": "cup",
             "ingredient_id": "almonds",
@@ -17188,7 +17672,7 @@
             ]
           }
         ],
-        "isChoice": false,
+        "isChoice": true,
         "section": "Salad"
       },
       "chicken_breasts": {
@@ -17798,7 +18282,13 @@
       "Salad",
       "Chicken"
     ],
-    "choices": {},
+    "choices": {
+      "almonds": {
+        "token": "almonds",
+        "label": "Almonds",
+        "default_option": "sliced"
+      }
+    },
     "pan_sizes": [],
     "default_pan": null,
     "servings_per_batch": 2,
@@ -23878,7 +24368,7 @@
         "options": [
           {
             "option": "oil",
-            "display": "neutral oil (optional)",
+            "display": "neutral oil",
             "ratio": "2",
             "unit": "tbsp",
             "ingredient_id": "neutral-oil",
@@ -23914,7 +24404,7 @@
           },
           {
             "option": "vegan_butter",
-            "display": "vegan butter (optional)",
+            "display": "vegan butter",
             "ratio": "2",
             "unit": "tbsp",
             "ingredient_id": "vegan-butter",
@@ -23944,6 +24434,42 @@
                 "potassium_mg": 0,
                 "vitamin_c_mg": 0,
                 "source": "USDA (80% fat margarine)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          },
+          {
+            "option": "omit",
+            "display": "No batter fat",
+            "ratio": "0",
+            "unit": "tbsp",
+            "ingredient_id": "neutral-oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Pancakes",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 124,
+                "protein_g": 0,
+                "total_fat_g": 14,
+                "saturated_fat_g": 0.99,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (canola oil)",
                 "notes": "Per 1 Tbsp (14g)."
               }
             ]
@@ -25395,8 +25921,8 @@
         "token": "flour",
         "options": [
           {
-            "option": "",
-            "display": "all-purpose flour (or gluten-free 1:1 blend; if your blend does not include xanthan gum, add 1/4 tsp xanthan gum)",
+            "option": "wheat",
+            "display": "all-purpose flour",
             "ratio": "2 1/4",
             "unit": "cup",
             "ingredient_id": "wheat-flour",
@@ -25429,9 +25955,45 @@
                 "notes": "Per 1 cup (125g)."
               }
             ]
+          },
+          {
+            "option": "gf",
+            "display": "gluten-free 1:1 flour blend with xanthan gum",
+            "ratio": "2 1/4",
+            "unit": "cup",
+            "ingredient_id": "gf-flour-blend",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 440,
+                "protein_g": 8,
+                "total_fat_g": 4,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 92,
+                "sugars_g": 0,
+                "fiber_g": 4,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Good&Gather GF blend",
+                "notes": "Per 1 cup (120g)."
+              }
+            ]
           }
         ],
-        "isChoice": false
+        "isChoice": true
       },
       "salt": {
         "token": "salt",
@@ -25479,9 +26041,45 @@
         "token": "nuts",
         "options": [
           {
-            "option": "",
-            "display": "finely chopped nuts (optional; toasted pepitas or sunflower seeds work well, or omit for nut-free)",
+            "option": "include",
+            "display": "finely chopped nuts",
             "ratio": "3/4",
+            "unit": "cup",
+            "ingredient_id": "chopped-nuts",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 800,
+                "protein_g": 24,
+                "total_fat_g": 70,
+                "saturated_fat_g": 10,
+                "total_carbs_g": 20,
+                "sugars_g": 6,
+                "fiber_g": 12,
+                "sodium_mg": 10,
+                "calcium_mg": 150,
+                "iron_mg": 5,
+                "potassium_mg": 600,
+                "vitamin_c_mg": 1,
+                "source": "USDA",
+                "notes": "approx. mix"
+              }
+            ]
+          },
+          {
+            "option": "omit",
+            "display": "No nuts",
+            "ratio": "0",
             "unit": "cup",
             "ingredient_id": "chopped-nuts",
             "prep": "",
@@ -25515,7 +26113,7 @@
             ]
           }
         ],
-        "isChoice": false
+        "isChoice": true
       },
       "rolling_sugar": {
         "token": "rolling_sugar",
@@ -25566,13 +26164,23 @@
         "token": "butter_choice",
         "label": "Butter",
         "default_option": "butter"
+      },
+      "flour": {
+        "token": "flour",
+        "label": "Flour",
+        "default_option": "wheat"
+      },
+      "nuts": {
+        "token": "nuts",
+        "label": "Nuts",
+        "default_option": "include"
       }
     },
     "pan_sizes": [],
     "default_pan": null,
     "servings_per_batch": null,
     "compatibility_possible": {
-      "gluten_free": false,
+      "gluten_free": true,
       "egg_free": true,
       "dairy_free": true
     }
@@ -27936,7 +28544,7 @@
         "options": [
           {
             "option": "",
-            "display": "Basic Roll Dough (recipe; includes gluten-free options)",
+            "display": "Basic Roll Dough recipe",
             "ratio": "1",
             "unit": "recipe",
             "ingredient_id": "basic-roll-dough",
@@ -27978,8 +28586,8 @@
         "token": "flour",
         "options": [
           {
-            "option": "",
-            "display": "sifted all-purpose flour (or gluten-free flour blend)",
+            "option": "wheat",
+            "display": "sifted all-purpose flour",
             "ratio": "1",
             "unit": "cup",
             "ingredient_id": "wheat-flour",
@@ -28012,9 +28620,45 @@
                 "notes": "Per 1 cup (125g)."
               }
             ]
+          },
+          {
+            "option": "gf",
+            "display": "gluten-free flour blend",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "gf-flour-blend",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Streusel",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 440,
+                "protein_g": 8,
+                "total_fat_g": 4,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 92,
+                "sugars_g": 0,
+                "fiber_g": 4,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Good&Gather GF blend",
+                "notes": "Per 1 cup (120g)."
+              }
+            ]
           }
         ],
-        "isChoice": false,
+        "isChoice": true,
         "section": "Streusel"
       },
       "brown_sugar": {
@@ -28229,9 +28873,45 @@
         "token": "nuts",
         "options": [
           {
-            "option": "",
-            "display": "finely chopped nuts (optional)",
+            "option": "include",
+            "display": "finely chopped nuts",
             "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "chopped-nuts",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Streusel",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 800,
+                "protein_g": 24,
+                "total_fat_g": 70,
+                "saturated_fat_g": 10,
+                "total_carbs_g": 20,
+                "sugars_g": 6,
+                "fiber_g": 12,
+                "sodium_mg": 10,
+                "calcium_mg": 150,
+                "iron_mg": 5,
+                "potassium_mg": 600,
+                "vitamin_c_mg": 1,
+                "source": "USDA",
+                "notes": "approx. mix"
+              }
+            ]
+          },
+          {
+            "option": "omit",
+            "display": "No nuts",
+            "ratio": "0",
             "unit": "cup",
             "ingredient_id": "chopped-nuts",
             "prep": "",
@@ -28265,7 +28945,7 @@
             ]
           }
         ],
-        "isChoice": false,
+        "isChoice": true,
         "section": "Streusel"
       },
       "vanilla": {
@@ -28318,10 +28998,20 @@
       "Finish"
     ],
     "choices": {
+      "flour": {
+        "token": "flour",
+        "label": "Flour",
+        "default_option": "wheat"
+      },
       "streusel_fat": {
         "token": "streusel_fat",
         "label": "Streusel fat",
         "default_option": "butter"
+      },
+      "nuts": {
+        "token": "nuts",
+        "label": "Nuts",
+        "default_option": "include"
       }
     },
     "pan_sizes": [],
@@ -28619,8 +29309,44 @@
         "token": "oil",
         "options": [
           {
-            "option": "",
-            "display": "oil or cooking spray",
+            "option": "oil",
+            "display": "neutral oil",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "neutral-oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 124,
+                "protein_g": 0,
+                "total_fat_g": 14,
+                "saturated_fat_g": 0.99,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (canola oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          },
+          {
+            "option": "spray",
+            "display": "cooking spray",
             "ratio": "1",
             "unit": "tsp",
             "ingredient_id": "neutral-oil",
@@ -28655,11 +29381,17 @@
             ]
           }
         ],
-        "isChoice": false
+        "isChoice": true
       }
     },
     "ingredient_sections": [],
-    "choices": {},
+    "choices": {
+      "oil": {
+        "token": "oil",
+        "label": "Pan grease",
+        "default_option": "oil"
+      }
+    },
     "pan_sizes": [],
     "default_pan": null,
     "servings_per_batch": null,
@@ -31971,8 +32703,44 @@
         "token": "onion",
         "options": [
           {
-            "option": "",
-            "display": "red or white onion",
+            "option": "red",
+            "display": "red onion",
+            "ratio": "1",
+            "unit": "medium",
+            "ingredient_id": "onion",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 44,
+                "protein_g": 1.2,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 10,
+                "sugars_g": 4.7,
+                "fiber_g": 1.9,
+                "sodium_mg": 4,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (med. onion)",
+                "notes": "Per 1 medium (110g)."
+              }
+            ]
+          },
+          {
+            "option": "white",
+            "display": "white onion",
             "ratio": "1",
             "unit": "medium",
             "ingredient_id": "onion",
@@ -32007,7 +32775,7 @@
             ]
           }
         ],
-        "isChoice": false
+        "isChoice": true
       },
       "sea_salt": {
         "token": "sea_salt",
@@ -32263,7 +33031,13 @@
       }
     },
     "ingredient_sections": [],
-    "choices": {},
+    "choices": {
+      "onion": {
+        "token": "onion",
+        "label": "Onion",
+        "default_option": "red"
+      }
+    },
     "pan_sizes": [],
     "default_pan": null,
     "servings_per_batch": null,

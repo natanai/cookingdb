@@ -1,2 +1,4 @@
 token,label,default_option
 butter_choice,Butter,butter
+flour,Flour,wheat
+nuts,Nuts,include
