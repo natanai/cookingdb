@@ -441,6 +441,23 @@
     }
   },
   {
+    "id": "crunchy-chicken-salad",
+    "title": "Crunchy Chicken Salad",
+    "byline": "",
+    "categories": [
+      "Main Dishes",
+      "Salads",
+      "Gluten-Free",
+      "Dairy-Free"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "gluten-free-peanut-butter-cookies",
     "title": "Gluten-Free Peanut Butter Cookies",
     "byline": "",

@@ -1,0 +1,16 @@
+token,option,display,ratio,unit,ingredient_id,section
+almonds,,sliced or slivered almonds,1/2,cup,almonds,Salad
+chicken_breasts,,"bone-in, skin-on chicken breasts",3/4,lb,chicken-breast,Chicken
+olive_oil_chicken,,extra-virgin olive oil,1,tbsp,olive_oil,Chicken
+salt_chicken,,kosher salt,1/8,tsp,salt,Chicken
+black_pepper_chicken,,freshly ground black pepper,1/8,tsp,black-pepper,Chicken
+red_bell_peppers,,sliced red bell peppers,1,cup,red-bell-pepper,Salad
+scallions,,scallions,4,count,green-onion,Salad
+red_cabbage,,thinly sliced red cabbage,1,cup,purple-cabbage,Salad
+carrot,,thinly sliced carrot,1,cup,carrot,Salad
+sesame_seeds,,sesame seeds,2,tbsp,sesame-seeds,Salad
+tamari,,tamari,2,tbsp,tamari,Salad
+olive_oil_dressing,,extra-virgin olive oil,2,tbsp,olive_oil,Salad
+lime_juice,,fresh lime juice,2,tbsp,lime-juice,Salad
+salt_salad,,kosher salt,1/8,tsp,salt,Salad
+black_pepper_salad,,freshly ground black pepper,1/8,tsp,black-pepper,Salad

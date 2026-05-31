@@ -180,3 +180,5 @@ white-sugar,Granulated white sugar,false,false,false,1,tbsp,1 Tbsp,49,0,0,0,13,1
 whole-tomatoes,Whole tomatoes,false,false,false,1,count,1 can (28 oz),150,7,0.5,0.1,35,25,10,1400,100,3.5,1000,30,USDA,"canned, salted",can,oz,28,brandless default,Assumed 28 oz can.,,,,
 worcestershire_sauce,Worcestershire sauce,false,false,false,1,tbsp,1 Tbsp (17g),13,0.3,0,0,3.1,2.4,0,167,0,0,0,0,USDA (Worcestershire),Per 1 Tbsp (17g).,,,,,,,,,
 xanthan-gum,Xanthan gum,false,false,false,1,tsp,1 tsp,10,0,0,0,3,0,3,0,0,0,0,0,Label,thickener,,,,,,,,,
+red-bell-pepper,Red bell pepper,false,false,false,1,cup,1 cup sliced (92g),29,0.9,0.3,0.03,5.5,3.8,1.6,2,6,0.4,194,117,USDA (raw red sweet pepper),Per 1 cup sliced raw red bell pepper.,,,,,,,,,
+tamari,Tamari,false,false,false,1,tbsp,1 Tbsp (15ml),10,2,0,0,1,0,0,980,0,0,0,0,Label average,Per 1 Tbsp gluten-free tamari.,,,,,,,,,
