@@ -486,5 +486,21 @@
     "factor": 230,
     "source": "USDA FoodData Central (grapefruit common measure)",
     "notes": "Approx 1 medium grapefruit edible portion ≈ 230 g."
+  },
+  {
+    "ingredient_id": "zucchini",
+    "from_unit_norm": "cup",
+    "to_unit_norm": "g",
+    "factor": 124,
+    "source": "USDA FoodData Central",
+    "notes": "Approx 1 cup chopped raw zucchini = 124g."
+  },
+  {
+    "ingredient_id": "lemon-juice",
+    "from_unit_norm": "tbsp",
+    "to_unit_norm": "g",
+    "factor": 15,
+    "source": "USDA FoodData Central",
+    "notes": "Approx 1 Tbsp lemon juice = 15g."
   }
 ]

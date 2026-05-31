@@ -13292,6 +13292,645 @@
     }
   },
   {
+    "id": "cozy-rainbow-vegetable-soup",
+    "title": "Cozy Rainbow Vegetable Soup",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Soups & Stews",
+      "Vegan",
+      "Gluten-Free",
+      "Dairy-Free",
+      "Easy"
+    ],
+    "family": "",
+    "notes": "Also great with peas!",
+    "nutrition_estimate": {
+      "calories_total": 414.4990163934426,
+      "calories_per_serving": 414.4990163934426,
+      "sodium_total_mg": 376.0111475409836,
+      "sat_fat_total_g": 0.184,
+      "servings_estimate": 1,
+      "covered_ingredients": 11,
+      "total_ingredients": 11,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. In a large pot, combine the {{butternut_squash}}, {{red_bell_pepper}}, {{zucchini}}, {{carrot}}, {{red_onion}}, {{green_onion}}, {{celery_stalks}}, {{celery_leaves}}, {{garlic}}, and {{water}}. Reserve the {{lemon_juice}}, {{salt}}, and {{green_onion_garnish}}.\n2. Bring the soup to a boil, then reduce the heat to medium. Simmer until the carrots and squash are tender, about 20 to 30 minutes.\n3. Stir in the {{lemon_juice}} and season with {{salt}}.\n4. Garnish with the {{green_onion_garnish}} and serve warm.",
+    "steps": [
+      {
+        "section": null,
+        "text": "In a large pot, combine the {{butternut_squash}}, {{red_bell_pepper}}, {{zucchini}}, {{carrot}}, {{red_onion}}, {{green_onion}}, {{celery_stalks}}, {{celery_leaves}}, {{garlic}}, and {{water}}. Reserve the {{lemon_juice}}, {{salt}}, and {{green_onion_garnish}}."
+      },
+      {
+        "section": null,
+        "text": "Bring the soup to a boil, then reduce the heat to medium. Simmer until the carrots and squash are tender, about 20 to 30 minutes."
+      },
+      {
+        "section": null,
+        "text": "Stir in the {{lemon_juice}} and season with {{salt}}."
+      },
+      {
+        "section": null,
+        "text": "Garnish with the {{green_onion_garnish}} and serve warm."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "butternut_squash",
+      "red_bell_pepper",
+      "zucchini",
+      "carrot",
+      "red_onion",
+      "green_onion",
+      "celery_stalks",
+      "celery_leaves",
+      "garlic",
+      "water",
+      "lemon_juice",
+      "salt",
+      "green_onion_garnish",
+      "lemon_juice",
+      "salt",
+      "green_onion_garnish"
+    ],
+    "token_order": [
+      "butternut_squash",
+      "red_bell_pepper",
+      "zucchini",
+      "carrot",
+      "red_onion",
+      "green_onion",
+      "celery_stalks",
+      "celery_leaves",
+      "garlic",
+      "water",
+      "lemon_juice",
+      "salt",
+      "green_onion_garnish"
+    ],
+    "ingredients": {
+      "butternut_squash": {
+        "token": "butternut_squash",
+        "options": [
+          {
+            "option": "",
+            "display": "butternut squash",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "butternut-squash",
+            "prep": "diced",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 63,
+                "protein_g": 1.4,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 16,
+                "sugars_g": 3.1,
+                "fiber_g": 2.8,
+                "sodium_mg": 6,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (butternut squash)",
+                "notes": "Per 1 cup cubes (140g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "red_bell_pepper": {
+        "token": "red_bell_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "red bell pepper",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "red-bell-pepper",
+            "prep": "diced",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 29,
+                "protein_g": 0.9,
+                "total_fat_g": 0.3,
+                "saturated_fat_g": 0.03,
+                "total_carbs_g": 5.5,
+                "sugars_g": 3.8,
+                "fiber_g": 1.6,
+                "sodium_mg": 2,
+                "calcium_mg": 6,
+                "iron_mg": 0.4,
+                "potassium_mg": 194,
+                "vitamin_c_mg": 117,
+                "source": "USDA (raw red sweet pepper)",
+                "notes": "Per 1 cup sliced raw red bell pepper."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "zucchini": {
+        "token": "zucchini",
+        "options": [
+          {
+            "option": "",
+            "display": "green squash",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "zucchini",
+            "prep": "diced",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 17,
+                "protein_g": 1.2,
+                "total_fat_g": 0.3,
+                "saturated_fat_g": 0.1,
+                "total_carbs_g": 3.1,
+                "sugars_g": 2.5,
+                "fiber_g": 1,
+                "sodium_mg": 8,
+                "calcium_mg": 16,
+                "iron_mg": 0.4,
+                "potassium_mg": 261,
+                "vitamin_c_mg": 17.9,
+                "source": "USDA FoodData Central",
+                "notes": "Approx per 100g (raw)"
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "carrot": {
+        "token": "carrot",
+        "options": [
+          {
+            "option": "",
+            "display": "carrot",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "carrot",
+            "prep": "diced",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 61,
+                "serving_unit_norm": "g",
+                "calories_kcal": 25,
+                "protein_g": 0.6,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 6,
+                "sugars_g": 2.9,
+                "fiber_g": 1.7,
+                "sodium_mg": 42,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (medium carrot)",
+                "notes": "Per 61 g (1 medium)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "red_onion": {
+        "token": "red_onion",
+        "options": [
+          {
+            "option": "",
+            "display": "red onion",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "onion",
+            "prep": "diced",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 44,
+                "protein_g": 1.2,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 10,
+                "sugars_g": 4.7,
+                "fiber_g": 1.9,
+                "sodium_mg": 4,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (med. onion)",
+                "notes": "Per 1 medium (110g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "green_onion": {
+        "token": "green_onion",
+        "options": [
+          {
+            "option": "",
+            "display": "green onion",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "green-onion",
+            "prep": "chopped",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 5,
+                "protein_g": 0.27,
+                "total_fat_g": 0.03,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.1,
+                "sugars_g": 0.4,
+                "fiber_g": 0.4,
+                "sodium_mg": 2.4,
+                "calcium_mg": 10.8,
+                "iron_mg": 0.22,
+                "potassium_mg": 41.4,
+                "vitamin_c_mg": 2.8,
+                "source": "USDA",
+                "notes": "Per 1 medium (15g), raw scallion."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "celery_stalks": {
+        "token": "celery_stalks",
+        "options": [
+          {
+            "option": "",
+            "display": "celery stalks",
+            "ratio": "2",
+            "unit": "cup",
+            "ingredient_id": "celery",
+            "prep": "chopped",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 6,
+                "protein_g": 0.3,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.2,
+                "sugars_g": 0.5,
+                "fiber_g": 0.6,
+                "sodium_mg": 32,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (raw celery)",
+                "notes": "Per 1 stalk (40g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "celery_leaves": {
+        "token": "celery_leaves",
+        "options": [
+          {
+            "option": "",
+            "display": "celery leaves",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "celery",
+            "prep": "chopped",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 6,
+                "protein_g": 0.3,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.2,
+                "sugars_g": 0.5,
+                "fiber_g": 0.6,
+                "sodium_mg": 32,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (raw celery)",
+                "notes": "Per 1 stalk (40g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "garlic": {
+        "token": "garlic",
+        "options": [
+          {
+            "option": "",
+            "display": "garlic",
+            "ratio": "3",
+            "unit": "clove",
+            "ingredient_id": "garlic",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "clove",
+                "calories_kcal": 4,
+                "protein_g": 0.2,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.9,
+                "sugars_g": 0.03,
+                "fiber_g": 0.1,
+                "sodium_mg": 0.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (garlic)",
+                "notes": "Per 1 clove (3g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "water": {
+        "token": "water",
+        "options": [
+          {
+            "option": "",
+            "display": "water",
+            "ratio": "4",
+            "unit": "cup",
+            "ingredient_id": "water",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(plain water)",
+                "notes": "Per 1 cup (240ml)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "lemon_juice": {
+        "token": "lemon_juice",
+        "options": [
+          {
+            "option": "",
+            "display": "lemon juice",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "lemon-juice",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 22,
+                "protein_g": 0.4,
+                "total_fat_g": 0.2,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 6.9,
+                "sugars_g": 2.5,
+                "fiber_g": 0.3,
+                "sodium_mg": 1,
+                "calcium_mg": 6,
+                "iron_mg": 0.1,
+                "potassium_mg": 103,
+                "vitamin_c_mg": 38.7,
+                "source": "USDA FoodData Central",
+                "notes": "Approx per 100g (raw)"
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "salt",
+            "prep": "to taste",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "green_onion_garnish": {
+        "token": "green_onion_garnish",
+        "options": [
+          {
+            "option": "",
+            "display": "green onion",
+            "ratio": "",
+            "unit": "",
+            "ingredient_id": "green-onion",
+            "prep": "for garnish",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 5,
+                "protein_g": 0.27,
+                "total_fat_g": 0.03,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 1.1,
+                "sugars_g": 0.4,
+                "fiber_g": 0.4,
+                "sodium_mg": 2.4,
+                "calcium_mg": 10.8,
+                "iron_mg": 0.22,
+                "potassium_mg": 41.4,
+                "vitamin_c_mg": 2.8,
+                "source": "USDA",
+                "notes": "Per 1 medium (15g), raw scallion."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": 4,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "creamy-garlic-chicken",
     "title": "Creamy Garlic Chicken",
     "byline": "",
