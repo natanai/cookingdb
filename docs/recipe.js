@@ -544,29 +544,30 @@ function htmlToPlainText(value) {
   return doc.body?.textContent || '';
 }
 
-function appendPrintLines(listEl, lines, missingText) {
+function appendPrintSections(listEl, sections, missingText) {
   listEl.replaceChildren();
 
-  if (!lines.length && missingText) {
+  const hasLines = Array.isArray(sections) && sections.some((section) => section.lines?.length);
+  if (!hasLines && missingText) {
     const li = document.createElement('li');
     li.textContent = missingText;
     listEl.appendChild(li);
     return;
   }
 
-  let lastSection = null;
-  lines.forEach((line) => {
-    if (line.section && line.section !== lastSection) {
+  sections.forEach((section) => {
+    if (section.section) {
       const sectionLi = document.createElement('li');
       sectionLi.className = 'print-section-header';
-      sectionLi.textContent = line.section;
+      sectionLi.textContent = section.section;
       listEl.appendChild(sectionLi);
-      lastSection = line.section;
     }
 
-    const li = document.createElement('li');
-    li.textContent = htmlToPlainText(line.text || '');
-    listEl.appendChild(li);
+    (section.lines || []).forEach((line) => {
+      const li = document.createElement('li');
+      li.textContent = htmlToPlainText(line.text || '');
+      listEl.appendChild(li);
+    });
   });
 }
 
@@ -583,14 +584,20 @@ function renderPrintRecipe(recipe, state) {
   titleEl.textContent = name ? `${title || 'Recipe'} — ${name}` : title || 'Recipe';
 
   const printState = { ...state, recipe };
-  appendPrintLines(
+
+  const ingredientLines = renderIngredientLines(recipe, printState);
+  const ingredientSections = groupLinesBySection(ingredientLines, recipe.ingredient_sections || []);
+  appendPrintSections(
     ingredientsEl,
-    renderIngredientLines(recipe, printState),
+    ingredientSections,
     'This recipe was imported without full ingredient data.'
   );
-  appendPrintLines(
+
+  const stepLines = renderStepLines(recipe, printState);
+  const stepSections = groupLinesBySection(stepLines, recipe.step_sections || []);
+  appendPrintSections(
     stepsEl,
-    renderStepLines(recipe, printState),
+    stepSections,
     'This recipe was imported without step text.'
   );
 
