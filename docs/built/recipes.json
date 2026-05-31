@@ -20261,6 +20261,540 @@
     }
   },
   {
+    "id": "lemon-pepper-chicken",
+    "title": "Lemon Pepper Chicken",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Main Dishes",
+      "Chicken",
+      "Dairy-Free Option",
+      "Gluten-Free Option"
+    ],
+    "family": "",
+    "notes": "Prep time: 10 minutes. Total time: 25 minutes. Tools: large pan, mixing bowl, plate. Difficulty: medium. Use thin-cut chicken breasts for quick, even cooking.",
+    "nutrition_estimate": {
+      "calories_total": 1376.8666666666666,
+      "calories_per_serving": 275.37333333333333,
+      "sodium_total_mg": 3678.933333333333,
+      "sat_fat_total_g": 22.96666666666667,
+      "servings_estimate": 5,
+      "covered_ingredients": 8,
+      "total_ingredients": 8,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Mix {{flour}}, {{lemon_pepper}}, and {{salt}} in a mixing bowl.\n2. Heat {{olive_oil}} in a large pan over medium-high heat.\n3. Dredge {{chicken_breasts}} in the seasoned {{flour}} mixture, shaking off excess.\n4. Cook {{chicken_breasts}} for 5–6 minutes per side, or until cooked through.\n5. Remove {{chicken_breasts}} from the pan, place on a plate, and cover to keep warm.\n6. Warm {{sauce_fat}} in the pan, then whisk in {{lemon_juice}} and season with additional {{salt}} to taste.\n7. Spoon the lemon sauce over {{chicken_breasts}} and sprinkle with {{parsley}}. Enjoy.",
+    "steps": [
+      {
+        "section": "Prep",
+        "text": "Mix {{flour}}, {{lemon_pepper}}, and {{salt}} in a mixing bowl."
+      },
+      {
+        "section": "Cook Chicken",
+        "text": "Heat {{olive_oil}} in a large pan over medium-high heat."
+      },
+      {
+        "section": "Cook Chicken",
+        "text": "Dredge {{chicken_breasts}} in the seasoned {{flour}} mixture, shaking off excess."
+      },
+      {
+        "section": "Cook Chicken",
+        "text": "Cook {{chicken_breasts}} for 5–6 minutes per side, or until cooked through."
+      },
+      {
+        "section": "Cook Chicken",
+        "text": "Remove {{chicken_breasts}} from the pan, place on a plate, and cover to keep warm."
+      },
+      {
+        "section": "Make Sauce",
+        "text": "Warm {{sauce_fat}} in the pan, then whisk in {{lemon_juice}} and season with additional {{salt}} to taste."
+      },
+      {
+        "section": "Finish",
+        "text": "Spoon the lemon sauce over {{chicken_breasts}} and sprinkle with {{parsley}}. Enjoy."
+      }
+    ],
+    "step_sections": [
+      "Prep",
+      "Cook Chicken",
+      "Make Sauce",
+      "Finish"
+    ],
+    "tokens_used": [
+      "flour",
+      "lemon_pepper",
+      "salt",
+      "olive_oil",
+      "chicken_breasts",
+      "flour",
+      "chicken_breasts",
+      "chicken_breasts",
+      "sauce_fat",
+      "lemon_juice",
+      "salt",
+      "chicken_breasts",
+      "parsley"
+    ],
+    "token_order": [
+      "flour",
+      "lemon_pepper",
+      "salt",
+      "olive_oil",
+      "chicken_breasts",
+      "sauce_fat",
+      "lemon_juice",
+      "parsley"
+    ],
+    "ingredients": {
+      "chicken_breasts": {
+        "token": "chicken_breasts",
+        "options": [
+          {
+            "option": "",
+            "display": "thin-cut chicken breasts",
+            "ratio": "1 1/2",
+            "unit": "lb",
+            "ingredient_id": "chicken-breast",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Chicken",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "lb",
+                "calories_kcal": 520,
+                "protein_g": 96,
+                "total_fat_g": 14,
+                "saturated_fat_g": 3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 308,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate of chicken breast)",
+                "notes": "Per 1 lb raw boneless skinless breast (~453g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Chicken"
+      },
+      "flour": {
+        "token": "flour",
+        "options": [
+          {
+            "option": "wheat",
+            "display": "flour",
+            "ratio": "1/3",
+            "unit": "cup",
+            "ingredient_id": "wheat-flour",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dredge",
+            "dietary": {
+              "gluten_free": false,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 455,
+                "protein_g": 12.9,
+                "total_fat_g": 1.2,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 95.4,
+                "sugars_g": 0.3,
+                "fiber_g": 3.4,
+                "sodium_mg": 2.5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 cup (125g)."
+              }
+            ]
+          },
+          {
+            "option": "gluten_free",
+            "display": "gluten-free flour",
+            "ratio": "1/3",
+            "unit": "cup",
+            "ingredient_id": "gf-flour-blend",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dredge",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 440,
+                "protein_g": 8,
+                "total_fat_g": 4,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 92,
+                "sugars_g": 0,
+                "fiber_g": 4,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Good&Gather GF blend",
+                "notes": "Per 1 cup (120g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": true,
+        "section": "Dredge"
+      },
+      "lemon_pepper": {
+        "token": "lemon_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "lemon pepper seasoning",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "lemon-pepper-seasoning",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dredge",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 250,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Generic (brand label varies)",
+                "notes": "Sodium varies widely by brand; set as placeholder. Adjust to match the specific label if desired."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Dredge"
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dredge",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Dredge"
+      },
+      "olive_oil": {
+        "token": "olive_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "olive oil",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "olive_oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Cooking",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.9,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Cooking"
+      },
+      "sauce_fat": {
+        "token": "sauce_fat",
+        "options": [
+          {
+            "option": "butter",
+            "display": "butter",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "butter",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Sauce",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": false
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 102,
+                "protein_g": 0.1,
+                "total_fat_g": 11.5,
+                "saturated_fat_g": 7.3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 82,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          },
+          {
+            "option": "olive_oil",
+            "display": "olive oil",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "olive_oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Sauce",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.9,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": true,
+        "section": "Sauce"
+      },
+      "lemon_juice": {
+        "token": "lemon_juice",
+        "options": [
+          {
+            "option": "",
+            "display": "lemon juice",
+            "ratio": "2",
+            "unit": "tsp",
+            "ingredient_id": "lemon-juice",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Sauce",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 22,
+                "protein_g": 0.4,
+                "total_fat_g": 0.2,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 6.9,
+                "sugars_g": 2.5,
+                "fiber_g": 0.3,
+                "sodium_mg": 1,
+                "calcium_mg": 6,
+                "iron_mg": 0.1,
+                "potassium_mg": 103,
+                "vitamin_c_mg": 38.7,
+                "source": "USDA FoodData Central",
+                "notes": "Approx per 100g (raw)"
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Sauce"
+      },
+      "parsley": {
+        "token": "parsley",
+        "options": [
+          {
+            "option": "",
+            "display": "chopped parsley",
+            "ratio": "1",
+            "unit": "tbsp",
+            "ingredient_id": "parsley",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Finish",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 1,
+                "protein_g": 0.1,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.2,
+                "sugars_g": 0.1,
+                "fiber_g": 0.1,
+                "sodium_mg": 2,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (parsley)",
+                "notes": "Per 1 Tbsp (4g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Finish"
+      }
+    },
+    "ingredient_sections": [
+      "Chicken",
+      "Dredge",
+      "Cooking",
+      "Sauce",
+      "Finish"
+    ],
+    "choices": {
+      "flour": {
+        "token": "flour",
+        "label": "Dredging flour",
+        "default_option": "wheat"
+      },
+      "sauce_fat": {
+        "token": "sauce_fat",
+        "label": "Sauce fat",
+        "default_option": "butter"
+      }
+    },
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": 4,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "lorenes-vegetable-soup",
     "title": "Vegetable Soup",
     "byline": "Lorene’s",

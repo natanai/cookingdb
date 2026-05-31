@@ -605,6 +605,23 @@
     }
   },
   {
+    "id": "lemon-pepper-chicken",
+    "title": "Lemon Pepper Chicken",
+    "byline": "",
+    "categories": [
+      "Main Dishes",
+      "Chicken",
+      "Dairy-Free Option",
+      "Gluten-Free Option"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "lorenes-vegetable-soup",
     "title": "Vegetable Soup",
     "byline": "Lorene’s",

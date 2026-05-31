@@ -1,0 +1,11 @@
+token,display,ingredient_id,ratio,unit,option,section
+chicken_breasts,thin-cut chicken breasts,chicken-breast,1 1/2,lb,,Chicken
+flour,flour,wheat-flour,1/3,cup,wheat,Dredge
+flour,gluten-free flour,gf-flour-blend,1/3,cup,gluten_free,Dredge
+lemon_pepper,lemon pepper seasoning,lemon-pepper-seasoning,1,tbsp,,Dredge
+salt,salt,salt,1,tsp,,Dredge
+olive_oil,olive oil,olive_oil,2,tbsp,,Cooking
+sauce_fat,butter,butter,2,tbsp,butter,Sauce
+sauce_fat,olive oil,olive_oil,2,tbsp,olive_oil,Sauce
+lemon_juice,lemon juice,lemon-juice,2,tsp,,Sauce
+parsley,chopped parsley,parsley,1,tbsp,,Finish
