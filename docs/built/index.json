@@ -429,6 +429,24 @@
     }
   },
   {
+    "id": "cozy-rainbow-vegetable-soup",
+    "title": "Cozy Rainbow Vegetable Soup",
+    "byline": "",
+    "categories": [
+      "Soups & Stews",
+      "Vegan",
+      "Gluten-Free",
+      "Dairy-Free",
+      "Easy"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "creamy-garlic-chicken",
     "title": "Creamy Garlic Chicken",
     "byline": "",
