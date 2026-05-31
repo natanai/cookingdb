@@ -41,4 +41,18 @@ if (!styles.includes('visibility: hidden') || !styles.includes('visibility: visi
   throw new Error('Print stylesheet should explicitly hide non-print UI and reveal #print-recipe.');
 }
 
+const negativeSectionHeaderMarginPattern =
+  /#print-recipe\s+\.print-section-header\s*\{[^}]*margin(?:-left)?\s*:[^;}]*-\s*(?:\d|\.)/;
+
+if (negativeSectionHeaderMarginPattern.test(styles)) {
+  throw new Error('Print section headers must not use negative margins; they can be clipped in print preview.');
+}
+
+const negativePrintMarginPattern =
+  /#print-recipe[^{}]*\{[^{}]*margin(?:-left)?\s*:[^;}]*-\s*(?:\d|\.)/;
+
+if (negativePrintMarginPattern.test(styles)) {
+  throw new Error('Print layout should not use negative margins inside #print-recipe.');
+}
+
 console.log('Print contract passed');
