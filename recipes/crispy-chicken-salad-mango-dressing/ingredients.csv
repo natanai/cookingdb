@@ -1,0 +1,14 @@
+token,option,display,ratio,unit,ingredient_id,section
+chicken,,"boneless, skinless chicken breast, cubed",1,lb,chicken-breast,Salad
+gluten_free_bread_crumbs,,gluten-free bread crumbs,1/2,cup,gluten-free-bread-crumbs,Salad
+salt_chicken,,salt,3/4,tsp,salt,Salad
+garlic_powder_chicken,,garlic powder,1,tsp,garlic-powder,Salad
+onion_powder,,onion powder,1,tsp,onion_powder,Salad
+olive_oil,,olive oil,1/4,cup,olive_oil,Salad
+salad_mix,,salad mix of choice,4,cups,salad-mix,Salad
+mango,,cubed mango,1,cup,mango,Dressing
+coconut_cream,,coconut cream,2,tbsp,coconut-cream,Dressing
+lemon_juice,,lemon juice,1,tsp,lemon,Dressing
+garlic_powder_dressing,,garlic powder,1,tsp,garlic-powder,Dressing
+ginger,,minced ginger,1/2,tbsp,ginger,Dressing
+sea_salt,,sea salt,1/2,tsp,salt,Dressing

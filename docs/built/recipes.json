@@ -13488,6 +13488,670 @@
     }
   },
   {
+    "id": "crispy-chicken-salad-mango-dressing",
+    "title": "Crispy Chicken Salad with Mango Dressing",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Main Dishes",
+      "Salads",
+      "Gluten-Free",
+      "Dairy-Free",
+      "Easy"
+    ],
+    "family": "",
+    "notes": "Prep time: 20 minutes. Total time: 35 minutes. Tools: blender. Difficulty: easy. Use enough salad mix for four entree salads.",
+    "nutrition_estimate": {
+      "calories_total": 1563.37,
+      "calories_per_serving": 312.674,
+      "sodium_total_mg": 3649.36,
+      "sat_fat_total_g": 28.302199999999996,
+      "servings_estimate": 5,
+      "covered_ingredients": 13,
+      "total_ingredients": 13,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Preheat the oven to 425°F. Line a baking sheet with parchment paper or lightly oil it.\n2. Mix {{gluten_free_bread_crumbs}}, {{salt_chicken}}, {{onion_powder}}, and {{garlic_powder_chicken}} in a shallow bowl.\n3. Dip or roll {{chicken}} in {{olive_oil}}, then roll the chicken in the bread crumb mixture to coat.\n4. Spread the coated chicken on the prepared baking sheet and bake for 10–14 minutes, until cooked through.\n5. Put {{mango}}, {{coconut_cream}}, {{lemon_juice}}, {{garlic_powder_dressing}}, {{ginger}}, and {{sea_salt}} in a blender and blend until smooth.\n6. Layer {{salad_mix}} in bowls with the mango dressing and crispy chicken, then serve.",
+    "steps": [
+      {
+        "section": "Chicken",
+        "text": "Preheat the oven to 425°F. Line a baking sheet with parchment paper or lightly oil it."
+      },
+      {
+        "section": "Chicken",
+        "text": "Mix {{gluten_free_bread_crumbs}}, {{salt_chicken}}, {{onion_powder}}, and {{garlic_powder_chicken}} in a shallow bowl."
+      },
+      {
+        "section": "Chicken",
+        "text": "Dip or roll {{chicken}} in {{olive_oil}}, then roll the chicken in the bread crumb mixture to coat."
+      },
+      {
+        "section": "Chicken",
+        "text": "Spread the coated chicken on the prepared baking sheet and bake for 10–14 minutes, until cooked through."
+      },
+      {
+        "section": "Dressing",
+        "text": "Put {{mango}}, {{coconut_cream}}, {{lemon_juice}}, {{garlic_powder_dressing}}, {{ginger}}, and {{sea_salt}} in a blender and blend until smooth."
+      },
+      {
+        "section": "Serve",
+        "text": "Layer {{salad_mix}} in bowls with the mango dressing and crispy chicken, then serve."
+      }
+    ],
+    "step_sections": [
+      "Chicken",
+      "Dressing",
+      "Serve"
+    ],
+    "tokens_used": [
+      "gluten_free_bread_crumbs",
+      "salt_chicken",
+      "onion_powder",
+      "garlic_powder_chicken",
+      "chicken",
+      "olive_oil",
+      "mango",
+      "coconut_cream",
+      "lemon_juice",
+      "garlic_powder_dressing",
+      "ginger",
+      "sea_salt",
+      "salad_mix"
+    ],
+    "token_order": [
+      "gluten_free_bread_crumbs",
+      "salt_chicken",
+      "onion_powder",
+      "garlic_powder_chicken",
+      "chicken",
+      "olive_oil",
+      "mango",
+      "coconut_cream",
+      "lemon_juice",
+      "garlic_powder_dressing",
+      "ginger",
+      "sea_salt",
+      "salad_mix"
+    ],
+    "ingredients": {
+      "chicken": {
+        "token": "chicken",
+        "options": [
+          {
+            "option": "",
+            "display": "boneless, skinless chicken breast, cubed",
+            "ratio": "1",
+            "unit": "lb",
+            "ingredient_id": "chicken-breast",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "lb",
+                "calories_kcal": 520,
+                "protein_g": 96,
+                "total_fat_g": 14,
+                "saturated_fat_g": 3,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 308,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate of chicken breast)",
+                "notes": "Per 1 lb raw boneless skinless breast (~453g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "gluten_free_bread_crumbs": {
+        "token": "gluten_free_bread_crumbs",
+        "options": [
+          {
+            "option": "",
+            "display": "gluten-free bread crumbs",
+            "ratio": "1/2",
+            "unit": "cup",
+            "ingredient_id": "gluten-free-bread-crumbs",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 427,
+                "protein_g": 7,
+                "total_fat_g": 6,
+                "saturated_fat_g": 1,
+                "total_carbs_g": 84,
+                "sugars_g": 7,
+                "fiber_g": 4,
+                "sodium_mg": 736,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Estimated from gluten-free bread crumbs label average",
+                "notes": "Per 1 cup, aligned to bread crumb volume for recipe scaling."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "salt_chicken": {
+        "token": "salt_chicken",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "3/4",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "garlic_powder_chicken": {
+        "token": "garlic_powder_chicken",
+        "options": [
+          {
+            "option": "",
+            "display": "garlic powder",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "garlic-powder",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 10,
+                "protein_g": 0.5,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.3,
+                "sugars_g": 0.7,
+                "fiber_g": 0.3,
+                "sodium_mg": 1.9,
+                "calcium_mg": 2,
+                "iron_mg": 0.1,
+                "potassium_mg": 37,
+                "vitamin_c_mg": 0,
+                "source": "USDA (garlic powder)",
+                "notes": "Per 1 tsp (3.1g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "onion_powder": {
+        "token": "onion_powder",
+        "options": [
+          {
+            "option": "",
+            "display": "onion powder",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "onion_powder",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 10,
+                "protein_g": 0.3,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.3,
+                "sugars_g": 0.9,
+                "fiber_g": 0.4,
+                "sodium_mg": 2,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (onion powder)",
+                "notes": "Per 1 tsp (2.8g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "olive_oil": {
+        "token": "olive_oil",
+        "options": [
+          {
+            "option": "",
+            "display": "olive oil",
+            "ratio": "1/4",
+            "unit": "cup",
+            "ingredient_id": "olive_oil",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 119,
+                "protein_g": 0,
+                "total_fat_g": 13.5,
+                "saturated_fat_g": 1.9,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 0,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (olive oil)",
+                "notes": "Per 1 Tbsp (14g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "salad_mix": {
+        "token": "salad_mix",
+        "options": [
+          {
+            "option": "",
+            "display": "salad mix of choice",
+            "ratio": "4",
+            "unit": "cups",
+            "ingredient_id": "salad-mix",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Salad",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 10,
+                "protein_g": 1,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2,
+                "sugars_g": 1,
+                "fiber_g": 1,
+                "sodium_mg": 20,
+                "calcium_mg": 40,
+                "iron_mg": 1,
+                "potassium_mg": 180,
+                "vitamin_c_mg": 20,
+                "source": "USDA-style mixed salad greens estimate",
+                "notes": "Per 1 cup loose mixed greens; varies by salad mix."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Salad"
+      },
+      "mango": {
+        "token": "mango",
+        "options": [
+          {
+            "option": "",
+            "display": "cubed mango",
+            "ratio": "1",
+            "unit": "cup",
+            "ingredient_id": "mango",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dressing",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "cup",
+                "calories_kcal": 99,
+                "protein_g": 1.4,
+                "total_fat_g": 0.6,
+                "saturated_fat_g": 0.2,
+                "total_carbs_g": 25,
+                "sugars_g": 22.5,
+                "fiber_g": 2.6,
+                "sodium_mg": 2,
+                "calcium_mg": 18,
+                "iron_mg": 0.3,
+                "potassium_mg": 277,
+                "vitamin_c_mg": 60,
+                "source": "USDA (raw mango)",
+                "notes": "Per 1 cup pieces (165g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Dressing"
+      },
+      "coconut_cream": {
+        "token": "coconut_cream",
+        "options": [
+          {
+            "option": "",
+            "display": "coconut cream",
+            "ratio": "2",
+            "unit": "tbsp",
+            "ingredient_id": "coconut-cream",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dressing",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tbsp",
+                "calories_kcal": 90,
+                "protein_g": 0.8,
+                "total_fat_g": 9.5,
+                "saturated_fat_g": 8.5,
+                "total_carbs_g": 1,
+                "sugars_g": 1,
+                "fiber_g": 0,
+                "sodium_mg": 5,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (coconut cream)",
+                "notes": "Per 1 Tbsp (15g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Dressing"
+      },
+      "lemon_juice": {
+        "token": "lemon_juice",
+        "options": [
+          {
+            "option": "",
+            "display": "lemon juice",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "lemon",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dressing",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 17,
+                "protein_g": 0.6,
+                "total_fat_g": 0.2,
+                "saturated_fat_g": 0.02,
+                "total_carbs_g": 5.4,
+                "sugars_g": 1.5,
+                "fiber_g": 1.6,
+                "sodium_mg": 1,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (raw lemon)",
+                "notes": "Per 1 medium (58g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Dressing"
+      },
+      "garlic_powder_dressing": {
+        "token": "garlic_powder_dressing",
+        "options": [
+          {
+            "option": "",
+            "display": "garlic powder",
+            "ratio": "1",
+            "unit": "tsp",
+            "ingredient_id": "garlic-powder",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dressing",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 10,
+                "protein_g": 0.5,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 2.3,
+                "sugars_g": 0.7,
+                "fiber_g": 0.3,
+                "sodium_mg": 1.9,
+                "calcium_mg": 2,
+                "iron_mg": 0.1,
+                "potassium_mg": 37,
+                "vitamin_c_mg": 0,
+                "source": "USDA (garlic powder)",
+                "notes": "Per 1 tsp (3.1g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Dressing"
+      },
+      "ginger": {
+        "token": "ginger",
+        "options": [
+          {
+            "option": "",
+            "display": "minced ginger",
+            "ratio": "1/2",
+            "unit": "tbsp",
+            "ingredient_id": "ginger",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dressing",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 2,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0.4,
+                "sugars_g": 0,
+                "fiber_g": 0.1,
+                "sodium_mg": 0.3,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (ginger root)",
+                "notes": "Per 1 tsp grated (2g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Dressing"
+      },
+      "sea_salt": {
+        "token": "sea_salt",
+        "options": [
+          {
+            "option": "",
+            "display": "sea salt",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": "Dressing",
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false,
+        "section": "Dressing"
+      }
+    },
+    "ingredient_sections": [
+      "Salad",
+      "Dressing"
+    ],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": 4,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "crockpot-hearty-chicken-and-rice-soup",
     "title": "Crockpot Hearty Chicken and Rice Soup",
     "byline": "",

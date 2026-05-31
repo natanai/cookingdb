@@ -426,6 +426,24 @@
     }
   },
   {
+    "id": "crispy-chicken-salad-mango-dressing",
+    "title": "Crispy Chicken Salad with Mango Dressing",
+    "byline": "",
+    "categories": [
+      "Main Dishes",
+      "Salads",
+      "Gluten-Free",
+      "Dairy-Free",
+      "Easy"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "crockpot-hearty-chicken-and-rice-soup",
     "title": "Crockpot Hearty Chicken and Rice Soup",
     "byline": "",
