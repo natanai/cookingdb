@@ -18328,36 +18328,31 @@
     "steps_raw": "1. Preheat the oven to 350°F. Line a baking sheet with parchment paper.\n2. On the prepared baking sheet, toss together {{pepitas}}, {{topping_olive_oil}}, {{maple_syrup}}, {{cinnamon}}, and a pinch of {{topping_salt}}. Arrange in a single layer. Lay {{prosciutto}} flat around the pepitas. Bake for 10–15 minutes, until the pepitas are toasted and the prosciutto is crisp.\n3. Meanwhile, in a large salad bowl, combine {{kale}}, thinly sliced {{apples}}, and {{pomegranate_arils}}.\n4. Heat {{vinaigrette_olive_oil}} in a medium skillet over high heat. When the oil shimmers, add {{shallot}} and cook until fragrant, 2–3 minutes. Remove from the heat and let cool slightly.\n5. Stir {{apple_cider_vinegar}}, {{fig_preserves}}, and {{thyme}} into the warm shallot oil. Season with {{vinaigrette_salt}}, {{black_pepper}}, and a pinch of {{red_pepper_flakes}}.\n6. Pour the cider vinaigrette over the salad and toss to combine. Top with the toasted pepitas, crisp prosciutto, and {{feta}}. Serve immediately.",
     "steps": [
       {
-        "section": "Roasted topping",
+        "section": null,
         "text": "Preheat the oven to 350°F. Line a baking sheet with parchment paper."
       },
       {
-        "section": "Roasted topping",
+        "section": null,
         "text": "On the prepared baking sheet, toss together {{pepitas}}, {{topping_olive_oil}}, {{maple_syrup}}, {{cinnamon}}, and a pinch of {{topping_salt}}. Arrange in a single layer. Lay {{prosciutto}} flat around the pepitas. Bake for 10–15 minutes, until the pepitas are toasted and the prosciutto is crisp."
       },
       {
-        "section": "Salad",
+        "section": null,
         "text": "Meanwhile, in a large salad bowl, combine {{kale}}, thinly sliced {{apples}}, and {{pomegranate_arils}}."
       },
       {
-        "section": "Cider vinaigrette",
+        "section": null,
         "text": "Heat {{vinaigrette_olive_oil}} in a medium skillet over high heat. When the oil shimmers, add {{shallot}} and cook until fragrant, 2–3 minutes. Remove from the heat and let cool slightly."
       },
       {
-        "section": "Cider vinaigrette",
+        "section": null,
         "text": "Stir {{apple_cider_vinegar}}, {{fig_preserves}}, and {{thyme}} into the warm shallot oil. Season with {{vinaigrette_salt}}, {{black_pepper}}, and a pinch of {{red_pepper_flakes}}."
       },
       {
-        "section": "Serve",
+        "section": null,
         "text": "Pour the cider vinaigrette over the salad and toss to combine. Top with the toasted pepitas, crisp prosciutto, and {{feta}}. Serve immediately."
       }
     ],
-    "step_sections": [
-      "Roasted topping",
-      "Salad",
-      "Cider vinaigrette",
-      "Serve"
-    ],
+    "step_sections": [],
     "tokens_used": [
       "pepitas",
       "topping_olive_oil",
