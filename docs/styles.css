@@ -2292,8 +2292,16 @@ main {
 
   #print-recipe .print-section-header {
     list-style: none !important;
-    margin: 0.4rem 0 0.15rem -1.25rem !important;
+    margin: 0.45rem 0 0.15rem 0 !important;
+    padding: 0 !important;
     font-weight: 700 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  #print-recipe ul .print-section-header,
+  #print-recipe ol .print-section-header {
+    margin-left: 0 !important;
   }
 
   #print-notes {
