@@ -335,6 +335,22 @@
     }
   },
   {
+    "id": "chicken-noodle-soup",
+    "title": "Chicken Noodle Soup",
+    "byline": "",
+    "categories": [
+      "Soups & Stews",
+      "Easy",
+      "Dairy-Free"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": false,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "chicken-rice-casserole",
     "title": "Chicken-Rice Casserole",
     "byline": "",
