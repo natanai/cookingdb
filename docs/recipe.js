@@ -539,6 +539,71 @@ function renderSteps(recipe, state) {
   });
 }
 
+function htmlToPlainText(value) {
+  const doc = new DOMParser().parseFromString(String(value || ''), 'text/html');
+  return doc.body?.textContent || '';
+}
+
+function appendPrintLines(listEl, lines, missingText) {
+  listEl.replaceChildren();
+
+  if (!lines.length && missingText) {
+    const li = document.createElement('li');
+    li.textContent = missingText;
+    listEl.appendChild(li);
+    return;
+  }
+
+  let lastSection = null;
+  lines.forEach((line) => {
+    if (line.section && line.section !== lastSection) {
+      const sectionLi = document.createElement('li');
+      sectionLi.className = 'print-section-header';
+      sectionLi.textContent = line.section;
+      listEl.appendChild(sectionLi);
+      lastSection = line.section;
+    }
+
+    const li = document.createElement('li');
+    li.textContent = htmlToPlainText(line.text || '');
+    listEl.appendChild(li);
+  });
+}
+
+function renderPrintRecipe(recipe, state) {
+  const titleEl = document.getElementById('print-recipe-title');
+  const ingredientsEl = document.getElementById('print-ingredients-list');
+  const stepsEl = document.getElementById('print-steps-list');
+  const notesSection = document.getElementById('print-notes-section');
+  const notesEl = document.getElementById('print-notes');
+
+  if (!titleEl || !ingredientsEl || !stepsEl) return;
+
+  const { title, name } = getRecipeTitleParts(recipe);
+  titleEl.textContent = name ? `${title || 'Recipe'} — ${name}` : title || 'Recipe';
+
+  const printState = { ...state, recipe };
+  appendPrintLines(
+    ingredientsEl,
+    renderIngredientLines(recipe, printState),
+    'This recipe was imported without full ingredient data.'
+  );
+  appendPrintLines(
+    stepsEl,
+    renderStepLines(recipe, printState),
+    'This recipe was imported without step text.'
+  );
+
+  const notes = String(recipe.notes || '').trim();
+  if (notes && notesSection && notesEl) {
+    notesEl.textContent = notes;
+    notesSection.hidden = false;
+  } else if (notesSection) {
+    if (notesEl) notesEl.textContent = '';
+    notesSection.hidden = true;
+  }
+}
+
 function setupPanControls(recipe, state, rerender) {
   const panControls = document.getElementById('pan-controls');
   const panSelect = document.getElementById('pan-select');
@@ -987,6 +1052,7 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
     state.multiplier = multiplierInput ? Number(multiplierInput.value) || base : base;
     renderIngredientsList(recipe, state, rerender);
     renderSteps(recipe, state);
+    renderPrintRecipe(recipe, state);
     updateMultiplierHelper();
     updateNutritionEstimate();
   };
