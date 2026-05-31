@@ -144,6 +144,22 @@ function runTests() {
   const groupedSections = groupLinesBySection(sectionedLines, sectionedStepsRecipe.step_sections);
   assert.equal(groupedSections.length, 2, 'grouping should keep distinct step sections');
 
+  const repeatedSections = groupLinesBySection(
+    [
+      { section: 'Prep', text: 'First prep step' },
+      { section: 'Dressing', text: 'Make dressing' },
+      { section: 'Prep', text: 'Second prep step' },
+      { section: 'Serve', text: 'Serve it' },
+    ],
+    ['Prep', 'Dressing', 'Serve']
+  );
+
+  assert.equal(repeatedSections.length, 3, 'repeated section names should be grouped once');
+  assert.equal(repeatedSections[0].section, 'Prep', 'Prep should remain the first grouped section');
+  assert.equal(repeatedSections[0].lines.length, 2, 'non-contiguous Prep lines should be grouped together');
+  assert.equal(repeatedSections[1].section, 'Dressing', 'Dressing should remain after Prep');
+  assert.equal(repeatedSections[2].section, 'Serve', 'Serve should remain after Dressing');
+
   return 'All tests passed';
 }
 

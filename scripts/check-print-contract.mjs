@@ -33,6 +33,18 @@ if (!recipeJs.includes('renderStepLines')) {
   throw new Error('Print rendering must use canonical renderStepLines().');
 }
 
+if (!recipeJs.includes('groupLinesBySection(ingredientLines')) {
+  throw new Error('Print rendering must group ingredient sections with groupLinesBySection().');
+}
+
+if (!recipeJs.includes('groupLinesBySection(stepLines')) {
+  throw new Error('Print rendering must group step sections with groupLinesBySection().');
+}
+
+if (recipeJs.includes('let lastSection') && recipeJs.includes('print-section-header')) {
+  throw new Error('Print section rendering should not rely on lastSection; use groupLinesBySection().');
+}
+
 if (!styles.includes('#print-recipe')) {
   throw new Error('Print stylesheet must explicitly target #print-recipe.');
 }
