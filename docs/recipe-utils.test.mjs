@@ -29,7 +29,7 @@ function runTests() {
 
   const sugar = { ratio: '1', unit: 'cup', display: 'sugar' };
   const sugarDisplay = ingredientDisplay(sugar, 1, 'tbsp');
-  assert.equal(sugarDisplay.amountStr, '16.23', 'converted amount should be rounded when not near a neat fraction');
+  assert.equal(sugarDisplay.amountStr, '16', 'exact unit conversions should display as clean whole numbers');
   assert.equal(sugarDisplay.convertedUnitLabel, 'tablespoons', 'converted unit label should pluralize');
   assert.equal(sugarDisplay.baseUnitLabel, 'cup', 'base unit label should stay singular');
 
