@@ -1,5 +1,6 @@
 token,option,display,ratio,unit,ingredient_id,section
-almonds,,sliced or slivered almonds,1/2,cup,almonds,Salad
+almonds,sliced,sliced almonds,1/2,cup,almonds,Salad
+almonds,slivered,slivered almonds,1/2,cup,almonds,Salad
 chicken_breasts,,"bone-in, skin-on chicken breasts",3/4,lb,chicken-breast,Chicken
 olive_oil_chicken,,extra-virgin olive oil,1,tbsp,olive_oil,Chicken
 salt_chicken,,kosher salt,1/8,tsp,salt,Chicken
