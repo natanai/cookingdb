@@ -1,9 +1,9 @@
-token,option,display,ratio,unit,ingredient_id
-asparagus,,asparagus,1,bunch,asparagus
-potatoes,,red potatoes,4,count,potato
-carrots,,carrots,122,g,carrot
-green_pepper,,green bell pepper,1,count,green-pepper
-yellow_onion,,yellow onion,1/2,count,onion
-sausage,,smoked sausage,14,oz,sausage
-cajun_seasoning,,Cajun seasoning,2,tsp,cajun-seasoning
-salt,,salt,1/2,tsp,salt
+token,option,display,ratio,unit,ingredient_id,prep
+asparagus,,asparagus,1,bunch,asparagus,
+potatoes,,red potatoes,4,count,potato,
+carrots,,carrots,2,count,carrot,sliced
+green_pepper,,green bell pepper,1,count,green-pepper,
+yellow_onion,,yellow onion,1/2,count,onion,
+sausage,,smoked sausage,14,oz,sausage,
+cajun_seasoning,,Cajun seasoning,2,tsp,cajun-seasoning,
+salt,,salt,1/2,tsp,salt,

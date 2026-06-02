@@ -9903,7 +9903,7 @@
       "Easy"
     ],
     "family": "",
-    "notes": "Prep time: 15 minutes. Total time: 45 minutes. Difficulty: easy. Adjust seasoning for different spice levels. Black pepper was crossed out on the source card, so it is omitted here.",
+    "notes": "Prep time: 15 minutes. Total time: 45 minutes. Difficulty: easy. Adjust seasoning for different spice levels.",
     "nutrition_estimate": {
       "calories_total": 1370.55,
       "calories_per_serving": 195.79285714285714,
@@ -10068,10 +10068,10 @@
           {
             "option": "",
             "display": "carrots",
-            "ratio": "122",
-            "unit": "g",
+            "ratio": "2",
+            "unit": "count",
             "ingredient_id": "carrot",
-            "prep": "",
+            "prep": "sliced",
             "depends_on": null,
             "line_group": null,
             "section": null,
@@ -10319,7 +10319,7 @@
     "choices": {},
     "pan_sizes": [],
     "default_pan": null,
-    "servings_per_batch": 4,
+    "servings_per_batch": 6,
     "compatibility_possible": {
       "gluten_free": true,
       "egg_free": true,

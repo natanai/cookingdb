@@ -26,6 +26,11 @@ function runTests() {
 
   assert.equal(formatUnitLabel('tbsp', 1), 'tablespoon', 'singular labels stay singular');
   assert.equal(formatUnitLabel('tbsp', 2), 'tablespoons', 'plural labels switch for larger amounts');
+  assert.equal(formatUnitLabel('count', 2), '', 'count units should be omitted from recipe labels');
+
+  const carrots = { ratio: '2', unit: 'count', display: 'carrots', prep: 'sliced' };
+  const carrotDisplay = ingredientDisplay(carrots, 1, null, true);
+  assert.equal(carrotDisplay.text, '2 carrots, sliced', 'count ingredients should read naturally with prep');
 
   const sugar = { ratio: '1', unit: 'cup', display: 'sugar' };
   const sugarDisplay = ingredientDisplay(sugar, 1, 'tbsp');
