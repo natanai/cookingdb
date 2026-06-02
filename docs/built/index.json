@@ -335,6 +335,21 @@
     }
   },
   {
+    "id": "cajun-skillet",
+    "title": "Cajun Skillet",
+    "byline": "",
+    "categories": [
+      "Main Dishes",
+      "Easy"
+    ],
+    "family": "",
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "chicken-noodle-soup",
     "title": "Chicken Noodle Soup",
     "byline": "",
