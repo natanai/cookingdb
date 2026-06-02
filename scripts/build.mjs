@@ -792,14 +792,6 @@ function generateNutritionCoverageReport(recipes, nutritionVariants, unitFactors
           );
           variant = factorMatch?.variant || null;
           convertedAmount = factorMatch?.convertedAmount ?? null;
-          if (!variant) {
-            const recipeGroup = unitDefinition(normalizedUnit)?.group || null;
-            const hasSameGroup = variants.some((entry) => {
-              const servingGroup = unitDefinition(entry?.serving_unit_norm)?.group || null;
-              return servingGroup && recipeGroup && servingGroup === recipeGroup;
-            });
-            reason = hasSameGroup ? 'no-convertible-variant' : 'missing-cross-factor';
-          }
         }
 
         if (!variant) {
@@ -812,6 +804,15 @@ function generateNutritionCoverageReport(recipes, nutritionVariants, unitFactors
           );
           variant = portionMatch?.variant || null;
           convertedAmount = portionMatch?.convertedAmount ?? null;
+        }
+
+        if (!variant) {
+          const recipeGroup = unitDefinition(normalizedUnit)?.group || null;
+          const hasSameGroup = variants.some((entry) => {
+            const servingGroup = unitDefinition(entry?.serving_unit_norm)?.group || null;
+            return servingGroup && recipeGroup && servingGroup === recipeGroup;
+          });
+          reason = hasSameGroup ? 'no-convertible-variant' : 'missing-cross-factor';
         }
 
         if (!reason && (!variant || !Number.isFinite(convertedAmount))) {

@@ -172,6 +172,8 @@ export function unitOptionsFor(unitId) {
 }
 
 export function formatUnitLabel(unitId, amount) {
+  const normalized = normalizeUnit(unitId);
+  if (normalized === 'count') return '';
   const def = unitDefinition(unitId);
   if (!def) return unitId || '';
   if (Number.isFinite(amount) && amount > 1 + 1e-9 && def.plural) {
@@ -413,7 +415,8 @@ export function ingredientDisplay(option, multiplier, selectedUnit, includePrep 
 
   const amountStr = displayAmount !== null ? formatAmountForDisplay(displayAmount) : '';
   const baseAmountStr = baseAmount !== null ? formatAmountForDisplay(baseAmount) : '';
-  const unitLabel = displayUnit ? ` ${formatUnitLabel(displayUnit, displayAmount)}` : '';
+  const formattedUnitLabel = displayUnit ? formatUnitLabel(displayUnit, displayAmount) : '';
+  const unitLabel = formattedUnitLabel ? ` ${formattedUnitLabel}` : '';
   const baseUnitLabel = option.unit ? formatUnitLabel(option.unit, baseAmount) : '';
   const convertedUnitLabel = displayUnit ? formatUnitLabel(displayUnit, displayAmount) : '';
   const displayName = pluralize(option.display, displayAmount ?? 0, option.unit);
