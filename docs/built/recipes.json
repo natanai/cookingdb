@@ -9893,6 +9893,440 @@
     }
   },
   {
+    "id": "cajun-skillet",
+    "title": "Cajun Skillet",
+    "byline": "",
+    "base_kind": "multiplier",
+    "default_base": 1,
+    "categories": [
+      "Main Dishes",
+      "Easy"
+    ],
+    "family": "",
+    "notes": "Prep time: 15 minutes. Total time: 45 minutes. Difficulty: easy. Adjust seasoning for different spice levels. Black pepper was crossed out on the source card, so it is omitted here.",
+    "nutrition_estimate": {
+      "calories_total": 1370.55,
+      "calories_per_serving": 195.79285714285714,
+      "sodium_total_mg": 4788.58,
+      "sat_fat_total_g": 21.945,
+      "servings_estimate": 7,
+      "covered_ingredients": 8,
+      "total_ingredients": 8,
+      "coverage_ratio": 1,
+      "target_meal_calories": 666.6666666666666,
+      "missing_ingredients": []
+    },
+    "steps_raw": "1. Bring a pot of water to a boil, add the {{asparagus}}, and boil for 5 minutes.\n2. While the {{asparagus}} boils, heat oil in a skillet over medium heat and add the {{potatoes}} and {{carrots}} in a single layer.\n3. Cook the {{potatoes}} and {{carrots}} for 15 minutes, or until they begin to soften.\n4. When the {{asparagus}} has boiled for 5 minutes, drain it and set it aside.\n5. Push the {{potatoes}} and {{carrots}} to the edges of the skillet. Add the {{sausage}}, {{green_pepper}}, {{yellow_onion}}, {{cajun_seasoning}}, and {{salt}}.\n6. Cook uncovered for 10 minutes, or until the {{yellow_onion}} has softened and the {{sausage}} has browned.\n7. Add the drained {{asparagus}} back to the skillet, mix everything together, and serve warm.",
+    "steps": [
+      {
+        "section": null,
+        "text": "Bring a pot of water to a boil, add the {{asparagus}}, and boil for 5 minutes."
+      },
+      {
+        "section": null,
+        "text": "While the {{asparagus}} boils, heat oil in a skillet over medium heat and add the {{potatoes}} and {{carrots}} in a single layer."
+      },
+      {
+        "section": null,
+        "text": "Cook the {{potatoes}} and {{carrots}} for 15 minutes, or until they begin to soften."
+      },
+      {
+        "section": null,
+        "text": "When the {{asparagus}} has boiled for 5 minutes, drain it and set it aside."
+      },
+      {
+        "section": null,
+        "text": "Push the {{potatoes}} and {{carrots}} to the edges of the skillet. Add the {{sausage}}, {{green_pepper}}, {{yellow_onion}}, {{cajun_seasoning}}, and {{salt}}."
+      },
+      {
+        "section": null,
+        "text": "Cook uncovered for 10 minutes, or until the {{yellow_onion}} has softened and the {{sausage}} has browned."
+      },
+      {
+        "section": null,
+        "text": "Add the drained {{asparagus}} back to the skillet, mix everything together, and serve warm."
+      }
+    ],
+    "step_sections": [],
+    "tokens_used": [
+      "asparagus",
+      "asparagus",
+      "potatoes",
+      "carrots",
+      "potatoes",
+      "carrots",
+      "asparagus",
+      "potatoes",
+      "carrots",
+      "sausage",
+      "green_pepper",
+      "yellow_onion",
+      "cajun_seasoning",
+      "salt",
+      "yellow_onion",
+      "sausage",
+      "asparagus"
+    ],
+    "token_order": [
+      "asparagus",
+      "potatoes",
+      "carrots",
+      "sausage",
+      "green_pepper",
+      "yellow_onion",
+      "cajun_seasoning",
+      "salt"
+    ],
+    "ingredients": {
+      "asparagus": {
+        "token": "asparagus",
+        "options": [
+          {
+            "option": "",
+            "display": "asparagus",
+            "ratio": "1",
+            "unit": "bunch",
+            "ingredient_id": "asparagus",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 100,
+                "serving_unit_norm": "g",
+                "calories_kcal": 20,
+                "protein_g": 2.2,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 3.9,
+                "sugars_g": 1.9,
+                "fiber_g": 2.1,
+                "sodium_mg": 2,
+                "calcium_mg": 24,
+                "iron_mg": 2.1,
+                "potassium_mg": 202,
+                "vitamin_c_mg": 5.6,
+                "source": "USDA FoodData Central",
+                "notes": "Approx per 100g (raw)"
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "potatoes": {
+        "token": "potatoes",
+        "options": [
+          {
+            "option": "",
+            "display": "red potatoes",
+            "ratio": "4",
+            "unit": "count",
+            "ingredient_id": "potato",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 110,
+                "protein_g": 3,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 26,
+                "sugars_g": 1.5,
+                "fiber_g": 2,
+                "sodium_mg": 13,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 620,
+                "vitamin_c_mg": 20,
+                "source": "USDA (med. potato)",
+                "notes": "Per 1 medium russet potato (150g), raw with skin."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "carrots": {
+        "token": "carrots",
+        "options": [
+          {
+            "option": "",
+            "display": "carrots",
+            "ratio": "122",
+            "unit": "g",
+            "ingredient_id": "carrot",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 61,
+                "serving_unit_norm": "g",
+                "calories_kcal": 25,
+                "protein_g": 0.6,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 6,
+                "sugars_g": 2.9,
+                "fiber_g": 1.7,
+                "sodium_mg": 42,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (medium carrot)",
+                "notes": "Per 61 g (1 medium)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "green_pepper": {
+        "token": "green_pepper",
+        "options": [
+          {
+            "option": "",
+            "display": "green bell pepper",
+            "ratio": "1",
+            "unit": "count",
+            "ingredient_id": "green-pepper",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 24,
+                "protein_g": 1,
+                "total_fat_g": 0.2,
+                "saturated_fat_g": 0.07,
+                "total_carbs_g": 5.5,
+                "sugars_g": 3,
+                "fiber_g": 2,
+                "sodium_mg": 4,
+                "calcium_mg": 12,
+                "iron_mg": 0.4,
+                "potassium_mg": 208,
+                "vitamin_c_mg": 95.7,
+                "source": "USDA",
+                "notes": "medium (119g)"
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "yellow_onion": {
+        "token": "yellow_onion",
+        "options": [
+          {
+            "option": "",
+            "display": "yellow onion",
+            "ratio": "1/2",
+            "unit": "count",
+            "ingredient_id": "onion",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 44,
+                "protein_g": 1.2,
+                "total_fat_g": 0.1,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 10,
+                "sugars_g": 4.7,
+                "fiber_g": 1.9,
+                "sodium_mg": 4,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (med. onion)",
+                "notes": "Per 1 medium (110g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "sausage": {
+        "token": "sausage",
+        "options": [
+          {
+            "option": "",
+            "display": "smoked sausage",
+            "ratio": "14",
+            "unit": "oz",
+            "ingredient_id": "sausage",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "count",
+                "calories_kcal": 85,
+                "protein_g": 4.2,
+                "total_fat_g": 7.4,
+                "saturated_fat_g": 2.5,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 330,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "USDA (pork sausage avg.)",
+                "notes": "Per small pork sausage link (55g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "cajun_seasoning": {
+        "token": "cajun_seasoning",
+        "options": [
+          {
+            "option": "",
+            "display": "Cajun seasoning",
+            "ratio": "2",
+            "unit": "tsp",
+            "ingredient_id": "cajun-seasoning",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "Generic (brand label varies)",
+                "notes": "Sodium varies widely by brand; set as placeholder. Adjust to match the specific label if desired."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      },
+      "salt": {
+        "token": "salt",
+        "options": [
+          {
+            "option": "",
+            "display": "salt",
+            "ratio": "1/2",
+            "unit": "tsp",
+            "ingredient_id": "salt",
+            "prep": "",
+            "depends_on": null,
+            "line_group": null,
+            "section": null,
+            "dietary": {
+              "gluten_free": true,
+              "egg_free": true,
+              "dairy_free": true
+            },
+            "nutrition": [
+              {
+                "serving_qty": 1,
+                "serving_unit_norm": "tsp",
+                "calories_kcal": 0,
+                "protein_g": 0,
+                "total_fat_g": 0,
+                "saturated_fat_g": 0,
+                "total_carbs_g": 0,
+                "sugars_g": 0,
+                "fiber_g": 0,
+                "sodium_mg": 2300,
+                "calcium_mg": 0,
+                "iron_mg": 0,
+                "potassium_mg": 0,
+                "vitamin_c_mg": 0,
+                "source": "(duplicate entry)",
+                "notes": "Per 1 tsp (6g)."
+              }
+            ]
+          }
+        ],
+        "isChoice": false
+      }
+    },
+    "ingredient_sections": [],
+    "choices": {},
+    "pan_sizes": [],
+    "default_pan": null,
+    "servings_per_batch": 4,
+    "compatibility_possible": {
+      "gluten_free": true,
+      "egg_free": true,
+      "dairy_free": true
+    }
+  },
+  {
     "id": "chicken-noodle-soup",
     "title": "Chicken Noodle Soup",
     "byline": "",

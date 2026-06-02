@@ -117,5 +117,12 @@
     "grams": 174,
     "source": "USDA FoodData Central common measure",
     "notes": "Approx arils from 1 medium pomegranate ≈ 1 cup / 174 g."
+  },
+  {
+    "ingredient_id": "asparagus",
+    "unit": "count",
+    "grams": 454,
+    "source": "USDA FoodData Central common measure",
+    "notes": "Approx 1 bunch raw asparagus ≈ 1 lb / 454 g."
   }
 ]
