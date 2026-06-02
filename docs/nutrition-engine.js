@@ -287,6 +287,35 @@ function selectVariantWithFactor(ingredientId, amount, normalizedUnit, variants,
   return null;
 }
 
+function selectVariantWithPortion(ingredientId, amount, normalizedUnit, variants, ingredientPortions) {
+  if (!ingredientId || !ingredientPortions) return null;
+  const portions = [...ingredientPortions.values()].filter((entry) => entry.ingredient_id === ingredientId);
+  if (!portions.length) return null;
+
+  for (const portion of portions) {
+    let portionAmount = null;
+    if (normalizedUnit === portion.unit) {
+      portionAmount = amount;
+    } else {
+      const converted = convertUnitAmount(amount, normalizedUnit, portion.unit);
+      if (converted && Number.isFinite(converted.amount)) {
+        portionAmount = converted.amount;
+      }
+    }
+
+    if (!Number.isFinite(portionAmount)) continue;
+    const grams = portionAmount * portion.grams;
+    if (!Number.isFinite(grams)) continue;
+
+    const match = selectNutritionVariant(variants, 'g', grams);
+    if (match?.variant && Number.isFinite(match.convertedAmount)) {
+      return { variant: match.variant, convertedAmount: match.convertedAmount, bridge: portion };
+    }
+  }
+
+  return null;
+}
+
 function hasNumericNutrients(variant) {
   if (!variant) return false;
   const required = [
@@ -343,6 +372,7 @@ export function computeBatchTotals(recipe, state) {
     const scaledAmount = amount * multiplier;
     const nutritionVariants = Array.isArray(option.nutrition) ? option.nutrition : (option.nutrition ? [option.nutrition] : []);
     const unitFactors = state?.ingredientUnitFactors || null;
+    const ingredientPortions = state?.ingredientPortions || null;
     const selectedUnit = state?.unitSelections?.[token] || option.unit;
     const normalizedUnit = normalizeUnit(selectedUnit);
 
@@ -423,6 +453,18 @@ export function computeBatchTotals(recipe, state) {
       );
       selectedVariant = factorMatch?.variant || null;
       selectedAmount = factorMatch?.convertedAmount ?? null;
+    }
+
+    if (!selectedVariant) {
+      const portionMatch = selectVariantWithPortion(
+        option.ingredient_id,
+        scaledAmount,
+        normalizedUnit,
+        nutritionVariants,
+        ingredientPortions
+      );
+      selectedVariant = portionMatch?.variant || null;
+      selectedAmount = portionMatch?.convertedAmount ?? null;
     }
 
     if (!selectedVariant || !Number.isFinite(selectedAmount)) {

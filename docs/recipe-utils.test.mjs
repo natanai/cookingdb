@@ -9,6 +9,7 @@ import {
   renderStepLines,
   groupLinesBySection,
 } from './recipe-utils.js';
+import { computeBatchTotals } from './nutrition-engine.js';
 
 function runTests() {
   const fracFriendly = formatAmountForDisplay(1.5);
@@ -50,6 +51,59 @@ function runTests() {
   const parsley = { ratio: '1', unit: 'tbsp', display: 'parsley', ingredient_id: 'parsley' };
   const parsleyDisplay = ingredientDisplay(parsley, 1);
   assert.equal(parsleyDisplay.text, '1 tablespoon parsley', 'tiny herb amounts should stay in tablespoons when cups would be awkward');
+
+  const carrotNutritionRecipe = {
+    token_order: ['carrots'],
+    ingredients: {
+      carrots: {
+        token: 'carrots',
+        isChoice: false,
+        options: [
+          {
+            option: '',
+            display: 'carrots',
+            ratio: '2',
+            unit: 'count',
+            ingredient_id: 'carrot',
+            prep: 'sliced',
+            nutrition: [
+              {
+                serving_qty: 61,
+                serving_unit_norm: 'g',
+                calories_kcal: 25,
+                protein_g: 0.6,
+                total_fat_g: 0.1,
+                saturated_fat_g: 0,
+                total_carbs_g: 6,
+                sugars_g: 2.9,
+                fiber_g: 1.7,
+                sodium_mg: 42,
+                calcium_mg: 0,
+                iron_mg: 0,
+                potassium_mg: 0,
+                vitamin_c_mg: 0,
+              },
+            ],
+          },
+        ],
+      },
+    },
+    choices: {},
+  };
+  const carrotTotals = computeBatchTotals(carrotNutritionRecipe, {
+    multiplier: 1,
+    panMultiplier: 1,
+    selectedOptions: {},
+    unitSelections: {},
+    ingredientPortions: new Map([
+      ['carrot::count', { ingredient_id: 'carrot', unit: 'count', grams: 61 }],
+    ]),
+    ingredientUnitFactors: new Map(),
+    restrictions: { gluten_free: false, egg_free: false, dairy_free: false },
+  });
+  assert.equal(carrotTotals.complete, true, 'count portions should bridge carrots to gram nutrition');
+  assert.equal(carrotTotals.coverage.covered, 1, 'portion-backed count ingredient should be covered');
+  assert.equal(carrotTotals.kcal, 50, 'two medium carrots should use the portion gram bridge');
 
   const recipe = {
     token_order: ['egg', 'flour_base', 'flour_adjust'],
