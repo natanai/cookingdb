@@ -10,12 +10,38 @@ Schema notes for inbox payloads:
 
 ## Inbox payload mapping to CSV schema
 
-Inbox payloads should map cleanly to the CSV recipe schema used by `scripts/build.mjs`:
+Inbox payloads map to the CSV recipe schema used by `scripts/build.mjs`:
 
-- `token_order`, `ingredients`, and option data map to `recipes/<id>/ingredients.csv` (tokens, options, ratios, units, dependencies).
-- `steps_raw` and/or `steps` map to `recipes/<id>/steps.md` or `recipes/<id>/steps.csv` (including step sections).
-- `choices` maps to `choices.csv`. `pan_sizes` and `default_pan` are derived from `meta.csv` and the shared `data/pan-sizes.json` list.
+- `token_order`, `ingredients`, and option data map to `recipes/<id>/ingredients.csv` (tokens, options, ratios, units, dependencies, line groups, and sections).
+- `steps_raw` and/or `steps` map to `recipes/<id>/steps.csv` (including step sections).
+- `choices` maps to `choices.csv`.
+- Recipe metadata maps to `meta.csv`; `default_pan` references the shared `data/pan-sizes.json` list.
 
-Published recipes must pass `scripts/validate.mjs` and be rebuilt via `scripts/build.mjs` to appear in `docs/built/recipes.json`.
-Missing steps or ingredients will produce incomplete or non-rendering recipes in `docs/recipe.js` and `docs/app.js`.
-See the full checklist in `docs/recipe-integration.md`.
+## Official JSON import bundle
+
+The browser admin export wraps Worker results in a stable, versioned envelope:
+
+```json
+{
+  "format": "cookingdb-recipe-import",
+  "version": 1,
+  "exported_at": "ISO-8601 timestamp",
+  "source": "cookingdb-inbox",
+  "items": [
+    {
+      "inbox_id": 123,
+      "recipe_id": "example-recipe",
+      "title": "Example Recipe",
+      "recipe": {}
+    }
+  ]
+}
+```
+
+`recipe` contains the complete structured submission. `inbox_id` is retained so the official workflow can delete only rows that were safely integrated.
+
+`scripts/import-inbox.mjs` accepts this bundle and also accepts the raw current Worker `{ items: [...] }` response (plus the older `{ pending: [...] }` response) so direct database publishing and downloaded exports share one importer.
+
+Published recipes must pass `scripts/validate.mjs` and be rebuilt via `scripts/build.mjs` to appear in `docs/built/recipes.json`. The importer refuses to overwrite an existing recipe with different content. If an existing recipe is byte-for-byte identical to the generated canonical files, it is treated as already integrated so a failed inbox-cleanup run can be retried safely.
+
+Ingredient IDs are checked against `data/ingredient_catalog.csv`. The importer also uses canonical catalog names and display names already used by existing recipes as aliases (for example, a familiar display name can resolve to an older canonical ingredient ID). Ambiguous or genuinely new ingredients stop publication and require catalog work rather than being guessed.
