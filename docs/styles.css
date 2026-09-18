@@ -2876,3 +2876,610 @@ body.add-page details.mobile-preview > summary {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
 }
+
+
+/* ===========================
+   Add Recipe composer v2
+   Human-first authoring surface
+   =========================== */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+body.add-page .add-recipe-shell {
+  max-width: 980px;
+  padding-top: 1.5rem;
+}
+
+body.add-page .recipe-composer {
+  display: grid;
+  gap: 1.25rem;
+}
+
+body.add-page #recipe-form {
+  display: grid;
+  gap: 1.1rem;
+}
+
+body.add-page .composer-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.2rem;
+  box-shadow: var(--shadow);
+  min-inline-size: 0;
+}
+
+body.add-page .composer-section > legend,
+body.add-page .composer-section > .section-title-row h2,
+body.add-page .recipe-details-section > .section-title-row h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 0.8rem;
+  padding: 0;
+  color: var(--text);
+}
+
+body.add-page .composer-intro {
+  display: grid;
+  gap: 0.8rem;
+}
+
+body.add-page .recipe-title-input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  border-bottom: 2px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  padding: 0.25rem 0 0.55rem;
+  font-family: inherit;
+  font-size: clamp(1.65rem, 4vw, 2.35rem);
+  font-weight: 650;
+  color: var(--text);
+}
+
+body.add-page .recipe-title-input:focus {
+  outline: 0;
+  border-bottom-color: var(--accent);
+  box-shadow: none;
+}
+
+body.add-page .recipe-title-input::placeholder {
+  color: color-mix(in srgb, var(--muted) 70%, transparent);
+}
+
+body.add-page .yield-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+body.add-page .yield-row label {
+  font-weight: 650;
+  color: var(--text);
+}
+
+body.add-page .yield-row input {
+  width: 86px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.45rem 0.55rem;
+  font: inherit;
+  background: #fffdf9;
+}
+
+body.add-page .ingredients-header {
+  grid-template-columns: 110px 150px minmax(220px, 1fr) 44px 38px;
+  gap: 0.45rem;
+  padding: 0 0.15rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+body.add-page .ingredient-row {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  gap: 0.45rem;
+}
+
+body.add-page .ingredient-main {
+  display: grid;
+  grid-template-columns: 110px 150px minmax(220px, 1fr) 44px 38px;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+body.add-page .ingredient-main input,
+body.add-page .ingredient-main select {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 42px;
+  background: #fff;
+}
+
+body.add-page .ingredient-more-toggle,
+body.add-page .step-more-toggle,
+body.add-page .remove-row-button {
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 0.35rem;
+}
+
+body.add-page .ingredient-more-toggle:hover,
+body.add-page .step-more-toggle:hover,
+body.add-page .remove-row-button:hover {
+  background: #f8f2ea;
+  color: var(--text);
+}
+
+body.add-page .remove-row-button {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+body.add-page .ingredient-row.is-substitution {
+  position: relative;
+  padding-left: 2rem;
+}
+
+body.add-page .ingredient-row.is-substitution::before {
+  content: "↳";
+  position: absolute;
+  left: 0.55rem;
+  top: 0.65rem;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+body.add-page .ingredient-advanced {
+  margin: 0.25rem 0 0 0;
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fbf8f3;
+}
+
+body.add-page .ingredient-action-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 0.65rem;
+}
+
+body.add-page .mini-button {
+  padding: 0.35rem 0.6rem;
+  min-height: 34px;
+  font-size: 0.88rem;
+}
+
+body.add-page .ingredient-advanced-grid,
+body.add-page .step-advanced-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+body.add-page .advanced-field {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+body.add-page .advanced-field input,
+body.add-page .advanced-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+body.add-page .advanced-detail {
+  align-self: start;
+}
+
+body.add-page .advanced-detail summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+body.add-page .choice-block,
+body.add-page .conditional-block {
+  margin: 0;
+  align-self: start;
+}
+
+body.add-page .choice-toggle,
+body.add-page .conditional-toggle,
+body.add-page .choice-default {
+  font-size: 0.9rem;
+}
+
+body.add-page .choice-fields,
+body.add-page .conditional-fields {
+  margin-top: 0.55rem;
+  padding: 0;
+  gap: 0.55rem;
+}
+
+body.add-page .section-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+}
+
+body.add-page .compact-action {
+  padding: 0.5rem 0.75rem;
+}
+
+body.add-page .ingredient-section-divider {
+  display: grid;
+  grid-template-columns: minmax(30px, 1fr) minmax(150px, auto) 38px;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.3rem 0;
+}
+
+body.add-page .section-divider-line {
+  height: 1px;
+  background: var(--border);
+}
+
+body.add-page .section-divider-input {
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  padding: 0.35rem 0.15rem;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text);
+}
+
+body.add-page .section-divider-input:focus {
+  outline: 0;
+  border-bottom-color: var(--accent);
+}
+
+body.add-page .steps-field .steps-builder {
+  counter-reset: recipe-step;
+  display: grid;
+  gap: 0.7rem;
+}
+
+body.add-page .step-row {
+  counter-increment: recipe-step;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  gap: 0.45rem;
+}
+
+body.add-page .step-main {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
+  grid-template-areas:
+    "number text actions"
+    ". ingredients ingredients";
+  gap: 0.45rem 0.6rem;
+  align-items: start;
+}
+
+body.add-page .step-number {
+  grid-area: number;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.3rem;
+  border-radius: 999px;
+  background: #f6eee4;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+body.add-page .step-number::before {
+  content: counter(recipe-step);
+}
+
+body.add-page .step-text {
+  grid-area: text;
+  width: 100%;
+  min-height: 84px;
+  box-sizing: border-box;
+  resize: vertical;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.7rem 0.8rem;
+  background: #fff;
+  font: inherit;
+  line-height: 1.45;
+}
+
+body.add-page .step-actions {
+  grid-area: actions;
+  display: flex;
+  gap: 0.35rem;
+}
+
+body.add-page .step-ingredients {
+  grid-area: ingredients;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  min-height: 0;
+}
+
+body.add-page .step-ingredients[hidden] {
+  display: none !important;
+}
+
+body.add-page .ingredient-reference-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.28rem 0.55rem;
+  background: #fff;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+body.add-page .ingredient-reference-chip::before {
+  content: "+";
+  opacity: 0.7;
+}
+
+body.add-page .ingredient-reference-chip.is-linked {
+  background: #f6eee4;
+  color: var(--text);
+  border-color: #d9c3ab;
+}
+
+body.add-page .ingredient-reference-chip.is-linked::before {
+  content: "✓";
+}
+
+body.add-page .ingredient-reference-chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.add-page .step-advanced {
+  margin-left: 2.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  background: #fbf8f3;
+}
+
+body.add-page .category-native-select {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body.add-page .category-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+body.add-page .category-option {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  padding: 0.42rem 0.7rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+body.add-page .category-option.is-selected {
+  background: #f6eee4;
+  border-color: #cbb397;
+  color: var(--text);
+  font-weight: 650;
+}
+
+body.add-page .details-grid {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.7fr) minmax(280px, 1.3fr);
+  gap: 0.8rem;
+}
+
+body.add-page .recipe-details-section .field {
+  margin: 0;
+}
+
+body.add-page .recipe-details-section > .field {
+  margin-bottom: 0.9rem;
+}
+
+body.add-page .composer-footer {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.2rem 0 0.75rem;
+}
+
+body.add-page .composer-footer-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+body.add-page .draft-status {
+  color: var(--muted);
+  font-size: 0.82rem;
+  min-height: 1.1em;
+}
+
+body.add-page .remember-row {
+  justify-self: end;
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+body.add-page #form-status:empty {
+  display: none;
+}
+
+body.add-page .review-panel {
+  scroll-margin-top: 1rem;
+}
+
+body.add-page .review-panel[hidden] {
+  display: none !important;
+}
+
+body.add-page .review-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+body.add-page .review-toolbar .section-heading {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  body.add-page .add-recipe-shell {
+    padding-top: 0.75rem;
+  }
+
+  body.add-page .composer-section {
+    border-radius: 12px;
+    padding: 0.9rem;
+  }
+
+  body.add-page .ingredients-header {
+    display: none;
+  }
+
+  body.add-page .ingredient-main {
+    grid-template-columns: minmax(82px, 0.8fr) minmax(118px, 1.1fr) 42px 38px;
+    grid-template-areas:
+      "amount unit menu remove"
+      "name name name name";
+  }
+
+  body.add-page .ingredient-amount {
+    grid-area: amount;
+  }
+
+  body.add-page .ingredient-unit {
+    grid-area: unit;
+  }
+
+  body.add-page .ingredient-name {
+    grid-area: name;
+  }
+
+  body.add-page .ingredient-more-toggle {
+    grid-area: menu;
+  }
+
+  body.add-page .remove-ingredient {
+    grid-area: remove;
+  }
+
+  body.add-page .ingredient-row.is-substitution {
+    padding-left: 1.5rem;
+  }
+
+  body.add-page .ingredient-row.is-substitution::before {
+    left: 0.15rem;
+    top: 0.7rem;
+  }
+
+  body.add-page .ingredient-advanced-grid,
+  body.add-page .step-advanced-grid,
+  body.add-page .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.add-page .step-main {
+    grid-template-columns: 1.8rem minmax(0, 1fr) auto;
+    gap: 0.4rem;
+  }
+
+  body.add-page .step-number {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  body.add-page .step-advanced {
+    margin-left: 0;
+  }
+
+  body.add-page .composer-footer-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  body.add-page .composer-footer-actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  body.add-page .remember-row {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 420px) {
+  body.add-page .composer-section {
+    padding: 0.8rem;
+  }
+
+  body.add-page .ingredient-main {
+    grid-template-columns: minmax(72px, 0.8fr) minmax(105px, 1.2fr) 40px 36px;
+    gap: 0.35rem;
+  }
+
+  body.add-page .yield-row {
+    flex-wrap: wrap;
+  }
+
+  body.add-page .composer-footer-actions {
+    grid-template-columns: 1fr;
+  }
+}
