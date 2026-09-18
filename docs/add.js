@@ -144,16 +144,35 @@ function buildUnitDisplay(unitKey, unitDef) {
   return `${label} (${unitKey})`;
 }
 
+function renderCategoryChips() {
+  const container = document.getElementById('category-chips');
+  if (!container || !categorySelectEl) return;
+  container.innerHTML = '';
+  [...categorySelectEl.options].forEach((opt) => {
+    if (opt.disabled) return;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'category-option';
+    button.textContent = opt.textContent;
+    button.setAttribute('aria-pressed', String(opt.selected));
+    button.classList.toggle('is-selected', opt.selected);
+    button.addEventListener('click', () => {
+      opt.selected = !opt.selected;
+      button.setAttribute('aria-pressed', String(opt.selected));
+      button.classList.toggle('is-selected', opt.selected);
+      categorySelectEl.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    container.appendChild(button);
+  });
+}
+
 function syncCategoryOptions() {
   if (!categorySelectEl) return;
   const previousSelection = new Set([...categorySelectEl.selectedOptions].map((opt) => opt.value));
   categorySelectEl.innerHTML = '';
   const sortedCategories = [...categorySet].sort((a, b) => a.localeCompare(b));
   if (sortedCategories.length === 0) {
-    const placeholder = document.createElement('option');
-    placeholder.disabled = true;
-    placeholder.textContent = 'Loading categories…';
-    categorySelectEl.appendChild(placeholder);
+    renderCategoryChips();
     return;
   }
 
@@ -161,10 +180,13 @@ function syncCategoryOptions() {
     const opt = document.createElement('option');
     opt.value = cat;
     opt.textContent = cat;
-    opt.selected = previousSelection.has(cat);
+    opt.selected = previousSelection.has(cat) || pendingDraftCategories.includes(cat);
     categorySelectEl.appendChild(opt);
   });
+  renderCategoryChips();
 }
+
+let pendingDraftCategories = [];
 
 function syncUnitSelect(selectEl, preferredValue = '') {
   if (!selectEl) return;
@@ -325,178 +347,88 @@ function buildDietaryCheckboxes() {
 function createIngredientRow(defaults = {}) {
   const row = document.createElement('div');
   row.className = 'ingredient-row';
+  if (defaults.is_substitution) row.classList.add('is-substitution');
   row.innerHTML = `
     <div class="ingredient-main">
-      <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient name" aria-label="Ingredient name" />
-      <div class="infield">
-        <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
-        <button
-          type="button"
-          class="help-icon field-help-icon amount-help"
-          data-help-key="amount"
-          aria-label="Help: amount"
-        >
-          ?
-        </button>
-      </div>
+      <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
       <select class="ingredient-unit" aria-label="Unit"></select>
-      <div class="dietary-slot"></div>
-      <button type="button" class="ingredient-more-toggle" aria-expanded="false" aria-label="More options">+</button>
-      <button type="button" class="link-button remove-ingredient">Remove</button>
+      <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient" aria-label="Ingredient name" />
+      <button type="button" class="ingredient-more-toggle" aria-expanded="false" aria-label="Ingredient options">•••</button>
+      <button type="button" class="remove-row-button remove-ingredient" aria-label="Remove ingredient">×</button>
     </div>
 
     <div class="ingredient-advanced" hidden>
+      <div class="ingredient-action-row">
+        <button type="button" class="button secondary mini-button add-substitution">+ Substitution</button>
+      </div>
+
       <div class="ingredient-advanced-grid">
-        <div class="advanced-group">
-          <div class="infield">
-            <input class="ingredient-section" list="section-suggestions" placeholder="Section label" aria-label="Ingredient section" />
-            <button
-              type="button"
-              class="help-icon field-help-icon"
-              data-help-key="sectionLabel"
-              aria-label="Help: section label"
-            >
-              ?
-            </button>
-          </div>
-          <div class="infield">
-            <input class="ingredient-alt-note" placeholder="Alternative note" aria-label="Alternative or substitution" />
-            <button
-              type="button"
-              class="help-icon field-help-icon"
-              data-help-key="alternativeNote"
-              aria-label="Help: alternative note"
-            >
-              ?
-            </button>
-          </div>
-          <div class="infield">
-            <input class="ingredient-inline-group" placeholder="Inline group key" aria-label="Inline group key" />
-            <button
-              type="button"
-              class="help-icon field-help-icon"
-              data-help-key="inlineGroup"
-              aria-label="Help: inline group key"
-            >
-              ?
-            </button>
-          </div>
-        </div>
+        <label class="advanced-field">
+          <span>Section</span>
+          <input class="ingredient-section" list="section-suggestions" placeholder="Sauce, filling, topping…" />
+        </label>
+
+        <label class="advanced-field">
+          <span>Note shown after ingredient</span>
+          <input class="ingredient-alt-note" placeholder="finely chopped, divided…" />
+        </label>
+
+        <label class="advanced-field">
+          <span>Keep on the same line with</span>
+          <input class="ingredient-inline-group" placeholder="Optional group name" />
+        </label>
+
+        <details class="advanced-detail">
+          <summary>Dietary compatibility</summary>
+          <div class="dietary-slot"></div>
+        </details>
+
         <div class="choice-block">
           <label class="choice-toggle">
             <input type="checkbox" class="ingredient-choice-toggle" />
-            <span>Dropdown choice option</span>
-            <button
-              type="button"
-              class="help-icon field-help-icon"
-              data-help-key="isChoiceOption"
-              aria-label="Help: dropdown choice"
-            >
-              ?
-            </button>
+            <span>Part of a substitution group</span>
           </label>
           <div class="choice-fields" hidden>
-            <div class="infield">
-              <input
-                class="ingredient-choice-group"
-                placeholder="Use the same group name on each option, like “Broth type” (required)"
-                aria-label="Choice group"
-              />
-              <button
-                type="button"
-                class="help-icon field-help-icon"
-                data-help-key="choiceGroup"
-                aria-label="Help: choice group"
-              >
-                ?
-              </button>
-            </div>
-            <div class="infield">
-              <input
-                class="ingredient-choice-swap-label"
-                placeholder="Swap label shown to readers, like “Broth” (optional)"
-                aria-label="Choice label"
-              />
-              <button
-                type="button"
-                class="help-icon field-help-icon"
-                data-help-key="swapLabel"
-                aria-label="Help: swap label"
-              >
-                ?
-              </button>
-            </div>
-            <div class="infield">
-              <input
-                class="ingredient-option-key"
-                placeholder="Option value for dropdowns (we’ll use the name if empty)"
-                aria-label="Option value"
-              />
-              <button
-                type="button"
-                class="help-icon field-help-icon"
-                data-help-key="optionKey"
-                aria-label="Help: option value"
-              >
-                ?
-              </button>
-            </div>
+            <label class="advanced-field">
+              <span>Group</span>
+              <input class="ingredient-choice-group" placeholder="Milk, broth, flour…" />
+            </label>
+            <label class="advanced-field">
+              <span>Shown to readers as</span>
+              <input class="ingredient-choice-swap-label" placeholder="Optional label" />
+            </label>
+            <label class="advanced-field">
+              <span>Option name</span>
+              <input class="ingredient-option-key" placeholder="Uses ingredient name if blank" />
+            </label>
             <label class="choice-default">
               <input type="checkbox" class="ingredient-default-choice" />
-              <span>Make this the default option</span>
-              <button
-                type="button"
-                class="help-icon field-help-icon"
-                data-help-key="isDefaultChoice"
-                aria-label="Help: default option"
-              >
-                ?
-              </button>
+              <span>Use this option by default</span>
             </label>
           </div>
         </div>
+
         <div class="conditional-block">
           <label class="conditional-toggle">
             <input type="checkbox" class="ingredient-conditional-toggle" />
             <span>Only include this ingredient sometimes</span>
-            <button
-              type="button"
-              class="help-icon field-help-icon"
-              data-help-key="showWhenEnabled"
-              aria-label="Help: conditional ingredient"
-            >
-              ?
-            </button>
           </label>
           <div class="conditional-fields" hidden>
-            <div class="infield">
-              <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Show when ingredient" aria-label="Dependency token" />
-              <button
-                type="button"
-                class="help-icon field-help-icon"
-                data-help-key="showWhen"
-                aria-label="Help: show when ingredient"
-              >
-                ?
-              </button>
-            </div>
-            <div class="infield">
-              <input class="ingredient-dep-option" placeholder="Show when option value" aria-label="Dependency option" />
-              <button
-                type="button"
-                class="help-icon field-help-icon"
-                data-help-key="showWhen"
-                aria-label="Help: show when option value"
-              >
-                ?
-              </button>
-            </div>
+            <label class="advanced-field">
+              <span>When</span>
+              <input class="ingredient-dep-token" list="dependency-suggestions" placeholder="Ingredient or substitution group" />
+            </label>
+            <label class="advanced-field">
+              <span>Is set to</span>
+              <input class="ingredient-dep-option" placeholder="Option" />
+            </label>
           </div>
         </div>
       </div>
     </div>
   `;
   row.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
+
   const nameInput = row.querySelector('.ingredient-name');
   const sectionInput = row.querySelector('.ingredient-section');
   const amountInput = row.querySelector('.ingredient-amount');
@@ -531,13 +463,25 @@ function createIngredientRow(defaults = {}) {
   choiceDefaultInput.checked = Boolean(defaults.choice_default);
   isChoiceInput.checked = Boolean(defaults.isChoice);
   conditionalToggle.checked = Boolean(depTokenInput.value || depOptionInput.value);
-  if (
-    !isChoiceInput.checked &&
-    (choiceGroupInput.value || choiceLabelInput.value || optionInput.value || choiceDefaultInput.checked)
-  ) {
-    isChoiceInput.checked = true;
-  }
   unitInput.dataset.userChanged = 'false';
+
+  if (defaults.dietary) {
+    row.querySelectorAll('[data-dietary-key]').forEach((input) => {
+      const key = input.dataset.dietaryKey;
+      if (Object.prototype.hasOwnProperty.call(defaults.dietary, key)) input.checked = Boolean(defaults.dietary[key]);
+    });
+  }
+
+  const syncChoiceFields = () => {
+    const isChoice = isChoiceInput.checked;
+    row.classList.toggle('is-choice', isChoice);
+    choiceFields.hidden = !isChoice;
+  };
+  const syncConditionalFields = () => {
+    conditionalFields.hidden = !conditionalToggle.checked;
+  };
+  syncChoiceFields();
+  syncConditionalFields();
 
   const hasAdvancedDefaults = Boolean(
     sectionInput.value ||
@@ -552,23 +496,10 @@ function createIngredientRow(defaults = {}) {
       conditionalToggle.checked ||
       isChoiceInput.checked
   );
-  if (hasAdvancedDefaults) {
+  if (hasAdvancedDefaults && !defaults.is_substitution) {
     advancedPanel.hidden = false;
-    toggleButton.textContent = '−';
     toggleButton.setAttribute('aria-expanded', 'true');
   }
-
-  const syncChoiceFields = () => {
-    const isChoice = isChoiceInput.checked;
-    row.classList.toggle('is-choice', isChoice);
-    choiceFields.hidden = !isChoice;
-  };
-  const syncConditionalFields = () => {
-    const isConditional = conditionalToggle.checked;
-    conditionalFields.hidden = !isConditional;
-  };
-  syncChoiceFields();
-  syncConditionalFields();
 
   const handleChange = () => {
     ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
@@ -576,15 +507,14 @@ function createIngredientRow(defaults = {}) {
     updateDependencySuggestions();
     refreshStepIngredientPickers();
     refreshPreview();
+    saveDraftSoon();
   };
 
   const tryAutofillUnit = () => {
     const token = slugify(nameInput.value || '');
     if (!token || unitInput.dataset.userChanged === 'true' || unitInput.value) return;
     const autoUnit = commonUnitForToken(token);
-    if (autoUnit) {
-      syncUnitSelect(unitInput, autoUnit);
-    }
+    if (autoUnit) syncUnitSelect(unitInput, autoUnit);
   };
 
   nameInput.addEventListener('change', () => {
@@ -595,21 +525,22 @@ function createIngredientRow(defaults = {}) {
   row.addEventListener('input', handleChange);
   row.addEventListener('change', handleChange);
 
+  nameInput.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter' || event.shiftKey) return;
+    event.preventDefault();
+    const next = createIngredientRow({ section: sectionInput.value });
+    next.querySelector('.ingredient-amount')?.focus();
+    refreshStepIngredientPickers();
+  });
+
   isChoiceInput.addEventListener('change', () => {
     if (!isChoiceInput.checked) {
       choiceGroupInput.value = '';
       choiceLabelInput.value = '';
       optionInput.value = '';
       choiceDefaultInput.checked = false;
+      row.classList.remove('is-substitution');
     }
-    const hasChoiceValues = Boolean(
-      isChoiceInput.checked ||
-        choiceGroupInput.value ||
-        choiceLabelInput.value ||
-        optionInput.value ||
-        choiceDefaultInput.checked
-    );
-    isChoiceInput.checked = hasChoiceValues;
     syncChoiceFields();
     handleChange();
   });
@@ -626,7 +557,6 @@ function createIngredientRow(defaults = {}) {
   toggleButton.addEventListener('click', () => {
     const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
     toggleButton.setAttribute('aria-expanded', String(!expanded));
-    toggleButton.textContent = expanded ? '+' : '−';
     advancedPanel.hidden = expanded;
   });
 
@@ -634,8 +564,25 @@ function createIngredientRow(defaults = {}) {
     unitInput.dataset.userChanged = 'true';
   });
 
-  row.querySelectorAll('.help-icon[data-help-key]').forEach((btn) => {
-    attachHelpTrigger(btn, btn.dataset.helpKey);
+  row.querySelector('.add-substitution').addEventListener('click', () => {
+    const group = choiceGroupInput.value.trim() || nameInput.value.trim() || 'Substitution';
+    isChoiceInput.checked = true;
+    choiceGroupInput.value = group;
+    choiceLabelInput.value = choiceLabelInput.value.trim() || nameInput.value.trim() || group;
+    choiceDefaultInput.checked = true;
+    syncChoiceFields();
+
+    const substitute = createIngredientRow({
+      isChoice: true,
+      is_substitution: true,
+      choice_group: group,
+      choice_label: choiceLabelInput.value,
+      choice_default: false,
+      section: sectionInput.value,
+    });
+    row.after(substitute);
+    substitute.querySelector('.ingredient-name')?.focus();
+    handleChange();
   });
 
   row.querySelector('.remove-ingredient').addEventListener('click', () => {
@@ -644,31 +591,55 @@ function createIngredientRow(defaults = {}) {
     updateDependencySuggestions();
     refreshStepIngredientPickers();
     refreshPreview();
+    saveDraftSoon();
   });
 
   ingredientRowsEl.appendChild(row);
+  return row;
 }
 
-function createStepRow(defaultText = '', defaultSection = '') {
+function createIngredientSection(defaultName = '') {
+  const divider = document.createElement('div');
+  divider.className = 'ingredient-section-divider';
+  divider.innerHTML = `
+    <span class="section-divider-line" aria-hidden="true"></span>
+    <input class="section-divider-input" placeholder="Section name" aria-label="Ingredient section name" />
+    <button type="button" class="remove-row-button remove-section" aria-label="Remove section">×</button>
+  `;
+  divider.querySelector('.section-divider-input').value = defaultName;
+  divider.querySelector('.section-divider-input').addEventListener('input', () => {
+    refreshPreview();
+    saveDraftSoon();
+  });
+  divider.querySelector('.remove-section').addEventListener('click', () => {
+    divider.remove();
+    refreshPreview();
+    saveDraftSoon();
+  });
+  ingredientRowsEl.appendChild(divider);
+  return divider;
+}
+
+function createStepRow(defaultText = '', defaultSection = '', defaults = {}) {
   const li = document.createElement('li');
   li.className = 'step-row';
 
   const main = document.createElement('div');
   main.className = 'step-main';
 
-  const instructionLabel = document.createElement('label');
-  instructionLabel.className = 'step-text-label';
-  instructionLabel.innerHTML = '<span class="label-top">Instruction</span>';
+  const stepNumber = document.createElement('span');
+  stepNumber.className = 'step-number';
+  stepNumber.setAttribute('aria-hidden', 'true');
+
   const textInput = document.createElement('textarea');
   textInput.className = 'step-text';
   textInput.rows = 3;
-  textInput.placeholder = 'Describe the action and include ingredients';
+  textInput.placeholder = 'Write the next direction…';
   textInput.value = defaultText;
-  instructionLabel.appendChild(textInput);
 
   const ingredientsWrap = document.createElement('div');
   ingredientsWrap.className = 'step-ingredients';
-  ingredientsWrap.setAttribute('aria-label', 'Ingredients used in this step');
+  ingredientsWrap.setAttribute('aria-label', 'Insert an ingredient');
 
   const actions = document.createElement('div');
   actions.className = 'step-actions';
@@ -677,16 +648,17 @@ function createStepRow(defaultText = '', defaultSection = '') {
   toggleButton.type = 'button';
   toggleButton.className = 'step-more-toggle';
   toggleButton.setAttribute('aria-expanded', 'false');
-  toggleButton.setAttribute('aria-label', 'More options');
-  toggleButton.textContent = '+';
+  toggleButton.setAttribute('aria-label', 'Step options');
+  toggleButton.textContent = '•••';
 
   const removeButton = document.createElement('button');
   removeButton.type = 'button';
-  removeButton.className = 'link-button remove-step';
-  removeButton.textContent = 'Remove';
+  removeButton.className = 'remove-row-button remove-step';
+  removeButton.setAttribute('aria-label', 'Remove step');
+  removeButton.textContent = '×';
 
   actions.append(toggleButton, removeButton);
-  main.append(instructionLabel, ingredientsWrap, actions);
+  main.append(stepNumber, textInput, actions, ingredientsWrap);
 
   const advanced = document.createElement('div');
   advanced.className = 'step-advanced';
@@ -696,44 +668,59 @@ function createStepRow(defaultText = '', defaultSection = '') {
   advancedGrid.className = 'step-advanced-grid';
 
   const sectionLabel = document.createElement('label');
-  sectionLabel.innerHTML = 'Section heading';
+  sectionLabel.className = 'advanced-field';
+  sectionLabel.innerHTML = '<span>Section</span>';
   const sectionInput = document.createElement('input');
   sectionInput.className = 'step-section';
-  sectionInput.placeholder = 'e.g., Prep Work';
+  sectionInput.placeholder = 'Prep, sauce, assembly…';
   sectionInput.value = defaultSection;
   sectionLabel.appendChild(sectionInput);
 
   const variationBlock = document.createElement('div');
   variationBlock.className = 'variation-grid';
   variationBlock.innerHTML = `
-    <label>Show when ingredient is set to
+    <label class="advanced-field">
+      <span>Only add this variation when</span>
       <div class="conditional-inputs">
-        <input class="variation-token" list="dependency-suggestions" placeholder="Ingredient name" aria-label="Variation token" />
-        <input class="variation-option" placeholder="Option value" aria-label="Variation option" />
+        <input class="variation-token" list="dependency-suggestions" placeholder="Ingredient or substitution group" />
+        <input class="variation-option" placeholder="Option" />
       </div>
     </label>
-    <label>Variation text (only shown when matched)
-      <textarea class="variation-text" rows="2" placeholder="Shown only for that choice"></textarea>
+    <label class="advanced-field">
+      <span>Variation</span>
+      <textarea class="variation-text" rows="2" placeholder="Extra direction for that choice"></textarea>
     </label>
   `;
+  variationBlock.querySelector('.variation-token').value = defaults.variation_token || '';
+  variationBlock.querySelector('.variation-option').value = defaults.variation_option || '';
+  variationBlock.querySelector('.variation-text').value = defaults.variation_text || '';
 
   advancedGrid.append(sectionLabel, variationBlock);
   advanced.appendChild(advancedGrid);
-
-  const help = document.createElement('div');
-  help.className = 'field-help subtle';
-  help.textContent = 'Add a section heading or conditional variation only when needed.';
-  advanced.appendChild(help);
-
   li.append(main, advanced);
-
-  li.addEventListener('input', refreshPreview);
 
   const setExpanded = (expanded) => {
     toggleButton.setAttribute('aria-expanded', String(expanded));
-    toggleButton.textContent = expanded ? '−' : '+';
     advanced.hidden = !expanded;
   };
+
+  textInput.addEventListener('input', () => {
+    syncStepIngredientMatches(li);
+    refreshPreview();
+    saveDraftSoon();
+  });
+  li.addEventListener('change', () => {
+    refreshPreview();
+    saveDraftSoon();
+  });
+
+  textInput.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter' || event.shiftKey || event.metaKey || event.ctrlKey) return;
+    if (textInput.selectionStart !== textInput.value.length) return;
+    event.preventDefault();
+    const next = createStepRow();
+    next.querySelector('.step-text')?.focus();
+  });
 
   toggleButton.addEventListener('click', () => {
     const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
@@ -743,39 +730,86 @@ function createStepRow(defaultText = '', defaultSection = '') {
   removeButton.addEventListener('click', () => {
     li.remove();
     refreshPreview();
+    saveDraftSoon();
   });
 
-  if (defaultSection) {
-    setExpanded(true);
-  }
+  if (defaultSection || defaults.variation_token || defaults.variation_text) setExpanded(true);
 
   stepsListEl.appendChild(li);
   refreshStepIngredientPicker(li);
+  return li;
+}
+
+function insertIngredientName(textarea, name) {
+  if (!textarea || !name) return;
+  const start = textarea.selectionStart ?? textarea.value.length;
+  const end = textarea.selectionEnd ?? start;
+  const before = textarea.value.slice(0, start);
+  const after = textarea.value.slice(end);
+  const needsLeadingSpace = before && !/\s$/.test(before);
+  const needsTrailingSpace = after && !/^[\s.,;:!?]/.test(after);
+  const insertion = `${needsLeadingSpace ? ' ' : ''}${name}${needsTrailingSpace ? ' ' : ''}`;
+  textarea.value = `${before}${insertion}${after}`;
+  const caret = before.length + insertion.length;
+  textarea.focus();
+  textarea.setSelectionRange(caret, caret);
+  textarea.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+function syncStepIngredientMatches(stepRow) {
+  const textarea = stepRow.querySelector('.step-text');
+  const text = textarea?.value?.toLowerCase() || '';
+  stepRow.querySelectorAll('.ingredient-reference-chip').forEach((button) => {
+    const name = button.dataset.ingredientName || '';
+    const input = button.querySelector('input[type="checkbox"]');
+    const matched = Boolean(name && text.includes(name.toLowerCase()));
+    input.checked = matched;
+    button.classList.toggle('is-linked', matched);
+    button.setAttribute('aria-pressed', String(matched));
+  });
 }
 
 function refreshStepIngredientPicker(stepRow) {
   const picker = stepRow.querySelector('.step-ingredients');
-  const existingSelection = new Set(
-    [...picker.querySelectorAll('input[type="checkbox"]')].filter((cb) => cb.checked).map((cb) => cb.value)
-  );
-  picker.innerHTML = '';
+  if (!picker) return;
+  const textarea = stepRow.querySelector('.step-text');
   const choices = ingredientChoices();
+  picker.innerHTML = '';
+
   if (!choices.length) {
-    picker.textContent = 'Add ingredients first.';
+    picker.hidden = true;
     return;
   }
+  picker.hidden = false;
+
   choices.forEach((choice) => {
-    const label = document.createElement('label');
-    label.className = 'pill-toggle';
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'ingredient-reference-chip';
+    button.dataset.ingredientName = choice.name;
+    button.title = `Insert ${choice.name}`;
+
     const input = document.createElement('input');
     input.type = 'checkbox';
     input.value = choice.token;
-    input.checked = existingSelection.has(choice.token);
-    input.addEventListener('change', refreshPreview);
-    label.appendChild(input);
-    label.append(` ${choice.name}`);
-    picker.appendChild(label);
+    input.tabIndex = -1;
+    input.setAttribute('aria-hidden', 'true');
+
+    const label = document.createElement('span');
+    label.textContent = choice.name;
+
+    button.append(input, label);
+    button.addEventListener('click', () => {
+      insertIngredientName(textarea, choice.name);
+      input.checked = true;
+      button.classList.add('is-linked');
+      button.setAttribute('aria-pressed', 'true');
+      refreshPreview();
+      saveDraftSoon();
+    });
+    picker.appendChild(button);
   });
+  syncStepIngredientMatches(stepRow);
 }
 
 function refreshStepIngredientPickers() {
@@ -802,6 +836,15 @@ function buildIngredientsFromForm(issues) {
   const tokenCounts = new Map();
   let missingChoiceGroup = false;
   const ingredientRows = [...ingredientRowsEl.querySelectorAll('.ingredient-row')];
+  const rowSectionMap = new Map();
+  let activeSection = '';
+  [...ingredientRowsEl.children].forEach((child) => {
+    if (child.classList.contains('ingredient-section-divider')) {
+      activeSection = child.querySelector('.section-divider-input')?.value.trim() || '';
+      return;
+    }
+    if (child.classList.contains('ingredient-row')) rowSectionMap.set(child, activeSection);
+  });
 
   ingredientRows.forEach((row, idx) => {
     const nameInput = row.querySelector('.ingredient-name');
@@ -820,7 +863,7 @@ function buildIngredientsFromForm(issues) {
     const choiceDefaultInput = row.querySelector('.ingredient-default-choice');
 
     const name = nameInput?.value.trim() || '';
-    const section = sectionInput?.value.trim() || '';
+    const section = sectionInput?.value.trim() || rowSectionMap.get(row) || '';
     const amount = amountInput?.value.trim() || '';
     const unit = unitInput?.value.trim() || '';
     const alt = altInput?.value.trim() || '';
@@ -1048,21 +1091,24 @@ function buildRecipeDraft() {
     if (!text) {
       issues.push(`Step ${index + 1} needs instructions.`);
       markInvalid(textInput);
+      return;
     }
-
-    if (selectedTokens.length === 0) {
-      issues.push(`Select ingredients for step ${index + 1}.`);
-      checkboxes.forEach((cb) => markInvalid(cb.closest('label')));
-    }
-
-    if (!text || selectedTokens.length === 0) return;
 
     let stepText = text;
+    const choiceNames = new Map(ingredientChoices().map((choice) => [choice.token, choice.name]));
     selectedTokens.forEach((token) => {
       const tokenPattern = new RegExp(`{{\\s*${token}\\s*}}`);
-      if (!tokenPattern.test(stepText)) {
-        stepText = `${stepText} {{${token}}}`.trim();
+      if (tokenPattern.test(stepText)) return;
+      const displayName = choiceNames.get(token) || '';
+      if (displayName) {
+        const escapedName = displayName.replace(/[.*+?^$()|[\]\\]/g, '\\$&');
+        const namePattern = new RegExp(escapedName, 'i');
+        if (namePattern.test(stepText)) {
+          stepText = stepText.replace(namePattern, `{{${token}}}`);
+          return;
+        }
       }
+      stepText = `${stepText} {{${token}}}`.trim();
     });
 
     const variationToken = slugify(row.querySelector('.variation-token')?.value || '');
