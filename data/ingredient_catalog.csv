@@ -76,7 +76,7 @@ green-onion,Green onion,false,false,false,1,count,1 medium (15g),5,0.27,0.03,0,1
 green-pepper,Green pepper,false,false,false,1,count,1 pepper,24,1,0.2,0.07,5.5,3,2,4,12,0.4,208,95.7,USDA,medium (119g),tbsp,count,0.0625,USDA (green pepper),Approx 1 pepper ≈ 1 cup chopped (16 tbsp).,,,,
 ground-beef,Ground beef,false,false,false,1,lb,1 lb (raw),1150,77,90,36,0,0,0,98,0,0,0,0,USDA (80% lean),Per 1 lb (raw).,,,,,,,,,
 ground-chicken,Ground chicken,false,false,false,1,lb,1 lb (raw),680,84,36,10,0,0,0,320,0,0,0,0,USDA (ground chicken),Per 1 lb (raw).,,,,,,,,
-ground-turkey,Ground turkey,false,false,false,1,lb,,640,0,0,0,0,0,0,0,0,0,0,0,USDA FoodData Central,93% lean ground turkey per pound.,,,,,,,,,
+ground-turkey,Ground turkey,false,false,false,1,lb,"1 lb (raw, 93% lean)",692,78.7,43.5,10.4,0,0,0,364,107,5.0,1117,0,"USDA FoodData Central FDC 2514747","Per 1 lb raw 93% lean/7% fat ground turkey; scaled from USDA per-100g values.",,,,,,,,,
 hamburger-buns,Hamburger buns,true,false,false,1,count,1 bun,150,5,2.5,0.5,27,4,1,230,40,1.5,50,0,USDA,enriched wheat,,,,,,,,,
 heavy_cream,Heavy cream,false,false,true,1,tbsp,1 Tbsp,52,0.3,5.5,3.5,0.4,0.4,0,5,0,0,0,0,(duplicate entry),Per 1 Tbsp.,,,,,,,,,
 hot-dog-buns,Hot dog buns,true,false,false,1,count,1 bun,140,4,2,0.5,26,4,1,230,40,1.4,50,0,USDA,enriched wheat,,,,,,,,,
@@ -207,3 +207,12 @@ fig-preserves,Fig preserves,false,false,false,100,g,100 g,249,0.3,0.1,0.0,64.0,4
 crushed-red-pepper-flakes,Crushed red pepper flakes,false,false,false,100,g,100 g,318,12.0,17.0,3.3,56.6,10.3,27.2,30,148,7.8,2014,0.0,USDA FoodData Central,"Approx per 100g; used in pinch amounts, so totals minimally affected.",tsp,g,1.8,USDA FoodData Central spice estimate,Approx 1 tsp crushed red pepper flakes ≈ 1.8 g.,,,,
 asparagus,Asparagus,false,false,false,100,g,100,20,2.2,0.1,0.0,3.9,1.9,2.1,2,24,2.1,202,5.6,USDA FoodData Central,Approx per 100g (raw),count,g,454,USDA FoodData Central common measure,Approx 1 bunch raw asparagus ≈ 1 lb / 454 g.,bunch,454,USDA FoodData Central common measure,Approx 1 bunch raw asparagus ≈ 1 lb / 454 g.
 cajun-seasoning,Cajun seasoning,false,false,false,1,tsp,1 tsp (~2g),0,0,0,0,0,0,0,300,0,0,0,0,Generic (brand label varies),Sodium varies widely by brand; set as placeholder. Adjust to match the specific label if desired.,,,,,,,,,
+
+cumin,Ground cumin,false,false,false,1,tsp,1 tsp,7.88,0.37,0.47,0.03,0.93,0.05,0.22,3.53,19.55,1.39,37.55,0.16,"USDA (cumin seed)","Per 1 tsp; ground cumin uses the same spice nutrient reference.",,,,,,,,,
+oregano,Dried oregano,false,false,false,1,tsp,1 tsp ground,5.51,0.2,0.18,0.05,1.16,0.07,0.77,0.27,28.37,0.79,30.04,0.9,"USDA (dried oregano)","Per 1 tsp ground dried oregano.",,,,,,,,,
+hard-taco-shells,Hard corn taco shells,false,false,false,1,count,1 shell,50,0.67,2.33,1,6.67,0,0.67,45,0,0.13,0,0,"Old El Paso Crunchy White Corn Shells label","Per shell, calculated from labeled serving of 3 shells.",,,,,,,,,
+sour-cream,Sour cream,false,false,true,1,cup,1 cup,492.2,7.27,48.21,30.01,9.82,0.37,0,121.9,266.8,0.14,331.2,2.07,"USDA via University Hospitals (cultured sour cream)","Per 1 cup cultured sour cream.",,,,,,,,,
+plain-greek-yogurt,Plain Greek yogurt,false,false,true,100,g,100 g,97,9,5,2.395,3.98,4,0,35,100,0,141,0,"USDA FoodData Central (plain whole-milk Greek yogurt)","Per 100 g plain whole-milk Greek yogurt.",cup,g,245,"USDA common measure","Approx 1 cup yogurt = 245 g.",,,,
+pickled-jalapenos,Pickled jalapeños,false,false,false,1,oz,1 oz,5,0,0,0,0,0,1,292.2,20.9,0,47,0,"Virginia Tech Dining label (pickled jalapeños)","Per 1 oz pickled jalapeños; brand sodium varies.",cup,oz,4,"Common chopped jalapeño measure","Approx 1/4 cup chopped pickled jalapeños = 1 oz.",,,,
+pickled-jalapeno-brine,Pickled jalapeño brine,false,false,false,1,tbsp,1 Tbsp,0,0,0,0,0,0,0,146.1,0,0,0,0,"Derived from Virginia Tech pickled jalapeño label","Brine sodium estimate based on 1 oz pickled jalapeño product containing water, vinegar and salt; brand varies.",,,,,,,,,
+dairy-free-shredded-cheese,Dairy-free shredded cheddar-style cheese,false,false,false,1,oz,1 oz (28g),90,1,7,5,6,0,1,270,131,0,9,0,"Follow Your Heart Dairy-Free Cheddar Style Shredded label","Per 1 oz (28g); gluten-free and dairy-free product.",cup,oz,4,"Shredded cheese common measure","Approx 1 cup shredded cheese = 4 oz.",,,,
