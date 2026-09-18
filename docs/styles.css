@@ -4017,3 +4017,20 @@ body.add-page .preview-shell {
     font-size: 0.8rem;
   }
 }
+
+
+/* v3 final flattening */
+body.add-page .button,
+body.add-page .status,
+body.add-page .dietary-chip,
+body.add-page .infield,
+body.add-page .review-panel,
+body.add-page .preview-shell {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body.add-page .category-menu.invalid > summary {
+  border-bottom-color: #c0392b;
+  background: #fff7f7;
+}
