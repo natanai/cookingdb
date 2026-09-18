@@ -386,10 +386,7 @@ function createIngredientRow(defaults = {}) {
       </div>
 
       <div class="ingredient-advanced-grid">
-        <label class="advanced-field">
-          <span>Section</span>
-          <input class="ingredient-section" list="section-suggestions" placeholder="Sauce, filling, topping…" />
-        </label>
+        <input class="ingredient-section" type="hidden" />
 
         <label class="advanced-field">
           <span>Note shown after ingredient</span>
@@ -1098,7 +1095,7 @@ function buildRecipeDraft() {
 
   if (categories.length === 0) {
     issues.push('Add at least one category.');
-    markInvalid(categoriesSelect);
+    markInvalid(document.getElementById('category-menu') || categoriesSelect);
   }
 
   if (!Number.isFinite(defaultBase) || defaultBase <= 0) {
