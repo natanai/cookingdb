@@ -714,14 +714,6 @@ function createStepRow(defaultText = '', defaultSection = '', defaults = {}) {
     saveDraftSoon();
   });
 
-  textInput.addEventListener('keydown', (event) => {
-    if (event.key !== 'Enter' || event.shiftKey || event.metaKey || event.ctrlKey) return;
-    if (textInput.selectionStart !== textInput.value.length) return;
-    event.preventDefault();
-    const next = createStepRow();
-    next.querySelector('.step-text')?.focus();
-  });
-
   toggleButton.addEventListener('click', () => {
     const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
     setExpanded(!expanded);
@@ -756,13 +748,22 @@ function insertIngredientName(textarea, name) {
   textarea.dispatchEvent(new Event('input', { bubbles: true }));
 }
 
+function ingredientNamePattern(name) {
+  const value = String(name || '').trim();
+  if (!value) return null;
+  const escaped = value.replace(/[.*+?^$()|[\]\\]/g, '\\$&');
+  const plural = /[a-z]$/i.test(value) && !/s$/i.test(value) ? '(?:s)?' : '';
+  return new RegExp(`\\b${escaped}${plural}\\b`, 'i');
+}
+
 function syncStepIngredientMatches(stepRow) {
   const textarea = stepRow.querySelector('.step-text');
-  const text = textarea?.value?.toLowerCase() || '';
+  const text = textarea?.value || '';
   stepRow.querySelectorAll('.ingredient-reference-chip').forEach((button) => {
     const name = button.dataset.ingredientName || '';
     const input = button.querySelector('input[type="checkbox"]');
-    const matched = Boolean(name && text.includes(name.toLowerCase()));
+    const pattern = ingredientNamePattern(name);
+    const matched = Boolean(pattern && pattern.test(text));
     input.checked = matched;
     button.classList.toggle('is-linked', matched);
     button.setAttribute('aria-pressed', String(matched));
@@ -1101,9 +1102,8 @@ function buildRecipeDraft() {
       if (tokenPattern.test(stepText)) return;
       const displayName = choiceNames.get(token) || '';
       if (displayName) {
-        const escapedName = displayName.replace(/[.*+?^$()|[\]\\]/g, '\\$&');
-        const namePattern = new RegExp(escapedName, 'i');
-        if (namePattern.test(stepText)) {
+        const namePattern = ingredientNamePattern(displayName);
+        if (namePattern && namePattern.test(stepText)) {
           stepText = stepText.replace(namePattern, `{{${token}}}`);
           return;
         }
