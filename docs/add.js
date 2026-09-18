@@ -144,26 +144,48 @@ function buildUnitDisplay(unitKey, unitDef) {
   return `${label} (${unitKey})`;
 }
 
+function updateCategorySummary() {
+  const summary = document.getElementById('category-summary');
+  if (!summary || !categorySelectEl) return;
+  const selected = [...categorySelectEl.selectedOptions].map((opt) => opt.textContent);
+  if (selected.length === 0) {
+    summary.textContent = 'Choose categories';
+  } else if (selected.length <= 2) {
+    summary.textContent = selected.join(', ');
+  } else {
+    summary.textContent = `${selected.length} categories selected`;
+  }
+}
+
 function renderCategoryChips() {
-  const container = document.getElementById('category-chips');
+  const container = document.getElementById('category-options');
   if (!container || !categorySelectEl) return;
   container.innerHTML = '';
+
   [...categorySelectEl.options].forEach((opt) => {
     if (opt.disabled) return;
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'category-option';
-    button.textContent = opt.textContent;
-    button.setAttribute('aria-pressed', String(opt.selected));
-    button.classList.toggle('is-selected', opt.selected);
-    button.addEventListener('click', () => {
-      opt.selected = !opt.selected;
-      button.setAttribute('aria-pressed', String(opt.selected));
-      button.classList.toggle('is-selected', opt.selected);
+
+    const label = document.createElement('label');
+    label.className = 'category-check';
+
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.checked = opt.selected;
+    input.value = opt.value;
+    input.addEventListener('change', () => {
+      opt.selected = input.checked;
       categorySelectEl.dispatchEvent(new Event('change', { bubbles: true }));
+      updateCategorySummary();
     });
-    container.appendChild(button);
+
+    const text = document.createElement('span');
+    text.textContent = opt.textContent;
+
+    label.append(input, text);
+    container.appendChild(label);
   });
+
+  updateCategorySummary();
 }
 
 function syncCategoryOptions() {
@@ -359,7 +381,8 @@ function createIngredientRow(defaults = {}) {
 
     <div class="ingredient-advanced" hidden>
       <div class="ingredient-action-row">
-        <button type="button" class="button secondary mini-button add-substitution">+ Substitution</button>
+        <button type="button" class="editor-action start-section-here">Start section here</button>
+        <button type="button" class="editor-action add-substitution">Add substitution</button>
       </div>
 
       <div class="ingredient-advanced-grid">
@@ -564,6 +587,14 @@ function createIngredientRow(defaults = {}) {
     unitInput.dataset.userChanged = 'true';
   });
 
+  row.querySelector('.start-section-here').addEventListener('click', () => {
+    const divider = createIngredientSection('', row);
+    divider.querySelector('.section-divider-input')?.focus();
+    advancedPanel.hidden = true;
+    toggleButton.setAttribute('aria-expanded', 'false');
+    saveDraftSoon();
+  });
+
   row.querySelector('.add-substitution').addEventListener('click', () => {
     const group = choiceGroupInput.value.trim() || nameInput.value.trim() || 'Substitution';
     isChoiceInput.checked = true;
@@ -598,12 +629,12 @@ function createIngredientRow(defaults = {}) {
   return row;
 }
 
-function createIngredientSection(defaultName = '') {
+function createIngredientSection(defaultName = '', beforeNode = null) {
   const divider = document.createElement('div');
   divider.className = 'ingredient-section-divider';
   divider.innerHTML = `
-    <span class="section-divider-line" aria-hidden="true"></span>
     <input class="section-divider-input" placeholder="Section name" aria-label="Ingredient section name" />
+    <span class="section-divider-line" aria-hidden="true"></span>
     <button type="button" class="remove-row-button remove-section" aria-label="Remove section">×</button>
   `;
   divider.querySelector('.section-divider-input').value = defaultName;
@@ -616,7 +647,12 @@ function createIngredientSection(defaultName = '') {
     refreshPreview();
     saveDraftSoon();
   });
-  ingredientRowsEl.appendChild(divider);
+
+  if (beforeNode && beforeNode.parentNode === ingredientRowsEl) {
+    ingredientRowsEl.insertBefore(divider, beforeNode);
+  } else {
+    ingredientRowsEl.appendChild(divider);
+  }
   return divider;
 }
 
@@ -1602,7 +1638,10 @@ function bootstrap() {
   document.getElementById('slug').addEventListener('input', (evt) => {
     evt.target.dataset.userEdited = 'true';
   });
-  document.getElementById('categories').addEventListener('change', refreshPreview);
+  document.getElementById('categories').addEventListener('change', () => {
+    updateCategorySummary();
+    refreshPreview();
+  });
   document.getElementById('notes').addEventListener('input', refreshPreview);
   document.getElementById('family').addEventListener('input', refreshPreview);
   document.getElementById('default-base').addEventListener('input', refreshPreview);
@@ -1623,9 +1662,28 @@ function bootstrap() {
     saveDraftSoon();
   });
   document.getElementById('add-ingredient-section').addEventListener('click', () => {
-    const divider = createIngredientSection();
+    const rows = [...ingredientRowsEl.querySelectorAll('.ingredient-row')];
+    const firstRow = rows[0] || null;
+    const firstRowIsBlank = firstRow &&
+      !firstRow.querySelector('.ingredient-name')?.value.trim() &&
+      !firstRow.querySelector('.ingredient-amount')?.value.trim();
+
+    const divider = firstRowIsBlank
+      ? createIngredientSection('', firstRow)
+      : createIngredientSection();
+
+    if (!firstRowIsBlank) {
+      const next = createIngredientRow();
+      divider.after(next);
+    }
+
     divider.querySelector('.section-divider-input')?.focus();
     saveDraftSoon();
+  });
+
+  document.getElementById('category-done').addEventListener('click', () => {
+    const menu = document.getElementById('category-menu');
+    if (menu) menu.open = false;
   });
   document.getElementById('add-step').addEventListener('click', () => {
     const step = createStepRow();
