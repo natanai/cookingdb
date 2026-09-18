@@ -1137,12 +1137,12 @@ function buildRecipeDraft() {
   });
 
   if (stepsRawLines.length === 0) {
-    issues.push('Add at least one step with instructions and ingredients.');
+    issues.push('Add at least one direction.');
   }
 
   const unusedTokens = tokenOrder.filter((token) => !tokenUsage.includes(token));
   if (unusedTokens.length) {
-    issues.push(`Select where to use ${unusedTokens.length > 1 ? 'these ingredients' : 'this ingredient'}: ${unusedTokens.join(', ')}.`);
+    issues.push(`Use each ingredient in the directions at least once: ${unusedTokens.join(', ')}.`);
   }
 
   const compatibility = { gluten_free: true, egg_free: true, dairy_free: true };
@@ -1364,6 +1364,153 @@ function refreshPreview() {
   }
 }
 
+const DRAFT_KEY = "cookingdb:add-recipe:draft:v2";
+let draftSaveTimer = null;
+let restoringDraft = false;
+
+function serializeIngredientEditor() {
+  return [...ingredientRowsEl.children].map((child) => {
+    if (child.classList.contains('ingredient-section-divider')) {
+      return {
+        kind: 'section',
+        name: child.querySelector('.section-divider-input')?.value || '',
+      };
+    }
+    if (!child.classList.contains('ingredient-row')) return null;
+    return {
+      kind: 'ingredient',
+      name: child.querySelector('.ingredient-name')?.value || '',
+      amount: child.querySelector('.ingredient-amount')?.value || '',
+      unit: child.querySelector('.ingredient-unit')?.value || '',
+      section: child.querySelector('.ingredient-section')?.value || '',
+      alt: child.querySelector('.ingredient-alt-note')?.value || '',
+      line_group: child.querySelector('.ingredient-inline-group')?.value || '',
+      isChoice: Boolean(child.querySelector('.ingredient-choice-toggle')?.checked),
+      choice_group: child.querySelector('.ingredient-choice-group')?.value || '',
+      choice_label: child.querySelector('.ingredient-choice-swap-label')?.value || '',
+      option: child.querySelector('.ingredient-option-key')?.value || '',
+      choice_default: Boolean(child.querySelector('.ingredient-default-choice')?.checked),
+      depends_on: {
+        token: child.querySelector('.ingredient-dep-token')?.value || '',
+        option: child.querySelector('.ingredient-dep-option')?.value || '',
+      },
+      dietary: readDietaryFlags(child),
+      is_substitution: child.classList.contains('is-substitution'),
+    };
+  }).filter(Boolean);
+}
+
+function serializeSteps() {
+  return [...stepsListEl.querySelectorAll('.step-row')].map((row) => ({
+    text: row.querySelector('.step-text')?.value || '',
+    section: row.querySelector('.step-section')?.value || '',
+    variation_token: row.querySelector('.variation-token')?.value || '',
+    variation_option: row.querySelector('.variation-option')?.value || '',
+    variation_text: row.querySelector('.variation-text')?.value || '',
+  }));
+}
+
+function saveDraft() {
+  if (restoringDraft) return;
+  const draft = {
+    title: document.getElementById('title')?.value || '',
+    servings: document.getElementById('servings-per-batch')?.value || '',
+    family: document.getElementById('family')?.value || '',
+    notes: document.getElementById('notes')?.value || '',
+    categories: categorySelectEl ? [...categorySelectEl.selectedOptions].map((opt) => opt.value) : [],
+    ingredients: serializeIngredientEditor(),
+    steps: serializeSteps(),
+    saved_at: Date.now(),
+  };
+  try {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+    const status = document.getElementById('draft-status');
+    if (status) status.textContent = 'Saved';
+  } catch (err) {
+    console.warn('Could not save recipe draft', err);
+  }
+}
+
+function saveDraftSoon() {
+  if (restoringDraft) return;
+  const status = document.getElementById('draft-status');
+  if (status) status.textContent = 'Saving…';
+  window.clearTimeout(draftSaveTimer);
+  draftSaveTimer = window.setTimeout(saveDraft, 300);
+}
+
+function clearDraft() {
+  try {
+    localStorage.removeItem(DRAFT_KEY);
+  } catch (err) {
+    console.warn('Could not clear recipe draft', err);
+  }
+}
+
+function restoreDraft() {
+  let draft;
+  try {
+    draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
+  } catch (err) {
+    console.warn('Could not read recipe draft', err);
+    return false;
+  }
+  if (!draft || typeof draft !== 'object') return false;
+
+  const hasContent =
+    draft.title ||
+    draft.servings ||
+    draft.family ||
+    draft.notes ||
+    (draft.categories || []).length ||
+    (draft.ingredients || []).some((item) => item.kind === 'ingredient' && (item.name || item.amount)) ||
+    (draft.steps || []).some((step) => step.text);
+  if (!hasContent) return false;
+
+  restoringDraft = true;
+  pendingDraftCategories = Array.isArray(draft.categories) ? draft.categories : [];
+  document.getElementById('title').value = draft.title || '';
+  document.getElementById('servings-per-batch').value = draft.servings || '';
+  document.getElementById('family').value = draft.family || '';
+  document.getElementById('notes').value = draft.notes || '';
+
+  ingredientRowsEl.innerHTML = '';
+  stepsListEl.innerHTML = '';
+  unitSelects.clear();
+
+  (draft.ingredients || []).forEach((item) => {
+    if (item.kind === 'section') createIngredientSection(item.name || '');
+    else if (item.kind === 'ingredient') createIngredientRow(item);
+  });
+  if (!ingredientRowsEl.querySelector('.ingredient-row')) createIngredientRow();
+
+  (draft.steps || []).forEach((step) => {
+    createStepRow(step.text || '', step.section || '', step);
+  });
+  if (!stepsListEl.querySelector('.step-row')) createStepRow();
+
+  touchSlugFromTitle();
+  refreshStepIngredientPickers();
+  refreshPreview();
+  restoringDraft = false;
+
+  const status = document.getElementById('draft-status');
+  if (status) status.textContent = 'Draft restored';
+  return true;
+}
+
+function setReviewOpen(open) {
+  const panel = document.getElementById('review-panel');
+  const button = document.getElementById('review-recipe');
+  if (!panel) return;
+  panel.hidden = !open;
+  if (button) button.textContent = open ? 'Hide review' : 'Review recipe';
+  if (open) {
+    refreshPreview();
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 function promptFamilyPassword() {
   const remembered = getRememberedPassword('family');
   const provided = window.prompt('Family inbox password', remembered || '');
@@ -1393,6 +1540,7 @@ function showStatus(message, kind = 'info') {
 }
 
 function resetFormForNewEntry() {
+  clearDraft();
   document.getElementById('recipe-form').reset();
   document.getElementById('slug').dataset.userEdited = 'false';
   ingredientRowsEl.innerHTML = '';
@@ -1416,6 +1564,7 @@ async function handleSubmit(evt) {
     showStatus('Submitting recipe...', 'info');
     const result = await familySubmitRecipe({ familyPassword: password, recipe });
     showStatus(`Success: submitted with id ${result?.id || recipe.id}.`, 'success');
+    clearDraft();
     const submitAnother = document.createElement('button');
     submitAnother.type = 'button';
     submitAnother.className = 'button secondary';
@@ -1457,26 +1606,49 @@ function bootstrap() {
   document.getElementById('notes').addEventListener('input', refreshPreview);
   document.getElementById('family').addEventListener('input', refreshPreview);
   document.getElementById('default-base').addEventListener('input', refreshPreview);
+  document.getElementById('servings-per-batch').addEventListener('input', () => {
+    refreshPreview();
+    saveDraftSoon();
+  });
+  document.getElementById('recipe-form').addEventListener('input', saveDraftSoon);
+  document.getElementById('recipe-form').addEventListener('change', saveDraftSoon);
 
   loadUnitsFromConversions();
   syncCategoryOptions();
 
   document.getElementById('add-ingredient').addEventListener('click', () => {
-    createIngredientRow();
+    const row = createIngredientRow();
+    row.querySelector('.ingredient-amount')?.focus();
     refreshStepIngredientPickers();
+    saveDraftSoon();
+  });
+  document.getElementById('add-ingredient-section').addEventListener('click', () => {
+    const divider = createIngredientSection();
+    divider.querySelector('.section-divider-input')?.focus();
+    saveDraftSoon();
   });
   document.getElementById('add-step').addEventListener('click', () => {
-    createStepRow();
+    const step = createStepRow();
+    step.querySelector('.step-text')?.focus();
+    saveDraftSoon();
   });
+  document.getElementById('review-recipe').addEventListener('click', () => {
+    const panel = document.getElementById('review-panel');
+    setReviewOpen(Boolean(panel?.hidden));
+  });
+  document.getElementById('close-review').addEventListener('click', () => setReviewOpen(false));
   document.getElementById('recipe-form').addEventListener('submit', handleSubmit);
 
   if (getRememberedPassword('family')) {
     document.getElementById('remember-family').checked = true;
   }
 
-  createIngredientRow();
-  createStepRow();
-  refreshPreview();
+  const restored = restoreDraft();
+  if (!restored) {
+    createIngredientRow();
+    createStepRow();
+    refreshPreview();
+  }
   loadExistingRecipes();
 }
 
