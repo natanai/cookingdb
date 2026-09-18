@@ -78,9 +78,18 @@
             <h2 id="recipe-details-heading">Recipe details</h2>
           </div>
 
-          <div class="field">
+          <div class="field category-field">
             <label>Categories <span class="required-badge">Required</span></label>
-            <div id="category-chips" class="category-picker" role="group" aria-label="Recipe categories"></div>
+            <details id="category-menu" class="category-menu">
+              <summary>
+                <span id="category-summary">Choose categories</span>
+                <span class="category-summary-caret" aria-hidden="true">▾</span>
+              </summary>
+              <div class="category-popover">
+                <div id="category-options" class="category-options" role="group" aria-label="Recipe categories"></div>
+                <button type="button" class="category-done" id="category-done">Done</button>
+              </div>
+            </details>
             <select id="categories" name="categories" multiple class="category-native-select" tabindex="-1" aria-hidden="true"></select>
           </div>
 
