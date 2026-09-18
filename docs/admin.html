@@ -21,7 +21,7 @@
     <section class="hero">
       <div class="hero-content">
         <h1 class="hero-title">Export pending recipes</h1>
-        <p class="hero-subtitle">Download submissions waiting in the Worker inbox, or wipe inbox entries for a fresh start.</p>
+        <p class="hero-subtitle">The GitHub “Publish pending recipes” workflow is the normal publishing route. This page also downloads the same recipe data as a repo-ready JSON import bundle for backup or manual integration.</p>
       </div>
     </section>
     <main class="admin-panel">
@@ -32,10 +32,10 @@
         </div>
         <label class="remember-row"><input type="checkbox" id="remember-admin" /> Remember token on this device</label>
         <div class="actions">
-          <button class="button" id="download-btn" type="button">Download pending recipes JSON</button>
+          <button class="button" id="download-btn" type="button">Download repo-ready recipe JSON</button>
         </div>
         <div class="actions">
-          <div class="warning-text">Deleting pending entries is permanent. To proceed, type DELETE in the prompt.</div>
+          <div class="warning-text">Deleting pending entries is permanent. The publish workflow removes only the rows it successfully integrates; use this button only when intentionally clearing the whole pending inbox.</div>
           <button class="button danger" id="wipe-pending-btn" type="button">Delete all pending inbox entries</button>
         </div>
         <div id="admin-status" class="status"></div>

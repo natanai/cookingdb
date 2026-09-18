@@ -1,7 +1,16 @@
 # Recipe integration checklist
 
 Use this page as the source of truth when adding or updating a recipe. The rules here come from
-`scripts/validate.mjs`, `scripts/build.mjs`, `README.md`, and `docs/inbox/schema-notes.md`.
+`scripts/validate.mjs`, `scripts/build.mjs`, `scripts/import-inbox.mjs`, `README.md`, and `docs/inbox/schema-notes.md`.
+
+## Supported publishing routes
+
+Both supported routes use `scripts/import-inbox.mjs`, so downloaded exports and the GitHub workflow produce the same canonical recipe files.
+
+- **Official route:** submit recipes on the live site, then run **Actions → Publish pending recipes → Run workflow**. The workflow fetches pending D1 rows directly, imports them, validates/builds, commits, dispatches Pages, then deletes only the imported inbox rows.
+- **Export/manual route:** download the repo-ready JSON bundle from `docs/admin.html`, then run `npm run import:inbox -- <export.json>`, followed by `npm run validate` and `npm run build`.
+
+The importer never silently overwrites a different existing recipe. Known ingredient display-name aliases are resolved to canonical catalog IDs when the match is unique; unknown or ambiguous ingredients stop the import.
 
 ## Required files per recipe
 

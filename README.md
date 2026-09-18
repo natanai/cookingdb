@@ -30,21 +30,39 @@ Open `docs/index.html` in a browser to view the recipes. Blintzes are included a
 
 ## Recipe integration checklist
 
-- See [`docs/recipe-integration.md`](docs/recipe-integration.md) for the full checklist and validation rules.
+See [`docs/recipe-integration.md`](docs/recipe-integration.md) for the full checklist and validation rules.
 
 ## GitHub Pages
 
-A workflow (`.github/workflows/pages.yml`) builds the site and publishes `/docs` as the artifact. To enable Pages:
-1. In the GitHub repository settings, open **Pages** and set **Source** to **Deploy from a branch**.
-2. Select the default branch and set the folder to `/docs`.
-3. Push changes to `main`; the workflow will run `npm run build` and deploy the generated artifact via GitHub Pages.
+The workflow at `.github/workflows/pages.yml` builds the site and deploys `/docs`. It runs on pushes to `main` and can also be dispatched explicitly by the recipe publishing workflow.
 
-## Recipe inbox
+## Recipe inbox and publishing
 
-- Family submit form: [`docs/add.html`](docs/add.html)
-- Admin export tools: [`docs/admin.html`](docs/admin.html)
-- The home page (`docs/index.html`) can pull pending inbox recipes into the local list for previewing.
+- Family recipe editor: [`docs/add.html`](docs/add.html)
+- Admin export/backup: [`docs/admin.html`](docs/admin.html)
+- Official publisher: **Actions → Publish pending recipes → Run workflow**
 
-The Worker-backed database acts as an inbox for submissions; the Git repository remains the source of truth for published recipes. Approved recipes should be exported from the Worker, merged into the repo in the existing schema, and rebuilt for the site.
+The Worker-backed D1 database is an inbox; the Git repository remains the source of truth for published recipes.
 
-Make sure the Worker allows CORS (including OPTIONS preflight) from `https://natanai.github.io` so the Pages-hosted UI can reach the inbox API.
+### Official route
+
+1. Submit one or more recipes through the live Add Recipe page.
+2. Run the **Publish pending recipes** GitHub Action.
+3. The workflow fetches pending rows directly from the Worker, converts them to canonical `recipes/<id>/` CSV files, validates and builds the site, commits the repository changes, dispatches the Pages deployment, and then removes only the successfully integrated inbox rows.
+4. Existing recipe IDs are never silently overwritten. An identical existing recipe is treated as already imported so a cleanup retry is safe; different content causes the workflow to stop.
+
+The workflow requires the repository Actions secret `COOKINGDB_ADMIN_TOKEN`. It should contain the same admin-token value configured on the Cloudflare Worker. The Worker URL defaults to `https://cookingdb-inbox.natanai.workers.dev`; set the optional Actions variable `COOKINGDB_INBOX_URL` only if that endpoint changes.
+
+### Export/manual route
+
+The admin page downloads a versioned `cookingdb-recipe-import-YYYY-MM-DD.json` bundle containing the complete pending recipe payloads. The same importer used by the official workflow can integrate that file:
+
+```bash
+npm run import:inbox -- /path/to/cookingdb-recipe-import-YYYY-MM-DD.json
+npm run validate
+npm run build
+```
+
+The importer resolves known ingredient aliases against the ingredient catalog and existing recipe displays. If a submitted ingredient cannot be mapped safely to `data/ingredient_catalog.csv`, or if another validation rule fails, publication stops rather than creating a broken recipe.
+
+Make sure the Worker allows CORS (including OPTIONS preflight) from the Pages-hosted site so browser submissions and admin exports can reach the inbox API.

@@ -1,0 +1,161 @@
+name: Publish pending recipes
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Validate pending recipes without committing, deploying, or deleting inbox entries
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: cookingdb-recipe-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check publish secret
+        env:
+          COOKINGDB_ADMIN_TOKEN: ${{ secrets.COOKINGDB_ADMIN_TOKEN }}
+        run: |
+          if [ -z "$COOKINGDB_ADMIN_TOKEN" ]; then
+            echo "::error::Missing repository secret COOKINGDB_ADMIN_TOKEN."
+            exit 1
+          fi
+
+      - name: Fetch pending recipes from the inbox
+        env:
+          COOKINGDB_ADMIN_TOKEN: ${{ secrets.COOKINGDB_ADMIN_TOKEN }}
+          COOKINGDB_INBOX_URL: ${{ vars.COOKINGDB_INBOX_URL || 'https://cookingdb-inbox.natanai.workers.dev' }}
+        run: |
+          curl --fail-with-body --silent --show-error \
+            -X POST "${COOKINGDB_INBOX_URL%/}/admin/export" \
+            -H "Content-Type: application/json" \
+            -H "X-Admin-Token: $COOKINGDB_ADMIN_TOKEN" \
+            --data '{"status":"pending","include_payload":true}' \
+            --output "$RUNNER_TEMP/cookingdb-inbox.json"
+
+      - name: Import pending recipes
+        env:
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          extra=()
+          if [ "$DRY_RUN" = "true" ]; then
+            extra+=(--dry-run)
+          fi
+          node scripts/import-inbox.mjs \
+            "$RUNNER_TEMP/cookingdb-inbox.json" \
+            --report "$RUNNER_TEMP/cookingdb-import-report.json" \
+            "${extra[@]}"
+
+      - name: Read import report
+        id: import
+        run: |
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const report = JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP + '/cookingdb-import-report.json', 'utf8'));
+          const output = process.env.GITHUB_OUTPUT;
+          fs.appendFileSync(output, `processed=${report.processed}\n`);
+          fs.appendFileSync(output, `inbox_count=${report.inbox_ids.length}\n`);
+          fs.appendFileSync(output, `created_count=${report.created_recipe_ids.length}\n`);
+          fs.appendFileSync(
+            process.env.GITHUB_STEP_SUMMARY,
+            [
+              '## Recipe inbox import',
+              '',
+              `Processed: **${report.processed}**`,
+              `New recipe directories: **${report.created_recipe_ids.length}**`,
+              `Already present and identical: **${report.already_present_recipe_ids.length}**`,
+              '',
+            ].join('\n')
+          );
+          NODE
+
+      - name: Ensure every publishable inbox row can be acknowledged
+        if: ${{ !inputs.dry_run && steps.import.outputs.processed != '0' }}
+        run: |
+          if [ "${{ steps.import.outputs.processed }}" != "${{ steps.import.outputs.inbox_count }}" ]; then
+            echo "::error::At least one imported recipe is missing its numeric inbox ID. Nothing will be published or deleted."
+            exit 1
+          fi
+
+      - name: Validate recipes
+        run: npm run validate
+
+      - name: Build site data
+        run: npm run build
+
+      - name: Commit canonical recipe sources and built data
+        if: ${{ !inputs.dry_run && steps.import.outputs.processed != '0' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add recipes docs/built
+
+          if git diff --cached --quiet; then
+            echo "No new repository changes; imported recipes were already present and identical."
+          else
+            git commit -m "Publish pending recipes"
+            git push origin HEAD:main
+          fi
+
+      - name: Dispatch Pages deployment
+        if: ${{ !inputs.dry_run && steps.import.outputs.processed != '0' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl --fail-with-body --silent --show-error \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/pages.yml/dispatches" \
+            --data '{"ref":"main"}'
+
+      - name: Remove published rows from the inbox
+        if: ${{ !inputs.dry_run && steps.import.outputs.processed != '0' }}
+        env:
+          COOKINGDB_ADMIN_TOKEN: ${{ secrets.COOKINGDB_ADMIN_TOKEN }}
+          COOKINGDB_INBOX_URL: ${{ vars.COOKINGDB_INBOX_URL || 'https://cookingdb-inbox.natanai.workers.dev' }}
+        run: |
+          DELETE_PAYLOAD="$(node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const report = JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP + '/cookingdb-import-report.json', 'utf8'));
+          process.stdout.write(JSON.stringify({ ids: report.inbox_ids }));
+          NODE
+          )"
+
+          curl --fail-with-body --silent --show-error \
+            -X POST "${COOKINGDB_INBOX_URL%/}/admin/delete-pending" \
+            -H "Content-Type: application/json" \
+            -H "X-Admin-Token: $COOKINGDB_ADMIN_TOKEN" \
+            --data "$DELETE_PAYLOAD" \
+            --output "$RUNNER_TEMP/cookingdb-delete-result.json"
+
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const result = JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP + '/cookingdb-delete-result.json', 'utf8'));
+          if (!result.ok) throw new Error(result.error || 'Inbox cleanup failed');
+          console.log(`Removed ${result.deleted ?? 'published'} pending inbox rows.`);
+          NODE
