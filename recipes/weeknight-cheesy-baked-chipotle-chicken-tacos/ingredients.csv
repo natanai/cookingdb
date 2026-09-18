@@ -1,0 +1,28 @@
+token,option,display,ratio,unit,ingredient_id,prep,section
+olive_oil,,extra virgin olive oil,2,tbsp,olive_oil,,Taco Filling
+protein,chicken,ground chicken,1,lb,ground-chicken,,Taco Filling
+protein,beef,ground beef,1,lb,ground-beef,,Taco Filling
+protein,turkey,ground turkey,1,lb,ground-turkey,,Taco Filling
+onion,,yellow onion,1,count,onion,chopped,Taco Filling
+chipotle_chili_powder,,chipotle chili powder,2,tsp,chili-powder,"add up to 1 tsp more to taste",Taco Filling
+smoked_paprika,,smoked paprika,2,tsp,paprika,,Taco Filling
+cumin,,ground cumin,1 1/2,tsp,cumin,,Taco Filling
+garlic_powder_filling,,garlic powder,1,tsp,garlic-powder,,Taco Filling
+red_pepper_flakes,,crushed red pepper flakes,1/4,tsp,crushed-red-pepper-flakes,"add up to 1/4 tsp more to taste",Taco Filling
+oregano,,dried oregano,1/2,tsp,oregano,,Taco Filling
+salt_filling,,kosher salt,1,tsp,salt,,Taco Filling
+water,,water,3/4,cup,water,,Taco Filling
+cilantro_filling,,fresh cilantro,1/4,cup,cilantro,chopped,Taco Filling
+taco_shells,,hard corn taco shells,12,count,hard-taco-shells,,Tacos
+cheese,mexican,shredded Mexican cheese,2,cup,cheddar-mozzarella-cheese,,Tacos
+cheese,dairy_free,dairy-free shredded cheddar-style cheese,2,cup,dairy-free-shredded-cheese,,Tacos
+ranch_base,sour_cream,sour cream,1,cup,sour-cream,,Cilantro Lime Ranch
+ranch_base,greek_yogurt,plain Greek yogurt,1,cup,plain-greek-yogurt,,Cilantro Lime Ranch
+ranch_base,nondairy_yogurt,plain non-dairy yogurt,1,cup,nondairy-yogurt,,Cilantro Lime Ranch
+cilantro_ranch,,fresh cilantro,3/4,cup,cilantro,finely chopped,Cilantro Lime Ranch
+garlic_powder_ranch,,garlic powder,1,tsp,garlic-powder,,Cilantro Lime Ranch
+onion_powder_ranch,,onion powder,1,tsp,onion_powder,,Cilantro Lime Ranch
+pickled_jalapenos,,pickled jalapeños,1/4,cup,pickled-jalapenos,chopped,Cilantro Lime Ranch
+jalapeno_brine,,pickled jalapeño brine,2,tbsp,pickled-jalapeno-brine,,Cilantro Lime Ranch
+limes,,limes,2,count,lime,juiced,Cilantro Lime Ranch
+salt_ranch,,kosher salt,1,tsp,salt,,Cilantro Lime Ranch
