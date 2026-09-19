@@ -16,7 +16,6 @@ import { UNIT_CONVERSIONS } from './unit-conversions.js';
 
 const ingredientRowsEl = document.getElementById('ingredient-rows');
 const stepsListEl = document.getElementById('steps-list');
-const ingredientSuggestionsEl = document.getElementById('ingredient-suggestions');
 const dependencySuggestionsEl = document.getElementById('dependency-suggestions');
 const sectionSuggestionsEl = document.getElementById('section-suggestions');
 const categorySelectEl = document.getElementById('categories');
@@ -68,7 +67,8 @@ function attachHelpTrigger(button, key) {
   });
 }
 
-const ingredientNameSet = new Set();
+let ingredientAutocompleteEntries = [];
+const ingredientAutocompleteByLabel = new Map();
 const categorySet = new Set();
 const unitChoices = new Map();
 const unitSelects = new Set();
@@ -118,9 +118,61 @@ function addOptionToDatalist(datalistEl, value) {
   datalistEl.appendChild(opt);
 }
 
-function updateIngredientSuggestions() {
-  ingredientSuggestionsEl.innerHTML = '';
-  ingredientNameSet.forEach((name) => addOptionToDatalist(ingredientSuggestionsEl, name));
+function normalizeAutocompleteText(value) {
+  return String(value || '').trim().toLocaleLowerCase();
+}
+
+async function loadIngredientAutocomplete() {
+  const response = await fetch('./built/ingredient-autocomplete.json');
+  if (!response.ok) {
+    throw new Error(`Ingredient autocomplete request failed: ${response.status}`);
+  }
+  const entries = await response.json();
+  ingredientAutocompleteEntries = Array.isArray(entries)
+    ? entries
+        .filter((entry) => entry?.label && entry?.ingredient_id)
+        .map((entry) => ({
+          ...entry,
+          search: normalizeAutocompleteText(entry.label),
+        }))
+    : [];
+
+  ingredientAutocompleteByLabel.clear();
+  ingredientAutocompleteEntries.forEach((entry) => {
+    if (!ingredientAutocompleteByLabel.has(entry.search)) {
+      ingredientAutocompleteByLabel.set(entry.search, entry);
+    }
+  });
+}
+
+function ingredientAutocompleteMatches(query, limit = 8) {
+  const normalized = normalizeAutocompleteText(query);
+  if (!normalized) return [];
+
+  const startsWith = [];
+  const contains = [];
+
+  for (const entry of ingredientAutocompleteEntries) {
+    if (entry.search.startsWith(normalized)) {
+      startsWith.push(entry);
+    } else if (entry.search.includes(normalized)) {
+      contains.push(entry);
+    }
+    if (startsWith.length >= limit) break;
+  }
+
+  if (startsWith.length < limit) {
+    for (const entry of contains) {
+      startsWith.push(entry);
+      if (startsWith.length >= limit) break;
+    }
+  }
+
+  return startsWith;
+}
+
+function exactIngredientAutocompleteMatch(value) {
+  return ingredientAutocompleteByLabel.get(normalizeAutocompleteText(value)) || null;
 }
 
 function updateSectionSuggestions() {
@@ -225,7 +277,7 @@ function syncUnitSelect(selectEl, preferredValue = '') {
   const fragment = document.createDocumentFragment();
   const placeholder = document.createElement('option');
   placeholder.value = '';
-  placeholder.textContent = 'Select unit';
+  placeholder.textContent = 'Unit';
   placeholder.disabled = true;
   placeholder.hidden = false;
   placeholder.selected = !targetValue;
@@ -337,7 +389,6 @@ async function loadExistingRecipes() {
           const tokenFromData = tokenData.token || tokenData.options?.[0]?.ingredient_id || '';
           const token = slugify(tokenFromData);
           tokenData.options.forEach((opt) => {
-            if (opt.display) ingredientNameSet.add(opt.display);
             if (opt.unit) {
               unitChoices.set(opt.unit, unitChoices.get(opt.unit) || opt.unit);
               recordUnitFrequency(token, opt.unit);
@@ -349,7 +400,6 @@ async function loadExistingRecipes() {
       });
       syncCategoryOptions();
       syncUnitSelects();
-      updateIngredientSuggestions();
       updateSectionSuggestions();
       updateDependencySuggestions();
     }
