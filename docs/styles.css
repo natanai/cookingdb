@@ -4844,3 +4844,86 @@ body.add-page .admin-edit-banner {
     gap: 0.18rem;
   }
 }
+
+
+/* ===========================
+   Ingredient autocomplete v2
+   Preloaded, in-memory, anchored below the field
+   =========================== */
+body.add-page .ingredient-autocomplete {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+}
+
+body.add-page .ingredient-autocomplete .ingredient-name {
+  width: 100%;
+}
+
+body.add-page .ingredient-autocomplete-menu {
+  position: absolute;
+  z-index: 80;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: min(280px, 42vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+body.add-page .ingredient-autocomplete-menu[hidden] {
+  display: none !important;
+}
+
+body.add-page .ingredient-autocomplete-option {
+  display: flex;
+  width: 100%;
+  min-height: 38px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.4rem 0.55rem;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+body.add-page .ingredient-autocomplete-option:last-child {
+  border-bottom: 0;
+}
+
+body.add-page .ingredient-autocomplete-option:hover,
+body.add-page .ingredient-autocomplete-option:focus {
+  outline: 0;
+  background: #fff7ea;
+}
+
+body.add-page .ingredient-autocomplete-option small {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+body.add-page .ingredient-autocomplete-add {
+  color: var(--accent);
+  font-weight: 650;
+}
+
+@media (max-width: 700px) {
+  body.add-page .ingredient-autocomplete {
+    grid-area: name;
+  }
+
+  body.add-page .ingredient-autocomplete-menu {
+    max-height: min(240px, 38vh);
+  }
+}
