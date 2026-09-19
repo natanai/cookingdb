@@ -4034,3 +4034,152 @@ body.add-page .category-menu.invalid > summary {
   border-bottom-color: #c0392b;
   background: #fff7f7;
 }
+
+
+/* ===========================
+   Add Recipe v4
+   Compact editor + explicit input affordance
+   =========================== */
+body.add-page {
+  --editor-field-bg: #fffdf9;
+  --editor-field-border: color-mix(in srgb, var(--border) 88%, #8e7e69);
+  --editor-field-focus: var(--accent);
+}
+
+body.add-page .recipe-title-input,
+body.add-page .yield-row input,
+body.add-page .ingredient-main input,
+body.add-page .ingredient-main select,
+body.add-page .step-text,
+body.add-page .advanced-field input,
+body.add-page .advanced-field textarea,
+body.add-page .recipe-details-section input,
+body.add-page .recipe-details-section textarea,
+body.add-page .recipe-details-section select,
+body.add-page .category-menu > summary {
+  background: var(--editor-field-bg) !important;
+  border: 1px solid var(--editor-field-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body.add-page .recipe-title-input:focus,
+body.add-page .yield-row input:focus,
+body.add-page .ingredient-main input:focus,
+body.add-page .ingredient-main select:focus,
+body.add-page .step-text:focus,
+body.add-page .advanced-field input:focus,
+body.add-page .advanced-field textarea:focus,
+body.add-page .recipe-details-section input:focus,
+body.add-page .recipe-details-section textarea:focus,
+body.add-page .recipe-details-section select:focus,
+body.add-page .category-menu[open] > summary {
+  outline: 0;
+  border-color: var(--editor-field-focus) !important;
+}
+
+body.add-page .recipe-title-input {
+  padding: 0.48rem 0.55rem;
+}
+
+body.add-page .yield-row input {
+  min-height: 36px;
+  padding: 0.3rem 0.45rem;
+}
+
+body.add-page .ingredient-main input,
+body.add-page .ingredient-main select {
+  min-height: 36px;
+  padding: 0.32rem 0.4rem;
+}
+
+body.add-page .step-text {
+  min-height: 72px;
+  padding: 0.5rem 0.55rem;
+}
+
+body.add-page .advanced-field input,
+body.add-page .advanced-field textarea,
+body.add-page .recipe-details-section input,
+body.add-page .recipe-details-section textarea,
+body.add-page .recipe-details-section select {
+  padding: 0.4rem 0.5rem;
+}
+
+body.add-page .category-menu > summary {
+  min-height: 38px;
+  padding: 0.38rem 0.5rem;
+}
+
+body.add-page .category-menu.invalid > summary,
+body.add-page .invalid {
+  border-color: #c0392b !important;
+}
+
+body.add-page .recipe-options {
+  margin-top: 0.8rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.55rem;
+}
+
+body.add-page .recipe-options > summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 650;
+  font-size: 0.9rem;
+  list-style-position: outside;
+}
+
+body.add-page .recipe-options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  padding-top: 0.65rem;
+}
+
+body.add-page .recipe-options .field {
+  margin: 0;
+}
+
+body.add-page .ingredient-advanced,
+body.add-page .step-advanced {
+  background: color-mix(in srgb, var(--editor-field-bg) 72%, transparent);
+}
+
+body.add-page .category-popover {
+  background: var(--editor-field-bg);
+}
+
+@media (max-width: 700px) {
+  body.add-page .recipe-title-input {
+    padding: 0.5rem;
+  }
+
+  body.add-page .ingredient-main {
+    grid-template-columns: 58px 90px minmax(0, 1fr) 28px 26px;
+    gap: 0.22rem;
+  }
+
+  body.add-page .ingredient-main input,
+  body.add-page .ingredient-main select {
+    min-height: 36px;
+    padding-inline: 0.28rem;
+    font-size: 0.9rem;
+  }
+
+  body.add-page .step-text {
+    min-height: 76px;
+    padding: 0.48rem 0.5rem;
+  }
+
+  body.add-page .recipe-options-grid {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+}
+
+@media (max-width: 360px) {
+  body.add-page .ingredient-main {
+    grid-template-columns: 52px 80px minmax(0, 1fr) 26px 24px;
+  }
+}
