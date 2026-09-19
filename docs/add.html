@@ -10,15 +10,24 @@
 <body class="add-page">
   <header class="site-header">
     <div class="inner">
-      <h1 class="site-title">Add recipe</h1>
+      <h1 class="site-title" id="composer-site-title">Add recipe</h1>
       <nav class="nav-links">
-        <a href="index.html">← Cookbook</a>
+        <a href="admin.html" id="admin-inbox-link" hidden>← Inbox</a>
+        <a href="index.html">Cookbook</a>
         <a href="bread-maker.html">Bread maker</a>
       </nav>
     </div>
   </header>
 
   <div class="page-shell add-recipe-shell">
+    <div id="admin-edit-banner" class="admin-edit-banner" hidden>
+      <div>
+        <strong>Pending recipe review</strong>
+        <span id="admin-edit-meta"></span>
+      </div>
+      <a href="admin.html">Back to inbox</a>
+    </div>
+
     <main class="recipe-composer">
       <form id="recipe-form" autocomplete="off">
         <section class="composer-section composer-intro" aria-labelledby="recipe-name-heading">
@@ -131,9 +140,9 @@
           <div id="draft-status" class="draft-status" aria-live="polite">Draft saved on this device</div>
           <div class="composer-footer-actions">
             <button class="button secondary" type="button" id="review-recipe">Review recipe</button>
-            <button class="button" type="submit">Submit recipe</button>
+            <button class="button" type="submit" id="submit-recipe">Submit recipe</button>
           </div>
-          <label class="remember-row"><input type="checkbox" id="remember-family" /> Remember family password on this device</label>
+          <label class="remember-row" id="family-auth-row"><input type="checkbox" id="remember-family" /> Remember family password on this device</label>
           <div id="form-status" class="status"></div>
         </div>
       </form>

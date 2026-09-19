@@ -3,6 +3,7 @@ const PATHS = {
   familySubmit: '/api/add',
   familyList: '/api/list',
   adminExport: '/admin/export',
+  adminUpdatePending: '/admin/update-pending',
   adminDeletePending: '/admin/delete-pending',
 };
 
@@ -98,6 +99,24 @@ export function adminExportPending({ workerBaseUrl = DEFAULT_BASE_URL, adminToke
     workerBaseUrl,
     adminToken,
     payload: { status: 'pending', include_payload: true },
+  });
+}
+
+export function adminUpdatePending({
+  workerBaseUrl = DEFAULT_BASE_URL,
+  adminToken,
+  id,
+  recipe,
+  expectedUpdatedAt = '',
+}) {
+  return postJson('adminUpdatePending', {
+    workerBaseUrl,
+    adminToken,
+    payload: {
+      id,
+      payload: recipe,
+      expected_updated_at: expectedUpdatedAt,
+    },
   });
 }
 
