@@ -430,8 +430,8 @@ function createIngredientRow(defaults = {}) {
         <input class="ingredient-section" type="hidden" />
 
         <label class="advanced-field">
-          <span>Note shown after ingredient</span>
-          <input class="ingredient-alt-note" placeholder="finely chopped, divided…" />
+          <span>Prep note</span>
+          <input class="ingredient-prep" placeholder="finely chopped, divided…" />
         </label>
 
         <label class="advanced-field">
@@ -494,7 +494,7 @@ function createIngredientRow(defaults = {}) {
   const sectionInput = row.querySelector('.ingredient-section');
   const amountInput = row.querySelector('.ingredient-amount');
   const unitInput = row.querySelector('.ingredient-unit');
-  const altInput = row.querySelector('.ingredient-alt-note');
+  const prepInput = row.querySelector('.ingredient-prep');
   const depTokenInput = row.querySelector('.ingredient-dep-token');
   const depOptionInput = row.querySelector('.ingredient-dep-option');
   const optionInput = row.querySelector('.ingredient-option-key');
@@ -514,7 +514,7 @@ function createIngredientRow(defaults = {}) {
   amountInput.value = defaults.amount || '';
   syncUnitSelect(unitInput, defaults.unit || '');
   unitSelects.add(unitInput);
-  altInput.value = defaults.alt || '';
+  prepInput.value = defaults.prep || defaults.alt || '';
   depTokenInput.value = defaults.depends_on?.token || '';
   depOptionInput.value = defaults.depends_on?.option || '';
   optionInput.value = defaults.option || '';
@@ -546,7 +546,7 @@ function createIngredientRow(defaults = {}) {
 
   const hasAdvancedDefaults = Boolean(
     sectionInput.value ||
-      altInput.value ||
+      prepInput.value ||
       depTokenInput.value ||
       depOptionInput.value ||
       optionInput.value ||
@@ -926,7 +926,7 @@ function buildIngredientsFromForm(issues) {
     const sectionInput = row.querySelector('.ingredient-section');
     const amountInput = row.querySelector('.ingredient-amount');
     const unitInput = row.querySelector('.ingredient-unit');
-    const altInput = row.querySelector('.ingredient-alt-note');
+    const prepInput = row.querySelector('.ingredient-prep');
     const depTokenInput = row.querySelector('.ingredient-dep-token');
     const depOptionInput = row.querySelector('.ingredient-dep-option');
     const conditionalToggle = row.querySelector('.ingredient-conditional-toggle');
@@ -941,7 +941,7 @@ function buildIngredientsFromForm(issues) {
     const section = sectionInput?.value.trim() || rowSectionMap.get(row) || '';
     const amount = amountInput?.value.trim() || '';
     const unit = unitInput?.value.trim() || '';
-    const alt = altInput?.value.trim() || '';
+    const prep = prepInput?.value.trim() || '';
     const isConditional = Boolean(conditionalToggle?.checked);
     const depToken = isConditional ? depTokenInput?.value.trim() || '' : '';
     const depOption = isConditional ? depOptionInput?.value.trim() || '' : '';
@@ -958,7 +958,7 @@ function buildIngredientsFromForm(issues) {
       !section &&
       !amount &&
       !unit &&
-      !alt &&
+      !prep &&
       !depToken &&
       !depOption &&
       !lineGroup &&
@@ -988,7 +988,7 @@ function buildIngredientsFromForm(issues) {
       : null;
     const sectionValue = section || null;
     const lineGroupValue = lineGroup || null;
-    const optionDisplay = alt ? `${name} (${alt})` : name;
+    const optionDisplay = name;
 
     if (isChoice) {
       if (!choiceGroup) {
@@ -1030,6 +1030,7 @@ function buildIngredientsFromForm(issues) {
         ratio: amount,
         unit,
         ingredient_id: slugify(name),
+        prep,
         dietary,
         depends_on,
         line_group: lineGroupValue,
@@ -1064,6 +1065,7 @@ function buildIngredientsFromForm(issues) {
           ratio: amount,
           unit,
           ingredient_id: token,
+          prep,
           dietary,
           depends_on,
           line_group: lineGroupValue,
@@ -1469,7 +1471,7 @@ function serializeIngredientEditor() {
       amount: child.querySelector('.ingredient-amount')?.value || '',
       unit: child.querySelector('.ingredient-unit')?.value || '',
       section: child.querySelector('.ingredient-section')?.value || '',
-      alt: child.querySelector('.ingredient-alt-note')?.value || '',
+      prep: child.querySelector('.ingredient-prep')?.value || '',
       line_group: child.querySelector('.ingredient-inline-group')?.value || '',
       isChoice: Boolean(child.querySelector('.ingredient-choice-toggle')?.checked),
       choice_group: child.querySelector('.ingredient-choice-group')?.value || '',
