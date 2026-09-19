@@ -3,45 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Inbox Export</title>
+  <title>Recipe inbox admin</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="favicon.svg" />
 </head>
-<body>
+<body class="admin-page">
   <header class="site-header">
     <div class="inner">
-      <h1 class="site-title">Inbox admin</h1>
+      <h1 class="site-title">Recipe inbox</h1>
       <nav class="nav-links">
-        <a href="index.html">← Back to cookbook</a>
-        <a href="add.html">Family submit</a>
+        <a href="index.html">← Cookbook</a>
+        <a href="add.html">Add recipe</a>
       </nav>
     </div>
   </header>
-  <div class="page-shell">
-    <section class="hero">
+
+  <div class="page-shell admin-shell">
+    <section class="hero admin-hero">
       <div class="hero-content">
-        <h1 class="hero-title">Export pending recipes</h1>
-        <p class="hero-subtitle">The GitHub “Publish pending recipes” workflow is the normal publishing route. This page also downloads the same recipe data as a repo-ready JSON import bundle for backup or manual integration.</p>
+        <h1 class="hero-title">Pending recipes</h1>
+        <p class="hero-subtitle">Review, edit, or remove inbox recipes here before running the GitHub publish workflow.</p>
       </div>
     </section>
-    <main class="admin-panel">
-      <section class="form-panel">
-        <div class="field">
-          <label for="admin-token">Admin token</label>
-          <input id="admin-token" type="password" placeholder="Paste admin token" />
+
+    <main class="admin-panel admin-inbox">
+      <section class="form-panel admin-login-panel" aria-labelledby="admin-login-heading">
+        <h2 id="admin-login-heading" class="section-heading">Admin access</h2>
+        <div class="admin-login-row">
+          <div class="field">
+            <label for="admin-token">Admin token</label>
+            <input id="admin-token" type="password" placeholder="Paste admin token" autocomplete="current-password" />
+          </div>
+          <button class="button" id="load-pending-btn" type="button">Open inbox</button>
         </div>
         <label class="remember-row"><input type="checkbox" id="remember-admin" /> Remember token on this device</label>
-        <div class="actions">
-          <button class="button" id="download-btn" type="button">Download repo-ready recipe JSON</button>
+        <div id="admin-status" class="status" aria-live="polite"></div>
+      </section>
+
+      <section id="pending-section" class="pending-section" hidden aria-labelledby="pending-heading">
+        <div class="pending-toolbar">
+          <div>
+            <h2 id="pending-heading" class="section-heading">Waiting to publish</h2>
+            <div id="pending-count" class="pending-count"></div>
+          </div>
+          <div class="pending-toolbar-actions">
+            <button class="button secondary" id="reload-pending-btn" type="button">Refresh</button>
+            <a
+              class="button"
+              href="https://github.com/natanai/cookingdb/actions/workflows/publish-recipes.yml"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Publish in GitHub</a>
+          </div>
         </div>
-        <div class="actions">
-          <div class="warning-text">Deleting pending entries is permanent. The publish workflow removes only the rows it successfully integrates; use this button only when intentionally clearing the whole pending inbox.</div>
-          <button class="button danger" id="wipe-pending-btn" type="button">Delete all pending inbox entries</button>
-        </div>
-        <div id="admin-status" class="status"></div>
+
+        <div id="pending-list" class="pending-list"></div>
+
+        <details class="admin-tools">
+          <summary>Export and inbox tools</summary>
+          <div class="admin-tools-body">
+            <p class="muted">The export uses the same official import format as the GitHub publishing workflow.</p>
+            <div class="actions">
+              <button class="button secondary" id="download-btn" type="button">Download repo-ready recipe JSON</button>
+            </div>
+            <div class="actions admin-danger-zone">
+              <div class="warning-text">Deleting all pending entries is permanent. Individual recipes can be deleted from the review list above.</div>
+              <button class="button danger" id="wipe-pending-btn" type="button">Delete all pending inbox entries</button>
+            </div>
+          </div>
+        </details>
       </section>
     </main>
   </div>
+
   <script type="module" src="admin.js"></script>
 </body>
 </html>
