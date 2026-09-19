@@ -221,6 +221,79 @@ async function adminExport(request, env, body) {
   return listSubmissions(request, env, body, { requireFamily: false });
 }
 
+async function adminUpdatePending(request, env, body) {
+  requireAdminToken(request, env);
+
+  const id = Number(body?.id);
+  if (!Number.isInteger(id) || id <= 0) {
+    return jsonResponse({ ok: false, error: 'A valid pending recipe id is required' }, 400);
+  }
+
+  const payload = body?.payload;
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+    return jsonResponse({ ok: false, error: 'Missing recipe payload' }, 400);
+  }
+
+  const db = getDb(env);
+  await ensureSchema(db);
+
+  const existing = await db
+    .prepare('SELECT id, status, updated_at FROM recipes_inbox WHERE id = ?')
+    .bind(id)
+    .first();
+
+  if (!existing || existing.status !== 'pending') {
+    return jsonResponse({ ok: false, error: 'Pending recipe not found' }, 404);
+  }
+
+  const expectedUpdatedAt = String(body?.expected_updated_at || '').trim();
+  if (expectedUpdatedAt && existing.updated_at !== expectedUpdatedAt) {
+    return jsonResponse(
+      {
+        ok: false,
+        error: 'This pending recipe changed after you opened it. Reload it before saving so newer changes are not overwritten.',
+      },
+      409
+    );
+  }
+
+  const title = String(payload.title || '').trim();
+  if (!title) {
+    return jsonResponse({ ok: false, error: 'Recipe title is required' }, 400);
+  }
+
+  const recipeId = String(payload.id || payload.recipe_id || slugify(title)).trim();
+  if (!recipeId) {
+    return jsonResponse({ ok: false, error: 'Recipe id is required' }, 400);
+  }
+
+  const slug = slugify(payload.slug || recipeId || title);
+  const now = new Date().toISOString();
+  const recordPayload = {
+    ...payload,
+    id: recipeId,
+    recipe_id: recipeId,
+    title,
+    slug,
+  };
+
+  await db
+    .prepare(
+      "UPDATE recipes_inbox SET title = ?, slug = ?, payload = ?, updated_at = ? WHERE id = ? AND status = 'pending'"
+    )
+    .bind(title, slug, JSON.stringify(recordPayload), now, id)
+    .run();
+
+  const updated = await db
+    .prepare(
+      'SELECT id, title, slug, payload, status, created_at, updated_at FROM recipes_inbox WHERE id = ?'
+    )
+    .bind(id)
+    .first();
+
+  return jsonResponse({ ok: true, item: mapRow(updated, true) });
+}
+
 async function adminDeletePending(request, env, body) {
   requireAdminToken(request, env);
   const ids = Array.isArray(body?.ids) ? body.ids.filter((id) => Number.isInteger(id)) : [];
@@ -253,6 +326,7 @@ const ROUTES = {
   'POST:/api/add': handleAdd,
   'POST:/api/list': listSubmissions,
   'POST:/admin/export': adminExport,
+  'POST:/admin/update-pending': adminUpdatePending,
   'POST:/admin/delete-pending': adminDeletePending,
 };
 
