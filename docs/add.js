@@ -929,35 +929,45 @@ function createStepRow(defaultText = '', defaultSection = '', defaults = {}) {
   const advancedGrid = document.createElement('div');
   advancedGrid.className = 'step-advanced-grid';
 
-  const sectionLabel = document.createElement('label');
-  sectionLabel.className = 'advanced-field';
-  sectionLabel.innerHTML = '<span>Section</span>';
+  const sectionControl = document.createElement('label');
+  sectionControl.className = 'step-option-row step-section-row';
+  const sectionLabelText = document.createElement('span');
+  sectionLabelText.className = 'step-option-label';
+  sectionLabelText.textContent = 'Section';
   const sectionInput = document.createElement('input');
   sectionInput.className = 'step-section';
   sectionInput.placeholder = 'Prep, sauce, assembly…';
   sectionInput.value = defaultSection;
-  sectionLabel.appendChild(sectionInput);
+  sectionControl.append(sectionLabelText, sectionInput);
 
-  const variationBlock = document.createElement('div');
-  variationBlock.className = 'variation-grid';
+  const variationBlock = document.createElement('details');
+  variationBlock.className = 'step-variation-details';
   variationBlock.innerHTML = `
-    <label class="advanced-field">
-      <span>Only add this variation when</span>
-      <div class="conditional-inputs">
-        <input class="variation-token" list="dependency-suggestions" placeholder="Ingredient or substitution group" />
-        <input class="variation-option" placeholder="Option" />
+    <summary>
+      <span>Conditional variation</span>
+      <span class="disclosure-caret" aria-hidden="true">▾</span>
+    </summary>
+    <div class="step-variation-body">
+      <div class="variation-condition-row">
+        <span class="variation-condition-word">When</span>
+        <input class="variation-token" list="dependency-suggestions" placeholder="Ingredient or substitution" aria-label="Variation ingredient or substitution" />
+        <span class="variation-condition-word">is</span>
+        <input class="variation-option" placeholder="Option" aria-label="Variation option" />
       </div>
-    </label>
-    <label class="advanced-field">
-      <span>Variation</span>
-      <textarea class="variation-text" rows="2" placeholder="Extra direction for that choice"></textarea>
-    </label>
+      <label class="advanced-field variation-copy-field">
+        <span>Use this direction instead / in addition</span>
+        <textarea class="variation-text" rows="2" placeholder="Extra direction for that choice"></textarea>
+      </label>
+    </div>
   `;
   variationBlock.querySelector('.variation-token').value = defaults.variation_token || '';
   variationBlock.querySelector('.variation-option').value = defaults.variation_option || '';
   variationBlock.querySelector('.variation-text').value = defaults.variation_text || '';
+  if (defaults.variation_token || defaults.variation_option || defaults.variation_text) {
+    variationBlock.open = true;
+  }
 
-  advancedGrid.append(sectionLabel, variationBlock);
+  advancedGrid.append(sectionControl, variationBlock);
   advanced.appendChild(advancedGrid);
   li.append(main, advanced);
 
