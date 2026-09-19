@@ -100,6 +100,9 @@ jobs:
             exit 1
           fi
 
+      - name: Run test suite
+        run: npm test
+
       - name: Validate recipes
         run: npm run validate
 
