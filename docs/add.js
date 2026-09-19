@@ -16,7 +16,6 @@ import { UNIT_CONVERSIONS } from './unit-conversions.js';
 
 const ingredientRowsEl = document.getElementById('ingredient-rows');
 const stepsListEl = document.getElementById('steps-list');
-const ingredientSuggestionsEl = document.getElementById('ingredient-suggestions');
 const dependencySuggestionsEl = document.getElementById('dependency-suggestions');
 const sectionSuggestionsEl = document.getElementById('section-suggestions');
 const categorySelectEl = document.getElementById('categories');
@@ -68,7 +67,8 @@ function attachHelpTrigger(button, key) {
   });
 }
 
-const ingredientNameSet = new Set();
+let ingredientAutocompleteEntries = [];
+const ingredientAutocompleteByLabel = new Map();
 const categorySet = new Set();
 const unitChoices = new Map();
 const unitSelects = new Set();
@@ -118,9 +118,61 @@ function addOptionToDatalist(datalistEl, value) {
   datalistEl.appendChild(opt);
 }
 
-function updateIngredientSuggestions() {
-  ingredientSuggestionsEl.innerHTML = '';
-  ingredientNameSet.forEach((name) => addOptionToDatalist(ingredientSuggestionsEl, name));
+function normalizeAutocompleteText(value) {
+  return String(value || '').trim().toLocaleLowerCase();
+}
+
+async function loadIngredientAutocomplete() {
+  const response = await fetch('./built/ingredient-autocomplete.json');
+  if (!response.ok) {
+    throw new Error(`Ingredient autocomplete request failed: ${response.status}`);
+  }
+  const entries = await response.json();
+  ingredientAutocompleteEntries = Array.isArray(entries)
+    ? entries
+        .filter((entry) => entry?.label && entry?.ingredient_id)
+        .map((entry) => ({
+          ...entry,
+          search: normalizeAutocompleteText(entry.label),
+        }))
+    : [];
+
+  ingredientAutocompleteByLabel.clear();
+  ingredientAutocompleteEntries.forEach((entry) => {
+    if (!ingredientAutocompleteByLabel.has(entry.search)) {
+      ingredientAutocompleteByLabel.set(entry.search, entry);
+    }
+  });
+}
+
+function ingredientAutocompleteMatches(query, limit = 8) {
+  const normalized = normalizeAutocompleteText(query);
+  if (!normalized) return [];
+
+  const startsWith = [];
+  const contains = [];
+
+  for (const entry of ingredientAutocompleteEntries) {
+    if (entry.search.startsWith(normalized)) {
+      startsWith.push(entry);
+    } else if (entry.search.includes(normalized)) {
+      contains.push(entry);
+    }
+    if (startsWith.length >= limit) break;
+  }
+
+  if (startsWith.length < limit) {
+    for (const entry of contains) {
+      startsWith.push(entry);
+      if (startsWith.length >= limit) break;
+    }
+  }
+
+  return startsWith;
+}
+
+function exactIngredientAutocompleteMatch(value) {
+  return ingredientAutocompleteByLabel.get(normalizeAutocompleteText(value)) || null;
 }
 
 function updateSectionSuggestions() {
@@ -225,7 +277,7 @@ function syncUnitSelect(selectEl, preferredValue = '') {
   const fragment = document.createDocumentFragment();
   const placeholder = document.createElement('option');
   placeholder.value = '';
-  placeholder.textContent = 'Select unit';
+  placeholder.textContent = 'Unit';
   placeholder.disabled = true;
   placeholder.hidden = false;
   placeholder.selected = !targetValue;
@@ -337,7 +389,6 @@ async function loadExistingRecipes() {
           const tokenFromData = tokenData.token || tokenData.options?.[0]?.ingredient_id || '';
           const token = slugify(tokenFromData);
           tokenData.options.forEach((opt) => {
-            if (opt.display) ingredientNameSet.add(opt.display);
             if (opt.unit) {
               unitChoices.set(opt.unit, unitChoices.get(opt.unit) || opt.unit);
               recordUnitFrequency(token, opt.unit);
@@ -349,7 +400,6 @@ async function loadExistingRecipes() {
       });
       syncCategoryOptions();
       syncUnitSelects();
-      updateIngredientSuggestions();
       updateSectionSuggestions();
       updateDependencySuggestions();
     }
@@ -423,7 +473,18 @@ function createIngredientRow(defaults = {}) {
     <div class="ingredient-main">
       <input class="ingredient-amount" placeholder="1 1/2" aria-label="Amount" />
       <select class="ingredient-unit" aria-label="Unit"></select>
-      <input class="ingredient-name" list="ingredient-suggestions" placeholder="Ingredient" aria-label="Ingredient name" />
+      <div class="ingredient-autocomplete">
+        <input
+          class="ingredient-name"
+          placeholder="Ingredient"
+          aria-label="Ingredient name"
+          autocomplete="off"
+          role="combobox"
+          aria-autocomplete="list"
+          aria-expanded="false"
+        />
+        <div class="ingredient-autocomplete-menu" role="listbox" hidden></div>
+      </div>
       <button type="button" class="ingredient-more-toggle" aria-expanded="false" aria-label="Ingredient options">•••</button>
       <button type="button" class="remove-row-button remove-ingredient" aria-label="Remove ingredient">×</button>
     </div>
@@ -501,6 +562,7 @@ function createIngredientRow(defaults = {}) {
   row.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
 
   const nameInput = row.querySelector('.ingredient-name');
+  const autocompleteMenu = row.querySelector('.ingredient-autocomplete-menu');
   const sectionInput = row.querySelector('.ingredient-section');
   const preservedTokenInput = row.querySelector('.ingredient-token');
   const ingredientIdInput = row.querySelector('.ingredient-id');
@@ -578,18 +640,88 @@ function createIngredientRow(defaults = {}) {
   }
 
   const handleChange = () => {
-    ingredientChoices().forEach(({ name }) => ingredientNameSet.add(name));
-    updateIngredientSuggestions();
     updateDependencySuggestions();
     refreshStepIngredientPickers();
     refreshPreview();
     saveDraftSoon();
   };
 
+  const closeAutocomplete = () => {
+    autocompleteMenu.hidden = true;
+    autocompleteMenu.innerHTML = '';
+    nameInput.setAttribute('aria-expanded', 'false');
+  };
+
+  const selectAutocompleteEntry = (entry) => {
+    if (!entry) return;
+    nameInput.value = entry.label;
+    nameInput.dataset.originalName = entry.label;
+    ingredientIdInput.value = entry.ingredient_id || '';
+    if (entry.unit && !unitInput.value) {
+      syncUnitSelect(unitInput, entry.unit);
+    }
+    closeAutocomplete();
+    handleChange();
+  };
+
+  const acceptNewIngredient = () => {
+    const value = nameInput.value.trim();
+    if (!value) return;
+    ingredientIdInput.value = '';
+    nameInput.dataset.originalName = value;
+    closeAutocomplete();
+    handleChange();
+  };
+
+  const renderAutocomplete = () => {
+    const query = nameInput.value.trim();
+    autocompleteMenu.innerHTML = '';
+
+    if (!query) {
+      closeAutocomplete();
+      return;
+    }
+
+    const matches = ingredientAutocompleteMatches(query);
+    if (matches.length) {
+      matches.forEach((entry) => {
+        const option = document.createElement('button');
+        option.type = 'button';
+        option.className = 'ingredient-autocomplete-option';
+        option.setAttribute('role', 'option');
+
+        const label = document.createElement('span');
+        label.textContent = entry.label;
+        option.appendChild(label);
+
+        if (entry.unit) {
+          const unit = document.createElement('small');
+          unit.textContent = entry.unit;
+          option.appendChild(unit);
+        }
+
+        option.addEventListener('pointerdown', (event) => event.preventDefault());
+        option.addEventListener('click', () => selectAutocompleteEntry(entry));
+        autocompleteMenu.appendChild(option);
+      });
+    } else {
+      const addButton = document.createElement('button');
+      addButton.type = 'button';
+      addButton.className = 'ingredient-autocomplete-option ingredient-autocomplete-add';
+      addButton.textContent = `Add “${query}” as ingredient`;
+      addButton.addEventListener('pointerdown', (event) => event.preventDefault());
+      addButton.addEventListener('click', acceptNewIngredient);
+      autocompleteMenu.appendChild(addButton);
+    }
+
+    autocompleteMenu.hidden = false;
+    nameInput.setAttribute('aria-expanded', 'true');
+  };
+
   const tryAutofillUnit = () => {
-    const token = slugify(nameInput.value || '');
-    if (!token || unitInput.dataset.userChanged === 'true' || unitInput.value) return;
-    const autoUnit = commonUnitForToken(token);
+    if (unitInput.dataset.userChanged === 'true' || unitInput.value) return;
+    const exact = exactIngredientAutocompleteMatch(nameInput.value);
+    const autoUnit = exact?.unit || commonUnitForToken(slugify(nameInput.value || ''));
     if (autoUnit) syncUnitSelect(unitInput, autoUnit);
   };
 
@@ -600,17 +732,49 @@ function createIngredientRow(defaults = {}) {
     ) {
       ingredientIdInput.value = '';
     }
+    renderAutocomplete();
+    saveDraftSoon();
   });
+
+  nameInput.addEventListener('focus', renderAutocomplete);
+
   nameInput.addEventListener('change', () => {
+    const exact = exactIngredientAutocompleteMatch(nameInput.value);
+    if (exact && !ingredientIdInput.value) {
+      selectAutocompleteEntry(exact);
+      return;
+    }
     tryAutofillUnit();
     handleChange();
   });
-  nameInput.addEventListener('blur', tryAutofillUnit);
-  row.addEventListener('input', handleChange);
-  row.addEventListener('change', handleChange);
+
+  nameInput.addEventListener('blur', () => {
+    window.setTimeout(closeAutocomplete, 100);
+    tryAutofillUnit();
+  });
+
+  row.addEventListener('change', (event) => {
+    if (event.target === nameInput) return;
+    handleChange();
+  });
 
   nameInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeAutocomplete();
+      return;
+    }
+
     if (event.key !== 'Enter' || event.shiftKey) return;
+
+    if (!autocompleteMenu.hidden) {
+      const firstOption = autocompleteMenu.querySelector('button');
+      if (firstOption) {
+        event.preventDefault();
+        firstOption.click();
+        return;
+      }
+    }
+
     event.preventDefault();
     const next = createIngredientRow({ section: sectionInput.value });
     next.querySelector('.ingredient-amount')?.focus();
@@ -2037,6 +2201,11 @@ async function bootstrap() {
 
   loadUnitsFromConversions();
   syncCategoryOptions();
+  const ingredientAutocompletePromise = loadIngredientAutocomplete().catch((err) => {
+    console.warn('Could not preload ingredient autocomplete', err);
+    ingredientAutocompleteEntries = [];
+    ingredientAutocompleteByLabel.clear();
+  });
   const panPromise = loadPanOptions();
 
   document.getElementById('add-ingredient').addEventListener('click', () => {
@@ -2062,7 +2231,7 @@ async function bootstrap() {
   document.getElementById('recipe-form').addEventListener('submit', handleSubmit);
 
   if (isAdminEditMode) {
-    await Promise.all([panPromise, loadExistingRecipes()]);
+    await Promise.all([ingredientAutocompletePromise, panPromise, loadExistingRecipes()]);
     await loadAdminEditRecipe();
     return;
   }
@@ -2070,6 +2239,8 @@ async function bootstrap() {
   if (getRememberedPassword('family')) {
     document.getElementById('remember-family').checked = true;
   }
+
+  await ingredientAutocompletePromise;
 
   const restored = restoreDraft();
   if (!restored) {
