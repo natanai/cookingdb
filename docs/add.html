@@ -32,7 +32,6 @@
             aria-label="Recipe name"
           />
           <input id="slug" name="slug" type="hidden" />
-          <input id="default-base" name="default-base" type="hidden" value="1" />
 
           <div class="yield-row">
             <label for="servings-per-batch">Makes</label>
@@ -104,6 +103,28 @@
               <textarea id="notes" name="notes" rows="3" placeholder="Storage, serving, equipment, or anything worth remembering"></textarea>
             </div>
           </div>
+
+          <details class="recipe-options" id="recipe-options">
+            <summary>More recipe options</summary>
+            <div class="recipe-options-grid">
+              <div class="field">
+                <label for="byline">Credit / byline</label>
+                <input id="byline" name="byline" placeholder="Aubrey" />
+              </div>
+
+              <div class="field">
+                <label for="default-base">Written batch multiplier</label>
+                <input id="default-base" name="default-base" type="number" inputmode="decimal" step="0.25" min="0.25" value="1" />
+              </div>
+
+              <div class="field">
+                <label for="default-pan">Pan size scaling</label>
+                <select id="default-pan" name="default-pan">
+                  <option value="">No pan scaling</option>
+                </select>
+              </div>
+            </div>
+          </details>
         </section>
 
         <div class="composer-footer">

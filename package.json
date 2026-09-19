@@ -8,6 +8,6 @@
     "build": "node scripts/build.mjs",
     "import:inbox": "node scripts/import-inbox.mjs",
     "report:missing-portions": "node scripts/report_missing_portions.js",
-    "test": "node docs/recipe-utils.test.mjs && node scripts/check-print-contract.mjs"
+    "test": "node docs/recipe-utils.test.mjs && node scripts/check-print-contract.mjs && node scripts/check-add-recipe-authoring-contract.mjs"
   }
 }

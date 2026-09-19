@@ -18,6 +18,9 @@ const ingredientSuggestionsEl = document.getElementById('ingredient-suggestions'
 const dependencySuggestionsEl = document.getElementById('dependency-suggestions');
 const sectionSuggestionsEl = document.getElementById('section-suggestions');
 const categorySelectEl = document.getElementById('categories');
+const panSelectEl = document.getElementById('default-pan');
+let panSizeCatalog = [];
+let pendingDraftPan = '';
 // Remove required attribute from slug input as it's auto-generated
 const slugInputField = document.getElementById('slug');
 if (slugInputField) slugInputField.removeAttribute('required');
@@ -279,6 +282,44 @@ function normalizeIngredientsForSuggestions(recipe) {
   return [];
 }
 
+function syncPanOptions() {
+  if (!panSelectEl) return;
+  const current = pendingDraftPan || panSelectEl.value || '';
+  panSelectEl.innerHTML = '';
+
+  const none = document.createElement('option');
+  none.value = '';
+  none.textContent = 'No pan scaling';
+  panSelectEl.appendChild(none);
+
+  panSizeCatalog.forEach((pan) => {
+    const option = document.createElement('option');
+    option.value = pan.id;
+    option.textContent = pan.label;
+    option.selected = pan.id === current;
+    panSelectEl.appendChild(option);
+  });
+
+  if (!panSizeCatalog.some((pan) => pan.id === current)) {
+    panSelectEl.value = '';
+  }
+  pendingDraftPan = '';
+}
+
+async function loadPanOptions() {
+  if (!panSelectEl) return;
+  try {
+    const response = await fetch('./built/pan-sizes.json');
+    if (!response.ok) throw new Error(`Pan catalog request failed: ${response.status}`);
+    const pans = await response.json();
+    panSizeCatalog = Array.isArray(pans) ? pans.filter((pan) => pan?.id && pan?.label) : [];
+    syncPanOptions();
+  } catch (err) {
+    console.warn('Could not load pan sizes', err);
+    syncPanOptions();
+  }
+}
+
 async function loadExistingRecipes() {
   try {
     const res = await fetch('./built/recipes.json');
@@ -389,8 +430,8 @@ function createIngredientRow(defaults = {}) {
         <input class="ingredient-section" type="hidden" />
 
         <label class="advanced-field">
-          <span>Note shown after ingredient</span>
-          <input class="ingredient-alt-note" placeholder="finely chopped, divided…" />
+          <span>Prep note</span>
+          <input class="ingredient-prep" placeholder="finely chopped, divided…" />
         </label>
 
         <label class="advanced-field">
@@ -453,7 +494,7 @@ function createIngredientRow(defaults = {}) {
   const sectionInput = row.querySelector('.ingredient-section');
   const amountInput = row.querySelector('.ingredient-amount');
   const unitInput = row.querySelector('.ingredient-unit');
-  const altInput = row.querySelector('.ingredient-alt-note');
+  const prepInput = row.querySelector('.ingredient-prep');
   const depTokenInput = row.querySelector('.ingredient-dep-token');
   const depOptionInput = row.querySelector('.ingredient-dep-option');
   const optionInput = row.querySelector('.ingredient-option-key');
@@ -473,7 +514,7 @@ function createIngredientRow(defaults = {}) {
   amountInput.value = defaults.amount || '';
   syncUnitSelect(unitInput, defaults.unit || '');
   unitSelects.add(unitInput);
-  altInput.value = defaults.alt || '';
+  prepInput.value = defaults.prep || defaults.alt || '';
   depTokenInput.value = defaults.depends_on?.token || '';
   depOptionInput.value = defaults.depends_on?.option || '';
   optionInput.value = defaults.option || '';
@@ -505,7 +546,7 @@ function createIngredientRow(defaults = {}) {
 
   const hasAdvancedDefaults = Boolean(
     sectionInput.value ||
-      altInput.value ||
+      prepInput.value ||
       depTokenInput.value ||
       depOptionInput.value ||
       optionInput.value ||
@@ -885,7 +926,7 @@ function buildIngredientsFromForm(issues) {
     const sectionInput = row.querySelector('.ingredient-section');
     const amountInput = row.querySelector('.ingredient-amount');
     const unitInput = row.querySelector('.ingredient-unit');
-    const altInput = row.querySelector('.ingredient-alt-note');
+    const prepInput = row.querySelector('.ingredient-prep');
     const depTokenInput = row.querySelector('.ingredient-dep-token');
     const depOptionInput = row.querySelector('.ingredient-dep-option');
     const conditionalToggle = row.querySelector('.ingredient-conditional-toggle');
@@ -900,7 +941,7 @@ function buildIngredientsFromForm(issues) {
     const section = sectionInput?.value.trim() || rowSectionMap.get(row) || '';
     const amount = amountInput?.value.trim() || '';
     const unit = unitInput?.value.trim() || '';
-    const alt = altInput?.value.trim() || '';
+    const prep = prepInput?.value.trim() || '';
     const isConditional = Boolean(conditionalToggle?.checked);
     const depToken = isConditional ? depTokenInput?.value.trim() || '' : '';
     const depOption = isConditional ? depOptionInput?.value.trim() || '' : '';
@@ -917,7 +958,7 @@ function buildIngredientsFromForm(issues) {
       !section &&
       !amount &&
       !unit &&
-      !alt &&
+      !prep &&
       !depToken &&
       !depOption &&
       !lineGroup &&
@@ -947,7 +988,7 @@ function buildIngredientsFromForm(issues) {
       : null;
     const sectionValue = section || null;
     const lineGroupValue = lineGroup || null;
-    const optionDisplay = alt ? `${name} (${alt})` : name;
+    const optionDisplay = name;
 
     if (isChoice) {
       if (!choiceGroup) {
@@ -989,6 +1030,7 @@ function buildIngredientsFromForm(issues) {
         ratio: amount,
         unit,
         ingredient_id: slugify(name),
+        prep,
         dietary,
         depends_on,
         line_group: lineGroupValue,
@@ -1023,6 +1065,7 @@ function buildIngredientsFromForm(issues) {
           ratio: amount,
           unit,
           ingredient_id: token,
+          prep,
           dietary,
           depends_on,
           line_group: lineGroupValue,
@@ -1067,6 +1110,8 @@ function buildRecipeDraft() {
   const slugInput = document.getElementById('slug');
   const notesInput = document.getElementById('notes');
   const familyInput = document.getElementById('family');
+  const bylineInput = document.getElementById('byline');
+  const defaultPanInput = document.getElementById('default-pan');
   const categoriesSelect = document.getElementById('categories');
   const defaultBaseInput = document.getElementById('default-base');
   const servingsInput = document.getElementById('servings-per-batch');
@@ -1075,6 +1120,8 @@ function buildRecipeDraft() {
   const slug = slugInput.value.trim();
   const notes = notesInput.value.trim();
   const family = familyInput ? familyInput.value.trim() : '';
+  const byline = bylineInput ? bylineInput.value.trim() : '';
+  const defaultPan = defaultPanInput?.value?.trim() || '';
   const categories = categoriesSelect ? [...categoriesSelect.selectedOptions].map((opt) => opt.value) : [];
   const defaultBase = Number(defaultBaseInput.value) || 1;
   const servingsRaw = servingsInput?.value?.trim() || '';
@@ -1105,6 +1152,11 @@ function buildRecipeDraft() {
   if (servingsRaw && (!Number.isFinite(servingsPerBatch) || servingsPerBatch <= 0)) {
     issues.push('Servings per batch must be a positive number.');
     markInvalid(servingsInput);
+  }
+
+  if (defaultPan && !panSizeCatalog.some((pan) => pan.id === defaultPan)) {
+    issues.push('Choose a valid pan size or turn off pan scaling.');
+    markInvalid(defaultPanInput);
   }
 
   const { ingredients, token_order: tokenOrder, choices } = buildIngredientsFromForm(issues);
@@ -1201,6 +1253,7 @@ function buildRecipeDraft() {
     servings_per_batch: Number.isFinite(servingsPerBatch) && servingsPerBatch > 0 ? servingsPerBatch : null,
     categories,
     family,
+    byline,
     notes,
     steps_raw: stepsRawLines.join('\n'),
     steps: structuredSteps,
@@ -1210,8 +1263,10 @@ function buildRecipeDraft() {
     ingredients,
     ingredient_sections: ingredientSections,
     choices,
-    pan_sizes: [],
-    default_pan: null,
+    pan_sizes: defaultPan
+      ? panSizeCatalog.map((pan) => ({ ...pan, is_default: pan.id === defaultPan }))
+      : [],
+    default_pan: defaultPan || null,
     compatibility_possible: compatibility,
   };
 
@@ -1416,7 +1471,7 @@ function serializeIngredientEditor() {
       amount: child.querySelector('.ingredient-amount')?.value || '',
       unit: child.querySelector('.ingredient-unit')?.value || '',
       section: child.querySelector('.ingredient-section')?.value || '',
-      alt: child.querySelector('.ingredient-alt-note')?.value || '',
+      prep: child.querySelector('.ingredient-prep')?.value || '',
       line_group: child.querySelector('.ingredient-inline-group')?.value || '',
       isChoice: Boolean(child.querySelector('.ingredient-choice-toggle')?.checked),
       choice_group: child.querySelector('.ingredient-choice-group')?.value || '',
@@ -1449,6 +1504,9 @@ function saveDraft() {
     title: document.getElementById('title')?.value || '',
     servings: document.getElementById('servings-per-batch')?.value || '',
     family: document.getElementById('family')?.value || '',
+    byline: document.getElementById('byline')?.value || '',
+    default_base: document.getElementById('default-base')?.value || '1',
+    default_pan: document.getElementById('default-pan')?.value || '',
     notes: document.getElementById('notes')?.value || '',
     categories: categorySelectEl ? [...categorySelectEl.selectedOptions].map((opt) => opt.value) : [],
     ingredients: serializeIngredientEditor(),
@@ -1494,6 +1552,8 @@ function restoreDraft() {
     draft.title ||
     draft.servings ||
     draft.family ||
+    draft.byline ||
+    draft.default_pan ||
     draft.notes ||
     (draft.categories || []).length ||
     (draft.ingredients || []).some((item) => item.kind === 'ingredient' && (item.name || item.amount)) ||
@@ -1505,6 +1565,13 @@ function restoreDraft() {
   document.getElementById('title').value = draft.title || '';
   document.getElementById('servings-per-batch').value = draft.servings || '';
   document.getElementById('family').value = draft.family || '';
+  document.getElementById('byline').value = draft.byline || '';
+  document.getElementById('default-base').value = draft.default_base || '1';
+  pendingDraftPan = draft.default_pan || '';
+  if (panSelectEl && panSizeCatalog.length) {
+    panSelectEl.value = pendingDraftPan;
+    pendingDraftPan = '';
+  }
   document.getElementById('notes').value = draft.notes || '';
 
   ingredientRowsEl.innerHTML = '';
@@ -1581,7 +1648,10 @@ function resetFormForNewEntry() {
   unitSelects.clear();
   if (categorySelectEl) {
     [...categorySelectEl.options].forEach((opt) => (opt.selected = false));
+    updateCategorySummary();
   }
+  pendingDraftPan = '';
+  if (panSelectEl) panSelectEl.value = '';
   createIngredientRow();
   createStepRow();
   touchSlugFromTitle();
@@ -1641,7 +1711,9 @@ function bootstrap() {
   });
   document.getElementById('notes').addEventListener('input', refreshPreview);
   document.getElementById('family').addEventListener('input', refreshPreview);
+  document.getElementById('byline').addEventListener('input', refreshPreview);
   document.getElementById('default-base').addEventListener('input', refreshPreview);
+  document.getElementById('default-pan').addEventListener('change', refreshPreview);
   document.getElementById('servings-per-batch').addEventListener('input', () => {
     refreshPreview();
     saveDraftSoon();
@@ -1651,6 +1723,7 @@ function bootstrap() {
 
   loadUnitsFromConversions();
   syncCategoryOptions();
+  loadPanOptions();
 
   document.getElementById('add-ingredient').addEventListener('click', () => {
     const row = createIngredientRow();
