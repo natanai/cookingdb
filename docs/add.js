@@ -1,4 +1,6 @@
 import {
+  adminExportPending,
+  adminUpdatePending,
   familySubmitRecipe,
   getRememberedPassword,
   setRememberedPassword,
@@ -26,6 +28,10 @@ const slugInputField = document.getElementById('slug');
 if (slugInputField) slugInputField.removeAttribute('required');
 
 const statusEl = document.getElementById('form-status');
+const pageParams = new URLSearchParams(window.location.search);
+const adminEditId = Number(pageParams.get('adminEdit'));
+const isAdminEditMode = Number.isInteger(adminEditId) && adminEditId > 0;
+let adminEditUpdatedAt = '';
 
 const HELP_TEXT = {
   title: 'Write the full recipe name just like you would tell a friend.',
@@ -366,7 +372,8 @@ function ingredientChoices() {
     if (isChoice) {
       const groupRaw = row.querySelector('.ingredient-choice-group')?.value.trim() || '';
       if (!groupRaw) return;
-      const tokenBase = slugify(groupRaw);
+      const preservedToken = row.querySelector('.ingredient-token')?.value.trim() || '';
+      const tokenBase = preservedToken || slugify(groupRaw);
       const token = uniqueToken(tokenBase, tokenCounts, { enforceUnique: false });
       if (seenTokens.has(token)) return;
       const label = row.querySelector('.ingredient-choice-swap-label')?.value.trim() || groupRaw;
@@ -375,7 +382,8 @@ function ingredientChoices() {
       return;
     }
 
-    const tokenBase = slugify(name);
+    const preservedToken = row.querySelector('.ingredient-token')?.value.trim() || '';
+    const tokenBase = preservedToken || slugify(name);
     const token = uniqueToken(tokenBase, tokenCounts, { enforceUnique: true });
     seenTokens.add(token);
     choices.push({ token, name });
@@ -428,6 +436,8 @@ function createIngredientRow(defaults = {}) {
 
       <div class="ingredient-advanced-grid">
         <input class="ingredient-section" type="hidden" />
+        <input class="ingredient-token" type="hidden" />
+        <input class="ingredient-id" type="hidden" />
 
         <label class="advanced-field">
           <span>Prep note</span>
@@ -492,6 +502,8 @@ function createIngredientRow(defaults = {}) {
 
   const nameInput = row.querySelector('.ingredient-name');
   const sectionInput = row.querySelector('.ingredient-section');
+  const preservedTokenInput = row.querySelector('.ingredient-token');
+  const ingredientIdInput = row.querySelector('.ingredient-id');
   const amountInput = row.querySelector('.ingredient-amount');
   const unitInput = row.querySelector('.ingredient-unit');
   const prepInput = row.querySelector('.ingredient-prep');
@@ -510,7 +522,10 @@ function createIngredientRow(defaults = {}) {
   const advancedPanel = row.querySelector('.ingredient-advanced');
 
   nameInput.value = defaults.name || '';
+  nameInput.dataset.originalName = nameInput.value.trim();
   sectionInput.value = defaults.section || '';
+  preservedTokenInput.value = defaults.token || '';
+  ingredientIdInput.value = defaults.ingredient_id || '';
   amountInput.value = defaults.amount || '';
   syncUnitSelect(unitInput, defaults.unit || '');
   unitSelects.add(unitInput);
@@ -578,6 +593,14 @@ function createIngredientRow(defaults = {}) {
     if (autoUnit) syncUnitSelect(unitInput, autoUnit);
   };
 
+  nameInput.addEventListener('input', () => {
+    if (
+      ingredientIdInput.value &&
+      nameInput.value.trim() !== (nameInput.dataset.originalName || '')
+    ) {
+      ingredientIdInput.value = '';
+    }
+  });
   nameInput.addEventListener('change', () => {
     tryAutofillUnit();
     handleChange();
@@ -644,6 +667,7 @@ function createIngredientRow(defaults = {}) {
     const substitute = createIngredientRow({
       isChoice: true,
       is_substitution: true,
+      token: preservedTokenInput.value || slugify(group),
       choice_group: group,
       choice_label: choiceLabelInput.value,
       choice_default: false,
@@ -924,6 +948,8 @@ function buildIngredientsFromForm(issues) {
   ingredientRows.forEach((row, idx) => {
     const nameInput = row.querySelector('.ingredient-name');
     const sectionInput = row.querySelector('.ingredient-section');
+    const preservedTokenInput = row.querySelector('.ingredient-token');
+    const ingredientIdInput = row.querySelector('.ingredient-id');
     const amountInput = row.querySelector('.ingredient-amount');
     const unitInput = row.querySelector('.ingredient-unit');
     const prepInput = row.querySelector('.ingredient-prep');
@@ -938,6 +964,8 @@ function buildIngredientsFromForm(issues) {
     const choiceDefaultInput = row.querySelector('.ingredient-default-choice');
 
     const name = nameInput?.value.trim() || '';
+    const preservedToken = preservedTokenInput?.value.trim() || '';
+    const preservedIngredientId = ingredientIdInput?.value.trim() || '';
     const section = sectionInput?.value.trim() || rowSectionMap.get(row) || '';
     const amount = amountInput?.value.trim() || '';
     const unit = unitInput?.value.trim() || '';
@@ -998,7 +1026,7 @@ function buildIngredientsFromForm(issues) {
         return;
       }
 
-      const tokenBase = slugify(choiceGroup);
+      const tokenBase = preservedToken || slugify(choiceGroup);
       const token = uniqueToken(tokenBase, tokenCounts, { enforceUnique: false });
       const optionKey = slugify(optionValue || name);
       if (!tokenOrder.includes(token)) tokenOrder.push(token);
@@ -1029,7 +1057,7 @@ function buildIngredientsFromForm(issues) {
         display: optionDisplay,
         ratio: amount,
         unit,
-        ingredient_id: slugify(name),
+        ingredient_id: preservedIngredientId || slugify(name),
         prep,
         dietary,
         depends_on,
@@ -1053,7 +1081,7 @@ function buildIngredientsFromForm(issues) {
       return;
     }
 
-    const tokenBase = slugify(name);
+    const tokenBase = preservedToken || slugify(name);
     const token = uniqueToken(tokenBase, tokenCounts, { enforceUnique: true });
     if (!tokenOrder.includes(token)) tokenOrder.push(token);
     ingredients[token] = {
@@ -1064,7 +1092,7 @@ function buildIngredientsFromForm(issues) {
           display: optionDisplay,
           ratio: amount,
           unit,
-          ingredient_id: token,
+          ingredient_id: preservedIngredientId || token,
           prep,
           dietary,
           depends_on,
@@ -1467,6 +1495,8 @@ function serializeIngredientEditor() {
     if (!child.classList.contains('ingredient-row')) return null;
     return {
       kind: 'ingredient',
+      token: child.querySelector('.ingredient-token')?.value || '',
+      ingredient_id: child.querySelector('.ingredient-id')?.value || '',
       name: child.querySelector('.ingredient-name')?.value || '',
       amount: child.querySelector('.ingredient-amount')?.value || '',
       unit: child.querySelector('.ingredient-unit')?.value || '',
@@ -1499,7 +1529,7 @@ function serializeSteps() {
 }
 
 function saveDraft() {
-  if (restoringDraft) return;
+  if (restoringDraft || isAdminEditMode) return;
   const draft = {
     title: document.getElementById('title')?.value || '',
     servings: document.getElementById('servings-per-batch')?.value || '',
@@ -1523,7 +1553,7 @@ function saveDraft() {
 }
 
 function saveDraftSoon() {
-  if (restoringDraft) return;
+  if (restoringDraft || isAdminEditMode) return;
   const status = document.getElementById('draft-status');
   if (status) status.textContent = 'Saving…';
   window.clearTimeout(draftSaveTimer);
@@ -1539,6 +1569,7 @@ function clearDraft() {
 }
 
 function restoreDraft() {
+  if (isAdminEditMode) return false;
   let draft;
   try {
     draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
@@ -1639,6 +1670,256 @@ function showStatus(message, kind = 'info') {
   }
 }
 
+function attachEditorState(recipe) {
+  return {
+    ...recipe,
+    editor_state: {
+      version: 1,
+      ingredients: serializeIngredientEditor(),
+      steps: serializeSteps(),
+    },
+  };
+}
+
+function unwrapPendingRecipe(item) {
+  if (!item || typeof item !== 'object') return null;
+  if (item.recipe && typeof item.recipe === 'object') return item.recipe;
+  if (item.payload && typeof item.payload === 'object') {
+    if (item.payload.payload && typeof item.payload.payload === 'object') return item.payload.payload;
+    if (item.payload.recipe && typeof item.payload.recipe === 'object') return item.payload.recipe;
+    return item.payload;
+  }
+  return item;
+}
+
+function editorIngredientsFromRecipe(recipe) {
+  const saved = recipe?.editor_state?.ingredients;
+  if (Array.isArray(saved) && saved.length) return saved;
+
+  const source =
+    recipe?.ingredients && typeof recipe.ingredients === 'object'
+      ? recipe.ingredients
+      : {};
+  const ingredientMap = Array.isArray(source)
+    ? Object.fromEntries(source.filter((entry) => entry?.token).map((entry) => [entry.token, entry]))
+    : source;
+  const order = Array.isArray(recipe?.token_order)
+    ? [...recipe.token_order, ...Object.keys(ingredientMap)]
+    : Object.keys(ingredientMap);
+  const tokens = [...new Set(order)].filter((token) => ingredientMap[token]);
+  const choices =
+    recipe?.choices && typeof recipe.choices === 'object'
+      ? recipe.choices
+      : {};
+
+  const items = [];
+  let visibleSection = '';
+
+  tokens.forEach((token) => {
+    const entry = ingredientMap[token] || {};
+    const options = Array.isArray(entry.options) ? entry.options : [];
+    const choice = choices[token] || {};
+    const isChoice =
+      Boolean(entry.isChoice) ||
+      options.length > 1 ||
+      options.some((option) => Boolean(option?.option));
+
+    options.forEach((option, index) => {
+      const section = String(option?.section ?? entry.section ?? '').trim();
+      if (section && section !== visibleSection) {
+        items.push({ kind: 'section', name: section });
+        visibleSection = section;
+      }
+
+      items.push({
+        kind: 'ingredient',
+        token,
+        ingredient_id: option?.ingredient_id || '',
+        name: option?.display || '',
+        amount: option?.ratio || '',
+        unit: option?.unit || '',
+        section,
+        prep: option?.prep || '',
+        line_group: option?.line_group ?? entry.line_group ?? '',
+        isChoice,
+        choice_group: isChoice ? token : '',
+        choice_label: isChoice ? choice.label || '' : '',
+        option: option?.option || '',
+        choice_default: Boolean(
+          isChoice &&
+          choice.default_option &&
+          choice.default_option === option?.option
+        ),
+        depends_on: option?.depends_on || entry.depends_on || { token: '', option: '' },
+        dietary: option?.dietary || null,
+        is_substitution: isChoice && index > 0,
+      });
+    });
+  });
+
+  return items;
+}
+
+function editorStepsFromRecipe(recipe) {
+  const saved = recipe?.editor_state?.steps;
+  if (Array.isArray(saved) && saved.length) return saved;
+
+  if (Array.isArray(recipe?.steps) && recipe.steps.length) {
+    return recipe.steps.map((step) => ({
+      text: step?.text || '',
+      section: step?.section || '',
+      variation_token: '',
+      variation_option: '',
+      variation_text: '',
+    }));
+  }
+
+  return String(recipe?.steps_raw || '')
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => ({
+      text: line.replace(/^\d+\.\s*/, ''),
+      section: '',
+      variation_token: '',
+      variation_option: '',
+      variation_text: '',
+    }));
+}
+
+function configureAdminEditUi() {
+  document.body.classList.add('admin-edit-mode');
+  document.title = 'Review pending recipe';
+
+  const heading = document.getElementById('composer-site-title');
+  if (heading) heading.textContent = 'Review recipe';
+
+  const inboxLink = document.getElementById('admin-inbox-link');
+  if (inboxLink) inboxLink.hidden = false;
+
+  const banner = document.getElementById('admin-edit-banner');
+  if (banner) banner.hidden = false;
+
+  const submit = document.getElementById('submit-recipe');
+  if (submit) {
+    submit.textContent = 'Save pending recipe';
+    submit.disabled = true;
+  }
+
+  const familyAuth = document.getElementById('family-auth-row');
+  if (familyAuth) familyAuth.hidden = true;
+
+  const draftStatus = document.getElementById('draft-status');
+  if (draftStatus) {
+    draftStatus.textContent = 'Pending inbox recipe · changes save only when you press Save';
+  }
+}
+
+function hydrateAdminRecipe(recipe, item) {
+  restoringDraft = true;
+
+  document.getElementById('title').value = recipe.title || item.title || '';
+  document.getElementById('slug').value = recipe.id || recipe.recipe_id || item.slug || '';
+  document.getElementById('slug').dataset.userEdited = 'true';
+  document.getElementById('servings-per-batch').value = recipe.servings_per_batch || '';
+  document.getElementById('family').value = recipe.family || '';
+  document.getElementById('byline').value = recipe.byline || '';
+  document.getElementById('default-base').value = recipe.default_base || '1';
+  document.getElementById('notes').value = recipe.notes || '';
+
+  const categories = Array.isArray(recipe.categories) ? recipe.categories.filter(Boolean) : [];
+  categories.forEach((category) => categorySet.add(category));
+  pendingDraftCategories = categories;
+  syncCategoryOptions();
+  pendingDraftCategories = [];
+
+  pendingDraftPan = recipe.default_pan || '';
+  syncPanOptions();
+
+  ingredientRowsEl.innerHTML = '';
+  stepsListEl.innerHTML = '';
+  unitSelects.clear();
+
+  const ingredientItems = editorIngredientsFromRecipe(recipe);
+  ingredientItems.forEach((entry) => {
+    if (entry.kind === 'section') {
+      createIngredientSection(entry.name || '');
+    } else {
+      createIngredientRow(entry);
+    }
+  });
+  if (!ingredientRowsEl.querySelector('.ingredient-row')) createIngredientRow();
+
+  const stepItems = editorStepsFromRecipe(recipe);
+  stepItems.forEach((step) => {
+    createStepRow(step.text || '', step.section || '', step);
+  });
+  if (!stepsListEl.querySelector('.step-row')) createStepRow();
+
+  refreshStepIngredientPickers();
+  refreshPreview();
+  restoringDraft = false;
+
+  const meta = document.getElementById('admin-edit-meta');
+  if (meta) {
+    const updated = item.updated_at ? new Date(item.updated_at) : null;
+    const updatedText =
+      updated && !Number.isNaN(updated.getTime())
+        ? updated.toLocaleString()
+        : '';
+    meta.textContent = updatedText
+      ? `Inbox #${item.id} · last updated ${updatedText}`
+      : `Inbox #${item.id}`;
+  }
+
+  const submit = document.getElementById('submit-recipe');
+  if (submit) submit.disabled = false;
+
+  if (pageParams.get('review') === '1') {
+    setReviewOpen(true);
+  }
+}
+
+async function loadAdminEditRecipe() {
+  configureAdminEditUi();
+
+  const adminToken = getRememberedPassword('admin');
+  if (!adminToken) {
+    showStatus('Open this recipe from the Recipe inbox after signing in as admin.', 'error');
+    return false;
+  }
+
+  try {
+    showStatus('Loading pending recipe…', 'info');
+    const payload = await adminExportPending({ adminToken });
+    const items = Array.isArray(payload?.items)
+      ? payload.items
+      : Array.isArray(payload?.pending)
+        ? payload.pending
+        : [];
+    const item = items.find((entry) => Number(entry?.id) === adminEditId);
+
+    if (!item) {
+      showStatus('This pending recipe is no longer in the inbox.', 'error');
+      return false;
+    }
+
+    const recipe = unwrapPendingRecipe(item);
+    if (!recipe) {
+      showStatus('This pending recipe does not contain editable recipe data.', 'error');
+      return false;
+    }
+
+    adminEditUpdatedAt = item.updated_at || '';
+    hydrateAdminRecipe(recipe, item);
+    showStatus('Pending recipe loaded for review.', 'success');
+    return true;
+  } catch (err) {
+    showStatus(err.message || 'Unable to load pending recipe', 'error');
+    return false;
+  }
+}
+
 function resetFormForNewEntry() {
   clearDraft();
   document.getElementById('recipe-form').reset();
@@ -1661,7 +1942,39 @@ function resetFormForNewEntry() {
 async function handleSubmit(evt) {
   evt.preventDefault();
   try {
-    const recipe = buildRecipeFromForm({ strict: true });
+    const recipe = attachEditorState(buildRecipeFromForm({ strict: true }));
+
+    if (isAdminEditMode) {
+      const adminToken = getRememberedPassword('admin');
+      if (!adminToken) {
+        showStatus('Your admin session is missing. Return to the Recipe inbox and sign in again.', 'error');
+        return;
+      }
+
+      showStatus('Saving pending recipe…', 'info');
+      const result = await adminUpdatePending({
+        adminToken,
+        id: adminEditId,
+        recipe,
+        expectedUpdatedAt: adminEditUpdatedAt,
+      });
+      adminEditUpdatedAt = result?.item?.updated_at || adminEditUpdatedAt;
+      showStatus('Saved. This recipe is still pending and ready for another review or GitHub publish.', 'success');
+
+      const meta = document.getElementById('admin-edit-meta');
+      if (meta && result?.item) {
+        const updated = result.item.updated_at ? new Date(result.item.updated_at) : null;
+        const updatedText =
+          updated && !Number.isNaN(updated.getTime())
+            ? updated.toLocaleString()
+            : '';
+        meta.textContent = updatedText
+          ? `Inbox #${adminEditId} · last updated ${updatedText}`
+          : `Inbox #${adminEditId}`;
+      }
+      return;
+    }
+
     const password = promptFamilyPassword();
     if (!password) return;
     showStatus('Submitting recipe...', 'info');
@@ -1683,12 +1996,12 @@ async function handleSubmit(evt) {
     if (err.issues && Array.isArray(err.issues)) {
       showStatus(err.issues, 'error');
     } else {
-      showStatus(err.message || 'Unable to submit', 'error');
+      showStatus(err.message || (isAdminEditMode ? 'Unable to save pending recipe' : 'Unable to submit'), 'error');
     }
   }
 }
 
-function bootstrap() {
+async function bootstrap() {
   const previewDetails = document.querySelector('details.mobile-preview');
   if (previewDetails && window.matchMedia('(max-width: 640px)').matches) {
     previewDetails.removeAttribute('open');
@@ -1723,7 +2036,7 @@ function bootstrap() {
 
   loadUnitsFromConversions();
   syncCategoryOptions();
-  loadPanOptions();
+  const panPromise = loadPanOptions();
 
   document.getElementById('add-ingredient').addEventListener('click', () => {
     const row = createIngredientRow();
@@ -1766,6 +2079,12 @@ function bootstrap() {
   });
   document.getElementById('close-review').addEventListener('click', () => setReviewOpen(false));
   document.getElementById('recipe-form').addEventListener('submit', handleSubmit);
+
+  if (isAdminEditMode) {
+    await Promise.all([panPromise, loadExistingRecipes()]);
+    await loadAdminEditRecipe();
+    return;
+  }
 
   if (getRememberedPassword('family')) {
     document.getElementById('remember-family').checked = true;
