@@ -5110,3 +5110,9 @@ body.add-page .recipe-options-grid {
     padding-inline: 0;
   }
 }
+
+
+body.add-page .step-variation-details > summary::marker,
+body.add-page .recipe-options > summary::marker {
+  content: "";
+}
