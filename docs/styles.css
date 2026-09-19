@@ -4387,3 +4387,460 @@ body.add-page.admin-edit-mode .composer-intro {
     gap: 0.35rem;
   }
 }
+
+
+/* ===========================
+   Add Recipe v5
+   Home-page visual language + compact authoring
+   =========================== */
+body.add-page .add-recipe-shell {
+  max-width: 920px;
+  padding-top: 0.75rem;
+}
+
+body.add-page .recipe-composer {
+  gap: 0.75rem;
+}
+
+body.add-page #recipe-form {
+  display: block;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: visible;
+  box-shadow: none;
+}
+
+body.add-page .composer-section {
+  margin: 0;
+  padding: 0.8rem 0.9rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0 !important;
+  box-shadow: none;
+}
+
+body.add-page .composer-intro {
+  padding-top: 0.85rem;
+  padding-bottom: 0.75rem;
+}
+
+body.add-page .composer-section > legend,
+body.add-page .composer-section > .section-title-row h2,
+body.add-page .recipe-details-section > .section-title-row h2 {
+  margin: 0 0 0.5rem;
+  padding: 0;
+  font-family: 'Source Serif 4', var(--font-serif);
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+body.add-page .recipe-title-input,
+body.add-page .yield-row input,
+body.add-page .ingredient-main input,
+body.add-page .ingredient-main select,
+body.add-page .step-text,
+body.add-page .advanced-field input,
+body.add-page .advanced-field textarea,
+body.add-page .recipe-details-section input,
+body.add-page .recipe-details-section textarea,
+body.add-page .recipe-details-section select,
+body.add-page .category-menu > summary {
+  background: #fff !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: none !important;
+  color: var(--text);
+}
+
+body.add-page .recipe-title-input {
+  min-height: 52px;
+  padding: 0.48rem 0.6rem;
+  font-size: clamp(1.4rem, 3.6vw, 1.8rem);
+  line-height: 1.2;
+}
+
+body.add-page .yield-row {
+  margin-top: 0.55rem;
+  gap: 0.45rem;
+}
+
+body.add-page .yield-row input {
+  width: 72px;
+  min-height: 36px;
+  padding: 0.3rem 0.45rem;
+}
+
+body.add-page .ingredients-editor,
+body.add-page .ingredients-list {
+  gap: 0.35rem;
+}
+
+body.add-page .ingredient-main {
+  gap: 0.3rem;
+}
+
+body.add-page .ingredient-main input,
+body.add-page .ingredient-main select {
+  min-height: 38px;
+  padding: 0.35rem 0.45rem;
+}
+
+body.add-page .ingredient-more-toggle,
+body.add-page .step-more-toggle,
+body.add-page .remove-row-button {
+  min-width: 32px;
+  width: 32px;
+  min-height: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: var(--radius) !important;
+  background: transparent;
+  color: var(--muted);
+}
+
+body.add-page .ingredient-more-toggle:hover,
+body.add-page .step-more-toggle:hover,
+body.add-page .remove-row-button:hover,
+body.add-page .ingredient-more-toggle:focus,
+body.add-page .step-more-toggle:focus,
+body.add-page .remove-row-button:focus {
+  background: #f8f1e9;
+  color: var(--text);
+  outline: none;
+}
+
+body.add-page .section-actions {
+  margin-top: 0.45rem;
+  gap: 0.45rem;
+}
+
+body.add-page .compact-action,
+body.add-page .editor-action {
+  width: auto !important;
+  min-height: 32px;
+  padding: 0.3rem 0.55rem !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  background: #f8f1e9 !important;
+  color: var(--accent);
+  box-shadow: none !important;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+body.add-page .compact-action:hover,
+body.add-page .editor-action:hover {
+  background: #fff !important;
+}
+
+body.add-page .ingredient-advanced,
+body.add-page .step-advanced {
+  margin-top: 0.4rem;
+  padding: 0.65rem;
+  border: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-radius: var(--radius) !important;
+  background: #fff7ea;
+}
+
+body.add-page .ingredient-action-row {
+  gap: 0.4rem;
+  margin-bottom: 0.55rem;
+}
+
+body.add-page .advanced-field {
+  gap: 0.22rem;
+  font-size: 0.84rem;
+}
+
+body.add-page .advanced-field input,
+body.add-page .advanced-field textarea {
+  min-height: 36px;
+  padding: 0.35rem 0.45rem;
+}
+
+body.add-page .ingredient-section-divider {
+  grid-template-columns: minmax(110px, 220px) minmax(30px, 1fr) 32px;
+  gap: 0.45rem;
+  padding: 0.35rem 0;
+  align-items: center;
+}
+
+body.add-page .section-divider-input {
+  max-width: none;
+  min-height: 36px;
+  padding: 0.3rem 0.45rem;
+  text-align: left;
+  font: inherit;
+  font-weight: 650;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius) !important;
+}
+
+body.add-page .section-divider-input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--border);
+}
+
+body.add-page .section-divider-line {
+  height: 1px;
+  background: var(--border);
+}
+
+body.add-page .steps-field .steps-builder {
+  gap: 0.5rem;
+}
+
+body.add-page .step-row {
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0.3rem;
+}
+
+body.add-page .step-main {
+  grid-template-columns: 1.4rem minmax(0, 1fr) 64px;
+  grid-template-areas:
+    "number text actions"
+    ". ingredients ingredients";
+  gap: 0.25rem 0.4rem;
+  align-items: start;
+}
+
+body.add-page .step-number {
+  width: 1.4rem;
+  height: 38px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 !important;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+body.add-page .step-number::after {
+  content: none !important;
+  display: none !important;
+}
+
+body.add-page .step-text {
+  min-height: 60px;
+  padding: 0.45rem 0.55rem;
+  line-height: 1.35;
+  resize: vertical;
+}
+
+body.add-page .step-actions {
+  gap: 0;
+}
+
+body.add-page .step-ingredients {
+  gap: 0.3rem;
+  padding-top: 0.1rem;
+}
+
+body.add-page .ingredient-reference-chip {
+  border: 1px solid var(--border);
+  border-radius: var(--radius) !important;
+  padding: 0.2rem 0.4rem;
+  background: #fff;
+  font-size: 0.78rem;
+}
+
+body.add-page .ingredient-reference-chip.is-linked {
+  background: var(--accent-soft);
+  border-color: var(--border);
+}
+
+body.add-page .recipe-details-section .field {
+  gap: 0.25rem;
+}
+
+body.add-page .details-grid {
+  gap: 0.65rem;
+}
+
+body.add-page .category-menu > summary {
+  min-height: 40px;
+  padding: 0.38rem 0.55rem;
+}
+
+body.add-page .category-popover {
+  top: calc(100% + 4px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius) !important;
+  background: #fff;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+body.add-page .category-options {
+  padding: 0;
+  gap: 0;
+}
+
+body.add-page .category-check {
+  min-height: 38px;
+  padding: 0.35rem 0.55rem;
+  background: #fff;
+}
+
+body.add-page .category-check:hover {
+  background: #fff9ef;
+}
+
+body.add-page .category-done {
+  border-top: 1px solid var(--border);
+  background: #fff7ea;
+}
+
+body.add-page .recipe-options {
+  margin-top: 0.7rem;
+  padding-top: 0.55rem;
+}
+
+body.add-page .recipe-options > summary {
+  color: var(--muted);
+}
+
+body.add-page .composer-footer {
+  padding: 0.75rem 0.9rem 0.85rem;
+  border: 0;
+  gap: 0.45rem;
+}
+
+body.add-page .composer-footer-actions .button,
+body.add-page .review-toolbar .link-button,
+body.add-page .button,
+body.add-page .status,
+body.add-page .dietary-chip,
+body.add-page .review-panel,
+body.add-page .preview-shell {
+  border-radius: var(--radius) !important;
+}
+
+body.add-page .composer-footer-actions .button {
+  min-height: 38px;
+}
+
+body.add-page .review-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: none !important;
+}
+
+body.add-page .admin-edit-banner {
+  margin-bottom: 0.55rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+@media (max-width: 700px) {
+  body.add-page .add-recipe-shell {
+    padding-left: max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
+    padding-top: 0.45rem;
+  }
+
+  body.add-page #recipe-form {
+    border-radius: var(--radius-lg);
+  }
+
+  body.add-page .composer-section {
+    padding: 0.68rem 0.72rem;
+  }
+
+  body.add-page .composer-intro {
+    padding-top: 0.72rem;
+  }
+
+  body.add-page .recipe-title-input {
+    min-height: 50px;
+    padding: 0.42rem 0.52rem;
+    font-size: 1.45rem;
+  }
+
+  body.add-page .ingredient-main {
+    grid-template-columns: 58px 94px minmax(0, 1fr) 30px 28px;
+    gap: 0.22rem;
+  }
+
+  body.add-page .ingredient-main input,
+  body.add-page .ingredient-main select {
+    min-height: 38px;
+    padding-inline: 0.32rem;
+    font-size: 16px;
+  }
+
+  body.add-page .ingredient-unit {
+    font-size: 16px !important;
+  }
+
+  body.add-page .ingredient-more-toggle,
+  body.add-page .remove-ingredient,
+  body.add-page .step-more-toggle,
+  body.add-page .remove-step {
+    min-height: 38px;
+    height: 38px;
+  }
+
+  body.add-page .step-main {
+    grid-template-columns: 1.25rem minmax(0, 1fr) 60px;
+    gap: 0.2rem 0.35rem;
+  }
+
+  body.add-page .step-number {
+    width: 1.25rem;
+    height: 38px;
+  }
+
+  body.add-page .step-text {
+    min-height: 58px;
+    padding: 0.42rem 0.48rem;
+    font-size: 16px;
+  }
+
+  body.add-page .steps-field #add-step {
+    width: auto !important;
+    margin-top: 0.45rem !important;
+  }
+
+  body.add-page .ingredient-section-divider {
+    grid-template-columns: minmax(100px, 180px) minmax(24px, 1fr) 30px;
+    padding-block: 0.3rem;
+  }
+
+  body.add-page .admin-edit-banner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.5rem;
+    flex-direction: initial;
+  }
+
+  body.add-page .admin-edit-banner > div {
+    min-width: 0;
+  }
+
+  body.add-page .admin-edit-banner a {
+    font-size: 0.84rem;
+  }
+}
+
+@media (max-width: 380px) {
+  body.add-page .ingredient-main {
+    grid-template-columns: 52px 86px minmax(0, 1fr) 28px 26px;
+    gap: 0.18rem;
+  }
+}
