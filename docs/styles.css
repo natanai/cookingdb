@@ -4927,3 +4927,186 @@ body.add-page .ingredient-autocomplete-add {
     max-height: min(240px, 38vh);
   }
 }
+
+
+/* ===========================
+   Add Recipe v6
+   Desktop advanced-control refinement
+   =========================== */
+body.add-page .step-advanced {
+  margin: 0.35rem 0 0 1.65rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius) !important;
+  background: #fff9f0;
+}
+
+body.add-page .step-advanced-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+}
+
+body.add-page .step-option-row {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: center;
+  margin: 0;
+}
+
+body.add-page .step-option-label {
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 650;
+}
+
+body.add-page .step-section-row .step-section {
+  width: min(420px, 100%);
+  min-height: 36px;
+  box-sizing: border-box;
+  padding: 0.35rem 0.45rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font: inherit;
+}
+
+body.add-page .step-variation-details {
+  margin: 0;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--border);
+}
+
+body.add-page .step-variation-details > summary,
+body.add-page .recipe-options > summary {
+  list-style: none;
+}
+
+body.add-page .step-variation-details > summary::-webkit-details-marker,
+body.add-page .recipe-options > summary::-webkit-details-marker {
+  display: none;
+}
+
+body.add-page .step-variation-details > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 32px;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 650;
+}
+
+body.add-page .disclosure-caret {
+  display: inline-block;
+  flex: 0 0 auto;
+  transition: transform 120ms ease;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+body.add-page details[open] > summary > .disclosure-caret {
+  transform: rotate(180deg);
+}
+
+body.add-page .step-variation-body {
+  display: grid;
+  gap: 0.5rem;
+  padding-top: 0.45rem;
+}
+
+body.add-page .variation-condition-row {
+  display: grid;
+  grid-template-columns: auto minmax(210px, 1fr) auto minmax(120px, 0.55fr);
+  gap: 0.4rem;
+  align-items: center;
+}
+
+body.add-page .variation-condition-word {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+body.add-page .variation-condition-row input {
+  min-width: 0;
+  min-height: 36px;
+  box-sizing: border-box;
+  padding: 0.35rem 0.45rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font: inherit;
+}
+
+body.add-page .variation-copy-field {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.25rem;
+  margin: 0;
+}
+
+body.add-page .variation-copy-field textarea {
+  min-height: 62px;
+  resize: vertical;
+}
+
+body.add-page .recipe-options {
+  margin-top: 0.75rem;
+  padding-top: 0;
+  border-top: 0;
+}
+
+body.add-page .recipe-options > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 38px;
+  padding: 0.4rem 0.55rem;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 650;
+  background: #f8f1e9;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+body.add-page .recipe-options > summary:hover {
+  background: #fff7ea;
+}
+
+body.add-page .recipe-options-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  padding: 0.65rem 0.15rem 0;
+}
+
+@media (max-width: 700px) {
+  body.add-page .step-advanced {
+    margin-left: 0;
+    padding: 0.55rem;
+  }
+
+  body.add-page .step-option-row {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+
+  body.add-page .step-section-row .step-section {
+    width: 100%;
+  }
+
+  body.add-page .variation-condition-row {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  body.add-page .recipe-options-grid {
+    grid-template-columns: 1fr;
+    padding-inline: 0;
+  }
+}
