@@ -14,6 +14,7 @@ const checks = [
   ['batch multiplier metadata', html.includes('id="default-base"')],
   ['pan scaling metadata', html.includes('id="default-pan"')],
   ['ingredient sections', js.includes('createIngredientSection') && js.includes('start-section-here')],
+  ['single contextual section creation flow', !html.includes('id="add-ingredient-section"') && js.includes('start-section-here')],
   ['ingredient prep metadata', js.includes('ingredient-prep') && js.includes('prep,')],
   ['ingredient line grouping', js.includes('ingredient-inline-group') && js.includes('line_group')],
   ['ingredient conditional dependencies', js.includes('ingredient-conditional-toggle') && js.includes('depends_on')],
