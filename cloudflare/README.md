@@ -44,8 +44,24 @@ await fetch('https://<your-worker>/admin/export', {
   },
   body: JSON.stringify({ status: 'all', include_payload: true }),
 }).then((r) => r.json());
+
+// Admin update of one pending row (use updated_at from the export for conflict protection)
+await fetch('https://<your-worker>/admin/update-pending', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-Admin-Token': '<admin token>',
+  },
+  body: JSON.stringify({
+    id: 123,
+    expected_updated_at: '<updated_at from export>',
+    payload: { id: 'chocolate-cake', title: 'Chocolate Cake' },
+  }),
+}).then((r) => r.json());
 ```
 
 ## Updating the Worker
 
 After pulling this branch, copy/paste [`worker.js`](./worker.js) into your Cloudflare Worker and deploy. Ensure the Worker keeps the `DB` binding plus the `ADMIN_TOKEN` and `FAMILY_PASSWORD`/`RECIPE_PASSWORD` secrets.
+
+The site admin review editor requires the current Worker version because saving an audited recipe uses `POST /admin/update-pending`. Listing, export, and individual deletion continue to use the existing admin-token-protected inbox routes.
