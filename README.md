@@ -39,7 +39,7 @@ The workflow at `.github/workflows/pages.yml` builds the site and deploys `/docs
 ## Recipe inbox and publishing
 
 - Family recipe editor: [`docs/add.html`](docs/add.html)
-- Admin export/backup: [`docs/admin.html`](docs/admin.html)
+- Admin review queue and export/backup: [`docs/admin.html`](docs/admin.html)
 - Official publisher: **Actions → Publish pending recipes → Run workflow**
 
 The Worker-backed D1 database is an inbox; the Git repository remains the source of truth for published recipes.
@@ -47,9 +47,12 @@ The Worker-backed D1 database is an inbox; the Git repository remains the source
 ### Official route
 
 1. Submit one or more recipes through the live Add Recipe page.
-2. Run the **Publish pending recipes** GitHub Action.
-3. The workflow fetches pending rows directly from the Worker, converts them to canonical `recipes/<id>/` CSV files, validates and builds the site, commits the repository changes, dispatches the Pages deployment, and then removes only the successfully integrated inbox rows.
-4. Existing recipe IDs are never silently overwritten. An identical existing recipe is treated as already imported so a cleanup retry is safe; different content causes the workflow to stop.
+2. Open the **Recipe inbox** admin page and audit the pending list. Each pending recipe can be opened in the same full recipe composer for review/editing or deleted individually.
+3. Run the **Publish pending recipes** GitHub Action when the pending queue is ready.
+4. The workflow fetches pending rows directly from the Worker, converts them to canonical `recipes/<id>/` CSV files, validates and builds the site, commits the repository changes, dispatches the Pages deployment, and then removes only the successfully integrated inbox rows.
+5. Existing recipe IDs are never silently overwritten. An identical existing recipe is treated as already imported so a cleanup retry is safe; different content causes the workflow to stop.
+
+Admin edits use the Worker's authenticated `/admin/update-pending` route. Updates include the row's previous `updated_at` timestamp so an older editor tab cannot silently overwrite a newer change.
 
 The workflow requires the repository Actions secret `COOKINGDB_ADMIN_TOKEN`. It should contain the same admin-token value configured on the Cloudflare Worker. The Worker URL defaults to `https://cookingdb-inbox.natanai.workers.dev`; set the optional Actions variable `COOKINGDB_INBOX_URL` only if that endpoint changes.
 
