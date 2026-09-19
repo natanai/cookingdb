@@ -1313,6 +1313,7 @@ function buildRecipeFromForm({ strict = true } = {}) {
 
 function buildPreviewRecipe() {
   const { recipe } = buildRecipeDraft();
+  clearValidationHighlights();
   const ingredientSource = recipe.ingredients || {};
   const ingredientMap = Array.isArray(ingredientSource)
     ? ingredientSource.reduce((acc, entry) => {
@@ -2044,26 +2045,6 @@ async function bootstrap() {
     refreshStepIngredientPickers();
     saveDraftSoon();
   });
-  document.getElementById('add-ingredient-section').addEventListener('click', () => {
-    const rows = [...ingredientRowsEl.querySelectorAll('.ingredient-row')];
-    const firstRow = rows[0] || null;
-    const firstRowIsBlank = firstRow &&
-      !firstRow.querySelector('.ingredient-name')?.value.trim() &&
-      !firstRow.querySelector('.ingredient-amount')?.value.trim();
-
-    const divider = firstRowIsBlank
-      ? createIngredientSection('', firstRow)
-      : createIngredientSection();
-
-    if (!firstRowIsBlank) {
-      const next = createIngredientRow();
-      divider.after(next);
-    }
-
-    divider.querySelector('.section-divider-input')?.focus();
-    saveDraftSoon();
-  });
-
   document.getElementById('category-done').addEventListener('click', () => {
     const menu = document.getElementById('category-menu');
     if (menu) menu.open = false;
