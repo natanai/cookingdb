@@ -1057,6 +1057,7 @@ async function build() {
   if (!fs.existsSync(builtDir)) {
     fs.mkdirSync(builtDir, { recursive: true });
   }
+  fs.writeFileSync(path.join(builtDir, 'pan-sizes.json'), JSON.stringify(panList, null, 2));
   fs.writeFileSync(path.join(builtDir, 'nutrition-policy.json'), JSON.stringify(nutritionPolicy, null, 2));
   fs.writeFileSync(path.join(builtDir, 'nutrition-guidelines.json'), JSON.stringify(nutritionGuidelines, null, 2));
   fs.writeFileSync(
