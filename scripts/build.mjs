@@ -1053,10 +1053,41 @@ async function build() {
     recipe.servings_per_batch = servingsPerBatch;
   });
 
+  const ingredientAutocompleteMap = new Map();
+  const addIngredientAutocompleteEntry = (label, ingredientId, unit = '') => {
+    const cleanLabel = String(label || '').trim();
+    const cleanId = String(ingredientId || '').trim();
+    if (!cleanLabel || !cleanId) return;
+    const key = cleanLabel.toLocaleLowerCase();
+    if (ingredientAutocompleteMap.has(key)) return;
+    ingredientAutocompleteMap.set(key, {
+      label: cleanLabel,
+      ingredient_id: cleanId,
+      unit: String(unit || '').trim(),
+    });
+  };
+
+  catalogRows.forEach((row) => {
+    addIngredientAutocompleteEntry(row.canonical_name, row.ingredient_id, row.serving_unit_norm);
+  });
+
+  recipeOutputs.forEach((recipe) => {
+    Object.values(recipe.ingredients || {}).forEach((tokenData) => {
+      (tokenData.options || []).forEach((option) => {
+        addIngredientAutocompleteEntry(option.display, option.ingredient_id, option.unit);
+      });
+    });
+  });
+
+  const ingredientAutocomplete = [...ingredientAutocompleteMap.values()].sort((a, b) =>
+    a.label.localeCompare(b.label)
+  );
+
   const builtDir = path.join(process.cwd(), 'docs', 'built');
   if (!fs.existsSync(builtDir)) {
     fs.mkdirSync(builtDir, { recursive: true });
   }
+  fs.writeFileSync(path.join(builtDir, 'ingredient-autocomplete.json'), JSON.stringify(ingredientAutocomplete, null, 2));
   fs.writeFileSync(path.join(builtDir, 'pan-sizes.json'), JSON.stringify(panList, null, 2));
   fs.writeFileSync(path.join(builtDir, 'nutrition-policy.json'), JSON.stringify(nutritionPolicy, null, 2));
   fs.writeFileSync(path.join(builtDir, 'nutrition-guidelines.json'), JSON.stringify(nutritionGuidelines, null, 2));
