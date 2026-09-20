@@ -9,6 +9,7 @@ import {
   selectOptionForToken,
   optionMeetsRestrictions,
   getEffectiveMultiplier,
+  kitchenEstimateForOption,
   unitOptionsFor,
   convertUnitAmount,
 } from './recipe-utils.js';
@@ -482,6 +483,20 @@ function renderIngredientsList(recipe, state, onUnitChange) {
             textEl.title = parts.join(' | ');
             li.appendChild(note);
           }
+        }
+
+        const kitchenEstimate = kitchenEstimateForOption(
+          entry.option,
+          getEffectiveMultiplier(state),
+          state.ingredientPortions,
+          state.ingredientUnitFactors
+        );
+        if (kitchenEstimate) {
+          const estimate = document.createElement('span');
+          estimate.className = 'kitchen-estimate';
+          estimate.textContent = kitchenEstimate.text;
+          estimate.title = kitchenEstimate.title;
+          li.appendChild(estimate);
         }
 
         if (idx < line.entries.length - 1) {

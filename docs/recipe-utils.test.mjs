@@ -6,6 +6,7 @@ import {
   formatStepText,
   renderIngredientLines,
   ingredientDisplay,
+  kitchenEstimateForOption,
   renderStepLines,
   groupLinesBySection,
 } from './recipe-utils.js';
@@ -32,6 +33,78 @@ function runTests() {
   const carrots = { ratio: '2', unit: 'count', display: 'carrots', prep: 'sliced' };
   const carrotDisplay = ingredientDisplay(carrots, 1, null, true);
   assert.equal(carrotDisplay.text, '2 carrots, sliced', 'count ingredients should read naturally with prep');
+
+  const carrotPortions = new Map([
+    ['carrot::count', {
+      ingredient_id: 'carrot',
+      unit: 'count',
+      grams: 61,
+      source: 'USDA (medium carrot)',
+      notes: '1 medium carrot ≈ 61 g.',
+    }],
+  ]);
+  const carrotFactors = new Map([
+    ['carrot', [
+      {
+        ingredient_id: 'carrot',
+        from_unit_norm: 'cup',
+        to_unit_norm: 'g',
+        factor: 128,
+      },
+    ]],
+  ]);
+
+  const carrotWeightEstimate = kitchenEstimateForOption(
+    { ratio: '240', unit: 'g', display: 'carrots', ingredient_id: 'carrot' },
+    1,
+    carrotPortions,
+    carrotFactors
+  );
+  assert.equal(
+    carrotWeightEstimate?.text,
+    'About 4 carrots',
+    'weight-based carrots should expose a practical count estimate'
+  );
+  assert.match(
+    carrotWeightEstimate?.title || '',
+    /61 g per medium carrot/,
+    'kitchen estimate should preserve the portion basis'
+  );
+
+  const carrotVolumeEstimate = kitchenEstimateForOption(
+    { ratio: '1 1/2', unit: 'cup', display: 'carrots', ingredient_id: 'carrot' },
+    1,
+    carrotPortions,
+    carrotFactors
+  );
+  assert.equal(
+    carrotVolumeEstimate?.text,
+    'About 3 carrots',
+    'volume-based carrots should bridge through the ingredient-specific gram factor'
+  );
+
+  const carrotScaledEstimate = kitchenEstimateForOption(
+    { ratio: '240', unit: 'g', display: 'carrots', ingredient_id: 'carrot' },
+    2,
+    carrotPortions,
+    carrotFactors
+  );
+  assert.equal(
+    carrotScaledEstimate?.text,
+    'About 8 carrots',
+    'kitchen estimate should follow recipe scaling'
+  );
+
+  assert.equal(
+    kitchenEstimateForOption(
+      { ratio: '2', unit: 'count', display: 'carrots', ingredient_id: 'carrot' },
+      1,
+      carrotPortions,
+      carrotFactors
+    ),
+    null,
+    'ingredients already written as counts should not get a redundant estimate'
+  );
 
   const sugar = { ratio: '1', unit: 'cup', display: 'sugar' };
   const sugarDisplay = ingredientDisplay(sugar, 1, 'tbsp');
