@@ -301,15 +301,26 @@ function updatePlanSummary() {
   const neededEl = document.getElementById('meals-needed');
   const plannedEl = document.getElementById('meals-planned');
   const remainingEl = document.getElementById('meals-remaining');
+  const progress = document.getElementById('planner-progress');
+  const progressFill = document.getElementById('planner-progress-fill');
 
   neededEl.textContent = needed.toLocaleString();
   plannedEl.textContent = planned.toLocaleString();
+
   if (remaining >= 0) {
     remainingEl.textContent = remaining.toLocaleString();
     remainingEl.classList.remove('is-over');
   } else {
     remainingEl.textContent = `+${Math.abs(remaining).toLocaleString()}`;
     remainingEl.classList.add('is-over');
+  }
+
+  const boundedPlanned = Math.min(Math.max(planned, 0), Math.max(needed, 1));
+  const progressPercent = needed > 0 ? Math.min(100, (boundedPlanned / needed) * 100) : 0;
+  if (progressFill) progressFill.style.width = `${progressPercent}%`;
+  if (progress) {
+    progress.setAttribute('aria-valuemax', String(Math.max(needed, 1)));
+    progress.setAttribute('aria-valuenow', String(Math.min(Math.max(planned, 0), Math.max(needed, 1))));
   }
 }
 
@@ -323,7 +334,10 @@ function updateMealLabels() {
 
 function updateIngredientsSummary() {
   const container = document.getElementById('ingredients-summary');
+  const section = document.getElementById('planner-ingredients-section');
   container.innerHTML = '';
+
+  if (section) section.hidden = state.selections.size === 0;
 
   if (state.selections.size === 0) {
     const empty = document.createElement('li');
@@ -622,9 +636,14 @@ function renderRecipeList() {
 
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'button secondary button-compact planner-add-button';
-    button.textContent = alreadySelected ? 'Added' : 'Add';
+    button.className = 'planner-add-button';
+    button.textContent = alreadySelected ? '✓' : '+';
     button.disabled = alreadySelected;
+    button.setAttribute(
+      'aria-label',
+      alreadySelected ? `${recipe.title} is already in your plan` : `Add ${recipe.title} to your plan`
+    );
+    button.title = alreadySelected ? 'Already added' : 'Add to plan';
     if (!alreadySelected) {
       button.addEventListener('click', () => {
         addRecipeSelection(recipe);
@@ -703,7 +722,10 @@ function removeRecipeSelection(recipeId) {
 
 function renderSelections() {
   const container = document.getElementById('selected-recipes');
+  const section = document.getElementById('planner-selected-section');
   container.innerHTML = '';
+
+  if (section) section.hidden = state.selections.size === 0;
 
   if (state.selections.size === 0) {
     const empty = document.createElement('li');
