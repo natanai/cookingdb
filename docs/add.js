@@ -341,14 +341,14 @@ function normalizeIngredientsForSuggestions(recipe) {
   return [];
 }
 
-function syncPanOptions() {
+function syncPanOptions({ failed = false } = {}) {
   if (!panSelectEl) return;
   const current = pendingDraftPan || panSelectEl.value || '';
   panSelectEl.innerHTML = '';
 
   const none = document.createElement('option');
   none.value = '';
-  none.textContent = 'No pan scaling';
+  none.textContent = failed ? 'Pan sizes unavailable' : 'No pan scaling';
   panSelectEl.appendChild(none);
 
   panSizeCatalog.forEach((pan) => {
@@ -359,6 +359,16 @@ function syncPanOptions() {
     panSelectEl.appendChild(option);
   });
 
+  const hasCatalog = panSizeCatalog.length > 0;
+  panSelectEl.disabled = failed || !hasCatalog;
+  panSelectEl.setAttribute('aria-busy', 'false');
+
+  if (!hasCatalog) {
+    panSelectEl.value = '';
+    pendingDraftPan = '';
+    return;
+  }
+
   if (!panSizeCatalog.some((pan) => pan.id === current)) {
     panSelectEl.value = '';
   }
@@ -367,15 +377,20 @@ function syncPanOptions() {
 
 async function loadPanOptions() {
   if (!panSelectEl) return;
+  panSelectEl.disabled = true;
+  panSelectEl.setAttribute('aria-busy', 'true');
+
   try {
-    const response = await fetch('./built/pan-sizes.json');
+    const response = await fetch('./built/pan-sizes.json', { cache: 'no-store' });
     if (!response.ok) throw new Error(`Pan catalog request failed: ${response.status}`);
     const pans = await response.json();
     panSizeCatalog = Array.isArray(pans) ? pans.filter((pan) => pan?.id && pan?.label) : [];
+    if (panSizeCatalog.length === 0) throw new Error('Pan catalog is empty');
     syncPanOptions();
   } catch (err) {
     console.warn('Could not load pan sizes', err);
-    syncPanOptions();
+    panSizeCatalog = [];
+    syncPanOptions({ failed: true });
   }
 }
 
@@ -2252,6 +2267,7 @@ async function bootstrap() {
   }
 
   await ingredientAutocompletePromise;
+  await panPromise;
 
   const restored = restoreDraft();
   if (!restored) {
