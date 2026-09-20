@@ -93,7 +93,7 @@
       <section class="controls">
         <label>
           Batch multiplier:
-          <input type="number" id="multiplier" step="0.25" min="0.25" value="1" />
+          <input type="number" id="multiplier" step="any" min="0.0001" value="1" />
         </label>
         <button class="button" id="print-btn" type="button">🖨 Print</button>
         <div class="control-note" id="multiplier-helper"></div>
@@ -112,8 +112,52 @@
           </div>
         </details>
       </section>
-      <section>
-        <h2 id="ingredients-heading">Ingredients</h2>
+      <section class="ingredients-section">
+        <div class="ingredients-heading-row">
+          <h2 id="ingredients-heading">Ingredients</h2>
+          <button
+            class="ingredient-scale-toggle"
+            id="available-scale-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="available-scale-panel"
+          >Use what I have</button>
+        </div>
+
+        <form class="ingredient-scale-panel" id="available-scale-panel" hidden>
+          <div class="ingredient-scale-fields">
+            <label>
+              Ingredient
+              <select id="available-scale-ingredient"></select>
+            </label>
+            <label>
+              Amount on hand
+              <span class="ingredient-scale-amount">
+                <input
+                  type="number"
+                  id="available-scale-amount"
+                  min="0.0001"
+                  step="any"
+                  inputmode="decimal"
+                  autocomplete="off"
+                />
+                <select id="available-scale-unit" aria-label="Amount unit"></select>
+              </span>
+            </label>
+            <div class="ingredient-scale-actions">
+              <button class="button secondary" type="submit">Scale recipe</button>
+              <button class="link-button" id="available-scale-cancel" type="button">Cancel</button>
+            </div>
+          </div>
+          <p class="ingredient-scale-note" id="available-scale-note"></p>
+          <p class="ingredient-scale-error" id="available-scale-error" role="alert" hidden></p>
+        </form>
+
+        <div class="ingredient-scale-active" id="available-scale-active" hidden>
+          <span id="available-scale-active-text"></span>
+          <button class="link-button" id="available-scale-reset" type="button">Reset</button>
+        </div>
+
         <ul id="ingredients-list"></ul>
       </section>
       <section>
