@@ -1,3 +1,4 @@
+import { siteBehavior } from './site-behavior.js';
 import {
   renderIngredientLines,
   renderStepLines,
