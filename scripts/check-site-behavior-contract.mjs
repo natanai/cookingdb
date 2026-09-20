@@ -133,8 +133,8 @@ assert(
   'styles.css must keep touch form controls at the no-focus-zoom 16px floor'
 );
 assert(
-  /grid-template-columns:\s*repeat\(5,\s*(?:38|40)px\)/m.test(css),
-  'compact navigation must expose all five fixed destinations without horizontal scrolling'
+  /\.site-header \.nav-links\s*\{[\s\S]*display:\s*flex[\s\S]*overflow:\s*visible/m.test(css),
+  'compact navigation must expose the fixed destinations in one non-scrolling tool strip'
 );
 assert(
   /\.nav-links[\s\S]*overflow:\s*visible/m.test(css),
@@ -262,7 +262,49 @@ assert(
   !plannerHtml.includes('class="hero planner-hero"'),
   'meal prep must not restore the oversized marketing-style hero'
 );
+assert(
+  plannerHtml.includes('id="planner-start-hint"') &&
+    /Tap\s*<strong>\+<\/strong>\s*beside recipes/.test(plannerHtml),
+  'meal prep must explain the + interaction immediately'
+);
+assert(
+  !plannerHtml.includes('id="planner-plan-heading"') &&
+    plannerHtml.includes('aria-label="Plan setup"'),
+  'meal prep setup must stay compact rather than reintroducing a separate Plan heading block'
+);
+
+const addHtml = fs.readFileSync(path.join(docsDir, 'add.html'), 'utf8');
+const addTitleIndex = addHtml.indexOf('id="title"');
+const addMetaIndex = addHtml.indexOf('class="author-meta-strip"');
+const addIngredientsIndex = addHtml.indexOf('class="composer-section ingredients-field author-recipe-section"');
+const addStepsIndex = addHtml.indexOf('class="composer-section steps-field author-recipe-section"');
+const addDetailsIndex = addHtml.indexOf('class="composer-section recipe-details-section author-details"');
+
+assert(
+  addTitleIndex >= 0 &&
+    addTitleIndex < addMetaIndex &&
+    addMetaIndex < addIngredientsIndex &&
+    addIngredientsIndex < addStepsIndex &&
+    addStepsIndex < addDetailsIndex,
+  'Add Recipe must author in the same reading order as a recipe card: title/meta, ingredients, steps, details'
+);
+assert(
+  addHtml.includes('class="field category-field author-category-field"'),
+  'required categories must stay in the visible authoring metadata strip instead of being hidden in details'
+);
+assert(
+  addHtml.includes('<legend>Steps</legend>'),
+  'authoring and reading must use the same Steps language'
+);
+assert(
+  /body\.add-page \.recipe-title-input\s*\{[\s\S]*font-family:\s*['"]Source Serif 4['"][\s\S]*border-bottom:/m.test(css),
+  'Add Recipe title must use the same document-title language as a viewed recipe'
+);
+assert(
+  /body\.add-page \.ingredients-field \.ingredients-editor,[\s\S]*body\.add-page \.steps-field \.steps-builder\s*\{[\s\S]*border:\s*1px solid var\(--border\)/m.test(css),
+  'Add Recipe ingredients and steps must use the same flat paper-card treatment as the recipe view'
+);
 
 console.log(
-  `Site behavior contract OK: deterministically checked ${pages.length} pages, fixed icon navigation, recipe-first ordering, planner task flow, their page scripts, the shared behavior manager, and the shared mobile shell.`
+  `Site behavior contract OK: deterministically checked ${pages.length} pages, fixed icon navigation, recipe-first ordering, compact planner onboarding, card-parity authoring, their page scripts, the shared behavior manager, and the shared mobile shell.`
 );
