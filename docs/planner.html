@@ -18,16 +18,11 @@
   <div class="page-shell planner-shell">
     <main class="planner-flow">
       <header class="planner-intro">
-        <p class="eyebrow">Meal planning</p>
         <h1>Meal prep</h1>
-        <p>Choose recipes. We’ll keep count and build the grocery list.</p>
+        <p id="planner-start-hint">Tap <strong>+</strong> beside recipes to add them. Your grocery list builds automatically.</p>
       </header>
 
-      <section class="planner-plan planner-surface" aria-labelledby="planner-plan-heading">
-        <div class="planner-section-heading">
-          <h2 id="planner-plan-heading">Plan</h2>
-        </div>
-
+      <section class="planner-plan planner-surface" aria-label="Plan setup">
         <div class="planner-plan-controls">
           <label class="planner-weeks">
             <span>Weeks</span>
@@ -77,10 +72,7 @@
 
       <section class="planner-picker planner-surface" aria-labelledby="planner-picker-heading">
         <div class="planner-section-heading">
-          <div>
-            <h2 id="planner-picker-heading">Choose recipes</h2>
-            <p>Add what you want to cook.</p>
-          </div>
+          <h2 id="planner-picker-heading">Recipes</h2>
         </div>
         <label class="search-field planner-search" aria-label="Search recipes">
           <span class="search-icon" aria-hidden="true">🔎</span>
