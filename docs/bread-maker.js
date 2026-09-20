@@ -1,3 +1,4 @@
+import { siteBehavior } from './site-behavior.js';
 const BREAD_CATEGORY = 'Bread maker';
 const PERSONAL_STORAGE_KEY = 'cookingdb-bread-maker-recipes';
 
