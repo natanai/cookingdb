@@ -1015,15 +1015,15 @@ main {
 }
 
 /*
- * iOS Safari automatically magnifies the visual viewport when a focused
- * form control renders below 16px. Keep recipe interactions at a native-feeling
- * scale without disabling user pinch zoom or changing the viewport contract.
+ * Touch browsers such as iOS Safari may magnify the visual viewport when a
+ * focused form control renders below 16px. This is a site-wide interaction
+ * contract, not a page-specific fix. Pinch zoom remains available.
  */
 @media (hover: none) and (pointer: coarse) {
-  .page-recipe input,
-  .page-recipe select,
-  .page-recipe textarea {
-    font-size: 16px;
+  input:not([type='checkbox']):not([type='radio']):not([type='range']),
+  select,
+  textarea {
+    font-size: 16px !important;
   }
 }
 
@@ -2262,30 +2262,48 @@ main {
     gap: 10px;
   }
 
-  /* keep header title + button on the same row when possible */
+  /*
+   * Shared mobile shell: every page uses the same title row and horizontally
+   * scrollable navigation rail. Items stay available instead of wrapping,
+   * shrinking, or disappearing differently from page to page.
+   */
   .site-header .inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    flex-wrap: wrap; /* wraps only if it truly can't fit */
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0.45rem;
+    flex-wrap: nowrap;
   }
 
   .site-title {
     margin: 0;
-    flex: 1 1 auto;
+    width: 100%;
     min-width: 0;
   }
 
   .nav-links {
-    margin-left: auto;
+    width: 100%;
+    margin-left: 0;
     display: flex;
     gap: 0.5rem;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
   }
 
   .nav-links .button {
+    flex: 0 0 auto;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     white-space: nowrap;
     padding: 0.45rem 0.7rem;
   }
@@ -2298,7 +2316,8 @@ main {
   }
 
   .site-header .inner {
-    padding-inline: 0.75rem;
+    padding-left: max(0.75rem, env(safe-area-inset-left));
+    padding-right: max(0.75rem, env(safe-area-inset-right));
   }
 
   .steps-builder {
@@ -4041,19 +4060,6 @@ body.add-page .preview-shell {
 }
 
 @media (max-width: 700px) {
-  body.add-page .site-header .inner {
-    padding-block: 0.45rem;
-  }
-
-  body.add-page .site-header .site-title {
-    font-size: 1.45rem;
-  }
-
-  body.add-page .nav-links {
-    gap: 0.55rem;
-    font-size: 0.88rem;
-  }
-
   body.add-page .add-recipe-shell {
     padding-left: max(8px, env(safe-area-inset-left));
     padding-right: max(8px, env(safe-area-inset-right));
@@ -4099,11 +4105,11 @@ body.add-page .preview-shell {
   body.add-page .ingredient-main select {
     min-height: 32px;
     padding-inline: 0.15rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   body.add-page .ingredient-unit {
-    font-size: 0.82rem !important;
+    font-size: 1rem !important;
   }
 
   body.add-page .ingredient-advanced-grid,
@@ -4123,7 +4129,7 @@ body.add-page .preview-shell {
 
   body.add-page .step-text {
     min-height: 54px;
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   body.add-page .step-actions {
@@ -4159,12 +4165,9 @@ body.add-page .preview-shell {
 
   body.add-page .ingredient-main input,
   body.add-page .ingredient-main select {
-    font-size: 0.82rem;
+    font-size: 1rem;
   }
 
-  body.add-page .nav-links {
-    font-size: 0.8rem;
-  }
 }
 
 
