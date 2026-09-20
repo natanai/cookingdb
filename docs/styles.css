@@ -955,7 +955,7 @@ main {
   background: #fffdf9;
   color: var(--text);
   font: inherit;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .page-recipe .ingredient-scale-amount {
@@ -1011,6 +1011,19 @@ main {
 
   .page-recipe .ingredient-scale-actions {
     justify-content: flex-start;
+  }
+}
+
+/*
+ * iOS Safari automatically magnifies the visual viewport when a focused
+ * form control renders below 16px. Keep recipe interactions at a native-feeling
+ * scale without disabling user pinch zoom or changing the viewport contract.
+ */
+@media (hover: none) and (pointer: coarse) {
+  .page-recipe input,
+  .page-recipe select,
+  .page-recipe textarea {
+    font-size: 16px;
   }
 }
 
