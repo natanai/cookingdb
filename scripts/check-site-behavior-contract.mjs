@@ -122,6 +122,10 @@ assert(
   manager.includes("inbox.id = 'admin-inbox-link'") && manager.includes("inbox.textContent = 'Recipe inbox'"),
   'admin-only recipe inbox access must live under the shared gear menu'
 );
+assert(
+  manager.includes("{ key: 'home', href: 'index.html', label: 'Cookbook', icon: 'book', iconOnlyWide: true }"),
+  'Cookbook must remain the icon-only persistent home anchor'
+);
 
 const css = fs.readFileSync(path.join(docsDir, 'styles.css'), 'utf8');
 assert(
@@ -147,6 +151,14 @@ assert(
 assert(
   !/body\.add-page \.nav-links/.test(css),
   'page-specific add-page navigation overrides are not allowed; the shared shell owns nav behavior'
+);
+assert(
+  /\.site-header \.site-title\s*\{[\s\S]*display:\s*none\s*!important/m.test(css),
+  'the app bar must not display a product/site name'
+);
+assert(
+  /\.site-nav-item\[data-site-nav-key=['"]home['"]\][\s\S]*margin-right:\s*auto/m.test(css),
+  'the Cookbook icon must stay left-anchored while tools remain on the right'
 );
 
 const recipeHtml = fs.readFileSync(path.join(docsDir, 'recipe.html'), 'utf8');
@@ -175,6 +187,37 @@ assert(
   'recipe page must not restore the large pre-recipe controls card'
 );
 
+const plannerHtml = fs.readFileSync(path.join(docsDir, 'planner.html'), 'utf8');
+const plannerIntroIndex = plannerHtml.indexOf('class="planner-intro"');
+const plannerPlanIndex = plannerHtml.indexOf('class="planner-plan planner-surface"');
+const plannerPickerIndex = plannerHtml.indexOf('class="planner-picker planner-surface"');
+const plannerSelectedIndex = plannerHtml.indexOf('id="planner-selected-section"');
+const plannerIngredientsIndex = plannerHtml.indexOf('id="planner-ingredients-section"');
+const plannerSecondaryIndex = plannerHtml.indexOf('class="planner-secondary planner-surface"');
+const plannerNutritionBannerIndex = plannerHtml.indexOf('id="planner-nutrition-banner"');
+
+assert(
+  plannerIntroIndex >= 0 &&
+    plannerIntroIndex < plannerPlanIndex &&
+    plannerPlanIndex < plannerPickerIndex &&
+    plannerPickerIndex < plannerSelectedIndex &&
+    plannerSelectedIndex < plannerIngredientsIndex &&
+    plannerIngredientsIndex < plannerSecondaryIndex,
+  'meal prep must follow the task order: intro, plan, choose recipes, selected plan, grocery list, optional details'
+);
+assert(
+  plannerNutritionBannerIndex > plannerSecondaryIndex,
+  'nutrition warnings must live inside optional planner details rather than interrupting the primary workflow'
+);
+assert(
+  plannerHtml.includes('id="planner-progress"') && plannerHtml.includes('id="planner-progress-fill"'),
+  'meal prep must show compact progress instead of three oversized metric blocks'
+);
+assert(
+  !plannerHtml.includes('class="hero planner-hero"'),
+  'meal prep must not restore the oversized marketing-style hero'
+);
+
 console.log(
-  `Site behavior contract OK: deterministically checked ${pages.length} pages, fixed icon navigation, recipe-first ordering, their page scripts, the shared behavior manager, and the shared mobile shell.`
+  `Site behavior contract OK: deterministically checked ${pages.length} pages, fixed icon navigation, recipe-first ordering, planner task flow, their page scripts, the shared behavior manager, and the shared mobile shell.`
 );
