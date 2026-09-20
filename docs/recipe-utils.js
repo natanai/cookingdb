@@ -368,6 +368,25 @@ export function getEffectiveMultiplier(state) {
   return (Number(state.multiplier) || 1) * (Number(state.panMultiplier) || 1);
 }
 
+export function scaleMultiplierForAvailableAmount(currentMultiplier, requiredAmount, availableAmount) {
+  const current = Number(currentMultiplier);
+  const required = Number(requiredAmount);
+  const available = Number(availableAmount);
+
+  if (
+    !Number.isFinite(current) ||
+    !Number.isFinite(required) ||
+    !Number.isFinite(available) ||
+    current <= 0 ||
+    required <= 0 ||
+    available <= 0
+  ) {
+    return null;
+  }
+
+  return current * (available / required);
+}
+
 export function optionMeetsRestrictions(option, restrictions) {
   if (!option || !option.dietary) return true;
   if (restrictions.gluten_free && !option.dietary.gluten_free) return false;
