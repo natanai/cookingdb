@@ -1,3 +1,4 @@
+import { siteBehavior } from './site-behavior.js';
 import {
   adminExportPending,
   adminUpdatePending,
@@ -2178,7 +2179,7 @@ async function handleSubmit(evt) {
 
 async function bootstrap() {
   const previewDetails = document.querySelector('details.mobile-preview');
-  if (previewDetails && window.matchMedia('(max-width: 640px)').matches) {
+  if (previewDetails && siteBehavior.isCompactViewport()) {
     previewDetails.removeAttribute('open');
   }
 

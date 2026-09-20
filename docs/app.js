@@ -1,66 +1,20 @@
+import { siteBehavior } from './site-behavior.js';
 import { familyListPending, getRememberedPassword, setRememberedPassword } from './inbox/inbox-api.js';
 import { recipeDefaultCompatibility } from './recipe-utils.js';
 
 const STORAGE_KEY = 'cookingdb-inbox-recipes';
 const HAPTICS_KEY = 'cookingdb-ruffle-haptics';
 const HIDDEN_HOME_CATEGORIES = new Set(['Bread maker']);
-let userInteracted = false;
 let ruffleObserver = null;
 let lastHapticAt = 0;
 let mobileRuffleInstalled = false;
 let mobileRuffleUpdate = null;
 
-function installRecipePressFeedback(linkEl) {
-  let startX = 0;
-  let startY = 0;
-  let canceled = false;
-
-  linkEl.addEventListener('pointerdown', (e) => {
-    if (linkEl.classList.contains('disabled-link')) return;
-
-    if (e.pointerType === 'mouse' && e.button !== 0) return;
-
-    canceled = false;
-    startX = e.clientX;
-    startY = e.clientY;
-    linkEl.classList.add('is-pressed');
-
-    try {
-      linkEl.setPointerCapture?.(e.pointerId);
-    } catch (_) {}
-  });
-
-  linkEl.addEventListener('pointermove', (e) => {
-    if (!linkEl.classList.contains('is-pressed')) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    if (Math.hypot(dx, dy) > 10) {
-      canceled = true;
-      linkEl.classList.remove('is-pressed');
-    }
-  });
-
-  const clear = () => linkEl.classList.remove('is-pressed');
-  linkEl.addEventListener('pointerup', clear);
-  linkEl.addEventListener('pointercancel', () => {
-    canceled = true;
-    clear();
-  });
-  linkEl.addEventListener('lostpointercapture', clear);
-
-  linkEl.addEventListener('click', (e) => {
-    if (canceled) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-  });
-}
-
 function canUseRuffleHaptics() {
-  const coarse = window.matchMedia?.('(pointer: coarse)')?.matches;
-  const supportsVibrate = typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function';
-  const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
-  return !!(coarse && supportsVibrate && !reducedMotion);
+  const { coarsePointer, reducedMotion } = siteBehavior.state;
+  const supportsVibrate =
+    typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function';
+  return !!(coarsePointer && supportsVibrate && !reducedMotion);
 }
 
 function isRuffleEnabled() {
@@ -76,7 +30,7 @@ function setRuffleEnabled(value) {
 function tinyHapticPulse() {
   if (!canUseRuffleHaptics()) return;
   if (!isRuffleEnabled()) return;
-  if (!userInteracted) return;
+  if (!siteBehavior.hasUserInteracted) return;
   if (document.visibilityState !== 'visible') return;
 
   const now = Date.now();
@@ -114,10 +68,9 @@ function setupMobileScrollRuffle() {
   const listEl = document.getElementById('recipe-list');
   if (!listEl) return;
 
-  // Only for touch-style pointers and only if user hasn’t asked for reduced motion.
-  const isCoarse = window.matchMedia?.('(pointer: coarse)')?.matches;
-  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
-  if (!isCoarse || reduceMotion) return;
+  // The shared manager owns pointer/motion capability detection.
+  const { coarsePointer, reducedMotion } = siteBehavior.state;
+  if (!coarsePointer || reducedMotion) return;
 
   let rows = Array.from(listEl.querySelectorAll('li.recipe-row'));
   if (!rows.length && mobileRuffleInstalled) {
@@ -189,8 +142,8 @@ function setupMobileScrollRuffle() {
   }
 
   if (!mobileRuffleInstalled) {
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', () => requestAnimationFrame(update), { passive: true });
+    siteBehavior.onScrollFrame(onScroll);
+    siteBehavior.onViewportChange(onScroll, { immediate: false });
     mobileRuffleInstalled = true;
   }
 
@@ -432,7 +385,7 @@ function renderRecipes(recipes) {
       link.title = 'Recipe details not yet available';
     }
 
-    installRecipePressFeedback(link);
+    siteBehavior.installPressFeedback(link);
 
     const title = document.createElement('span');
     title.className = 'recipe-row-title';
@@ -665,9 +618,6 @@ async function main() {
   document.getElementById('filter-dairy').addEventListener('change', update);
   document.getElementById('search-input').addEventListener('input', update);
   document.getElementById('pull-inbox')?.addEventListener('click', handlePullClick);
-
-  window.addEventListener('pointerdown', () => { userInteracted = true; }, { once: true, passive: true });
-  window.addEventListener('touchstart', () => { userInteracted = true; }, { once: true, passive: true });
 
   const hapticsToggle = document.getElementById('ruffle-haptics');
   if (hapticsToggle) {
