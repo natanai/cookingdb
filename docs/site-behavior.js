@@ -8,7 +8,7 @@ const PAGE_CLASSES = {
 };
 
 const NAV_ITEMS = [
-  { key: 'home', href: 'index.html', label: 'Cookbook', icon: 'book' },
+  { key: 'home', href: 'index.html', label: 'Cookbook', icon: 'book', iconOnlyWide: true },
   { key: 'add', href: 'add.html', label: 'Add recipe', icon: 'plus', emphasis: true },
   { key: 'planner', href: 'planner.html', label: 'Meal prep planner', icon: 'calendar' },
   { key: 'bread', href: 'bread-maker.html', label: 'Bread maker', icon: 'bread', iconOnlyWide: true },
