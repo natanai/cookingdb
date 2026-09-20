@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const root = path.resolve(import.meta.dirname, '..');
+const root = path.resolve(process.cwd());
 const docsDir = path.join(root, 'docs');
 
 const pages = [
