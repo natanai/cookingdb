@@ -723,9 +723,11 @@ function removeRecipeSelection(recipeId) {
 function renderSelections() {
   const container = document.getElementById('selected-recipes');
   const section = document.getElementById('planner-selected-section');
+  const startHint = document.getElementById('planner-start-hint');
   container.innerHTML = '';
 
   if (section) section.hidden = state.selections.size === 0;
+  if (startHint) startHint.hidden = state.selections.size > 0;
 
   if (state.selections.size === 0) {
     const empty = document.createElement('li');
