@@ -192,6 +192,132 @@ export function convertUnitAmount(amount, fromUnit, toUnit) {
   return { amount: converted, unit: toDef.id };
 }
 
+
+function optionAmountInGrams(option, multiplier, ingredientUnitFactors) {
+  if (!option?.ratio || !option?.unit || !option?.ingredient_id) return null;
+  const fraction = parseRatio(option.ratio);
+  if (!fraction) return null;
+
+  const amount = (fraction.num / fraction.den) * (Number(multiplier) || 1);
+  if (!Number.isFinite(amount)) return null;
+
+  const normalizedUnit = normalizeUnit(option.unit);
+  if (!normalizedUnit) return null;
+
+  const direct = convertUnitAmount(amount, normalizedUnit, 'g');
+  if (direct && Number.isFinite(direct.amount)) return direct.amount;
+
+  const factors = ingredientUnitFactors?.get?.(option.ingredient_id) || [];
+  for (const factor of factors) {
+    const fromUnit = normalizeUnit(factor.from_unit_norm);
+    const toUnit = normalizeUnit(factor.to_unit_norm);
+    const factorValue = Number(factor.factor);
+    if (!fromUnit || !toUnit || !Number.isFinite(factorValue) || factorValue === 0) continue;
+
+    if (toUnit === 'g') {
+      if (normalizedUnit === fromUnit) return amount * factorValue;
+      const converted = convertUnitAmount(amount, normalizedUnit, fromUnit);
+      if (converted && Number.isFinite(converted.amount)) {
+        return converted.amount * factorValue;
+      }
+    }
+
+    if (fromUnit === 'g') {
+      if (normalizedUnit === toUnit) return amount / factorValue;
+      const converted = convertUnitAmount(amount, normalizedUnit, toUnit);
+      if (converted && Number.isFinite(converted.amount)) {
+        return converted.amount / factorValue;
+      }
+    }
+  }
+
+  return null;
+}
+
+function naturalCountName(option, plural) {
+  const fallback = String(option?.ingredient_id || 'item').replace(/[-_]+/g, ' ');
+  let name = String(option?.display || fallback).trim().replace(/,\s*.*$/, '');
+  if (!name) name = fallback;
+
+  if (plural) {
+    if (!/s$/i.test(name)) {
+      if (/(s|x|z|ch|sh)$/i.test(name)) name += 'es';
+      else name += 's';
+    }
+    return name;
+  }
+
+  if (/ies$/i.test(name)) return name.replace(/ies$/i, 'y');
+  if (/oes$/i.test(name)) return name.replace(/oes$/i, 'o');
+  if (/s$/i.test(name) && !/(ss|us)$/i.test(name)) return name.slice(0, -1);
+  return name;
+}
+
+function formatKitchenCount(count) {
+  if (!Number.isFinite(count) || count <= 0) return null;
+
+  const nearestWhole = Math.round(count);
+  if (nearestWhole >= 1 && Math.abs(count - nearestWhole) <= 0.16) {
+    return { amountText: String(nearestWhole), plural: nearestWhole !== 1 };
+  }
+
+  if (count >= 1) {
+    const lower = Math.max(1, Math.floor(count));
+    const upper = Math.max(lower + 1, Math.ceil(count));
+    return { amountText: `${lower}–${upper}`, plural: true };
+  }
+
+  const amountText = formatAmountForDisplay(count, {
+    fractionTolerance: 0.08,
+    allowedDenominators: [2, 3, 4],
+  });
+  return { amountText, plural: false };
+}
+
+export function kitchenEstimateForOption(
+  option,
+  multiplier,
+  ingredientPortions,
+  ingredientUnitFactors
+) {
+  if (!option?.ingredient_id || !ingredientPortions?.values) return null;
+
+  const normalizedUnit = normalizeUnit(option.unit);
+  if (!normalizedUnit || normalizedUnit === 'count') return null;
+
+  const portion = [...ingredientPortions.values()].find(
+    (entry) =>
+      entry?.ingredient_id === option.ingredient_id &&
+      normalizeUnit(entry.unit) === 'count' &&
+      Number.isFinite(Number(entry.grams)) &&
+      Number(entry.grams) > 0
+  );
+  if (!portion) return null;
+
+  const grams = optionAmountInGrams(option, multiplier, ingredientUnitFactors);
+  if (!Number.isFinite(grams) || grams <= 0) return null;
+
+  const count = grams / Number(portion.grams);
+  const formatted = formatKitchenCount(count);
+  if (!formatted) return null;
+
+  const name = naturalCountName(option, formatted.plural);
+  const size = String(portion.notes || '').match(/\b(small|medium|large)\b/i)?.[1]?.toLowerCase();
+  const singularName = naturalCountName(option, false);
+  const basis = size
+    ? `${portion.grams} g per ${size} ${singularName}`
+    : `${portion.grams} g per ${singularName}`;
+  const source = portion.source ? ` Source: ${portion.source}.` : '';
+
+  return {
+    text: `About ${formatted.amountText} ${name}`,
+    title: `Kitchen estimate based on ${basis}.${source}`,
+    count,
+    grams,
+    portion,
+  };
+}
+
 export function formatAmountForDisplay(amount, options = {}) {
   if (!Number.isFinite(amount)) return '';
 
