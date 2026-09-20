@@ -686,7 +686,8 @@ function setupAvailableIngredientScaling(recipe, state, multiplierInput, rerende
 
   const availableEntries = () =>
     renderIngredientLines(recipe, { ...state, recipe })
-      .flatMap((line) => line.entries || [])
+      .filter((line) => Array.isArray(line.entries) && line.entries.length === 1)
+      .map((line) => line.entries[0])
       .filter((entry) => entry?.token && entry?.option?.ratio);
 
   const amountForUnit = (entry, unit, effectiveMultiplier) => {
@@ -716,6 +717,13 @@ function setupAvailableIngredientScaling(recipe, state, multiplierInput, rerende
 
     const sourceUnit = normalizeUnit(entry.option.unit);
     const baseChoices = unitOptionsFor(sourceUnit).map((choice) => ({ ...choice }));
+
+    if (!baseChoices.length && sourceUnit) {
+      baseChoices.push({
+        id: sourceUnit,
+        label: String(entry.option.unit || sourceUnit),
+      });
+    }
 
     if (sourceUnit === 'count') {
       const label = cleanIngredientLabel(entry);
