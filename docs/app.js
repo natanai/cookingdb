@@ -5,6 +5,19 @@ import { recipeDefaultCompatibility } from './recipe-utils.js';
 const STORAGE_KEY = 'cookingdb-inbox-recipes';
 const HAPTICS_KEY = 'cookingdb-ruffle-haptics';
 const HIDDEN_HOME_CATEGORIES = new Set(['Bread maker']);
+const RECIPE_WARM_RESOURCES = Object.freeze([
+  './recipe.html',
+  './recipe.js',
+  './nutrition-engine.js',
+  './built/recipes.json',
+  './built/nutrition-policy.json',
+  './built/nutrition-guidelines.json',
+  './built/ingredient-portions.json',
+  './built/ingredient-unit-factors.json',
+  './built/nutrition-coverage.json',
+]);
+let recipeWarmPromise = null;
+let recipeWarmReady = false;
 let ruffleObserver = null;
 let lastHapticAt = 0;
 let mobileRuffleInstalled = false;
@@ -157,6 +170,64 @@ async function loadIndex() {
   const res = await fetch('./built/index.json');
   if (!res.ok) throw new Error('Unable to load index.json');
   return res.json();
+}
+
+async function warmRecipeResource(url) {
+  const response = await fetch(url, { credentials: 'same-origin' });
+  if (!response.ok) {
+    throw new Error(`Unable to warm ${url} (${response.status})`);
+  }
+  await response.arrayBuffer();
+}
+
+function warmRecipeExperience() {
+  if (recipeWarmPromise) return recipeWarmPromise;
+
+  recipeWarmPromise = Promise.allSettled(
+    RECIPE_WARM_RESOURCES.map((url) => warmRecipeResource(url))
+  ).then((results) => {
+    recipeWarmReady = results.every((result) => result.status === 'fulfilled');
+    return recipeWarmReady;
+  });
+
+  return recipeWarmPromise;
+}
+
+function scheduleRecipeWarmup() {
+  window.requestAnimationFrame(() => {
+    window.setTimeout(() => {
+      void warmRecipeExperience();
+    }, 0);
+  });
+}
+
+function isPlainRecipeNavigation(event, link) {
+  return (
+    !event.defaultPrevented &&
+    event.button === 0 &&
+    !event.metaKey &&
+    !event.ctrlKey &&
+    !event.shiftKey &&
+    !event.altKey &&
+    !link.target &&
+    link.href
+  );
+}
+
+function installWarmRecipeNavigation(link) {
+  link.addEventListener('click', async (event) => {
+    if (!isPlainRecipeNavigation(event, link) || recipeWarmReady) return;
+
+    event.preventDefault();
+    const destination = link.href;
+    link.setAttribute('aria-busy', 'true');
+
+    try {
+      await warmRecipeExperience();
+    } finally {
+      window.location.assign(destination);
+    }
+  });
 }
 
 let selectedCategory = 'all';
@@ -386,6 +457,7 @@ function renderRecipes(recipes) {
     }
 
     siteBehavior.installPressFeedback(link);
+    if (hasDetails) installWarmRecipeNavigation(link);
 
     const title = document.createElement('span');
     title.className = 'recipe-row-title';
@@ -629,6 +701,7 @@ async function main() {
   initRefinePanel();
   refreshUI();
   setupMobileScrollRuffle();
+  scheduleRecipeWarmup();
 }
 
 main().catch((err) => {

@@ -5543,3 +5543,12 @@ body.add-page .recipe-options > summary::marker {
     font-size: 0.8rem;
   }
 }
+
+
+/* ===========================
+   Recipe readiness
+   Keep the recipe card atomic: never paint placeholder title/sections before data is ready.
+   =========================== */
+.page-recipe.recipe-is-loading .recipe-page-shell {
+  visibility: hidden;
+}

@@ -186,6 +186,51 @@ assert(
   !/<section class=["']controls["']/.test(recipeHtml),
   'recipe page must not restore the large pre-recipe controls card'
 );
+assert(
+  /<body\b[^>]*\brecipe-is-loading\b/i.test(recipeHtml),
+  'recipe page must suppress its placeholder shell until the complete recipe is ready'
+);
+
+const appScript = fs.readFileSync(path.join(docsDir, 'app.js'), 'utf8');
+const recipeScript = fs.readFileSync(path.join(docsDir, 'recipe.js'), 'utf8');
+for (const warmResource of [
+  './recipe.html',
+  './recipe.js',
+  './nutrition-engine.js',
+  './built/recipes.json',
+  './built/nutrition-policy.json',
+  './built/nutrition-guidelines.json',
+  './built/ingredient-portions.json',
+  './built/ingredient-unit-factors.json',
+  './built/nutrition-coverage.json',
+]) {
+  assert(
+    appScript.includes(`'${warmResource}'`),
+    `cookbook must warm recipe navigation resource ${warmResource}`
+  );
+}
+assert(
+  appScript.includes('await warmRecipeExperience()') &&
+    appScript.includes('window.location.assign(destination)') &&
+    appScript.indexOf('await warmRecipeExperience()') < appScript.indexOf('window.location.assign(destination)'),
+  'cold recipe clicks must stay on the cookbook until recipe resources are warmed'
+);
+assert(
+  appScript.includes('scheduleRecipeWarmup();'),
+  'cookbook must warm recipe navigation immediately after its first render'
+);
+assert(
+  !recipeScript.includes("fetch('./built/index.json')"),
+  'recipe page must not refetch the lightweight cookbook index after loading the full recipe box'
+);
+assert(
+  recipeScript.includes("document.body.classList.remove('recipe-is-loading')"),
+  'recipe page must reveal the recipe shell only after synchronous rendering is complete'
+);
+assert(
+  /\.page-recipe\.recipe-is-loading\s+\.recipe-page-shell\s*\{[\s\S]*visibility:\s*hidden/m.test(css),
+  'styles must hide placeholder recipe content until the atomic reveal'
+);
 
 const plannerHtml = fs.readFileSync(path.join(docsDir, 'planner.html'), 'utf8');
 const plannerIntroIndex = plannerHtml.indexOf('class="planner-intro"');

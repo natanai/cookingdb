@@ -189,10 +189,7 @@ function loadStoredInboxRecipes() {
 }
 
 async function loadRecipes() {
-  const [recipesRes, indexRes] = await Promise.all([fetch('./built/recipes.json'), fetch('./built/index.json')]);
-  if (!indexRes.ok) {
-    throw new Error(`Unable to load built/index.json (${indexRes.status})`);
-  }
+  const recipesRes = await fetch('./built/recipes.json');
   if (!recipesRes.ok) {
     throw new Error(`Unable to load built/recipes.json (${recipesRes.status})`);
   }
@@ -1524,6 +1521,8 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
   if (printBtn) {
     printBtn.addEventListener('click', () => window.print());
   }
+
+  document.body.classList.remove('recipe-is-loading');
 }
 
 async function main() {
