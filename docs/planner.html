@@ -14,132 +14,162 @@
       <nav class="nav-links" data-site-nav aria-label="Primary"></nav>
     </div>
   </header>
-  <div class="page-shell">
-    <section class="hero planner-hero">
-      <div class="hero-content">
+
+  <div class="page-shell planner-shell">
+    <main class="planner-flow">
+      <header class="planner-intro">
         <p class="eyebrow">Meal planning</p>
-        <h2 class="hero-title">Build a grocery order for your meal-prep weeks.</h2>
-        <p class="hero-subtitle">Choose recipes, adjust batch sizes, and print a consolidated ingredient list.</p>
-      </div>
-    </section>
-    <main class="planner-grid">
-      <div class="planner-left">
-        <section class="planner-panel planner-overview">
-          <div class="planner-panel-header">
-            <h2 class="section-heading">Plan overview</h2>
-          </div>
-          <div class="planner-field-row">
-            <label class="planner-field">
-              Weeks to prep
-              <input id="weeks-input" type="number" min="1" step="1" value="1" />
-            </label>
-            <div class="planner-meals-inline">
-              <span class="planner-meals-label">Meals per day</span>
-              <span class="planner-meals-value" id="meals-per-day-label">3</span>
-            </div>
-          </div>
-          <details class="planner-details" id="customize-details">
-            <summary>Customize days and meals</summary>
-            <div class="planner-custom-panel">
-              <label class="inline-check">
-                <input type="checkbox" id="customize-toggle" />
-                Use a custom day or meal count
-              </label>
-              <div class="planner-custom-fields" id="custom-fields" hidden>
-                <label class="planner-field">
-                  Days planned
-                  <input id="days-input" type="number" min="1" step="1" value="7" />
-                </label>
-                <label class="planner-field">
-                  Meals per day
-                  <input id="meals-per-day-input" type="number" min="1" step="1" value="3" />
-                </label>
-              </div>
-            </div>
-          </details>
-          <div class="planner-metrics">
-            <div>
-              <p class="planner-metric-label">Meals needed</p>
-              <p class="planner-metric-value" id="meals-needed">21</p>
-            </div>
-            <div>
-              <p class="planner-metric-label">Meals planned</p>
-              <p class="planner-metric-value" id="meals-planned">0</p>
-            </div>
-            <div>
-              <p class="planner-metric-label">Remaining</p>
-              <p class="planner-metric-value" id="meals-remaining">21</p>
-            </div>
-          </div>
-          <details class="planner-details" id="nutrition-settings-details">
-            <summary>Nutrition targets</summary>
-            <div class="planner-custom-panel">
-              <div class="nutrition-settings-grid">
-                <label class="nutrition-field">
-                  Daily calories
-                  <input type="number" id="planner-daily-kcal" min="1200" step="50" />
-                </label>
-                <label class="nutrition-field">
-                  Weight (lb, optional)
-                  <input type="number" id="planner-weight-lb" min="40" step="1" />
-                </label>
-                <label class="nutrition-field">
-                  Breakfast %
-                  <input type="number" id="planner-meal-breakfast" min="0" max="100" step="1" />
-                </label>
-                <label class="nutrition-field">
-                  Lunch %
-                  <input type="number" id="planner-meal-lunch" min="0" max="100" step="1" />
-                </label>
-                <label class="nutrition-field">
-                  Dinner %
-                  <input type="number" id="planner-meal-dinner" min="0" max="100" step="1" />
-                </label>
-                <label class="nutrition-field">
-                  Snack %
-                  <input type="number" id="planner-meal-snack" min="0" max="100" step="1" />
-                </label>
-              </div>
-            </div>
-          </details>
-          <div class="callout warning" id="planner-nutrition-banner" hidden></div>
-          <div class="planner-nutrition-summary" id="planner-nutrition-summary">
-            <p class="planner-metric-label">Daily nutrition totals</p>
-            <ul class="planner-nutrition-metrics" id="planner-nutrition-metrics"></ul>
-          </div>
-        </section>
+        <h1>Meal prep</h1>
+        <p>Choose recipes. We’ll keep count and build the grocery list.</p>
+      </header>
 
-        <section class="planner-panel planner-selected">
-          <div class="planner-panel-header">
-            <h2 class="section-heading">Selected recipes</h2>
-          </div>
-          <ul id="selected-recipes" class="planner-selected-list recipe-list"></ul>
-        </section>
-
-        <section class="planner-panel planner-ingredients">
-          <div class="planner-panel-header planner-ingredients-header">
-            <h2 class="section-heading">Required ingredients</h2>
-            <div class="planner-actions">
-              <button class="button" type="button" id="print-ingredients">🖨 Print ingredients</button>
-              <button class="button secondary" type="button" id="print-recipes">🖨 Print all recipes</button>
-            </div>
-          </div>
-          <ul id="ingredients-summary" class="ingredients-summary"></ul>
-        </section>
-      </div>
-
-      <section class="planner-panel planner-picker">
-        <div class="planner-panel-header">
-          <h2 class="section-heading">Select recipes</h2>
+      <section class="planner-plan planner-surface" aria-labelledby="planner-plan-heading">
+        <div class="planner-section-heading">
+          <h2 id="planner-plan-heading">Plan</h2>
         </div>
-        <label class="search-field" aria-label="Search recipes">
+
+        <div class="planner-plan-controls">
+          <label class="planner-weeks">
+            <span>Weeks</span>
+            <input id="weeks-input" type="number" min="1" step="1" value="1" inputmode="numeric" />
+          </label>
+          <p class="planner-default-rhythm">
+            <strong id="meals-per-day-label">3</strong> meals / day
+          </p>
+        </div>
+
+        <div class="planner-progress-copy">
+          <span><strong id="meals-planned">0</strong> of <strong id="meals-needed">21</strong> meals planned</span>
+          <span class="planner-remaining-copy"><strong id="meals-remaining">21</strong> remaining</span>
+        </div>
+        <div
+          class="planner-progress"
+          id="planner-progress"
+          role="progressbar"
+          aria-label="Meals planned"
+          aria-valuemin="0"
+          aria-valuemax="21"
+          aria-valuenow="0"
+        >
+          <span class="planner-progress-fill" id="planner-progress-fill"></span>
+        </div>
+
+        <details class="planner-details planner-plan-options" id="customize-details">
+          <summary>Customize plan</summary>
+          <div class="planner-custom-panel">
+            <label class="inline-check">
+              <input type="checkbox" id="customize-toggle" />
+              Use a custom day or meal count
+            </label>
+            <div class="planner-custom-fields" id="custom-fields" hidden>
+              <label class="planner-field">
+                Days planned
+                <input id="days-input" type="number" min="1" step="1" value="7" />
+              </label>
+              <label class="planner-field">
+                Meals per day
+                <input id="meals-per-day-input" type="number" min="1" step="1" value="3" />
+              </label>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="planner-picker planner-surface" aria-labelledby="planner-picker-heading">
+        <div class="planner-section-heading">
+          <div>
+            <h2 id="planner-picker-heading">Choose recipes</h2>
+            <p>Add what you want to cook.</p>
+          </div>
+        </div>
+        <label class="search-field planner-search" aria-label="Search recipes">
           <span class="search-icon" aria-hidden="true">🔎</span>
           <input id="planner-search" type="search" placeholder="Search recipes" autocomplete="off" />
         </label>
         <ul class="recipe-list planner-recipe-list" id="planner-recipe-list" aria-live="polite"></ul>
       </section>
+
+      <section
+        class="planner-selected planner-surface"
+        id="planner-selected-section"
+        aria-labelledby="planner-selected-heading"
+        hidden
+      >
+        <div class="planner-section-heading">
+          <h2 id="planner-selected-heading">Your plan</h2>
+        </div>
+        <ul id="selected-recipes" class="planner-selected-list recipe-list"></ul>
+      </section>
+
+      <section
+        class="planner-ingredients planner-surface"
+        id="planner-ingredients-section"
+        aria-labelledby="planner-ingredients-heading"
+        hidden
+      >
+        <div class="planner-section-heading planner-ingredients-header">
+          <div>
+            <h2 id="planner-ingredients-heading">Grocery list</h2>
+            <p>Combined from the recipes above.</p>
+          </div>
+          <div class="planner-actions">
+            <button class="link-button" type="button" id="print-ingredients">Print list</button>
+            <button class="link-button" type="button" id="print-recipes">Print recipes</button>
+          </div>
+        </div>
+        <ul id="ingredients-summary" class="ingredients-summary"></ul>
+      </section>
+
+      <details class="planner-secondary planner-surface">
+        <summary>Nutrition &amp; advanced settings</summary>
+        <div class="planner-secondary-body">
+          <section aria-labelledby="planner-nutrition-heading">
+            <div class="planner-section-heading planner-secondary-heading">
+              <div>
+                <h2 id="planner-nutrition-heading">Nutrition targets</h2>
+                <p>Optional planning estimates.</p>
+              </div>
+            </div>
+
+            <div class="nutrition-settings-grid">
+              <label class="nutrition-field">
+                Daily calories
+                <input type="number" id="planner-daily-kcal" min="1200" step="50" />
+              </label>
+              <label class="nutrition-field">
+                Weight (lb, optional)
+                <input type="number" id="planner-weight-lb" min="40" step="1" />
+              </label>
+              <label class="nutrition-field">
+                Breakfast %
+                <input type="number" id="planner-meal-breakfast" min="0" max="100" step="1" />
+              </label>
+              <label class="nutrition-field">
+                Lunch %
+                <input type="number" id="planner-meal-lunch" min="0" max="100" step="1" />
+              </label>
+              <label class="nutrition-field">
+                Dinner %
+                <input type="number" id="planner-meal-dinner" min="0" max="100" step="1" />
+              </label>
+              <label class="nutrition-field">
+                Snack %
+                <input type="number" id="planner-meal-snack" min="0" max="100" step="1" />
+              </label>
+            </div>
+
+            <div class="callout warning" id="planner-nutrition-banner" hidden></div>
+
+            <div class="planner-nutrition-summary" id="planner-nutrition-summary">
+              <p class="planner-metric-label">Daily nutrition totals</p>
+              <ul class="planner-nutrition-metrics" id="planner-nutrition-metrics"></ul>
+            </div>
+          </section>
+        </div>
+      </details>
     </main>
   </div>
+
   <script src="planner.js" type="module"></script>
 </body>
 </html>
