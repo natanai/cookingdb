@@ -1396,9 +1396,11 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
     const parts = [];
     if (panActive) parts.push(`pan scaling ×${state.panMultiplier.toFixed(2)}`);
     if (baseActive) parts.push(`batch multiplier ×${Number(state.multiplier).toFixed(2)}`);
+
+    multiplierHelper.hidden = parts.length === 0;
     multiplierHelper.textContent = parts.length
       ? `Total scaling ×${effective.toFixed(2)} (${parts.join(' · ')}).`
-      : `Using recipe as written (×${effective.toFixed(2)}).`;
+      : '';
   };
 
   let refreshAvailableScaling = () => {};
@@ -1504,6 +1506,8 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
 
   if (titleEl) {
     const { title, name } = getRecipeTitleParts(recipe);
+    const fullTitle = name ? `${title || 'Recipe'} — ${name}` : title || 'Recipe';
+    document.title = `${fullTitle} · CookingDB`;
     titleEl.textContent = '';
     const titleText = document.createElement('span');
     titleText.textContent = title || 'Recipe';

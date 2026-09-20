@@ -102,9 +102,26 @@ for (const required of [
   assert(manager.includes(required), `site-behavior.js is missing required behavior: ${required}`);
 }
 
-for (const label of ['Cookbook', 'Bread maker', 'Meal prep planner', 'Add recipe']) {
+for (const label of ['Cookbook', 'Add recipe', 'Meal prep planner', 'Bread maker']) {
   assert(manager.includes(`label: '${label}'`), `site-behavior.js is missing canonical nav item ${label}`);
 }
+
+for (const icon of ["icon: 'book'", "icon: 'plus'", "icon: 'calendar'", "icon: 'bread'", "gear:"]) {
+  assert(manager.includes(icon), `site-behavior.js is missing canonical icon navigation: ${icon}`);
+}
+
+assert(
+  !manager.includes(".filter((item) => item.key !== page)"),
+  'primary navigation must keep every destination in a fixed slot even on the current page'
+);
+assert(
+  manager.includes("link.setAttribute('aria-current', 'page')"),
+  'the current destination must be indicated in-place instead of removed from navigation'
+);
+assert(
+  manager.includes("inbox.id = 'admin-inbox-link'") && manager.includes("inbox.textContent = 'Recipe inbox'"),
+  'admin-only recipe inbox access must live under the shared gear menu'
+);
 
 const css = fs.readFileSync(path.join(docsDir, 'styles.css'), 'utf8');
 assert(
@@ -112,18 +129,52 @@ assert(
   'styles.css must keep touch form controls at the no-focus-zoom 16px floor'
 );
 assert(
-  /\.nav-links[\s\S]*overflow-x:\s*auto/m.test(css),
-  'styles.css must keep compact navigation available through horizontal overflow'
+  /grid-template-columns:\s*repeat\(5,\s*(?:38|40)px\)/m.test(css),
+  'compact navigation must expose all five fixed destinations without horizontal scrolling'
 );
 assert(
-  /\.nav-links \.button[\s\S]*min-height:\s*44px/m.test(css),
-  'styles.css must keep managed navigation targets comfortably tappable'
+  /\.nav-links[\s\S]*overflow:\s*visible/m.test(css),
+  'compact navigation must not require a sideways swipe'
+);
+assert(
+  /\.site-nav-item[\s\S]*height:\s*40px/m.test(css),
+  'managed navigation targets must remain comfortably tappable'
+);
+assert(
+  /\.site-nav-label\[data-compact-hidden=['"]true['"]\][\s\S]*display:\s*none/m.test(css),
+  'compact navigation must switch to icon-first labels rather than overflow'
 );
 assert(
   !/body\.add-page \.nav-links/.test(css),
   'page-specific add-page navigation overrides are not allowed; the shared shell owns nav behavior'
 );
 
+const recipeHtml = fs.readFileSync(path.join(docsDir, 'recipe.html'), 'utf8');
+const recipeTitleIndex = recipeHtml.indexOf('id="recipe-title"');
+const recipeMetaIndex = recipeHtml.indexOf('recipe-meta-primary');
+const ingredientsIndex = recipeHtml.indexOf('class="ingredients-section"');
+const stepsIndex = recipeHtml.indexOf('class="steps-section"');
+const detailsIndex = recipeHtml.indexOf('class="recipe-details-panel"');
+const nutritionIndex = recipeHtml.indexOf('id="nutrition-coverage-banner"');
+
+assert(recipeTitleIndex >= 0, 'recipe page must render its title in the recipe document');
+assert(
+  recipeTitleIndex < recipeMetaIndex && recipeMetaIndex < ingredientsIndex,
+  'recipe title and compact dietary/family metadata must lead directly into ingredients'
+);
+assert(
+  ingredientsIndex < stepsIndex && stepsIndex < detailsIndex,
+  'recipe reading order must be ingredients, steps, then secondary details'
+);
+assert(
+  nutritionIndex > stepsIndex,
+  'nutrition warnings/details must not stand between the user and the recipe'
+);
+assert(
+  !/<section class=["']controls["']/.test(recipeHtml),
+  'recipe page must not restore the large pre-recipe controls card'
+);
+
 console.log(
-  `Site behavior contract OK: deterministically checked ${pages.length} pages, their page scripts, the shared behavior manager, and the shared mobile shell.`
+  `Site behavior contract OK: deterministically checked ${pages.length} pages, fixed icon navigation, recipe-first ordering, their page scripts, the shared behavior manager, and the shared mobile shell.`
 );

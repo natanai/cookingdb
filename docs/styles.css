@@ -69,18 +69,111 @@ body {
   gap: 0.65rem;
 }
 
-.nav-links a {
-  color: var(--accent);
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  position: relative;
+}
+
+.site-nav-item {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 0.5rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--muted);
   text-decoration: none;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font: inherit;
+  font-weight: 550;
+  cursor: pointer;
 }
 
-.nav-links .button {
-  color: #fff;
-}
-
-.nav-links .button.secondary {
+.site-nav-item:hover,
+.site-nav-item:focus-visible {
   color: var(--text);
+  background: rgba(30, 18, 11, 0.035);
+}
+
+.site-nav-item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.site-nav-item.is-current,
+.site-nav-admin.is-current > .site-nav-admin-toggle {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+.site-nav-item--emphasis {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.site-nav-item--icon-only-wide .site-nav-label {
+  display: none;
+}
+
+.site-nav-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.site-nav-admin {
+  position: relative;
+}
+
+.site-nav-admin > summary {
+  list-style: none;
+}
+
+.site-nav-admin > summary::-webkit-details-marker {
+  display: none;
+}
+
+.site-nav-admin > summary::marker {
+  content: '';
+}
+
+.site-nav-admin-menu {
+  position: absolute;
+  z-index: 50;
+  right: 0;
+  top: calc(100% + 0.35rem);
+  min-width: 150px;
+  padding: 0.25rem;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.site-nav-admin-menu a {
+  display: block;
+  padding: 0.5rem 0.6rem;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav-admin-menu a:hover,
+.site-nav-admin-menu a:focus-visible {
+  background: rgba(30, 18, 11, 0.04);
+}
+
+.site-nav-admin:not([open]) .site-nav-admin-menu {
+  display: none;
 }
 
 .hero {
@@ -2263,49 +2356,56 @@ main {
   }
 
   /*
-   * Shared mobile shell: every page uses the same title row and horizontally
-   * scrollable navigation rail. Items stay available instead of wrapping,
-   * shrinking, or disappearing differently from page to page.
+   * Compact app bar: fixed slots in a fixed order. Nothing disappears when it
+   * becomes the current page, and there is never a sideways nav gesture.
    */
   .site-header .inner {
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    gap: 0.45rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem;
     flex-wrap: nowrap;
+    padding-block: 0.35rem;
   }
 
   .site-title {
     margin: 0;
-    width: 100%;
     min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1rem;
   }
 
   .nav-links {
-    width: 100%;
-    margin-left: 0;
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    flex: 0 0 auto;
+    width: auto;
+    margin-left: auto;
+    display: grid;
+    grid-template-columns: repeat(5, 40px);
+    gap: 0.1rem;
+    overflow: visible;
   }
 
-  .nav-links::-webkit-scrollbar {
+  .site-nav-item {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    padding: 0;
+  }
+
+  .site-nav-label[data-compact-hidden='true'] {
     display: none;
   }
 
-  .nav-links .button {
-    flex: 0 0 auto;
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    padding: 0.45rem 0.7rem;
+  .site-nav-icon {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .site-nav-admin-menu {
+    right: 0;
   }
 }
 
@@ -2353,7 +2453,21 @@ main {
   }
 
   .site-header .inner {
-    padding-inline: 0.6rem;
+    padding-inline: 0.45rem;
+  }
+
+  .site-title {
+    font-size: 0.9rem;
+  }
+
+  .nav-links {
+    grid-template-columns: repeat(5, 38px);
+  }
+
+  .site-nav-item {
+    width: 38px;
+    min-width: 38px;
+    height: 40px;
   }
 
   .add-page .form-panel,
@@ -2363,6 +2477,186 @@ main {
 
   .preview-shell {
     padding: 0.75rem 0.85rem;
+  }
+}
+
+/* ===========================
+   Recipe-first reading surface
+   =========================== */
+.page-recipe .site-header {
+  box-shadow: none;
+}
+
+.page-recipe .recipe-page-shell {
+  max-width: 980px;
+}
+
+.page-recipe .recipe-heading {
+  padding: 0.85rem 0 0.15rem;
+}
+
+.page-recipe .recipe-page-title {
+  margin: 0;
+  font-family: 'Source Serif 4', var(--font-serif);
+  font-size: clamp(1.75rem, 5vw, 2.35rem);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+.page-recipe .recipe-meta-primary {
+  margin: 0.55rem 0 0.55rem;
+}
+
+.page-recipe .ingredients-section {
+  margin-top: 0;
+}
+
+.page-recipe .ingredients-heading-row {
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 0.4rem;
+}
+
+.page-recipe .ingredients-heading-row h2,
+.page-recipe .steps-section h2 {
+  margin: 0;
+}
+
+.page-recipe .ingredient-heading-actions {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.page-recipe .batch-compact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  color: var(--muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.page-recipe .batch-compact input {
+  width: 3.1rem;
+  min-width: 0;
+  padding: 0.2rem 0.25rem;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-align: center;
+}
+
+.page-recipe .recipe-scaling-status {
+  margin: -0.15rem 0 0.4rem;
+  font-size: 0.82rem;
+}
+
+.page-recipe .recipe-adjust-details {
+  margin: 0 0 0.5rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.page-recipe .recipe-adjust-details > summary {
+  padding: 0.1rem 0;
+  width: fit-content;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.page-recipe .recipe-adjust-details .adjust-panel {
+  margin-top: 0.35rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--paper);
+}
+
+.page-recipe #ingredients-list,
+.page-recipe #steps-list {
+  box-shadow: none;
+}
+
+.page-recipe .steps-section {
+  margin-top: 1rem;
+}
+
+.page-recipe .recipe-details-panel {
+  margin: 1rem 0 0.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.55rem;
+}
+
+.page-recipe .recipe-details-panel > summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.page-recipe .recipe-details-body {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.page-recipe .recipe-details-body .category-inline {
+  margin: 0;
+}
+
+.page-recipe .recipe-details-body .callout {
+  margin: 0;
+}
+
+.page-recipe .recipe-print-action {
+  justify-self: start;
+}
+
+@media (max-width: 680px) {
+  .page-recipe .recipe-page-shell {
+    padding-inline: 0.65rem;
+  }
+
+  .page-recipe .recipe-heading {
+    padding-top: 0.55rem;
+  }
+
+  .page-recipe .recipe-page-title {
+    font-size: 1.75rem;
+  }
+
+  .page-recipe .recipe-meta-primary {
+    gap: 0.55rem;
+    margin: 0.4rem 0 0.45rem;
+  }
+
+  .page-recipe .ingredients-heading-row {
+    gap: 0.4rem;
+  }
+
+  .page-recipe .ingredient-heading-actions {
+    gap: 0.5rem;
+  }
+
+  .page-recipe .ingredient-scale-toggle {
+    font-size: 0.86rem;
+    white-space: nowrap;
+  }
+
+  .page-recipe .batch-compact input {
+    width: 2.7rem;
+  }
+
+  .page-recipe #ingredients-list,
+  .page-recipe #steps-list {
+    padding: 0.8rem 0.85rem;
+    border-radius: 0;
   }
 }
 

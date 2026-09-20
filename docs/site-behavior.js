@@ -8,11 +8,19 @@ const PAGE_CLASSES = {
 };
 
 const NAV_ITEMS = [
-  { key: 'home', href: 'index.html', label: 'Cookbook', className: 'button secondary' },
-  { key: 'bread', href: 'bread-maker.html', label: 'Bread maker', className: 'button secondary' },
-  { key: 'planner', href: 'planner.html', label: 'Meal prep planner', className: 'button secondary' },
-  { key: 'add', href: 'add.html', label: 'Add recipe', className: 'button' },
+  { key: 'home', href: 'index.html', label: 'Cookbook', icon: 'book' },
+  { key: 'add', href: 'add.html', label: 'Add recipe', icon: 'plus', emphasis: true },
+  { key: 'planner', href: 'planner.html', label: 'Meal prep planner', icon: 'calendar' },
+  { key: 'bread', href: 'bread-maker.html', label: 'Bread maker', icon: 'bread', iconOnlyWide: true },
 ];
+
+const ICONS = {
+  book: '<path d="M4 5.5c2.7-.8 5.3-.4 8 1.2v12c-2.7-1.6-5.3-2-8-1.2z"/><path d="M20 5.5c-2.7-.8-5.3-.4-8 1.2v12c2.7-1.6 5.3-2 8-1.2z"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  calendar: '<rect x="4" y="5.5" width="16" height="14" rx="1.5"/><path d="M8 3.5v4M16 3.5v4M4 10h16M8 14h3M13 14h3"/>',
+  bread: '<path d="M5.2 18.5h13.6c.7 0 1.2-.5 1.2-1.2v-6.1c0-3.2-2.6-5.7-5.7-5.7h-4.6C6.6 5.5 4 8 4 11.2v6.1c0 .7.5 1.2 1.2 1.2Z"/><path d="M8 9.5c1.2.7 2.2 1.7 2.8 3M12 8.2c1.2.7 2.2 1.7 2.8 3"/>',
+  gear: '<circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.3a7.8 7.8 0 0 0 0-2.6l2-1.5-2-3.4-2.4 1a8 8 0 0 0-2.2-1.3L14.5 3h-5l-.3 2.5A8 8 0 0 0 7 6.8l-2.4-1-2 3.4 2 1.5a7.8 7.8 0 0 0 0 2.6l-2 1.5 2 3.4 2.4-1a8 8 0 0 0 2.2 1.3l.3 2.5h5l.3-2.5a8 8 0 0 0 2.2-1.3l2.4 1 2-3.4z"/>',
+};
 
 const pressFeedbackInstalled = new WeakSet();
 const viewportSubscribers = new Set();
@@ -48,6 +56,24 @@ function currentPageKey() {
   return 'unknown';
 }
 
+function createNavIcon(name) {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
+  svg.classList.add('site-nav-icon');
+  svg.innerHTML = ICONS[name] || '';
+  return svg;
+}
+
+function appendNavLabel(target, label, { visuallyHiddenOnCompact = true } = {}) {
+  const span = document.createElement('span');
+  span.className = 'site-nav-label';
+  if (visuallyHiddenOnCompact) span.dataset.compactHidden = 'true';
+  span.textContent = label;
+  target.appendChild(span);
+}
+
 function renderNavigation() {
   const nav = document.querySelector('[data-site-nav], .site-header .nav-links');
   if (!nav) return;
@@ -57,26 +83,49 @@ function renderNavigation() {
   nav.dataset.siteManaged = 'true';
   nav.replaceChildren();
 
-  if (page === 'add') {
-    const inbox = document.createElement('a');
-    inbox.id = 'admin-inbox-link';
-    inbox.href = 'admin.html';
-    inbox.className = 'button secondary site-nav-context';
-    inbox.textContent = '← Inbox';
-    inbox.hidden = true;
-    nav.appendChild(inbox);
-  }
+  NAV_ITEMS.forEach((item) => {
+    const link = document.createElement('a');
+    link.href = item.href;
+    link.className = 'site-nav-item';
+    link.dataset.siteNavKey = item.key;
+    link.setAttribute('aria-label', item.label);
+    link.title = item.label;
 
-  NAV_ITEMS
-    .filter((item) => item.key !== page)
-    .forEach((item) => {
-      const link = document.createElement('a');
-      link.href = item.href;
-      link.textContent = item.label;
-      link.className = item.className;
-      link.dataset.siteNavKey = item.key;
-      nav.appendChild(link);
-    });
+    if (item.emphasis) link.classList.add('site-nav-item--emphasis');
+    if (item.iconOnlyWide) link.classList.add('site-nav-item--icon-only-wide');
+    if (item.key === page) {
+      link.classList.add('is-current');
+      link.setAttribute('aria-current', 'page');
+    }
+
+    link.appendChild(createNavIcon(item.icon));
+    appendNavLabel(link, item.label);
+    nav.appendChild(link);
+  });
+
+  const admin = document.createElement('details');
+  admin.className = 'site-nav-admin';
+  if (page === 'admin') admin.classList.add('is-current');
+
+  const summary = document.createElement('summary');
+  summary.className = 'site-nav-item site-nav-admin-toggle';
+  summary.setAttribute('aria-label', 'Admin');
+  summary.title = 'Admin';
+  summary.appendChild(createNavIcon('gear'));
+  admin.appendChild(summary);
+
+  const menu = document.createElement('div');
+  menu.className = 'site-nav-admin-menu';
+
+  const inbox = document.createElement('a');
+  inbox.id = 'admin-inbox-link';
+  inbox.href = 'admin.html';
+  inbox.textContent = 'Recipe inbox';
+  if (page === 'admin') inbox.setAttribute('aria-current', 'page');
+  menu.appendChild(inbox);
+
+  admin.appendChild(menu);
+  nav.appendChild(admin);
 }
 
 function writeViewportState() {

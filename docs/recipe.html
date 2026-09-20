@@ -10,18 +10,112 @@
 <body class="page-recipe" data-site-page="recipe">
   <header class="site-header">
     <div class="inner">
-      <h1 class="site-title" id="recipe-title">Recipe</h1>
+      <div class="site-title">CookingDB</div>
       <nav class="nav-links" data-site-nav aria-label="Primary"></nav>
     </div>
   </header>
-  <div class="page-shell">
-    <section class="hero">
-      <div class="hero-content">
-        <div class="recipe-meta">
-          <div class="dietary-badges" id="dietary-badges" aria-label="Dietary options"></div>
-          <div class="family-inline" id="family-inline"></div>
+
+  <div class="page-shell recipe-page-shell">
+    <section class="recipe-heading" aria-labelledby="recipe-title">
+      <h1 class="recipe-page-title" id="recipe-title">Recipe</h1>
+      <div class="recipe-meta recipe-meta-primary">
+        <div class="dietary-badges" id="dietary-badges" aria-label="Dietary options"></div>
+        <div class="family-inline" id="family-inline"></div>
+      </div>
+    </section>
+
+    <main>
+      <section class="ingredients-section">
+        <div class="ingredients-heading-row">
+          <h2 id="ingredients-heading">Ingredients</h2>
+          <div class="ingredient-heading-actions">
+            <label class="batch-compact" title="Batch multiplier">
+              <span aria-hidden="true">×</span>
+              <input
+                type="number"
+                id="multiplier"
+                step="any"
+                min="0.0001"
+                value="1"
+                aria-label="Batch multiplier"
+              />
+            </label>
+            <button
+              class="ingredient-scale-toggle"
+              id="available-scale-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="available-scale-panel"
+            >Use what I have</button>
+          </div>
+        </div>
+
+        <div class="control-note recipe-scaling-status" id="multiplier-helper" hidden></div>
+
+        <form class="ingredient-scale-panel" id="available-scale-panel" hidden>
+          <div class="ingredient-scale-fields">
+            <label>
+              Ingredient
+              <select id="available-scale-ingredient"></select>
+            </label>
+            <label>
+              Amount on hand
+              <span class="ingredient-scale-amount">
+                <input
+                  type="number"
+                  id="available-scale-amount"
+                  min="0.0001"
+                  step="any"
+                  inputmode="decimal"
+                  autocomplete="off"
+                />
+                <select id="available-scale-unit" aria-label="Amount unit"></select>
+              </span>
+            </label>
+            <div class="ingredient-scale-actions">
+              <button class="button secondary" type="submit">Scale recipe</button>
+              <button class="link-button" id="available-scale-cancel" type="button">Cancel</button>
+            </div>
+          </div>
+          <p class="ingredient-scale-note" id="available-scale-note"></p>
+          <p class="ingredient-scale-error" id="available-scale-error" role="alert" hidden></p>
+        </form>
+
+        <div class="ingredient-scale-active" id="available-scale-active" hidden>
+          <span id="available-scale-active-text"></span>
+          <button class="link-button" id="available-scale-reset" type="button">Reset</button>
+        </div>
+
+        <details class="adjust-details recipe-adjust-details" id="adjust-details">
+          <summary id="adjust-summary">Adjust recipe</summary>
+          <div class="adjust-panel">
+            <div class="swap-list" id="swap-list"></div>
+            <hr class="adjust-divider" id="adjust-divider" />
+            <div class="pan-controls" id="pan-controls" hidden>
+              <label>
+                Pan size:
+                <select id="pan-select"></select>
+              </label>
+              <div class="control-note" id="pan-note"></div>
+            </div>
+          </div>
+        </details>
+
+        <ul id="ingredients-list"></ul>
+      </section>
+
+      <section class="steps-section">
+        <h2>Steps</h2>
+        <ol id="steps-list"></ol>
+      </section>
+
+      <details class="recipe-details-panel">
+        <summary>Recipe details</summary>
+        <div class="recipe-details-body">
           <div class="category-inline" id="category-inline"></div>
+
           <div class="callout warning" id="nutrition-coverage-banner" hidden></div>
+
           <details class="recipe-nutrition" id="recipe-nutrition" hidden>
             <summary class="recipe-nutrition-summary">
               <span class="recipe-nutrition-collapsed" id="recipe-nutrition-collapsed"></span>
@@ -82,91 +176,19 @@
               </details>
             </div>
           </details>
-        </div>
-      </div>
-    </section>
-    <main>
-      <section class="controls">
-        <label>
-          Batch multiplier:
-          <input type="number" id="multiplier" step="any" min="0.0001" value="1" />
-        </label>
-        <button class="button" id="print-btn" type="button">🖨 Print</button>
-        <div class="control-note" id="multiplier-helper"></div>
-        <details class="adjust-details" id="adjust-details">
-          <summary id="adjust-summary">Adjust recipe</summary>
-          <div class="adjust-panel">
-            <div class="swap-list" id="swap-list"></div>
-            <hr class="adjust-divider" id="adjust-divider" />
-            <div class="pan-controls" id="pan-controls" hidden>
-              <label>
-                Pan size:
-                <select id="pan-select"></select>
-              </label>
-              <div class="control-note" id="pan-note"></div>
+
+          <details class="recipe-note" open>
+            <summary>Cook’s note</summary>
+            <div class="recipe-note-body" id="recipe-notes">
+              <p class="notes" id="notes"></p>
             </div>
-          </div>
-        </details>
-      </section>
-      <section class="ingredients-section">
-        <div class="ingredients-heading-row">
-          <h2 id="ingredients-heading">Ingredients</h2>
-          <button
-            class="ingredient-scale-toggle"
-            id="available-scale-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="available-scale-panel"
-          >Use what I have</button>
-        </div>
+          </details>
 
-        <form class="ingredient-scale-panel" id="available-scale-panel" hidden>
-          <div class="ingredient-scale-fields">
-            <label>
-              Ingredient
-              <select id="available-scale-ingredient"></select>
-            </label>
-            <label>
-              Amount on hand
-              <span class="ingredient-scale-amount">
-                <input
-                  type="number"
-                  id="available-scale-amount"
-                  min="0.0001"
-                  step="any"
-                  inputmode="decimal"
-                  autocomplete="off"
-                />
-                <select id="available-scale-unit" aria-label="Amount unit"></select>
-              </span>
-            </label>
-            <div class="ingredient-scale-actions">
-              <button class="button secondary" type="submit">Scale recipe</button>
-              <button class="link-button" id="available-scale-cancel" type="button">Cancel</button>
-            </div>
-          </div>
-          <p class="ingredient-scale-note" id="available-scale-note"></p>
-          <p class="ingredient-scale-error" id="available-scale-error" role="alert" hidden></p>
-        </form>
-
-        <div class="ingredient-scale-active" id="available-scale-active" hidden>
-          <span id="available-scale-active-text"></span>
-          <button class="link-button" id="available-scale-reset" type="button">Reset</button>
-        </div>
-
-        <ul id="ingredients-list"></ul>
-      </section>
-      <section>
-        <h2>Steps</h2>
-        <ol id="steps-list"></ol>
-      </section>
-      <details class="recipe-note" open>
-        <summary>Cook’s note</summary>
-        <div class="recipe-note-body" id="recipe-notes">
-          <p class="notes" id="notes"></p>
+          <button class="link-button recipe-print-action" id="print-btn" type="button">Print recipe</button>
         </div>
       </details>
     </main>
+
     <section id="print-recipe" class="print-recipe" aria-hidden="true">
       <h1 id="print-recipe-title"></h1>
 
