@@ -7,6 +7,7 @@ import {
   renderIngredientLines,
   ingredientDisplay,
   kitchenEstimateForOption,
+  scaleMultiplierForAvailableAmount,
   renderStepLines,
   groupLinesBySection,
 } from './recipe-utils.js';
@@ -29,6 +30,22 @@ function runTests() {
   assert.equal(formatUnitLabel('tbsp', 1), 'tablespoon', 'singular labels stay singular');
   assert.equal(formatUnitLabel('tbsp', 2), 'tablespoons', 'plural labels switch for larger amounts');
   assert.equal(formatUnitLabel('count', 2), '', 'count units should be omitted from recipe labels');
+
+  assert.equal(
+    scaleMultiplierForAvailableAmount(1, 300, 210),
+    0.7,
+    'available ingredient amount should deterministically scale the current batch'
+  );
+  assert.equal(
+    scaleMultiplierForAvailableAmount(2, 600, 300),
+    1,
+    'available ingredient scaling should compose from the pre-adjustment multiplier'
+  );
+  assert.equal(
+    scaleMultiplierForAvailableAmount(1, 0, 10),
+    null,
+    'available ingredient scaling should reject invalid required amounts'
+  );
 
   const carrots = { ratio: '2', unit: 'count', display: 'carrots', prep: 'sliced' };
   const carrotDisplay = ingredientDisplay(carrots, 1, null, true);
@@ -93,6 +110,23 @@ function runTests() {
     carrotScaledEstimate?.text,
     'About 8 carrots',
     'kitchen estimate should follow recipe scaling'
+  );
+
+
+  const twoCarrotMultiplier = scaleMultiplierForAvailableAmount(
+    1,
+    carrotWeightEstimate.count,
+    2
+  );
+  const twoCarrotEstimate = kitchenEstimateForOption(
+    { ratio: '240', unit: 'g', display: 'carrots', ingredient_id: 'carrot' },
+    twoCarrotMultiplier,
+    carrotPortions,
+    carrotFactors
+  );
+  assert(
+    Math.abs(twoCarrotEstimate.count - 2) < 1e-9,
+    'count-based available scaling should deterministically round-trip through the stored portion estimate'
   );
 
   assert.equal(
