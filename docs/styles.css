@@ -4316,7 +4316,7 @@ body.add-page .category-popover {
   body.add-page .ingredient-main select {
     min-height: 36px;
     padding-inline: 0.28rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   body.add-page .step-text {
