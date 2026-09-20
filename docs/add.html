@@ -18,10 +18,10 @@
   <div class="page-shell add-recipe-shell">
     <div id="admin-edit-banner" class="admin-edit-banner" hidden>
       <div>
-        <strong>Pending recipe review</strong>
+        <strong>Reviewing pending recipe</strong>
         <span id="admin-edit-meta"></span>
       </div>
-      <a href="admin.html">Back to inbox</a>
+      <a href="admin.html">Inbox</a>
     </div>
 
     <main class="recipe-composer">
@@ -38,22 +38,39 @@
           />
           <input id="slug" name="slug" type="hidden" />
 
-          <div class="yield-row">
-            <label for="servings-per-batch">Makes</label>
-            <input
-              id="servings-per-batch"
-              name="servings-per-batch"
-              type="number"
-              inputmode="decimal"
-              step="0.5"
-              min="1"
-              placeholder="6"
-            />
-            <span>servings</span>
+          <div class="author-meta-strip">
+            <div class="yield-row">
+              <label for="servings-per-batch">Makes</label>
+              <input
+                id="servings-per-batch"
+                name="servings-per-batch"
+                type="number"
+                inputmode="decimal"
+                step="0.5"
+                min="1"
+                placeholder="6"
+              />
+              <span>servings</span>
+            </div>
+
+            <div class="field category-field author-category-field">
+              <label>Categories <span class="required-badge">Required</span></label>
+              <details id="category-menu" class="category-menu">
+                <summary>
+                  <span id="category-summary">Choose categories</span>
+                  <span class="category-summary-caret" aria-hidden="true">▾</span>
+                </summary>
+                <div class="category-popover">
+                  <div id="category-options" class="category-options" role="group" aria-label="Recipe categories"></div>
+                  <button type="button" class="category-done" id="category-done">Done</button>
+                </div>
+              </details>
+              <select id="categories" name="categories" multiple class="category-native-select" tabindex="-1" aria-hidden="true"></select>
+            </div>
           </div>
         </section>
 
-        <fieldset class="composer-section ingredients-field">
+        <fieldset class="composer-section ingredients-field author-recipe-section">
           <legend>Ingredients</legend>
           <div class="ingredients-editor">
             <div class="ingredients-header" aria-hidden="true">
@@ -66,73 +83,57 @@
             <div id="ingredient-rows" class="ingredients-list"></div>
           </div>
           <div class="section-actions">
-            <button class="button secondary compact-action" type="button" id="add-ingredient">+ Ingredient</button>
+            <button class="link-button author-add-line" type="button" id="add-ingredient">+ Ingredient</button>
           </div>
         </fieldset>
 
-        <fieldset class="composer-section steps-field">
-          <legend>Directions</legend>
+        <fieldset class="composer-section steps-field author-recipe-section">
+          <legend>Steps</legend>
           <ol id="steps-list" class="steps-builder"></ol>
-          <button class="button secondary compact-action" type="button" id="add-step">+ Step</button>
+          <button class="link-button author-add-line" type="button" id="add-step">+ Step</button>
         </fieldset>
 
-        <section class="composer-section recipe-details-section" aria-labelledby="recipe-details-heading">
-          <div class="section-title-row">
-            <h2 id="recipe-details-heading">Recipe details</h2>
-          </div>
+        <details class="composer-section recipe-details-section author-details">
+          <summary id="recipe-details-heading">Recipe details</summary>
+          <div class="author-details-body">
+            <div class="details-grid">
+              <div class="field">
+                <label for="family">Family or source</label>
+                <input id="family" name="family" placeholder="Burrows" />
+              </div>
 
-          <div class="field category-field">
-            <label>Categories <span class="required-badge">Required</span></label>
-            <details id="category-menu" class="category-menu">
+              <div class="field details-note">
+                <label for="notes">Cook’s note</label>
+                <textarea id="notes" name="notes" rows="3" placeholder="Storage, serving, equipment, or anything worth remembering"></textarea>
+              </div>
+            </div>
+
+            <details class="recipe-options" id="recipe-options">
               <summary>
-                <span id="category-summary">Choose categories</span>
-                <span class="category-summary-caret" aria-hidden="true">▾</span>
+                <span>More recipe options</span>
+                <span class="disclosure-caret" aria-hidden="true">▾</span>
               </summary>
-              <div class="category-popover">
-                <div id="category-options" class="category-options" role="group" aria-label="Recipe categories"></div>
-                <button type="button" class="category-done" id="category-done">Done</button>
+              <div class="recipe-options-grid">
+                <div class="field">
+                  <label for="byline">Credit / byline</label>
+                  <input id="byline" name="byline" placeholder="Aubrey" />
+                </div>
+
+                <div class="field">
+                  <label for="default-base">Written batch multiplier</label>
+                  <input id="default-base" name="default-base" type="number" inputmode="decimal" step="0.25" min="0.25" value="1" />
+                </div>
+
+                <div class="field">
+                  <label for="default-pan">Pan size scaling</label>
+                  <select id="default-pan" name="default-pan">
+                    <option value="">No pan scaling</option>
+                  </select>
+                </div>
               </div>
             </details>
-            <select id="categories" name="categories" multiple class="category-native-select" tabindex="-1" aria-hidden="true"></select>
           </div>
-
-          <div class="details-grid">
-            <div class="field">
-              <label for="family">Family or source</label>
-              <input id="family" name="family" placeholder="Burrows" />
-            </div>
-
-            <div class="field details-note">
-              <label for="notes">Cook’s note</label>
-              <textarea id="notes" name="notes" rows="3" placeholder="Storage, serving, equipment, or anything worth remembering"></textarea>
-            </div>
-          </div>
-
-          <details class="recipe-options" id="recipe-options">
-            <summary>
-              <span>More recipe options</span>
-              <span class="disclosure-caret" aria-hidden="true">▾</span>
-            </summary>
-            <div class="recipe-options-grid">
-              <div class="field">
-                <label for="byline">Credit / byline</label>
-                <input id="byline" name="byline" placeholder="Aubrey" />
-              </div>
-
-              <div class="field">
-                <label for="default-base">Written batch multiplier</label>
-                <input id="default-base" name="default-base" type="number" inputmode="decimal" step="0.25" min="0.25" value="1" />
-              </div>
-
-              <div class="field">
-                <label for="default-pan">Pan size scaling</label>
-                <select id="default-pan" name="default-pan">
-                  <option value="">No pan scaling</option>
-                </select>
-              </div>
-            </div>
-          </details>
-        </section>
+        </details>
 
         <div class="composer-footer">
           <div id="draft-status" class="draft-status" aria-live="polite">Draft saved on this device</div>
@@ -182,7 +183,7 @@
                 <ul id="preview-ingredients"></ul>
               </section>
               <section class="preview-section">
-                <h2>Directions</h2>
+                <h2>Steps</h2>
                 <ol id="preview-steps"></ol>
               </section>
             </main>
