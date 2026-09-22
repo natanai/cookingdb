@@ -1,4 +1,5 @@
 import { siteBehavior } from './site-behavior.js';
+import { fetchBuiltJson } from './built-data.js';
 import { familyListPending, getRememberedPassword, setRememberedPassword } from './inbox/inbox-api.js';
 import { recipeDefaultCompatibility } from './recipe-utils.js';
 
@@ -9,6 +10,7 @@ const RECIPE_WARM_RESOURCES = Object.freeze([
   './recipe.html',
   './recipe.js',
   './nutrition-engine.js',
+  './built-data.js',
   './built/recipes.json',
   './built/nutrition-policy.json',
   './built/nutrition-guidelines.json',
@@ -167,13 +169,14 @@ function setupMobileScrollRuffle() {
 }
 
 async function loadIndex() {
-  const res = await fetch('./built/index.json');
-  if (!res.ok) throw new Error('Unable to load index.json');
-  return res.json();
+  return fetchBuiltJson('index.json', { label: 'Cookbook index' });
 }
 
 async function warmRecipeResource(url) {
-  const response = await fetch(url, { credentials: 'same-origin' });
+  const response = await fetch(url, {
+    credentials: 'same-origin',
+    cache: url.startsWith('./built/') ? 'no-store' : 'default',
+  });
   if (!response.ok) {
     throw new Error(`Unable to warm ${url} (${response.status})`);
   }
