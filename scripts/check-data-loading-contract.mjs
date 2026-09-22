@@ -28,10 +28,11 @@ const nutrition = read('nutrition-engine.js');
 
 assert(
   builtData.includes("from './built/version.js'") &&
-    builtData.includes("cache: 'force-cache'") &&
+    builtData.includes("requestBuiltJson(url, resourceLabel, 'default')") &&
+    builtData.includes("requestBuiltJson(url, resourceLabel, 'reload')") &&
     builtData.includes('builtDataUrl') &&
     builtData.includes("credentials: 'same-origin'"),
-  'the shared built-data loader must use content-versioned reusable browser caching'
+  'the shared built-data loader must use versioned reusable caching with a network retry'
 );
 
 for (const [name, source] of [
@@ -60,7 +61,8 @@ assert(
 );
 assert(
   add.includes("categoryCatalogState === 'failed'") &&
-    add.includes('Categories could not load. Refresh the page to retry.'),
+    add.includes('Categories could not load.') &&
+    add.includes('Retry categories'),
   'Add Recipe must distinguish category failure from an empty category list'
 );
 assert(
@@ -73,8 +75,10 @@ assert(
   add.includes("fetchBuiltJson('pan-sizes.json'") &&
     add.includes("fetchBuiltJson('ingredient-autocomplete.json'") &&
     add.includes("fetchBuiltJson('authoring-options.json'") &&
+    add.includes("fetchBuiltJson('index.json'") &&
+    add.includes('Promise.allSettled([') &&
     !add.includes("fetchBuiltJson('recipes.json'"),
-  'Add Recipe must use compact versioned authoring data rather than the full recipe box'
+  'Add Recipe must use compact authoring data with the cookbook index as an independent category fallback'
 );
 
 assert(
