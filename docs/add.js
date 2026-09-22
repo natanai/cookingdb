@@ -1227,16 +1227,8 @@ function refreshStepIngredientPickers() {
 }
 
 function readDietaryFlags(row) {
-  const flags = { gluten_free: true, egg_free: true, dairy_free: true };
-  row.querySelectorAll('[data-dietary-key]').forEach((input) => {
-    const key = input.dataset.dietaryKey;
-    flags[key] = input.checked;
-  });
-  return flags;
-}
-
-function dietaryFlagsAreDefault(flags) {
-  return flags.gluten_free === true && flags.egg_free === true && flags.dairy_free === true;
+  const ingredientId = row.querySelector('.ingredient-id')?.value.trim() || '';
+  return dietaryFlagsForIngredientId(ingredientId);
 }
 
 function buildIngredientsFromForm(issues) {
@@ -1305,8 +1297,7 @@ function buildIngredientsFromForm(issues) {
       !choiceGroup &&
       !choiceLabel &&
       !isDefaultChoice &&
-      !isChoice &&
-      dietaryFlagsAreDefault(dietary);
+      !isChoice;
     if (allEmpty) return;
 
     const missingFields = [];
@@ -1320,6 +1311,11 @@ function buildIngredientsFromForm(issues) {
       if (!amount) markInvalid(amountInput);
       if (!unit) markInvalid(unitInput);
       return;
+    }
+
+    if (isConditional && !depToken) {
+      issues.push(`Ingredient ${idx + 1} is conditional but does not say what it depends on.`);
+      markInvalid(depTokenInput);
     }
 
     const depends_on = depToken
