@@ -1,7 +1,8 @@
 import { siteBehavior } from './site-behavior.js';
 import { builtDataUrl, fetchBuiltJson } from './built-data.js';
 import { familyListPending, getRememberedPassword, setRememberedPassword } from './inbox/inbox-api.js';
-import { recipeDefaultCompatibility } from './recipe-utils.js';
+import { DIETARY_TAGS } from './recipe-utils.js';
+import { buildRecipeLink, getRecipeTitleParts, normalizeRecipeEntry, normalizeTitleKey } from './recipe-model.js';
 
 const STORAGE_KEY = 'cookingdb-inbox-recipes';
 const HAPTICS_KEY = 'cookingdb-ruffle-haptics';
@@ -257,81 +258,6 @@ function storeInboxRecipes(recipes) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(recipes));
 }
 
-function normalizeTitleKey(title) {
-  return (title || '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .split(/-+/)
-    .filter(Boolean)
-    .join('-');
-}
-
-function normalizeIngredients(raw, tokenOrder = []) {
-  const list = Array.isArray(raw)
-    ? raw.filter(Boolean)
-    : raw && typeof raw === 'object'
-      ? Object.values(raw).filter(Boolean)
-      : [];
-
-  const order = Array.isArray(tokenOrder) && tokenOrder.length
-    ? tokenOrder
-    : list.map((entry) => entry?.token).filter(Boolean);
-
-  const byToken = {};
-  list.forEach((entry) => {
-    if (entry?.token) byToken[entry.token] = entry;
-  });
-
-  return { list, byToken, order };
-}
-
-function normalizeRecipePayload(entry) {
-  // Support multiple API shapes:
-  // - { payload: <recipe> }
-  // - { payload: { title, payload: <recipe> } }  <-- envelope
-  // - { recipe: <recipe> }
-  const payload =
-    entry?.recipe?.payload ??
-    entry?.recipe ??
-    entry?.payload?.payload ??
-    entry?.payload ??
-    entry;
-
-  if (!payload) return null;
-
-  const title = payload.title || entry?.title || '';
-  const computedId =
-    payload.id ||
-    payload.recipe_id ||
-    entry?.id ||
-    entry?.recipe_id ||
-    normalizeTitleKey(title);
-
-  const ingredients = normalizeIngredients(payload.ingredients, payload.token_order);
-
-  const compatibility =
-    payload.compatibility_possible ||
-    recipeDefaultCompatibility({ ...payload, ingredients: ingredients.byToken, token_order: ingredients.order });
-
-  const hasDetails =
-    ingredients.list.length > 0 &&
-    ((typeof payload.steps_raw === 'string' && payload.steps_raw.trim().length > 0) ||
-      (Array.isArray(payload.steps) && payload.steps.length > 0));
-
-  return {
-    ...payload,
-    title,
-    id: computedId,
-    content_hash: payload.content_hash || entry?.content_hash,
-    compatibility_possible: compatibility,
-    ingredients: ingredients.byToken,
-    token_order: ingredients.order,
-    has_details: hasDetails,
-  };
-}
-
-
-
 function recipeSummary(recipe, source = 'built') {
   return {
     id: recipe.id,
@@ -371,42 +297,6 @@ function recipeVisible(recipe, filters) {
   if (filters.egg && !compatibility.egg_free) return false;
   if (filters.dairy && !compatibility.dairy_free) return false;
   return true;
-}
-
-function splitRecipeTitle(rawTitle) {
-  const title = (rawTitle || '').trim();
-  if (!title) return { title: '', name: '' };
-
-  const parenMatch = title.match(/^(.*)\s*\(([^)]+)\)\s*$/);
-  if (parenMatch) {
-    return { title: parenMatch[1].trim(), name: parenMatch[2].trim() };
-  }
-
-  const possessiveMatch = title.match(/^([^–—-]+?)\s*['’]s\s+(.+)$/i);
-  if (possessiveMatch) {
-    return { title: possessiveMatch[2].trim(), name: possessiveMatch[1].trim() };
-  }
-
-  return { title, name: '' };
-}
-
-function getRecipeTitleParts(recipe) {
-  const byline = (recipe.byline || '').trim();
-  if (byline) {
-    return { title: (recipe.title || '').trim(), name: byline };
-  }
-  return splitRecipeTitle(recipe.title || '');
-}
-
-const DIETARY_TAGS = {
-  gluten_free: { positive: 'Gluten-free ready', negative: 'Contains gluten' },
-  egg_free: { positive: 'Egg-free friendly', negative: 'Contains egg' },
-  dairy_free: { positive: 'Dairy-free ready', negative: 'Contains dairy' },
-};
-
-function buildRecipeLink(recipeId) {
-  const params = new URLSearchParams({ id: recipeId });
-  return `recipe.html?${params.toString()}`;
 }
 
 function renderRecipes(recipes) {
@@ -550,7 +440,7 @@ function normalizeIncomingList(result) {
   : result.rows || result.pending || result.recipes || result.items;
 
   if (!maybeList || !Array.isArray(maybeList)) return [];
-  return maybeList.map((entry) => normalizeRecipePayload(entry)).filter(Boolean);
+  return maybeList.map((entry) => normalizeRecipeEntry(entry)).filter(Boolean);
 }
 
 function dedupeInboxRecipes(existing, incoming) {
