@@ -1437,6 +1437,44 @@ function buildIngredientsFromForm(issues) {
   return { ingredients, token_order: tokenOrder, choices };
 }
 
+function validateDependencyReference({
+  rawToken,
+  rawOption,
+  ingredients,
+  issues,
+  context,
+  tokenInput,
+  optionInput,
+}) {
+  const token = slugify(rawToken || '');
+  if (!token) return null;
+
+  const target = ingredients[token];
+  if (!target) {
+    issues.push(`${context} depends on “${rawToken}”, but that ingredient or substitution group does not exist.`);
+    markInvalid(tokenInput);
+    return null;
+  }
+
+  const option = slugify(rawOption || '');
+  if (option) {
+    const validOptions = (target.options || [])
+      .map((entry) => entry?.option)
+      .filter(Boolean);
+    if (!validOptions.includes(option)) {
+      issues.push(
+        validOptions.length
+          ? `${context} depends on option “${rawOption}”, but ${rawToken} only has: ${validOptions.join(', ')}.`
+          : `${context} specifies option “${rawOption}”, but ${rawToken} is not a substitution group.`
+      );
+      markInvalid(optionInput);
+      return null;
+    }
+  }
+
+  return { token, option: option || null };
+}
+
 function buildRecipeDraft() {
   clearValidationHighlights();
   const issues = [];
@@ -1473,6 +1511,9 @@ function buildRecipeDraft() {
   } else if (!/^[a-z0-9_-]+$/.test(slug)) {
     issues.push('Recipe ID can only contain letters, numbers, dashes, and underscores.');
     markInvalid(slugInput);
+  } else if (!isAdminEditMode && existingRecipeIds.has(slug)) {
+    issues.push('This recipe ID is already published. Change the title or refresh so a unique ID can be assigned.');
+    markInvalid(slugInput);
   }
 
   if (categoryCatalogState === 'failed') {
@@ -1506,6 +1547,37 @@ function buildRecipeDraft() {
   }
 
   const { ingredients, token_order: tokenOrder, choices } = buildIngredientsFromForm(issues);
+
+  [...ingredientRowsEl.querySelectorAll('.ingredient-row')].forEach((row, index) => {
+    const conditionalToggle = row.querySelector('.ingredient-conditional-toggle');
+    if (!conditionalToggle?.checked) return;
+    const tokenInput = row.querySelector('.ingredient-dep-token');
+    const optionInput = row.querySelector('.ingredient-dep-option');
+    const rawToken = tokenInput?.value.trim() || '';
+    if (!rawToken) return;
+    validateDependencyReference({
+      rawToken,
+      rawOption: optionInput?.value.trim() || '',
+      ingredients,
+      issues,
+      context: `Ingredient ${index + 1}`,
+      tokenInput,
+      optionInput,
+    });
+  });
+
+  const catalogReviewRequired = [
+    ...new Set(
+      [...ingredientRowsEl.querySelectorAll('.ingredient-row')]
+        .filter((row) => {
+          const name = row.querySelector('.ingredient-name')?.value.trim() || '';
+          const ingredientId = row.querySelector('.ingredient-id')?.value.trim() || '';
+          return name && !ingredientId;
+        })
+        .map((row) => row.querySelector('.ingredient-name')?.value.trim())
+        .filter(Boolean)
+    ),
+  ];
 
   const stepsRawLines = [];
   const structuredSteps = [];
@@ -1542,13 +1614,36 @@ function buildRecipeDraft() {
       stepText = `${stepText} {{${token}}}`.trim();
     });
 
-    const variationToken = slugify(row.querySelector('.variation-token')?.value || '');
-    const variationOption = slugify(row.querySelector('.variation-option')?.value || '');
+    const variationTokenInput = row.querySelector('.variation-token');
+    const variationOptionInput = row.querySelector('.variation-option');
+    const variationTokenRaw = variationTokenInput?.value.trim() || '';
+    const variationOptionRaw = variationOptionInput?.value.trim() || '';
+    const variationToken = slugify(variationTokenRaw);
+    const variationOption = slugify(variationOptionRaw);
     const variationText = (row.querySelector('.variation-text')?.value || '').trim();
+
+    if (variationText && !variationToken) {
+      issues.push(`Step ${index + 1} has a conditional variation but no ingredient or substitution group.`);
+      markInvalid(variationTokenInput);
+    }
+
     if (variationText && variationToken) {
-      const condition = variationOption ? `${variationToken}=${variationOption}` : variationToken;
-      stepText = `${stepText} {{#if ${condition}}}${variationText}{{/if}}`.trim();
-      tokenUsage.push(variationToken);
+      const validDependency = validateDependencyReference({
+        rawToken: variationTokenRaw,
+        rawOption: variationOptionRaw,
+        ingredients,
+        issues,
+        context: `Step ${index + 1} variation`,
+        tokenInput: variationTokenInput,
+        optionInput: variationOptionInput,
+      });
+      if (validDependency) {
+        const condition = validDependency.option
+          ? `${validDependency.token}=${validDependency.option}`
+          : validDependency.token;
+        stepText = `${stepText} {{#if ${condition}}}${variationText}{{/if}}`.trim();
+        tokenUsage.push(validDependency.token);
+      }
     }
     structuredSteps.push({ section: section || null, text: stepText });
     if (section && !stepSections.includes(section)) {
@@ -1614,6 +1709,7 @@ function buildRecipeDraft() {
       : [],
     default_pan: defaultPan || null,
     compatibility_possible: compatibility,
+    catalog_review_required: catalogReviewRequired,
   };
 
   return { recipe, issues };
