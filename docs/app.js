@@ -177,7 +177,7 @@ async function warmRecipeResource(url) {
   const requestUrl = isBuiltData ? builtDataUrl(url) : url;
   const response = await fetch(requestUrl, {
     credentials: 'same-origin',
-    cache: isBuiltData ? 'force-cache' : 'default',
+    cache: 'default',
   });
   if (!response.ok) {
     throw new Error(`Unable to warm ${url} (${response.status})`);

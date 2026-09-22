@@ -17,6 +17,7 @@ const checks = [
   ['pending queue individual deletion', adminJs.includes('adminDeletePendingByIds') && adminJs.includes('Delete')],
   ['pending queue export retained', adminJs.includes('buildRepoImportBundle') && adminHtml.includes('download-btn')],
   ['composer admin review banner', addHtml.includes('id="admin-edit-banner"') && addHtml.includes('id="submit-recipe"')],
+  ['composer banner does not duplicate inbox navigation', !/<div id=["']admin-edit-banner["'][\s\S]*?<a\b[^>]*href=["']admin\.html["']/i.test(addHtml)],
   ['composer loads pending admin row', addJs.includes('loadAdminEditRecipe') && addJs.includes('adminExportPending')],
   ['composer saves exact pending row', addJs.includes('adminUpdatePending') && addJs.includes('expectedUpdatedAt: adminEditUpdatedAt')],
   ['composer preserves canonical token identity', addJs.includes('ingredient-token') && addJs.includes('preservedToken')],
