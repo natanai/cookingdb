@@ -27,8 +27,11 @@ const breadHtml = read('bread-maker.html');
 const nutrition = read('nutrition-engine.js');
 
 assert(
-  builtData.includes("cache: 'no-store'") && builtData.includes("credentials: 'same-origin'"),
-  'the shared built-data loader must bypass stale browser caches'
+  builtData.includes("from './built/version.js'") &&
+    builtData.includes("cache: 'force-cache'") &&
+    builtData.includes('builtDataUrl') &&
+    builtData.includes("credentials: 'same-origin'"),
+  'the shared built-data loader must use content-versioned reusable browser caching'
 );
 
 for (const [name, source] of [
@@ -69,8 +72,9 @@ assert(
 assert(
   add.includes("fetchBuiltJson('pan-sizes.json'") &&
     add.includes("fetchBuiltJson('ingredient-autocomplete.json'") &&
-    add.includes("fetchBuiltJson('recipes.json'"),
-  'Add Recipe generated data must use the coherent loader'
+    add.includes("fetchBuiltJson('authoring-options.json'") &&
+    !add.includes("fetchBuiltJson('recipes.json'"),
+  'Add Recipe must use compact versioned authoring data rather than the full recipe box'
 );
 
 assert(
