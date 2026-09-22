@@ -1,4 +1,5 @@
 import { siteBehavior } from './site-behavior.js';
+import { fetchBuiltJson } from './built-data.js';
 import {
   renderIngredientLines,
   renderStepLines,
@@ -11,6 +12,7 @@ import {
 } from './recipe-utils.js';
 import {
   computeBatchTotals,
+  dataLoadState,
   deriveDailyTargets,
   loadIngredientPortions,
   loadIngredientUnitFactors,
@@ -173,17 +175,7 @@ function loadStoredInboxRecipes() {
 }
 
 async function loadRecipes() {
-  const [recipesRes, indexRes] = await Promise.all([
-    fetch('./built/recipes.json'),
-    fetch('./built/index.json'),
-  ]);
-  if (!indexRes.ok) {
-    throw new Error(`Unable to load built/index.json (${indexRes.status})`);
-  }
-  if (!recipesRes.ok) {
-    throw new Error(`Unable to load built/recipes.json (${recipesRes.status})`);
-  }
-  const builtRaw = await recipesRes.json();
+  const builtRaw = await fetchBuiltJson('recipes.json', { label: 'Meal prep recipes' });
   const built = Array.isArray(builtRaw)
     ? builtRaw.map(normalizeRecipeForPlanner).filter(Boolean)
     : [];
@@ -1322,11 +1314,31 @@ async function startPlanner() {
   state.nutritionCoverage = nutritionCoverage;
 
   const nutritionBanner = document.getElementById('planner-nutrition-banner');
-  if (nutritionBanner && nutritionCoverage?.missing_count) {
-    nutritionBanner.hidden = false;
-    nutritionBanner.textContent =
-      `Nutrition data is still filling in (${nutritionCoverage.missing_count} missing unit matches). ` +
-      'Totals are estimates until coverage is complete.';
+  if (nutritionBanner) {
+    const warnings = [];
+    if (
+      dataLoadState(ingredientPortions) === 'failed' ||
+      dataLoadState(ingredientUnitFactors) === 'failed'
+    ) {
+      warnings.push(
+        'Kitchen count estimates and some unit conversions could not load. Refresh the page to retry.'
+      );
+    }
+    if (
+      [dataLoadState(nutritionPolicy), dataLoadState(nutritionGuidelines), dataLoadState(nutritionCoverage)]
+        .some((value) => value === 'failed' || value === 'degraded')
+    ) {
+      warnings.push(
+        'Some nutrition reference data could not load, so nutrition estimates may use fallback defaults.'
+      );
+    }
+    if (nutritionCoverage?.missing_count) {
+      warnings.push(
+        `Nutrition data is still filling in (${nutritionCoverage.missing_count} missing unit matches). Totals are estimates until coverage is complete.`
+      );
+    }
+    nutritionBanner.textContent = warnings.join(' ');
+    nutritionBanner.hidden = warnings.length === 0;
   }
 
   setupPlanControls();
@@ -1342,4 +1354,20 @@ async function startPlanner() {
   updateNutritionSummary();
 }
 
-startPlanner();
+function showPlannerLoadError(err) {
+  console.error(err);
+  const list = document.getElementById('planner-recipe-list');
+  if (list) {
+    list.innerHTML = '';
+    const item = document.createElement('li');
+    item.className = 'empty-state';
+    item.textContent = 'Meal prep recipes could not load. Refresh the page to retry.';
+    list.appendChild(item);
+  }
+  const hint = document.getElementById('planner-start-hint');
+  if (hint) {
+    hint.textContent = 'Meal prep is temporarily unavailable because the recipe box did not load.';
+  }
+}
+
+startPlanner().catch(showPlannerLoadError);

@@ -1,4 +1,5 @@
 import { siteBehavior } from './site-behavior.js';
+import { fetchBuiltJson } from './built-data.js';
 const BREAD_CATEGORY = 'Bread maker';
 const PERSONAL_STORAGE_KEY = 'cookingdb-bread-maker-recipes';
 
@@ -241,11 +242,7 @@ function renderPersonalRecipes(recipes, onUpdate) {
 }
 
 async function loadDefaultRecipes() {
-  const res = await fetch('./built/index.json');
-  if (!res.ok) {
-    throw new Error('Unable to load index.json');
-  }
-  const data = await res.json();
+  const data = await fetchBuiltJson('index.json', { label: 'Bread maker recipes' });
   return Array.isArray(data) ? data : [];
 }
 
@@ -262,6 +259,13 @@ async function initDefaultRecipes() {
     renderDefaultRecipes(filtered);
   } catch (err) {
     console.warn('Unable to load bread maker recipes', err);
+    if (defaultListEl) {
+      defaultListEl.innerHTML = '';
+      const item = document.createElement('li');
+      item.className = 'empty-state';
+      item.textContent = 'Bread maker recipes could not load. Refresh the page to retry.';
+      defaultListEl.appendChild(item);
+    }
   }
 }
 

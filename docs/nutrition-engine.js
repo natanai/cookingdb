@@ -1,3 +1,4 @@
+import { fetchBuiltJson } from './built-data.js';
 import {
   convertUnitAmount,
   getEffectiveMultiplier,
@@ -45,6 +46,26 @@ const DEFAULT_GUIDELINES = {
   },
 };
 
+function markLoadState(value, state, resource) {
+  if (value && typeof value === 'object') {
+    Object.defineProperty(value, '__cookingdbLoadState', {
+      value: state,
+      configurable: true,
+      enumerable: false,
+    });
+    Object.defineProperty(value, '__cookingdbLoadResource', {
+      value: resource,
+      configurable: true,
+      enumerable: false,
+    });
+  }
+  return value;
+}
+
+export function dataLoadState(value) {
+  return value?.__cookingdbLoadState || 'ready';
+}
+
 function coerceNumber(value) {
   const num = Number(value);
   return Number.isFinite(num) ? num : null;
@@ -63,111 +84,98 @@ function mergePolicy(base, override) {
 
 export async function loadNutritionPolicy() {
   try {
-    const res = await fetch('./built/nutrition-policy.json');
-    if (res.ok) {
-      const parsed = await res.json();
-      return mergePolicy(DEFAULT_POLICY, parsed);
-    }
+    const parsed = await fetchBuiltJson('nutrition-policy.json', { label: 'Nutrition policy' });
+    return markLoadState(mergePolicy(DEFAULT_POLICY, parsed), 'ready', 'nutrition policy');
   } catch (err) {
     console.warn('Unable to load nutrition policy', err);
   }
 
   try {
-    const res = await fetch('./built/nutrition-guidelines.json');
-    if (res.ok) {
-      const parsed = await res.json();
-      const mealTarget = coerceNumber(parsed?.meal_calories_target);
-      const dailyKcal = mealTarget ? mealTarget * DEFAULT_POLICY.default_meals_per_day : null;
-      return mergePolicy(DEFAULT_POLICY, dailyKcal ? { default_daily_kcal: dailyKcal } : {});
-    }
+    const parsed = await fetchBuiltJson('nutrition-guidelines.json', { label: 'Nutrition guidelines' });
+    const mealTarget = coerceNumber(parsed?.meal_calories_target);
+    const dailyKcal = mealTarget ? mealTarget * DEFAULT_POLICY.default_meals_per_day : null;
+    return markLoadState(
+      mergePolicy(DEFAULT_POLICY, dailyKcal ? { default_daily_kcal: dailyKcal } : {}),
+      'degraded',
+      'nutrition policy'
+    );
   } catch (err) {
     console.warn('Unable to load nutrition guideline fallback', err);
   }
 
-  return DEFAULT_POLICY;
+  return markLoadState(mergePolicy(DEFAULT_POLICY, {}), 'failed', 'nutrition policy');
 }
 
 export async function loadNutritionGuidelines() {
   try {
-    const res = await fetch('./built/nutrition-guidelines.json');
-    if (res.ok) {
-      const parsed = await res.json();
-      return { ...DEFAULT_GUIDELINES, ...(parsed || {}) };
-    }
+    const parsed = await fetchBuiltJson('nutrition-guidelines.json', { label: 'Nutrition guidelines' });
+    return markLoadState({ ...DEFAULT_GUIDELINES, ...(parsed || {}) }, 'ready', 'nutrition guidelines');
   } catch (err) {
     console.warn('Unable to load nutrition guidelines', err);
   }
-  return DEFAULT_GUIDELINES;
+  return markLoadState({ ...DEFAULT_GUIDELINES }, 'failed', 'nutrition guidelines');
 }
 
 export async function loadIngredientPortions() {
   try {
-    const res = await fetch('./built/ingredient-portions.json');
-    if (res.ok) {
-      const parsed = await res.json();
-      const map = new Map();
-      parsed.forEach((entry) => {
-        if (!entry?.ingredient_id || !entry?.unit) return;
-        const normalizedUnit = normalizeUnit(entry.unit);
-        if (!normalizedUnit) return;
-        const grams = Number(entry.grams);
-        if (!Number.isFinite(grams)) return;
-        map.set(`${entry.ingredient_id}::${normalizedUnit}`, {
-          ingredient_id: entry.ingredient_id,
-          unit: normalizedUnit,
-          grams,
-          source: entry.source || '',
-          notes: entry.notes || '',
-        });
+    const parsed = await fetchBuiltJson('ingredient-portions.json', { label: 'Ingredient portion estimates' });
+    const map = new Map();
+    parsed.forEach((entry) => {
+      if (!entry?.ingredient_id || !entry?.unit) return;
+      const normalizedUnit = normalizeUnit(entry.unit);
+      if (!normalizedUnit) return;
+      const grams = Number(entry.grams);
+      if (!Number.isFinite(grams)) return;
+      map.set(`${entry.ingredient_id}::${normalizedUnit}`, {
+        ingredient_id: entry.ingredient_id,
+        unit: normalizedUnit,
+        grams,
+        source: entry.source || '',
+        notes: entry.notes || '',
       });
-      return map;
-    }
+    });
+    return markLoadState(map, 'ready', 'ingredient portion estimates');
   } catch (err) {
     console.warn('Unable to load ingredient portions', err);
   }
-  return new Map();
+  return markLoadState(new Map(), 'failed', 'ingredient portion estimates');
 }
 
 export async function loadIngredientUnitFactors() {
   try {
-    const res = await fetch('./built/ingredient-unit-factors.json');
-    if (res.ok) {
-      const parsed = await res.json();
-      const map = new Map();
-      parsed.forEach((entry) => {
-        if (!entry?.ingredient_id) return;
-        const fromUnit = normalizeUnit(entry.from_unit_norm);
-        const toUnit = normalizeUnit(entry.to_unit_norm);
-        const factor = Number(entry.factor);
-        if (!fromUnit || !toUnit || !Number.isFinite(factor)) return;
-        if (!map.has(entry.ingredient_id)) map.set(entry.ingredient_id, []);
-        map.get(entry.ingredient_id).push({
-          ingredient_id: entry.ingredient_id,
-          from_unit_norm: fromUnit,
-          to_unit_norm: toUnit,
-          factor,
-          source: entry.source || '',
-          notes: entry.notes || '',
-        });
+    const parsed = await fetchBuiltJson('ingredient-unit-factors.json', { label: 'Ingredient unit conversions' });
+    const map = new Map();
+    parsed.forEach((entry) => {
+      if (!entry?.ingredient_id) return;
+      const fromUnit = normalizeUnit(entry.from_unit_norm);
+      const toUnit = normalizeUnit(entry.to_unit_norm);
+      const factor = Number(entry.factor);
+      if (!fromUnit || !toUnit || !Number.isFinite(factor)) return;
+      if (!map.has(entry.ingredient_id)) map.set(entry.ingredient_id, []);
+      map.get(entry.ingredient_id).push({
+        ingredient_id: entry.ingredient_id,
+        from_unit_norm: fromUnit,
+        to_unit_norm: toUnit,
+        factor,
+        source: entry.source || '',
+        notes: entry.notes || '',
       });
-      return map;
-    }
+    });
+    return markLoadState(map, 'ready', 'ingredient unit conversions');
   } catch (err) {
     console.warn('Unable to load ingredient unit factors', err);
   }
-  return new Map();
+  return markLoadState(new Map(), 'failed', 'ingredient unit conversions');
 }
 
 export async function loadNutritionCoverage() {
   try {
-    const res = await fetch('./built/nutrition-coverage.json');
-    if (res.ok) {
-      return await res.json();
-    }
+    const parsed = await fetchBuiltJson('nutrition-coverage.json', { label: 'Nutrition coverage' });
+    return markLoadState(parsed, 'ready', 'nutrition coverage');
   } catch (err) {
     console.warn('Unable to load nutrition coverage', err);
   }
-  return { missing_count: null, strict: false };
+  return markLoadState({ missing_count: null, strict: false }, 'failed', 'nutrition coverage');
 }
 
 export function normalizeMealFractions(fractions, policy = DEFAULT_POLICY) {

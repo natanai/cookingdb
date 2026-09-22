@@ -55,17 +55,19 @@
 
             <div class="field category-field author-category-field">
               <label>Categories <span class="required-badge">Required</span></label>
-              <details id="category-menu" class="category-menu">
+              <details id="category-menu" class="category-menu" aria-busy="true">
                 <summary>
-                  <span id="category-summary">Choose categories</span>
+                  <span id="category-summary">Loading categories…</span>
                   <span class="category-summary-caret" aria-hidden="true">▾</span>
                 </summary>
                 <div class="category-popover">
-                  <div id="category-options" class="category-options" role="group" aria-label="Recipe categories"></div>
+                  <div id="category-options" class="category-options" role="group" aria-label="Recipe categories">
+                    <div class="muted">Loading categories…</div>
+                  </div>
                   <button type="button" class="category-done" id="category-done">Done</button>
                 </div>
               </details>
-              <select id="categories" name="categories" multiple class="category-native-select" tabindex="-1" aria-hidden="true"></select>
+              <select id="categories" name="categories" multiple class="category-native-select" tabindex="-1" aria-hidden="true" disabled></select>
             </div>
           </div>
         </section>
