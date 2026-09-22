@@ -1,41 +1,12 @@
 import { siteBehavior } from './site-behavior.js';
 import { fetchBuiltJson } from './built-data.js';
+import { buildRecipeLink, getRecipeTitleParts } from './recipe-model.js';
 const BREAD_CATEGORY = 'Bread maker';
 const PERSONAL_STORAGE_KEY = 'cookingdb-bread-maker-recipes';
 
 const defaultListEl = document.getElementById('bread-default-list');
 const personalListEl = document.getElementById('bread-personal-list');
 const personalFormEl = document.getElementById('personal-recipe-form');
-
-function splitRecipeTitle(rawTitle) {
-  const title = (rawTitle || '').trim();
-  if (!title) return { title: '', name: '' };
-
-  const parenMatch = title.match(/^(.*)\s*\(([^)]+)\)\s*$/);
-  if (parenMatch) {
-    return { title: parenMatch[1].trim(), name: parenMatch[2].trim() };
-  }
-
-  const possessiveMatch = title.match(/^([^–—-]+?)\s*['’]s\s+(.+)$/i);
-  if (possessiveMatch) {
-    return { title: possessiveMatch[2].trim(), name: possessiveMatch[1].trim() };
-  }
-
-  return { title, name: '' };
-}
-
-function getRecipeTitleParts(recipe) {
-  const byline = (recipe?.byline || '').trim();
-  if (byline) {
-    return { title: (recipe?.title || '').trim(), name: byline };
-  }
-  return splitRecipeTitle(recipe?.title || '');
-}
-
-function buildRecipeLink(recipeId) {
-  const params = new URLSearchParams({ id: recipeId });
-  return `recipe.html?${params.toString()}`;
-}
 
 function renderDefaultRecipes(recipes) {
   if (!defaultListEl) return;
