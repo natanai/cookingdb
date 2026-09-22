@@ -197,6 +197,7 @@ for (const warmResource of [
   './recipe.html',
   './recipe.js',
   './nutrition-engine.js',
+  './built-data.js',
   './built/recipes.json',
   './built/nutrition-policy.json',
   './built/nutrition-guidelines.json',
