@@ -14,7 +14,7 @@ const checks = [
   ['batch multiplier metadata', html.includes('id="default-base"')],
   ['pan scaling metadata', html.includes('id="default-pan"')],
   ['pan selector gated until catalog is ready', html.includes('id="default-pan" name="default-pan" disabled aria-busy="true"') && html.includes('Loading pan sizes…')],
-  ['pan catalog uses shared fresh-data loader', js.includes("fetchBuiltJson('pan-sizes.json'"))],
+  ['pan catalog uses shared fresh-data loader', js.includes("fetchBuiltJson('pan-sizes.json'")],
   ['normal authoring waits for pan catalog', js.includes('await panPromise;')],
   ['pan catalog failure is explicit', js.includes("'Pan sizes unavailable'")],
   ['ingredient sections', js.includes('createIngredientSection') && js.includes('start-section-here')],
