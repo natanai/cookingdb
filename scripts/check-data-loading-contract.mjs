@@ -1,0 +1,110 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root = path.resolve(process.cwd());
+const docs = path.join(root, 'docs');
+
+function read(name) {
+  return fs.readFileSync(path.join(docs, name), 'utf8');
+}
+
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error(`Data loading contract: ${message}`);
+  }
+}
+
+const builtData = read('built-data.js');
+const app = read('app.js');
+const add = read('add.js');
+const addHtml = read('add.html');
+const planner = read('planner.js');
+const plannerHtml = read('planner.html');
+const recipe = read('recipe.js');
+const recipeHtml = read('recipe.html');
+const bread = read('bread-maker.js');
+const breadHtml = read('bread-maker.html');
+const nutrition = read('nutrition-engine.js');
+
+assert(
+  builtData.includes("cache: 'no-store'") && builtData.includes("credentials: 'same-origin'"),
+  'the shared built-data loader must bypass stale browser caches'
+);
+
+for (const [name, source] of [
+  ['app.js', app],
+  ['add.js', add],
+  ['planner.js', planner],
+  ['recipe.js', recipe],
+  ['bread-maker.js', bread],
+  ['nutrition-engine.js', nutrition],
+]) {
+  assert(
+    source.includes("from './built-data.js'"),
+    `${name} must use the shared built-data loader`
+  );
+  assert(
+    !/fetch\(\s*['"]\.\/built\//.test(source),
+    `${name} must not directly fetch generated built JSON`
+  );
+}
+
+assert(
+  addHtml.includes('Loading categories…') &&
+    addHtml.includes('id="categories"') &&
+    addHtml.includes('disabled'),
+  'Add Recipe must begin with an explicit category-loading state'
+);
+assert(
+  add.includes("categoryCatalogState === 'failed'") &&
+    add.includes('Categories could not load. Refresh the page to retry.'),
+  'Add Recipe must distinguish category failure from an empty category list'
+);
+assert(
+  add.includes("ingredientAutocompleteState !== 'ready'") &&
+    add.includes('Ingredient lookup unavailable — refresh to retry') &&
+    add.includes('Ingredient lookup could not load. Refresh the page before submitting this recipe.'),
+  'ingredient lookup failure must never masquerade as a new ingredient'
+);
+assert(
+  add.includes("fetchBuiltJson('pan-sizes.json'") &&
+    add.includes("fetchBuiltJson('ingredient-autocomplete.json'") &&
+    add.includes("fetchBuiltJson('recipes.json'"),
+  'Add Recipe generated data must use the coherent loader'
+);
+
+assert(
+  planner.includes("fetchBuiltJson('recipes.json'") &&
+    !planner.includes("fetchBuiltJson('index.json'"),
+  'meal prep must depend only on the full recipe box, not the unused index'
+);
+assert(
+  planner.includes('startPlanner().catch(showPlannerLoadError)') &&
+    plannerHtml.includes('Loading recipes…'),
+  'meal prep must expose loading and failure states'
+);
+
+assert(
+  bread.includes("fetchBuiltJson('index.json'") &&
+    bread.includes('Bread maker recipes could not load. Refresh the page to retry.') &&
+    breadHtml.includes('Loading bread maker recipes…'),
+  'Bread Maker must expose loading and failure states'
+);
+
+assert(
+  nutrition.includes('export function dataLoadState') &&
+    nutrition.includes("'failed', 'ingredient portion estimates'") &&
+    nutrition.includes("'failed', 'ingredient unit conversions'"),
+  'supporting conversion data must preserve failure state'
+);
+assert(
+  recipe.includes('Kitchen count estimates and some unit conversions could not load.') &&
+    recipeHtml.includes('id="recipe-data-warning"'),
+  'recipe pages must surface unavailable kitchen conversion data'
+);
+assert(
+  planner.includes('Kitchen count estimates and some unit conversions could not load.'),
+  'meal prep must surface unavailable kitchen conversion data'
+);
+
+console.log('Data loading contract passed.');
