@@ -2423,10 +2423,6 @@ async function bootstrap() {
     previewDetails.removeAttribute('open');
   }
 
-  document.querySelectorAll('.field-help-icon[data-help-key]').forEach((btn) => {
-    attachHelpTrigger(btn, btn.dataset.helpKey);
-  });
-
   document.getElementById('title').addEventListener('input', () => {
     touchSlugFromTitle();
     refreshPreview();
@@ -2452,7 +2448,7 @@ async function bootstrap() {
 
   loadUnitsFromConversions();
   syncCategoryOptions();
-  const existingRecipesPromise = loadExistingRecipes();
+  const authoringOptionsPromise = loadAuthoringOptions();
   const ingredientAutocompletePromise = loadIngredientAutocomplete().catch((err) => {
     console.warn('Could not preload ingredient autocomplete', err);
   });
@@ -2481,7 +2477,7 @@ async function bootstrap() {
   document.getElementById('recipe-form').addEventListener('submit', handleSubmit);
 
   if (isAdminEditMode) {
-    await Promise.all([ingredientAutocompletePromise, panPromise, existingRecipesPromise]);
+    await Promise.all([ingredientAutocompletePromise, panPromise, authoringOptionsPromise]);
     await loadAdminEditRecipe();
     return;
   }
@@ -2490,16 +2486,21 @@ async function bootstrap() {
     document.getElementById('remember-family').checked = true;
   }
 
-  await ingredientAutocompletePromise;
-  await panPromise;
-
   const restored = restoreDraft();
   if (!restored) {
     createIngredientRow();
     createStepRow();
     refreshPreview();
   }
-  void existingRecipesPromise;
+
+  void Promise.allSettled([
+    ingredientAutocompletePromise,
+    panPromise,
+    authoringOptionsPromise,
+  ]).then(() => {
+    refreshIngredientCatalogNotes();
+    refreshPreview();
+  });
 }
 
 bootstrap();
