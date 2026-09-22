@@ -204,7 +204,7 @@ function resolveIngredientId(option, resolver, context) {
     );
   }
   fail(
-    `${context}: ingredient “${display || provided || 'unknown'}” is not in data/ingredient_catalog.csv. Add/map the ingredient in the catalog before publishing.`
+    `${context}: ingredient “${display || provided || 'unknown'}” needs catalog review before publishing. Add or map it in data/ingredient_catalog.csv, then publish again.`
   );
 }
 
