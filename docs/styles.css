@@ -4880,7 +4880,8 @@ body.add-page .ingredient-autocomplete-option:last-child {
 }
 
 body.add-page .ingredient-autocomplete-option:hover,
-body.add-page .ingredient-autocomplete-option:focus {
+body.add-page .ingredient-autocomplete-option:focus,
+body.add-page .ingredient-autocomplete-option.is-active {
   outline: 0;
   background: #fff7ea;
 }
@@ -4894,6 +4895,23 @@ body.add-page .ingredient-autocomplete-option small {
 body.add-page .ingredient-autocomplete-add {
   color: var(--accent);
   font-weight: 650;
+}
+
+body.add-page .ingredient-autocomplete-add small {
+  flex: 1 1 auto;
+  white-space: normal;
+  text-align: right;
+}
+
+body.add-page .ingredient-catalog-note {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+body.add-page .ingredient-catalog-note[hidden] {
+  display: none !important;
 }
 
 @media (max-width: 700px) {
