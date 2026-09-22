@@ -480,32 +480,54 @@ function ingredientChoices() {
   return choices;
 }
 
-function buildDietaryCheckboxes() {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'dietary-flags';
-  const options = [
-    { key: 'gluten_free', label: 'GF', title: 'Gluten-free' },
-    { key: 'egg_free', label: 'Egg', title: 'Egg-free' },
-    { key: 'dairy_free', label: 'Dairy', title: 'Dairy-free' },
-  ];
-  options.forEach((opt) => {
-    const label = document.createElement('label');
-    label.className = 'dietary-chip';
-    label.title = opt.title;
-    const input = document.createElement('input');
-    input.type = 'checkbox';
-    input.checked = true;
-    input.dataset.dietaryKey = opt.key;
-    label.appendChild(input);
-    label.append(opt.label);
-    wrapper.appendChild(label);
-  });
-  return wrapper;
+function dietaryFlagsForIngredientId(ingredientId) {
+  const entry = ingredientAutocompleteById.get(String(ingredientId || '').trim());
+  const dietary = entry?.dietary;
+  if (dietary && typeof dietary === 'object') {
+    return {
+      gluten_free: dietary.gluten_free === true,
+      egg_free: dietary.egg_free === true,
+      dairy_free: dietary.dairy_free === true,
+    };
+  }
+  return { gluten_free: false, egg_free: false, dairy_free: false };
+}
+
+function refreshIngredientCatalogNote(row) {
+  const note = row?.querySelector('.ingredient-catalog-note');
+  const nameInput = row?.querySelector('.ingredient-name');
+  const ingredientIdInput = row?.querySelector('.ingredient-id');
+  if (!note || !nameInput || !ingredientIdInput) return;
+
+  const name = nameInput.value.trim();
+  const ingredientId = ingredientIdInput.value.trim();
+  if (!name || ingredientAutocompleteState !== 'ready') {
+    note.hidden = true;
+    note.textContent = '';
+    return;
+  }
+
+  if (ingredientId && ingredientAutocompleteById.has(ingredientId)) {
+    note.hidden = true;
+    note.textContent = '';
+    return;
+  }
+
+  note.hidden = false;
+  note.textContent = 'New ingredient — catalog review is required before publishing.';
+}
+
+function refreshIngredientCatalogNotes() {
+  ingredientRowsEl
+    .querySelectorAll('.ingredient-row')
+    .forEach((row) => refreshIngredientCatalogNote(row));
 }
 
 function createIngredientRow(defaults = {}) {
   const row = document.createElement('div');
   row.className = 'ingredient-row';
+  ingredientRowSequence += 1;
+  const autocompleteId = `ingredient-autocomplete-${ingredientRowSequence}`;
   if (defaults.is_substitution) row.classList.add('is-substitution');
   row.innerHTML = `
     <div class="ingredient-main">
@@ -520,8 +542,11 @@ function createIngredientRow(defaults = {}) {
           role="combobox"
           aria-autocomplete="list"
           aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-controls="${autocompleteId}"
         />
-        <div class="ingredient-autocomplete-menu" role="listbox" hidden></div>
+        <div id="${autocompleteId}" class="ingredient-autocomplete-menu" role="listbox" hidden></div>
+        <small class="ingredient-catalog-note muted" hidden></small>
       </div>
       <button type="button" class="ingredient-more-toggle" aria-expanded="false" aria-label="Ingredient options">•••</button>
       <button type="button" class="remove-row-button remove-ingredient" aria-label="Remove ingredient">×</button>
@@ -547,11 +572,6 @@ function createIngredientRow(defaults = {}) {
           <span>Keep on the same line with</span>
           <input class="ingredient-inline-group" placeholder="Optional group name" />
         </label>
-
-        <details class="advanced-detail">
-          <summary>Dietary compatibility</summary>
-          <div class="dietary-slot"></div>
-        </details>
 
         <div class="choice-block">
           <label class="choice-toggle">
@@ -597,8 +617,6 @@ function createIngredientRow(defaults = {}) {
       </div>
     </div>
   `;
-  row.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
-
   const nameInput = row.querySelector('.ingredient-name');
   const autocompleteMenu = row.querySelector('.ingredient-autocomplete-menu');
   const sectionInput = row.querySelector('.ingredient-section');
@@ -640,13 +658,6 @@ function createIngredientRow(defaults = {}) {
   isChoiceInput.checked = Boolean(defaults.isChoice);
   conditionalToggle.checked = Boolean(depTokenInput.value || depOptionInput.value);
   unitInput.dataset.userChanged = 'false';
-
-  if (defaults.dietary) {
-    row.querySelectorAll('[data-dietary-key]').forEach((input) => {
-      const key = input.dataset.dietaryKey;
-      if (Object.prototype.hasOwnProperty.call(defaults.dietary, key)) input.checked = Boolean(defaults.dietary[key]);
-    });
-  }
 
   const syncChoiceFields = () => {
     const isChoice = isChoiceInput.checked;
