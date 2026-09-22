@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { createHash } from 'crypto';
 import { UNIT_CONVERSIONS } from '../docs/unit-conversions.js';
 import { validateAll } from './validate.mjs';
 
@@ -1060,10 +1061,18 @@ async function build() {
     if (!cleanLabel || !cleanId) return;
     const key = cleanLabel.toLocaleLowerCase();
     if (ingredientAutocompleteMap.has(key)) return;
+    const flags = catalog.get(cleanId);
     ingredientAutocompleteMap.set(key, {
       label: cleanLabel,
       ingredient_id: cleanId,
       unit: String(unit || '').trim(),
+      dietary: flags
+        ? {
+            gluten_free: ingredientCompatible(flags, 'gluten_free'),
+            egg_free: ingredientCompatible(flags, 'egg_free'),
+            dairy_free: ingredientCompatible(flags, 'dairy_free'),
+          }
+        : null,
     });
   };
 
@@ -1083,11 +1092,55 @@ async function build() {
     a.label.localeCompare(b.label)
   );
 
+  const authoringCategorySet = new Set();
+  const authoringSectionSet = new Set();
+  const authoringUnitSet = new Set();
+  const unitFrequencyByIngredient = new Map();
+
+  recipeOutputs.forEach((recipe) => {
+    (recipe.categories || []).forEach((category) => {
+      if (category) authoringCategorySet.add(category);
+    });
+
+    Object.values(recipe.ingredients || {}).forEach((tokenData) => {
+      if (tokenData?.section) authoringSectionSet.add(tokenData.section);
+      (tokenData?.options || []).forEach((option) => {
+        if (option?.section) authoringSectionSet.add(option.section);
+        if (option?.unit) authoringUnitSet.add(option.unit);
+        if (!option?.ingredient_id || !option?.unit) return;
+        if (!unitFrequencyByIngredient.has(option.ingredient_id)) {
+          unitFrequencyByIngredient.set(option.ingredient_id, new Map());
+        }
+        const counts = unitFrequencyByIngredient.get(option.ingredient_id);
+        counts.set(option.unit, (counts.get(option.unit) || 0) + 1);
+      });
+    });
+  });
+
+  const commonUnitsByIngredient = {};
+  [...unitFrequencyByIngredient.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .forEach(([ingredientId, counts]) => {
+      const ranked = [...counts.entries()].sort(
+        ([unitA, countA], [unitB, countB]) => countB - countA || unitA.localeCompare(unitB)
+      );
+      if (ranked.length) commonUnitsByIngredient[ingredientId] = ranked[0][0];
+    });
+
+  const authoringOptions = {
+    categories: [...authoringCategorySet].sort((a, b) => a.localeCompare(b)),
+    sections: [...authoringSectionSet].sort((a, b) => a.localeCompare(b)),
+    units: [...authoringUnitSet].sort((a, b) => a.localeCompare(b)),
+    common_units_by_ingredient: commonUnitsByIngredient,
+    recipe_ids: recipeOutputs.map((recipe) => recipe.id).filter(Boolean).sort((a, b) => a.localeCompare(b)),
+  };
+
   const builtDir = path.join(process.cwd(), 'docs', 'built');
   if (!fs.existsSync(builtDir)) {
     fs.mkdirSync(builtDir, { recursive: true });
   }
   fs.writeFileSync(path.join(builtDir, 'ingredient-autocomplete.json'), JSON.stringify(ingredientAutocomplete, null, 2));
+  fs.writeFileSync(path.join(builtDir, 'authoring-options.json'), JSON.stringify(authoringOptions, null, 2));
   fs.writeFileSync(path.join(builtDir, 'pan-sizes.json'), JSON.stringify(panList, null, 2));
   fs.writeFileSync(path.join(builtDir, 'nutrition-policy.json'), JSON.stringify(nutritionPolicy, null, 2));
   fs.writeFileSync(path.join(builtDir, 'nutrition-guidelines.json'), JSON.stringify(nutritionGuidelines, null, 2));
@@ -1130,6 +1183,32 @@ async function build() {
     path.join(builtDir, 'nutrition-coverage.json'),
     JSON.stringify({ missing_count: coverageReport.length, strict: strictMode }, null, 2)
   );
+
+  const versionedBuiltFiles = [
+    'authoring-options.json',
+    'index.json',
+    'ingredient-autocomplete.json',
+    'ingredient-portions.json',
+    'ingredient-unit-factors.json',
+    'nutrition-coverage.json',
+    'nutrition-guidelines.json',
+    'nutrition-policy.json',
+    'pan-sizes.json',
+    'recipes.json',
+  ];
+  const versionHash = createHash('sha256');
+  versionedBuiltFiles.forEach((fileName) => {
+    versionHash.update(fileName);
+    versionHash.update('\0');
+    versionHash.update(fs.readFileSync(path.join(builtDir, fileName)));
+    versionHash.update('\0');
+  });
+  const builtDataVersion = versionHash.digest('hex').slice(0, 16);
+  fs.writeFileSync(
+    path.join(builtDir, 'version.js'),
+    `export const BUILT_DATA_VERSION = '${builtDataVersion}';\n`
+  );
+
   if (strictMode && coverageReport.length) {
     throw new Error(`Nutrition coverage incomplete: ${coverageReport.length} missing nutrition matches`);
   } else if (coverageReport.length) {
