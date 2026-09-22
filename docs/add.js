@@ -240,9 +240,21 @@ function renderCategoryChips() {
     status.className = 'muted';
     status.textContent =
       categoryCatalogState === 'failed'
-        ? 'Categories could not load. Refresh the page to retry.'
+        ? 'Categories could not load.'
         : 'Loading categories…';
     container.appendChild(status);
+
+    if (categoryCatalogState === 'failed') {
+      const retry = document.createElement('button');
+      retry.type = 'button';
+      retry.className = 'category-done';
+      retry.textContent = 'Retry categories';
+      retry.addEventListener('click', () => {
+        void loadAuthoringOptions();
+      });
+      container.appendChild(retry);
+    }
+
     updateCategorySummary();
     return;
   }
@@ -402,22 +414,55 @@ async function loadAuthoringOptions() {
   categoryCatalogState = 'loading';
   syncCategoryOptions();
 
-  try {
-    const options = await fetchBuiltJson('authoring-options.json', {
-      label: 'Recipe authoring options',
+  const [authoringResult, indexResult] = await Promise.allSettled([
+    fetchBuiltJson('authoring-options.json', { label: 'Recipe authoring options' }),
+    fetchBuiltJson('index.json', { label: 'Cookbook index' }),
+  ]);
+
+  const options =
+    authoringResult.status === 'fulfilled' &&
+    authoringResult.value &&
+    typeof authoringResult.value === 'object'
+      ? authoringResult.value
+      : null;
+  const index =
+    indexResult.status === 'fulfilled' && Array.isArray(indexResult.value)
+      ? indexResult.value
+      : null;
+
+  if (!options && !index) {
+    categoryCatalogState = 'failed';
+    syncCategoryOptions();
+    console.warn(
+      'Could not load recipe authoring options or cookbook index',
+      authoringResult.status === 'rejected' ? authoringResult.reason : null,
+      indexResult.status === 'rejected' ? indexResult.reason : null
+    );
+    return;
+  }
+
+  categorySet.clear();
+  sectionSet.clear();
+  commonUnitByIngredient.clear();
+  existingRecipeIds.clear();
+
+  if (index) {
+    index.forEach((recipe) => {
+      if (recipe?.id) existingRecipeIds.add(String(recipe.id));
+      (recipe?.categories || []).forEach((category) => {
+        if (category) categorySet.add(String(category));
+      });
     });
-    if (!options || typeof options !== 'object') {
-      throw new Error('Recipe authoring options returned invalid data.');
-    }
-
-    categorySet.clear();
-    sectionSet.clear();
-    commonUnitByIngredient.clear();
-    existingRecipeIds.clear();
-
-    (options.categories || []).forEach((category) => {
+  } else {
+    (options?.categories || []).forEach((category) => {
       if (category) categorySet.add(String(category));
     });
+    (options?.recipe_ids || []).forEach((recipeId) => {
+      if (recipeId) existingRecipeIds.add(String(recipeId));
+    });
+  }
+
+  if (options) {
     (options.sections || []).forEach((section) => {
       if (section) sectionSet.add(String(section));
     });
@@ -428,22 +473,20 @@ async function loadAuthoringOptions() {
     Object.entries(options.common_units_by_ingredient || {}).forEach(([ingredientId, unit]) => {
       if (ingredientId && unit) commonUnitByIngredient.set(ingredientId, String(unit));
     });
-    (options.recipe_ids || []).forEach((recipeId) => {
-      if (recipeId) existingRecipeIds.add(String(recipeId));
-    });
-
-    categoryCatalogState = 'ready';
-    syncCategoryOptions();
-    pendingDraftCategories = [];
-    syncUnitSelects();
-    updateSectionSuggestions();
-    updateDependencySuggestions();
-    touchSlugFromTitle();
-  } catch (err) {
-    categoryCatalogState = 'failed';
-    syncCategoryOptions();
-    console.warn('Could not load recipe authoring options', err);
+  } else {
+    console.warn(
+      'Extended authoring helpers did not load; categories remain available from the cookbook index.',
+      authoringResult.status === 'rejected' ? authoringResult.reason : null
+    );
   }
+
+  categoryCatalogState = 'ready';
+  syncCategoryOptions();
+  pendingDraftCategories = [];
+  syncUnitSelects();
+  updateSectionSuggestions();
+  updateDependencySuggestions();
+  touchSlugFromTitle();
 }
 
 function ingredientChoices() {
@@ -2209,9 +2252,6 @@ function configureAdminEditUi() {
 
   const heading = document.getElementById('composer-site-title');
   if (heading) heading.textContent = 'Review recipe';
-
-  const inboxLink = document.getElementById('admin-inbox-link');
-  if (inboxLink) inboxLink.hidden = false;
 
   const banner = document.getElementById('admin-edit-banner');
   if (banner) banner.hidden = false;
