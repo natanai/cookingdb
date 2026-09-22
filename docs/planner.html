@@ -78,7 +78,9 @@
           <span class="search-icon" aria-hidden="true">🔎</span>
           <input id="planner-search" type="search" placeholder="Search recipes" autocomplete="off" />
         </label>
-        <ul class="recipe-list planner-recipe-list" id="planner-recipe-list" aria-live="polite" aria-describedby="planner-start-hint"></ul>
+        <ul class="recipe-list planner-recipe-list" id="planner-recipe-list" aria-live="polite" aria-describedby="planner-start-hint">
+          <li class="empty-state">Loading recipes…</li>
+        </ul>
       </section>
 
       <section
