@@ -8,7 +8,6 @@ import {
   setRememberedPassword,
 } from './inbox/inbox-api.js';
 import {
-  DIETARY_TAGS,
   renderIngredientLines,
   renderStepLines,
   groupLinesBySection,
@@ -37,48 +36,16 @@ const adminEditId = Number(pageParams.get('adminEdit'));
 const isAdminEditMode = Number.isInteger(adminEditId) && adminEditId > 0;
 let adminEditUpdatedAt = '';
 
-const HELP_TEXT = {
-  title: 'Write the full recipe name just like you would tell a friend.',
-  slug: 'Short ID for the link. Use lowercase letters, numbers, dashes, or underscores—we fill it from the title for you.',
-  notes: 'Quick tips such as storage, serving, or special tools. Leave blank if there is nothing extra.',
-  family: 'Add a family name if this recipe is tied to a specific family.',
-  categories: 'Pick the cookbook sections that fit (e.g., “Main dishes” and “Slow cooker”).',
-  batch: 'How many batches the written recipe makes. Example: set to 2 if the card already makes two pans.',
-  ingredients:
-    'Enter name, amount, and unit for each line. Use a section label like “Sauce” or “Filling” when the recipe has parts.',
-  steps:
-    'Write steps in cooking order. Click the ingredients each step uses so the preview stays accurate.',
-  showWhen: 'Only include this ingredient when another dropdown is set to a specific option.',
-  showWhenEnabled: 'Only include this ingredient when another dropdown is set to a specific option.',
-  inlineGroup: 'Use the same short key to keep related items on one line, such as “salt + pepper.”',
-  amount: 'Type the amount exactly as written, such as “1 1/2” or “scant 1 cup.”',
-  sectionLabel: 'Adds a bold mini heading such as “Chicken” or “Sauce” above the related ingredients.',
-  alternativeNote: 'Shows as “(or …)” on the recipe line so families see swaps like “(or almond milk)”.',
-  altNote: 'Shows as “(or …)” on the recipe line so families see swaps like “(or almond milk)”.',
-  optionKey: 'Text families pick in the dropdown, like “beef broth” or “oat milk.”',
-  optionValue: 'Text families pick in the dropdown, like “beef broth” or “oat milk.”',
-  isChoiceOption: 'Turns this ingredient into one option in a dropdown swap.',
-  choiceGroup: 'Options with the same group name become one Swap menu, like “Broth type.”',
-  swapLabel: 'Label shown next to the swap dropdown, such as “Broth”; leave blank to reuse the group name.',
-  choiceLabel: 'Label shown next to the swap dropdown, such as “Broth”; leave blank to reuse the group name.',
-  isDefaultChoice: 'Sets which option shows first before anyone makes a swap.',
-  choiceDefault: 'Sets which option shows first before anyone makes a swap.',
-};
-
-function attachHelpTrigger(button, key) {
-  if (!button || !key || !HELP_TEXT[key]) return;
-  button.addEventListener('click', () => {
-    window.alert(HELP_TEXT[key]);
-  });
-}
-
 let ingredientAutocompleteEntries = [];
 const ingredientAutocompleteByLabel = new Map();
+const ingredientAutocompleteById = new Map();
 const categorySet = new Set();
 const unitChoices = new Map();
 const unitSelects = new Set();
 const sectionSet = new Set();
-const unitFrequency = new Map();
+const commonUnitByIngredient = new Map();
+const existingRecipeIds = new Set();
+let ingredientRowSequence = 0;
 let warnedMissingChoiceGroup = false;
 
 function slugify(text) {
@@ -98,11 +65,22 @@ function uniqueToken(baseToken, counterMap, { enforceUnique = true } = {}) {
   return `${baseToken}-${next}`;
 }
 
+function uniqueRecipeSlug(baseSlug) {
+  if (!baseSlug || !existingRecipeIds.has(baseSlug)) return baseSlug;
+  let suffix = 2;
+  let candidate = `${baseSlug}-${suffix}`;
+  while (existingRecipeIds.has(candidate)) {
+    suffix += 1;
+    candidate = `${baseSlug}-${suffix}`;
+  }
+  return candidate;
+}
+
 function touchSlugFromTitle() {
   const titleInput = document.getElementById('title');
   const slugInput = document.getElementById('slug');
   if (!slugInput.dataset.userEdited || slugInput.dataset.userEdited === 'false') {
-    slugInput.value = slugify(titleInput.value || '');
+    slugInput.value = uniqueRecipeSlug(slugify(titleInput.value || ''));
   }
 }
 
@@ -147,16 +125,24 @@ async function loadIngredientAutocomplete() {
     }
 
     ingredientAutocompleteByLabel.clear();
+    ingredientAutocompleteById.clear();
     ingredientAutocompleteEntries.forEach((entry) => {
       if (!ingredientAutocompleteByLabel.has(entry.search)) {
         ingredientAutocompleteByLabel.set(entry.search, entry);
       }
+      if (!ingredientAutocompleteById.has(entry.ingredient_id)) {
+        ingredientAutocompleteById.set(entry.ingredient_id, entry);
+      }
     });
     ingredientAutocompleteState = 'ready';
+    refreshIngredientCatalogNotes();
+    refreshPreview();
   } catch (err) {
     ingredientAutocompleteState = 'failed';
     ingredientAutocompleteEntries = [];
     ingredientAutocompleteByLabel.clear();
+    ingredientAutocompleteById.clear();
+    refreshIngredientCatalogNotes();
     throw err;
   }
 }
