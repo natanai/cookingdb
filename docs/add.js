@@ -343,36 +343,8 @@ function syncUnitSelects() {
   unitSelects.forEach((select) => syncUnitSelect(select));
 }
 
-function recordUnitFrequency(token, unit) {
-  if (!token || !unit) return;
-  if (!unitFrequency.has(token)) {
-    unitFrequency.set(token, new Map());
-  }
-  const counter = unitFrequency.get(token);
-  counter.set(unit, (counter.get(unit) || 0) + 1);
-}
-
-function commonUnitForToken(token) {
-  const counts = unitFrequency.get(token);
-  if (!counts) return '';
-  let topUnit = '';
-  let topCount = 0;
-  counts.forEach((count, unit) => {
-    if (count > topCount) {
-      topUnit = unit;
-      topCount = count;
-    }
-  });
-  return topUnit;
-}
-
-function normalizeIngredientsForSuggestions(recipe) {
-  if (!recipe || typeof recipe !== 'object') return [];
-  if (Array.isArray(recipe.ingredients)) return recipe.ingredients.filter(Boolean);
-  if (recipe.ingredients && typeof recipe.ingredients === 'object') {
-    return Object.values(recipe.ingredients).filter(Boolean);
-  }
-  return [];
+function commonUnitForIngredient(ingredientId) {
+  return commonUnitByIngredient.get(String(ingredientId || '').trim()) || '';
 }
 
 function syncPanOptions({ failed = false } = {}) {
@@ -426,37 +398,47 @@ async function loadPanOptions() {
   }
 }
 
-async function loadExistingRecipes() {
+async function loadAuthoringOptions() {
   categoryCatalogState = 'loading';
   syncCategoryOptions();
 
   try {
-    const recipes = await fetchBuiltJson('recipes.json', { label: 'Recipe authoring options' });
-    if (!Array.isArray(recipes)) {
+    const options = await fetchBuiltJson('authoring-options.json', {
+      label: 'Recipe authoring options',
+    });
+    if (!options || typeof options !== 'object') {
       throw new Error('Recipe authoring options returned invalid data.');
     }
 
-    recipes.forEach((recipe) => {
-      (recipe.categories || []).forEach((cat) => categorySet.add(cat));
-      normalizeIngredientsForSuggestions(recipe).forEach((tokenData) => {
-        const tokenFromData = tokenData.token || tokenData.options?.[0]?.ingredient_id || '';
-        const token = slugify(tokenFromData);
-        (tokenData.options || []).forEach((opt) => {
-          if (opt.unit) {
-            unitChoices.set(opt.unit, unitChoices.get(opt.unit) || opt.unit);
-            recordUnitFrequency(token, opt.unit);
-          }
-          if (opt.section) sectionSet.add(opt.section);
-        });
-        if (tokenData.section) sectionSet.add(tokenData.section);
-      });
+    categorySet.clear();
+    sectionSet.clear();
+    commonUnitByIngredient.clear();
+    existingRecipeIds.clear();
+
+    (options.categories || []).forEach((category) => {
+      if (category) categorySet.add(String(category));
+    });
+    (options.sections || []).forEach((section) => {
+      if (section) sectionSet.add(String(section));
+    });
+    (options.units || []).forEach((unit) => {
+      const value = String(unit || '').trim();
+      if (value) unitChoices.set(value, unitChoices.get(value) || value);
+    });
+    Object.entries(options.common_units_by_ingredient || {}).forEach(([ingredientId, unit]) => {
+      if (ingredientId && unit) commonUnitByIngredient.set(ingredientId, String(unit));
+    });
+    (options.recipe_ids || []).forEach((recipeId) => {
+      if (recipeId) existingRecipeIds.add(String(recipeId));
     });
 
     categoryCatalogState = 'ready';
     syncCategoryOptions();
+    pendingDraftCategories = [];
     syncUnitSelects();
     updateSectionSuggestions();
     updateDependencySuggestions();
+    touchSlugFromTitle();
   } catch (err) {
     categoryCatalogState = 'failed';
     syncCategoryOptions();
