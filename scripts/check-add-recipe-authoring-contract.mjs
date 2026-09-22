@@ -15,7 +15,7 @@ const checks = [
   ['pan scaling metadata', html.includes('id="default-pan"')],
   ['pan selector gated until catalog is ready', html.includes('id="default-pan" name="default-pan" disabled aria-busy="true"') && html.includes('Loading pan sizes…')],
   ['pan catalog uses shared fresh-data loader', js.includes("fetchBuiltJson('pan-sizes.json'")],
-  ['normal authoring renders before helper catalogs settle', js.includes('const restored = restoreDraft();') && js.includes('Promise.allSettled([') && js.indexOf('const restored = restoreDraft();') < js.indexOf('Promise.allSettled([')],
+  ['normal authoring renders before helper catalogs settle', js.includes('const restored = restoreDraft();') && js.includes('void Promise.allSettled([') && js.indexOf('const restored = restoreDraft();') < js.indexOf('void Promise.allSettled([', js.indexOf('const restored = restoreDraft();'))],
   ['pan catalog failure is explicit', js.includes("'Pan sizes unavailable'")],
   ['ingredient sections', js.includes('createIngredientSection') && js.includes('start-section-here')],
   ['single contextual section creation flow', !html.includes('id="add-ingredient-section"') && js.includes('start-section-here')],
