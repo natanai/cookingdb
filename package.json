@@ -8,6 +8,6 @@
     "build": "node scripts/build.mjs",
     "import:inbox": "node scripts/import-inbox.mjs",
     "report:missing-portions": "node scripts/report_missing_portions.js",
-    "test": "node --check docs/site-behavior.js && node --check docs/built-data.js && node --check docs/recipe-model.js && node --check docs/app.js && node --check docs/add.js && node --check docs/admin.js && node --check docs/bread-maker.js && node --check docs/planner.js && node --check docs/recipe.js && node scripts/check-architecture-contract.mjs && node scripts/check-site-behavior-contract.mjs && node scripts/check-data-loading-contract.mjs && node docs/recipe-utils.test.mjs && node scripts/check-print-contract.mjs && node scripts/check-add-recipe-authoring-contract.mjs && node scripts/check-admin-inbox-review-contract.mjs"
+    "test": "node --check docs/site-behavior.js && node --check docs/built-data.js && node --check docs/recipe-model.js && node --check docs/app.js && node --check docs/add.js && node --check docs/admin.js && node --check docs/bread-maker.js && node --check docs/planner.js && node --check docs/recipe.js && node scripts/check-architecture-contract.mjs && node scripts/check-site-behavior-contract.mjs && node scripts/check-data-loading-contract.mjs && node docs/recipe-model.test.mjs && node docs/recipe-utils.test.mjs && node scripts/check-print-contract.mjs && node scripts/check-add-recipe-authoring-contract.mjs && node scripts/check-admin-inbox-review-contract.mjs"
   }
 }
