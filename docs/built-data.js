@@ -15,15 +15,11 @@ export function builtDataUrl(path) {
   return `${url}${separator}v=${encodeURIComponent(BUILT_DATA_VERSION)}`;
 }
 
-export async function fetchBuiltJson(path, { label = '' } = {}) {
-  const baseUrl = normalizeBuiltPath(path);
-  const url = builtDataUrl(path);
-  const resourceLabel = label || baseUrl.replace(BUILT_PREFIX, '');
-
+async function requestBuiltJson(url, resourceLabel, cache) {
   let response;
   try {
     response = await fetch(url, {
-      cache: 'force-cache',
+      cache,
       credentials: 'same-origin',
     });
   } catch (error) {
@@ -38,5 +34,22 @@ export async function fetchBuiltJson(path, { label = '' } = {}) {
     return await response.json();
   } catch (error) {
     throw new Error(`${resourceLabel} returned invalid data.`, { cause: error });
+  }
+}
+
+export async function fetchBuiltJson(path, { label = '' } = {}) {
+  const baseUrl = normalizeBuiltPath(path);
+  const url = builtDataUrl(path);
+  const resourceLabel = label || baseUrl.replace(BUILT_PREFIX, '');
+
+  try {
+    return await requestBuiltJson(url, resourceLabel, 'default');
+  } catch (firstError) {
+    try {
+      return await requestBuiltJson(url, resourceLabel, 'reload');
+    } catch (retryError) {
+      retryError.cause = retryError.cause || firstError;
+      throw retryError;
+    }
   }
 }
