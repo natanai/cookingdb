@@ -1,4 +1,5 @@
 import { siteBehavior } from './site-behavior.js';
+import { fetchBuiltJson } from './built-data.js';
 import {
   adminExportPending,
   adminUpdatePending,
@@ -20,9 +21,12 @@ const stepsListEl = document.getElementById('steps-list');
 const dependencySuggestionsEl = document.getElementById('dependency-suggestions');
 const sectionSuggestionsEl = document.getElementById('section-suggestions');
 const categorySelectEl = document.getElementById('categories');
+const categoryMenuEl = document.getElementById('category-menu');
 const panSelectEl = document.getElementById('default-pan');
 let panSizeCatalog = [];
 let pendingDraftPan = '';
+let ingredientAutocompleteState = 'loading';
+let categoryCatalogState = 'loading';
 // Remove required attribute from slug input as it's auto-generated
 const slugInputField = document.getElementById('slug');
 if (slugInputField) slugInputField.removeAttribute('required');
@@ -124,26 +128,37 @@ function normalizeAutocompleteText(value) {
 }
 
 async function loadIngredientAutocomplete() {
-  const response = await fetch('./built/ingredient-autocomplete.json');
-  if (!response.ok) {
-    throw new Error(`Ingredient autocomplete request failed: ${response.status}`);
-  }
-  const entries = await response.json();
-  ingredientAutocompleteEntries = Array.isArray(entries)
-    ? entries
-        .filter((entry) => entry?.label && entry?.ingredient_id)
-        .map((entry) => ({
-          ...entry,
-          search: normalizeAutocompleteText(entry.label),
-        }))
-    : [];
+  ingredientAutocompleteState = 'loading';
+  try {
+    const entries = await fetchBuiltJson('ingredient-autocomplete.json', {
+      label: 'Ingredient lookup',
+    });
+    ingredientAutocompleteEntries = Array.isArray(entries)
+      ? entries
+          .filter((entry) => entry?.label && entry?.ingredient_id)
+          .map((entry) => ({
+            ...entry,
+            search: normalizeAutocompleteText(entry.label),
+          }))
+      : [];
 
-  ingredientAutocompleteByLabel.clear();
-  ingredientAutocompleteEntries.forEach((entry) => {
-    if (!ingredientAutocompleteByLabel.has(entry.search)) {
-      ingredientAutocompleteByLabel.set(entry.search, entry);
+    if (ingredientAutocompleteEntries.length === 0) {
+      throw new Error('Ingredient lookup returned no ingredients.');
     }
-  });
+
+    ingredientAutocompleteByLabel.clear();
+    ingredientAutocompleteEntries.forEach((entry) => {
+      if (!ingredientAutocompleteByLabel.has(entry.search)) {
+        ingredientAutocompleteByLabel.set(entry.search, entry);
+      }
+    });
+    ingredientAutocompleteState = 'ready';
+  } catch (err) {
+    ingredientAutocompleteState = 'failed';
+    ingredientAutocompleteEntries = [];
+    ingredientAutocompleteByLabel.clear();
+    throw err;
+  }
 }
 
 function ingredientAutocompleteMatches(query, limit = 8) {
@@ -209,9 +224,19 @@ function buildUnitDisplay(unitKey, unitDef) {
 function updateCategorySummary() {
   const summary = document.getElementById('category-summary');
   if (!summary || !categorySelectEl) return;
+
+  if (categoryCatalogState === 'loading') {
+    summary.textContent = 'Loading categories…';
+    return;
+  }
+  if (categoryCatalogState === 'failed') {
+    summary.textContent = 'Categories unavailable';
+    return;
+  }
+
   const selected = [...categorySelectEl.selectedOptions].map((opt) => opt.textContent);
   if (selected.length === 0) {
-    summary.textContent = 'Choose categories';
+    summary.textContent = categorySelectEl.options.length ? 'Choose categories' : 'No categories available';
   } else if (selected.length <= 2) {
     summary.textContent = selected.join(', ');
   } else {
@@ -223,6 +248,27 @@ function renderCategoryChips() {
   const container = document.getElementById('category-options');
   if (!container || !categorySelectEl) return;
   container.innerHTML = '';
+
+  if (categoryCatalogState !== 'ready') {
+    const status = document.createElement('div');
+    status.className = 'muted';
+    status.textContent =
+      categoryCatalogState === 'failed'
+        ? 'Categories could not load. Refresh the page to retry.'
+        : 'Loading categories…';
+    container.appendChild(status);
+    updateCategorySummary();
+    return;
+  }
+
+  if (categorySelectEl.options.length === 0) {
+    const status = document.createElement('div');
+    status.className = 'muted';
+    status.textContent = 'No recipe categories are available.';
+    container.appendChild(status);
+    updateCategorySummary();
+    return;
+  }
 
   [...categorySelectEl.options].forEach((opt) => {
     if (opt.disabled) return;
@@ -254,12 +300,8 @@ function syncCategoryOptions() {
   if (!categorySelectEl) return;
   const previousSelection = new Set([...categorySelectEl.selectedOptions].map((opt) => opt.value));
   categorySelectEl.innerHTML = '';
-  const sortedCategories = [...categorySet].sort((a, b) => a.localeCompare(b));
-  if (sortedCategories.length === 0) {
-    renderCategoryChips();
-    return;
-  }
 
+  const sortedCategories = [...categorySet].sort((a, b) => a.localeCompare(b));
   sortedCategories.forEach((cat) => {
     const opt = document.createElement('option');
     opt.value = cat;
@@ -267,6 +309,12 @@ function syncCategoryOptions() {
     opt.selected = previousSelection.has(cat) || pendingDraftCategories.includes(cat);
     categorySelectEl.appendChild(opt);
   });
+
+  const ready = categoryCatalogState === 'ready';
+  categorySelectEl.disabled = !ready;
+  if (categoryMenuEl) {
+    categoryMenuEl.setAttribute('aria-busy', categoryCatalogState === 'loading' ? 'true' : 'false');
+  }
   renderCategoryChips();
 }
 
@@ -381,9 +429,7 @@ async function loadPanOptions() {
   panSelectEl.setAttribute('aria-busy', 'true');
 
   try {
-    const response = await fetch('./built/pan-sizes.json', { cache: 'no-store' });
-    if (!response.ok) throw new Error(`Pan catalog request failed: ${response.status}`);
-    const pans = await response.json();
+    const pans = await fetchBuiltJson('pan-sizes.json', { label: 'Pan sizes' });
     panSizeCatalog = Array.isArray(pans) ? pans.filter((pan) => pan?.id && pan?.label) : [];
     if (panSizeCatalog.length === 0) throw new Error('Pan catalog is empty');
     syncPanOptions();
@@ -395,32 +441,40 @@ async function loadPanOptions() {
 }
 
 async function loadExistingRecipes() {
+  categoryCatalogState = 'loading';
+  syncCategoryOptions();
+
   try {
-    const res = await fetch('./built/recipes.json');
-    if (res.ok) {
-      const recipes = await res.json();
-      recipes.forEach((recipe) => {
-        (recipe.categories || []).forEach((cat) => categorySet.add(cat));
-        normalizeIngredientsForSuggestions(recipe).forEach((tokenData) => {
-          const tokenFromData = tokenData.token || tokenData.options?.[0]?.ingredient_id || '';
-          const token = slugify(tokenFromData);
-          tokenData.options.forEach((opt) => {
-            if (opt.unit) {
-              unitChoices.set(opt.unit, unitChoices.get(opt.unit) || opt.unit);
-              recordUnitFrequency(token, opt.unit);
-            }
-            if (opt.section) sectionSet.add(opt.section);
-          });
-          if (tokenData.section) sectionSet.add(tokenData.section);
-        });
-      });
-      syncCategoryOptions();
-      syncUnitSelects();
-      updateSectionSuggestions();
-      updateDependencySuggestions();
+    const recipes = await fetchBuiltJson('recipes.json', { label: 'Recipe authoring options' });
+    if (!Array.isArray(recipes)) {
+      throw new Error('Recipe authoring options returned invalid data.');
     }
+
+    recipes.forEach((recipe) => {
+      (recipe.categories || []).forEach((cat) => categorySet.add(cat));
+      normalizeIngredientsForSuggestions(recipe).forEach((tokenData) => {
+        const tokenFromData = tokenData.token || tokenData.options?.[0]?.ingredient_id || '';
+        const token = slugify(tokenFromData);
+        (tokenData.options || []).forEach((opt) => {
+          if (opt.unit) {
+            unitChoices.set(opt.unit, unitChoices.get(opt.unit) || opt.unit);
+            recordUnitFrequency(token, opt.unit);
+          }
+          if (opt.section) sectionSet.add(opt.section);
+        });
+        if (tokenData.section) sectionSet.add(tokenData.section);
+      });
+    });
+
+    categoryCatalogState = 'ready';
+    syncCategoryOptions();
+    syncUnitSelects();
+    updateSectionSuggestions();
+    updateDependencySuggestions();
   } catch (err) {
-    console.warn('Could not load suggestions', err);
+    categoryCatalogState = 'failed';
+    syncCategoryOptions();
+    console.warn('Could not load recipe authoring options', err);
   }
 }
 
@@ -695,6 +749,21 @@ function createIngredientRow(defaults = {}) {
 
     if (!query) {
       closeAutocomplete();
+      return;
+    }
+
+    if (ingredientAutocompleteState !== 'ready') {
+      const status = document.createElement('button');
+      status.type = 'button';
+      status.disabled = true;
+      status.className = 'ingredient-autocomplete-option';
+      status.textContent =
+        ingredientAutocompleteState === 'failed'
+          ? 'Ingredient lookup unavailable — refresh to retry'
+          : 'Loading ingredients…';
+      autocompleteMenu.appendChild(status);
+      autocompleteMenu.hidden = false;
+      nameInput.setAttribute('aria-expanded', 'true');
       return;
     }
 
@@ -1358,9 +1427,20 @@ function buildRecipeDraft() {
     markInvalid(slugInput);
   }
 
-  if (categories.length === 0) {
-    issues.push('Add at least one category.');
+  if (categoryCatalogState === 'failed') {
+    issues.push('Categories could not load. Refresh the page before submitting this recipe.');
     markInvalid(document.getElementById('category-menu') || categoriesSelect);
+  } else if (categories.length === 0) {
+    issues.push(
+      categoryCatalogState === 'loading'
+        ? 'Categories are still loading. Wait a moment and try again.'
+        : 'Add at least one category.'
+    );
+    markInvalid(document.getElementById('category-menu') || categoriesSelect);
+  }
+
+  if (ingredientAutocompleteState === 'failed') {
+    issues.push('Ingredient lookup could not load. Refresh the page before submitting this recipe.');
   }
 
   if (!Number.isFinite(defaultBase) || defaultBase <= 0) {
@@ -1784,6 +1864,7 @@ function restoreDraft() {
 
   restoringDraft = true;
   pendingDraftCategories = Array.isArray(draft.categories) ? draft.categories : [];
+  syncCategoryOptions();
   document.getElementById('title').value = draft.title || '';
   document.getElementById('servings-per-batch').value = draft.servings || '';
   document.getElementById('family').value = draft.family || '';
@@ -2227,10 +2308,9 @@ async function bootstrap() {
 
   loadUnitsFromConversions();
   syncCategoryOptions();
+  const existingRecipesPromise = loadExistingRecipes();
   const ingredientAutocompletePromise = loadIngredientAutocomplete().catch((err) => {
     console.warn('Could not preload ingredient autocomplete', err);
-    ingredientAutocompleteEntries = [];
-    ingredientAutocompleteByLabel.clear();
   });
   const panPromise = loadPanOptions();
 
@@ -2257,7 +2337,7 @@ async function bootstrap() {
   document.getElementById('recipe-form').addEventListener('submit', handleSubmit);
 
   if (isAdminEditMode) {
-    await Promise.all([ingredientAutocompletePromise, panPromise, loadExistingRecipes()]);
+    await Promise.all([ingredientAutocompletePromise, panPromise, existingRecipesPromise]);
     await loadAdminEditRecipe();
     return;
   }
@@ -2275,7 +2355,7 @@ async function bootstrap() {
     createStepRow();
     refreshPreview();
   }
-  loadExistingRecipes();
+  void existingRecipesPromise;
 }
 
 bootstrap();
