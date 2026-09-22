@@ -1,4 +1,5 @@
 import { siteBehavior } from './site-behavior.js';
+import { fetchBuiltJson } from './built-data.js';
 import {
   DIETARY_TAGS,
   restrictionsActive,
@@ -19,6 +20,7 @@ import {
 } from './recipe-utils.js';
 import {
   computeBatchTotals,
+  dataLoadState,
   loadIngredientPortions,
   loadIngredientUnitFactors,
   loadNutritionCoverage,
@@ -189,11 +191,7 @@ function loadStoredInboxRecipes() {
 }
 
 async function loadRecipes() {
-  const recipesRes = await fetch('./built/recipes.json');
-  if (!recipesRes.ok) {
-    throw new Error(`Unable to load built/recipes.json (${recipesRes.status})`);
-  }
-  const builtRaw = await recipesRes.json();
+  const builtRaw = await fetchBuiltJson('recipes.json', { label: 'Recipe box' });
   const built = Array.isArray(builtRaw) ? builtRaw.map(normalizeRecipeForPage).filter(Boolean) : [];
   const inbox = loadStoredInboxRecipes();
   const recipeIndex = new Map(
@@ -1043,6 +1041,7 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
   const dietaryBadges = document.getElementById('dietary-badges');
   const multiplierInput = document.getElementById('multiplier');
   const multiplierHelper = document.getElementById('multiplier-helper');
+  const recipeDataWarning = document.getElementById('recipe-data-warning');
   const ingredientsHeading = document.getElementById('ingredients-heading');
   const heroContent = document.querySelector('.hero-content');
   const recipeNoteDetails = document.querySelector('.recipe-note');
@@ -1084,6 +1083,31 @@ function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredi
     if (queryValue !== undefined) return queryValue;
     return defaultCompatibility[restrictionKey];
   };
+
+  const dataWarnings = [];
+  const portionState = dataLoadState(ingredientPortions);
+  const factorState = dataLoadState(ingredientUnitFactors);
+  if (portionState === 'failed' || factorState === 'failed') {
+    dataWarnings.push(
+      'Kitchen count estimates and some unit conversions could not load. Refresh the page to retry.'
+    );
+  }
+
+  const nutritionReferenceState = [
+    dataLoadState(nutritionPolicy),
+    dataLoadState(nutritionGuidelines),
+    dataLoadState(nutritionCoverage),
+  ];
+  if (nutritionReferenceState.some((value) => value === 'failed' || value === 'degraded')) {
+    dataWarnings.push(
+      'Some nutrition reference data could not load, so nutrition estimates may use fallback defaults.'
+    );
+  }
+
+  if (recipeDataWarning) {
+    recipeDataWarning.textContent = dataWarnings.join(' ');
+    recipeDataWarning.hidden = dataWarnings.length === 0;
+  }
 
   const state = {
     multiplier: Number(recipe.default_base) || 1,
