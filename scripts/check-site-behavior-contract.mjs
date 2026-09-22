@@ -221,6 +221,10 @@ assert(
   'cookbook must warm recipe navigation immediately after its first render'
 );
 assert(
+  appScript.includes('builtDataUrl(url)') && appScript.includes("cache: isBuiltData ? 'force-cache' : 'default'"),
+  'cookbook warmup must populate the same reusable versioned cache consumed by recipe pages'
+);
+assert(
   !recipeScript.includes("fetch('./built/index.json')"),
   'recipe page must not refetch the lightweight cookbook index after loading the full recipe box'
 );

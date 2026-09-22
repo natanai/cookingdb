@@ -1,5 +1,5 @@
 import { siteBehavior } from './site-behavior.js';
-import { fetchBuiltJson } from './built-data.js';
+import { builtDataUrl, fetchBuiltJson } from './built-data.js';
 import { familyListPending, getRememberedPassword, setRememberedPassword } from './inbox/inbox-api.js';
 import { recipeDefaultCompatibility } from './recipe-utils.js';
 
@@ -173,9 +173,11 @@ async function loadIndex() {
 }
 
 async function warmRecipeResource(url) {
-  const response = await fetch(url, {
+  const isBuiltData = url.startsWith('./built/');
+  const requestUrl = isBuiltData ? builtDataUrl(url) : url;
+  const response = await fetch(requestUrl, {
     credentials: 'same-origin',
-    cache: url.startsWith('./built/') ? 'no-store' : 'default',
+    cache: isBuiltData ? 'force-cache' : 'default',
   });
   if (!response.ok) {
     throw new Error(`Unable to warm ${url} (${response.status})`);

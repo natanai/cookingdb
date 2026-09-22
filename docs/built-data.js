@@ -1,3 +1,5 @@
+import { BUILT_DATA_VERSION } from './built/version.js';
+
 const BUILT_PREFIX = './built/';
 
 function normalizeBuiltPath(path) {
@@ -7,14 +9,21 @@ function normalizeBuiltPath(path) {
   return `${BUILT_PREFIX}${value.replace(/^\.\//, '')}`;
 }
 
-export async function fetchBuiltJson(path, { label = '' } = {}) {
+export function builtDataUrl(path) {
   const url = normalizeBuiltPath(path);
-  const resourceLabel = label || url.replace(BUILT_PREFIX, '');
+  const separator = url.includes('?') ? '&' : '?';
+  return `${url}${separator}v=${encodeURIComponent(BUILT_DATA_VERSION)}`;
+}
+
+export async function fetchBuiltJson(path, { label = '' } = {}) {
+  const baseUrl = normalizeBuiltPath(path);
+  const url = builtDataUrl(path);
+  const resourceLabel = label || baseUrl.replace(BUILT_PREFIX, '');
 
   let response;
   try {
     response = await fetch(url, {
-      cache: 'no-store',
+      cache: 'force-cache',
       credentials: 'same-origin',
     });
   } catch (error) {

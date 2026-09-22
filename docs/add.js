@@ -8,7 +8,6 @@ import {
   setRememberedPassword,
 } from './inbox/inbox-api.js';
 import {
-  DIETARY_TAGS,
   renderIngredientLines,
   renderStepLines,
   groupLinesBySection,
@@ -37,48 +36,16 @@ const adminEditId = Number(pageParams.get('adminEdit'));
 const isAdminEditMode = Number.isInteger(adminEditId) && adminEditId > 0;
 let adminEditUpdatedAt = '';
 
-const HELP_TEXT = {
-  title: 'Write the full recipe name just like you would tell a friend.',
-  slug: 'Short ID for the link. Use lowercase letters, numbers, dashes, or underscores—we fill it from the title for you.',
-  notes: 'Quick tips such as storage, serving, or special tools. Leave blank if there is nothing extra.',
-  family: 'Add a family name if this recipe is tied to a specific family.',
-  categories: 'Pick the cookbook sections that fit (e.g., “Main dishes” and “Slow cooker”).',
-  batch: 'How many batches the written recipe makes. Example: set to 2 if the card already makes two pans.',
-  ingredients:
-    'Enter name, amount, and unit for each line. Use a section label like “Sauce” or “Filling” when the recipe has parts.',
-  steps:
-    'Write steps in cooking order. Click the ingredients each step uses so the preview stays accurate.',
-  showWhen: 'Only include this ingredient when another dropdown is set to a specific option.',
-  showWhenEnabled: 'Only include this ingredient when another dropdown is set to a specific option.',
-  inlineGroup: 'Use the same short key to keep related items on one line, such as “salt + pepper.”',
-  amount: 'Type the amount exactly as written, such as “1 1/2” or “scant 1 cup.”',
-  sectionLabel: 'Adds a bold mini heading such as “Chicken” or “Sauce” above the related ingredients.',
-  alternativeNote: 'Shows as “(or …)” on the recipe line so families see swaps like “(or almond milk)”.',
-  altNote: 'Shows as “(or …)” on the recipe line so families see swaps like “(or almond milk)”.',
-  optionKey: 'Text families pick in the dropdown, like “beef broth” or “oat milk.”',
-  optionValue: 'Text families pick in the dropdown, like “beef broth” or “oat milk.”',
-  isChoiceOption: 'Turns this ingredient into one option in a dropdown swap.',
-  choiceGroup: 'Options with the same group name become one Swap menu, like “Broth type.”',
-  swapLabel: 'Label shown next to the swap dropdown, such as “Broth”; leave blank to reuse the group name.',
-  choiceLabel: 'Label shown next to the swap dropdown, such as “Broth”; leave blank to reuse the group name.',
-  isDefaultChoice: 'Sets which option shows first before anyone makes a swap.',
-  choiceDefault: 'Sets which option shows first before anyone makes a swap.',
-};
-
-function attachHelpTrigger(button, key) {
-  if (!button || !key || !HELP_TEXT[key]) return;
-  button.addEventListener('click', () => {
-    window.alert(HELP_TEXT[key]);
-  });
-}
-
 let ingredientAutocompleteEntries = [];
 const ingredientAutocompleteByLabel = new Map();
+const ingredientAutocompleteById = new Map();
 const categorySet = new Set();
 const unitChoices = new Map();
 const unitSelects = new Set();
 const sectionSet = new Set();
-const unitFrequency = new Map();
+const commonUnitByIngredient = new Map();
+const existingRecipeIds = new Set();
+let ingredientRowSequence = 0;
 let warnedMissingChoiceGroup = false;
 
 function slugify(text) {
@@ -98,11 +65,22 @@ function uniqueToken(baseToken, counterMap, { enforceUnique = true } = {}) {
   return `${baseToken}-${next}`;
 }
 
+function uniqueRecipeSlug(baseSlug) {
+  if (!baseSlug || !existingRecipeIds.has(baseSlug)) return baseSlug;
+  let suffix = 2;
+  let candidate = `${baseSlug}-${suffix}`;
+  while (existingRecipeIds.has(candidate)) {
+    suffix += 1;
+    candidate = `${baseSlug}-${suffix}`;
+  }
+  return candidate;
+}
+
 function touchSlugFromTitle() {
   const titleInput = document.getElementById('title');
   const slugInput = document.getElementById('slug');
   if (!slugInput.dataset.userEdited || slugInput.dataset.userEdited === 'false') {
-    slugInput.value = slugify(titleInput.value || '');
+    slugInput.value = uniqueRecipeSlug(slugify(titleInput.value || ''));
   }
 }
 
@@ -147,16 +125,24 @@ async function loadIngredientAutocomplete() {
     }
 
     ingredientAutocompleteByLabel.clear();
+    ingredientAutocompleteById.clear();
     ingredientAutocompleteEntries.forEach((entry) => {
       if (!ingredientAutocompleteByLabel.has(entry.search)) {
         ingredientAutocompleteByLabel.set(entry.search, entry);
       }
+      if (!ingredientAutocompleteById.has(entry.ingredient_id)) {
+        ingredientAutocompleteById.set(entry.ingredient_id, entry);
+      }
     });
     ingredientAutocompleteState = 'ready';
+    refreshIngredientCatalogNotes();
+    refreshPreview();
   } catch (err) {
     ingredientAutocompleteState = 'failed';
     ingredientAutocompleteEntries = [];
     ingredientAutocompleteByLabel.clear();
+    ingredientAutocompleteById.clear();
+    refreshIngredientCatalogNotes();
     throw err;
   }
 }
@@ -357,36 +343,8 @@ function syncUnitSelects() {
   unitSelects.forEach((select) => syncUnitSelect(select));
 }
 
-function recordUnitFrequency(token, unit) {
-  if (!token || !unit) return;
-  if (!unitFrequency.has(token)) {
-    unitFrequency.set(token, new Map());
-  }
-  const counter = unitFrequency.get(token);
-  counter.set(unit, (counter.get(unit) || 0) + 1);
-}
-
-function commonUnitForToken(token) {
-  const counts = unitFrequency.get(token);
-  if (!counts) return '';
-  let topUnit = '';
-  let topCount = 0;
-  counts.forEach((count, unit) => {
-    if (count > topCount) {
-      topUnit = unit;
-      topCount = count;
-    }
-  });
-  return topUnit;
-}
-
-function normalizeIngredientsForSuggestions(recipe) {
-  if (!recipe || typeof recipe !== 'object') return [];
-  if (Array.isArray(recipe.ingredients)) return recipe.ingredients.filter(Boolean);
-  if (recipe.ingredients && typeof recipe.ingredients === 'object') {
-    return Object.values(recipe.ingredients).filter(Boolean);
-  }
-  return [];
+function commonUnitForIngredient(ingredientId) {
+  return commonUnitByIngredient.get(String(ingredientId || '').trim()) || '';
 }
 
 function syncPanOptions({ failed = false } = {}) {
@@ -440,37 +398,47 @@ async function loadPanOptions() {
   }
 }
 
-async function loadExistingRecipes() {
+async function loadAuthoringOptions() {
   categoryCatalogState = 'loading';
   syncCategoryOptions();
 
   try {
-    const recipes = await fetchBuiltJson('recipes.json', { label: 'Recipe authoring options' });
-    if (!Array.isArray(recipes)) {
+    const options = await fetchBuiltJson('authoring-options.json', {
+      label: 'Recipe authoring options',
+    });
+    if (!options || typeof options !== 'object') {
       throw new Error('Recipe authoring options returned invalid data.');
     }
 
-    recipes.forEach((recipe) => {
-      (recipe.categories || []).forEach((cat) => categorySet.add(cat));
-      normalizeIngredientsForSuggestions(recipe).forEach((tokenData) => {
-        const tokenFromData = tokenData.token || tokenData.options?.[0]?.ingredient_id || '';
-        const token = slugify(tokenFromData);
-        (tokenData.options || []).forEach((opt) => {
-          if (opt.unit) {
-            unitChoices.set(opt.unit, unitChoices.get(opt.unit) || opt.unit);
-            recordUnitFrequency(token, opt.unit);
-          }
-          if (opt.section) sectionSet.add(opt.section);
-        });
-        if (tokenData.section) sectionSet.add(tokenData.section);
-      });
+    categorySet.clear();
+    sectionSet.clear();
+    commonUnitByIngredient.clear();
+    existingRecipeIds.clear();
+
+    (options.categories || []).forEach((category) => {
+      if (category) categorySet.add(String(category));
+    });
+    (options.sections || []).forEach((section) => {
+      if (section) sectionSet.add(String(section));
+    });
+    (options.units || []).forEach((unit) => {
+      const value = String(unit || '').trim();
+      if (value) unitChoices.set(value, unitChoices.get(value) || value);
+    });
+    Object.entries(options.common_units_by_ingredient || {}).forEach(([ingredientId, unit]) => {
+      if (ingredientId && unit) commonUnitByIngredient.set(ingredientId, String(unit));
+    });
+    (options.recipe_ids || []).forEach((recipeId) => {
+      if (recipeId) existingRecipeIds.add(String(recipeId));
     });
 
     categoryCatalogState = 'ready';
     syncCategoryOptions();
+    pendingDraftCategories = [];
     syncUnitSelects();
     updateSectionSuggestions();
     updateDependencySuggestions();
+    touchSlugFromTitle();
   } catch (err) {
     categoryCatalogState = 'failed';
     syncCategoryOptions();
@@ -512,32 +480,54 @@ function ingredientChoices() {
   return choices;
 }
 
-function buildDietaryCheckboxes() {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'dietary-flags';
-  const options = [
-    { key: 'gluten_free', label: 'GF', title: 'Gluten-free' },
-    { key: 'egg_free', label: 'Egg', title: 'Egg-free' },
-    { key: 'dairy_free', label: 'Dairy', title: 'Dairy-free' },
-  ];
-  options.forEach((opt) => {
-    const label = document.createElement('label');
-    label.className = 'dietary-chip';
-    label.title = opt.title;
-    const input = document.createElement('input');
-    input.type = 'checkbox';
-    input.checked = true;
-    input.dataset.dietaryKey = opt.key;
-    label.appendChild(input);
-    label.append(opt.label);
-    wrapper.appendChild(label);
-  });
-  return wrapper;
+function dietaryFlagsForIngredientId(ingredientId) {
+  const entry = ingredientAutocompleteById.get(String(ingredientId || '').trim());
+  const dietary = entry?.dietary;
+  if (dietary && typeof dietary === 'object') {
+    return {
+      gluten_free: dietary.gluten_free === true,
+      egg_free: dietary.egg_free === true,
+      dairy_free: dietary.dairy_free === true,
+    };
+  }
+  return { gluten_free: false, egg_free: false, dairy_free: false };
+}
+
+function refreshIngredientCatalogNote(row) {
+  const note = row?.querySelector('.ingredient-catalog-note');
+  const nameInput = row?.querySelector('.ingredient-name');
+  const ingredientIdInput = row?.querySelector('.ingredient-id');
+  if (!note || !nameInput || !ingredientIdInput) return;
+
+  const name = nameInput.value.trim();
+  const ingredientId = ingredientIdInput.value.trim();
+  if (!name || ingredientAutocompleteState !== 'ready') {
+    note.hidden = true;
+    note.textContent = '';
+    return;
+  }
+
+  if (ingredientId && ingredientAutocompleteById.has(ingredientId)) {
+    note.hidden = true;
+    note.textContent = '';
+    return;
+  }
+
+  note.hidden = false;
+  note.textContent = 'New ingredient — catalog review is required before publishing.';
+}
+
+function refreshIngredientCatalogNotes() {
+  ingredientRowsEl
+    .querySelectorAll('.ingredient-row')
+    .forEach((row) => refreshIngredientCatalogNote(row));
 }
 
 function createIngredientRow(defaults = {}) {
   const row = document.createElement('div');
   row.className = 'ingredient-row';
+  ingredientRowSequence += 1;
+  const autocompleteId = `ingredient-autocomplete-${ingredientRowSequence}`;
   if (defaults.is_substitution) row.classList.add('is-substitution');
   row.innerHTML = `
     <div class="ingredient-main">
@@ -552,8 +542,11 @@ function createIngredientRow(defaults = {}) {
           role="combobox"
           aria-autocomplete="list"
           aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-controls="${autocompleteId}"
         />
-        <div class="ingredient-autocomplete-menu" role="listbox" hidden></div>
+        <div id="${autocompleteId}" class="ingredient-autocomplete-menu" role="listbox" hidden></div>
+        <small class="ingredient-catalog-note muted" hidden></small>
       </div>
       <button type="button" class="ingredient-more-toggle" aria-expanded="false" aria-label="Ingredient options">•••</button>
       <button type="button" class="remove-row-button remove-ingredient" aria-label="Remove ingredient">×</button>
@@ -579,11 +572,6 @@ function createIngredientRow(defaults = {}) {
           <span>Keep on the same line with</span>
           <input class="ingredient-inline-group" placeholder="Optional group name" />
         </label>
-
-        <details class="advanced-detail">
-          <summary>Dietary compatibility</summary>
-          <div class="dietary-slot"></div>
-        </details>
 
         <div class="choice-block">
           <label class="choice-toggle">
@@ -629,8 +617,6 @@ function createIngredientRow(defaults = {}) {
       </div>
     </div>
   `;
-  row.querySelector('.dietary-slot').replaceWith(buildDietaryCheckboxes());
-
   const nameInput = row.querySelector('.ingredient-name');
   const autocompleteMenu = row.querySelector('.ingredient-autocomplete-menu');
   const sectionInput = row.querySelector('.ingredient-section');
@@ -673,13 +659,6 @@ function createIngredientRow(defaults = {}) {
   conditionalToggle.checked = Boolean(depTokenInput.value || depOptionInput.value);
   unitInput.dataset.userChanged = 'false';
 
-  if (defaults.dietary) {
-    row.querySelectorAll('[data-dietary-key]').forEach((input) => {
-      const key = input.dataset.dietaryKey;
-      if (Object.prototype.hasOwnProperty.call(defaults.dietary, key)) input.checked = Boolean(defaults.dietary[key]);
-    });
-  }
-
   const syncChoiceFields = () => {
     const isChoice = isChoiceInput.checked;
     row.classList.toggle('is-choice', isChoice);
@@ -710,16 +689,45 @@ function createIngredientRow(defaults = {}) {
   }
 
   const handleChange = () => {
+    refreshIngredientCatalogNote(row);
     updateDependencySuggestions();
     refreshStepIngredientPickers();
     refreshPreview();
     saveDraftSoon();
   };
 
+  let activeAutocompleteIndex = -1;
+
+  const autocompleteOptions = () =>
+    [...autocompleteMenu.querySelectorAll('[role="option"]:not([disabled])')];
+
+  const setActiveAutocompleteOption = (index) => {
+    const options = autocompleteOptions();
+    options.forEach((option) => {
+      option.setAttribute('aria-selected', 'false');
+      option.classList.remove('is-active');
+    });
+
+    if (!options.length || index < 0) {
+      activeAutocompleteIndex = -1;
+      nameInput.removeAttribute('aria-activedescendant');
+      return;
+    }
+
+    activeAutocompleteIndex = Math.min(index, options.length - 1);
+    const active = options[activeAutocompleteIndex];
+    active.setAttribute('aria-selected', 'true');
+    active.classList.add('is-active');
+    nameInput.setAttribute('aria-activedescendant', active.id);
+    active.scrollIntoView({ block: 'nearest' });
+  };
+
   const closeAutocomplete = () => {
     autocompleteMenu.hidden = true;
     autocompleteMenu.innerHTML = '';
+    activeAutocompleteIndex = -1;
     nameInput.setAttribute('aria-expanded', 'false');
+    nameInput.removeAttribute('aria-activedescendant');
   };
 
   const selectAutocompleteEntry = (entry) => {
@@ -727,8 +735,9 @@ function createIngredientRow(defaults = {}) {
     nameInput.value = entry.label;
     nameInput.dataset.originalName = entry.label;
     ingredientIdInput.value = entry.ingredient_id || '';
-    if (entry.unit && !unitInput.value) {
-      syncUnitSelect(unitInput, entry.unit);
+    const preferredUnit = commonUnitForIngredient(entry.ingredient_id) || entry.unit || '';
+    if (preferredUnit && !unitInput.value) {
+      syncUnitSelect(unitInput, preferredUnit);
     }
     closeAutocomplete();
     handleChange();
@@ -746,6 +755,8 @@ function createIngredientRow(defaults = {}) {
   const renderAutocomplete = () => {
     const query = nameInput.value.trim();
     autocompleteMenu.innerHTML = '';
+    activeAutocompleteIndex = -1;
+    nameInput.removeAttribute('aria-activedescendant');
 
     if (!query) {
       closeAutocomplete();
@@ -753,10 +764,9 @@ function createIngredientRow(defaults = {}) {
     }
 
     if (ingredientAutocompleteState !== 'ready') {
-      const status = document.createElement('button');
-      status.type = 'button';
-      status.disabled = true;
+      const status = document.createElement('div');
       status.className = 'ingredient-autocomplete-option';
+      status.setAttribute('role', 'status');
       status.textContent =
         ingredientAutocompleteState === 'failed'
           ? 'Ingredient lookup unavailable — refresh to retry'
@@ -769,19 +779,23 @@ function createIngredientRow(defaults = {}) {
 
     const matches = ingredientAutocompleteMatches(query);
     if (matches.length) {
-      matches.forEach((entry) => {
+      matches.forEach((entry, index) => {
         const option = document.createElement('button');
         option.type = 'button';
+        option.tabIndex = -1;
+        option.id = `${autocompleteId}-option-${index}`;
         option.className = 'ingredient-autocomplete-option';
         option.setAttribute('role', 'option');
+        option.setAttribute('aria-selected', 'false');
 
         const label = document.createElement('span');
         label.textContent = entry.label;
         option.appendChild(label);
 
-        if (entry.unit) {
+        const preferredUnit = commonUnitForIngredient(entry.ingredient_id) || entry.unit || '';
+        if (preferredUnit) {
           const unit = document.createElement('small');
-          unit.textContent = entry.unit;
+          unit.textContent = preferredUnit;
           option.appendChild(unit);
         }
 
@@ -792,8 +806,18 @@ function createIngredientRow(defaults = {}) {
     } else {
       const addButton = document.createElement('button');
       addButton.type = 'button';
+      addButton.tabIndex = -1;
+      addButton.id = `${autocompleteId}-option-new`;
       addButton.className = 'ingredient-autocomplete-option ingredient-autocomplete-add';
-      addButton.textContent = `Add “${query}” as ingredient`;
+      addButton.setAttribute('role', 'option');
+      addButton.setAttribute('aria-selected', 'false');
+
+      const label = document.createElement('span');
+      label.textContent = `Use “${query}” as a new ingredient`;
+      const note = document.createElement('small');
+      note.textContent = 'Catalog review required before publish';
+      addButton.append(label, note);
+
       addButton.addEventListener('pointerdown', (event) => event.preventDefault());
       addButton.addEventListener('click', acceptNewIngredient);
       autocompleteMenu.appendChild(addButton);
@@ -806,7 +830,8 @@ function createIngredientRow(defaults = {}) {
   const tryAutofillUnit = () => {
     if (unitInput.dataset.userChanged === 'true' || unitInput.value) return;
     const exact = exactIngredientAutocompleteMatch(nameInput.value);
-    const autoUnit = exact?.unit || commonUnitForToken(slugify(nameInput.value || ''));
+    const ingredientId = exact?.ingredient_id || ingredientIdInput.value;
+    const autoUnit = commonUnitForIngredient(ingredientId) || exact?.unit || '';
     if (autoUnit) syncUnitSelect(unitInput, autoUnit);
   };
 
@@ -817,6 +842,7 @@ function createIngredientRow(defaults = {}) {
     ) {
       ingredientIdInput.value = '';
     }
+    refreshIngredientCatalogNote(row);
     renderAutocomplete();
     saveDraftSoon();
   });
@@ -849,13 +875,39 @@ function createIngredientRow(defaults = {}) {
       return;
     }
 
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (autocompleteMenu.hidden) renderAutocomplete();
+      const options = autocompleteOptions();
+      if (!options.length) return;
+      const direction = event.key === 'ArrowDown' ? 1 : -1;
+      const startIndex =
+        activeAutocompleteIndex < 0
+          ? direction > 0
+            ? 0
+            : options.length - 1
+          : (activeAutocompleteIndex + direction + options.length) % options.length;
+      setActiveAutocompleteOption(startIndex);
+      return;
+    }
+
+    if ((event.key === 'Home' || event.key === 'End') && !autocompleteMenu.hidden) {
+      const options = autocompleteOptions();
+      if (!options.length) return;
+      event.preventDefault();
+      setActiveAutocompleteOption(event.key === 'Home' ? 0 : options.length - 1);
+      return;
+    }
+
     if (event.key !== 'Enter' || event.shiftKey) return;
 
     if (!autocompleteMenu.hidden) {
-      const firstOption = autocompleteMenu.querySelector('button');
-      if (firstOption) {
+      const options = autocompleteOptions();
+      const selected =
+        options[activeAutocompleteIndex >= 0 ? activeAutocompleteIndex : 0];
+      if (selected) {
         event.preventDefault();
-        firstOption.click();
+        selected.click();
         return;
       }
     }
@@ -1175,16 +1227,8 @@ function refreshStepIngredientPickers() {
 }
 
 function readDietaryFlags(row) {
-  const flags = { gluten_free: true, egg_free: true, dairy_free: true };
-  row.querySelectorAll('[data-dietary-key]').forEach((input) => {
-    const key = input.dataset.dietaryKey;
-    flags[key] = input.checked;
-  });
-  return flags;
-}
-
-function dietaryFlagsAreDefault(flags) {
-  return flags.gluten_free === true && flags.egg_free === true && flags.dairy_free === true;
+  const ingredientId = row.querySelector('.ingredient-id')?.value.trim() || '';
+  return dietaryFlagsForIngredientId(ingredientId);
 }
 
 function buildIngredientsFromForm(issues) {
@@ -1253,8 +1297,7 @@ function buildIngredientsFromForm(issues) {
       !choiceGroup &&
       !choiceLabel &&
       !isDefaultChoice &&
-      !isChoice &&
-      dietaryFlagsAreDefault(dietary);
+      !isChoice;
     if (allEmpty) return;
 
     const missingFields = [];
@@ -1268,6 +1311,11 @@ function buildIngredientsFromForm(issues) {
       if (!amount) markInvalid(amountInput);
       if (!unit) markInvalid(unitInput);
       return;
+    }
+
+    if (isConditional && !depToken) {
+      issues.push(`Ingredient ${idx + 1} is conditional but does not say what it depends on.`);
+      markInvalid(depTokenInput);
     }
 
     const depends_on = depToken
@@ -1389,6 +1437,44 @@ function buildIngredientsFromForm(issues) {
   return { ingredients, token_order: tokenOrder, choices };
 }
 
+function validateDependencyReference({
+  rawToken,
+  rawOption,
+  ingredients,
+  issues,
+  context,
+  tokenInput,
+  optionInput,
+}) {
+  const token = slugify(rawToken || '');
+  if (!token) return null;
+
+  const target = ingredients[token];
+  if (!target) {
+    issues.push(`${context} depends on “${rawToken}”, but that ingredient or substitution group does not exist.`);
+    markInvalid(tokenInput);
+    return null;
+  }
+
+  const option = slugify(rawOption || '');
+  if (option) {
+    const validOptions = (target.options || [])
+      .map((entry) => entry?.option)
+      .filter(Boolean);
+    if (!validOptions.includes(option)) {
+      issues.push(
+        validOptions.length
+          ? `${context} depends on option “${rawOption}”, but ${rawToken} only has: ${validOptions.join(', ')}.`
+          : `${context} specifies option “${rawOption}”, but ${rawToken} is not a substitution group.`
+      );
+      markInvalid(optionInput);
+      return null;
+    }
+  }
+
+  return { token, option: option || null };
+}
+
 function buildRecipeDraft() {
   clearValidationHighlights();
   const issues = [];
@@ -1425,6 +1511,9 @@ function buildRecipeDraft() {
   } else if (!/^[a-z0-9_-]+$/.test(slug)) {
     issues.push('Recipe ID can only contain letters, numbers, dashes, and underscores.');
     markInvalid(slugInput);
+  } else if (!isAdminEditMode && existingRecipeIds.has(slug)) {
+    issues.push('This recipe ID is already published. Change the title or refresh so a unique ID can be assigned.');
+    markInvalid(slugInput);
   }
 
   if (categoryCatalogState === 'failed') {
@@ -1458,6 +1547,37 @@ function buildRecipeDraft() {
   }
 
   const { ingredients, token_order: tokenOrder, choices } = buildIngredientsFromForm(issues);
+
+  [...ingredientRowsEl.querySelectorAll('.ingredient-row')].forEach((row, index) => {
+    const conditionalToggle = row.querySelector('.ingredient-conditional-toggle');
+    if (!conditionalToggle?.checked) return;
+    const tokenInput = row.querySelector('.ingredient-dep-token');
+    const optionInput = row.querySelector('.ingredient-dep-option');
+    const rawToken = tokenInput?.value.trim() || '';
+    if (!rawToken) return;
+    validateDependencyReference({
+      rawToken,
+      rawOption: optionInput?.value.trim() || '',
+      ingredients,
+      issues,
+      context: `Ingredient ${index + 1}`,
+      tokenInput,
+      optionInput,
+    });
+  });
+
+  const catalogReviewRequired = [
+    ...new Set(
+      [...ingredientRowsEl.querySelectorAll('.ingredient-row')]
+        .filter((row) => {
+          const name = row.querySelector('.ingredient-name')?.value.trim() || '';
+          const ingredientId = row.querySelector('.ingredient-id')?.value.trim() || '';
+          return name && !ingredientId;
+        })
+        .map((row) => row.querySelector('.ingredient-name')?.value.trim())
+        .filter(Boolean)
+    ),
+  ];
 
   const stepsRawLines = [];
   const structuredSteps = [];
@@ -1494,13 +1614,36 @@ function buildRecipeDraft() {
       stepText = `${stepText} {{${token}}}`.trim();
     });
 
-    const variationToken = slugify(row.querySelector('.variation-token')?.value || '');
-    const variationOption = slugify(row.querySelector('.variation-option')?.value || '');
+    const variationTokenInput = row.querySelector('.variation-token');
+    const variationOptionInput = row.querySelector('.variation-option');
+    const variationTokenRaw = variationTokenInput?.value.trim() || '';
+    const variationOptionRaw = variationOptionInput?.value.trim() || '';
+    const variationToken = slugify(variationTokenRaw);
+    const variationOption = slugify(variationOptionRaw);
     const variationText = (row.querySelector('.variation-text')?.value || '').trim();
+
+    if (variationText && !variationToken) {
+      issues.push(`Step ${index + 1} has a conditional variation but no ingredient or substitution group.`);
+      markInvalid(variationTokenInput);
+    }
+
     if (variationText && variationToken) {
-      const condition = variationOption ? `${variationToken}=${variationOption}` : variationToken;
-      stepText = `${stepText} {{#if ${condition}}}${variationText}{{/if}}`.trim();
-      tokenUsage.push(variationToken);
+      const validDependency = validateDependencyReference({
+        rawToken: variationTokenRaw,
+        rawOption: variationOptionRaw,
+        ingredients,
+        issues,
+        context: `Step ${index + 1} variation`,
+        tokenInput: variationTokenInput,
+        optionInput: variationOptionInput,
+      });
+      if (validDependency) {
+        const condition = validDependency.option
+          ? `${validDependency.token}=${validDependency.option}`
+          : validDependency.token;
+        stepText = `${stepText} {{#if ${condition}}}${variationText}{{/if}}`.trim();
+        tokenUsage.push(validDependency.token);
+      }
     }
     structuredSteps.push({ section: section || null, text: stepText });
     if (section && !stepSections.includes(section)) {
@@ -1566,6 +1709,7 @@ function buildRecipeDraft() {
       : [],
     default_pan: defaultPan || null,
     compatibility_possible: compatibility,
+    catalog_review_required: catalogReviewRequired,
   };
 
   return { recipe, issues };
@@ -2279,10 +2423,6 @@ async function bootstrap() {
     previewDetails.removeAttribute('open');
   }
 
-  document.querySelectorAll('.field-help-icon[data-help-key]').forEach((btn) => {
-    attachHelpTrigger(btn, btn.dataset.helpKey);
-  });
-
   document.getElementById('title').addEventListener('input', () => {
     touchSlugFromTitle();
     refreshPreview();
@@ -2308,7 +2448,7 @@ async function bootstrap() {
 
   loadUnitsFromConversions();
   syncCategoryOptions();
-  const existingRecipesPromise = loadExistingRecipes();
+  const authoringOptionsPromise = loadAuthoringOptions();
   const ingredientAutocompletePromise = loadIngredientAutocomplete().catch((err) => {
     console.warn('Could not preload ingredient autocomplete', err);
   });
@@ -2337,7 +2477,7 @@ async function bootstrap() {
   document.getElementById('recipe-form').addEventListener('submit', handleSubmit);
 
   if (isAdminEditMode) {
-    await Promise.all([ingredientAutocompletePromise, panPromise, existingRecipesPromise]);
+    await Promise.all([ingredientAutocompletePromise, panPromise, authoringOptionsPromise]);
     await loadAdminEditRecipe();
     return;
   }
@@ -2346,16 +2486,21 @@ async function bootstrap() {
     document.getElementById('remember-family').checked = true;
   }
 
-  await ingredientAutocompletePromise;
-  await panPromise;
-
   const restored = restoreDraft();
   if (!restored) {
     createIngredientRow();
     createStepRow();
     refreshPreview();
   }
-  void existingRecipesPromise;
+
+  void Promise.allSettled([
+    ingredientAutocompletePromise,
+    panPromise,
+    authoringOptionsPromise,
+  ]).then(() => {
+    refreshIngredientCatalogNotes();
+    refreshPreview();
+  });
 }
 
 bootstrap();

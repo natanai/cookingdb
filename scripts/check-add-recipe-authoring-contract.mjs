@@ -15,12 +15,14 @@ const checks = [
   ['pan scaling metadata', html.includes('id="default-pan"')],
   ['pan selector gated until catalog is ready', html.includes('id="default-pan" name="default-pan" disabled aria-busy="true"') && html.includes('Loading pan sizes…')],
   ['pan catalog uses shared fresh-data loader', js.includes("fetchBuiltJson('pan-sizes.json'")],
-  ['normal authoring waits for pan catalog', js.includes('await panPromise;')],
+  ['normal authoring renders before helper catalogs settle', js.includes('const restored = restoreDraft();') && js.includes('Promise.allSettled([') && js.indexOf('const restored = restoreDraft();') < js.indexOf('Promise.allSettled([')],
   ['pan catalog failure is explicit', js.includes("'Pan sizes unavailable'")],
   ['ingredient sections', js.includes('createIngredientSection') && js.includes('start-section-here')],
   ['single contextual section creation flow', !html.includes('id="add-ingredient-section"') && js.includes('start-section-here')],
   ['prebuilt ingredient autocomplete index', build.includes("'ingredient-autocomplete.json'") && build.includes('ingredientAutocompleteMap')],
-  ['ingredient autocomplete preloaded before editing', js.includes("loadIngredientAutocomplete()") && js.includes("await ingredientAutocompletePromise")],
+  ['compact authoring options index', build.includes("'authoring-options.json'") && build.includes('common_units_by_ingredient') && js.includes("fetchBuiltJson('authoring-options.json'") && !js.includes("fetchBuiltJson('recipes.json'")],
+  ['content-versioned generated data', build.includes("'version.js'") && build.includes("createHash('sha256')")],
+  ['ingredient autocomplete starts without blocking editing', js.includes("loadIngredientAutocomplete()") && js.includes('const ingredientAutocompletePromise') && js.includes('const restored = restoreDraft();')],
   ['ingredient lookup failure is explicit', js.includes("ingredientAutocompleteState !== 'ready'") && js.includes('Ingredient lookup unavailable — refresh to retry')],
   ['categories have explicit readiness state', html.includes('Loading categories…') && js.includes("categoryCatalogState === 'failed'") && js.includes('Categories could not load. Refresh the page to retry.')],
   ['custom ingredient dropdown replaces native datalist', js.includes('ingredient-autocomplete-menu') && !html.includes('id="ingredient-suggestions"')],
@@ -38,6 +40,11 @@ const checks = [
   ['byline emitted in inbox payload', js.includes('byline,')],
   ['default pan emitted in inbox payload', js.includes('default_pan: defaultPan || null')],
   ['pan sizes emitted in inbox payload', js.includes('pan_sizes: defaultPan')],
+  ['new ingredients visibly require catalog review', js.includes('catalog review is required before publishing') && js.includes('catalog_review_required')],
+  ['dietary authority comes from canonical ingredient data', !js.includes('Dietary compatibility') && js.includes('dietaryFlagsForIngredientId')],
+  ['autocomplete supports listbox keyboard navigation', js.includes("event.key === 'ArrowDown'") && js.includes('aria-activedescendant') && js.includes("setAttribute('aria-selected'")],
+  ['conditional references are validated', js.includes('validateDependencyReference') && js.includes('does not exist') && js.includes('is not a substitution group')],
+  ['published recipe ids are auto-deconflicted', js.includes('uniqueRecipeSlug') && js.includes('existingRecipeIds')],
 ];
 
 const failed = checks.filter(([, ok]) => !ok);
