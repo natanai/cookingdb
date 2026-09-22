@@ -689,16 +689,45 @@ function createIngredientRow(defaults = {}) {
   }
 
   const handleChange = () => {
+    refreshIngredientCatalogNote(row);
     updateDependencySuggestions();
     refreshStepIngredientPickers();
     refreshPreview();
     saveDraftSoon();
   };
 
+  let activeAutocompleteIndex = -1;
+
+  const autocompleteOptions = () =>
+    [...autocompleteMenu.querySelectorAll('[role="option"]:not([disabled])')];
+
+  const setActiveAutocompleteOption = (index) => {
+    const options = autocompleteOptions();
+    options.forEach((option) => {
+      option.setAttribute('aria-selected', 'false');
+      option.classList.remove('is-active');
+    });
+
+    if (!options.length || index < 0) {
+      activeAutocompleteIndex = -1;
+      nameInput.removeAttribute('aria-activedescendant');
+      return;
+    }
+
+    activeAutocompleteIndex = Math.min(index, options.length - 1);
+    const active = options[activeAutocompleteIndex];
+    active.setAttribute('aria-selected', 'true');
+    active.classList.add('is-active');
+    nameInput.setAttribute('aria-activedescendant', active.id);
+    active.scrollIntoView({ block: 'nearest' });
+  };
+
   const closeAutocomplete = () => {
     autocompleteMenu.hidden = true;
     autocompleteMenu.innerHTML = '';
+    activeAutocompleteIndex = -1;
     nameInput.setAttribute('aria-expanded', 'false');
+    nameInput.removeAttribute('aria-activedescendant');
   };
 
   const selectAutocompleteEntry = (entry) => {
@@ -706,8 +735,9 @@ function createIngredientRow(defaults = {}) {
     nameInput.value = entry.label;
     nameInput.dataset.originalName = entry.label;
     ingredientIdInput.value = entry.ingredient_id || '';
-    if (entry.unit && !unitInput.value) {
-      syncUnitSelect(unitInput, entry.unit);
+    const preferredUnit = commonUnitForIngredient(entry.ingredient_id) || entry.unit || '';
+    if (preferredUnit && !unitInput.value) {
+      syncUnitSelect(unitInput, preferredUnit);
     }
     closeAutocomplete();
     handleChange();
@@ -725,6 +755,8 @@ function createIngredientRow(defaults = {}) {
   const renderAutocomplete = () => {
     const query = nameInput.value.trim();
     autocompleteMenu.innerHTML = '';
+    activeAutocompleteIndex = -1;
+    nameInput.removeAttribute('aria-activedescendant');
 
     if (!query) {
       closeAutocomplete();
@@ -732,10 +764,9 @@ function createIngredientRow(defaults = {}) {
     }
 
     if (ingredientAutocompleteState !== 'ready') {
-      const status = document.createElement('button');
-      status.type = 'button';
-      status.disabled = true;
+      const status = document.createElement('div');
       status.className = 'ingredient-autocomplete-option';
+      status.setAttribute('role', 'status');
       status.textContent =
         ingredientAutocompleteState === 'failed'
           ? 'Ingredient lookup unavailable — refresh to retry'
@@ -748,19 +779,23 @@ function createIngredientRow(defaults = {}) {
 
     const matches = ingredientAutocompleteMatches(query);
     if (matches.length) {
-      matches.forEach((entry) => {
+      matches.forEach((entry, index) => {
         const option = document.createElement('button');
         option.type = 'button';
+        option.tabIndex = -1;
+        option.id = `${autocompleteId}-option-${index}`;
         option.className = 'ingredient-autocomplete-option';
         option.setAttribute('role', 'option');
+        option.setAttribute('aria-selected', 'false');
 
         const label = document.createElement('span');
         label.textContent = entry.label;
         option.appendChild(label);
 
-        if (entry.unit) {
+        const preferredUnit = commonUnitForIngredient(entry.ingredient_id) || entry.unit || '';
+        if (preferredUnit) {
           const unit = document.createElement('small');
-          unit.textContent = entry.unit;
+          unit.textContent = preferredUnit;
           option.appendChild(unit);
         }
 
@@ -771,8 +806,18 @@ function createIngredientRow(defaults = {}) {
     } else {
       const addButton = document.createElement('button');
       addButton.type = 'button';
+      addButton.tabIndex = -1;
+      addButton.id = `${autocompleteId}-option-new`;
       addButton.className = 'ingredient-autocomplete-option ingredient-autocomplete-add';
-      addButton.textContent = `Add “${query}” as ingredient`;
+      addButton.setAttribute('role', 'option');
+      addButton.setAttribute('aria-selected', 'false');
+
+      const label = document.createElement('span');
+      label.textContent = `Use “${query}” as a new ingredient`;
+      const note = document.createElement('small');
+      note.textContent = 'Catalog review required before publish';
+      addButton.append(label, note);
+
       addButton.addEventListener('pointerdown', (event) => event.preventDefault());
       addButton.addEventListener('click', acceptNewIngredient);
       autocompleteMenu.appendChild(addButton);
@@ -785,7 +830,8 @@ function createIngredientRow(defaults = {}) {
   const tryAutofillUnit = () => {
     if (unitInput.dataset.userChanged === 'true' || unitInput.value) return;
     const exact = exactIngredientAutocompleteMatch(nameInput.value);
-    const autoUnit = exact?.unit || commonUnitForToken(slugify(nameInput.value || ''));
+    const ingredientId = exact?.ingredient_id || ingredientIdInput.value;
+    const autoUnit = commonUnitForIngredient(ingredientId) || exact?.unit || '';
     if (autoUnit) syncUnitSelect(unitInput, autoUnit);
   };
 
@@ -796,6 +842,7 @@ function createIngredientRow(defaults = {}) {
     ) {
       ingredientIdInput.value = '';
     }
+    refreshIngredientCatalogNote(row);
     renderAutocomplete();
     saveDraftSoon();
   });
@@ -828,13 +875,39 @@ function createIngredientRow(defaults = {}) {
       return;
     }
 
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (autocompleteMenu.hidden) renderAutocomplete();
+      const options = autocompleteOptions();
+      if (!options.length) return;
+      const direction = event.key === 'ArrowDown' ? 1 : -1;
+      const startIndex =
+        activeAutocompleteIndex < 0
+          ? direction > 0
+            ? 0
+            : options.length - 1
+          : (activeAutocompleteIndex + direction + options.length) % options.length;
+      setActiveAutocompleteOption(startIndex);
+      return;
+    }
+
+    if ((event.key === 'Home' || event.key === 'End') && !autocompleteMenu.hidden) {
+      const options = autocompleteOptions();
+      if (!options.length) return;
+      event.preventDefault();
+      setActiveAutocompleteOption(event.key === 'Home' ? 0 : options.length - 1);
+      return;
+    }
+
     if (event.key !== 'Enter' || event.shiftKey) return;
 
     if (!autocompleteMenu.hidden) {
-      const firstOption = autocompleteMenu.querySelector('button');
-      if (firstOption) {
+      const options = autocompleteOptions();
+      const selected =
+        options[activeAutocompleteIndex >= 0 ? activeAutocompleteIndex : 0];
+      if (selected) {
         event.preventDefault();
-        firstOption.click();
+        selected.click();
         return;
       }
     }
