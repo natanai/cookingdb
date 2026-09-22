@@ -221,7 +221,7 @@ assert(
   'cookbook must warm recipe navigation immediately after its first render'
 );
 assert(
-  appScript.includes('builtDataUrl(url)') && appScript.includes("cache: isBuiltData ? 'force-cache' : 'default'"),
+  appScript.includes('builtDataUrl(url)') && appScript.includes("cache: 'default'"),
   'cookbook warmup must populate the same reusable versioned cache consumed by recipe pages'
 );
 assert(
@@ -296,6 +296,10 @@ assert(
 assert(
   addHtml.includes('class="field category-field author-category-field"'),
   'required categories must stay in the visible authoring metadata strip instead of being hidden in details'
+);
+assert(
+  !/<div id=["']admin-edit-banner["'][\s\S]*?<a\b[^>]*href=["']admin\.html["']/i.test(addHtml),
+  'Recipe inbox access must stay under the shared gear menu instead of reappearing in the Add Recipe banner'
 );
 assert(
   addHtml.includes('<legend>Steps</legend>'),
