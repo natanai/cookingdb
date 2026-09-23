@@ -21,6 +21,7 @@ import {
   formatKcal,
   formatNumber,
   getRecipeTitleParts,
+  normalizeRecipeEntry,
   recipeHasDetails,
 } from './recipe-model.js';
 import { loadRecipeCollection } from './recipe-repository.js';
@@ -871,7 +872,7 @@ function setupPanControls(recipe, state, rerender) {
 }
 
 function renderRecipe(recipeInput, nutritionPolicy, nutritionGuidelines, ingredientPortions, ingredientUnitFactors, nutritionCoverage) {
-  const recipe = normalizeRecipeForPage(recipeInput) || recipeInput;
+  const recipe = normalizeRecipeEntry(recipeInput) || recipeInput;
   recipe.nutritionPolicy = nutritionPolicy;
 
   const titleEl = document.getElementById('recipe-title');
