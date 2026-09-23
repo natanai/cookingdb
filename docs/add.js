@@ -26,6 +26,7 @@ let panSizeCatalog = [];
 let pendingDraftPan = '';
 let ingredientAutocompleteState = 'loading';
 let categoryCatalogState = 'loading';
+let panCatalogState = 'loading';
 // Remove required attribute from slug input as it's auto-generated
 const slugInputField = document.getElementById('slug');
 if (slugInputField) slugInputField.removeAttribute('required');
@@ -318,6 +319,17 @@ function syncCategoryOptions() {
 
 let pendingDraftCategories = [];
 
+function currentCategoryValues() {
+  const selected = categorySelectEl
+    ? [...categorySelectEl.selectedOptions].map((opt) => opt.value)
+    : [];
+  return [...new Set([...pendingDraftCategories, ...selected].filter(Boolean))];
+}
+
+function currentPanValue() {
+  return pendingDraftPan || panSelectEl?.value || '';
+}
+
 function syncUnitSelect(selectEl, preferredValue = '') {
   if (!selectEl) return;
   const targetValue = preferredValue || selectEl.value;
@@ -359,9 +371,29 @@ function commonUnitForIngredient(ingredientId) {
   return commonUnitByIngredient.get(String(ingredientId || '').trim()) || '';
 }
 
+function syncPanRetryButton(failed) {
+  if (!panSelectEl) return;
+  let retry = document.getElementById('retry-pan-sizes');
+  if (!failed) {
+    retry?.remove();
+    return;
+  }
+  if (retry) return;
+
+  retry = document.createElement('button');
+  retry.id = 'retry-pan-sizes';
+  retry.type = 'button';
+  retry.className = 'button secondary';
+  retry.textContent = 'Retry pan sizes';
+  retry.addEventListener('click', () => {
+    void loadPanOptions();
+  });
+  panSelectEl.insertAdjacentElement('afterend', retry);
+}
+
 function syncPanOptions({ failed = false } = {}) {
   if (!panSelectEl) return;
-  const current = pendingDraftPan || panSelectEl.value || '';
+  const current = currentPanValue();
   panSelectEl.innerHTML = '';
 
   const none = document.createElement('option');
@@ -380,10 +412,11 @@ function syncPanOptions({ failed = false } = {}) {
   const hasCatalog = panSizeCatalog.length > 0;
   panSelectEl.disabled = failed || !hasCatalog;
   panSelectEl.setAttribute('aria-busy', 'false');
+  syncPanRetryButton(failed);
 
   if (!hasCatalog) {
     panSelectEl.value = '';
-    pendingDraftPan = '';
+    if (current) pendingDraftPan = current;
     return;
   }
 
@@ -395,6 +428,8 @@ function syncPanOptions({ failed = false } = {}) {
 
 async function loadPanOptions() {
   if (!panSelectEl) return;
+  panCatalogState = 'loading';
+  syncPanRetryButton(false);
   panSelectEl.disabled = true;
   panSelectEl.setAttribute('aria-busy', 'true');
 
@@ -402,9 +437,11 @@ async function loadPanOptions() {
     const pans = await fetchBuiltJson('pan-sizes.json', { label: 'Pan sizes' });
     panSizeCatalog = Array.isArray(pans) ? pans.filter((pan) => pan?.id && pan?.label) : [];
     if (panSizeCatalog.length === 0) throw new Error('Pan catalog is empty');
+    panCatalogState = 'ready';
     syncPanOptions();
   } catch (err) {
     console.warn('Could not load pan sizes', err);
+    panCatalogState = 'failed';
     panSizeCatalog = [];
     syncPanOptions({ failed: true });
   }
@@ -414,79 +451,99 @@ async function loadAuthoringOptions() {
   categoryCatalogState = 'loading';
   syncCategoryOptions();
 
-  const [authoringResult, indexResult] = await Promise.allSettled([
-    fetchBuiltJson('authoring-options.json', { label: 'Recipe authoring options' }),
-    fetchBuiltJson('index.json', { label: 'Cookbook index' }),
-  ]);
+  let loadedAny = false;
+  let initialized = false;
+  let authoringError = null;
+  let indexError = null;
 
-  const options =
-    authoringResult.status === 'fulfilled' &&
-    authoringResult.value &&
-    typeof authoringResult.value === 'object'
-      ? authoringResult.value
-      : null;
-  const index =
-    indexResult.status === 'fulfilled' && Array.isArray(indexResult.value)
-      ? indexResult.value
-      : null;
+  const beginSuccessfulLoad = () => {
+    if (!initialized) {
+      categorySet.clear();
+      sectionSet.clear();
+      commonUnitByIngredient.clear();
+      existingRecipeIds.clear();
+      initialized = true;
+    }
+    loadedAny = true;
+    categoryCatalogState = 'ready';
+  };
 
-  if (!options && !index) {
+  const publishAvailableOptions = () => {
+    syncCategoryOptions();
+    syncUnitSelects();
+    updateSectionSuggestions();
+    updateDependencySuggestions();
+    touchSlugFromTitle();
+  };
+
+  const authoringTask = fetchBuiltJson('authoring-options.json', {
+    label: 'Recipe authoring options',
+  })
+    .then((options) => {
+      if (!options || typeof options !== 'object' || Array.isArray(options)) {
+        throw new Error('Recipe authoring options returned invalid data.');
+      }
+      beginSuccessfulLoad();
+      (options.categories || []).forEach((category) => {
+        if (category) categorySet.add(String(category));
+      });
+      (options.recipe_ids || []).forEach((recipeId) => {
+        if (recipeId) existingRecipeIds.add(String(recipeId));
+      });
+      (options.sections || []).forEach((section) => {
+        if (section) sectionSet.add(String(section));
+      });
+      (options.units || []).forEach((unit) => {
+        const value = String(unit || '').trim();
+        if (value) unitChoices.set(value, unitChoices.get(value) || value);
+      });
+      Object.entries(options.common_units_by_ingredient || {}).forEach(([ingredientId, unit]) => {
+        if (ingredientId && unit) commonUnitByIngredient.set(ingredientId, String(unit));
+      });
+      publishAvailableOptions();
+    })
+    .catch((err) => {
+      authoringError = err;
+    });
+
+  const indexTask = fetchBuiltJson('index.json', { label: 'Cookbook index' })
+    .then((index) => {
+      if (!Array.isArray(index)) throw new Error('Cookbook index returned invalid data.');
+      beginSuccessfulLoad();
+      index.forEach((recipe) => {
+        if (recipe?.id) existingRecipeIds.add(String(recipe.id));
+        (recipe?.categories || []).forEach((category) => {
+          if (category) categorySet.add(String(category));
+        });
+      });
+      publishAvailableOptions();
+    })
+    .catch((err) => {
+      indexError = err;
+    });
+
+  await Promise.all([authoringTask, indexTask]);
+
+  if (!loadedAny) {
     categoryCatalogState = 'failed';
     syncCategoryOptions();
-    console.warn(
-      'Could not load recipe authoring options or cookbook index',
-      authoringResult.status === 'rejected' ? authoringResult.reason : null,
-      indexResult.status === 'rejected' ? indexResult.reason : null
-    );
+    console.warn('Could not load recipe authoring options or cookbook index', authoringError, indexError);
     return;
   }
 
-  categorySet.clear();
-  sectionSet.clear();
-  commonUnitByIngredient.clear();
-  existingRecipeIds.clear();
+  categoryCatalogState = 'ready';
+  publishAvailableOptions();
+  pendingDraftCategories = [];
 
-  if (index) {
-    index.forEach((recipe) => {
-      if (recipe?.id) existingRecipeIds.add(String(recipe.id));
-      (recipe?.categories || []).forEach((category) => {
-        if (category) categorySet.add(String(category));
-      });
-    });
-  } else {
-    (options?.categories || []).forEach((category) => {
-      if (category) categorySet.add(String(category));
-    });
-    (options?.recipe_ids || []).forEach((recipeId) => {
-      if (recipeId) existingRecipeIds.add(String(recipeId));
-    });
-  }
-
-  if (options) {
-    (options.sections || []).forEach((section) => {
-      if (section) sectionSet.add(String(section));
-    });
-    (options.units || []).forEach((unit) => {
-      const value = String(unit || '').trim();
-      if (value) unitChoices.set(value, unitChoices.get(value) || value);
-    });
-    Object.entries(options.common_units_by_ingredient || {}).forEach(([ingredientId, unit]) => {
-      if (ingredientId && unit) commonUnitByIngredient.set(ingredientId, String(unit));
-    });
-  } else {
+  if (authoringError) {
     console.warn(
       'Extended authoring helpers did not load; categories remain available from the cookbook index.',
-      authoringResult.status === 'rejected' ? authoringResult.reason : null
+      authoringError
     );
   }
-
-  categoryCatalogState = 'ready';
-  syncCategoryOptions();
-  pendingDraftCategories = [];
-  syncUnitSelects();
-  updateSectionSuggestions();
-  updateDependencySuggestions();
-  touchSlugFromTitle();
+  if (indexError) {
+    console.warn('Cookbook index did not load; categories remain available from authoring options.', indexError);
+  }
 }
 
 function ingredientChoices() {
@@ -810,11 +867,29 @@ function createIngredientRow(defaults = {}) {
       const status = document.createElement('div');
       status.className = 'ingredient-autocomplete-option';
       status.setAttribute('role', 'status');
-      status.textContent =
-        ingredientAutocompleteState === 'failed'
-          ? 'Ingredient lookup unavailable — refresh to retry'
-          : 'Loading ingredients…';
+      const lookupFailed = ingredientAutocompleteState === 'failed';
+      status.textContent = lookupFailed ? 'Ingredient lookup unavailable.' : 'Loading ingredients…';
       autocompleteMenu.appendChild(status);
+
+      if (lookupFailed) {
+        const retry = document.createElement('button');
+        retry.type = 'button';
+        retry.className = 'ingredient-autocomplete-option ingredient-autocomplete-retry';
+        retry.textContent = 'Retry ingredient lookup';
+        retry.addEventListener('mousedown', (event) => event.preventDefault());
+        retry.addEventListener('click', () => {
+          ingredientAutocompleteState = 'loading';
+          renderAutocomplete();
+          void loadIngredientAutocomplete()
+            .then(renderAutocomplete)
+            .catch((err) => {
+              console.warn('Could not reload ingredient autocomplete', err);
+              renderAutocomplete();
+            });
+        });
+        autocompleteMenu.appendChild(retry);
+      }
+
       autocompleteMenu.hidden = false;
       nameInput.setAttribute('aria-expanded', 'true');
       return;
@@ -1537,8 +1612,8 @@ function buildRecipeDraft() {
   const notes = notesInput.value.trim();
   const family = familyInput ? familyInput.value.trim() : '';
   const byline = bylineInput ? bylineInput.value.trim() : '';
-  const defaultPan = defaultPanInput?.value?.trim() || '';
-  const categories = categoriesSelect ? [...categoriesSelect.selectedOptions].map((opt) => opt.value) : [];
+  const defaultPan = defaultPanInput?.value?.trim() || currentPanValue();
+  const categories = currentCategoryValues();
   const defaultBase = Number(defaultBaseInput.value) || 1;
   const servingsRaw = servingsInput?.value?.trim() || '';
   const servingsPerBatch = servingsRaw ? Number(servingsRaw) : null;
@@ -1994,9 +2069,9 @@ function saveDraft() {
     family: document.getElementById('family')?.value || '',
     byline: document.getElementById('byline')?.value || '',
     default_base: document.getElementById('default-base')?.value || '1',
-    default_pan: document.getElementById('default-pan')?.value || '',
+    default_pan: currentPanValue(),
     notes: document.getElementById('notes')?.value || '',
-    categories: categorySelectEl ? [...categorySelectEl.selectedOptions].map((opt) => opt.value) : [],
+    categories: currentCategoryValues(),
     ingredients: serializeIngredientEditor(),
     steps: serializeSteps(),
     saved_at: Date.now(),
@@ -2471,6 +2546,7 @@ async function bootstrap() {
     evt.target.dataset.userEdited = 'true';
   });
   document.getElementById('categories').addEventListener('change', () => {
+    if (categoryCatalogState === 'ready') pendingDraftCategories = [];
     updateCategorySummary();
     refreshPreview();
   });
@@ -2478,7 +2554,10 @@ async function bootstrap() {
   document.getElementById('family').addEventListener('input', refreshPreview);
   document.getElementById('byline').addEventListener('input', refreshPreview);
   document.getElementById('default-base').addEventListener('input', refreshPreview);
-  document.getElementById('default-pan').addEventListener('change', refreshPreview);
+  document.getElementById('default-pan').addEventListener('change', () => {
+    pendingDraftPan = '';
+    refreshPreview();
+  });
   document.getElementById('servings-per-batch').addEventListener('input', () => {
     refreshPreview();
     saveDraftSoon();
