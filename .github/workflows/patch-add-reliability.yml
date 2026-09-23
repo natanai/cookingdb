@@ -1,0 +1,52 @@
+name: One-time Add Recipe reliability patch
+
+on:
+  push:
+    branches: [refactor/unified-cooking-app]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: ${{ contains(github.event.head_commit.message, 'Trigger Add Recipe reliability patch') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: refactor/unified-cooking-app
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Apply guarded source patch
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/patch-add-reliability.mjs')
+          text = p.read_text()
+          text = text.replace(
+              "if (panCatalogState === undefined) {\n  throw new Error('Patch stopped safely: pan catalog state was not introduced.');\n}",
+              "if (!source.includes(\"let panCatalogState = 'loading';\")) {\n  throw new Error('Patch stopped safely: pan catalog state was not introduced.');\n}"
+          )
+          p.write_text(text)
+          PY
+          node scripts/patch-add-reliability.mjs
+      - name: Validate repaired authoring candidate
+        run: |
+          node --check docs/add.js
+          npm run validate
+          npm run build
+          npm test
+      - name: Commit Add Recipe reliability repair
+        run: |
+          if git diff --quiet -- docs/add.js; then
+            echo "::error::Add Recipe patch made no source changes."
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/add.js
+          git commit -m "Preserve Add Recipe drafts through helper failures"
+          git push origin HEAD:refactor/unified-cooking-app
