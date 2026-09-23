@@ -23,8 +23,9 @@ for (const file of files) {
     issueCount += 1;
     const relative = path.relative(root, file).replaceAll('\\', '/');
     const physicalRow = Number.isInteger(error.row) ? error.row + 2 : '?';
-    console.log(`${relative}:${physicalRow} [${error.code || error.type || 'CSV'}] ${error.message}`);
+    console.error(`${relative}:${physicalRow} [${error.code || error.type || 'CSV'}] ${error.message}`);
   }
 }
 
 console.log(`CSV audit complete: ${issueCount} parser issue${issueCount === 1 ? '' : 's'} across ${files.length} files.`);
+if (issueCount > 0) process.exitCode = 1;
