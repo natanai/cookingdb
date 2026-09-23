@@ -40,6 +40,7 @@ for (const exportedConcept of [
   'loadStoredInboxRecipes',
   'storeInboxRecipes',
   'buildRecipeIndex',
+  'loadRecipeSummaries',
   'loadBuiltRecipes',
   'loadRecipeCollection',
 ]) {
@@ -53,13 +54,13 @@ for (const exportedConcept of [
 for (const page of ['docs/app.js', 'docs/bread-maker.js', 'docs/planner.js', 'docs/recipe.js']) {
   const source = read(page);
   assert(source.includes("from './recipe-model.js'"), `${page} must consume the shared recipe model`);
+  assert(source.includes("from './recipe-repository.js'"), `${page} must consume the shared recipe repository`);
   assert(!source.includes('function splitRecipeTitle('), `${page} must not redefine splitRecipeTitle`);
   assert(!source.includes('function getRecipeTitleParts('), `${page} must not redefine getRecipeTitleParts`);
 }
 
 for (const page of ['docs/app.js', 'docs/planner.js', 'docs/recipe.js']) {
   const source = read(page);
-  assert(source.includes("from './recipe-repository.js'"), `${page} must consume the shared recipe repository`);
   assert(!source.includes("const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes'"), `${page} must not own the inbox storage key`);
   assert(!source.includes('function loadStoredInboxRecipes('), `${page} must not redefine pending-recipe storage loading`);
 }
@@ -68,6 +69,12 @@ for (const page of ['docs/planner.js', 'docs/recipe.js']) {
   const source = read(page);
   assert(!source.includes("fetchBuiltJson('recipes.json'"), `${page} must load recipe data through recipe-repository.js`);
   assert(!source.includes('function normalizeRecipeFor'), `${page} must not redefine browser recipe normalization`);
+}
+
+for (const page of ['docs/app.js', 'docs/bread-maker.js']) {
+  const source = read(page);
+  assert(!source.includes("fetchBuiltJson('index.json'"), `${page} must load cookbook summaries through recipe-repository.js`);
+  assert(source.includes('loadRecipeSummaries'), `${page} must use the shared summary repository`);
 }
 
 const workerReadme = read('cloudflare/README.md');
