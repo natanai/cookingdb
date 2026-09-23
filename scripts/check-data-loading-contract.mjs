@@ -39,7 +39,6 @@ assert(
 for (const [name, source] of [
   ['app.js', app],
   ['add.js', add],
-  ['bread-maker.js', bread],
   ['nutrition-engine.js', nutrition],
   ['recipe-repository.js', recipeRepository],
 ]) {
@@ -58,6 +57,11 @@ assert(
     recipeRepository.includes('loadRecipeCollection'),
   'the recipe repository must own full recipe-box loading'
 );
+assert(
+  recipeRepository.includes("fetchBuiltJson('index.json'") &&
+    recipeRepository.includes('loadRecipeSummaries'),
+  'the recipe repository must own cookbook-summary loading'
+);
 for (const [name, source] of [
   ['planner.js', planner],
   ['recipe.js', recipe],
@@ -69,6 +73,19 @@ for (const [name, source] of [
   assert(
     !source.includes("fetchBuiltJson('recipes.json'"),
     `${name} must not bypass the recipe repository for recipes.json`
+  );
+}
+for (const [name, source] of [
+  ['app.js', app],
+  ['bread-maker.js', bread],
+]) {
+  assert(
+    source.includes("from './recipe-repository.js'"),
+    `${name} must load cookbook summaries through the recipe repository`
+  );
+  assert(
+    !source.includes("fetchBuiltJson('index.json'"),
+    `${name} must not bypass the recipe repository for index.json`
   );
 }
 
@@ -111,10 +128,10 @@ assert(
 );
 
 assert(
-  bread.includes("fetchBuiltJson('index.json'") &&
+  bread.includes("loadRecipeSummaries({ label: 'Bread maker recipes' })") &&
     bread.includes('Bread maker recipes could not load. Refresh the page to retry.') &&
     breadHtml.includes('Loading bread maker recipes…'),
-  'Bread Maker must expose loading and failure states'
+  'Bread Maker must expose loading and failure states while using the shared summary repository'
 );
 
 assert(
