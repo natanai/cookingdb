@@ -16,6 +16,9 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npm test
-      - run: npm run validate
-      - run: npm run build
+      - name: Validate canonical recipe sources
+        run: npm run validate
+      - name: Build generated site data
+        run: npm run build
+      - name: Test the exact built candidate
+        run: npm test
