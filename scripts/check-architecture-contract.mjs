@@ -14,6 +14,7 @@ function assert(condition, message) {
 
 assert(fs.existsSync(path.join(docs, 'architecture.md')), 'docs/architecture.md must describe the real application architecture');
 assert(fs.existsSync(path.join(docs, 'recipe-model.js')), 'shared recipe-model.js must own cross-page recipe normalization/presentation semantics');
+assert(fs.existsSync(path.join(docs, 'recipe-repository.js')), 'shared recipe-repository.js must own browser recipe loading and pending-recipe storage');
 assert(fs.existsSync(path.join(root, 'cloudflare', 'worker.js')), 'cloudflare/worker.js must remain the canonical inbox worker');
 assert(!fs.existsSync(path.join(root, 'inbox-worker.js')), 'the obsolete duplicate root inbox-worker.js must not return');
 
@@ -33,11 +34,40 @@ for (const exportedConcept of [
   );
 }
 
-for (const page of ['docs/app.js', 'docs/bread-maker.js']) {
+const recipeRepository = read('docs/recipe-repository.js');
+for (const exportedConcept of [
+  'normalizeRecipeListResult',
+  'loadStoredInboxRecipes',
+  'storeInboxRecipes',
+  'buildRecipeIndex',
+  'loadBuiltRecipes',
+  'loadRecipeCollection',
+]) {
+  assert(
+    recipeRepository.includes(`export function ${exportedConcept}`) ||
+      recipeRepository.includes(`export async function ${exportedConcept}`),
+    `recipe-repository.js must own ${exportedConcept}`
+  );
+}
+
+for (const page of ['docs/app.js', 'docs/bread-maker.js', 'docs/planner.js', 'docs/recipe.js']) {
   const source = read(page);
   assert(source.includes("from './recipe-model.js'"), `${page} must consume the shared recipe model`);
   assert(!source.includes('function splitRecipeTitle('), `${page} must not redefine splitRecipeTitle`);
   assert(!source.includes('function getRecipeTitleParts('), `${page} must not redefine getRecipeTitleParts`);
+}
+
+for (const page of ['docs/app.js', 'docs/planner.js', 'docs/recipe.js']) {
+  const source = read(page);
+  assert(source.includes("from './recipe-repository.js'"), `${page} must consume the shared recipe repository`);
+  assert(!source.includes("const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes'"), `${page} must not own the inbox storage key`);
+  assert(!source.includes('function loadStoredInboxRecipes('), `${page} must not redefine pending-recipe storage loading`);
+}
+
+for (const page of ['docs/planner.js', 'docs/recipe.js']) {
+  const source = read(page);
+  assert(!source.includes("fetchBuiltJson('recipes.json'"), `${page} must load recipe data through recipe-repository.js`);
+  assert(!source.includes('function normalizeRecipeFor'), `${page} must not redefine browser recipe normalization`);
 }
 
 const workerReadme = read('cloudflare/README.md');
