@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      - name: Audit CSV parser compatibility
+        run: node scripts/audit-csv.mjs
       - name: Validate canonical recipe sources
         run: |
           set -o pipefail
