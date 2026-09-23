@@ -1,6 +1,6 @@
 import { siteBehavior } from './site-behavior.js';
-import { fetchBuiltJson } from './built-data.js';
 import { buildRecipeLink, getRecipeTitleParts } from './recipe-model.js';
+import { loadRecipeSummaries } from './recipe-repository.js';
 const BREAD_CATEGORY = 'Bread maker';
 const PERSONAL_STORAGE_KEY = 'cookingdb-bread-maker-recipes';
 
@@ -213,8 +213,7 @@ function renderPersonalRecipes(recipes, onUpdate) {
 }
 
 async function loadDefaultRecipes() {
-  const data = await fetchBuiltJson('index.json', { label: 'Bread maker recipes' });
-  return Array.isArray(data) ? data : [];
+  return loadRecipeSummaries({ label: 'Bread maker recipes' });
 }
 
 async function initDefaultRecipes() {

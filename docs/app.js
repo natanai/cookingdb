@@ -1,9 +1,9 @@
 import { siteBehavior } from './site-behavior.js';
-import { builtDataUrl, fetchBuiltJson } from './built-data.js';
+import { builtDataUrl } from './built-data.js';
 import { familyListPending, getRememberedPassword, setRememberedPassword } from './inbox/inbox-api.js';
 import { DIETARY_TAGS } from './recipe-utils.js';
 import { buildRecipeLink, getRecipeTitleParts, normalizeTitleKey } from './recipe-model.js';
-import { loadStoredInboxRecipes, normalizeRecipeListResult, storeInboxRecipes } from './recipe-repository.js';
+import { loadRecipeSummaries, loadStoredInboxRecipes, normalizeRecipeListResult, storeInboxRecipes } from './recipe-repository.js';
 
 const HAPTICS_KEY = 'cookingdb-ruffle-haptics';
 const HIDDEN_HOME_CATEGORIES = new Set(['Bread maker']);
@@ -170,7 +170,7 @@ function setupMobileScrollRuffle() {
 }
 
 async function loadIndex() {
-  return fetchBuiltJson('index.json', { label: 'Cookbook index' });
+  return loadRecipeSummaries({ label: 'Cookbook index' });
 }
 
 async function warmRecipeResource(url) {
