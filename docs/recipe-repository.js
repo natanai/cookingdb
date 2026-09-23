@@ -55,6 +55,11 @@ export function buildRecipeIndex(recipes) {
   );
 }
 
+export async function loadRecipeSummaries({ label = 'Cookbook index' } = {}) {
+  const indexRaw = await fetchBuiltJson('index.json', { label });
+  return Array.isArray(indexRaw) ? indexRaw : [];
+}
+
 export async function loadBuiltRecipes({ label = 'Recipe box' } = {}) {
   const builtRaw = await fetchBuiltJson('recipes.json', { label });
   return Array.isArray(builtRaw)
