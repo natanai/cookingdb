@@ -2,9 +2,9 @@ import { siteBehavior } from './site-behavior.js';
 import { builtDataUrl, fetchBuiltJson } from './built-data.js';
 import { familyListPending, getRememberedPassword, setRememberedPassword } from './inbox/inbox-api.js';
 import { DIETARY_TAGS } from './recipe-utils.js';
-import { buildRecipeLink, getRecipeTitleParts, normalizeRecipeEntry, normalizeTitleKey } from './recipe-model.js';
+import { buildRecipeLink, getRecipeTitleParts, normalizeTitleKey } from './recipe-model.js';
+import { loadStoredInboxRecipes, normalizeRecipeListResult, storeInboxRecipes } from './recipe-repository.js';
 
-const STORAGE_KEY = 'cookingdb-inbox-recipes';
 const HAPTICS_KEY = 'cookingdb-ruffle-haptics';
 const HIDDEN_HOME_CATEGORIES = new Set(['Bread maker']);
 const RECIPE_WARM_RESOURCES = Object.freeze([
@@ -240,24 +240,6 @@ let selectedCategory = 'all';
 let recipeList = [];
 let inboxRecipes = loadStoredInboxRecipes();
 
-function loadStoredInboxRecipes() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return [];
-    return parsed;
-  } catch (err) {
-    console.warn('Failed to parse stored inbox recipes', err);
-    return [];
-  }
-}
-
-function storeInboxRecipes(recipes) {
-  inboxRecipes = recipes;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(recipes));
-}
-
 function recipeSummary(recipe, source = 'built') {
   return {
     id: recipe.id,
@@ -433,16 +415,6 @@ function refreshUI() {
   updateRefineSummary();
 }
 
-function normalizeIncomingList(result) {
-  if (!result) return [];
-  const maybeList = Array.isArray(result)
-  ? result
-  : result.rows || result.pending || result.recipes || result.items;
-
-  if (!maybeList || !Array.isArray(maybeList)) return [];
-  return maybeList.map((entry) => normalizeRecipeEntry(entry)).filter(Boolean);
-}
-
 function dedupeInboxRecipes(existing, incoming) {
   const mapById = new Map();
   existing.forEach((rec) => mapById.set(rec.id, rec));
@@ -466,8 +438,8 @@ function dedupeInboxRecipes(existing, incoming) {
 function addInboxRecipes(newOnes) {
   if (!newOnes.length) return 0;
   const next = [...inboxRecipes, ...newOnes];
-  storeInboxRecipes(next);
-  const summaries = next.map((rec) => recipeSummary(rec, 'inbox'));
+  inboxRecipes = storeInboxRecipes(next);
+  const summaries = inboxRecipes.map((rec) => recipeSummary(rec, 'inbox'));
   const builtSummaries = recipeList.filter((rec) => rec._source !== 'inbox');
   recipeList = [...builtSummaries, ...summaries];
   refreshUI();
@@ -505,7 +477,7 @@ async function handlePullClick() {
       includePayload: true,
       include_payload: true,
     });
-    const incoming = normalizeIncomingList(result);
+    const incoming = normalizeRecipeListResult(result);
     const completeRecipes = incoming.filter((rec) => rec?.has_details);
     const partialRecipes = incoming.filter((rec) => !rec?.has_details);
 

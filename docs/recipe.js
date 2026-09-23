@@ -1,7 +1,5 @@
 import { siteBehavior } from './site-behavior.js';
-import { fetchBuiltJson } from './built-data.js';
 import {
-  DIETARY_TAGS,
   restrictionsActive,
   recipeDefaultCompatibility,
   hasNonCompliantAlternative,
@@ -19,6 +17,14 @@ import {
   convertUnitAmount,
 } from './recipe-utils.js';
 import {
+  DIETARY_BADGES,
+  formatKcal,
+  formatNumber,
+  getRecipeTitleParts,
+  recipeHasDetails,
+} from './recipe-model.js';
+import { loadRecipeCollection } from './recipe-repository.js';
+import {
   computeBatchTotals,
   dataLoadState,
   loadIngredientPortions,
@@ -32,174 +38,8 @@ import {
   saveNutritionSettings,
 } from './nutrition-engine.js';
 
-const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
-
-const DIETARY_BADGES = [
-  { key: 'gluten_free', short: 'GF', name: 'Gluten-free' },
-  { key: 'egg_free', short: 'EF', name: 'Egg-free' },
-  { key: 'dairy_free', short: 'DF', name: 'Dairy-free' },
-];
-
-function recipeHasDetails(recipe) {
-  if (!recipe || typeof recipe !== 'object') return false;
-  const ingredients = normalizeIngredients(recipe.ingredients, recipe.token_order);
-  const hasIngredients = ingredients.list.length > 0;
-  const hasSteps =
-    (typeof recipe.steps_raw === 'string' && recipe.steps_raw.trim().length > 0) ||
-    (Array.isArray(recipe.steps) && recipe.steps.length > 0);
-  return hasIngredients && hasSteps;
-}
-
-function normalizeTitleKey(title) {
-  return String(title || '')
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
-}
-
-function splitRecipeTitle(rawTitle) {
-  const title = (rawTitle || '').trim();
-  if (!title) return { title: '', name: '' };
-
-  const parenMatch = title.match(/^(.*)\s*\(([^)]+)\)\s*$/);
-  if (parenMatch) {
-    return { title: parenMatch[1].trim(), name: parenMatch[2].trim() };
-  }
-
-  const possessiveMatch = title.match(/^([^–—-]+?)\s*['’]s\s+(.+)$/i);
-  if (possessiveMatch) {
-    return { title: possessiveMatch[2].trim(), name: possessiveMatch[1].trim() };
-  }
-
-  return { title, name: '' };
-}
-
-function getRecipeTitleParts(recipe) {
-  const byline = (recipe?.byline || '').trim();
-  if (byline) {
-    return { title: (recipe?.title || '').trim(), name: byline };
-  }
-  return splitRecipeTitle(recipe?.title || '');
-}
-
-function normalizeIngredients(raw, tokenOrder = []) {
-  const list = Array.isArray(raw)
-    ? raw.filter(Boolean)
-    : raw && typeof raw === 'object'
-      ? Object.values(raw).filter(Boolean)
-      : [];
-
-  const order = Array.isArray(tokenOrder) && tokenOrder.length
-    ? tokenOrder
-    : list.map((entry) => entry?.token).filter(Boolean);
-
-  const byToken = {};
-  list.forEach((entry) => {
-    if (entry?.token) byToken[entry.token] = entry;
-  });
-
-  return { list, byToken, order };
-}
-
-/**
- * Unwrap various possible inbox / db shapes into a recipe-ish object.
- * Supports:
- *  - <recipe>
- *  - { recipe: <recipe> }
- *  - { payload: <recipe> }
- *  - { title, payload: <recipe> }
- *  - { payload: { title, payload: <recipe> } }
- */
-function unwrapRecipeEntry(entry) {
-  let obj = entry;
-  for (let i = 0; i < 4; i += 1) {
-    if (!obj || typeof obj !== 'object') break;
-
-    // Common wrappers
-    if (obj.recipe && typeof obj.recipe === 'object') {
-      obj = obj.recipe;
-      continue;
-    }
-
-    if (obj.payload && typeof obj.payload === 'object') {
-      // If payload itself is an envelope { title, payload: <recipe> }
-      if (obj.payload.payload && typeof obj.payload.payload === 'object') {
-        obj = obj.payload.payload;
-        continue;
-      }
-      obj = obj.payload;
-      continue;
-    }
-
-    break;
-  }
-  return obj;
-}
-
-function normalizeRecipeForPage(entry) {
-  const maybe = unwrapRecipeEntry(entry);
-  if (!maybe || typeof maybe !== 'object') return null;
-
-  const title = maybe.title || entry?.title || '';
-  const id = maybe.id || maybe.recipe_id || entry?.id || entry?.recipe_id || normalizeTitleKey(title);
-
-  const ingredients = normalizeIngredients(maybe.ingredients, maybe.token_order);
-
-  // Prefer explicit compatibility_possible, otherwise compute a default
-  const compatibility_possible =
-    maybe.compatibility_possible && typeof maybe.compatibility_possible === 'object'
-      ? maybe.compatibility_possible
-      : recipeDefaultCompatibility({ ...maybe, ingredients: ingredients.byToken, token_order: ingredients.order });
-
-  return {
-    ...maybe,
-    title,
-    id,
-    ingredients: ingredients.byToken,
-    token_order: ingredients.order,
-    compatibility_possible,
-    has_details: recipeHasDetails({ ...maybe, ingredients: ingredients.list, token_order: ingredients.order }),
-  };
-}
-
-function formatNumber(value, options = {}) {
-  const { maximumFractionDigits = 1 } = options;
-  if (!Number.isFinite(value)) return '—';
-  return Number(value).toLocaleString(undefined, { maximumFractionDigits });
-}
-
-function formatKcal(value) {
-  if (!Number.isFinite(value)) return '—';
-  return `${Math.round(value)}`;
-}
-
-function loadStoredInboxRecipes() {
-  try {
-    const raw = localStorage.getItem(INBOX_STORAGE_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return [];
-    return parsed
-      .map(normalizeRecipeForPage)
-      .filter(Boolean);
-  } catch (err) {
-    console.warn('Unable to read inbox recipes from storage', err);
-    return [];
-  }
-}
-
 async function loadRecipes() {
-  const builtRaw = await fetchBuiltJson('recipes.json', { label: 'Recipe box' });
-  const built = Array.isArray(builtRaw) ? builtRaw.map(normalizeRecipeForPage).filter(Boolean) : [];
-  const inbox = loadStoredInboxRecipes();
-  const recipeIndex = new Map(
-    [...built, ...inbox]
-      .filter((entry) => entry && entry.id)
-      .map((entry) => [String(entry.id), entry])
-  );
-  return { recipes: [...built, ...inbox], recipeIndex };
+  return loadRecipeCollection({ label: 'Recipe box' });
 }
 
 function getRecipeIdFromQuery() {
