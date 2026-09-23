@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import { test, expect } from '@playwright/test';
+import { openDetails } from './journey-helpers.mjs';
 
 const builtIndex = JSON.parse(fs.readFileSync(new URL('../../docs/built/index.json', import.meta.url), 'utf8'));
 const savedCategory = builtIndex.flatMap((recipe) => recipe.categories || []).find(Boolean) || 'Dinner';
@@ -115,11 +116,8 @@ test.describe('Add Recipe failure resilience', () => {
     await expect(page.locator('#categories')).toBeEnabled({ timeout: 1200 });
     await expect(page.locator('#category-summary')).toContainText(savedCategory, { timeout: 1200 });
 
-    // Pan scaling is intentionally nested under Recipe details > More recipe options.
-    // Open both disclosures in the same sequence a user must follow before checking recovery.
-    await page.locator('#recipe-details-heading').click();
-    await expect(page.locator('#recipe-options > summary')).toBeVisible();
-    await page.locator('#recipe-options > summary').click();
+    await openDetails(page, 'Recipe details');
+    await openDetails(page, 'More recipe options');
     await expect(page.getByRole('button', { name: 'Retry pan sizes' })).toBeVisible();
 
     await page.locator('#title').fill('Resilient draft edited');

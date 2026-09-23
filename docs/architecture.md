@@ -85,6 +85,19 @@ Styles are organized conceptually as:
 9. responsive behavior
 10. print
 
+## Rendered UI is architecture
+
+DOM presence is part of the product architecture, not merely a styling detail.
+
+- A feature that is retired, unavailable, unsupported, or not part of the current page should not remain in the DOM just because `hidden`, `display: none`, off-screen positioning, or another CSS escape hatch can conceal it.
+- `hidden` is reserved for a reversible state inside an active user workflow: for example a review panel before Review is chosen, an authenticated admin queue before authentication succeeds, or a status/panel that the current feature can reveal during this visit.
+- Every hidden stateful container must have an explicit runtime path that can reveal that exact container. CI checks this contract.
+- Removing a feature means removing its markup, event handlers, styles, data hooks, and tests unless another active feature still owns them.
+- Browser tests must distinguish `not currently shown` from `does not belong here`. The former may assert a hidden state; the latter should assert absence from the DOM.
+- Do not preserve old architecture as invisible compatibility scaffolding unless a documented migration contract still consumes it and there is a planned removal point.
+
+This rule exists specifically to prevent consolidation from becoming a cleaner-looking shell over abandoned systems.
+
 ## Data flow
 
 Published recipe flow:
@@ -109,6 +122,7 @@ Before adding a feature, answer:
 6. What are its loading, empty, failure, and offline/cache states?
 7. What browser-level test proves the user workflow?
 8. What architectural test prevents duplicated ownership?
+9. Which UI is rendered only while the feature is active, and which obsolete UI is removed entirely?
 
 Do not create a generic plugin framework unless a real feature requires one. Prefer small explicit extension points and registries.
 
@@ -149,6 +163,7 @@ The integration branch is ready only when all of the following are true:
 - Meal Prep, Bread Maker, print, dietary filtering, substitutions, conditional steps, scaling, pan scaling, and kitchen-count conversions are exercised
 - keyboard/focus/autocomplete/mobile-zoom/reduced-motion checks pass
 - obsolete duplicate implementations have been removed or explicitly documented
+- hidden stateful UI has a real reveal path; unavailable or retired systems are absent rather than merely concealed
 - `README.md` and this document describe the actual deployed architecture
 - the owner has tested the preview and accepted the branch
 
