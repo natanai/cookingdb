@@ -15,6 +15,7 @@ function assert(condition, message) {
 }
 
 const builtData = read('built-data.js');
+const recipeRepository = read('recipe-repository.js');
 const app = read('app.js');
 const add = read('add.js');
 const addHtml = read('add.html');
@@ -38,10 +39,9 @@ assert(
 for (const [name, source] of [
   ['app.js', app],
   ['add.js', add],
-  ['planner.js', planner],
-  ['recipe.js', recipe],
   ['bread-maker.js', bread],
   ['nutrition-engine.js', nutrition],
+  ['recipe-repository.js', recipeRepository],
 ]) {
   assert(
     source.includes("from './built-data.js'"),
@@ -50,6 +50,25 @@ for (const [name, source] of [
   assert(
     !/fetch\(\s*['"]\.\/built\//.test(source),
     `${name} must not directly fetch generated built JSON`
+  );
+}
+
+assert(
+  recipeRepository.includes("fetchBuiltJson('recipes.json'") &&
+    recipeRepository.includes('loadRecipeCollection'),
+  'the recipe repository must own full recipe-box loading'
+);
+for (const [name, source] of [
+  ['planner.js', planner],
+  ['recipe.js', recipe],
+]) {
+  assert(
+    source.includes("from './recipe-repository.js'"),
+    `${name} must load recipes through the recipe repository`
+  );
+  assert(
+    !source.includes("fetchBuiltJson('recipes.json'"),
+    `${name} must not bypass the recipe repository for recipes.json`
   );
 }
 
@@ -82,9 +101,8 @@ assert(
 );
 
 assert(
-  planner.includes("fetchBuiltJson('recipes.json'") &&
-    !planner.includes("fetchBuiltJson('index.json'"),
-  'meal prep must depend only on the full recipe box, not the unused index'
+  planner.includes("loadRecipeCollection({ label: 'Meal prep recipes' })"),
+  'meal prep must obtain its recipe box through the shared repository'
 );
 assert(
   planner.includes('startPlanner().catch(showPlannerLoadError)') &&
