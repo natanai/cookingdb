@@ -17,7 +17,17 @@ jobs:
           node-version: 20
       - run: npm ci
       - name: Validate canonical recipe sources
-        run: npm run validate
+        run: |
+          set -o pipefail
+          npm run validate 2>&1 | tee "$RUNNER_TEMP/validation.log"
+      - name: Preserve validation failure details
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-diagnostics
+          path: ${{ runner.temp }}/validation.log
+          if-no-files-found: ignore
+          retention-days: 7
       - name: Build generated site data
         run: npm run build
       - name: Test the exact built candidate
