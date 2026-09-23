@@ -103,9 +103,10 @@ assert(
 );
 assert(
   add.includes("ingredientAutocompleteState !== 'ready'") &&
-    add.includes('Ingredient lookup unavailable — refresh to retry') &&
+    add.includes('Ingredient lookup unavailable.') &&
+    add.includes('Retry ingredient lookup') &&
     add.includes('Ingredient lookup could not load. Refresh the page before submitting this recipe.'),
-  'ingredient lookup failure must never masquerade as a new ingredient'
+  'ingredient lookup failure must stay explicit and block uncatalogued submission while remaining retryable in place'
 );
 assert(
   add.includes("fetchBuiltJson('pan-sizes.json'") &&
