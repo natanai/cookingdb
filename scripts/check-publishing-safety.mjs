@@ -38,7 +38,8 @@ assert.ok(
   'deployment confirmation must occur before inbox cleanup'
 );
 
-const worker = (await import(pathToFileURL(workerPath).href)).default;
+const workerUrl = workerPath instanceof URL ? workerPath : pathToFileURL(workerPath);
+const worker = (await import(workerUrl.href)).default;
 
 class FakeStatement {
   constructor(db, sql) {
