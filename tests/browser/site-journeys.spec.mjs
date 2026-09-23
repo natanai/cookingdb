@@ -114,6 +114,10 @@ test.describe('Add Recipe failure resilience', () => {
 
     await expect(page.locator('#categories')).toBeEnabled({ timeout: 1200 });
     await expect(page.locator('#category-summary')).toContainText(savedCategory, { timeout: 1200 });
+
+    // Pan scaling is intentionally tucked under advanced recipe options. Open it like a user
+    // before asserting that the recovery action is reachable.
+    await page.locator('#recipe-options > summary').click();
     await expect(page.getByRole('button', { name: 'Retry pan sizes' })).toBeVisible();
 
     await page.locator('#title').fill('Resilient draft edited');
