@@ -153,7 +153,20 @@ test('Add Recipe -> Recipe inbox -> Review / edit follows the real user path', a
   const ingredientLabel = await chooseIngredient(page);
   await page.locator('#steps-list .step-text').first().fill(`Add ${ingredientLabel} and stir.`);
 
-  await userClick(page.getByRole('button', { name: 'Submit recipe', exact: true }), 'Submit recipe');
+  // Submission deliberately confirms the family password even when a remembered value
+  // is available. Exercise that real dialog instead of bypassing the user-facing gate.
+  const familyDialogPromise = page.waitForEvent('dialog');
+  const submitPromise = userClick(
+    page.getByRole('button', { name: 'Submit recipe', exact: true }),
+    'Submit recipe'
+  );
+  const familyDialog = await familyDialogPromise;
+  expect(familyDialog.type()).toBe('prompt');
+  expect(familyDialog.message()).toBe('Family inbox password');
+  expect(familyDialog.defaultValue()).toBe(FAMILY_PASSWORD);
+  await familyDialog.accept(FAMILY_PASSWORD);
+  await submitPromise;
+
   await expect(page.locator('#form-status')).toContainText('Success: submitted with id 1.');
   expect(inbox.items).toHaveLength(1);
   expect(inbox.items[0].payload.title).toBe('Browser round trip soup');
