@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { test, expect } from '@playwright/test';
-import { openDetails } from './journey-helpers.mjs';
+import { openDetails, userClick } from './journey-helpers.mjs';
 
 const builtIndex = JSON.parse(fs.readFileSync(new URL('../../docs/built/index.json', import.meta.url), 'utf8'));
 const savedCategory = builtIndex.flatMap((recipe) => recipe.categories || []).find(Boolean) || 'Dinner';
@@ -18,12 +18,19 @@ async function expectPageShell(page, pageName) {
 }
 
 test.describe('six-page browser smoke journeys', () => {
-  test('Cookbook renders searchable recipe rows', async ({ page }) => {
+  test('Cookbook renders searchable published recipe rows and keeps inbox administration under the gear menu', async ({ page }) => {
     const errors = collectPageErrors(page);
     await page.goto('/index.html');
     await expectPageShell(page, 'home');
     await expect(page.locator('#search-input')).toBeVisible();
     await expect(page.locator('#recipe-list li').first()).toBeVisible();
+
+    // Pending recipes are an administrative workflow, not an alternate cookbook data source.
+    await expect(page.getByRole('button', { name: 'Pull inbox' })).toHaveCount(0);
+    await expect(page.locator('#pull-inbox')).toHaveCount(0);
+
+    await userClick(page.getByRole('group').locator('summary[aria-label="Admin"]'), 'Admin gear');
+    await expect(page.getByRole('link', { name: 'Recipe inbox', exact: true })).toBeVisible();
     expect(errors).toEqual([]);
   });
 
