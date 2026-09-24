@@ -14,7 +14,7 @@ function assert(condition, message) {
 
 assert(fs.existsSync(path.join(docs, 'architecture.md')), 'docs/architecture.md must describe the real application architecture');
 assert(fs.existsSync(path.join(docs, 'recipe-model.js')), 'shared recipe-model.js must own cross-page recipe normalization/presentation semantics');
-assert(fs.existsSync(path.join(docs, 'recipe-repository.js')), 'shared recipe-repository.js must own browser recipe loading and pending-recipe storage');
+assert(fs.existsSync(path.join(docs, 'recipe-repository.js')), 'shared recipe-repository.js must own published browser recipe loading');
 assert(fs.existsSync(path.join(root, 'cloudflare', 'worker.js')), 'cloudflare/worker.js must remain the canonical inbox worker');
 assert(!fs.existsSync(path.join(root, 'inbox-worker.js')), 'the obsolete duplicate root inbox-worker.js must not return');
 
@@ -36,9 +36,6 @@ for (const exportedConcept of [
 
 const recipeRepository = read('docs/recipe-repository.js');
 for (const exportedConcept of [
-  'normalizeRecipeListResult',
-  'loadStoredInboxRecipes',
-  'storeInboxRecipes',
   'buildRecipeIndex',
   'loadRecipeSummaries',
   'loadBuiltRecipes',
@@ -50,6 +47,10 @@ for (const exportedConcept of [
     `recipe-repository.js must own ${exportedConcept}`
   );
 }
+assert(
+  !/localStorage|INBOX_STORAGE_KEY|loadStoredInboxRecipes|storeInboxRecipes|includeInbox/.test(recipeRepository),
+  'recipe-repository.js must not retain the retired pending/local cookbook overlay architecture'
+);
 
 for (const page of ['docs/app.js', 'docs/bread-maker.js', 'docs/planner.js', 'docs/recipe.js']) {
   const source = read(page);
@@ -57,12 +58,6 @@ for (const page of ['docs/app.js', 'docs/bread-maker.js', 'docs/planner.js', 'do
   assert(source.includes("from './recipe-repository.js'"), `${page} must consume the shared recipe repository`);
   assert(!source.includes('function splitRecipeTitle('), `${page} must not redefine splitRecipeTitle`);
   assert(!source.includes('function getRecipeTitleParts('), `${page} must not redefine getRecipeTitleParts`);
-}
-
-for (const page of ['docs/app.js', 'docs/planner.js', 'docs/recipe.js']) {
-  const source = read(page);
-  assert(!source.includes("const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes'"), `${page} must not own the inbox storage key`);
-  assert(!source.includes('function loadStoredInboxRecipes('), `${page} must not redefine pending-recipe storage loading`);
 }
 
 for (const page of ['docs/planner.js', 'docs/recipe.js']) {
@@ -76,6 +71,12 @@ for (const page of ['docs/app.js', 'docs/bread-maker.js']) {
   assert(!source.includes("fetchBuiltJson('index.json'"), `${page} must load cookbook summaries through recipe-repository.js`);
   assert(source.includes('loadRecipeSummaries'), `${page} must use the shared summary repository`);
 }
+
+const app = read('docs/app.js');
+assert(
+  !/familyListPending|inbox\/inbox-api\.js|loadStoredInboxRecipes|storeInboxRecipes/.test(app),
+  'the Cookbook entrypoint must not restore pending-recipe overlay behavior'
+);
 
 const workerReadme = read('cloudflare/README.md');
 assert(
