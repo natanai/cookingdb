@@ -57,10 +57,12 @@ Browser features obtain data through shared repositories/services rather than di
 Target services include:
 
 - built-data client: versioned URL, caching, retry, failure state
-- recipe repository: index/list/detail access and pending-overlay behavior
+- recipe repository: published index/list/detail access from generated data
 - authoring catalog: categories, ingredient autocomplete, units, sections, pans
 - inbox repository: family submit and admin review/update/delete/export
 - settings/draft stores: explicit keys and schema/version handling
+
+The recipe repository and inbox repository are intentionally separate. Pending recipes are not a second Cookbook source and are not copied into local browser storage for preview. A recipe becomes part of Cookbook, Recipe, and Meal Prep data only after the publish flow has integrated it into canonical repository sources and rebuilt generated data.
 
 ### 4. Features/pages
 
@@ -107,6 +109,8 @@ Published recipe flow:
 Authoring/publishing flow:
 
 `Add Recipe -> validated recipe draft -> D1 pending inbox -> admin review/edit -> publish workflow -> canonical CSV/catalog -> validation -> build -> deployed recipe`
+
+The D1 pending inbox is an authoring/review boundary, not an alternate live cookbook. Cookbook, individual recipe pages, and Meal Prep consume published generated data only.
 
 A field added to the recipe model should cross this route through one explicit contract, not separate page/import/build interpretations.
 
@@ -164,6 +168,7 @@ The integration branch is ready only when all of the following are true:
 - keyboard/focus/autocomplete/mobile-zoom/reduced-motion checks pass
 - obsolete duplicate implementations have been removed or explicitly documented
 - hidden stateful UI has a real reveal path; unavailable or retired systems are absent rather than merely concealed
+- pending recipes remain in the inbox/review boundary until they are published; public cookbook features consume generated published data only
 - `README.md` and this document describe the actual deployed architecture
 - the owner has tested the preview and accepted the branch
 
