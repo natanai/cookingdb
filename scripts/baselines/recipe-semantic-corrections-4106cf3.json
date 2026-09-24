@@ -4,46 +4,48 @@
   "recipes": {
     "anti-histamine-turkey-kale-sweet-potato-skillet": {
       "baseline_hash": "cc9386f71f035d7b8fec76976408b697b0923931cb15587b0c0716f7916829c7",
-      "approved_hash": "cd90ec27cf0f0211cd429f9bed69c3e409b5f581829b2e9b2dfa5dc75fde1885",
-      "reason": "Restores direction text that the legacy line parser dropped at unquoted commas; the canonical CSV was repaired by quoting the existing full direction rows.",
+      "approved_hash": "add4ff515de4ac1deb0584140e53139377b24d9f4d396c4a40de79fc0a7b4d5c",
+      "reason": "The legacy CSV row parser treated embedded commas in unquoted direction text as extra fields. Quoting the existing full rows preserves the authored directions instead of dropping text after those commas.",
       "evidence": [
         "f988d5e7f2680932f9df54ba6fecd01d531b0263",
         "02986331d1447f52d4a75382fa4430fb45f0935b",
         "aebe6a9b0912573f5f875a142fdc09487448066e"
       ]
     },
-    "crispy-chicken-salad-mango-dressing": {
-      "baseline_hash": "71462cb60e72f08b4fc5353533d84503fc489baeac8e70697622153221cf9ff1",
-      "approved_hash": "fed006cac3226f35006b52ff72fc6ec381a340695830ca65fe2e7bebbb3852ca",
-      "reason": "Pins the generated semantic result after the Papa Parse migration and legacy CSV field-boundary cleanup. The canonical recipe source itself is unchanged from the pre-refactor baseline.",
-      "evidence": [
-        "f988d5e7f2680932f9df54ba6fecd01d531b0263",
-        "aebe6a9b0912573f5f875a142fdc09487448066e"
-      ]
-    },
-    "fall-harvest-honeycrisp-apple-kale-salad": {
-      "baseline_hash": "259e4305f5469232a3be32322563f31841a78fa6f1dcfc99da237f684591169c",
-      "approved_hash": "e6bf83cbe903070eed873aad17792514221ed48523ce3ceff097bdc30a71091f",
-      "reason": "Pins the generated semantic result after the Papa Parse migration and legacy CSV field-boundary cleanup. The canonical recipe source itself is unchanged from the pre-refactor baseline.",
-      "evidence": [
-        "f988d5e7f2680932f9df54ba6fecd01d531b0263",
-        "aebe6a9b0912573f5f875a142fdc09487448066e"
-      ]
-    },
-    "thai-chicken-spring-rolls": {
-      "baseline_hash": "5fc1ef4c2e8b2dd13255c72fcbc18579eac3b07912a25815e458715e79cd2cd5",
-      "approved_hash": "4e8e9abc9cd866d86749239dbca06227314364397642df961ceb797625ece68c",
-      "reason": "Pins the generated semantic result after the Papa Parse migration and legacy CSV field-boundary cleanup. The canonical recipe source itself is unchanged from the pre-refactor baseline.",
+    "brown-rice": {
+      "baseline_hash": "d0a49589c8acf81d280cf041f9cffaad35f2fe729bd43d30d9f3871ed35dcc6a",
+      "approved_hash": "d15fa053f3fb44d36b71e83f33338a87107e96f3775c76340376d192b8e9716f",
+      "reason": "The legacy CSV row parser treated embedded commas in unquoted direction text as extra fields. Quoting the existing full rows preserves the authored directions instead of dropping text after those commas.",
       "evidence": [
         "f988d5e7f2680932f9df54ba6fecd01d531b0263",
         "02986331d1447f52d4a75382fa4430fb45f0935b",
         "aebe6a9b0912573f5f875a142fdc09487448066e"
       ]
     },
-    "weeknight-cheesy-baked-chipotle-chicken-tacos": {
-      "baseline_hash": "f8bfb882b3a62750e13aa7d1d6253e42b902b019e50dcefc4f10726a75d57e50",
-      "approved_hash": "a7298fcabdef41208d44abd0f8c98f71b2ac013049c1b1dd0d7d27ba8e0746df",
-      "reason": "Pins the generated semantic result after the Papa Parse migration and legacy CSV field-boundary cleanup. The canonical recipe source itself is unchanged from the pre-refactor baseline.",
+    "nanaimo-bars": {
+      "baseline_hash": "74884a8b03ce3abc546d781aeaa35fa8f7a82b774c4c8d67767b120b8a8b4283",
+      "approved_hash": "6c932a757f2f525c550dce3f64c3700c6bca6ed48a3f6aca6c2fa8468740123d",
+      "reason": "Two unquoted direction rows contained commas, so the legacy parser truncated their text. Quoting those existing rows preserves the complete authored directions.",
+      "evidence": [
+        "f988d5e7f2680932f9df54ba6fecd01d531b0263",
+        "02986331d1447f52d4a75382fa4430fb45f0935b",
+        "aebe6a9b0912573f5f875a142fdc09487448066e"
+      ]
+    },
+    "russian-teacakes": {
+      "baseline_hash": "bbadbdefe8476ea49f80ff105b00dc5d420d9ab8e9b1ae9aba0386cbeda4040d",
+      "approved_hash": "9f77e6f11b71d8909e2f7fc5ceb108739ea5c98eb49e5af6b1d4934b57ff3755",
+      "reason": "Unquoted direction rows included comma-delimited prose, so the legacy parser could truncate them. Quoting the existing rows preserves the complete authored directions without rewriting recipe content.",
+      "evidence": [
+        "f988d5e7f2680932f9df54ba6fecd01d531b0263",
+        "02986331d1447f52d4a75382fa4430fb45f0935b",
+        "aebe6a9b0912573f5f875a142fdc09487448066e"
+      ]
+    },
+    "veggie-teriyaki-stir-fry-noodles": {
+      "baseline_hash": "7b4b011a48f01d6e5dc90c587fded5027de20ff925be686543a2ac3f07a61ddd",
+      "approved_hash": "5f5ec7266f42bb819214f8085d74653279946d45d35a25bc095a38fa3fc1cba8",
+      "reason": "The legacy CSV row parser treated embedded commas in unquoted direction text as extra fields. Quoting the existing full rows preserves the authored directions instead of dropping text after those commas.",
       "evidence": [
         "f988d5e7f2680932f9df54ba6fecd01d531b0263",
         "02986331d1447f52d4a75382fa4430fb45f0935b",
