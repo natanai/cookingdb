@@ -1,5 +1,8 @@
 import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import { test, expect } from '@playwright/test';
+import { importInbox } from '../../scripts/import-inbox.mjs';
 import { userClick } from './journey-helpers.mjs';
 
 const builtIndex = JSON.parse(
@@ -133,7 +136,49 @@ async function chooseIngredient(page) {
   return ingredient.label;
 }
 
-test('Add Recipe -> Recipe inbox -> Review / edit follows the real user path', async ({ page }) => {
+function verifyPublishImport(inbox, ingredientLabel) {
+  expect(inbox.items).toHaveLength(1);
+  const pendingItem = inbox.items[0];
+  const recipeId = String(pendingItem.payload?.id || '').trim();
+  expect(recipeId, 'reviewed pending recipe must retain a publishable recipe id').toMatch(/^[a-z0-9_-]+$/);
+
+  const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), 'cookingdb-roundtrip-'));
+  try {
+    fs.mkdirSync(path.join(rootDir, 'data'), { recursive: true });
+    fs.mkdirSync(path.join(rootDir, 'recipes'), { recursive: true });
+    fs.copyFileSync(
+      new URL('../../data/ingredient_catalog.csv', import.meta.url),
+      path.join(rootDir, 'data', 'ingredient_catalog.csv')
+    );
+
+    const exportPath = path.join(rootDir, 'pending-export.json');
+    fs.writeFileSync(exportPath, `${JSON.stringify({ items: inbox.items }, null, 2)}\n`);
+
+    const report = importInbox({ inputPath: exportPath, rootDir });
+    expect(report.processed).toBe(1);
+    expect(report.inbox_ids).toEqual([pendingItem.id]);
+    expect(report.created_recipe_ids).toEqual([recipeId]);
+
+    const recipeDir = path.join(rootDir, 'recipes', recipeId);
+    const meta = fs.readFileSync(path.join(recipeDir, 'meta.csv'), 'utf8');
+    const ingredients = fs.readFileSync(path.join(recipeDir, 'ingredients.csv'), 'utf8');
+    const steps = fs.readFileSync(path.join(recipeDir, 'steps.csv'), 'utf8');
+
+    expect(meta).toContain('Browser round trip soup revised');
+    expect(meta).toContain(category);
+    expect(ingredients).toContain(ingredient.ingredient_id);
+    expect(ingredients).toContain(ingredientLabel);
+    expect(steps).toContain(`Add ${ingredientLabel} and stir.`);
+
+    const secondPass = importInbox({ inputPath: exportPath, rootDir, dryRun: true });
+    expect(secondPass.created_recipe_ids).toEqual([]);
+    expect(secondPass.already_present_recipe_ids).toEqual([recipeId]);
+  } finally {
+    fs.rmSync(rootDir, { recursive: true, force: true });
+  }
+}
+
+test('Add Recipe -> Recipe inbox -> Review / edit -> publish import follows the real user path', async ({ page }) => {
   const inbox = await installFakeInbox(page);
 
   await page.addInitScript(
@@ -204,4 +249,6 @@ test('Add Recipe -> Recipe inbox -> Review / edit follows the real user path', a
 
   await page.goto('/admin.html');
   await expect(page.locator('.pending-recipe-title')).toHaveText('Browser round trip soup revised');
+
+  verifyPublishImport(inbox, ingredientLabel);
 });
