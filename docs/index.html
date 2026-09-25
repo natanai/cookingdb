@@ -10,7 +10,6 @@
 <body class="page-home" data-site-page="home">
   <header class="site-header">
     <div class="inner">
-      <h1 class="site-title">CookingDB</h1>
       <nav class="nav-links" data-site-nav aria-label="Primary"></nav>
     </div>
   </header>
@@ -18,7 +17,7 @@
     <section class="hero">
       <div class="hero-content">
         <div class="toolbar">
-           <div class="filter-bar">
+          <div class="filter-bar">
             <label class="search-field" aria-label="Search recipes">
               <span class="search-icon" aria-hidden="true">🔎</span>
               <input
@@ -42,29 +41,15 @@
                   <label><input type="checkbox" id="filter-dairy" /> Dairy-free</label>
                 </div>
 
-                <div class="actions">
-                  <div class="family-tools">
-                    <button type="button" id="pull-inbox" class="button secondary button-compact">
-                      Pull inbox
-                    </button>
-
-                    <details class="family-settings">
-                      <summary class="icon-button" aria-label="Family settings"></summary>
-                      <div class="family-settings-panel">
-                        <label class="inline-check">
-                          <input type="checkbox" id="remember-pull" />
-                          Remember family password
-                        </label>
-                        <label class="inline-check">
-                          <input type="checkbox" id="ruffle-haptics" />
-                          Ruffle scroll haptics
-                        </label>
-                      </div>
-                    </details>
+                <details class="family-settings cookbook-settings">
+                  <summary class="icon-button" aria-label="Cookbook settings"></summary>
+                  <div class="family-settings-panel cookbook-settings-panel">
+                    <label class="inline-check">
+                      <input type="checkbox" id="ruffle-haptics" />
+                      Ruffle scroll haptics
+                    </label>
                   </div>
-                </div>
-
-                <div id="pull-status" class="status" aria-live="polite"></div>
+                </details>
 
                 <details class="category-panel category-panel-compact" id="category-panel">
                   <summary class="category-summary">

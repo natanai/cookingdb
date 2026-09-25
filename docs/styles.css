@@ -4315,6 +4315,10 @@ body.admin-page .muted {
   color: var(--muted);
 }
 
+body.add-page .admin-edit-banner[hidden] {
+  display: none;
+}
+
 body.add-page .admin-edit-banner {
   display: flex;
   align-items: center;

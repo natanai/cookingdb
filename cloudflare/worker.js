@@ -172,7 +172,7 @@ async function handleAdd(request, env, body) {
 
   const insert = await db
     .prepare(
-      'INSERT INTO recipes_inbox (title, slug, payload, status, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)' 
+      'INSERT INTO recipes_inbox (title, slug, payload, status, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)'
     )
     .bind(title, slug, JSON.stringify(recordPayload), 'pending', now, now)
     .run();
@@ -234,24 +234,12 @@ async function adminUpdatePending(request, env, body) {
     return jsonResponse({ ok: false, error: 'Missing recipe payload' }, 400);
   }
 
-  const db = getDb(env);
-  await ensureSchema(db);
-
-  const existing = await db
-    .prepare('SELECT id, status, updated_at FROM recipes_inbox WHERE id = ?')
-    .bind(id)
-    .first();
-
-  if (!existing || existing.status !== 'pending') {
-    return jsonResponse({ ok: false, error: 'Pending recipe not found' }, 404);
-  }
-
   const expectedUpdatedAt = String(body?.expected_updated_at || '').trim();
-  if (expectedUpdatedAt && existing.updated_at !== expectedUpdatedAt) {
+  if (!expectedUpdatedAt) {
     return jsonResponse(
       {
         ok: false,
-        error: 'This pending recipe changed after you opened it. Reload it before saving so newer changes are not overwritten.',
+        error: 'Reload this pending recipe before saving so the current version can be verified.',
       },
       409
     );
@@ -267,6 +255,9 @@ async function adminUpdatePending(request, env, body) {
     return jsonResponse({ ok: false, error: 'Recipe id is required' }, 400);
   }
 
+  const db = getDb(env);
+  await ensureSchema(db);
+
   const slug = slugify(payload.slug || recipeId || title);
   const now = new Date().toISOString();
   const recordPayload = {
@@ -277,12 +268,33 @@ async function adminUpdatePending(request, env, body) {
     slug,
   };
 
-  await db
+  const update = await db
     .prepare(
-      "UPDATE recipes_inbox SET title = ?, slug = ?, payload = ?, updated_at = ? WHERE id = ? AND status = 'pending'"
+      "UPDATE recipes_inbox SET title = ?, slug = ?, payload = ?, updated_at = ? WHERE id = ? AND status = 'pending' AND updated_at = ?"
     )
-    .bind(title, slug, JSON.stringify(recordPayload), now, id)
+    .bind(title, slug, JSON.stringify(recordPayload), now, id, expectedUpdatedAt)
     .run();
+
+  const changed = Number(update?.meta?.changes ?? 0);
+  if (changed !== 1) {
+    const current = await db
+      .prepare('SELECT id, status, updated_at FROM recipes_inbox WHERE id = ?')
+      .bind(id)
+      .first();
+
+    if (!current || current.status !== 'pending') {
+      return jsonResponse({ ok: false, error: 'Pending recipe not found' }, 404);
+    }
+
+    return jsonResponse(
+      {
+        ok: false,
+        error: 'This pending recipe changed after you opened it. Reload it before saving so newer changes are not overwritten.',
+        current_updated_at: current.updated_at,
+      },
+      409
+    );
+  }
 
   const updated = await db
     .prepare(
@@ -294,22 +306,80 @@ async function adminUpdatePending(request, env, body) {
   return jsonResponse({ ok: true, item: mapRow(updated, true) });
 }
 
+function normalizeDeleteSnapshots(body) {
+  if (!Array.isArray(body?.items)) return [];
+  return body.items
+    .map((item) => ({
+      id: Number(item?.id),
+      updatedAt: String(item?.updated_at || item?.updatedAt || '').trim(),
+    }))
+    .filter((item) => Number.isInteger(item.id) && item.id > 0 && item.updatedAt);
+}
+
 async function adminDeletePending(request, env, body) {
   requireAdminToken(request, env);
-  const ids = Array.isArray(body?.ids) ? body.ids.filter((id) => Number.isInteger(id)) : [];
 
   const db = getDb(env);
   await ensureSchema(db);
 
+  const snapshots = normalizeDeleteSnapshots(body);
+  const requestedItems = Array.isArray(body?.items) ? body.items.length : 0;
+
+  if (requestedItems > 0 && snapshots.length !== requestedItems) {
+    return jsonResponse(
+      { ok: false, error: 'Every version-aware delete item must include a valid id and updated_at value.' },
+      400
+    );
+  }
+
+  if (snapshots.length > 0) {
+    let deleted = 0;
+    const conflicts = [];
+
+    for (const snapshot of snapshots) {
+      const result = await db
+        .prepare(
+          "DELETE FROM recipes_inbox WHERE status = 'pending' AND id = ? AND updated_at = ?"
+        )
+        .bind(snapshot.id, snapshot.updatedAt)
+        .run();
+
+      const changes = Number(result?.meta?.changes ?? 0);
+      deleted += changes;
+      if (changes !== 1) conflicts.push(snapshot.id);
+    }
+
+    if (conflicts.length) {
+      return jsonResponse(
+        {
+          ok: false,
+          error: 'Some pending recipes changed after the publish snapshot and were left in the inbox.',
+          deleted,
+          conflicts,
+        },
+        409
+      );
+    }
+
+    return jsonResponse({ ok: true, deleted });
+  }
+
+  const ids = Array.isArray(body?.ids)
+    ? body.ids.map(Number).filter((id) => Number.isInteger(id) && id > 0)
+    : [];
+
   let result;
   if (ids.length > 0) {
     const placeholders = ids.map(() => '?').join(',');
-    result = await db.prepare(`DELETE FROM recipes_inbox WHERE status = 'pending' AND id IN (${placeholders})`).bind(...ids).run();
+    result = await db
+      .prepare(`DELETE FROM recipes_inbox WHERE status = 'pending' AND id IN (${placeholders})`)
+      .bind(...ids)
+      .run();
   } else {
     result = await db.prepare("DELETE FROM recipes_inbox WHERE status = 'pending'").run();
   }
-  const deleted = typeof result?.meta?.changes === 'number' ? result.meta.changes : undefined;
 
+  const deleted = typeof result?.meta?.changes === 'number' ? result.meta.changes : undefined;
   const response = { ok: true };
   if (typeof deleted === 'number') {
     response.deleted = deleted;

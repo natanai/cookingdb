@@ -15,6 +15,7 @@ function assert(condition, message) {
 }
 
 const builtData = read('built-data.js');
+const recipeRepository = read('recipe-repository.js');
 const app = read('app.js');
 const add = read('add.js');
 const addHtml = read('add.html');
@@ -38,10 +39,8 @@ assert(
 for (const [name, source] of [
   ['app.js', app],
   ['add.js', add],
-  ['planner.js', planner],
-  ['recipe.js', recipe],
-  ['bread-maker.js', bread],
   ['nutrition-engine.js', nutrition],
+  ['recipe-repository.js', recipeRepository],
 ]) {
   assert(
     source.includes("from './built-data.js'"),
@@ -50,6 +49,43 @@ for (const [name, source] of [
   assert(
     !/fetch\(\s*['"]\.\/built\//.test(source),
     `${name} must not directly fetch generated built JSON`
+  );
+}
+
+assert(
+  recipeRepository.includes("fetchBuiltJson('recipes.json'") &&
+    recipeRepository.includes('loadRecipeCollection'),
+  'the recipe repository must own full recipe-box loading'
+);
+assert(
+  recipeRepository.includes("fetchBuiltJson('index.json'") &&
+    recipeRepository.includes('loadRecipeSummaries'),
+  'the recipe repository must own cookbook-summary loading'
+);
+for (const [name, source] of [
+  ['planner.js', planner],
+  ['recipe.js', recipe],
+]) {
+  assert(
+    source.includes("from './recipe-repository.js'"),
+    `${name} must load recipes through the recipe repository`
+  );
+  assert(
+    !source.includes("fetchBuiltJson('recipes.json'"),
+    `${name} must not bypass the recipe repository for recipes.json`
+  );
+}
+for (const [name, source] of [
+  ['app.js', app],
+  ['bread-maker.js', bread],
+]) {
+  assert(
+    source.includes("from './recipe-repository.js'"),
+    `${name} must load cookbook summaries through the recipe repository`
+  );
+  assert(
+    !source.includes("fetchBuiltJson('index.json'"),
+    `${name} must not bypass the recipe repository for index.json`
   );
 }
 
@@ -67,9 +103,10 @@ assert(
 );
 assert(
   add.includes("ingredientAutocompleteState !== 'ready'") &&
-    add.includes('Ingredient lookup unavailable — refresh to retry') &&
+    add.includes('Ingredient lookup unavailable.') &&
+    add.includes('Retry ingredient lookup') &&
     add.includes('Ingredient lookup could not load. Refresh the page before submitting this recipe.'),
-  'ingredient lookup failure must never masquerade as a new ingredient'
+  'ingredient lookup failure must stay explicit and block uncatalogued submission while remaining retryable in place'
 );
 assert(
   add.includes("fetchBuiltJson('pan-sizes.json'") &&
@@ -82,9 +119,8 @@ assert(
 );
 
 assert(
-  planner.includes("fetchBuiltJson('recipes.json'") &&
-    !planner.includes("fetchBuiltJson('index.json'"),
-  'meal prep must depend only on the full recipe box, not the unused index'
+  planner.includes("loadRecipeCollection({ label: 'Meal prep recipes' })"),
+  'meal prep must obtain its recipe box through the shared repository'
 );
 assert(
   planner.includes('startPlanner().catch(showPlannerLoadError)') &&
@@ -93,10 +129,10 @@ assert(
 );
 
 assert(
-  bread.includes("fetchBuiltJson('index.json'") &&
+  bread.includes("loadRecipeSummaries({ label: 'Bread maker recipes' })") &&
     bread.includes('Bread maker recipes could not load. Refresh the page to retry.') &&
     breadHtml.includes('Loading bread maker recipes…'),
-  'Bread Maker must expose loading and failure states'
+  'Bread Maker must expose loading and failure states while using the shared summary repository'
 );
 
 assert(
