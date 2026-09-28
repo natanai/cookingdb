@@ -29,8 +29,8 @@ const nutrition = read('nutrition-engine.js');
 
 assert(
   builtData.includes("from './built/version.js'") &&
-    builtData.includes("requestBuiltJson(url, resourceLabel, 'default')") &&
-    builtData.includes("requestBuiltJson(url, resourceLabel, 'reload')") &&
+    builtData.includes("requestBuiltJson(url, resourceLabel, 'default', timeoutMs)") &&
+    builtData.includes("requestBuiltJson(url, resourceLabel, 'reload', timeoutMs)") &&
     builtData.includes('builtDataUrl') &&
     builtData.includes("credentials: 'same-origin'"),
   'the shared built-data loader must use versioned reusable caching with a network retry'

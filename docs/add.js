@@ -25,6 +25,7 @@ const panSelectEl = document.getElementById('default-pan');
 let panSizeCatalog = [];
 let pendingDraftPan = '';
 let ingredientAutocompleteState = 'loading';
+const ingredientAutocompleteRenderers = new WeakMap();
 let categoryCatalogState = 'loading';
 let panCatalogState = 'loading';
 // Remove required attribute from slug input as it's auto-generated
@@ -620,7 +621,10 @@ function refreshIngredientCatalogNote(row) {
 function refreshIngredientCatalogNotes() {
   ingredientRowsEl
     .querySelectorAll('.ingredient-row')
-    .forEach((row) => refreshIngredientCatalogNote(row));
+    .forEach((row) => {
+      refreshIngredientCatalogNote(row);
+      ingredientAutocompleteRenderers.get(row)?.();
+    });
 }
 
 function createIngredientRow(defaults = {}) {
@@ -944,6 +948,10 @@ function createIngredientRow(defaults = {}) {
     autocompleteMenu.hidden = false;
     nameInput.setAttribute('aria-expanded', 'true');
   };
+
+  ingredientAutocompleteRenderers.set(row, () => {
+    if (document.activeElement === nameInput) renderAutocomplete();
+  });
 
   const tryAutofillUnit = () => {
     if (unitInput.dataset.userChanged === 'true' || unitInput.value) return;

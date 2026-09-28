@@ -64,6 +64,13 @@ Target services include:
 
 The recipe repository and inbox repository are intentionally separate. Pending recipes are not a second Cookbook source and are not copied into local browser storage for preview. A recipe becomes part of Cookbook, Recipe, and Meal Prep data only after the publish flow has integrated it into canonical repository sources and rebuilt generated data.
 
+The built-data client owns a 10-second deadline per request attempt, covering both
+response headers and JSON body consumption. It retries once with cache reload and
+the same versioned URL, then reports failure to the feature's existing retry/error
+UI. Add Recipe updates an active ingredient menu when lookup state changes without
+requiring the user to retype. Cookbook preloading is opportunistic: a cold recipe
+click waits at most 250 ms for it, while an already-warm click proceeds immediately.
+
 ### 4. Features/pages
 
 Top-level page scripts should be thin composition roots. Feature modules own focused behavior such as recipe scaling, authoring ingredients, authoring steps, planner aggregation, or bread-journal editing.
