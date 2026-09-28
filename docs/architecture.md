@@ -197,3 +197,23 @@ The integration branch is ready only when all of the following are true:
 - the owner has tested the preview and accepted the branch
 
 Until those gates are satisfied, the branch remains a draft and `main` remains the production fallback.
+
+### Navigation comparison evidence
+
+CI builds current `main` in a separate checkout and runs `npm run test:navigation`
+with `BASELINE_ROOT` pointing to it. The candidate and baseline use the same
+Chromium/WebKit engines, isolated contexts, alternating measurement order, and
+0 ms or 80 ms added server response latency. The site's Google font assets are
+snapshotted once and served locally to both versions; browser HTTP caching remains
+enabled. This controls third-party font delivery but does not emulate production
+CDN caching, bandwidth limits, CPU throttling, or a physical iPhone.
+
+For one representative recipe, three paired trials measure immediate clicks and
+clicks after network-idle preloading. The clock starts on the real click and ends
+when the populated recipe is revealed. Text and rounded geometry of its title,
+ingredients, and steps are sampled for the following second. CI flags a candidate
+median above `main * 1.20 + 100 ms`, or more post-reveal changes than the baseline.
+This tolerance screens material regressions despite runner noise; passing it is
+not proof of identical speed or every recipe's visual stability. Raw measurements,
+exact revisions, and paired screenshots are retained in `navigation-report` inside
+the browser evidence artifact for review.

@@ -51,6 +51,18 @@ jobs:
         run: npx playwright install --with-deps chromium webkit
       - name: Run desktop Chromium and mobile WebKit journeys
         run: npm run test:browser
+      - name: Build current main as the navigation baseline
+        run: |
+          git fetch --no-tags --depth=1 origin main
+          git worktree add --detach "$RUNNER_TEMP/cookingdb-main" FETCH_HEAD
+          cd "$RUNNER_TEMP/cookingdb-main"
+          npm ci
+          npm run build
+      - name: Compare navigation timing and post-reveal stability against main
+        env:
+          BASELINE_ROOT: ${{ runner.temp }}/cookingdb-main
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: npm run test:navigation
       - name: Preserve browser review evidence
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
@@ -59,5 +71,6 @@ jobs:
           path: |
             playwright-report
             test-results
+            navigation-report
           if-no-files-found: ignore
           retention-days: 7
