@@ -51,11 +51,11 @@ jobs:
         run: npx playwright install --with-deps chromium webkit
       - name: Run desktop Chromium and mobile WebKit journeys
         run: npm run test:browser
-      - name: Preserve browser failure evidence
-        if: ${{ failure() }}
+      - name: Preserve browser review evidence
+        if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: browser-failure-evidence
+          name: browser-review-evidence
           path: |
             playwright-report
             test-results

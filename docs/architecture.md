@@ -112,6 +112,23 @@ Authoring/publishing flow:
 
 The D1 pending inbox is an authoring/review boundary, not an alternate live cookbook. Cookbook, individual recipe pages, and Meal Prep consume published generated data only.
 
+Publication defaults to a dry run of the selected branch. Production publication
+requires `main` and a Worker advertising `acknowledge-published-v1`. The workflow
+validates and builds the imported sources, commits recipes, catalog changes, and
+built data, then calls the reusable Pages workflow with that exact commit. Pages
+builds and runs Chromium/WebKit journeys before deploying. Only a successful
+deployment allows the dependent acknowledgement job to remove the exported row
+versions. Identical-import retries also deploy; no push-triggered workflow is
+assumed. A receipt artifact preserves the commit and row versions for 30 days.
+New recipes may extend the historical semantic baseline; existing recipe hashes
+remain locked to the original baseline and explicitly reviewed corrections.
+
+Deployment failure retains pending rows. An edit after export causes versioned
+cleanup to retain that row for review. If it conflicts with an already imported
+canonical recipe, reconcile the recipe deliberately before retrying; the importer
+must not silently overwrite the published source. Deploy the current Worker
+before enabling this publication workflow; see `cloudflare/README.md`.
+
 A field added to the recipe model should cross this route through one explicit contract, not separate page/import/build interpretations.
 
 ## Future feature extension contract

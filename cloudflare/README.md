@@ -65,3 +65,14 @@ await fetch('https://<your-worker>/admin/update-pending', {
 After pulling this branch, copy/paste [`worker.js`](./worker.js) into your Cloudflare Worker and deploy. Ensure the Worker keeps the `DB` binding plus the `ADMIN_TOKEN` and `FAMILY_PASSWORD`/`RECIPE_PASSWORD` secrets.
 
 The site admin review editor requires the current Worker version because saving an audited recipe uses `POST /admin/update-pending`. Listing, export, and individual deletion continue to use the existing admin-token-protected inbox routes.
+
+Before enabling production publication, deploy this Worker and confirm `/health`
+returns `db.ok: true` and the `acknowledge-published-v1` capability. The publisher
+checks this before import and again before cleanup. An old Worker safely blocks
+publishing; the new `/admin/acknowledge-published` route cannot fall through to
+legacy deletion behavior. No schema migration is needed.
+
+Publication acknowledgement accepts only nonempty `items: [{id, updated_at}]`
+and deletes matching pending versions. Rows edited since export remain pending.
+Empty or malformed delete selectors are rejected. The admin's deliberate
+delete-all action sends `{all: true}` to `/admin/delete-pending`.

@@ -47,13 +47,16 @@ const currentIds = [...byId.keys()];
 const missing = baselineIds.filter((id) => !byId.has(id));
 const added = currentIds.filter((id) => !Object.hasOwn(baseline.recipes, id));
 
-if (recipes.length !== baseline.recipe_count || missing.length || added.length) {
+// Lock the meaning of existing recipes without preventing normal publication of
+// new ones. New recipes still pass canonical validation and the model contract.
+if (byId.size !== recipes.length || missing.length) {
   console.error('Recipe semantic parity failed: recipe identity set changed.');
   console.error(`Baseline count: ${baseline.recipe_count}; current count: ${recipes.length}.`);
   if (missing.length) console.error(`Missing recipes: ${missing.join(', ')}`);
   if (added.length) console.error(`Added recipes: ${added.join(', ')}`);
   process.exit(1);
 }
+if (added.length) console.log(`Additional published recipes outside the historical baseline: ${added.join(', ')}`);
 
 if (corrections.baseline_commit !== baseline.baseline_commit) {
   console.error('Recipe semantic parity failed: correction record targets a different baseline commit.');

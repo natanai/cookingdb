@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { pathToFileURL } from 'node:url';
+import { parse as parseYaml } from 'yaml';
+import { makeReceipt, preflight, acknowledge } from './publish-inbox.mjs';
 
 const workerPath = process.env.WORKER_PATH || new URL('../cloudflare/worker.js', import.meta.url);
 const workerSource = fs.readFileSync(workerPath, 'utf8');
@@ -22,21 +24,25 @@ assert.doesNotMatch(
   /scripts\/import-inbox\.mjs[\s\S]{0,300}--dry-run/,
   'workflow dry-run must materialize proposed recipe files in the disposable runner'
 );
-assert.match(
-  workflowSource,
-  /Wait for Pages to deploy the exact published commit/,
-  'publishing must wait for the exact Pages deployment'
-);
-assert.match(
-  workflowSource,
-  /JSON\.stringify\(\{ items \}\)/,
-  'cleanup payload must contain exported row versions, not bare ids'
-);
-assert.ok(
-  workflowSource.indexOf('Wait for Pages to deploy the exact published commit') <
-    workflowSource.indexOf('Remove only the published row versions from the inbox'),
-  'deployment confirmation must occur before inbox cleanup'
-);
+const workflow = parseYaml(workflowSource);
+const pages = parseYaml(fs.readFileSync(new URL('../.github/workflows/pages.yml', import.meta.url), 'utf8'));
+assert.equal(workflow.on.workflow_dispatch.inputs.dry_run.default, true);
+assert.equal(workflow.jobs.deploy.uses, './.github/workflows/pages.yml');
+assert.equal(workflow.jobs.deploy.needs, 'prepare');
+assert.equal(workflow.jobs.deploy.with.source_ref, '${{ needs.prepare.outputs.published_sha }}');
+assert.equal(workflow.jobs.deploy.if, "${{ !inputs.dry_run && needs.prepare.outputs.processed != '0' }}",
+  'identical retries must deploy too; never depend on whether a commit was pushed');
+assert.deepEqual(workflow.jobs.acknowledge.needs, ['prepare', 'deploy']);
+assert.equal(workflow.jobs.acknowledge.if,
+  "${{ !inputs.dry_run && needs.prepare.outputs.processed != '0' && needs.deploy.result == 'success' }}");
+assert.equal(workflow.jobs.prepare.steps[0].if, "${{ !inputs.dry_run && github.ref != 'refs/heads/main' }}");
+assert.equal(pages.on.workflow_call.inputs.source_ref.required, true);
+assert.equal(pages.jobs.build.steps[0].with.ref, '${{ inputs.source_ref || github.sha }}');
+assert.equal(pages.jobs.deploy.needs, 'build');
+const buildSteps = pages.jobs.build.steps;
+assert.ok(buildSteps.findIndex(step => step.run === 'npm run build') < buildSteps.findIndex(step => step.run === 'npm test'));
+assert.ok(buildSteps.findIndex(step => step.run === 'npm run test:browser') < buildSteps.findIndex(step => step.uses === 'actions/upload-pages-artifact@v3'));
+assert.equal(workflow.jobs.acknowledge.steps.at(-1).run, 'node scripts/publish-inbox.mjs acknowledge');
 
 const workerUrl = workerPath instanceof URL ? workerPath : pathToFileURL(workerPath);
 const worker = (await import(workerUrl.href)).default;
@@ -113,6 +119,7 @@ class FakeStatement {
   }
 
   async first() {
+    if (this.sql === 'SELECT COUNT(*) AS count FROM recipes_inbox') return { count: this.db.rows.size };
     const id = Number(this.args[0]);
     const row = this.db.rows.get(id);
     if (!row) return null;
@@ -154,7 +161,7 @@ function request(path, body) {
   });
 }
 
-const originalTimestamp = '2026-09-22T20:00:00.000Z';
+const originalTimestamp = '2099-09-22T20:00:00.000Z';
 const baseRow = {
   id: 1,
   title: 'Original',
@@ -193,10 +200,10 @@ const baseRow = {
 }
 
 {
-  const db = new FakeDb([{ ...baseRow, updated_at: '2026-09-22T20:05:00.000Z' }]);
+  const db = new FakeDb([{ ...baseRow, updated_at: '2099-09-22T20:05:00.000Z' }]);
   const env = { DB: db, ADMIN_TOKEN: 'admin-test-token' };
   const cleanup = await worker.fetch(
-    request('/admin/delete-pending', {
+    request('/admin/acknowledge-published', {
       items: [{ id: 1, updated_at: originalTimestamp }],
     }),
     env
@@ -209,7 +216,7 @@ const baseRow = {
   const db = new FakeDb([baseRow]);
   const env = { DB: db, ADMIN_TOKEN: 'admin-test-token' };
   const cleanup = await worker.fetch(
-    request('/admin/delete-pending', {
+    request('/admin/acknowledge-published', {
       items: [{ id: 1, updated_at: originalTimestamp }],
     }),
     env
@@ -218,4 +225,56 @@ const baseRow = {
   assert.equal(db.rows.has(1), false, 'published row should be removed after exact-version cleanup');
 }
 
-console.log('Publishing safety tests passed.');
+// Same expected version submitted concurrently: only one edit can succeed,
+// even when the old version is ahead of the current clock.
+{
+  const db = new FakeDb([baseRow]);
+  const env = { DB: db, ADMIN_TOKEN: 'admin-test-token' };
+  const results = await Promise.all(['A', 'B'].map(title => worker.fetch(request('/admin/update-pending', {
+    id: 1, expected_updated_at: originalTimestamp, payload: { id: 'original', title },
+  }), env)));
+  assert.deepEqual(results.map(result => result.status).sort(), [200, 409]);
+  assert.ok(db.rows.get(1).updated_at > originalTimestamp);
+}
+
+for (const route of ['/admin/delete-pending', '/admin/acknowledge-published']) {
+  for (const body of [{}, { ids: [] }, { ids: ['bad'] }, { items: [] }, { items: 'bad' },
+    { items: [{ id: 1 }] }, { items: [{ id: 1, updated_at: originalTimestamp }, { id: 1, updated_at: originalTimestamp }] }]) {
+    const db = new FakeDb([baseRow]);
+    const result = await worker.fetch(request(route, body), { DB: db, ADMIN_TOKEN: 'admin-test-token' });
+    assert.equal(result.status, 400, `${route} must reject malformed selectors: ${JSON.stringify(body)}`);
+    assert.equal(db.rows.size, 1);
+  }
+}
+{
+  const db = new FakeDb([baseRow]);
+  const env = { DB: db, ADMIN_TOKEN: 'admin-test-token' };
+  const rejected = await worker.fetch(request('/admin/acknowledge-published', { all: true }), env);
+  assert.equal(rejected.status, 400);
+  const explicit = await worker.fetch(request('/admin/delete-pending', { all: true }), env);
+  assert.equal(explicit.status, 200);
+  assert.equal(db.rows.size, 0);
+}
+
+const sha = 'a'.repeat(40);
+const report = { processed: 1, inbox_ids: [1] };
+const receipt = makeReceipt(report, { items: [baseRow] }, sha);
+assert.deepEqual(receipt.items, [{ id: 1, updated_at: originalTimestamp }]);
+for (const [badReport, rows] of [
+  [{ processed: 2, inbox_ids: [1] }, [baseRow]],
+  [{ processed: 2, inbox_ids: [1, 1] }, [baseRow]],
+  [report, []], [report, [baseRow, baseRow]], [report, [{ ...baseRow, updated_at: '' }]],
+]) assert.throws(() => makeReceipt(badReport, { items: rows }, sha));
+let calls = 0;
+await assert.rejects(() => acknowledge(receipt, 'b'.repeat(40), 'https://worker.test', 'test', async () => { calls++; }));
+assert.equal(calls, 0, 'wrong-commit receipt must not make any request');
+await assert.rejects(() => preflight('https://worker.test', async () => Response.json({ ok: true, db: { ok: true } })));
+{
+  const db = new FakeDb([baseRow]);
+  const env = { DB: db, ADMIN_TOKEN: 'admin-test-token' };
+  const fetcher = (url, options = {}) => worker.fetch(new Request(url, options), env);
+  const result = await acknowledge(receipt, sha, 'https://worker.test', env.ADMIN_TOKEN, fetcher);
+  assert.equal(result.deleted, 1);
+  assert.equal(db.rows.size, 0);
+}
+console.log('Publishing safety tests passed (workflow graph, receipts, version conflicts, malformed cleanup, acknowledgement).');

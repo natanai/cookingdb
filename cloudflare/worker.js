@@ -129,7 +129,7 @@ function mapRow(row, includePayload) {
 }
 
 async function handleHealth(request, env) {
-  const response = { ok: true };
+  const response = { ok: true, capabilities: ['acknowledge-published-v1'] };
   const db = env?.DB;
   if (db?.prepare) {
     try {
@@ -235,7 +235,7 @@ async function adminUpdatePending(request, env, body) {
   }
 
   const expectedUpdatedAt = String(body?.expected_updated_at || '').trim();
-  if (!expectedUpdatedAt) {
+  if (!expectedUpdatedAt || !Number.isFinite(Date.parse(expectedUpdatedAt))) {
     return jsonResponse(
       {
         ok: false,
@@ -259,7 +259,9 @@ async function adminUpdatePending(request, env, body) {
   await ensureSchema(db);
 
   const slug = slugify(payload.slug || recipeId || title);
-  const now = new Date().toISOString();
+  // A successful write must change the version even within one millisecond or
+  // when the previous writer's clock was ahead of this instance.
+  const now = new Date(Math.max(Date.now(), Date.parse(expectedUpdatedAt) + 1)).toISOString();
   const recordPayload = {
     ...payload,
     id: recipeId,
@@ -303,7 +305,10 @@ async function adminUpdatePending(request, env, body) {
     .bind(id)
     .first();
 
-  return jsonResponse({ ok: true, item: mapRow(updated, true) });
+  return jsonResponse({ ok: true, item: {
+    id, recipe_id: recipeId, title, slug, payload: recordPayload,
+    status: 'pending', created_at: updated?.created_at, updated_at: now,
+  } });
 }
 
 function normalizeDeleteSnapshots(body) {
@@ -325,7 +330,7 @@ async function adminDeletePending(request, env, body) {
   const snapshots = normalizeDeleteSnapshots(body);
   const requestedItems = Array.isArray(body?.items) ? body.items.length : 0;
 
-  if (requestedItems > 0 && snapshots.length !== requestedItems) {
+  if ('items' in (body || {}) && (requestedItems === 0 || snapshots.length !== requestedItems || new Set(snapshots.map(item => item.id)).size !== requestedItems)) {
     return jsonResponse(
       { ok: false, error: 'Every version-aware delete item must include a valid id and updated_at value.' },
       400
@@ -368,6 +373,11 @@ async function adminDeletePending(request, env, body) {
     ? body.ids.map(Number).filter((id) => Number.isInteger(id) && id > 0)
     : [];
 
+  // Empty or malformed selectors must never mean "delete everything".
+  if (body?.all !== true && (!ids.length || ids.length !== body?.ids?.length)) {
+    return jsonResponse({ ok: false, error: 'Provide valid ids, versioned items, or explicit all: true.' }, 400);
+  }
+
   let result;
   if (ids.length > 0) {
     const placeholders = ids.map(() => '?').join(',');
@@ -390,6 +400,14 @@ async function adminDeletePending(request, env, body) {
   return jsonResponse(response);
 }
 
+async function acknowledgePublished(request, env, body) {
+  requireAdminToken(request, env);
+  if (!Array.isArray(body?.items) || !body.items.length || body.all !== undefined || body.ids !== undefined) {
+    return jsonResponse({ ok: false, error: 'Publication acknowledgement requires nonempty versioned items only.' }, 400);
+  }
+  return adminDeletePending(request, env, body);
+}
+
 const ROUTES = {
   'GET:/health': handleHealth,
   'POST:/health': handleHealth,
@@ -398,6 +416,7 @@ const ROUTES = {
   'POST:/admin/export': adminExport,
   'POST:/admin/update-pending': adminUpdatePending,
   'POST:/admin/delete-pending': adminDeletePending,
+  'POST:/admin/acknowledge-published': acknowledgePublished,
 };
 
 export default {

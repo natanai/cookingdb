@@ -132,6 +132,6 @@ export function adminDeleteAllPending({ workerBaseUrl = DEFAULT_BASE_URL, adminT
   return postJson('adminDeletePending', {
     workerBaseUrl,
     adminToken,
-    payload: {},
+    payload: { all: true },
   });
 }

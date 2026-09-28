@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { test, expect } from '@playwright/test';
 import { importInbox } from '../../scripts/import-inbox.mjs';
 import { userClick } from './journey-helpers.mjs';
@@ -144,12 +146,10 @@ function verifyPublishImport(inbox, ingredientLabel) {
 
   const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), 'cookingdb-roundtrip-'));
   try {
-    fs.mkdirSync(path.join(rootDir, 'data'), { recursive: true });
-    fs.mkdirSync(path.join(rootDir, 'recipes'), { recursive: true });
-    fs.copyFileSync(
-      new URL('../../data/ingredient_catalog.csv', import.meta.url),
-      path.join(rootDir, 'data', 'ingredient_catalog.csv')
-    );
+    const repository = fileURLToPath(new URL('../../', import.meta.url));
+    for (const folder of ['data', 'recipes', 'scripts/baselines']) {
+      fs.cpSync(path.join(repository, folder), path.join(rootDir, folder), { recursive: true });
+    }
 
     const exportPath = path.join(rootDir, 'pending-export.json');
     fs.writeFileSync(exportPath, `${JSON.stringify({ items: inbox.items }, null, 2)}\n`);
@@ -170,11 +170,21 @@ function verifyPublishImport(inbox, ingredientLabel) {
     expect(ingredients).toContain(ingredientLabel);
     expect(steps).toContain(`Add ${ingredientLabel} and stir.`);
 
+    for (const script of ['validate.mjs', 'build.mjs', 'check-recipe-semantic-parity.mjs']) {
+      execFileSync(process.execPath, [path.join(repository, 'scripts', script)], {
+        cwd: rootDir, timeout: 15000, stdio: 'pipe',
+      });
+    }
+    const published = JSON.parse(fs.readFileSync(path.join(rootDir, 'docs/built/recipes.json'), 'utf8'));
+    const publishedRecipe = published.find(recipe => recipe.id === recipeId);
+    expect(publishedRecipe?.title).toBe('Browser round trip soup revised');
+    expect(publishedRecipe?.categories).toContain(category);
+
     const secondPass = importInbox({ inputPath: exportPath, rootDir, dryRun: true });
     expect(secondPass.created_recipe_ids).toEqual([]);
     expect(secondPass.already_present_recipe_ids).toEqual([recipeId]);
   } finally {
-    fs.rmSync(rootDir, { recursive: true, force: true });
+    fs.rmSync(rootDir, { recursive: true });
   }
 }
 
