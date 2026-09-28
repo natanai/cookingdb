@@ -5,6 +5,7 @@ import { loadRecipeSummaries } from './recipe-repository.js';
 
 const HAPTICS_KEY = 'cookingdb-ruffle-haptics';
 const HIDDEN_HOME_CATEGORIES = new Set(['Bread maker']);
+const RECIPE_NAVIGATION_WAIT_MS = 250;
 const RECIPE_WARM_RESOURCES = Object.freeze([
   './recipe.html',
   './recipe.js',
@@ -203,9 +204,18 @@ function installWarmRecipeNavigation(link) {
     const destination = link.href;
     link.setAttribute('aria-busy', 'true');
 
+    let navigationTimer;
     try {
-      await warmRecipeExperience();
+      // Preloading improves the normal warm path, but a stalled optional
+      // resource must not hold a user's navigation indefinitely.
+      await Promise.race([
+        warmRecipeExperience(),
+        new Promise((resolve) => {
+          navigationTimer = window.setTimeout(resolve, RECIPE_NAVIGATION_WAIT_MS);
+        }),
+      ]);
     } finally {
+      window.clearTimeout(navigationTimer);
       window.location.assign(destination);
     }
   });
