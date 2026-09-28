@@ -36,6 +36,13 @@ Canonical repository sources remain the durable authority:
 - optional `recipes/<id>/choices.csv`
 - `recipes/<id>/steps.csv`
 
+`docs/unit-conversions.js` owns unit aliases, canonical definitions, normalization, and
+same-dimension conversion for the browser, builder, validator, and coverage reporter.
+`recipe-utils.js` retains compatible re-exports and owns display helpers. Ingredient-specific
+density and portion factors remain separate. Consolidation preserves existing conversion
+constants and legacy count/dash/drop aliases; it does not redefine their measurement meaning.
+The validator now recognizes the same fluid-ounce and dash/drop aliases as the other consumers.
+
 Pure shared domain modules define how those concepts are interpreted. Browser code, build code, validation, reporting, and inbox import should use the same semantics rather than keeping copies.
 
 ### 2. Build and boundary validation

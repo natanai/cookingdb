@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { createHash } from 'crypto';
-import { UNIT_CONVERSIONS } from '../docs/unit-conversions.js';
+import { normalizeUnit, unitDefinition, convertUnitAmount } from '../docs/unit-conversions.js';
 import { validateAll } from './validate.mjs';
 
 async function loadPapa() {
@@ -225,89 +225,6 @@ function parseNumericField(value) {
   if (value === null || value === undefined) return null;
   const num = Number(value);
   return Number.isFinite(num) ? num : null;
-}
-
-const UNIT_ALIASES = new Map([
-  ['cloves', 'clove'],
-  ['clove', 'clove'],
-  ['sprigs', 'sprig'],
-  ['sprig', 'sprig'],
-  ['leaves', 'leaf'],
-  ['leaf', 'leaf'],
-  ['pieces', 'piece'],
-  ['piece', 'piece'],
-  ['packages', 'package'],
-  ['package', 'package'],
-  ['bags', 'bag'],
-  ['bag', 'bag'],
-  ['bunches', 'bunch'],
-  ['bunch', 'bunch'],
-  ['cans', 'can'],
-  ['can', 'can'],
-  ['jars', 'jar'],
-  ['jar', 'jar'],
-  ['bottles', 'bottle'],
-  ['bottle', 'bottle'],
-  ['fl oz', 'fl_oz'],
-  ['fl-oz', 'fl_oz'],
-  ['fluid ounce', 'fl_oz'],
-  ['fluid ounces', 'fl_oz'],
-  ['tablespoons', 'tbsp'],
-  ['tablespoon', 'tbsp'],
-  ['teaspoons', 'tsp'],
-  ['teaspoon', 'tsp'],
-  ['cups', 'cup'],
-  ['pints', 'pint'],
-  ['pint', 'pint'],
-  ['quarts', 'quart'],
-  ['quart', 'quart'],
-  ['qt', 'quart'],
-  ['ounces', 'oz'],
-  ['ounce', 'oz'],
-  ['pounds', 'lb'],
-  ['pound', 'lb'],
-  ['liters', 'l'],
-  ['liter', 'l'],
-  ['milliliters', 'ml'],
-  ['milliliter', 'ml'],
-  ['ml', 'ml'],
-  ['l', 'l'],
-  ['medium', 'count'],
-  ['large', 'count'],
-  ['small', 'count'],
-  ['piece', 'count'],
-  ['pieces', 'count'],
-  ['bunch', 'count'],
-  ['bunches', 'count'],
-  ['dash', 'tsp'],
-  ['drop', 'tsp'],
-]);
-
-function normalizeUnit(unit) {
-  if (!unit) return null;
-  const cleaned = String(unit).trim().toLowerCase();
-  if (!cleaned) return null;
-  return UNIT_ALIASES.get(cleaned) || cleaned;
-}
-
-function unitDefinition(unitId) {
-  if (!unitId) return null;
-  const normalized = String(unitId).toLowerCase();
-  for (const [groupName, group] of Object.entries(UNIT_CONVERSIONS)) {
-    const def = group.units[normalized];
-    if (def) return { ...def, id: normalized, group: groupName };
-  }
-  return null;
-}
-
-function convertUnitAmount(amount, fromUnit, toUnit) {
-  if (!Number.isFinite(amount)) return null;
-  const fromDef = unitDefinition(fromUnit);
-  const toDef = unitDefinition(toUnit);
-  if (!fromDef || !toDef || fromDef.group !== toDef.group) return null;
-  const amountInBase = amount * fromDef.to_base;
-  const converted = amountInBase / toDef.to_base;
-  return { amount: converted, unit: toDef.id };
 }
 
 function selectNutritionVariant(variants, normalizedUnit, amount) {

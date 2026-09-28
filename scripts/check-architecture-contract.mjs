@@ -84,4 +84,11 @@ assert(
   'Cloudflare documentation must continue to identify the canonical worker implementation'
 );
 
+for (const consumer of ['docs/recipe-utils.js', 'scripts/build.mjs', 'scripts/validate.mjs', 'scripts/report_missing_portions.js']) {
+  const source = read(consumer);
+  assert(/from ['"].*unit-conversions\.js['"]/.test(source), `${consumer} must consume shared unit semantics`);
+  assert(!/const UNIT_ALIASES\s*=|function (normalizeUnit|unitDefinition|convertUnitAmount)\(/.test(source),
+    `${consumer} must not duplicate shared unit rules`);
+}
+
 console.log('Architecture consolidation contract passed.');
