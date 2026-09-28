@@ -168,7 +168,11 @@ function verifyPublishImport(inbox, ingredientLabel) {
     expect(meta).toContain(category);
     expect(ingredients).toContain(ingredient.ingredient_id);
     expect(ingredients).toContain(ingredientLabel);
-    expect(steps).toContain(`Add ${ingredientLabel} and stir.`);
+    // Canonical directions retain ingredient references so rendering/scaling can
+    // resolve them. The editor's display text is not the stored recipe format.
+    const [token] = pendingItem.payload.token_order;
+    expect(pendingItem.payload.ingredients[token].options[0].ingredient_id).toBe(ingredient.ingredient_id);
+    expect(steps).toContain(`Add {{${token}}} and stir.`);
 
     for (const script of ['validate.mjs', 'build.mjs', 'check-recipe-semantic-parity.mjs']) {
       execFileSync(process.execPath, [path.join(repository, 'scripts', script)], {
@@ -179,10 +183,13 @@ function verifyPublishImport(inbox, ingredientLabel) {
     const publishedRecipe = published.find(recipe => recipe.id === recipeId);
     expect(publishedRecipe?.title).toBe('Browser round trip soup revised');
     expect(publishedRecipe?.categories).toContain(category);
+    expect(publishedRecipe?.steps[0].text).toBe(`Add {{${token}}} and stir.`);
+    expect(publishedRecipe?.ingredients[token].options[0].ingredient_id).toBe(ingredient.ingredient_id);
 
     const secondPass = importInbox({ inputPath: exportPath, rootDir, dryRun: true });
     expect(secondPass.created_recipe_ids).toEqual([]);
     expect(secondPass.already_present_recipe_ids).toEqual([recipeId]);
+    return publishedRecipe;
   } finally {
     fs.rmSync(rootDir, { recursive: true });
   }
@@ -260,5 +267,14 @@ test('Add Recipe -> Recipe inbox -> Review / edit -> publish import follows the 
   await page.goto('/admin.html');
   await expect(page.locator('.pending-recipe-title')).toHaveText('Browser round trip soup revised');
 
-  verifyPublishImport(inbox, ingredientLabel);
+  const publishedRecipe = verifyPublishImport(inbox, ingredientLabel);
+  // Serve the actual importer/builder output to the real recipe reader. The
+  // inbox transport remains simulated; this does not perform a live publish.
+  await page.route('**/built/recipes.json*', route => jsonResponse(route, 200, [publishedRecipe]));
+  await page.goto(`/recipe.html?id=${encodeURIComponent(publishedRecipe.id)}`);
+  await expect(page.locator('#recipe-title')).toHaveText('Browser round trip soup revised');
+  await expect(page.locator('#ingredients-list')).toContainText(ingredientLabel);
+  await expect(page.locator('#steps-list')).toContainText(ingredientLabel);
+  await expect(page.locator('#steps-list')).toContainText('and stir.');
+  await expect(page.locator('#steps-list')).not.toContainText('{{');
 });
