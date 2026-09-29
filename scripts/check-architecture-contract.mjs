@@ -84,11 +84,19 @@ assert(
   'Cloudflare documentation must continue to identify the canonical worker implementation'
 );
 
-for (const consumer of ['docs/recipe-utils.js', 'scripts/build.mjs', 'scripts/validate.mjs', 'scripts/report_missing_portions.js']) {
+for (const consumer of ['docs/recipe-utils.js', 'scripts/build.mjs', 'scripts/validate.mjs', 'scripts/lib/nutrition-coverage.mjs']) {
   const source = read(consumer);
   assert(/from ['"].*unit-conversions\.js['"]/.test(source), `${consumer} must consume shared unit semantics`);
   assert(!/const UNIT_ALIASES\s*=|function (normalizeUnit|unitDefinition|convertUnitAmount)\(/.test(source),
     `${consumer} must not duplicate shared unit rules`);
 }
 
+for (const consumer of ['scripts/build.mjs', 'scripts/validate.mjs', 'scripts/import-inbox.mjs', 'scripts/report_missing_portions.js']) {
+  const source = read(consumer);
+  assert(source.includes("from './lib/csv.mjs'"), `${consumer} must use the canonical CSV parser`);
+  assert(!/function (parseCSVFile|simpleParseCSV|parseLine|parseCsv)\(/.test(source), `${consumer} must not redefine CSV parsing`);
+}
+for (const consumer of ['scripts/build.mjs', 'scripts/report_missing_portions.js']) {
+  assert(!read(consumer).includes('function generateNutritionCoverageReport('), `${consumer} must use shared coverage calculations`);
+}
 console.log('Architecture consolidation contract passed.');

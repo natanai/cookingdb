@@ -47,6 +47,14 @@ Pure shared domain modules define how those concepts are interpreted. Browser co
 
 ### 2. Build and boundary validation
 
+`scripts/lib/csv.mjs` owns strict CSV parsing and serialization for build, validation,
+import, and reporting. Quoted multiline fields round-trip intact; malformed rows
+fail with a source label instead of using a lossy fallback. The required parser
+version is pinned in the lockfile. `scripts/lib/nutrition-coverage.mjs` owns build/report
+catalog normalization and coverage calculations. The standalone reporter now uses
+the builder's portion fallback, removing its erroneous missing-factor warning for
+counted carrots; built recipe and nutrition output are unchanged.
+
 The build pipeline converts canonical sources to versioned generated data under `docs/built/`.
 
 Boundary rules:
