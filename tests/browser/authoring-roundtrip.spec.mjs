@@ -1,9 +1,10 @@
+import { createSQLiteWorker } from '../support/sqlite-worker.mjs';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { test, expect } from '@playwright/test';
+import { test as base, expect } from '@playwright/test';
 import { importInbox } from '../../scripts/import-inbox.mjs';
 import { userClick } from './journey-helpers.mjs';
 
@@ -31,78 +32,23 @@ function jsonResponse(route, status, payload) {
   });
 }
 
-async function installFakeInbox(page) {
-  const state = {
-    items: [],
-    nextId: 1,
-    clock: 0,
-    lastUpdateRequest: null,
-  };
-
-  const nextTimestamp = () => {
-    state.clock += 1;
-    return `2026-09-23T18:00:${String(state.clock).padStart(2, '0')}Z`;
-  };
-
-  await page.route(`${WORKER_BASE}/**`, async (route) => {
-    const request = route.request();
-    const url = new URL(request.url());
-    const headers = request.headers();
-    const body = request.postDataJSON() || {};
-
-    if (url.pathname === '/api/add') {
-      if (headers['x-recipe-password'] !== FAMILY_PASSWORD) {
-        return jsonResponse(route, 401, { ok: false, error: 'Bad family password' });
+const test = base.extend({
+  inbox: async ({page}, use) => {
+    const state = createSQLiteWorker();
+    state.lastUpdateRequest = null;
+    await page.route(`${WORKER_BASE}/**`, async route => {
+      const request = route.request();
+      if (new URL(request.url()).pathname === '/admin/update-pending') {
+        state.lastUpdateRequest = request.postDataJSON();
       }
-
-      const now = nextTimestamp();
-      const item = {
-        id: state.nextId,
-        title: body.title || body.payload?.title || '',
-        payload: body.payload || {},
-        created_at: now,
-        updated_at: now,
-      };
-      state.nextId += 1;
-      state.items.push(item);
-      return jsonResponse(route, 200, { ok: true, id: item.id });
-    }
-
-    if (url.pathname === '/admin/export') {
-      if (headers['x-admin-token'] !== ADMIN_TOKEN) {
-        return jsonResponse(route, 401, { ok: false, error: 'Bad admin token' });
-      }
-      return jsonResponse(route, 200, { ok: true, items: state.items });
-    }
-
-    if (url.pathname === '/admin/update-pending') {
-      if (headers['x-admin-token'] !== ADMIN_TOKEN) {
-        return jsonResponse(route, 401, { ok: false, error: 'Bad admin token' });
-      }
-
-      const item = state.items.find((candidate) => Number(candidate.id) === Number(body.id));
-      if (!item) {
-        return jsonResponse(route, 404, { ok: false, error: 'Pending recipe not found' });
-      }
-      if ((body.expected_updated_at || '') !== (item.updated_at || '')) {
-        return jsonResponse(route, 409, {
-          ok: false,
-          error: 'Pending recipe changed since it was opened',
-        });
-      }
-
-      state.lastUpdateRequest = body;
-      item.payload = body.payload || {};
-      item.title = item.payload.title || item.title;
-      item.updated_at = nextTimestamp();
-      return jsonResponse(route, 200, { ok: true, item });
-    }
-
-    return jsonResponse(route, 404, { ok: false, error: `Unhandled fake inbox path: ${url.pathname}` });
-  });
-
-  return state;
-}
+      const response = await state.fetch(new Request(request.url(), {
+        method: request.method(), headers: request.headers(), body: request.postData(),
+      }));
+      await route.fulfill({status:response.status, headers:Object.fromEntries(response.headers), body:await response.text()});
+    });
+    try { await use(state); } finally { state.close(); }
+  },
+});
 
 async function chooseCategory(page) {
   await expect(page.locator('#categories')).toBeEnabled();
@@ -195,8 +141,7 @@ function verifyPublishImport(inbox, ingredientLabel) {
   }
 }
 
-test('Add Recipe -> Recipe inbox -> Review / edit -> publish import follows the real user path', async ({ page }) => {
-  const inbox = await installFakeInbox(page);
+test('Add Recipe -> Recipe inbox -> Review / edit -> publish import follows the real user path', async ({ page, inbox }) => {
 
   await page.addInitScript(
     ({ familyPassword, adminToken }) => {
@@ -231,6 +176,7 @@ test('Add Recipe -> Recipe inbox -> Review / edit -> publish import follows the 
 
   await expect(page.locator('#form-status')).toContainText('Success: submitted with id 1.');
   expect(inbox.items).toHaveLength(1);
+  const submittedVersion = inbox.items[0].updated_at;
   expect(inbox.items[0].payload.title).toBe('Browser round trip soup');
 
   await page.goto('/admin.html');
@@ -261,7 +207,7 @@ test('Add Recipe -> Recipe inbox -> Review / edit -> publish import follows the 
 
   await expect(page.locator('#form-status')).toContainText('Saved. This recipe is still pending');
   expect(inbox.lastUpdateRequest).toBeTruthy();
-  expect(inbox.lastUpdateRequest.expected_updated_at).toBe('2026-09-23T18:00:01Z');
+  expect(inbox.lastUpdateRequest.expected_updated_at).toBe(submittedVersion);
   expect(inbox.items[0].payload.title).toBe('Browser round trip soup revised');
 
   await page.goto('/admin.html');
@@ -269,7 +215,7 @@ test('Add Recipe -> Recipe inbox -> Review / edit -> publish import follows the 
 
   const publishedRecipe = verifyPublishImport(inbox, ingredientLabel);
   // Serve the actual importer/builder output to the real recipe reader. The
-  // inbox transport remains simulated; this does not perform a live publish.
+  // Worker handlers and SQL ran locally; this does not perform a live deploy.
   await page.route('**/built/recipes.json*', route => jsonResponse(route, 200, [publishedRecipe]));
   await page.goto(`/recipe.html?id=${encodeURIComponent(publishedRecipe.id)}`);
   await expect(page.locator('#recipe-title')).toHaveText('Browser round trip soup revised');

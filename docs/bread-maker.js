@@ -1,8 +1,9 @@
+import { STORAGE_KEYS, readStoredText, writeStoredText } from './browser-storage.js';
 import { siteBehavior } from './site-behavior.js';
 import { buildRecipeLink, getRecipeTitleParts } from './recipe-model.js';
 import { loadRecipeSummaries } from './recipe-repository.js';
 const BREAD_CATEGORY = 'Bread maker';
-const PERSONAL_STORAGE_KEY = 'cookingdb-bread-maker-recipes';
+const PERSONAL_STORAGE_KEY = STORAGE_KEYS.bread;
 
 const defaultListEl = document.getElementById('bread-default-list');
 const personalListEl = document.getElementById('bread-personal-list');
@@ -81,7 +82,7 @@ function normalizeLines(text) {
 
 function loadPersonalRecipes() {
   try {
-    const raw = localStorage.getItem(PERSONAL_STORAGE_KEY);
+    const raw = readStoredText(PERSONAL_STORAGE_KEY);
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
@@ -93,7 +94,14 @@ function loadPersonalRecipes() {
 }
 
 function savePersonalRecipes(recipes) {
-  localStorage.setItem(PERSONAL_STORAGE_KEY, JSON.stringify(recipes));
+  const saved = writeStoredText(PERSONAL_STORAGE_KEY, JSON.stringify(recipes));
+  let status = document.getElementById('bread-storage-status');
+  if (!status) {
+    status = document.createElement('p'); status.id = 'bread-storage-status';
+    status.setAttribute('role', 'status'); personalFormEl?.appendChild(status);
+  }
+  status.textContent = saved ? '' : 'Not saved on this device. Keep this page open and copy your recipe.';
+  return saved;
 }
 
 function renderPersonalRecipes(recipes, onUpdate) {

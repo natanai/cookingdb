@@ -1,3 +1,4 @@
+import { STORAGE_KEYS, readStoredText, writeStoredText, removeStoredValue } from '../browser-storage.js';
 const DEFAULT_BASE_URL = 'https://cookingdb-inbox.natanai.workers.dev';
 const PATHS = {
   familySubmit: '/api/add',
@@ -8,7 +9,7 @@ const PATHS = {
 };
 
 function storageKey(kind) {
-  return `cookingdb-${kind}-password`;
+  return STORAGE_KEYS[kind];
 }
 
 export function setRememberedPassword({ kind, value, remember }) {
@@ -16,24 +17,25 @@ export function setRememberedPassword({ kind, value, remember }) {
   const key = storageKey(kind);
 
   if (remember && value) {
-    localStorage.setItem(key, value);
-    sessionStorage.setItem(key, value);
+    writeStoredText(key, value);
+    writeStoredText(key, value, 'session');
     return;
   }
 
   if (value) {
-    sessionStorage.setItem(key, value);
-    localStorage.removeItem(key);
+    writeStoredText(key, value, 'session');
+    removeStoredValue(key);
     return;
   }
 
-  sessionStorage.removeItem(key);
-  localStorage.removeItem(key);
+  removeStoredValue(key, 'session');
+  removeStoredValue(key);
 }
 
 export function getRememberedPassword(kind) {
+  if (!['family', 'admin'].includes(kind)) return '';
   const key = storageKey(kind);
-  return sessionStorage.getItem(key) || localStorage.getItem(key) || '';
+  return readStoredText(key, 'session') || readStoredText(key) || '';
 }
 
 function buildUrl(path, workerBaseUrl) {

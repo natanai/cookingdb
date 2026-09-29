@@ -1,9 +1,10 @@
+import { STORAGE_KEYS, readStoredText, writeStoredText } from './browser-storage.js';
 import { siteBehavior } from './site-behavior.js';
 import { builtDataUrl } from './built-data.js';
 import { buildRecipeLink, getRecipeTitleParts } from './recipe-model.js';
 import { loadRecipeSummaries } from './recipe-repository.js';
 
-const HAPTICS_KEY = 'cookingdb-ruffle-haptics';
+const HAPTICS_KEY = STORAGE_KEYS.haptics;
 const HIDDEN_HOME_CATEGORIES = new Set(['Bread maker']);
 const RECIPE_NAVIGATION_WAIT_MS = 250;
 const RECIPE_WARM_RESOURCES = Object.freeze([
@@ -36,12 +37,12 @@ function canUseRuffleHaptics() {
 }
 
 function isRuffleEnabled() {
-  const stored = localStorage.getItem(HAPTICS_KEY);
+  const stored = readStoredText(HAPTICS_KEY);
   return stored === null ? true : stored === 'true';
 }
 
 function setRuffleEnabled(value) {
-  localStorage.setItem(HAPTICS_KEY, value ? 'true' : 'false');
+  writeStoredText(HAPTICS_KEY, value ? 'true' : 'false');
 }
 
 function tinyHapticPulse() {
@@ -412,10 +413,10 @@ function initRefinePanel() {
   const panel = document.getElementById('refine-panel');
   if (!panel) return;
 
-  const saved = localStorage.getItem('refineOpen');
+  const saved = readStoredText(STORAGE_KEYS.refine);
   panel.open = saved === '1';
   panel.addEventListener('toggle', () => {
-    localStorage.setItem('refineOpen', panel.open ? '1' : '0');
+    writeStoredText(STORAGE_KEYS.refine, panel.open ? '1' : '0');
   });
 }
 

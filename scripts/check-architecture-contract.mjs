@@ -99,4 +99,9 @@ for (const consumer of ['scripts/build.mjs', 'scripts/validate.mjs', 'scripts/im
 for (const consumer of ['scripts/build.mjs', 'scripts/report_missing_portions.js']) {
   assert(!read(consumer).includes('function generateNutritionCoverageReport('), `${consumer} must use shared coverage calculations`);
 }
+for (const consumer of ['docs/add.js', 'docs/app.js', 'docs/admin.js', 'docs/bread-maker.js', 'docs/nutrition-engine.js', 'docs/inbox/inbox-api.js']) {
+  assert(!/\b(?:localStorage|sessionStorage)\.(?:getItem|setItem|removeItem)/.test(read(consumer)), `${consumer} must use explicit storage services`);
+}
+assert(read('docs/recipe.js').includes("from './features/recipe-scaling.js'"), 'recipe scaling belongs to its feature module');
+assert(read('docs/add.js').includes("from './features/authoring-preview.js'"), 'authoring preview belongs to its feature module');
 console.log('Architecture consolidation contract passed.');

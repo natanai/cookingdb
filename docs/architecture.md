@@ -88,13 +88,30 @@ click waits at most 250 ms for it, while an already-warm click proceeds immediat
 
 ### 4. Features/pages
 
+Current feature boundaries include `features/recipe-scaling.js` (pan and available-ingredient
+scaling) and `features/authoring-preview.js` (recipe preview rendering). The page passes
+recipe/state and rerender callbacks explicitly. `features/draft-store.js` owns persisted
+v2 draft shape recovery; `browser-storage.js` owns the retained storage keys and guarded
+browser access. Unavailable storage cannot prevent editing; authoring and Bread Maker
+report when work was not saved. Remaining page orchestration is still substantial and
+can be extracted by feature as it changes; this is not a claim that every controller
+has already become small.
+
 Top-level page scripts should be thin composition roots. Feature modules own focused behavior such as recipe scaling, authoring ingredients, authoring steps, planner aggregation, or bread-journal editing.
 
 A future feature should normally add or extend a feature module and consume existing services. Needing to edit every page is an architecture warning.
 
 ### 5. Presentation system
 
-The current visual design is the authority. Historical v2/v3/v4/v5/v6/v7 style strata should be collapsed into one current component definition where practical.
+The current visual design is the authority. The consolidation removes 339 superseded
+same-selector/property declarations while retaining cascade order, conditions, and
+specificity. Shared and feature sections remain in one stylesheet to avoid additional
+render-blocking requests. Some selectors intentionally have separate responsive or
+state rules. `scripts/consolidate-css.mjs` provides a conservative pruning aid, not a
+general-purpose optimizer: rerun browser equivalence checks before accepting its output.
+The CSS baseline fixture exists only in tests. Browser checks compare computed styles,
+geometry, and screenshots on all six pages, allowing only one 8-bit level of raster
+rounding; tested replacement values must be supported by each browser engine. Historical v2/v3/v4/v5/v6/v7 style strata should be collapsed into one current component definition where practical.
 
 Styles are organized conceptually as:
 
@@ -212,6 +229,20 @@ The integration branch is ready only when all of the following are true:
 - the owner has tested the preview and accepted the branch
 
 Until those gates are satisfied, the branch remains a draft and `main` remains the production fallback.
+
+### Backend and accessibility evidence
+
+The authoring browser round trip routes requests to the production Worker module
+with a disposable SQLite database. It exercises real authentication, SQL, admin
+edits, import, validation, build, and the resulting recipe reader. Separate SQL
+tests cover stale edits, malformed cleanup, and versioned acknowledgement. The
+adapter substitutes D1's transport API; Cloudflare deployment and D1 infrastructure
+still require a staged/live capability check. Tests never write to the live inbox.
+
+Keyboard tests cover ingredient suggestion selection/dismissal and review focus
+transfer/return. Compact authoring inputs are checked for 16px minimum text, no
+horizontal overflow, and reduced-motion review scrolling. These checks supplement,
+but do not replace, acceptance on a physical phone.
 
 ### Navigation comparison evidence
 

@@ -87,8 +87,8 @@ The Worker-backed D1 database is an authoring/review inbox. The Git repository r
 1. Submit one or more recipes through Add Recipe.
 2. Open **Recipe inbox** from the shared gear menu and audit the pending list. A pending recipe can be opened in the same composer for review/editing or deleted individually.
 3. Run **Actions → Publish pending recipes → Run workflow** when the queue is ready.
-4. The workflow fetches pending rows from the Worker, converts them to canonical `recipes/<id>/` sources, validates and builds the site, commits the repository changes, dispatches the Pages deployment, and removes only rows that were successfully integrated.
-5. Existing recipe IDs are not silently overwritten. Identical already-integrated content makes cleanup retries safe; conflicting content stops publication.
+4. The workflow fetches pending rows from the Worker, converts them to canonical `recipes/<id>/` sources, validates and builds the site, commits the repository changes, calls the reusable Pages workflow for that exact commit, and only after successful deployment acknowledges the exported row versions. Dry run is the default; actual publication is restricted to `main`.
+5. Existing recipe IDs are not silently overwritten. Identical already-integrated content is deployed again before acknowledgement; conflicting content stops publication.
 
 Admin edits use the Worker's authenticated `/admin/update-pending` route with the row's previous `updated_at` timestamp, so an older editor cannot silently overwrite a newer update.
 
@@ -109,6 +109,17 @@ The importer resolves known ingredient aliases against the ingredient catalog an
 
 ## Deployment
 
-`.github/workflows/pages.yml` builds and deploys `docs/` to GitHub Pages on pushes to `main`; the publishing workflow can also dispatch it after successful integration.
+`.github/workflows/pages.yml` builds and deploys `docs/` to GitHub Pages on pushes to `main`; the publishing workflow calls it directly with the integrated commit and waits for deployment before acknowledging inbox rows.
 
 The live browser authoring/admin workflow requires the Cloudflare Worker to allow the Pages origin through CORS, including `OPTIONS` preflight requests.
+
+The candidate requires a Worker advertising `acknowledge-published-v1`; see
+[`cloudflare/README.md`](cloudflare/README.md). Deploy that Worker before enabling the
+new publisher. A read-only check on 2026-09-29 found the live database healthy but the
+capability absent, so the Worker upgrade remains a release prerequisite.
+
+The consolidation branch also runs the production Worker handlers against isolated
+SQLite in authoring browser tests, checks keyboard/reduced-motion/storage-failure
+behavior, and compares CSS rendering with the pre-consolidation fixture. These are
+local/CI checks, not proof of a deployed Cloudflare integration. The owner must still
+accept the preview on their phone; see [`docs/release-readiness.md`](docs/release-readiness.md).

@@ -151,7 +151,9 @@ for (const [htmlName, scriptName] of pageScripts) {
       );
     }
 
-    if (!revealPathExists(script, id)) {
+    const featureSource = htmlName === 'recipe.html' && ['available-scale-panel', 'available-scale-active', 'pan-controls'].includes(id)
+        ? fs.readFileSync(path.join(docsDir, 'features/recipe-scaling.js'), 'utf8') : script;
+    if (!revealPathExists(featureSource, id)) {
       violations.push(
         `${htmlName}#${id}: hidden UI has no explicit reveal path in ${scriptName}. ` +
           'If the feature is no longer used, delete its markup/code/styles instead of leaving dormant architecture in the page.'
