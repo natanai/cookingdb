@@ -4,7 +4,9 @@ CookingDB is a static-first family cookbook application with a recipe reader, re
 
 Published recipe content lives in Git. The Cloudflare/D1 service is a pending-recipe inbox only; unpublished inbox rows are not a second Cookbook data source.
 
-For the consolidation architecture and merge gates, see [`docs/architecture.md`](docs/architecture.md).
+For the consolidation architecture, see [`docs/architecture.md`](docs/architecture.md).
+For the complete consolidation change record and rationale, see
+[`docs/consolidation-change-report.md`](docs/consolidation-change-report.md).
 
 ## Development
 
@@ -121,5 +123,6 @@ capability absent, so the Worker upgrade remains a release prerequisite.
 The consolidation branch also runs the production Worker handlers against isolated
 SQLite in authoring browser tests, checks keyboard/reduced-motion/storage-failure
 behavior, and compares CSS rendering with the pre-consolidation fixture. These are
-local/CI checks, not proof of a deployed Cloudflare integration. The owner must still
-accept the preview on their phone; see [`docs/release-readiness.md`](docs/release-readiness.md).
+local/CI checks, not proof of a deployed Cloudflare integration. Because no persistent
+built branch preview exists, the owner authorized live phone acceptance after a fully
+green merge; see [`docs/release-readiness.md`](docs/release-readiness.md).

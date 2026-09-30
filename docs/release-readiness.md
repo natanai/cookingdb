@@ -1,8 +1,10 @@
 # Consolidation release readiness
 
-Production remains `main`. Candidate: `refactor/unified-cooking-app`, draft PR #214.
+Production remains `main`. Candidate: `refactor/unified-cooking-app`, PR #214.
 The PR's latest commit checks are authoritative; an earlier passing run does not
-approve a later revision. Do not publish while any check or external gate is open.
+approve a later revision. The owner has authorized merging a fully green candidate
+so the production deployment can serve as the physical-phone acceptance environment.
+Do not run **Publish pending recipes** until the Worker gate below is complete.
 
 ## Evidence included in the candidate
 
@@ -27,7 +29,7 @@ The 2026-09-29 local pass completed 28 Chromium journeys and all unit/contracts.
 Local WebKit could not launch because host libraries were unavailable; CI provides
 WebKit validation. See the latest PR checks for the combined candidate outcome.
 
-## External gates still open
+## Post-merge acceptance and publishing gates
 
 1. **Production Worker prerequisite.** On 2026-09-29, GET
    `https://cookingdb-inbox.natanai.workers.dev/health` returned a healthy database
@@ -35,25 +37,23 @@ WebKit validation. See the latest PR checks for the combined candidate outcome.
    publisher, deploy `cloudflare/worker.js` with existing DB binding and secrets.
    Check health again for `db.ok: true` and the capability. The script is already
    prepared in this branch; no database wipe or schema migration is required.
-2. **Owner preview acceptance.** The owner has not yet accepted this candidate on
-   their physical iPhone. A persistent branch-preview host is not configured in
-   this repository. Do not temporarily replace production just to obtain a preview.
-   An approved staging host or an owner's local HTTP server can serve the build.
-   Source-only GitHub proxies are not a valid substitute: they do not run
-   `npm run build`, so generated Add Recipe autocomplete, pan-size, and authoring
-   option assets are absent even though the page can otherwise appear functional.
-3. **Real deployment round trip.** Verify staging/production infrastructure after
+   This blocks the revised recipe-publishing workflow, not the ordinary Pages
+   deployment of the cookbook application.
+2. **Owner live-phone acceptance.** A persistent built branch-preview host is not
+   configured, and source-only GitHub proxies omit generated Add Recipe assets.
+   The owner therefore authorized a green merge to `main` as the acceptance path.
+   The pre-merge production commit `4106cf33ca008d4cf938abb98b03fb3a8a06006f`
+   remains the known fallback if live testing finds a material regression.
+3. **Real publishing round trip.** Verify staging/production infrastructure after
    the Worker update: retain the exported row version, import/validate/build, deploy
    the exact commit, then acknowledge only that version. Never test destructive
    cleanup against unrelated pending recipes. The live inbox was not mutated here.
 
-## Preview acceptance path
+## Live acceptance path
 
-Serve the branch after `npm ci && npm run build`, for example
-`python3 -m http.server 4173 --directory docs`. From a phone on the same network,
-use the serving computer's LAN address and port. This is local testing, not a
-persistent deployment. Existing site/browser storage belongs to its origin, so
-production drafts do not automatically appear on a staging origin.
+After the green PR is merged, wait for the GitHub Pages workflow for the exact merge
+commit to finish successfully. Then test the live site on the owner's physical phone.
+Existing production drafts and settings remain on the same origin.
 
 Check the following with one representative recipe:
 
@@ -68,7 +68,9 @@ Check the following with one representative recipe:
 4. Test recipe adjustments, available-ingredient scaling, pan scaling, substitutions,
    and print. Add/remove/customize Meal Prep selections. Save/reopen a Bread Maker
    journal entry. Check the gear's inbox link and an authorized pending edit.
-5. Record explicit acceptance or the remaining defect before merging.
+5. Record explicit acceptance or the remaining defect. If a material regression is
+   found, stop recipe publication and restore the pre-merge production state while
+   the defect is corrected on a branch.
 
 ## Scope of the architecture claim
 
