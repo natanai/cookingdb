@@ -1,41 +1,13 @@
+import { STORAGE_KEYS, readStoredText, writeStoredText } from './browser-storage.js';
 import { siteBehavior } from './site-behavior.js';
-import { fetchBuiltJson } from './built-data.js';
+import { buildRecipeLink, getRecipeTitleParts } from './recipe-model.js';
+import { loadRecipeSummaries } from './recipe-repository.js';
 const BREAD_CATEGORY = 'Bread maker';
-const PERSONAL_STORAGE_KEY = 'cookingdb-bread-maker-recipes';
+const PERSONAL_STORAGE_KEY = STORAGE_KEYS.bread;
 
 const defaultListEl = document.getElementById('bread-default-list');
 const personalListEl = document.getElementById('bread-personal-list');
 const personalFormEl = document.getElementById('personal-recipe-form');
-
-function splitRecipeTitle(rawTitle) {
-  const title = (rawTitle || '').trim();
-  if (!title) return { title: '', name: '' };
-
-  const parenMatch = title.match(/^(.*)\s*\(([^)]+)\)\s*$/);
-  if (parenMatch) {
-    return { title: parenMatch[1].trim(), name: parenMatch[2].trim() };
-  }
-
-  const possessiveMatch = title.match(/^([^–—-]+?)\s*['’]s\s+(.+)$/i);
-  if (possessiveMatch) {
-    return { title: possessiveMatch[2].trim(), name: possessiveMatch[1].trim() };
-  }
-
-  return { title, name: '' };
-}
-
-function getRecipeTitleParts(recipe) {
-  const byline = (recipe?.byline || '').trim();
-  if (byline) {
-    return { title: (recipe?.title || '').trim(), name: byline };
-  }
-  return splitRecipeTitle(recipe?.title || '');
-}
-
-function buildRecipeLink(recipeId) {
-  const params = new URLSearchParams({ id: recipeId });
-  return `recipe.html?${params.toString()}`;
-}
 
 function renderDefaultRecipes(recipes) {
   if (!defaultListEl) return;
@@ -110,7 +82,7 @@ function normalizeLines(text) {
 
 function loadPersonalRecipes() {
   try {
-    const raw = localStorage.getItem(PERSONAL_STORAGE_KEY);
+    const raw = readStoredText(PERSONAL_STORAGE_KEY);
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
@@ -122,7 +94,14 @@ function loadPersonalRecipes() {
 }
 
 function savePersonalRecipes(recipes) {
-  localStorage.setItem(PERSONAL_STORAGE_KEY, JSON.stringify(recipes));
+  const saved = writeStoredText(PERSONAL_STORAGE_KEY, JSON.stringify(recipes));
+  let status = document.getElementById('bread-storage-status');
+  if (!status) {
+    status = document.createElement('p'); status.id = 'bread-storage-status';
+    status.setAttribute('role', 'status'); personalFormEl?.appendChild(status);
+  }
+  status.textContent = saved ? '' : 'Not saved on this device. Keep this page open and copy your recipe.';
+  return saved;
 }
 
 function renderPersonalRecipes(recipes, onUpdate) {
@@ -242,8 +221,7 @@ function renderPersonalRecipes(recipes, onUpdate) {
 }
 
 async function loadDefaultRecipes() {
-  const data = await fetchBuiltJson('index.json', { label: 'Bread maker recipes' });
-  return Array.isArray(data) ? data : [];
+  return loadRecipeSummaries({ label: 'Bread maker recipes' });
 }
 
 async function initDefaultRecipes() {

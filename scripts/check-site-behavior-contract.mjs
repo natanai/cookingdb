@@ -211,10 +211,11 @@ for (const warmResource of [
   );
 }
 assert(
-  appScript.includes('await warmRecipeExperience()') &&
+  appScript.includes('await Promise.race([') &&
+    appScript.includes('RECIPE_NAVIGATION_WAIT_MS') &&
     appScript.includes('window.location.assign(destination)') &&
-    appScript.indexOf('await warmRecipeExperience()') < appScript.indexOf('window.location.assign(destination)'),
-  'cold recipe clicks must stay on the cookbook until recipe resources are warmed'
+    appScript.indexOf('await Promise.race([') < appScript.indexOf('window.location.assign(destination)'),
+  'cold recipe clicks may briefly await warmup but must have a bounded navigation wait'
 );
 assert(
   appScript.includes('scheduleRecipeWarmup();'),

@@ -1,3 +1,4 @@
+import { parseCSVFile, toCsv } from './lib/csv.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
@@ -39,70 +40,6 @@ function parseArgs(argv) {
   return { inputPath, reportPath, dryRun };
 }
 
-function parseCsv(text) {
-  const rows = [];
-  let row = [];
-  let field = '';
-  let quoted = false;
-
-  for (let i = 0; i < text.length; i += 1) {
-    const ch = text[i];
-    if (quoted) {
-      if (ch === '"') {
-        if (text[i + 1] === '"') {
-          field += '"';
-          i += 1;
-        } else {
-          quoted = false;
-        }
-      } else {
-        field += ch;
-      }
-      continue;
-    }
-
-    if (ch === '"') {
-      quoted = true;
-    } else if (ch === ',') {
-      row.push(field);
-      field = '';
-    } else if (ch === '\n') {
-      row.push(field.replace(/\r$/, ''));
-      rows.push(row);
-      row = [];
-      field = '';
-    } else {
-      field += ch;
-    }
-  }
-
-  if (quoted) fail('Malformed CSV: unterminated quoted field');
-  if (field.length || row.length) {
-    row.push(field.replace(/\r$/, ''));
-    rows.push(row);
-  }
-  return rows.filter((cells) => cells.some((cell) => cell !== ''));
-}
-
-function rowsToObjects(rows) {
-  if (!rows.length) return [];
-  const headers = rows[0];
-  return rows.slice(1).map((cells) =>
-    Object.fromEntries(headers.map((header, index) => [header, cells[index] ?? '']))
-  );
-}
-
-function csvCell(value) {
-  const text = value == null ? '' : String(value);
-  return /[",\r\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
-}
-
-function toCsv(headers, rows) {
-  return `${[headers, ...rows.map((row) => headers.map((header) => row[header] ?? ''))]
-    .map((cells) => cells.map(csvCell).join(','))
-    .join('\n')}\n`;
-}
-
 function slugify(text) {
   return String(text || '')
     .toLowerCase()
@@ -139,7 +76,7 @@ function addAlias(map, key, ingredientId) {
 function buildIngredientResolver(rootDir) {
   const catalogPath = path.join(rootDir, 'data', 'ingredient_catalog.csv');
   if (!fs.existsSync(catalogPath)) fail(`Missing ingredient catalog: ${catalogPath}`);
-  const catalogRows = rowsToObjects(parseCsv(fs.readFileSync(catalogPath, 'utf8')));
+  const catalogRows = parseCSVFile(catalogPath);
   const ids = new Set();
   const aliases = new Map();
 
@@ -160,7 +97,7 @@ function buildIngredientResolver(rootDir) {
       .forEach((entry) => {
         const ingredientsPath = path.join(recipesDir, entry.name, 'ingredients.csv');
         if (!fs.existsSync(ingredientsPath)) return;
-        const rows = rowsToObjects(parseCsv(fs.readFileSync(ingredientsPath, 'utf8')));
+        const rows = parseCSVFile(ingredientsPath);
         rows.forEach((row) => {
           const id = String(row.ingredient_id || '').trim();
           const display = String(row.display || '').trim();

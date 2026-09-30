@@ -1,4 +1,5 @@
-import { UNIT_CONVERSIONS } from './unit-conversions.js';
+import { UNIT_CONVERSIONS, normalizeUnit, unitDefinition, convertUnitAmount } from './unit-conversions.js';
+export { UNIT_ALIASES, normalizeUnit, unitDefinition, convertUnitAmount } from './unit-conversions.js';
 
 export const DIETARY_TAGS = {
   gluten_free: { positive: 'Gluten-free ready', negative: 'Contains gluten' },
@@ -6,67 +7,8 @@ export const DIETARY_TAGS = {
   dairy_free: { positive: 'Dairy-free ready', negative: 'Contains dairy' },
 };
 
-export const UNIT_ALIASES = new Map([
-  ['cloves', 'clove'],
-  ['clove', 'clove'],
-  ['sprigs', 'sprig'],
-  ['sprig', 'sprig'],
-  ['leaves', 'leaf'],
-  ['leaf', 'leaf'],
-  ['pieces', 'count'],
-  ['piece', 'count'],
-  ['packages', 'package'],
-  ['package', 'package'],
-  ['bags', 'bag'],
-  ['bag', 'bag'],
-  ['bunches', 'count'],
-  ['bunch', 'count'],
-  ['cans', 'can'],
-  ['can', 'can'],
-  ['jars', 'jar'],
-  ['jar', 'jar'],
-  ['bottles', 'bottle'],
-  ['bottle', 'bottle'],
-  ['fl oz', 'fl_oz'],
-  ['fl-oz', 'fl_oz'],
-  ['fluid ounce', 'fl_oz'],
-  ['fluid ounces', 'fl_oz'],
-  ['tablespoons', 'tbsp'],
-  ['tablespoon', 'tbsp'],
-  ['teaspoons', 'tsp'],
-  ['teaspoon', 'tsp'],
-  ['cups', 'cup'],
-  ['pints', 'pint'],
-  ['pint', 'pint'],
-  ['quarts', 'quart'],
-  ['quart', 'quart'],
-  ['qt', 'quart'],
-  ['ounces', 'oz'],
-  ['ounce', 'oz'],
-  ['pounds', 'lb'],
-  ['pound', 'lb'],
-  ['liters', 'l'],
-  ['liter', 'l'],
-  ['milliliters', 'ml'],
-  ['milliliter', 'ml'],
-  ['ml', 'ml'],
-  ['l', 'l'],
-  ['medium', 'count'],
-  ['large', 'count'],
-  ['small', 'count'],
-  ['dash', 'tsp'],
-  ['drop', 'tsp'],
-]);
-
 export function restrictionsActive(prefs) {
   return prefs.gluten_free || prefs.egg_free || prefs.dairy_free;
-}
-
-export function normalizeUnit(unit) {
-  if (!unit) return null;
-  const cleaned = String(unit).trim().toLowerCase();
-  if (!cleaned) return null;
-  return UNIT_ALIASES.get(cleaned) || cleaned;
 }
 
 export function parseRatio(str) {
@@ -151,16 +93,6 @@ export function pluralize(display, amount, unit) {
   return display;
 }
 
-export function unitDefinition(unitId) {
-  if (!unitId) return null;
-  const normalized = String(unitId).toLowerCase();
-  for (const [groupName, group] of Object.entries(UNIT_CONVERSIONS)) {
-    const def = group.units[normalized];
-    if (def) return { ...def, id: normalized, group: groupName };
-  }
-  return null;
-}
-
 export function unitOptionsFor(unitId) {
   const def = unitDefinition(unitId);
   if (!def) return [];
@@ -181,17 +113,6 @@ export function formatUnitLabel(unitId, amount) {
   }
   return def.label || unitId;
 }
-
-export function convertUnitAmount(amount, fromUnit, toUnit) {
-  if (!Number.isFinite(amount)) return null;
-  const fromDef = unitDefinition(fromUnit);
-  const toDef = unitDefinition(toUnit);
-  if (!fromDef || !toDef || fromDef.group !== toDef.group) return null;
-  const amountInBase = amount * fromDef.to_base;
-  const converted = amountInBase / toDef.to_base;
-  return { amount: converted, unit: toDef.id };
-}
-
 
 function optionAmountInGrams(option, multiplier, ingredientUnitFactors) {
   if (!option?.ratio || !option?.unit || !option?.ingredient_id) return null;

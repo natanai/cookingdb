@@ -1,0 +1,226 @@
+import { createSQLiteWorker } from '../support/sqlite-worker.mjs';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { test as base, expect } from '@playwright/test';
+import { importInbox } from '../../scripts/import-inbox.mjs';
+import { userClick } from './journey-helpers.mjs';
+
+const builtIndex = JSON.parse(
+  fs.readFileSync(new URL('../../docs/built/index.json', import.meta.url), 'utf8')
+);
+const ingredientAutocomplete = JSON.parse(
+  fs.readFileSync(new URL('../../docs/built/ingredient-autocomplete.json', import.meta.url), 'utf8')
+);
+
+const category = builtIndex.flatMap((recipe) => recipe.categories || []).find(Boolean) || 'Dinner';
+const ingredient = ingredientAutocomplete.find(
+  (entry) => entry?.ingredient_id && /^[A-Za-z][A-Za-z ]+$/.test(entry.label || '')
+);
+
+const WORKER_BASE = 'https://cookingdb-inbox.natanai.workers.dev';
+const FAMILY_PASSWORD = 'browser-family-password';
+const ADMIN_TOKEN = 'browser-admin-token';
+
+function jsonResponse(route, status, payload) {
+  return route.fulfill({
+    status,
+    contentType: 'application/json',
+    body: JSON.stringify(payload),
+  });
+}
+
+const test = base.extend({
+  inbox: async ({page}, use) => {
+    const state = createSQLiteWorker();
+    state.lastUpdateRequest = null;
+    await page.route(`${WORKER_BASE}/**`, async route => {
+      const request = route.request();
+      if (new URL(request.url()).pathname === '/admin/update-pending') {
+        state.lastUpdateRequest = request.postDataJSON();
+      }
+      const response = await state.fetch(new Request(request.url(), {
+        method: request.method(), headers: request.headers(), body: request.postData(),
+      }));
+      await route.fulfill({status:response.status, headers:Object.fromEntries(response.headers), body:await response.text()});
+    });
+    try { await use(state); } finally { state.close(); }
+  },
+});
+
+async function chooseCategory(page) {
+  await expect(page.locator('#categories')).toBeEnabled();
+  await userClick(page.locator('#category-menu > summary'), 'category picker');
+  const checkbox = page.getByRole('checkbox', { name: category, exact: true });
+  await userClick(checkbox, `category ${category}`);
+  await userClick(page.getByRole('button', { name: 'Done', exact: true }), 'finish category selection');
+  await expect(page.locator('#category-summary')).toContainText(category);
+}
+
+async function chooseIngredient(page) {
+  expect(ingredient, 'browser fixture needs at least one simple catalog ingredient').toBeTruthy();
+
+  const row = page.locator('#ingredient-rows .ingredient-row').first();
+  const name = row.locator('.ingredient-name');
+  await name.fill(ingredient.label);
+
+  const option = page
+    .getByRole('option')
+    .filter({ hasText: ingredient.label })
+    .first();
+  await userClick(option, `ingredient suggestion ${ingredient.label}`);
+
+  await row.locator('.ingredient-amount').fill('1');
+  const unit = row.locator('.ingredient-unit');
+  if (!(await unit.inputValue())) {
+    const firstUsableUnit = await unit.locator('option:not([disabled])').first().getAttribute('value');
+    expect(firstUsableUnit, 'ingredient editor should expose at least one usable unit').toBeTruthy();
+    await unit.selectOption(firstUsableUnit);
+  }
+
+  await expect(row.locator('.ingredient-id')).toHaveValue(ingredient.ingredient_id);
+  return ingredient.label;
+}
+
+function verifyPublishImport(inbox, ingredientLabel) {
+  expect(inbox.items).toHaveLength(1);
+  const pendingItem = inbox.items[0];
+  const recipeId = String(pendingItem.payload?.id || '').trim();
+  expect(recipeId, 'reviewed pending recipe must retain a publishable recipe id').toMatch(/^[a-z0-9_-]+$/);
+
+  const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), 'cookingdb-roundtrip-'));
+  try {
+    const repository = fileURLToPath(new URL('../../', import.meta.url));
+    for (const folder of ['data', 'recipes', 'scripts/baselines']) {
+      fs.cpSync(path.join(repository, folder), path.join(rootDir, folder), { recursive: true });
+    }
+
+    const exportPath = path.join(rootDir, 'pending-export.json');
+    fs.writeFileSync(exportPath, `${JSON.stringify({ items: inbox.items }, null, 2)}\n`);
+
+    const report = importInbox({ inputPath: exportPath, rootDir });
+    expect(report.processed).toBe(1);
+    expect(report.inbox_ids).toEqual([pendingItem.id]);
+    expect(report.created_recipe_ids).toEqual([recipeId]);
+
+    const recipeDir = path.join(rootDir, 'recipes', recipeId);
+    const meta = fs.readFileSync(path.join(recipeDir, 'meta.csv'), 'utf8');
+    const ingredients = fs.readFileSync(path.join(recipeDir, 'ingredients.csv'), 'utf8');
+    const steps = fs.readFileSync(path.join(recipeDir, 'steps.csv'), 'utf8');
+
+    expect(meta).toContain('Browser round trip soup revised');
+    expect(meta).toContain(category);
+    expect(ingredients).toContain(ingredient.ingredient_id);
+    expect(ingredients).toContain(ingredientLabel);
+    // Canonical directions retain ingredient references so rendering/scaling can
+    // resolve them. The editor's display text is not the stored recipe format.
+    const [token] = pendingItem.payload.token_order;
+    expect(pendingItem.payload.ingredients[token].options[0].ingredient_id).toBe(ingredient.ingredient_id);
+    expect(steps).toContain(`Add {{${token}}} and stir.`);
+
+    for (const script of ['validate.mjs', 'build.mjs', 'check-recipe-semantic-parity.mjs']) {
+      execFileSync(process.execPath, [path.join(repository, 'scripts', script)], {
+        cwd: rootDir, timeout: 15000, stdio: 'pipe',
+      });
+    }
+    const published = JSON.parse(fs.readFileSync(path.join(rootDir, 'docs/built/recipes.json'), 'utf8'));
+    const publishedRecipe = published.find(recipe => recipe.id === recipeId);
+    expect(publishedRecipe?.title).toBe('Browser round trip soup revised');
+    expect(publishedRecipe?.categories).toContain(category);
+    expect(publishedRecipe?.steps[0].text).toBe(`Add {{${token}}} and stir.`);
+    expect(publishedRecipe?.ingredients[token].options[0].ingredient_id).toBe(ingredient.ingredient_id);
+
+    const secondPass = importInbox({ inputPath: exportPath, rootDir, dryRun: true });
+    expect(secondPass.created_recipe_ids).toEqual([]);
+    expect(secondPass.already_present_recipe_ids).toEqual([recipeId]);
+    return publishedRecipe;
+  } finally {
+    fs.rmSync(rootDir, { recursive: true });
+  }
+}
+
+test('Add Recipe -> Recipe inbox -> Review / edit -> publish import follows the real user path', async ({ page, inbox }) => {
+
+  await page.addInitScript(
+    ({ familyPassword, adminToken }) => {
+      localStorage.setItem('cookingdb-family-password', familyPassword);
+      localStorage.setItem('cookingdb-admin-password', adminToken);
+    },
+    { familyPassword: FAMILY_PASSWORD, adminToken: ADMIN_TOKEN }
+  );
+
+  await page.goto('/add.html');
+  await expect(page.locator('#title')).toBeVisible();
+  await expect(page.locator('#admin-edit-banner')).toBeHidden();
+
+  await page.locator('#title').fill('Browser round trip soup');
+  await chooseCategory(page);
+  const ingredientLabel = await chooseIngredient(page);
+  await page.locator('#steps-list .step-text').first().fill(`Add ${ingredientLabel} and stir.`);
+
+  // Submission deliberately confirms the family password even when a remembered value
+  // is available. Exercise that real dialog instead of bypassing the user-facing gate.
+  const familyDialogPromise = page.waitForEvent('dialog');
+  const submitPromise = userClick(
+    page.getByRole('button', { name: 'Submit recipe', exact: true }),
+    'Submit recipe'
+  );
+  const familyDialog = await familyDialogPromise;
+  expect(familyDialog.type()).toBe('prompt');
+  expect(familyDialog.message()).toBe('Family inbox password');
+  expect(familyDialog.defaultValue()).toBe(FAMILY_PASSWORD);
+  await familyDialog.accept(FAMILY_PASSWORD);
+  await submitPromise;
+
+  await expect(page.locator('#form-status')).toContainText('Success: submitted with id 1.');
+  expect(inbox.items).toHaveLength(1);
+  const submittedVersion = inbox.items[0].updated_at;
+  expect(inbox.items[0].payload.title).toBe('Browser round trip soup');
+
+  await page.goto('/admin.html');
+  await expect(page.locator('#pending-section')).toBeVisible();
+  await expect(page.locator('.pending-recipe-row')).toHaveCount(1);
+  await expect(page.locator('.pending-recipe-title')).toHaveText('Browser round trip soup');
+
+  const reviewLink = page.getByRole('link', { name: 'Review / edit', exact: true });
+  await Promise.all([
+    page.waitForURL(/add\.html\?adminEdit=1&review=1$/),
+    userClick(reviewLink, 'Review / edit pending recipe'),
+  ]);
+
+  await expect(page.locator('#admin-edit-banner')).toBeVisible();
+  await expect(page.locator('#form-status')).toContainText('Pending recipe loaded for review.');
+  await expect(page.locator('#title')).toHaveValue('Browser round trip soup');
+  await expect(page.getByRole('button', { name: 'Save pending recipe', exact: true })).toBeEnabled();
+
+  if (await page.locator('#review-panel').isVisible()) {
+    await userClick(page.getByRole('button', { name: 'Back to editing', exact: true }), 'Back to editing');
+  }
+
+  await page.locator('#title').fill('Browser round trip soup revised');
+  await userClick(
+    page.getByRole('button', { name: 'Save pending recipe', exact: true }),
+    'Save pending recipe'
+  );
+
+  await expect(page.locator('#form-status')).toContainText('Saved. This recipe is still pending');
+  expect(inbox.lastUpdateRequest).toBeTruthy();
+  expect(inbox.lastUpdateRequest.expected_updated_at).toBe(submittedVersion);
+  expect(inbox.items[0].payload.title).toBe('Browser round trip soup revised');
+
+  await page.goto('/admin.html');
+  await expect(page.locator('.pending-recipe-title')).toHaveText('Browser round trip soup revised');
+
+  const publishedRecipe = verifyPublishImport(inbox, ingredientLabel);
+  // Serve the actual importer/builder output to the real recipe reader. The
+  // Worker handlers and SQL ran locally; this does not perform a live deploy.
+  await page.route('**/built/recipes.json*', route => jsonResponse(route, 200, [publishedRecipe]));
+  await page.goto(`/recipe.html?id=${encodeURIComponent(publishedRecipe.id)}`);
+  await expect(page.locator('#recipe-title')).toHaveText('Browser round trip soup revised');
+  await expect(page.locator('#ingredients-list')).toContainText(ingredientLabel);
+  await expect(page.locator('#steps-list')).toContainText(ingredientLabel);
+  await expect(page.locator('#steps-list')).toContainText('and stir.');
+  await expect(page.locator('#steps-list')).not.toContainText('{{');
+});

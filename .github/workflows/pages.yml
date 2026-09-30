@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      source_ref:
+        description: Exact canonical commit to build and deploy
+        type: string
+        required: true
 
 permissions:
   contents: read
@@ -16,15 +22,33 @@ concurrency:
 
 jobs:
   build:
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_ref || github.sha }}
       - uses: actions/setup-node@v4
         with:
           node-version: 20
       - run: npm ci
-      - run: npm test
+      - run: npm run validate
       - run: npm run build
+      - run: npm test
+      - name: Install browser engines
+        run: npx playwright install --with-deps chromium webkit
+      - name: Verify the built deployment candidate
+        run: npm run test:browser
+      - name: Preserve browser evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-browser-evidence
+          path: |
+            playwright-report
+            test-results
+          retention-days: 7
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

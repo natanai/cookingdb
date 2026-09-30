@@ -1,5 +1,4 @@
 import { siteBehavior } from './site-behavior.js';
-import { fetchBuiltJson } from './built-data.js';
 import {
   renderIngredientLines,
   renderStepLines,
@@ -10,6 +9,13 @@ import {
   convertUnitAmount,
   recipeDefaultCompatibility,
 } from './recipe-utils.js';
+import {
+  DIETARY_BADGES,
+  formatKcal,
+  formatNumber,
+  getRecipeTitleParts,
+} from './recipe-model.js';
+import { loadRecipeCollection } from './recipe-repository.js';
 import {
   computeBatchTotals,
   dataLoadState,
@@ -25,25 +31,6 @@ import {
   saveNutritionSettings,
   suggestServings,
 } from './nutrition-engine.js';
-
-const INBOX_STORAGE_KEY = 'cookingdb-inbox-recipes';
-
-const DIETARY_BADGES = [
-  { key: 'gluten_free', short: 'GF', name: 'Gluten-free' },
-  { key: 'egg_free', short: 'EF', name: 'Egg-free' },
-  { key: 'dairy_free', short: 'DF', name: 'Dairy-free' },
-];
-
-function formatNumber(value, options = {}) {
-  const { maximumFractionDigits = 1 } = options;
-  if (!Number.isFinite(value)) return '—';
-  return Number(value).toLocaleString(undefined, { maximumFractionDigits });
-}
-
-function formatKcal(value) {
-  if (!Number.isFinite(value)) return '—';
-  return `${Math.round(value)}`;
-}
 
 function formatPercentDV(value, total) {
   if (!Number.isFinite(value) || !Number.isFinite(total) || total <= 0) return '—';
@@ -75,143 +62,8 @@ function getMealTypes() {
   return mealTypes.length ? mealTypes : DEFAULT_MEAL_TYPES;
 }
 
-function normalizeTitleKey(title) {
-  return String(title || '')
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
-}
-
-function normalizeIngredients(raw, tokenOrder = []) {
-  const list = Array.isArray(raw)
-    ? raw.filter(Boolean)
-    : raw && typeof raw === 'object'
-      ? Object.values(raw).filter(Boolean)
-      : [];
-
-  const order = Array.isArray(tokenOrder) && tokenOrder.length
-    ? tokenOrder
-    : list.map((entry) => entry?.token).filter(Boolean);
-
-  const byToken = {};
-  list.forEach((entry) => {
-    if (entry?.token) byToken[entry.token] = entry;
-  });
-
-  return { list, byToken, order };
-}
-
-function recipeHasDetails(recipe) {
-  if (!recipe || typeof recipe !== 'object') return false;
-  const ingredients = normalizeIngredients(recipe.ingredients, recipe.token_order);
-  const hasIngredients = ingredients.list.length > 0;
-  const hasSteps =
-    (typeof recipe.steps_raw === 'string' && recipe.steps_raw.trim().length > 0) ||
-    (Array.isArray(recipe.steps) && recipe.steps.length > 0);
-  return hasIngredients && hasSteps;
-}
-
-function unwrapRecipeEntry(entry) {
-  let obj = entry;
-  for (let i = 0; i < 4; i += 1) {
-    if (!obj || typeof obj !== 'object') break;
-
-    if (obj.recipe && typeof obj.recipe === 'object') {
-      obj = obj.recipe;
-      continue;
-    }
-
-    if (obj.payload && typeof obj.payload === 'object') {
-      if (obj.payload.payload && typeof obj.payload.payload === 'object') {
-        obj = obj.payload.payload;
-        continue;
-      }
-      obj = obj.payload;
-      continue;
-    }
-
-    break;
-  }
-  return obj;
-}
-
-function normalizeRecipeForPlanner(entry) {
-  const maybe = unwrapRecipeEntry(entry);
-  if (!maybe || typeof maybe !== 'object') return null;
-
-  const title = maybe.title || entry?.title || '';
-  const id = maybe.id || maybe.recipe_id || entry?.id || entry?.recipe_id || normalizeTitleKey(title);
-  const ingredients = normalizeIngredients(maybe.ingredients, maybe.token_order);
-  const defaultCompatibility = recipeDefaultCompatibility({
-    ...maybe,
-    ingredients: ingredients.byToken,
-    token_order: ingredients.order,
-  });
-
-  return {
-    ...maybe,
-    title,
-    id,
-    ingredients: ingredients.byToken,
-    token_order: ingredients.order,
-    compatibility_default: defaultCompatibility,
-    has_details: recipeHasDetails({ ...maybe, ingredients: ingredients.list, token_order: ingredients.order }),
-  };
-}
-
-function loadStoredInboxRecipes() {
-  try {
-    const raw = localStorage.getItem(INBOX_STORAGE_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return [];
-    return parsed.map(normalizeRecipeForPlanner).filter(Boolean);
-  } catch (err) {
-    console.warn('Unable to read inbox recipes from storage', err);
-    return [];
-  }
-}
-
 async function loadRecipes() {
-  const builtRaw = await fetchBuiltJson('recipes.json', { label: 'Meal prep recipes' });
-  const built = Array.isArray(builtRaw)
-    ? builtRaw.map(normalizeRecipeForPlanner).filter(Boolean)
-    : [];
-  const inbox = loadStoredInboxRecipes();
-  const recipeIndex = new Map(
-    [...built, ...inbox]
-      .filter((entry) => entry && entry.id)
-      .map((entry) => [String(entry.id), entry])
-  );
-
-  return { recipes: [...built, ...inbox], recipeIndex };
-}
-
-function splitRecipeTitle(rawTitle) {
-  const title = (rawTitle || '').trim();
-  if (!title) return { title: '', name: '' };
-
-  const parenMatch = title.match(/^(.*)\s*\(([^)]+)\)\s*$/);
-  if (parenMatch) {
-    return { title: parenMatch[1].trim(), name: parenMatch[2].trim() };
-  }
-
-  const possessiveMatch = title.match(/^([^–—-]+?)\s*['’]s\s+(.+)$/i);
-  if (possessiveMatch) {
-    return { title: possessiveMatch[2].trim(), name: possessiveMatch[1].trim() };
-  }
-
-  return { title, name: '' };
-}
-
-function getRecipeTitleParts(recipe) {
-  const byline = (recipe?.byline || '').trim();
-  if (byline) {
-    return { title: (recipe?.title || '').trim(), name: byline };
-  }
-  return splitRecipeTitle(recipe?.title || '');
+  return loadRecipeCollection({ label: 'Meal prep recipes' });
 }
 
 function recipeMatchesQuery(recipe, query) {

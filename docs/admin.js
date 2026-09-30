@@ -1,3 +1,4 @@
+import { STORAGE_KEYS, readStoredText } from './browser-storage.js';
 import { siteBehavior } from './site-behavior.js';
 import {
   adminDeleteAllPending,
@@ -294,7 +295,7 @@ async function handleWipePending() {
 function bootstrap() {
   tokenInput.value = getRememberedPassword('admin');
   if (tokenInput.value) {
-    rememberCheckbox.checked = Boolean(localStorage.getItem('cookingdb-admin-password'));
+    rememberCheckbox.checked = Boolean(readStoredText(STORAGE_KEYS.admin));
   }
 
   loadBtn.addEventListener('click', () => loadPending());

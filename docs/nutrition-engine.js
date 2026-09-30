@@ -1,3 +1,4 @@
+import { STORAGE_KEYS, readStoredText, writeStoredText } from './browser-storage.js';
 import { fetchBuiltJson } from './built-data.js';
 import {
   convertUnitAmount,
@@ -8,7 +9,7 @@ import {
   unitDefinition,
 } from './recipe-utils.js';
 
-const SETTINGS_KEY = 'cookingdb-nutrition-settings';
+const SETTINGS_KEY = STORAGE_KEYS.nutrition;
 
 const DEFAULT_POLICY = {
   sodium_day_max_mg: 2300,
@@ -204,7 +205,7 @@ export function loadNutritionSettings(policy = DEFAULT_POLICY) {
   };
 
   try {
-    const raw = localStorage.getItem(SETTINGS_KEY);
+    const raw = readStoredText(SETTINGS_KEY);
     if (!raw) return defaults;
     const parsed = JSON.parse(raw);
     const mealFractions = normalizeMealFractions(parsed?.meal_fractions, policy);
@@ -231,7 +232,7 @@ export function saveNutritionSettings(settings) {
     weight_lb: settings.weight_lb,
     meal_fractions: settings.meal_fractions,
   };
-  localStorage.setItem(SETTINGS_KEY, JSON.stringify(payload));
+  writeStoredText(SETTINGS_KEY, JSON.stringify(payload));
 }
 
 export function deriveDailyTargets(settings, policy = DEFAULT_POLICY) {
