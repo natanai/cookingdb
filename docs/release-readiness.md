@@ -39,6 +39,9 @@ WebKit validation. See the latest PR checks for the combined candidate outcome.
    their physical iPhone. A persistent branch-preview host is not configured in
    this repository. Do not temporarily replace production just to obtain a preview.
    An approved staging host or an owner's local HTTP server can serve the build.
+   Source-only GitHub proxies are not a valid substitute: they do not run
+   `npm run build`, so generated Add Recipe autocomplete, pan-size, and authoring
+   option assets are absent even though the page can otherwise appear functional.
 3. **Real deployment round trip.** Verify staging/production infrastructure after
    the Worker update: retain the exported row version, import/validate/build, deploy
    the exact commit, then acknowledge only that version. Never test destructive

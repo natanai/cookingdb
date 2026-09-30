@@ -58,6 +58,11 @@ assert(
   'the recipe repository must own full recipe-box loading'
 );
 assert(
+  app.includes("'./features/recipe-scaling.js'") &&
+    app.includes("'./nutrition-engine.js'"),
+  'cookbook warm-up must include recipe-page modules that are not already loaded by the cookbook graph'
+);
+assert(
   recipeRepository.includes("fetchBuiltJson('index.json'") &&
     recipeRepository.includes('loadRecipeSummaries'),
   'the recipe repository must own cookbook-summary loading'

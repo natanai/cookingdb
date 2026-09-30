@@ -11,6 +11,7 @@ const RECIPE_WARM_RESOURCES = Object.freeze([
   './recipe.html',
   './recipe.js',
   './nutrition-engine.js',
+  './features/recipe-scaling.js',
   './built-data.js',
   './built/recipes.json',
   './built/nutrition-policy.json',
